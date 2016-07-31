@@ -7,7 +7,7 @@
     <ProjectGuid>{074C14ED-C574-46D2-B9DC-C1B5F65D9A69}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Project.DvbIpTv.Services.Record.Serialization</RootNamespace>
+    <RootNamespace>Project.IpTv.Services.Record.Serialization</RootNamespace>
     <AssemblyName>Services.Record.Serialization</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

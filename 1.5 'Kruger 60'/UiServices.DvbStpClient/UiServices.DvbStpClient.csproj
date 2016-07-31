@@ -7,7 +7,7 @@
     <ProjectGuid>{BA481E42-F570-4D2C-94D4-21C4CCE27762}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Project.DvbIpTv.UiServices.DvbStpClient</RootNamespace>
+    <RootNamespace>Project.IpTv.UiServices.DvbStpClient</RootNamespace>
     <AssemblyName>UiServices.DvbStpClient</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

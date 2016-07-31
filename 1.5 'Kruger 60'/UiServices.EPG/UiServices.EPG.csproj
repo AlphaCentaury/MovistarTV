@@ -7,7 +7,7 @@
     <ProjectGuid>{004C3829-FED4-4084-B23B-871193AFA8C7}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Project.DvbIpTv.UiServices.EPG</RootNamespace>
+    <RootNamespace>Project.IpTv.UiServices.EPG</RootNamespace>
     <AssemblyName>UiServices.EPG</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

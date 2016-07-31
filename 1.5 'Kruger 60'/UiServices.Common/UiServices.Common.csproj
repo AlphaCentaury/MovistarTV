@@ -7,7 +7,7 @@
     <ProjectGuid>{76346905-AC2F-4F01-BA99-BBFFBB2A6FE9}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Project.DvbIpTv.UiServices.Common</RootNamespace>
+    <RootNamespace>Project.IpTv.UiServices.Common</RootNamespace>
     <AssemblyName>UiServices.Common</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

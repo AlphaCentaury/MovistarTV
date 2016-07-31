@@ -7,7 +7,7 @@
     <ProjectGuid>{8986CD52-0C65-42D6-9C47-20FF47CF87BB}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Project.DvbIpTv.Native</RootNamespace>
+    <RootNamespace>Project.IpTv.Native</RootNamespace>
     <AssemblyName>Project.Native</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
