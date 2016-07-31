@@ -15,7 +15,7 @@ All trademarks, service marks, trade names, product names and logos are the prop
 Its use in the context of this product does not constitute endorsement nor support by their respective owners.
 
 --------------------------------------------------------------------------------
-Copyright (C) 2014-2015, Codeplex user AlphaCentaury and its contributors
+Copyright (C) 2014-2016, Codeplex user AlphaCentaury and its contributors
 --------------------------------------------------------------------------------
 
 *****************************************************************************

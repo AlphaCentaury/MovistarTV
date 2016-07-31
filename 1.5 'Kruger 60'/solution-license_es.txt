@@ -15,7 +15,7 @@ Todas las marcas comerciales, marcas de servicio, nombres comerciales, nombres d
 Su uso en el contexto de este software no constituye un respaldo ni apoyo por parte de sus respectivos propietarios.
 
 --------------------------------------------------------------------------------
-Copyright (C) 2014-2015, Codeplex user AlphaCentaury and its contributors
+Copyright (C) 2014-2016, Codeplex user AlphaCentaury and its contributors
 --------------------------------------------------------------------------------
 
 *****************************************************************************
