@@ -1,0 +1,500 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSPY v2004 rel. 2 U / Oxygen v13.2 by Kevin Murray (NDS Limited) / Dave Walton (EchoStar) -->
+<xsd:schema targetNamespace="urn:dvb:metadata:iptv:sdns:2012-1"
+	xmlns:tva="urn:tva:metadata:2011"
+	xmlns:dvb12="urn:dvb:metadata:iptv:sdns:2012-1"
+	xmlns:dvb="urn:dvb:metadata:iptv:sdns:2012-1"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	elementFormDefault="qualified" attributeFormDefault="unqualified">
+
+   <xsd:annotation>
+    <xsd:documentation>
+      schema to validate the record of the description of the DVB-IP offering of a service Provider
+      This is the phase 1.5.1 version of the schema.
+    </xsd:documentation>
+  </xsd:annotation>
+
+   <xsd:import namespace="urn:tva:metadata:2011" schemaLocation="tva_metadata_3-1_v171.xsd"/>
+
+  <!--
+   <xsd:import namespace="urn:dvb:metadata:iptv:sdns:2008-1" schemaLocation="sdns_v1.4r13_subset.xsd"/>
+   -->
+  <xsd:import schemaLocation="sdns_v1.4r13_subset.xsd"/>
+
+   <xsd:element name="ServiceDiscovery">
+    <xsd:complexType>
+      <xsd:choice>
+        <xsd:element name="BroadcastDiscovery" type="dvb12:BroadcastOffering" maxOccurs="unbounded"/>
+        <xsd:element name="CoDDiscovery" type="dvb:CoDOffering" maxOccurs="unbounded"/>
+        <xsd:element name="ServicesFromOtherSP" type="dvb12:ReferencedServices" maxOccurs="unbounded"/>
+        <xsd:element name="PackageDiscovery" type="dvb12:PackagedServices" maxOccurs="unbounded"/>
+        <xsd:element name="ServiceProviderDiscovery" type="dvb:ServiceProviderDiscovery" maxOccurs="unbounded"/>
+        <xsd:element name="BCGDiscovery" type="dvb:BroadcastContentGuideOffering" maxOccurs="unbounded"/>
+        <xsd:element name="RegionalizationDiscovery" type="dvb:RegionalizationOffering" maxOccurs="unbounded"/>
+        <xsd:element name="RMSFUSDiscovery" type="dvb:RmsFusDiscovery" minOccurs="0" maxOccurs="unbounded"/>
+        <xsd:element name="SRMDiscovery" type="dvb12:SRMOffering" minOccurs="0" maxOccurs="unbounded"/>
+      </xsd:choice>
+      <xsd:attribute name="Version" type="dvb:Version" use="optional"/>
+    </xsd:complexType>
+  </xsd:element>
+
+   <xsd:complexType name="BroadcastOffering">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">Provides a list of TS or services discovery information</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="dvb:OfferingBase">
+        <xsd:sequence>
+          <xsd:element name="ServiceList" type="dvb12:IPServiceList" maxOccurs="unbounded"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+   <xsd:complexType name="PackagedServices">
+    <xsd:complexContent>
+      <xsd:extension base="dvb:OfferingBase">
+        <xsd:sequence>
+          <xsd:element name="Package" type="dvb12:Package" maxOccurs="unbounded"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+   <xsd:complexType name="ReferencedServiceProviderType">
+    <xsd:sequence>
+      <xsd:element name="Service" minOccurs="0" maxOccurs="unbounded">
+        <xsd:complexType>
+          <xsd:attribute name="Name" type="dvb:Service" use="required"/>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:sequence>
+    <xsd:attribute name="Domain" type="dvb:DomainType" use="required"/>
+  </xsd:complexType>
+
+   <xsd:complexType name="ReferencedServices">
+    <xsd:complexContent>
+      <xsd:extension base="dvb:OfferingBase">
+        <xsd:sequence>
+          <xsd:element name="ReferencedServiceProvider" type="dvb12:ReferencedServiceProviderType" maxOccurs="unbounded"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+   <xsd:complexType name="IPService">
+    <xsd:sequence>
+      <xsd:element name="ServiceLocation" type="dvb12:ServiceLocation"/>
+      <xsd:element name="TextualIdentifier" type="dvb:TextualIdentifier"/>
+      <xsd:element name="DVBTriplet" type="dvb12:DvbTriplet" maxOccurs="unbounded"/>
+      <xsd:element name="MaxBitrate" type="xsd:positiveInteger" minOccurs="0"/>
+      <xsd:element name="SI" type="dvb12:SI" minOccurs="0"/>
+      <xsd:element name="AudioAttributes" type="tva:AudioAttributesType" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element name="VideoAttributes" type="tva:VideoAttributesType" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element name="ServiceAvailability" type="dvb:ServiceAvailability" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element name="Usage" type="dvb12:Usage" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element name="LinkedService" type="dvb12:IPService" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+   <xsd:complexType name="IPServiceList">
+    <xsd:sequence>
+      <xsd:element name="ServicesDescriptionLocation" type="dvb12:DescriptionLocationBCG" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:sequence>
+        <xsd:element name="SingleService" type="dvb12:IPService" maxOccurs="unbounded"/>
+      </xsd:sequence>
+    </xsd:sequence>
+  </xsd:complexType>
+
+   <xsd:complexType name="PayloadList">
+    <xsd:sequence minOccurs="0" maxOccurs="unbounded">
+      <xsd:element name="PayloadId">
+        <xsd:complexType>
+          <xsd:sequence minOccurs="0" maxOccurs="unbounded">
+            <xsd:element name="Segment" type="dvb12:PayloadListSegmentType"/>
+          </xsd:sequence>
+          <xsd:attribute name="Id" type="dvb:Hexadecimal8bit" use="required"/>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+
+   <xsd:complexType name="ServiceLocation">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">The location of a service. Currently this supports either a broadcast system identifier or a multicast address (ASM and SSM) or RTSP.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:choice>
+      <xsd:element name="BroadcastSystem" type="dvb12:BroadcastSystemType"/>
+      <xsd:choice maxOccurs="unbounded">
+        <xsd:element name="IPMulticastAddress" type="dvb:IpMulticastAddress"/>
+        <xsd:element name="RTSPURL" type="dvb:RtspUrl"/>
+      </xsd:choice>
+    </xsd:choice>
+  </xsd:complexType>
+
+   <xsd:complexType name="PackageTextualIdentifier">
+    <xsd:complexContent>
+      <xsd:extension base="dvb:TextualIdentifier">
+        <xsd:attribute name="Priority" type="xsd:positiveInteger" use="optional"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+   <xsd:complexType name="Package">
+    <xsd:sequence>
+      <xsd:element name="PackageName" type="dvb:MultilingualText" maxOccurs="unbounded"/>
+      <xsd:element name="CountryAvailability" type="dvb:CountryAvailability" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element name="PackageDescription" type="dvb12:DescriptionLocationBCG" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element name="Service" type="dvb12:PackagedServiceType" maxOccurs="unbounded"/>
+      <xsd:element name="PackageReference" minOccurs="0" maxOccurs="unbounded">
+        <xsd:complexType>
+          <xsd:attribute name="Id" type="dvb:Hexadecimal16bit"/>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="PackageAvailability" type="dvb:ServiceAvailability" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+    <xsd:attribute name="Id" type="dvb:Hexadecimal16bit" use="required"/>
+    <xsd:attribute name="Visible" type="xsd:boolean" use="optional" default="true"/>
+  </xsd:complexType>
+
+   <xsd:element name="CoDAnnounceDescribe">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="ContentDescription" type="tva:BasicContentDescriptionType"/>
+        <xsd:element name="FECInfo" type="dvb:FecInfo" minOccurs="0"/>
+        <xsd:element name="RETInfo" type="dvb12:RETInfoType" minOccurs="0"/>
+        <xsd:element name="ServerBasedEnhancementServiceInfo" type="dvb12:ServerBasedEnhancementServiceInfoType" minOccurs="0"/>
+      </xsd:sequence>
+      <xsd:attribute name="RTSPControlURL" type="xsd:anyURI" use="optional"/>
+      <xsd:attribute name="Streaming" type="dvb:StreamingType" use="optional"/>
+    </xsd:complexType>
+  </xsd:element>
+
+   <xsd:complexType name="PackagedServiceType">
+    <xsd:sequence>
+      <xsd:element name="TextualID" type="dvb12:PackageTextualIdentifier" maxOccurs="unbounded"/>
+      <xsd:element name="DVBTriplet" type="dvb12:DvbTriplet" minOccurs="0"/>
+      <xsd:element name="DescriptionLocation" type="dvb12:DescriptionLocationBCG" minOccurs="0"/>
+      <xsd:element name="LogicalChannelNumber" type="xsd:positiveInteger" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+   <xsd:simpleType name="BroadcastSystemType">
+    <xsd:restriction base="xsd:string"/>
+  </xsd:simpleType>
+
+   <xsd:simpleType name="EnhancementServiceType">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="FCC"/>
+      <xsd:enumeration value="RET"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+
+   <xsd:simpleType name="Usage">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="FCC"/>
+      <xsd:enumeration value="PiP"/>
+      <xsd:enumeration value="Main"/>
+      <xsd:enumeration value="HD"/>
+      <xsd:enumeration value="SD"/>
+      <xsd:enumeration value="3D"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <!-- Included in this version and in text sent to IPI, because CommonCastRETType has changed, now dvb12 NS. -->
+
+   <xsd:complexType name="UnicastRETType">
+    <xsd:attribute name="trr-int" type="xsd:unsignedInt" use="optional"/>
+    <xsd:attribute name="DestinationPort-ForRTCPReporting" type="xsd:unsignedInt" use="optional"/>
+    <xsd:attribute name="SourceAddress" type="xsd:string" use="optional"/>
+    <xsd:attribute name="SourcePort" type="xsd:unsignedInt" use="optional"/>
+    <xsd:attribute name="RTSPControlURL" type="xsd:anyURI" use="optional"/>
+    <xsd:attributeGroup ref="dvb12:CommonCastRETType"/>
+  </xsd:complexType>
+
+   <xsd:complexType name="MulticastRETType">
+    <xsd:attribute name="SourceAddress" type="xsd:string" use="optional"/>
+    <xsd:attribute name="GroupAddress" type="xsd:string" use="required"/>
+    <xsd:attributeGroup ref="dvb12:CommonCastRETType"/>
+  </xsd:complexType>
+
+   <xsd:attributeGroup name="CommonCastRETType">
+    <xsd:attribute name="ssrc" type="xsd:unsignedInt" use="optional"/>
+    <xsd:attribute name="RTPPayloadTypeNumber" type="xsd:unsignedInt" use="optional"/>
+    <xsd:attribute name="rtcp-mux" type="xsd:boolean" use="optional" default="false"/>
+    <xsd:attribute name="DestinationPort" type="xsd:unsignedInt" use="optional"/>
+    <xsd:attribute name="rtx-time" type="xsd:unsignedInt" use="required"/>
+  </xsd:attributeGroup>
+
+
+   <xsd:complexType name="ServerBasedEnhancementServiceInfoType">
+    <xsd:sequence>
+      <xsd:element name="EnhancementService" type="dvb12:EnhancementServiceType"/>
+      <xsd:element name="RTCPReporting" type="dvb:RtcpRetransmissionReporting"/>
+      <xsd:element name="Retransmission_session" type="dvb12:UnicastRETType" minOccurs="0"/>
+      <xsd:element name="MulticastRET" type="dvb12:MulticastRETType" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+   <xsd:complexType name="TargetPackageType">
+    <xsd:sequence>
+      <xsd:element name="PackageType" type="dvb:MultilingualText" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+    <xsd:attribute name="PackageIDRef" type="dvb:Hexadecimal16bit" use="required"/>
+  </xsd:complexType>
+
+   <xsd:simpleType name="CPSystemIDType">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">CP System ID of Content Protection System as defined in TS 101 162</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:string">
+      <xsd:pattern value="[0-9a-fA-F]{4}"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+
+   <xsd:simpleType name="CPSystemSRMIDType">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">CP System SRM ID of Content Protection System as defined in TS 101 162</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:string">
+      <xsd:pattern value="([0-9a-fA-F][0-9a-fA-F]){1,256}"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+
+   <xsd:complexType name="SRMAnnouncementModeType">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">SAP or HTTP delivery of SRM Announcement Services</xsd:documentation>
+    </xsd:annotation>
+    <xsd:choice>
+      <xsd:element name="SAP" type="dvb12:SRMAnnouncementModeSAPType"/>
+      <xsd:element name="HTTP" type="xsd:anyURI"/>
+    </xsd:choice>
+  </xsd:complexType>
+
+   <xsd:complexType name="SRMAnnouncementModeSAPType">
+    <xsd:attributeGroup ref="dvb:BasicMulticastAddressAttributes"/>
+  </xsd:complexType>
+
+   <xsd:complexType name="SRMIDVerMType">
+    <xsd:annotation>
+      <xsd:documentation>SRM ID and optional SRM file version</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="dvb12:SRMIDType">
+        <xsd:attribute name="SRMFileVersion" type="dvb:Version" use="optional"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+   <xsd:complexType name="SRMIDVerUType">
+    <xsd:annotation>
+      <xsd:documentation>SRM ID and SRM file version</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="dvb12:SRMIDType">
+        <xsd:attribute name="SRMFileVersion" type="dvb:Version" use="required"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+   <xsd:complexType name="SRMAnnouncementServiceType">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">SRM Announcement Service information</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element name="SRMID" type="dvb12:SRMIDType" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element name="SRMAnnouncementMode" type="dvb12:SRMAnnouncementModeType"/>
+    </xsd:sequence>
+    <xsd:attribute name="AnnouncementServiceVersion" type="dvb:Version" use="optional"/>
+  </xsd:complexType>
+
+   <xsd:complexType name="SRMDownloadServiceFLUTEType">
+    <xsd:sequence>
+      <xsd:element name="SRMIDVer" type="dvb12:SRMIDVerMType" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+    <xsd:attribute name="FLUTESessionVersion" type="dvb:Version"/>
+    <xsd:attributeGroup ref="dvb:BasicMulticastAddressAttributes"/>
+    <xsd:attribute name="TSI" type="dvb:TSId" use="required"/>
+  </xsd:complexType>
+
+   <xsd:complexType name="SRMDownloadServiceHTTPType">
+    <xsd:sequence>
+      <xsd:element name="SRMIDVer" type="dvb12:SRMIDVerUType"/>
+    </xsd:sequence>
+    <xsd:attribute name="Location" type="xsd:anyURI" use="required"/>
+  </xsd:complexType>
+
+   <xsd:complexType name="SRMDownloadServiceType">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">FLUTE or HTTP download of SRM files</xsd:documentation>
+    </xsd:annotation>
+    <xsd:choice>
+      <xsd:element name="FLUTE" type="dvb12:SRMDownloadServiceFLUTEType"/>
+      <xsd:element name="HTTP" type="dvb12:SRMDownloadServiceHTTPType"/>
+    </xsd:choice>
+  </xsd:complexType>
+
+   <xsd:complexType name="SRMIDType">
+    <xsd:annotation>
+      <xsd:documentation>SRM specific ID (CP System ID, CP System SRM ID)</xsd:documentation>
+    </xsd:annotation>
+    <xsd:attribute name="CPSystemID" type="dvb12:CPSystemIDType" use="required"/>
+    <xsd:attribute name="CPSystemSRMID" type="dvb12:CPSystemSRMIDType" use="optional"/>
+  </xsd:complexType>
+
+   <xsd:complexType name="SRMOffering">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">Provides a list of SRM Announcement and Download Services</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="dvb:OfferingBase">
+        <xsd:sequence>
+          <xsd:element name="SRMAnnouncementService" type="dvb12:SRMAnnouncementServiceType" minOccurs="0" maxOccurs="unbounded"/>
+          <xsd:element name="SRMDownloadService" type="dvb12:SRMDownloadServiceType" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+   <xsd:element name="SRMDownloadRecord">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">Provides a list of SRM Download Services</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexType>
+      <xsd:complexContent>
+        <xsd:extension base="dvb:OfferingBase">
+          <xsd:sequence>
+            <xsd:element name="SRMDownloadService" type="dvb12:SRMDownloadServiceType" maxOccurs="unbounded"/>
+          </xsd:sequence>
+        </xsd:extension>
+      </xsd:complexContent>
+    </xsd:complexType>
+  </xsd:element>
+
+   <xsd:complexType name="PayloadListSegmentType">
+    <xsd:sequence>
+      <xsd:element name="TargetPackage" type="dvb12:TargetPackageType" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+    <xsd:attribute name="Version" type="dvb:Version" use="optional"/>
+    <xsd:attribute name="ID" type="dvb:Hexadecimal16bit" use="required"/>
+  </xsd:complexType>
+  <!-- Additions as a correction to an omission in v23 & v24 - August 2012 (DW) -->
+
+   <xsd:complexType name="DvbTriplet">
+     <!-- Changed from DVBTriplet to DvbTriplet -->
+    <xsd:attribute name="OrigNetId" type="dvb:OrigNetId" use="required"/>
+    <xsd:attribute name="TSId" type="dvb:TSId" use="required"/>
+    <xsd:attribute name="ServiceId" type="dvb:ServiceId" use="required"/>
+    <xsd:attribute name="TSIdWildcard" type="xsd:string" fixed="*" use="optional"/>
+  </xsd:complexType>
+  <!-- Added during final image capture to correct v25 (update as v25a) -->
+
+   <xsd:complexType name="ReplacementService">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">implementation of The replacement_Service part of the Linkage_Descriptor in ETSI EN 300 468. Describes a service to try if the specified one fails.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:choice>
+      <xsd:element name="TextualIdentifier" type="dvb:TextualIdentifier"/>
+      <xsd:element name="DVBTriplet" type="dvb12:DvbTriplet"/>
+    </xsd:choice>
+    <xsd:attribute name="ReplacementType" type="dvb:Hexadecimal8bit" use="optional" default="5"/>
+  </xsd:complexType>
+
+   <xsd:complexType name="DescriptionLocationBCG">
+    <xsd:simpleContent>
+      <xsd:extension base="tva:TVAIDType">
+        <xsd:attribute name="preferred" type="xsd:boolean" use="optional"/>
+      </xsd:extension>
+    </xsd:simpleContent>
+  </xsd:complexType>
+
+   <xsd:complexType name="RETInfoType">
+    <xsd:sequence>
+      <xsd:element name="RTCPReporting" type="dvb:RtcpRetransmissionReporting"/>
+      <xsd:element name="UnicastRET" type="dvb12:UnicastRETType" minOccurs="0"/>
+      <xsd:element name="MulticastRET" type="dvb12:MulticastRETType" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+    <xsd:complexType name="SI">
+    <xsd:annotation>
+      <xsd:documentation>Implementation of traditional DVB SI information about a service</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element name="Name" type="dvb:MultilingualText" maxOccurs="unbounded"/>
+      <xsd:element name="Description" type="dvb:MultilingualText" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element name="ServiceDescriptionLocation" type="dvb12:DescriptionLocationBCG" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element name="ContentGenre" type="dvb:Genre" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element name="CountryAvailability" type="dvb:CountryAvailability" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element name="ReplacementService" type="dvb12:ReplacementService" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element name="MosaicDescription" type="dvb12:MosaicDescription" minOccurs="0"/>
+      <xsd:element name="AnnouncementSupport" type="dvb12:AnnouncementSupport" minOccurs="0"/>
+    </xsd:sequence>
+    <xsd:attribute name="ServiceType" type="dvb:ServiceType" use="required"/>
+    <xsd:attribute name="PrimarySISource" type="dvb:PrimaryServiceInformationSource" use="optional" default="XML"/>
+  </xsd:complexType>
+
+   <xsd:complexType name="MosaicDescription">
+    <xsd:sequence maxOccurs="unbounded">
+      <xsd:element name="LogicalCell">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:sequence maxOccurs="unbounded">
+              <xsd:element name="ElementaryCell">
+                <xsd:complexType>
+                  <xsd:attribute name="CellId" type="dvb:Integer6bit" use="required"/>
+                </xsd:complexType>
+              </xsd:element>
+            </xsd:sequence>
+            <xsd:element name="AudioLink" minOccurs="0" maxOccurs="unbounded">
+              <xsd:complexType>
+                <xsd:attribute name="Language" type="dvb:ISO639-2" use="optional"/>
+                <xsd:attribute name="ComponentTag" type="dvb:Hexadecimal8bit" use="required"/>
+              </xsd:complexType>
+            </xsd:element>
+            <xsd:choice minOccurs="0">
+              <xsd:element name="TextualId" type="dvb:TextualIdentifier"/>
+              <xsd:element name="DVBTriplet" type="dvb12:DvbTriplet"/>
+              <xsd:element name="PackageId">
+                <xsd:complexType>
+                  <xsd:simpleContent>
+                    <xsd:extension base="dvb:Hexadecimal16bit">
+                      <xsd:attribute name="Domain" type="dvb:DomainType" use="optional"/>
+                    </xsd:extension>
+                  </xsd:simpleContent>
+                </xsd:complexType>
+              </xsd:element>
+            </xsd:choice>
+          </xsd:sequence>
+          <xsd:attribute name="CellId" type="dvb:Integer6bit" use="required"/>
+          <xsd:attribute name="PresentationInfo" type="dvb:Hexadecimal3bit" use="required"/>
+          <xsd:attribute name="LinkageInfo" type="dvb:Hexadecimal8bit" use="required"/>
+          <xsd:attribute name="EventId" type="dvb:Hexadecimal16bit" use="optional"/>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:sequence>
+    <xsd:attribute name="EntryPoint" type="xsd:boolean" default="true"/>
+    <xsd:attribute name="HorizontalCellsNumber" type="dvb:Hexadecimal3bit" use="required"/>
+    <xsd:attribute name="VerticalCellsNumber" type="dvb:Hexadecimal3bit" use="required"/>
+  </xsd:complexType>
+
+   <xsd:complexType name="AnnouncementSupport">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">Implementation of the Announcement support indicator from ETSI EN 300 468.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element name="Announcement" maxOccurs="unbounded">
+        <xsd:complexType>
+          <xsd:choice minOccurs="0">
+            <xsd:element name="TextualIdentifier" type="dvb:TextualIdentifier"/>
+            <xsd:element name="DVBTriplet" type="dvb12:DvbTriplet"/>
+          </xsd:choice>
+          <xsd:attribute name="Type" type="dvb:Hexadecimal4bit" use="required"/>
+          <xsd:attribute name="ReferenceType" type="dvb:Hexadecimal3bit" use="required"/>
+          <xsd:attribute name="ComponentTag" type="dvb:Hexadecimal8bit" use="optional"/>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:sequence>
+    <xsd:attribute name="SupportIndicator" type="dvb:Hexadecimal16bit" use="required"/>
+  </xsd:complexType>
+</xsd:schema>

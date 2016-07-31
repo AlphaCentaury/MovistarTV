@@ -1,0 +1,245 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AppCaption" xml:space="preserve">
+    <value>Canales y servicios movistar+ - IPTV (1.5 “Kruger 60” alpha 4)</value>
+  </data>
+  <data name="AppName" xml:space="preserve">
+    <value>IPTV: Canales y servicios movistar+</value>
+  </data>
+  <data name="AppStatus" xml:space="preserve">
+    <value>Alpha (experimental)</value>
+  </data>
+  <data name="AppVersion" xml:space="preserve">
+    <value>1.5 “Kruger 60” alpha 4</value>
+  </data>
+  <data name="BroadcastListUnableRefresh" xml:space="preserve">
+    <value>No ha sido posible obtener la lista de canales de TV o servicios</value>
+  </data>
+  <data name="BroadcastObtainingList" xml:space="preserve">
+    <value>Obteniendo la lista de canales de TV o servicios...</value>
+  </data>
+  <data name="BroadcastParsingList" xml:space="preserve">
+    <value>Analizando y extrayendo la lista de servicios...</value>
+  </data>
+  <data name="BroadcastServiceProperties" xml:space="preserve">
+    <value>Propiedades del canal de TV o servicio</value>
+  </data>
+  <data name="ChannelFormActiveScan" xml:space="preserve">
+    <value>Se está ejecutando la verificación de disponibilidad de canales de TV y de servicios.
+Debe cancelarse la verificación antes de poder realizar la acción solicitada.</value>
+  </data>
+  <data name="ChannelFormActiveScanCaption" xml:space="preserve">
+    <value>Verificación de servicios en curso</value>
+  </data>
+  <data name="ChannelListAgeObsolete" xml:space="preserve">
+    <value>La lista de canales puede estar obsoleta. Tiene más de {0} días de antigüedad.</value>
+  </data>
+  <data name="ChannelListAgeOld" xml:space="preserve">
+    <value>La lista de canales tiene {0} días de antigüedad.</value>
+  </data>
+  <data name="ChannelListCacheEmpty" xml:space="preserve">
+    <value>Se ha obtenido de lista de canales de la caché, pero no contiene canales o servicios.</value>
+  </data>
+  <data name="ChannelListNoCache" xml:space="preserve">
+    <value>No existe una versión en caché de la lista de canales. Debe actualizar la lista.</value>
+  </data>
+  <data name="MyAppCtxExceptionCaption" xml:space="preserve">
+    <value>Error en la configuración de la aplicación</value>
+  </data>
+  <data name="MyAppCtxExceptionMsg" xml:space="preserve">
+    <value>Se ha producido un error inesperado durante la inicialización de la aplicación.</value>
+  </data>
+  <data name="MyAppCtxInitializationErrorCaption" xml:space="preserve">
+    <value>Error en la configuración de la aplicación</value>
+  </data>
+  <data name="MyAppCtxStarting" xml:space="preserve">
+    <value>Iniciando la aplicación...</value>
+  </data>
+  <data name="MyAppHandleExceptionDefaultCaption" xml:space="preserve">
+    <value>Se ha producido un error al procesar su solicitud</value>
+  </data>
+  <data name="MyAppLoadConfigException" xml:space="preserve">
+    <value>Se ha producido un error inesperado durante la carga de la configuración de la aplicación.
+La aplicación no puede continuar y se terminará.</value>
+  </data>
+  <data name="MyAppLoadConfigExceptionCaption" xml:space="preserve">
+    <value>Error de inicio de la aplicación</value>
+  </data>
+  <data name="MyAppRecorderLauncherNotFound" xml:space="preserve">
+    <value>No se ha podido localizar el programa 'Ejecución de grabaciones' en '{0}'.</value>
+  </data>
+  <data name="NotProvidedDescription" xml:space="preserve">
+    <value>&lt;No se ha suministrado una descripción&gt;</value>
+  </data>
+  <data name="NotProvidedValue" xml:space="preserve">
+    <value>&lt;No suministrado&gt;</value>
+  </data>
+  <data name="NotSelectedServiceProvider" xml:space="preserve">
+    <value>No se ha seleccionado un proveedor de servicios</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="SolutionLicense" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\..\solution-license_es.txt;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="SPListUnableRefresh" xml:space="preserve">
+    <value>No ha sido posible obtener la lista de proveedores de servicios</value>
+  </data>
+  <data name="SPObtainingList" xml:space="preserve">
+    <value>Obteniendo la lista de proveedores de servicios...</value>
+  </data>
+  <data name="SPParsingList" xml:space="preserve">
+    <value>Analizando y extrayendo la lista de proveedores...</value>
+  </data>
+  <data name="SPProperties" xml:space="preserve">
+    <value>Propiedades del proveedor de servicios</value>
+  </data>
+  <data name="UserCancelListRefresh" xml:space="preserve">
+    <value>La actualización de la lista ha sido cancelada por el usuario.</value>
+  </data>
+  <data name="SchedulerCreateTaskOk" xml:space="preserve">
+    <value>Se ha creado correctamente la tarea de grabación.</value>
+  </data>
+  <data name="SolutionLicenseRtf" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\..\solution-license_es.rtf;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="RecordDeadTvChannel" xml:space="preserve">
+    <value>El canal de TV seleccionado ha sido marcado como inactivo y puede no estar disponible.
+
+¿Todavía desea programar una grabación para {0}?</value>
+  </data>
+  <data name="Payload02DisplayName" xml:space="preserve">
+    <value>Descripción y datos de los canales</value>
+  </data>
+  <data name="Payload05DisplayName" xml:space="preserve">
+    <value>Paquetes y números de canal</value>
+  </data>
+  <data name="MyAppHandleExceptionDefaultMessage" xml:space="preserve">
+    <value>Ninguna información ha sido proporcionada en cuanto a dónde ni por qué ocurrio el error. Los detalles del error se muestran a continuación:</value>
+  </data>
+  <data name="MulticastScannerScanCompleteRefresh" xml:space="preserve">
+    <value>Al menos un servicio inactivo ha pasado a estar activo. La lista se refrescará para mostrar los nuevos servicios activos.</value>
+  </data>
+  <data name="EpgDownloadFirstTime" xml:space="preserve">
+    <value>Se va a proceder a descargar la información de la guía electrónica de programación (EPG) por primera vez. La descarga de la EPG es un proceso muy lento (entre 10 y 15 minutos).
+
+Durante el proceso de descarga la información de EPG o bien no estará disponible o será incompleta.
+En las siguientes ejecuciones del programa, la información EPG se actualizará en segundo plano de manera automática (si han transcurrido más de {0} horas desde la última actualización).</value>
+  </data>
+</root>

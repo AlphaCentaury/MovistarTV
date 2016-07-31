@@ -1,0 +1,30 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Project.DvbIpTv.ChannelList.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="RecorderLauncherDevelopment" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">..\..\..\IpTvRecorderLauncher\bin\debug\IpTvRecorderLauncher.exe</Value>
+    </Setting>
+    <Setting Name="DevelopmentLocationPath" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">\bin\debug</Value>
+    </Setting>
+    <Setting Name="RecorderLauncher" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">.\IpTvRecorderLauncher.exe</Value>
+    </Setting>
+    <Setting Name="ForceUiCulture" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="LastSelectedServiceProvider" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="LastSelectedService" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="AppUiConfigurationRegisterItems" Type="System.Collections.Specialized.StringCollection" Scope="Application">
+      <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;ArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;string&gt;UiBroadcastListSettingsConfigurationRegistration, UiServices.Discovery&lt;/string&gt;
+&lt;/ArrayOfString&gt;</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

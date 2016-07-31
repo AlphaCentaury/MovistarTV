@@ -1,0 +1,195 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{745A4961-D7A0-4A2E-BB58-849ED0690271}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Project.DvbIpTv.UiServices.Controls</RootNamespace>
+    <AssemblyName>UiServices.Controls</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\AssemblySolutionInfo.cs">
+      <Link>Properties\AssemblySolutionInfo.cs</Link>
+    </Compile>
+    <Compile Include="FilenameTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="IRecordingScheduleFragment.cs" />
+    <Compile Include="ListViewColumnItemComparer.cs" />
+    <Compile Include="ListViewSortable.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="RecordingDuration.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="RecordingDuration.Designer.cs">
+      <DependentUpon>RecordingDuration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RecordingSchedule.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="RecordingSchedule.Designer.cs">
+      <DependentUpon>RecordingSchedule.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RecordingDailyScheduleFragment.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="RecordingDailyScheduleFragment.Designer.cs">
+      <DependentUpon>RecordingDailyScheduleFragment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RecordingMonthlyScheduleFragment.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="RecordingMonthlyScheduleFragment.Designer.cs">
+      <DependentUpon>RecordingMonthlyScheduleFragment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RecordingOneTimeScheduleFragment.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="RecordingOneTimeScheduleFragment.Designer.cs">
+      <DependentUpon>RecordingOneTimeScheduleFragment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RecordingRightNowScheduleFragment.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="RecordingRightNowScheduleFragment.Designer.cs">
+      <DependentUpon>RecordingRightNowScheduleFragment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RecordingWeeklyScheduleFragment.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="RecordingWeeklyScheduleFragment.Designer.cs">
+      <DependentUpon>RecordingWeeklyScheduleFragment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Texts.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Texts.resx</DependentUpon>
+    </Compile>
+    <Compile Include="SelectFolderDialog.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="TimeSpanUpDown.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TimeSpanUpDown.Designer.cs">
+      <DependentUpon>TimeSpanUpDown.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RecordingDuration.es.resx">
+      <DependentUpon>RecordingDuration.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RecordingDuration.resx">
+      <DependentUpon>RecordingDuration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RecordingSchedule.es.resx">
+      <DependentUpon>RecordingSchedule.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RecordingSchedule.resx">
+      <DependentUpon>RecordingSchedule.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RecordingDailyScheduleFragment.es.resx">
+      <DependentUpon>RecordingDailyScheduleFragment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RecordingDailyScheduleFragment.resx">
+      <DependentUpon>RecordingDailyScheduleFragment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RecordingMonthlyScheduleFragment.resx">
+      <DependentUpon>RecordingMonthlyScheduleFragment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RecordingOneTimeScheduleFragment.es.resx">
+      <DependentUpon>RecordingOneTimeScheduleFragment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RecordingOneTimeScheduleFragment.resx">
+      <DependentUpon>RecordingOneTimeScheduleFragment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RecordingRightNowScheduleFragment.es.resx">
+      <DependentUpon>RecordingRightNowScheduleFragment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RecordingRightNowScheduleFragment.resx">
+      <DependentUpon>RecordingRightNowScheduleFragment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RecordingWeeklyScheduleFragment.es.resx">
+      <DependentUpon>RecordingWeeklyScheduleFragment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RecordingWeeklyScheduleFragment.resx">
+      <DependentUpon>RecordingWeeklyScheduleFragment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Texts.es.resx" />
+    <EmbeddedResource Include="Properties\Texts.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Texts.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TimeSpanUpDown.resx">
+      <DependentUpon>TimeSpanUpDown.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\IpTvRecorderLauncher\IpTvRecorderLauncher.csproj">
+      <Project>{dda7264e-c003-4e3a-b657-27ee2543f101}</Project>
+      <Name>IpTvRecorderLauncher</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="License.txt" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
