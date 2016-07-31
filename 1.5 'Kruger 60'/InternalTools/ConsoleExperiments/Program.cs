@@ -3,11 +3,13 @@
 
 using Project.IpTv.Common;
 using Project.IpTv.Common.Serialization;
+/*
 using Project.IpTv.Services.EPG;
 using Project.IpTv.Services.EPG.Serialization;
 using Project.IpTv.Services.EPG.TvAnytime;
 using Project.IpTv.Services.SqlServerCE;
 using Project.IpTv.UiServices.EPG;
+*/
 using System;
 using System.Collections.Generic;
 using System.Data.SqlServerCe;
@@ -31,7 +33,7 @@ namespace Project.IpTv.Internal.Tools.ConsoleExperiments
             //EpgInfoDownload.Experiment();
             //EpgInfoDownload.GetJsonSchema();
             //EpgInfoDownload.ExploreJsonValues();
-            EpgInfoDownload.DisplayJsonData();
+            //EpgInfoDownload.DisplayJsonData();
 
             return;
 

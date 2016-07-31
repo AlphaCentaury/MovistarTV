@@ -34,7 +34,7 @@ All rights reserved, except those granted by the governing license of this softw
       </Feature>
       <Feature Id="Features" Display="expand" Title="Aditional features">
         <FeatureRef Id="Feature.Record" />
-        <FeatureRef Id="Feature.EPG" />
+        <!-- <FeatureRef Id="Feature.EPG" /> -->
       </Feature>
       <FeatureRef Id="Feature.Tools" />
     </Feature>

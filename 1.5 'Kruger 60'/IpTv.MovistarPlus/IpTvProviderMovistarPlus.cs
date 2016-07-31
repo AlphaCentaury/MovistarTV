@@ -10,7 +10,7 @@ namespace Project.IpTv.MovistarPlus
     {
         public override InitializationResult Initialize()
         {
-            EpgInfo = new EpgInfoProvider();
+            //EpgInfo = new EpgInfoProvider();
 
             return InitializationResult.Ok;
         } // Initialize
