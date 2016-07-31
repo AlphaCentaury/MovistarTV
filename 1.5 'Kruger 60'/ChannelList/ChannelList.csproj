@@ -245,10 +245,6 @@
       <Project>{8da15060-5a78-4f89-a9f1-7aa56b0d622c}</Project>
       <Name>Project.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Services.EPG\Services.EPG.csproj">
-      <Project>{ed5c1cf5-0975-4995-8933-9a7df39fd739}</Project>
-      <Name>Services.EPG</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Services.Record.Serialization\Services.Record.Serialization.csproj">
       <Project>{074c14ed-c574-46d2-b9dc-c1b5f65d9a69}</Project>
       <Name>Services.Record.Serialization</Name>
@@ -277,10 +273,6 @@
     <ProjectReference Include="..\UiServices.DvbStpClient\UiServices.DvbStpClient.csproj">
       <Project>{ba481e42-f570-4d2c-94d4-21c4cce27762}</Project>
       <Name>UiServices.DvbStpClient</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\UiServices.EPG\UiServices.EPG.csproj">
-      <Project>{004c3829-fed4-4084-b23b-871193afa8c7}</Project>
-      <Name>UiServices.EPG</Name>
     </ProjectReference>
     <ProjectReference Include="..\UiServices.Forms\UiServices.Forms.csproj">
       <Project>{90f750b3-64db-493f-96a6-e68de5ea60a1}</Project>

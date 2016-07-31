@@ -540,8 +540,6 @@ namespace Project.IpTv.Tools.FirstTimeConfig
             // checkEpgAutoUpdate
             // 
             resources.ApplyResources(this.checkEpgAutoUpdate, "checkEpgAutoUpdate");
-            this.checkEpgAutoUpdate.Checked = true;
-            this.checkEpgAutoUpdate.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkEpgAutoUpdate.Name = "checkEpgAutoUpdate";
             this.checkEpgAutoUpdate.UseVisualStyleBackColor = true;
             // 
@@ -553,8 +551,6 @@ namespace Project.IpTv.Tools.FirstTimeConfig
             // checkEpg
             // 
             resources.ApplyResources(this.checkEpg, "checkEpg");
-            this.checkEpg.Checked = true;
-            this.checkEpg.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkEpg.Name = "checkEpg";
             this.checkEpg.UseVisualStyleBackColor = true;
             // 

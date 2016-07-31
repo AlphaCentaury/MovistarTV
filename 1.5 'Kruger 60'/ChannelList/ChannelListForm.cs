@@ -19,7 +19,7 @@ using Project.IpTv.UiServices.Configuration.Settings.TvPlayers;
 using Project.IpTv.UiServices.Discovery;
 using Project.IpTv.UiServices.Discovery.BroadcastList;
 using Project.IpTv.UiServices.DvbStpClient;
-using Project.IpTv.UiServices.EPG;
+//using Project.IpTv.UiServices.EPG;
 using Project.IpTv.UiServices.Forms;
 using Project.IpTv.UiServices.Record;
 using System;
@@ -32,7 +32,7 @@ using System.Net;
 using System.Text;
 using System.Windows.Forms;
 using Project.IpTv.Core.IpTvProvider;
-using Project.IpTv.Core.IpTvProvider.EPG;
+//using Project.IpTv.Core.IpTvProvider.EPG;
 using System.Diagnostics;
 
 namespace Project.IpTv.ChannelList
@@ -52,7 +52,7 @@ namespace Project.IpTv.ChannelList
         private const bool enable_menuItemDvbExport = false;
         private const bool enable_menuItemChannelFavorites = false;
         private const bool enable_menuItemChannelEditList = false;
-        private bool enable_Epg = true;
+        //private bool enable_Epg = true;
 
         public ChannelListForm()
         {
@@ -123,6 +123,7 @@ namespace Project.IpTv.ChannelList
             SetupContextMenuList();
 
             // set-up EPG functionality
+            /*
             enable_Epg = AppUiConfiguration.Current.User.Epg.Enabled;
             epgMiniBar.IsDisabled = !enable_Epg;
             if (epgMiniBar.IsDisabled)
@@ -132,6 +133,7 @@ namespace Project.IpTv.ChannelList
                     item.Enabled = false;
                 } // foreach
             } // if
+            */
 
             // load from cache, if available
             SelectedServiceProvider = SelectProviderDialog.GetLastUserSelectedProvider();
@@ -185,6 +187,7 @@ namespace Project.IpTv.ChannelList
             buttonDisplayChannel.Enabled = enable2;
 
             // EPG
+            /*
             EnableEpgMenus(enable);
             if (enable)
             {
@@ -194,6 +197,7 @@ namespace Project.IpTv.ChannelList
             {
                 epgMiniBar.ClearEpgEvents();
             } // if-else
+            */
         } // ListManager_SelectionChanged_Implementation
 
         #endregion
@@ -693,7 +697,7 @@ namespace Project.IpTv.ChannelList
             menuItemChannelEditList.Enabled = true;
 
             // TODO: clean-up
-            UpdateEpgData();
+            //UpdateEpgData();
 
             SetBroadcastDiscovery(null);
             LoadBroadcastDiscovery(true);
@@ -779,7 +783,7 @@ namespace Project.IpTv.ChannelList
                     AppUiConfiguration.Current.Cache.SaveXml("UiBroadcastDiscovery", SelectedServiceProvider.Key, uiDiscovery.Version, uiDiscovery);
                 } // if
 
-                ShowEpgMiniBar(false);
+                //ShowEpgMiniBar(false);
                 SetBroadcastDiscovery(uiDiscovery);
 
                 if (fromCache)
@@ -903,6 +907,7 @@ namespace Project.IpTv.ChannelList
             NotImplementedBox.ShowBox(this, "menuItemChannelFavorites");
         }  // menuItemChannelFavoritesEdit_Click
 
+        /*
         private void menuItemEpgBasicGrid_Click(object sender, EventArgs e)
         {
             SafeCall(ShowEpgBasicGrid);
@@ -927,6 +932,7 @@ namespace Project.IpTv.ChannelList
         {
             LaunchEpgLoader(true);
         }  // menuItemEpgRefresh_Click
+        */
 
         private void SetupContextMenuList()
         {
@@ -1054,6 +1060,7 @@ namespace Project.IpTv.ChannelList
             } // if
         } // DumpBroadcastService
 
+        /*
         private void EnableEpgMenus(bool enable)
         {
             menuItemEpgNow.Enabled = enable & enable_Epg;
@@ -1227,6 +1234,7 @@ namespace Project.IpTv.ChannelList
                 form.ShowDialog(this);
             } // using form
         } // ShowEpgList
+    */
 
         private void GetLogicalNumbers(UiBroadcastDiscovery uiDiscovery, PackageDiscoveryRoot xmlPackage, bool hdPriority)
         {
