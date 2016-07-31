@@ -1,47 +1,44 @@
-Decodificador virtual IPTV para movistar+
+#######################################################
+  IPTViewr: Decodificador virtual IPTV para movistar+
+#######################################################
 
-AVISO IMPORTANTE: El presente software NO EST¡ SOPORTADO NI RESPALDADO por Movistar ni por TelefÛnica. TelefÛnica de EspaÒa no tiene responsabilidad alguna si hay canales (incluso si est·n contratados) que no pueden verse en el PC.
-NO DEBE LLAMARSE NUNCA al 1002 o al 1004 si desaparecen canales de la lista o no pueden verse o cualquier otra anomalÌa. TelefÛnica sÛlo proporciona ayuda y soporte tÈcnico para su decodificador fÌsico y sÛlo para los servicios contratados.
+Copyright (C) 2014-2016, Codeplex user AlphaCentaury and its contributors
+=========================================================================
 
-EL SOFTWARE SE PROPORCIONA "TAL CUAL", SIN GARANTÕA DE NING⁄N TIPO, expresa o implÌcita, incluyendo (pero no limit·ndose a) las garantÌas de comerciabilidad, idoneidad para un propÛsito particular y no infracciÛn.
-En ning˙n caso, los autores o titulares del Copyright ser·n responsables de ninguna reclamaciÛn, daÒos o cualquier otra responsabilidad, ya sea en una acciÛn de contrato, agravio o cualquier otro motivo, con o sin relaciÛn con el software o el uso u otros aspectos del software.
+EL SOFTWARE SE PROPORCIONA ‚ÄúTAL CUAL‚Äù, SIN GARANT√çA DE NING√öN TIPO, expresa o impl√≠cita, incluyendo (pero no limit√°ndose a) las garant√≠as de comerciabilidad, idoneidad para un prop√≥sito particular y no infracci√≥n.
+En ning√∫n caso, los autores o titulares del Copyright ser√°n responsables de ninguna reclamaci√≥n, da√±os o cualquier otra responsabilidad, ya sea en una acci√≥n de contrato, agravio o cualquier otro motivo, con o sin relaci√≥n con el software o el uso u otros aspectos del software.
 
-Este software, ya sea en forma de cÛdigo binario o fuente, est· sujeta a los tÈrminos de la Licencia RecÌproca de Microsoft "Microsoft Reciprocal License" (Ms-RL), excepto cuanto se indica en la secciÛn "EXCEPCIONES" del archivo de licencia de cada versiÛn.
-Todos los dem·s derechos est·n reservados por el/los autor(es) del software.
+Este software, ya sea en forma de c√≥digo binario o fuente, est√° sujeta a los t√©rminos de la Licencia Rec√≠proca de Microsoft ‚ÄúMicrosoft Reciprocal License‚Äù (Ms-RL), excepto cuanto se indica en la secci√≥n ‚ÄúEXCEPCIONES‚Äù del archivo de licencia de cada versi√≥n.
+Todos los dem√°s derechos est√°n reservados por el/los autor(es) del software.
 
-Se proporcionan los logotipos de la totalidad de canales de movistar+ en el momento de escribir el software. Estos logotipos son propiedad de los diferentes canales y sus compaÒÌas propietarias.
-Los logos se suministran de "buena fe", para poder identificar adecuadamente los diferentes canales, sin ·nimo de infringir ning˙n derecho de copyright.
+AVISO IMPORTANTE: El presente software NO EST√Å SOPORTADO NI RESPALDADO por Movistar ni por Telef√≥nica. Telef√≥nica de Espa√±a no tiene responsabilidad alguna si hay canales (incluso si est√°n contratados) que no pueden verse en el PC.
+NO DEBE LLAMARSE NUNCA al 1002 o al 1004 si desaparecen canales de la lista o no pueden verse o cualquier otra anomal√≠a relacionada con el uso del software.
+Telef√≥nica s√≥lo proporciona ayuda y soporte t√©cnico para su decodificador f√≠sico y s√≥lo para los servicios contratados.
 
-Todas las marcas comerciales, marcas de servicio, nombres comerciales, nombres de productos y logotipos son propiedad de sus respectivos propietarios, incluyendo en algunos casos el Grupo TelefÛnica.
+Se proporcionan los logotipos de la totalidad de canales de movistar+ en el momento de escribir el software. Estos logotipos son propiedad de los diferentes canales y sus compa√±√≠as propietarias.
+Los logos se suministran de ‚Äúbuena fe‚Äù, para poder identificar adecuadamente los diferentes canales, sin √°nimo de infringir ning√∫n derecho de copyright.
+
+Todas las marcas comerciales, marcas de servicio, nombres comerciales, nombres de productos y logotipos son propiedad de sus respectivos propietarios, incluyendo en algunos casos el Grupo Telef√≥nica.
 Su uso en el contexto de este software no constituye un respaldo ni apoyo por parte de sus respectivos propietarios.
 
---------------------------------------------------------------------------------
-Copyright (C) 2014-2016, Codeplex user AlphaCentaury and its contributors
---------------------------------------------------------------------------------
-
-*****************************************************************************
-** Microsoft Reciprocal License (Ms-RL)                                    **
-*****************************************************************************
+----------------------------------------
+  Microsoft Reciprocal License (Ms-RL)
+----------------------------------------  
 
 This license governs use of the accompanying software. If you use the software, you accept this license. If you do not accept the license, do not use the software.
 
-1. Definitions
-
-The terms "reproduce," "reproduction," "derivative works," and "distribution" have the same meaning here as under U.S. copyright law.
-A "contribution" is the original software, or any additions or changes to the software.
-A "contributor" is any person that distributes its contribution under this license.
-"Licensed patents" are a contributor's patent claims that read directly on its contribution.
-
-2. Grant of Rights
-
-(A) Copyright Grant- Subject to the terms of this license, including the license conditions and limitations in section 3, each contributor grants you a non-exclusive, worldwide, royalty-free copyright license to reproduce its contribution, prepare derivative works of its contribution, and distribute its contribution or any derivative works that you create.
-(B) Patent Grant- Subject to the terms of this license, including the license conditions and limitations in section 3, each contributor grants you a non-exclusive, worldwide, royalty-free license under its licensed patents to make, have made, use, sell, offer for sale, import, and/or otherwise dispose of its contribution in the software or derivative works of the contribution in the software.
-
-3. Conditions and Limitations
-
-(A) Reciprocal Grants- For any file you distribute that contains code from the software (in source code or binary format), you must provide recipients the source code to that file along with a copy of this license, which license will govern that file. You may license other files that are entirely your own work and do not contain code from the software under any terms you choose.
-(B) No Trademark License- This license does not grant you rights to use any contributors' name, logo, or trademarks.
-(C) If you bring a patent claim against any contributor over patents that you claim are infringed by the software, your patent license from such contributor to the software ends automatically.
-(D) If you distribute any portion of the software, you must retain all copyright, patent, trademark, and attribution notices that are present in the software.
-(E) If you distribute any portion of the software in source code form, you may do so only under this license by including a complete copy of this license with your distribution. If you distribute any portion of the software in compiled or object code form, you may only do so under a license that complies with this license.
-(F) The software is licensed "as-is." You bear the risk of using it. The contributors give no express warranties, guarantees or conditions. You may have additional consumer rights under your local laws which this license cannot change. To the extent permitted under your local laws, the contributors exclude the implied warranties of merchantability, fitness for a particular purpose and non-infringement.
+1. DEFINITIONS
+  - The terms ‚Äúreproduce,‚Äù ‚Äúreproduction,‚Äù ‚Äúderivative works,‚Äù and ‚Äúdistribution‚Äù have the same meaning here as under U.S. copyright law.
+  - A ‚Äúcontribution‚Äù is the original software, or any additions or changes to the software.
+  - A ‚Äúcontributor‚Äù is any person that distributes its contribution under this license.
+  - ‚ÄúLicensed patents‚Äù are a contributor's patent claims that read directly on its contribution.
+2. GRANT of RIGHTS
+  - (A) Copyright Grant- Subject to the terms of this license, including the license conditions and limitations in section 3, each contributor grants you a non-exclusive, worldwide, royalty-free copyright license to reproduce its contribution, prepare derivative works of its contribution, and distribute its contribution or any derivative works that you create.
+  - (B) Patent Grant- Subject to the terms of this license, including the license conditions and limitations in section 3, each contributor grants you a non-exclusive, worldwide, royalty-free license under its licensed patents to make, have made, use, sell, offer for sale, import, and/or otherwise dispose of its contribution in the software or derivative works of the contribution in the software.
+3. CONDITIONS and LIMITATIONS
+  - (A) Reciprocal Grants- For any file you distribute that contains code from the software (in source code or binary format), you must provide recipients the source code to that file along with a copy of this license, which license will govern that file. You may license other files that are entirely your own work and do not contain code from the software under any terms you choose.
+  - (B) No Trademark License- This license does not grant you rights to use any contributors' name, logo, or trademarks.
+  - (C) If you bring a patent claim against any contributor over patents that you claim are infringed by the software, your patent license from such contributor to the software ends automatically.
+  - (D) If you distribute any portion of the software, you must retain all copyright, patent, trademark, and attribution notices that are present in the software.
+  - (E) If you distribute any portion of the software in source code form, you may do so only under this license by including a complete copy of this license with your distribution. If you distribute any portion of the software in compiled or object code form, you may only do so under a license that complies with this license.
+  - (F) The software is licensed ‚Äúas-is.‚Äù You bear the risk of using it. The contributors give no express warranties, guarantees or conditions. You may have additional consumer rights under your local laws which this license cannot change. To the extent permitted under your local laws, the contributors exclude the implied warranties of merchantability, fitness for a particular purpose and non-infringement.
