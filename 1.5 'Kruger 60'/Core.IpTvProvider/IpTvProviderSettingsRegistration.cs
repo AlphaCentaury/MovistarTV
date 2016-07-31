@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Text;
-using Project.DvbIpTv.UiServices.Configuration;
+using Project.IpTv.UiServices.Configuration;
 
-namespace Project.DvbIpTv.Core.IpTvProvider
+namespace Project.IpTv.Core.IpTvProvider
 {
     public class IpTvProviderSettingsRegistration : IConfigurationItemRegistration
     {

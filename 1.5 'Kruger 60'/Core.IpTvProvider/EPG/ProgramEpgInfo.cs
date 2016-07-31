@@ -5,10 +5,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Project.DvbIpTv.Services.EPG;
-using Project.DvbIpTv.UiServices.Discovery;
+using Project.IpTv.Services.EPG;
+using Project.IpTv.UiServices.Discovery;
 
-namespace Project.DvbIpTv.Core.IpTvProvider.EPG
+namespace Project.IpTv.Core.IpTvProvider.EPG
 {
     public class ProgramEpgInfo
     {

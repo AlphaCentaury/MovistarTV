@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Project.DvbIpTv.Services.Record.Serialization
+namespace Project.IpTv.Services.Record.Serialization
 {
     public enum RecordScheduleKind
     {

@@ -8,7 +8,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 
-namespace Project.DvbIpTv.DvbStp.Client
+namespace Project.IpTv.DvbStp.Client
 {
     public partial class DvbStpEnhancedClient : DvbStpBaseClient
     {

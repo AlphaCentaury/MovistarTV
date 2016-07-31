@@ -1,7 +1,7 @@
 ﻿// Copyright (C) 2014-2016, Codeplex user AlphaCentaury
 // All rights reserved, except those granted by the governing license of this software. See 'license.txt' file in the project root for complete license information.
 
-namespace Project.DvbIpTv.UiServices.Configuration.Editors
+namespace Project.IpTv.UiServices.Configuration.Editors
 {
     partial class ArgumentEditor
     {
@@ -75,7 +75,7 @@ namespace Project.DvbIpTv.UiServices.Configuration.Editors
             // buttonAddParam
             // 
             resources.ApplyResources(this.buttonAddParam, "buttonAddParam");
-            this.buttonAddParam.Image = global::Project.DvbIpTv.UiServices.Configuration.Properties.Resources.Action_AddVariable_16;
+            this.buttonAddParam.Image = global::Project.IpTv.UiServices.Configuration.Properties.Resources.Action_AddVariable_16;
             this.buttonAddParam.Name = "buttonAddParam";
             this.buttonAddParam.UseVisualStyleBackColor = true;
             this.buttonAddParam.Click += new System.EventHandler(this.buttonAddParam_Click);

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Project.DvbIpTv.Core.IpTvProvider.Properties {
+namespace Project.IpTv.Core.IpTvProvider.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace Project.DvbIpTv.Core.IpTvProvider.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Project.DvbIpTv.Core.IpTvProvider.Properties.Texts", typeof(Texts).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Project.IpTv.Core.IpTvProvider.Properties.Texts", typeof(Texts).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,7 +61,7 @@ namespace Project.DvbIpTv.Core.IpTvProvider.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Launches {0} player to view DVB-IPTV channel &apos;{1}&apos;.
+        ///   Looks up a localized string similar to Launches {0} player to view IPTV channel &apos;{1}&apos;.
         /// </summary>
         internal static string ExternalPlayerShortcutDescription {
             get {

@@ -1,7 +1,7 @@
 ﻿// Copyright (C) 2014-2016, Codeplex user AlphaCentaury
 // All rights reserved, except those granted by the governing license of this software. See 'license.txt' file in the project root for complete license information.
 
-namespace Project.DvbIpTv.UiServices.Record
+namespace Project.IpTv.UiServices.Record
 {
     partial class RecordChannelDialog
     {
@@ -46,9 +46,9 @@ namespace Project.DvbIpTv.UiServices.Record
             this.labelStartMarginSufix = new System.Windows.Forms.Label();
             this.numericStartMargin = new System.Windows.Forms.NumericUpDown();
             this.checkBoxStartMargin = new System.Windows.Forms.CheckBox();
-            this.recordingSchedule = new Project.DvbIpTv.UiServices.Record.Controls.RecordingSchedule();
+            this.recordingSchedule = new Project.IpTv.UiServices.Record.Controls.RecordingSchedule();
             this.tabPageLength = new System.Windows.Forms.TabPage();
-            this.recordingTime = new Project.DvbIpTv.UiServices.Record.Controls.RecordingDuration();
+            this.recordingTime = new Project.IpTv.UiServices.Record.Controls.RecordingDuration();
             this.labelEndMarginSufix = new System.Windows.Forms.Label();
             this.numericEndMargin = new System.Windows.Forms.NumericUpDown();
             this.checkBoxEndMargin = new System.Windows.Forms.CheckBox();
@@ -58,18 +58,18 @@ namespace Project.DvbIpTv.UiServices.Record
             this.labelTaskDescription = new System.Windows.Forms.Label();
             this.checkAddTaskPrefix = new System.Windows.Forms.CheckBox();
             this.labelTaskName = new System.Windows.Forms.Label();
-            this.textTaskName = new Project.DvbIpTv.UiServices.Common.Controls.FilenameTextBox();
+            this.textTaskName = new Project.IpTv.UiServices.Common.Controls.FilenameTextBox();
             this.tabPageSave = new System.Windows.Forms.TabPage();
-            this.listViewLocations = new Project.DvbIpTv.UiServices.Common.Controls.ListViewSortable();
+            this.listViewLocations = new Project.IpTv.UiServices.Common.Controls.ListViewSortable();
             this.imageListLocations = new System.Windows.Forms.ImageList(this.components);
             this.buttonSelectFolder = new System.Windows.Forms.Button();
             this.comboFileExtension = new System.Windows.Forms.ComboBox();
-            this.textFilename = new Project.DvbIpTv.UiServices.Common.Controls.FilenameTextBox();
+            this.textFilename = new Project.IpTv.UiServices.Common.Controls.FilenameTextBox();
             this.labelFilename = new System.Windows.Forms.Label();
             this.labelSaveLocation = new System.Windows.Forms.Label();
             this.tabPageAdvanced = new System.Windows.Forms.TabPage();
-            this.timeSpanSchedulerDeleteTaskAfter = new Project.DvbIpTv.UiServices.Common.Controls.TimeSpanUpDown();
-            this.timeSpanSchedulerRetry = new Project.DvbIpTv.UiServices.Common.Controls.TimeSpanUpDown();
+            this.timeSpanSchedulerDeleteTaskAfter = new Project.IpTv.UiServices.Common.Controls.TimeSpanUpDown();
+            this.timeSpanSchedulerRetry = new Project.IpTv.UiServices.Common.Controls.TimeSpanUpDown();
             this.comboSchedulerAlreadyRunning = new System.Windows.Forms.ComboBox();
             this.labelSchedulerConcurrent = new System.Windows.Forms.Label();
             this.checkSchedulerDeleteTask = new System.Windows.Forms.CheckBox();
@@ -80,8 +80,8 @@ namespace Project.DvbIpTv.UiServices.Record
             this.comboSchedulerFolder = new System.Windows.Forms.ComboBox();
             this.labelSchedulerFolder = new System.Windows.Forms.Label();
             this.labelChannelNumber = new System.Windows.Forms.Label();
-            this.pictureChannelLogo = new Project.DvbIpTv.UiServices.Common.Controls.PictureBoxEx();
-            this.selectFolder = new Project.DvbIpTv.UiServices.Common.Controls.SelectFolderDialog();
+            this.pictureChannelLogo = new Project.IpTv.UiServices.Common.Controls.PictureBoxEx();
+            this.selectFolder = new Project.IpTv.UiServices.Common.Controls.SelectFolderDialog();
             ColumnName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             ColumnLocation = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabProperties.SuspendLayout();
@@ -121,7 +121,7 @@ namespace Project.DvbIpTv.UiServices.Record
             // buttonOk
             // 
             resources.ApplyResources(this.buttonOk, "buttonOk");
-            this.buttonOk.Image = global::Project.DvbIpTv.UiServices.Record.Properties.Resources.Action_Ok_16x16;
+            this.buttonOk.Image = global::Project.IpTv.UiServices.Record.Properties.Resources.Action_Ok_16x16;
             this.buttonOk.Name = "buttonOk";
             this.buttonOk.UseVisualStyleBackColor = true;
             this.buttonOk.Click += new System.EventHandler(this.buttonOk_Click);
@@ -131,7 +131,7 @@ namespace Project.DvbIpTv.UiServices.Record
             resources.ApplyResources(this.buttonCancel, "buttonCancel");
             this.buttonCancel.CausesValidation = false;
             this.buttonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.buttonCancel.Image = global::Project.DvbIpTv.UiServices.Record.Properties.Resources.Action_Cancel_16x16;
+            this.buttonCancel.Image = global::Project.IpTv.UiServices.Record.Properties.Resources.Action_Cancel_16x16;
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.UseVisualStyleBackColor = true;
             // 
@@ -197,8 +197,8 @@ namespace Project.DvbIpTv.UiServices.Record
             // 
             resources.ApplyResources(this.recordingSchedule, "recordingSchedule");
             this.recordingSchedule.Name = "recordingSchedule";
-            this.recordingSchedule.ScheduleKindChanged += new System.EventHandler<Project.DvbIpTv.UiServices.Record.Controls.RecordingSchedule.KindChangedEventArgs>(this.recordingSchedule_ScheduleKindChanged);
-            this.recordingSchedule.DateTimeChanged += new System.EventHandler<Project.DvbIpTv.UiServices.Record.Controls.RecordingSchedule.DateTimeChangedEventArgs>(this.recordingSchedule_DateTimeChanged);
+            this.recordingSchedule.ScheduleKindChanged += new System.EventHandler<Project.IpTv.UiServices.Record.Controls.RecordingSchedule.KindChangedEventArgs>(this.recordingSchedule_ScheduleKindChanged);
+            this.recordingSchedule.DateTimeChanged += new System.EventHandler<Project.IpTv.UiServices.Record.Controls.RecordingSchedule.DateTimeChangedEventArgs>(this.recordingSchedule_DateTimeChanged);
             // 
             // tabPageLength
             // 
@@ -534,7 +534,7 @@ namespace Project.DvbIpTv.UiServices.Record
 
         #endregion
 
-        private Project.DvbIpTv.UiServices.Common.Controls.PictureBoxEx pictureChannelLogo;
+        private Project.IpTv.UiServices.Common.Controls.PictureBoxEx pictureChannelLogo;
         private System.Windows.Forms.Label labelChannelName;
         private System.Windows.Forms.Label labelChannelDescription;
         private System.Windows.Forms.Button buttonOk;
@@ -544,12 +544,12 @@ namespace Project.DvbIpTv.UiServices.Record
         private System.Windows.Forms.Label labelStartMarginSufix;
         private System.Windows.Forms.NumericUpDown numericStartMargin;
         private System.Windows.Forms.CheckBox checkBoxStartMargin;
-        private Project.DvbIpTv.UiServices.Record.Controls.RecordingSchedule recordingSchedule;
+        private Project.IpTv.UiServices.Record.Controls.RecordingSchedule recordingSchedule;
         private System.Windows.Forms.TabPage tabPageLength;
         private System.Windows.Forms.Label labelEndMarginSufix;
         private System.Windows.Forms.NumericUpDown numericEndMargin;
         private System.Windows.Forms.CheckBox checkBoxEndMargin;
-        private Project.DvbIpTv.UiServices.Record.Controls.RecordingDuration recordingTime;
+        private Project.IpTv.UiServices.Record.Controls.RecordingDuration recordingTime;
         private System.Windows.Forms.Label labelChannelNumber;
         private System.Windows.Forms.TabPage tabPageDescription;
         private System.Windows.Forms.TabPage tabPageAdvanced;
@@ -557,15 +557,15 @@ namespace Project.DvbIpTv.UiServices.Record
         private System.Windows.Forms.TextBox textTaskDescription;
         private System.Windows.Forms.Label labelTaskDescription;
         private System.Windows.Forms.CheckBox checkAddTaskPrefix;
-        private Project.DvbIpTv.UiServices.Common.Controls.FilenameTextBox textTaskName;
+        private Project.IpTv.UiServices.Common.Controls.FilenameTextBox textTaskName;
         private System.Windows.Forms.Label labelTaskName;
         private System.Windows.Forms.TabPage tabPageSave;
         private System.Windows.Forms.Label labelFilename;
         private System.Windows.Forms.Label labelSaveLocation;
         private System.Windows.Forms.ComboBox comboFileExtension;
-        private Project.DvbIpTv.UiServices.Common.Controls.FilenameTextBox textFilename;
+        private Project.IpTv.UiServices.Common.Controls.FilenameTextBox textFilename;
         private System.Windows.Forms.Button buttonSelectFolder;
-        private Project.DvbIpTv.UiServices.Common.Controls.ListViewSortable listViewLocations;
+        private Project.IpTv.UiServices.Common.Controls.ListViewSortable listViewLocations;
         private System.Windows.Forms.ComboBox comboSchedulerFolder;
         private System.Windows.Forms.Label labelSchedulerFolder;
         private System.Windows.Forms.ComboBox comboSchedulerAlreadyRunning;
@@ -578,8 +578,8 @@ namespace Project.DvbIpTv.UiServices.Record
         private System.Windows.Forms.ImageList imageListLocations;
         private System.Windows.Forms.DateTimePicker dateTimeExpiryDate;
         private System.Windows.Forms.CheckBox checkBoxExpiryDate;
-        private Project.DvbIpTv.UiServices.Common.Controls.TimeSpanUpDown timeSpanSchedulerRetry;
-        private Project.DvbIpTv.UiServices.Common.Controls.TimeSpanUpDown timeSpanSchedulerDeleteTaskAfter;
-        private Project.DvbIpTv.UiServices.Common.Controls.SelectFolderDialog selectFolder;
+        private Project.IpTv.UiServices.Common.Controls.TimeSpanUpDown timeSpanSchedulerRetry;
+        private Project.IpTv.UiServices.Common.Controls.TimeSpanUpDown timeSpanSchedulerDeleteTaskAfter;
+        private Project.IpTv.UiServices.Common.Controls.SelectFolderDialog selectFolder;
     }
 }

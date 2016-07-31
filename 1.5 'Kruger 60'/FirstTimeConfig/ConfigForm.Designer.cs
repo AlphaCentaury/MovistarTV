@@ -1,7 +1,7 @@
 ﻿// Copyright (C) 2014-2016, Codeplex user AlphaCentaury
 // All rights reserved, except those granted by the governing license of this software. See 'license.txt' file in the project root for complete license information.
 
-namespace Project.DvbIpTv.Tools.FirstTimeConfig
+namespace Project.IpTv.Tools.FirstTimeConfig
 {
     partial class ConfigForm
     {
@@ -32,14 +32,14 @@ namespace Project.DvbIpTv.Tools.FirstTimeConfig
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ConfigForm));
-            this.selectFolder = new Project.DvbIpTv.UiServices.Common.Controls.SelectFolderDialog();
+            this.selectFolder = new Project.IpTv.UiServices.Common.Controls.SelectFolderDialog();
             this.openFile = new System.Windows.Forms.OpenFileDialog();
             this.labelStepTitle = new System.Windows.Forms.Label();
             this.panelButtons = new System.Windows.Forms.Panel();
             this.buttonPreviousPage = new System.Windows.Forms.Button();
             this.buttonNextPage = new System.Windows.Forms.Button();
             this.buttonCancel = new System.Windows.Forms.Button();
-            this.wizardControl = new Project.DvbIpTv.Tools.FirstTimeConfig.WizardTabControl();
+            this.wizardControl = new Project.IpTv.Tools.FirstTimeConfig.WizardTabControl();
             this.wizardPageReadme = new System.Windows.Forms.TabPage();
             this.checkReadmeAck = new System.Windows.Forms.CheckBox();
             this.richTextReadme = new System.Windows.Forms.RichTextBox();
@@ -141,7 +141,7 @@ namespace Project.DvbIpTv.Tools.FirstTimeConfig
             this.labelStepTitle.AutoEllipsis = true;
             this.labelStepTitle.BackColor = System.Drawing.Color.Transparent;
             resources.ApplyResources(this.labelStepTitle, "labelStepTitle");
-            this.labelStepTitle.Image = global::Project.DvbIpTv.Tools.FirstTimeConfig.Properties.Resources.WizardTop;
+            this.labelStepTitle.Image = global::Project.IpTv.Tools.FirstTimeConfig.Properties.Resources.WizardTop;
             this.labelStepTitle.Name = "labelStepTitle";
             // 
             // panelButtons
@@ -156,14 +156,14 @@ namespace Project.DvbIpTv.Tools.FirstTimeConfig
             // 
             // buttonPreviousPage
             // 
-            this.buttonPreviousPage.Image = global::Project.DvbIpTv.Tools.FirstTimeConfig.Properties.Resources.ActionBack_Medium_16;
+            this.buttonPreviousPage.Image = global::Project.IpTv.Tools.FirstTimeConfig.Properties.Resources.ActionBack_Medium_16;
             resources.ApplyResources(this.buttonPreviousPage, "buttonPreviousPage");
             this.buttonPreviousPage.Name = "buttonPreviousPage";
             this.buttonPreviousPage.UseVisualStyleBackColor = true;
             // 
             // buttonNextPage
             // 
-            this.buttonNextPage.Image = global::Project.DvbIpTv.Tools.FirstTimeConfig.Properties.Resources.ActionForward_Medium_16;
+            this.buttonNextPage.Image = global::Project.IpTv.Tools.FirstTimeConfig.Properties.Resources.ActionForward_Medium_16;
             resources.ApplyResources(this.buttonNextPage, "buttonNextPage");
             this.buttonNextPage.Name = "buttonNextPage";
             this.buttonNextPage.UseVisualStyleBackColor = true;
@@ -171,7 +171,7 @@ namespace Project.DvbIpTv.Tools.FirstTimeConfig
             // buttonCancel
             // 
             this.buttonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.buttonCancel.Image = global::Project.DvbIpTv.Tools.FirstTimeConfig.Properties.Resources.ActionCancel_16x16;
+            this.buttonCancel.Image = global::Project.IpTv.Tools.FirstTimeConfig.Properties.Resources.ActionCancel_16x16;
             resources.ApplyResources(this.buttonCancel, "buttonCancel");
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.UseVisualStyleBackColor = true;
@@ -220,7 +220,7 @@ namespace Project.DvbIpTv.Tools.FirstTimeConfig
             // 
             // pictureIconReadme
             // 
-            this.pictureIconReadme.Image = global::Project.DvbIpTv.Tools.FirstTimeConfig.Properties.Resources.Warning_48x48;
+            this.pictureIconReadme.Image = global::Project.IpTv.Tools.FirstTimeConfig.Properties.Resources.Warning_48x48;
             resources.ApplyResources(this.pictureIconReadme, "pictureIconReadme");
             this.pictureIconReadme.Name = "pictureIconReadme";
             this.pictureIconReadme.TabStop = false;
@@ -255,7 +255,7 @@ namespace Project.DvbIpTv.Tools.FirstTimeConfig
             // 
             // buttonTestVlc
             // 
-            this.buttonTestVlc.Image = global::Project.DvbIpTv.Tools.FirstTimeConfig.Properties.Resources.ActionRun_16x16;
+            this.buttonTestVlc.Image = global::Project.IpTv.Tools.FirstTimeConfig.Properties.Resources.ActionRun_16x16;
             resources.ApplyResources(this.buttonTestVlc, "buttonTestVlc");
             this.buttonTestVlc.Name = "buttonTestVlc";
             this.buttonTestVlc.UseVisualStyleBackColor = true;
@@ -268,7 +268,7 @@ namespace Project.DvbIpTv.Tools.FirstTimeConfig
             // 
             // buttonFindVlc
             // 
-            this.buttonFindVlc.Image = global::Project.DvbIpTv.Tools.FirstTimeConfig.Properties.Resources.AttachFileHS;
+            this.buttonFindVlc.Image = global::Project.IpTv.Tools.FirstTimeConfig.Properties.Resources.AttachFileHS;
             resources.ApplyResources(this.buttonFindVlc, "buttonFindVlc");
             this.buttonFindVlc.Name = "buttonFindVlc";
             this.buttonFindVlc.UseVisualStyleBackColor = true;
@@ -288,14 +288,14 @@ namespace Project.DvbIpTv.Tools.FirstTimeConfig
             // 
             // pictureBoxVlcOk
             // 
-            this.pictureBoxVlcOk.Image = global::Project.DvbIpTv.Tools.FirstTimeConfig.Properties.Resources.Error_16x16;
+            this.pictureBoxVlcOk.Image = global::Project.IpTv.Tools.FirstTimeConfig.Properties.Resources.Error_16x16;
             resources.ApplyResources(this.pictureBoxVlcOk, "pictureBoxVlcOk");
             this.pictureBoxVlcOk.Name = "pictureBoxVlcOk";
             this.pictureBoxVlcOk.TabStop = false;
             // 
             // buttonVerifyVlc
             // 
-            this.buttonVerifyVlc.Image = global::Project.DvbIpTv.Tools.FirstTimeConfig.Properties.Resources.ApproveReject_16x16;
+            this.buttonVerifyVlc.Image = global::Project.IpTv.Tools.FirstTimeConfig.Properties.Resources.ApproveReject_16x16;
             resources.ApplyResources(this.buttonVerifyVlc, "buttonVerifyVlc");
             this.buttonVerifyVlc.Name = "buttonVerifyVlc";
             this.buttonVerifyVlc.UseVisualStyleBackColor = true;
@@ -345,14 +345,14 @@ namespace Project.DvbIpTv.Tools.FirstTimeConfig
             // 
             // pictureBoxSqlCeOk
             // 
-            this.pictureBoxSqlCeOk.Image = global::Project.DvbIpTv.Tools.FirstTimeConfig.Properties.Resources.Error_16x16;
+            this.pictureBoxSqlCeOk.Image = global::Project.IpTv.Tools.FirstTimeConfig.Properties.Resources.Error_16x16;
             resources.ApplyResources(this.pictureBoxSqlCeOk, "pictureBoxSqlCeOk");
             this.pictureBoxSqlCeOk.Name = "pictureBoxSqlCeOk";
             this.pictureBoxSqlCeOk.TabStop = false;
             // 
             // buttonVerifySqlCe
             // 
-            this.buttonVerifySqlCe.Image = global::Project.DvbIpTv.Tools.FirstTimeConfig.Properties.Resources.ApproveReject_16x16;
+            this.buttonVerifySqlCe.Image = global::Project.IpTv.Tools.FirstTimeConfig.Properties.Resources.ApproveReject_16x16;
             resources.ApplyResources(this.buttonVerifySqlCe, "buttonVerifySqlCe");
             this.buttonVerifySqlCe.Name = "buttonVerifySqlCe";
             this.buttonVerifySqlCe.UseVisualStyleBackColor = true;
@@ -372,14 +372,14 @@ namespace Project.DvbIpTv.Tools.FirstTimeConfig
             // 
             // pictureBoxEmbOk
             // 
-            this.pictureBoxEmbOk.Image = global::Project.DvbIpTv.Tools.FirstTimeConfig.Properties.Resources.Error_16x16;
+            this.pictureBoxEmbOk.Image = global::Project.IpTv.Tools.FirstTimeConfig.Properties.Resources.Error_16x16;
             resources.ApplyResources(this.pictureBoxEmbOk, "pictureBoxEmbOk");
             this.pictureBoxEmbOk.Name = "pictureBoxEmbOk";
             this.pictureBoxEmbOk.TabStop = false;
             // 
             // buttonVerifyEmb
             // 
-            this.buttonVerifyEmb.Image = global::Project.DvbIpTv.Tools.FirstTimeConfig.Properties.Resources.ApproveReject_16x16;
+            this.buttonVerifyEmb.Image = global::Project.IpTv.Tools.FirstTimeConfig.Properties.Resources.ApproveReject_16x16;
             resources.ApplyResources(this.buttonVerifyEmb, "buttonVerifyEmb");
             this.buttonVerifyEmb.Name = "buttonVerifyEmb";
             this.buttonVerifyEmb.UseVisualStyleBackColor = true;
@@ -467,7 +467,7 @@ namespace Project.DvbIpTv.Tools.FirstTimeConfig
             // 
             // buttonFirewall
             // 
-            this.buttonFirewall.Image = global::Project.DvbIpTv.Tools.FirstTimeConfig.Properties.Resources.Shield_16x16;
+            this.buttonFirewall.Image = global::Project.IpTv.Tools.FirstTimeConfig.Properties.Resources.Shield_16x16;
             resources.ApplyResources(this.buttonFirewall, "buttonFirewall");
             this.buttonFirewall.Name = "buttonFirewall";
             this.buttonFirewall.UseVisualStyleBackColor = true;
@@ -574,7 +574,7 @@ namespace Project.DvbIpTv.Tools.FirstTimeConfig
             // 
             // buttonConfig
             // 
-            this.buttonConfig.Image = global::Project.DvbIpTv.Tools.FirstTimeConfig.Properties.Resources.ActionRun_16x16;
+            this.buttonConfig.Image = global::Project.IpTv.Tools.FirstTimeConfig.Properties.Resources.ActionRun_16x16;
             resources.ApplyResources(this.buttonConfig, "buttonConfig");
             this.buttonConfig.Name = "buttonConfig";
             this.buttonConfig.UseVisualStyleBackColor = true;
@@ -613,7 +613,7 @@ namespace Project.DvbIpTv.Tools.FirstTimeConfig
             // 
             // buttonBrowseSave
             // 
-            this.buttonBrowseSave.Image = global::Project.DvbIpTv.Tools.FirstTimeConfig.Properties.Resources.openfolderHS;
+            this.buttonBrowseSave.Image = global::Project.IpTv.Tools.FirstTimeConfig.Properties.Resources.openfolderHS;
             resources.ApplyResources(this.buttonBrowseSave, "buttonBrowseSave");
             this.buttonBrowseSave.Name = "buttonBrowseSave";
             this.buttonBrowseSave.UseVisualStyleBackColor = true;
@@ -676,7 +676,7 @@ namespace Project.DvbIpTv.Tools.FirstTimeConfig
 
         #endregion
 
-        private Project.DvbIpTv.UiServices.Common.Controls.SelectFolderDialog selectFolder;
+        private Project.IpTv.UiServices.Common.Controls.SelectFolderDialog selectFolder;
         private System.Windows.Forms.OpenFileDialog openFile;
         private WizardTabControl wizardControl;
         private System.Windows.Forms.TabPage wizardPagePrerequisites;

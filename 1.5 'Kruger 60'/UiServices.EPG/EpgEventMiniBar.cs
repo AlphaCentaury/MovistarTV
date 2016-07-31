@@ -9,13 +9,13 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using Project.DvbIpTv.Services.EPG;
-using Project.DvbIpTv.Common;
-using Project.DvbIpTv.Core.IpTvProvider;
-using Project.DvbIpTv.UiServices.Discovery;
-using Project.DvbIpTv.UiServices.Common.Forms;
+using Project.IpTv.Services.EPG;
+using Project.IpTv.Common;
+using Project.IpTv.Core.IpTvProvider;
+using Project.IpTv.UiServices.Discovery;
+using Project.IpTv.UiServices.Common.Forms;
 
-namespace Project.DvbIpTv.UiServices.EPG
+namespace Project.IpTv.UiServices.EPG
 {
     public partial class EpgEventMiniBar : UserControl
     {

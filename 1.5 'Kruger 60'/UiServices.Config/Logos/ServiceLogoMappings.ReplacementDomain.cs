@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Project.DvbIpTv.UiServices.Configuration.Logos
+namespace Project.IpTv.UiServices.Configuration.Logos
 {
     partial class ServiceLogoMappings
     {

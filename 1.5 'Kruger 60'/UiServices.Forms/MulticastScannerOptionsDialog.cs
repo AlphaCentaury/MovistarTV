@@ -1,11 +1,11 @@
 ﻿// Copyright (C) 2014-2016, Codeplex user AlphaCentaury
 // All rights reserved, except those granted by the governing license of this software. See 'license.txt' file in the project root for complete license information.
 
-using Project.DvbIpTv.Common.Telemetry;
+using Project.IpTv.Common.Telemetry;
 using System;
 using System.Windows.Forms;
 
-namespace Project.DvbIpTv.UiServices.Forms
+namespace Project.IpTv.UiServices.Forms
 {
     public partial class MulticastScannerOptionsDialog : Form
     {

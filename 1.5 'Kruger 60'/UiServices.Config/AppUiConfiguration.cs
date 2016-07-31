@@ -2,12 +2,12 @@
 // All rights reserved, except those granted by the governing license of this software. See 'license.txt' file in the project root for complete license information.
 
 using Microsoft.Win32;
-using Project.DvbIpTv.Common.Serialization;
-using Project.DvbIpTv.UiServices.Configuration.Cache;
-using Project.DvbIpTv.UiServices.Configuration.Logos;
-using Project.DvbIpTv.UiServices.Configuration.Properties;
-using Project.DvbIpTv.UiServices.Configuration.Schema2014.Config;
-using Project.DvbIpTv.UiServices.Configuration.Schema2014.ContentProvider;
+using Project.IpTv.Common.Serialization;
+using Project.IpTv.UiServices.Configuration.Cache;
+using Project.IpTv.UiServices.Configuration.Logos;
+using Project.IpTv.UiServices.Configuration.Properties;
+using Project.IpTv.UiServices.Configuration.Schema2014.Config;
+using Project.IpTv.UiServices.Configuration.Schema2014.ContentProvider;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -16,7 +16,7 @@ using System.Linq;
 using System.Text;
 using System.Xml;
 
-namespace Project.DvbIpTv.UiServices.Configuration
+namespace Project.IpTv.UiServices.Configuration
 {
     public class AppUiConfiguration
     {

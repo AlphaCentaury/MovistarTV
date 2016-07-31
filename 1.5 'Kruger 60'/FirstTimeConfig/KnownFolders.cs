@@ -8,7 +8,7 @@ using System.Runtime.InteropServices;
 using System.Security.Permissions;
 using System.Text;
 
-namespace Project.DvbIpTv.Tools.FirstTimeConfig
+namespace Project.IpTv.Tools.FirstTimeConfig
 {
     public class KnownFolders
     {

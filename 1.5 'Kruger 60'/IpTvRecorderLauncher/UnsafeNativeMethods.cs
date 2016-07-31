@@ -7,7 +7,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 
-namespace Project.DvbIpTv.RecorderLauncher
+namespace Project.IpTv.RecorderLauncher
 {
     internal partial class UnsafeNativeMethods
     {

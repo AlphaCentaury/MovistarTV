@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Project.DvbIpTv.Tools.FirstTimeConfig.Properties {
+namespace Project.IpTv.Tools.FirstTimeConfig.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace Project.DvbIpTv.Tools.FirstTimeConfig.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Project.DvbIpTv.Tools.FirstTimeConfig.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Project.IpTv.Tools.FirstTimeConfig.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -208,7 +208,7 @@ namespace Project.DvbIpTv.Tools.FirstTimeConfig.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to DVB-IPTV v1.5 &apos;Kruger 60&apos;: {0}.
+        ///   Looks up a localized string similar to IPTV v1.5 &apos;Kruger 60&apos;: {0}.
         /// </summary>
         internal static string FirewallRulePrefix {
             get {

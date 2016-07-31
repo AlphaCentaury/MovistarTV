@@ -1,6 +1,6 @@
 ﻿using Microsoft.SqlServer.MessageBox;
-using Project.DvbIpTv.Common.Telemetry;
-using Project.DvbIpTv.UiServices.Common.Forms;
+using Project.IpTv.Common.Telemetry;
+using Project.IpTv.UiServices.Common.Forms;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +8,7 @@ using System.Net.Sockets;
 using System.Text;
 using System.Windows.Forms;
 
-namespace Project.DvbIpTv.UiServices.DvbStpClient
+namespace Project.IpTv.UiServices.DvbStpClient
 {
     public abstract class UiDvbStpBaseDownloader
     {

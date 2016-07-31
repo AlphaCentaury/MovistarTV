@@ -9,9 +9,9 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using Project.DvbIpTv.Services.Record.Serialization;
+using Project.IpTv.Services.Record.Serialization;
 
-namespace Project.DvbIpTv.UiServices.Record.Controls
+namespace Project.IpTv.UiServices.Record.Controls
 {
     internal partial class RecordingDailyScheduleFragment : UserControl, IRecordingScheduleFragment
     {

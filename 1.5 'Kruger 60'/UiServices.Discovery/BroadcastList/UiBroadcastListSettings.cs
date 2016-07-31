@@ -1,9 +1,9 @@
 ﻿// Copyright (C) 2014-2016, Codeplex user AlphaCentaury
 // All rights reserved, except those granted by the governing license of this software. See 'license.txt' file in the project root for complete license information.
 
-using Project.DvbIpTv.Common.Serialization;
-using Project.DvbIpTv.UiServices.Configuration;
-using Project.DvbIpTv.UiServices.Configuration.Schema2014.Config;
+using Project.IpTv.Common.Serialization;
+using Project.IpTv.UiServices.Configuration;
+using Project.IpTv.UiServices.Configuration.Schema2014.Config;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,7 +13,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Xml.Serialization;
 
-namespace Project.DvbIpTv.UiServices.Discovery.BroadcastList
+namespace Project.IpTv.UiServices.Discovery.BroadcastList
 {
     [Serializable]
     [XmlRoot("UiBroadcastList", Namespace=ConfigCommon.ConfigXmlNamespace)]

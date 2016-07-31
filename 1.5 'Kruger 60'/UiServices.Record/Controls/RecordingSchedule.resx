@@ -349,7 +349,7 @@
     <value>fragmentDaily</value>
   </data>
   <data name="&gt;&gt;fragmentDaily.Type" xml:space="preserve">
-    <value>Project.DvbIpTv.UiServices.Controls.RecordingDailyScheduleFragment, DvbIpTv.UiServices.Controls, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>Project.IpTv.UiServices.Controls.RecordingDailyScheduleFragment, DvbIpTv.UiServices.Controls, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;fragmentDaily.Parent" xml:space="preserve">
     <value>$this</value>
@@ -370,7 +370,7 @@
     <value>fragmentOneTime</value>
   </data>
   <data name="&gt;&gt;fragmentOneTime.Type" xml:space="preserve">
-    <value>Project.DvbIpTv.UiServices.Controls.RecordingOneTimeScheduleFragment, DvbIpTv.UiServices.Controls, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>Project.IpTv.UiServices.Controls.RecordingOneTimeScheduleFragment, DvbIpTv.UiServices.Controls, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;fragmentOneTime.Parent" xml:space="preserve">
     <value>$this</value>
@@ -394,7 +394,7 @@
     <value>fragmentMonthly</value>
   </data>
   <data name="&gt;&gt;fragmentMonthly.Type" xml:space="preserve">
-    <value>Project.DvbIpTv.UiServices.Controls.RecordingMonthlyScheduleFragment, DvbIpTv.UiServices.Controls, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>Project.IpTv.UiServices.Controls.RecordingMonthlyScheduleFragment, DvbIpTv.UiServices.Controls, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;fragmentMonthly.Parent" xml:space="preserve">
     <value>$this</value>
@@ -415,7 +415,7 @@
     <value>fragmentRightNow</value>
   </data>
   <data name="&gt;&gt;fragmentRightNow.Type" xml:space="preserve">
-    <value>Project.DvbIpTv.UiServices.Controls.RecordingRightNowScheduleFragment, DvbIpTv.UiServices.Controls, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>Project.IpTv.UiServices.Controls.RecordingRightNowScheduleFragment, DvbIpTv.UiServices.Controls, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;fragmentRightNow.Parent" xml:space="preserve">
     <value>$this</value>
@@ -436,7 +436,7 @@
     <value>fragmentWeekly</value>
   </data>
   <data name="&gt;&gt;fragmentWeekly.Type" xml:space="preserve">
-    <value>Project.DvbIpTv.UiServices.Controls.RecordingWeeklyScheduleFragment, DvbIpTv.UiServices.Controls, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>Project.IpTv.UiServices.Controls.RecordingWeeklyScheduleFragment, DvbIpTv.UiServices.Controls, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;fragmentWeekly.Parent" xml:space="preserve">
     <value>$this</value>

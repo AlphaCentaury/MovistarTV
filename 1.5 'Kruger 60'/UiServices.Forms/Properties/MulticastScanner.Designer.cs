@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Project.DvbIpTv.UiServices.Forms.Properties {
+namespace Project.IpTv.UiServices.Forms.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace Project.DvbIpTv.UiServices.Forms.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Project.DvbIpTv.UiServices.Forms.Properties.MulticastScanner", typeof(MulticastScanner).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Project.IpTv.UiServices.Forms.Properties.MulticastScanner", typeof(MulticastScanner).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

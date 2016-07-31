@@ -436,7 +436,7 @@
     <value>epgProgressBar</value>
   </data>
   <data name="&gt;&gt;epgProgressBar.Type" xml:space="preserve">
-    <value>Project.DvbIpTv.UiServices.EPG.EpgProgressBarFixed, UiServices.EPG, Version=1.5.30.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>Project.IpTv.UiServices.EPG.EpgProgressBarFixed, UiServices.EPG, Version=1.5.30.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;epgProgressBar.Parent" xml:space="preserve">
     <value>$this</value>

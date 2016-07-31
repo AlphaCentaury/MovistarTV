@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="DefinitionRegistrationInfo_Documentation" xml:space="preserve">
-    <value>1DCDA40A-A9D5-4CF3-B3C5-971B8811F127: DVB-IPTV Record Task
+    <value>1DCDA40A-A9D5-4CF3-B3C5-971B8811F127: IPTV Record Task
 TaskId: {0}
 Database: {1}</value>
   </data>
@@ -130,7 +130,7 @@ Task file: {1}</value>
     <value>Task Id:</value>
   </data>
   <data name="DefinitionRegistrationInfo_Documentation_Begins" xml:space="preserve">
-    <value>1DCDA40A-A9D5-4CF3-B3C5-971B8811F127: DVB-IPTV Record Task</value>
+    <value>1DCDA40A-A9D5-4CF3-B3C5-971B8811F127: IPTV Record Task</value>
   </data>
   <data name="DefinitionRegistrationInfo_Source" xml:space="preserve">
     <value>Application</value>

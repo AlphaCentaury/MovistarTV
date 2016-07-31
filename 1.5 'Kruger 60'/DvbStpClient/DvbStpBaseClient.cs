@@ -10,7 +10,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 
-namespace Project.DvbIpTv.DvbStp.Client
+namespace Project.IpTv.DvbStp.Client
 {
     public abstract class DvbStpBaseClient
     {

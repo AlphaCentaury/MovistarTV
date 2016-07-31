@@ -1,7 +1,7 @@
 ﻿// Copyright (C) 2014-2016, Codeplex user AlphaCentaury
 // All rights reserved, except those granted by the governing license of this software. See 'license.txt' file in the project root for complete license information.
 
-namespace Project.DvbIpTv.UiServices.EPG
+namespace Project.IpTv.UiServices.EPG
 {
     partial class EpgNowThenDialog
     {
@@ -35,9 +35,9 @@ namespace Project.DvbIpTv.UiServices.EPG
             this.labelChannelName = new System.Windows.Forms.Label();
             this.pictureChannelLogo = new System.Windows.Forms.PictureBox();
             this.buttonOk = new System.Windows.Forms.Button();
-            this.epgEventBefore = new Project.DvbIpTv.UiServices.EPG.EpgEventMiniBar();
-            this.epgEventNow = new Project.DvbIpTv.UiServices.EPG.EpgEventMiniBar();
-            this.epgEventThen = new Project.DvbIpTv.UiServices.EPG.EpgEventMiniBar();
+            this.epgEventBefore = new Project.IpTv.UiServices.EPG.EpgEventMiniBar();
+            this.epgEventNow = new Project.IpTv.UiServices.EPG.EpgEventMiniBar();
+            this.epgEventThen = new Project.IpTv.UiServices.EPG.EpgEventMiniBar();
             ((System.ComponentModel.ISupportInitialize)(this.pictureChannelLogo)).BeginInit();
             this.SuspendLayout();
             // 
@@ -58,7 +58,7 @@ namespace Project.DvbIpTv.UiServices.EPG
             // 
             resources.ApplyResources(this.buttonOk, "buttonOk");
             this.buttonOk.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.buttonOk.Image = global::Project.DvbIpTv.UiServices.EPG.CommonUiResources.Action_Ok_16x16;
+            this.buttonOk.Image = global::Project.IpTv.UiServices.EPG.CommonUiResources.Action_Ok_16x16;
             this.buttonOk.Name = "buttonOk";
             this.buttonOk.UseVisualStyleBackColor = true;
             // 

@@ -1,12 +1,12 @@
 ﻿// Copyright (C) 2014-2016, Codeplex user AlphaCentaury
 // All rights reserved, except those granted by the governing license of this software. See 'license.txt' file in the project root for complete license information.
 
-using Project.DvbIpTv.Common;
-using Project.DvbIpTv.Common.Serialization;
-using Project.DvbIpTv.Common.Telemetry;
-using Project.DvbIpTv.Services.EPG;
-using Project.DvbIpTv.UiServices.Configuration.Logos;
-using Project.DvbIpTv.UiServices.Discovery;
+using Project.IpTv.Common;
+using Project.IpTv.Common.Serialization;
+using Project.IpTv.Common.Telemetry;
+using Project.IpTv.Services.EPG;
+using Project.IpTv.UiServices.Configuration.Logos;
+using Project.IpTv.UiServices.Discovery;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,7 +16,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace Project.DvbIpTv.UiServices.EPG
+namespace Project.IpTv.UiServices.EPG
 {
     public partial class EpgNowThenDialog : Form
     {

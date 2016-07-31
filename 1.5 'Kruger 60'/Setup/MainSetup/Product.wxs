@@ -65,7 +65,7 @@ All rights reserved, except those granted by the governing license of this softw
   <Fragment>
     <Directory Id="TARGETDIR" Name="SourceDir">
       <Directory Id="PersonalFolder">
-        <Directory Id="DvbFolder" Name="DVB-IPTV">
+        <Directory Id="DvbFolder" Name="IPTV">
           <Directory Id="BaseFolder" Name="movistar+ (v1.5 Kruger-60)">
             <Directory Id="INSTALLFOLDER" Name="bin">
               <Directory Id="RedistFolderBase" Name ="Redist">

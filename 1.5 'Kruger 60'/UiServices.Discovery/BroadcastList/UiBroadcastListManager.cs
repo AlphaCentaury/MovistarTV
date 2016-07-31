@@ -6,14 +6,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using Project.DvbIpTv.UiServices.Common.Properties;
+using Project.IpTv.UiServices.Common.Properties;
 using System.Drawing;
-using Project.DvbIpTv.UiServices.Common.Controls;
-using Project.DvbIpTv.UiServices.Configuration.Logos;
-using Project.DvbIpTv.UiServices.Configuration;
-using Project.DvbIpTv.Common.Serialization;
+using Project.IpTv.UiServices.Common.Controls;
+using Project.IpTv.UiServices.Configuration.Logos;
+using Project.IpTv.UiServices.Configuration;
+using Project.IpTv.Common.Serialization;
 
-namespace Project.DvbIpTv.UiServices.Discovery.BroadcastList
+namespace Project.IpTv.UiServices.Discovery.BroadcastList
 {
     public class UiBroadcastListManager: IDisposable
     {

@@ -9,10 +9,10 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using Project.DvbIpTv.UiServices.Common.Controls;
-using Project.DvbIpTv.UiServices.Configuration.Settings.TvPlayers;
+using Project.IpTv.UiServices.Common.Controls;
+using Project.IpTv.UiServices.Configuration.Settings.TvPlayers;
 
-namespace Project.DvbIpTv.UiServices.Configuration.Editors
+namespace Project.IpTv.UiServices.Configuration.Editors
 {
     public partial class ArgumentsEditor : UserControl
     {

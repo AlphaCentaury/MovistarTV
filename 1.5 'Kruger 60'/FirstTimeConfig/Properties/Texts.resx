@@ -298,7 +298,7 @@ If you overwrite the file all custom configurations will be lost.
 Do you want to overwrite the existing file?</value>
   </data>
   <data name="ProductFullName" xml:space="preserve">
-    <value>movistar+ DVB-IPTV Decoder 1.5 “Kruger 60” Alpha 4</value>
+    <value>movistar+ IPTV Decoder 1.5 “Kruger 60” Alpha 4</value>
   </data>
   <data name="ProductMainProgramName" xml:space="preserve">
     <value>movistar+ channels</value>
@@ -328,7 +328,7 @@ Do you want to overwrite the existing file?</value>
     <value>Please select a default folder for saving TV recordings.</value>
   </data>
   <data name="TaskSchedulerFolderDvbIpTv" xml:space="preserve">
-    <value>DVB-IPTV folder</value>
+    <value>IPTV folder</value>
   </data>
   <data name="TelemetryHelpCaption" xml:space="preserve">
     <value>Program data recollection</value>

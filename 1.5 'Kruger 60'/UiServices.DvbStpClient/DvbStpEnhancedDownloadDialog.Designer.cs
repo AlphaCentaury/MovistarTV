@@ -1,7 +1,7 @@
 ﻿// Copyright (C) 2014-2016, Codeplex user AlphaCentaury
 // All rights reserved, except those granted by the governing license of this software. See 'license.txt' file in the project root for complete license information.
 
-namespace Project.DvbIpTv.UiServices.DvbStpClient
+namespace Project.IpTv.UiServices.DvbStpClient
 {
     partial class DvbStpEnhancedDownloadDialog
     {
@@ -46,8 +46,8 @@ namespace Project.DvbIpTv.UiServices.DvbStpClient
             this.labelEllapsedTime = new System.Windows.Forms.Label();
             this.timerEllapsed = new System.Windows.Forms.Timer(this.components);
             this.buttonRequestCancel = new System.Windows.Forms.Button();
-            this.pictureDownloadIcon = new Project.DvbIpTv.UiServices.Common.Controls.PictureBoxEx();
-            this.listViewPayloads = new Project.DvbIpTv.UiServices.Common.Controls.ListViewSortable();
+            this.pictureDownloadIcon = new Project.IpTv.UiServices.Common.Controls.PictureBoxEx();
+            this.listViewPayloads = new Project.IpTv.UiServices.Common.Controls.ListViewSortable();
             this.imageListPayloadStatus = new System.Windows.Forms.ImageList(this.components);
             columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -122,7 +122,7 @@ namespace Project.DvbIpTv.UiServices.DvbStpClient
             // buttonRequestCancel
             // 
             this.buttonRequestCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.buttonRequestCancel.Image = global::Project.DvbIpTv.UiServices.DvbStpClient.Properties.Resources.Action_Cancel_Red_16x16;
+            this.buttonRequestCancel.Image = global::Project.IpTv.UiServices.DvbStpClient.Properties.Resources.Action_Cancel_Red_16x16;
             resources.ApplyResources(this.buttonRequestCancel, "buttonRequestCancel");
             this.buttonRequestCancel.Name = "buttonRequestCancel";
             this.buttonRequestCancel.UseVisualStyleBackColor = true;
@@ -130,7 +130,7 @@ namespace Project.DvbIpTv.UiServices.DvbStpClient
             // 
             // pictureDownloadIcon
             // 
-            this.pictureDownloadIcon.Image = global::Project.DvbIpTv.UiServices.DvbStpClient.Properties.Resources.DvbStpDownload_128x128;
+            this.pictureDownloadIcon.Image = global::Project.IpTv.UiServices.DvbStpClient.Properties.Resources.DvbStpDownload_128x128;
             resources.ApplyResources(this.pictureDownloadIcon, "pictureDownloadIcon");
             this.pictureDownloadIcon.Name = "pictureDownloadIcon";
             this.pictureDownloadIcon.TabStop = false;
@@ -206,10 +206,10 @@ namespace Project.DvbIpTv.UiServices.DvbStpClient
         private System.Windows.Forms.Label labelDataReception;
         private System.Windows.Forms.Button buttonRequestCancel;
         private System.Windows.Forms.Timer timerClose;
-        private Project.DvbIpTv.UiServices.Common.Controls.PictureBoxEx pictureDownloadIcon;
+        private Project.IpTv.UiServices.Common.Controls.PictureBoxEx pictureDownloadIcon;
         private System.Windows.Forms.Label labelEllapsedTime;
         private System.Windows.Forms.Timer timerEllapsed;
-        private Project.DvbIpTv.UiServices.Common.Controls.ListViewSortable listViewPayloads;
+        private Project.IpTv.UiServices.Common.Controls.ListViewSortable listViewPayloads;
         private System.Windows.Forms.ImageList imageListPayloadStatus;
     } // class DvbStpEnhancedDownloadDialog
 } // namespace

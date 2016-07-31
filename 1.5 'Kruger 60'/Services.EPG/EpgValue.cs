@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Xml.Serialization;
 
-namespace Project.DvbIpTv.Services.EPG
+namespace Project.IpTv.Services.EPG
 {
     [Serializable()]
     [DebuggerStepThrough()]

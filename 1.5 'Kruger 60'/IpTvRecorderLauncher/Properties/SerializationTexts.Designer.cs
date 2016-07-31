@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Project.DvbIpTv.RecorderLauncher.Properties {
+namespace Project.IpTv.RecorderLauncher.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace Project.DvbIpTv.RecorderLauncher.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Project.DvbIpTv.RecorderLauncher.Properties.SerializationTexts", typeof(SerializationTexts).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Project.IpTv.RecorderLauncher.Properties.SerializationTexts", typeof(SerializationTexts).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -64,7 +64,7 @@ namespace Project.DvbIpTv.RecorderLauncher.Properties {
         ///   Looks up a localized string similar to &gt;&gt; Channel details &lt;&lt;
         ///TV Channel: {0} {1}
         ///URL: {2}
-        ///DVB-IPTV service: {3}.
+        ///IPTV service: {3}.
         /// </summary>
         internal static string BuildDescriptionChannel {
             get {

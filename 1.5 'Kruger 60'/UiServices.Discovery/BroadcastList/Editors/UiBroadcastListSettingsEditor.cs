@@ -9,10 +9,10 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using Project.DvbIpTv.UiServices.Configuration;
-using Project.DvbIpTv.UiServices.Configuration.Logos;
+using Project.IpTv.UiServices.Configuration;
+using Project.IpTv.UiServices.Configuration.Logos;
 
-namespace Project.DvbIpTv.UiServices.Discovery.BroadcastList.Editors
+namespace Project.IpTv.UiServices.Discovery.BroadcastList.Editors
 {
     public partial class UiBroadcastListSettingsEditor : UserControl, IConfigurationItemEditor, ISettingsEditorContainer
     {

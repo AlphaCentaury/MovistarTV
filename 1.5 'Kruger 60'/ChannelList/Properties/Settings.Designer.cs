@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Project.DvbIpTv.ChannelList.Properties {
+namespace Project.IpTv.ChannelList.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]

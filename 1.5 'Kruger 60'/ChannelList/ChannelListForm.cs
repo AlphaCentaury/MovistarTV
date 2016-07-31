@@ -5,23 +5,23 @@ using Etsi.Ts102034.v010501.XmlSerialization;
 using Etsi.Ts102034.v010501.XmlSerialization.BroadcastDiscovery;
 using Etsi.Ts102034.v010501.XmlSerialization.PackageDiscovery;
 using Microsoft.SqlServer.MessageBox;
-using Project.DvbIpTv.ChannelList.Properties;
-using Project.DvbIpTv.Common;
-using Project.DvbIpTv.Common.Telemetry;
-using Project.DvbIpTv.Services.Record;
-using Project.DvbIpTv.Services.Record.Serialization;
-using Project.DvbIpTv.UiServices.Common.Forms;
-using Project.DvbIpTv.UiServices.Common.Start;
-using Project.DvbIpTv.UiServices.Configuration;
-using Project.DvbIpTv.UiServices.Configuration.Logos;
-using Project.DvbIpTv.UiServices.Configuration.Schema2014.Config;
-using Project.DvbIpTv.UiServices.Configuration.Settings.TvPlayers;
-using Project.DvbIpTv.UiServices.Discovery;
-using Project.DvbIpTv.UiServices.Discovery.BroadcastList;
-using Project.DvbIpTv.UiServices.DvbStpClient;
-using Project.DvbIpTv.UiServices.EPG;
-using Project.DvbIpTv.UiServices.Forms;
-using Project.DvbIpTv.UiServices.Record;
+using Project.IpTv.ChannelList.Properties;
+using Project.IpTv.Common;
+using Project.IpTv.Common.Telemetry;
+using Project.IpTv.Services.Record;
+using Project.IpTv.Services.Record.Serialization;
+using Project.IpTv.UiServices.Common.Forms;
+using Project.IpTv.UiServices.Common.Start;
+using Project.IpTv.UiServices.Configuration;
+using Project.IpTv.UiServices.Configuration.Logos;
+using Project.IpTv.UiServices.Configuration.Schema2014.Config;
+using Project.IpTv.UiServices.Configuration.Settings.TvPlayers;
+using Project.IpTv.UiServices.Discovery;
+using Project.IpTv.UiServices.Discovery.BroadcastList;
+using Project.IpTv.UiServices.DvbStpClient;
+using Project.IpTv.UiServices.EPG;
+using Project.IpTv.UiServices.Forms;
+using Project.IpTv.UiServices.Record;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -31,11 +31,11 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Windows.Forms;
-using Project.DvbIpTv.Core.IpTvProvider;
-using Project.DvbIpTv.Core.IpTvProvider.EPG;
+using Project.IpTv.Core.IpTvProvider;
+using Project.IpTv.Core.IpTvProvider.EPG;
 using System.Diagnostics;
 
-namespace Project.DvbIpTv.ChannelList
+namespace Project.IpTv.ChannelList
 {
     public sealed partial class ChannelListForm : CommonBaseForm, ISplashScreenAwareForm
     {
@@ -198,7 +198,7 @@ namespace Project.DvbIpTv.ChannelList
 
         #endregion
 
-        #region 'DVB-IPTV' menu event handlers
+        #region 'IPTV' menu event handlers
 
         private void menuItemDvbRecent_DropDownOpening(object sender, EventArgs e)
         {
@@ -227,7 +227,7 @@ namespace Project.DvbIpTv.ChannelList
 
         #endregion
 
-        #region 'DVB-IPTV' menu event handlers implementation
+        #region 'IPTV' menu event handlers implementation
 
         private void Implementation_menuItemDvbSettings_Click(object sender, EventArgs e)
         {
@@ -298,7 +298,7 @@ namespace Project.DvbIpTv.ChannelList
 
         #endregion
 
-        #region 'DVB-IPTV > Package' menu event handlers
+        #region 'IPTV > Package' menu event handlers
 
         private void menuItemPackagesSelect_Click(object sender, EventArgs e)
         {
@@ -312,7 +312,7 @@ namespace Project.DvbIpTv.ChannelList
 
         #endregion
 
-        #region 'DVB-IPTV > Package' menu event handlers implementation
+        #region 'IPTV > Package' menu event handlers implementation
 
         private void Implementation_menuItemPackagesSelect_Click(object sender, EventArgs e)
         {
@@ -1144,7 +1144,7 @@ namespace Project.DvbIpTv.ChannelList
             if (hours < 0) return;
 
             var dbFile = Path.Combine(AppUiConfiguration.Current.Folders.Cache, "EPG.sdf");
-            var status = Project.DvbIpTv.Services.EPG.Serialization.EpgDbQuery.GetStatus(dbFile);
+            var status = Project.IpTv.Services.EPG.Serialization.EpgDbQuery.GetStatus(dbFile);
 
             if (status.IsNew)
             {

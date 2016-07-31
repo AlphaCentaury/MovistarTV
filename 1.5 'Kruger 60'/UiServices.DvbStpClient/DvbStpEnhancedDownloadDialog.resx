@@ -412,7 +412,7 @@
     <value>pictureDownloadIcon</value>
   </data>
   <data name="&gt;&gt;pictureDownloadIcon.Type" xml:space="preserve">
-    <value>Project.DvbIpTv.UiServices.Common.Controls.PictureBoxEx, UiServices.Common, Version=1.5.20.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>Project.IpTv.UiServices.Common.Controls.PictureBoxEx, UiServices.Common, Version=1.5.20.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;pictureDownloadIcon.Parent" xml:space="preserve">
     <value>$this</value>
@@ -506,7 +506,7 @@
     <value>listViewPayloads</value>
   </data>
   <data name="&gt;&gt;listViewPayloads.Type" xml:space="preserve">
-    <value>Project.DvbIpTv.UiServices.Common.Controls.ListViewSortable, UiServices.Common, Version=1.5.20.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>Project.IpTv.UiServices.Common.Controls.ListViewSortable, UiServices.Common, Version=1.5.20.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;listViewPayloads.Parent" xml:space="preserve">
     <value>$this</value>

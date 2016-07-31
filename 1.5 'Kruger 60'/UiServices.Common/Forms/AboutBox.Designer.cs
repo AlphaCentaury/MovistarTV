@@ -1,7 +1,7 @@
 ﻿// Copyright (C) 2014-2016, Codeplex user AlphaCentaury
 // All rights reserved, except those granted by the governing license of this software. See 'license.txt' file in the project root for complete license information.
 
-namespace Project.DvbIpTv.UiServices.Common.Forms
+namespace Project.IpTv.UiServices.Common.Forms
 {
     partial class AboutBox
     {
@@ -49,7 +49,7 @@ namespace Project.DvbIpTv.UiServices.Common.Forms
             // 
             resources.ApplyResources(this.okButton, "okButton");
             this.okButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.okButton.Image = global::Project.DvbIpTv.UiServices.Common.Properties.Resources.Action_Ok_16x16;
+            this.okButton.Image = global::Project.IpTv.UiServices.Common.Properties.Resources.Action_Ok_16x16;
             this.okButton.Name = "okButton";
             // 
             // logoPictureBox

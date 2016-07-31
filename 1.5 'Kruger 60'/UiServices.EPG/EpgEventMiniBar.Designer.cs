@@ -1,7 +1,7 @@
 ﻿// Copyright (C) 2014-2016, Codeplex user AlphaCentaury
 // All rights reserved, except those granted by the governing license of this software. See 'license.txt' file in the project root for complete license information.
 
-namespace Project.DvbIpTv.UiServices.EPG
+namespace Project.IpTv.UiServices.EPG
 {
     partial class EpgEventMiniBar
     {
@@ -33,7 +33,7 @@ namespace Project.DvbIpTv.UiServices.EPG
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EpgEventMiniBar));
             this.buttonProgramProperties = new System.Windows.Forms.Button();
-            this.pictureProgramThumbnail = new Project.DvbIpTv.UiServices.Common.Controls.PictureBoxEx();
+            this.pictureProgramThumbnail = new Project.IpTv.UiServices.Common.Controls.PictureBoxEx();
             this.labelProgramDetails = new System.Windows.Forms.Label();
             this.labelProgramTitle = new System.Windows.Forms.Label();
             this.labelProgramTime = new System.Windows.Forms.Label();

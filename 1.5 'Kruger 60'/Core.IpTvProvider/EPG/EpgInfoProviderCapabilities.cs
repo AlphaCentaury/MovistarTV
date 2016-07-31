@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Project.DvbIpTv.Core.IpTvProvider.EPG
+namespace Project.IpTv.Core.IpTvProvider.EPG
 {
     [Flags]
     public enum EpgInfoProviderCapabilities

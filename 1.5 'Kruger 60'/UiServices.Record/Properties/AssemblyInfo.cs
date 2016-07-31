@@ -9,7 +9,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute parameters to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("UI Services: Record")]
-[assembly: AssemblyDescription("Project.DvbIpTv.UiServices.Record")]
+[assembly: AssemblyDescription("Project.IpTv.UiServices.Record")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCopyright(SolutionVersion.DefaultCopyright)]
 [assembly: AssemblyCulture("")]

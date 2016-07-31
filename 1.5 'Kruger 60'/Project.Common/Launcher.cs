@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace Project.DvbIpTv.Common
+namespace Project.IpTv.Common
 {
     public class Launcher
     {

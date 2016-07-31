@@ -10,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace Project.DvbIpTv.UiServices.Configuration.Editors
+namespace Project.IpTv.UiServices.Configuration.Editors
 {
     public partial class ArgumentEditor : UserControl
     {

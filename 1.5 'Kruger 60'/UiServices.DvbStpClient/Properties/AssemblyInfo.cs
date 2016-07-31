@@ -9,7 +9,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("UiServices.DvbStpClient")]
-[assembly: AssemblyDescription("Project.DvbIpTv.UiServices.DvbStpClient")]
+[assembly: AssemblyDescription("Project.IpTv.UiServices.DvbStpClient")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCopyright(SolutionVersion.DefaultCopyright)]
 [assembly: AssemblyCulture("")]

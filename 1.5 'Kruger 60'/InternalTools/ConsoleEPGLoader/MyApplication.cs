@@ -11,7 +11,7 @@ using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 
-namespace Project.DvbIpTv.Internal.ConsoleEPGLoader
+namespace Project.IpTv.Internal.ConsoleEPGLoader
 {
     public static class MyApplication
     {

@@ -1,11 +1,11 @@
-﻿using Project.DvbIpTv.UiServices.Configuration;
+﻿using Project.IpTv.UiServices.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 
-namespace Project.DvbIpTv.UiServices.Discovery.BroadcastList
+namespace Project.IpTv.UiServices.Discovery.BroadcastList
 {
     public class UiBroadcastListSettingsRegistration: IConfigurationItemRegistration
     {

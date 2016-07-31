@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 
-namespace Project.DvbIpTv.UiServices.Common.Start
+namespace Project.IpTv.UiServices.Common.Start
 {
     public abstract class SplashApplicationContext : ApplicationContext
     {

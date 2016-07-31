@@ -9,7 +9,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute parameters to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("TV-Anytime EPG loader utility")]
-[assembly: AssemblyDescription("Project.DvbIpTv.Internal.ConsoleEPGLoader")]
+[assembly: AssemblyDescription("Project.IpTv.Internal.ConsoleEPGLoader")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCopyright(SolutionVersion.DefaultCopyright)]
 [assembly: AssemblyCulture("")]

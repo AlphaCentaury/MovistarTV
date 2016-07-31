@@ -9,7 +9,7 @@ using System.Text;
 using System.Xml;
 using System.Xml.Serialization;
 
-namespace Project.DvbIpTv.Services.Record.Serialization
+namespace Project.IpTv.Services.Record.Serialization
 {
     [Serializable]
     [XmlType(Namespace = RecordTask.XmlNamespace)]

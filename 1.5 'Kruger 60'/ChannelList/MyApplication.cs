@@ -2,8 +2,8 @@
 // All rights reserved, except those granted by the governing license of this software. See 'license.txt' file in the project root for complete license information.
 
 using Microsoft.SqlServer.MessageBox;
-using Project.DvbIpTv.Common.Telemetry;
-using Project.DvbIpTv.UiServices.Configuration;
+using Project.IpTv.Common.Telemetry;
+using Project.IpTv.UiServices.Configuration;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -13,7 +13,7 @@ using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 
-namespace Project.DvbIpTv.ChannelList
+namespace Project.IpTv.ChannelList
 {
     public static class MyApplication
     {

@@ -8,8 +8,8 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute parameters to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("DVB-IPTV project internal tools: GuiTools")]
-[assembly: AssemblyDescription("Project.DvbIpTv.Internal.Tools.GuiTools")]
+[assembly: AssemblyTitle("IPTV project internal tools: GuiTools")]
+[assembly: AssemblyDescription("Project.IpTv.Internal.Tools.GuiTools")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCopyright(SolutionVersion.DefaultCopyright)]
 [assembly: AssemblyCulture("")]

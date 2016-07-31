@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Xml.Serialization;
-using Project.DvbIpTv.UiServices.Configuration;
-using Project.DvbIpTv.UiServices.Configuration.Schema2014.Config;
+using Project.IpTv.UiServices.Configuration;
+using Project.IpTv.UiServices.Configuration.Schema2014.Config;
 
-namespace Project.DvbIpTv.Core.IpTvProvider
+namespace Project.IpTv.Core.IpTvProvider
 {
     [Serializable]
     [XmlRoot("IpTvProvider", Namespace = ConfigCommon.ConfigXmlNamespace)]

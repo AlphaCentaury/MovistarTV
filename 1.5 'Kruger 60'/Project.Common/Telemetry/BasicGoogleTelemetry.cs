@@ -11,7 +11,7 @@ using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 
-namespace Project.DvbIpTv.Common.Telemetry
+namespace Project.IpTv.Common.Telemetry
 {
     public class BasicGoogleTelemetry
     {

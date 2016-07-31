@@ -1,11 +1,11 @@
 ﻿// Copyright (C) 2015, Codeplex user AlphaCentaury
 // All rights reserved, except those granted by the governing license of this software. See 'license.txt' file in the project root for complete license information.
 
-using Project.DvbIpTv.Common;
-using Project.DvbIpTv.UiServices.Configuration;
-using Project.DvbIpTv.UiServices.Configuration.Schema2014.Config;
-using Project.DvbIpTv.UiServices.Configuration.Settings.TvPlayers;
-using Project.DvbIpTv.UiServices.Discovery;
+using Project.IpTv.Common;
+using Project.IpTv.UiServices.Configuration;
+using Project.IpTv.UiServices.Configuration.Schema2014.Config;
+using Project.IpTv.UiServices.Configuration.Settings.TvPlayers;
+using Project.IpTv.UiServices.Discovery;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -14,10 +14,10 @@ using System.Linq;
 using System.Security.Permissions;
 using System.Text;
 using System.Windows.Forms;
-using Project.DvbIpTv.Native;
+using Project.IpTv.Native;
 using Microsoft.SqlServer.MessageBox;
 
-namespace Project.DvbIpTv.Core.IpTvProvider
+namespace Project.IpTv.Core.IpTvProvider
 {
     public static class ExternalTvPlayer
     {

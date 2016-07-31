@@ -4,9 +4,9 @@
 using Etsi.Ts102034.v010501.XmlSerialization;
 using Etsi.Ts102034.v010501.XmlSerialization.Common;
 using Etsi.Ts102034.v010501.XmlSerialization.ProviderDiscovery;
-using Project.DvbIpTv.UiServices.Configuration;
-using Project.DvbIpTv.UiServices.Configuration.Logos;
-using Project.DvbIpTv.UiServices.Configuration.Schema2014;
+using Project.IpTv.UiServices.Configuration;
+using Project.IpTv.UiServices.Configuration.Logos;
+using Project.IpTv.UiServices.Configuration.Schema2014;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +15,7 @@ using System.Text;
 using System.Xml.Serialization;
 using Property = System.Collections.Generic.KeyValuePair<string, string>;
 
-namespace Project.DvbIpTv.UiServices.Discovery
+namespace Project.IpTv.UiServices.Discovery
 {
     public class UiServiceProvider
     {

@@ -1,7 +1,7 @@
 ﻿// Copyright (C) 2014-2016, Codeplex user AlphaCentaury
 // All rights reserved, except those granted by the governing license of this software. See 'license.txt' file in the project root for complete license information.
 
-using Project.DvbIpTv.Services.SqlServerCE;
+using Project.IpTv.Services.SqlServerCE;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -9,7 +9,7 @@ using System.Data.SqlServerCe;
 using System.Linq;
 using System.Text;
 
-namespace Project.DvbIpTv.Services.EPG.Serialization
+namespace Project.IpTv.Services.EPG.Serialization
 {
     public static class EpgDbQuery
     {

@@ -286,7 +286,7 @@
     <value>epgEventDisplay</value>
   </data>
   <data name="&gt;&gt;epgEventDisplay.Type" xml:space="preserve">
-    <value>Project.DvbIpTv.UiServices.EPG.EpgEventMiniBar, UiServices.EPG, Version=1.5.30.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>Project.IpTv.UiServices.EPG.EpgEventMiniBar, UiServices.EPG, Version=1.5.30.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;epgEventDisplay.Parent" xml:space="preserve">
     <value>$this</value>
