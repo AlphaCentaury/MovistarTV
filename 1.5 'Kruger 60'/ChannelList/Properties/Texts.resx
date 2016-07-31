@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AppCaption" xml:space="preserve">
-    <value>movistar+ channels and services - DVB-IPTV (1.5“Kruger 60” Alpha 3c)</value>
+    <value>movistar+ channels and services - DVB-IPTV (1.5“Kruger 60” Alpha 4)</value>
   </data>
   <data name="AppName" xml:space="preserve">
     <value>DVB-IPTV: movistar+ channels and services</value>
@@ -127,7 +127,7 @@
     <value>Alpha (experimental)</value>
   </data>
   <data name="AppVersion" xml:space="preserve">
-    <value>1.5 “Kruger 60” Alpha 3c</value>
+    <value>1.5 “Kruger 60” Alpha 4</value>
   </data>
   <data name="BroadcastListUnableRefresh" xml:space="preserve">
     <value>Unable to obtain the list of TV channels/services</value>
