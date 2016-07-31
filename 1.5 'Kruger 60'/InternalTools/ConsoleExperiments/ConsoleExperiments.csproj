@@ -56,7 +56,6 @@
     <Compile Include="..\..\AssemblySolutionInfo.cs">
       <Link>Properties\AssemblySolutionInfo.cs</Link>
     </Compile>
-    <Compile Include="EpgInfoDownload.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -69,17 +68,9 @@
       <Project>{8da15060-5a78-4f89-a9f1-7aa56b0d622c}</Project>
       <Name>Project.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Services.EPG\Services.EPG.csproj">
-      <Project>{ed5c1cf5-0975-4995-8933-9a7df39fd739}</Project>
-      <Name>Services.EPG</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Services.SqlServerCE\Services.SqlServerCE.csproj">
       <Project>{3a053f34-4edf-4071-b966-923255a0ae14}</Project>
       <Name>Services.SqlServerCE</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\UiServices.EPG\UiServices.EPG.csproj">
-      <Project>{004c3829-fed4-4084-b23b-871193afa8c7}</Project>
-      <Name>UiServices.EPG</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
