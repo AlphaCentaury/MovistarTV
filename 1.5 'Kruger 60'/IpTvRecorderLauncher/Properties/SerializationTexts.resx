@@ -121,7 +121,7 @@
     <value>&gt;&gt; Channel details &lt;&lt;
 TV Channel: {0} {1}
 URL: {2}
-DVB-IPTV service: {3}</value>
+IPTV service: {3}</value>
   </data>
   <data name="BuildDescriptionDuration" xml:space="preserve">
     <value>Scheduled recording duration is {0}, with a safety margin of {1} minutes.

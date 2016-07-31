@@ -118,10 +118,10 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="DefaultDomainNameProviderLogo" xml:space="preserve">
-    <value>DVB-IPTV</value>
+    <value>IPTV</value>
   </data>
   <data name="DefaultDomainNameServiceLogo" xml:space="preserve">
-    <value>DVB-IPTV</value>
+    <value>IPTV</value>
   </data>
   <data name="FileLogoDomainMappings" xml:space="preserve">
     <value>Services\domain-mappings.xml</value>

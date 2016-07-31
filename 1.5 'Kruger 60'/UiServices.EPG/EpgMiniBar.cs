@@ -9,12 +9,12 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using Project.DvbIpTv.Services.EPG;
-using Project.DvbIpTv.Services.EPG.Serialization;
-using Project.DvbIpTv.Services.SqlServerCE;
-using Project.DvbIpTv.Common;
+using Project.IpTv.Services.EPG;
+using Project.IpTv.Services.EPG.Serialization;
+using Project.IpTv.Services.SqlServerCE;
+using Project.IpTv.Common;
 
-namespace Project.DvbIpTv.UiServices.EPG
+namespace Project.IpTv.UiServices.EPG
 {
     public partial class EpgMiniBar : UserControl
     {

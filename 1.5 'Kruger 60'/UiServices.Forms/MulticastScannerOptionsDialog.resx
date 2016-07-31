@@ -439,7 +439,7 @@
     <value>pictureIcon</value>
   </data>
   <data name="&gt;&gt;pictureIcon.Type" xml:space="preserve">
-    <value>Project.DvbIpTv.UiServices.Common.Controls.PictureBoxEx, UiServices.Common, Version=1.5.30.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>Project.IpTv.UiServices.Common.Controls.PictureBoxEx, UiServices.Common, Version=1.5.30.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;pictureIcon.Parent" xml:space="preserve">
     <value>$this</value>

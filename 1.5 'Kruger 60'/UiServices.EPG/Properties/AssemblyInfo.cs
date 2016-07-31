@@ -9,7 +9,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute parameters to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("UI Services: EPG")]
-[assembly: AssemblyDescription("Project.DvbIpTv.UiServices.EPG")]
+[assembly: AssemblyDescription("Project.IpTv.UiServices.EPG")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCopyright(SolutionVersion.DefaultCopyright)]
 [assembly: AssemblyCulture("")]

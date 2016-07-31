@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace Project.DvbIpTv.UiServices.EPG
+namespace Project.IpTv.UiServices.EPG
 {
     public class EpgProgressBarFixed: Control
     {

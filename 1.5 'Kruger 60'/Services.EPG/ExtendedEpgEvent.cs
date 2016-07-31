@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Project.DvbIpTv.Services.EPG
+namespace Project.IpTv.Services.EPG
 {
     public class ExtendedEpgEvent
     {

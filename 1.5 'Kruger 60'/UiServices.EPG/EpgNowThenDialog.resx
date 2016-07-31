@@ -151,7 +151,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;epgEventNow.Type" xml:space="preserve">
-    <value>Project.DvbIpTv.UiServices.EPG.EpgEventMiniBar, UiServices.EPG, Version=1.5.30.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>Project.IpTv.UiServices.EPG.EpgEventMiniBar, UiServices.EPG, Version=1.5.30.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="epgEventMiniBar2.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 162</value>
@@ -172,7 +172,7 @@
     <value>ImageBeforeText</value>
   </data>
   <data name="&gt;&gt;epgEventMiniBar3.Type" xml:space="preserve">
-    <value>Project.DvbIpTv.UiServices.EPG.EpgEventMiniBar, UiServices.EPG, Version=1.5.30.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>Project.IpTv.UiServices.EPG.EpgEventMiniBar, UiServices.EPG, Version=1.5.30.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="pictureChannelLogo.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -199,7 +199,7 @@
     <value>labelChannelName</value>
   </data>
   <data name="&gt;&gt;epgEventThen.Type" xml:space="preserve">
-    <value>Project.DvbIpTv.UiServices.EPG.EpgEventMiniBar, UiServices.EPG, Version=1.5.30.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>Project.IpTv.UiServices.EPG.EpgEventMiniBar, UiServices.EPG, Version=1.5.30.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;epgEventMiniBar2.Parent" xml:space="preserve">
     <value>$this</value>
@@ -220,7 +220,7 @@
     <value>epgEventMiniBar3</value>
   </data>
   <data name="&gt;&gt;epgEventBefore.Type" xml:space="preserve">
-    <value>Project.DvbIpTv.UiServices.EPG.EpgEventMiniBar, UiServices.EPG, Version=1.5.30.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>Project.IpTv.UiServices.EPG.EpgEventMiniBar, UiServices.EPG, Version=1.5.30.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="labelChannelName.Location" type="System.Drawing.Point, System.Drawing">
     <value>66, 12</value>
@@ -295,7 +295,7 @@
     <value>MiddleLeft</value>
   </data>
   <data name="&gt;&gt;epgEventMiniBar1.Type" xml:space="preserve">
-    <value>Project.DvbIpTv.UiServices.EPG.EpgEventMiniBar, UiServices.EPG, Version=1.5.30.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>Project.IpTv.UiServices.EPG.EpgEventMiniBar, UiServices.EPG, Version=1.5.30.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="labelChannelName.TabIndex" type="System.Int32, mscorlib">
     <value>17</value>
@@ -340,7 +340,7 @@
     <value>534, 390</value>
   </data>
   <data name="&gt;&gt;epgEventMiniBar2.Type" xml:space="preserve">
-    <value>Project.DvbIpTv.UiServices.EPG.EpgEventMiniBar, UiServices.EPG, Version=1.5.30.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>Project.IpTv.UiServices.EPG.EpgEventMiniBar, UiServices.EPG, Version=1.5.30.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="buttonOk.TabIndex" type="System.Int32, mscorlib">
     <value>12</value>

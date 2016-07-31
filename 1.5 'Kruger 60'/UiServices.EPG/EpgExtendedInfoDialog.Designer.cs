@@ -1,7 +1,7 @@
 ﻿// Copyright (C) 2014-2016, Codeplex user AlphaCentaury
 // All rights reserved, except those granted by the governing license of this software. See 'license.txt' file in the project root for complete license information.
 
-namespace Project.DvbIpTv.UiServices.EPG
+namespace Project.IpTv.UiServices.EPG
 {
     partial class EpgExtendedInfoDialog
     {
@@ -79,7 +79,7 @@ namespace Project.DvbIpTv.UiServices.EPG
             // 
             // contextRtfMenuCopy
             // 
-            this.contextRtfMenuCopy.Image = global::Project.DvbIpTv.UiServices.EPG.CommonUiResources.Action_Copy_Clip_16x16;
+            this.contextRtfMenuCopy.Image = global::Project.IpTv.UiServices.EPG.CommonUiResources.Action_Copy_Clip_16x16;
             this.contextRtfMenuCopy.Name = "contextRtfMenuCopy";
             resources.ApplyResources(this.contextRtfMenuCopy, "contextRtfMenuCopy");
             this.contextRtfMenuCopy.Click += new System.EventHandler(this.contextRtfMenuCopy_Click);
@@ -93,7 +93,7 @@ namespace Project.DvbIpTv.UiServices.EPG
             // buttonNext
             // 
             resources.ApplyResources(this.buttonNext, "buttonNext");
-            this.buttonNext.Image = global::Project.DvbIpTv.UiServices.EPG.CommonUiResources.Action_Forward_16x16;
+            this.buttonNext.Image = global::Project.IpTv.UiServices.EPG.CommonUiResources.Action_Forward_16x16;
             this.buttonNext.Name = "buttonNext";
             this.buttonNext.UseVisualStyleBackColor = true;
             this.buttonNext.Click += new System.EventHandler(this.buttonNext_Click);
@@ -101,7 +101,7 @@ namespace Project.DvbIpTv.UiServices.EPG
             // buttonPrevious
             // 
             resources.ApplyResources(this.buttonPrevious, "buttonPrevious");
-            this.buttonPrevious.Image = global::Project.DvbIpTv.UiServices.EPG.CommonUiResources.Action_Back_16x16;
+            this.buttonPrevious.Image = global::Project.IpTv.UiServices.EPG.CommonUiResources.Action_Back_16x16;
             this.buttonPrevious.Name = "buttonPrevious";
             this.buttonPrevious.UseVisualStyleBackColor = true;
             this.buttonPrevious.Click += new System.EventHandler(this.buttonPrevious_Click);
@@ -109,7 +109,7 @@ namespace Project.DvbIpTv.UiServices.EPG
             // buttonRecordProgram
             // 
             resources.ApplyResources(this.buttonRecordProgram, "buttonRecordProgram");
-            this.buttonRecordProgram.Image = global::Project.DvbIpTv.UiServices.EPG.CommonUiResources.Action_Record_16x16;
+            this.buttonRecordProgram.Image = global::Project.IpTv.UiServices.EPG.CommonUiResources.Action_Record_16x16;
             this.buttonRecordProgram.Name = "buttonRecordProgram";
             this.buttonRecordProgram.UseVisualStyleBackColor = true;
             this.buttonRecordProgram.Click += new System.EventHandler(this.buttonRecordProgram_Click);
@@ -117,7 +117,7 @@ namespace Project.DvbIpTv.UiServices.EPG
             // buttonShowProgram
             // 
             resources.ApplyResources(this.buttonShowProgram, "buttonShowProgram");
-            this.buttonShowProgram.Image = global::Project.DvbIpTv.UiServices.EPG.CommonUiResources.Action_Play_LG_16x16;
+            this.buttonShowProgram.Image = global::Project.IpTv.UiServices.EPG.CommonUiResources.Action_Play_LG_16x16;
             this.buttonShowProgram.Name = "buttonShowProgram";
             this.buttonShowProgram.UseVisualStyleBackColor = true;
             this.buttonShowProgram.Click += new System.EventHandler(this.buttonShowProgram_Click);
@@ -126,7 +126,7 @@ namespace Project.DvbIpTv.UiServices.EPG
             // 
             resources.ApplyResources(this.buttonOk, "buttonOk");
             this.buttonOk.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.buttonOk.Image = global::Project.DvbIpTv.UiServices.EPG.CommonUiResources.Action_Ok_16x16;
+            this.buttonOk.Image = global::Project.IpTv.UiServices.EPG.CommonUiResources.Action_Ok_16x16;
             this.buttonOk.Name = "buttonOk";
             this.buttonOk.UseVisualStyleBackColor = true;
             // 
@@ -140,15 +140,15 @@ namespace Project.DvbIpTv.UiServices.EPG
             // 
             resources.ApplyResources(this.buttonZoom, "buttonZoom");
             this.buttonZoom.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.buttonZoom.Image = global::Project.DvbIpTv.UiServices.EPG.CommonUiResources.Action_FullView_16x16;
+            this.buttonZoom.Image = global::Project.IpTv.UiServices.EPG.CommonUiResources.Action_FullView_16x16;
             this.buttonZoom.Name = "buttonZoom";
             this.buttonZoom.UseVisualStyleBackColor = true;
             // 
             // pictureProgramPreview
             // 
             resources.ApplyResources(this.pictureProgramPreview, "pictureProgramPreview");
-            this.pictureProgramPreview.ErrorImage = global::Project.DvbIpTv.UiServices.EPG.Properties.Resources.EpgNoProgramImage;
-            this.pictureProgramPreview.Image = global::Project.DvbIpTv.UiServices.EPG.Properties.Resources.EpgLoadingProgramImage;
+            this.pictureProgramPreview.ErrorImage = global::Project.IpTv.UiServices.EPG.Properties.Resources.EpgNoProgramImage;
+            this.pictureProgramPreview.Image = global::Project.IpTv.UiServices.EPG.Properties.Resources.EpgLoadingProgramImage;
             this.pictureProgramPreview.Name = "pictureProgramPreview";
             this.pictureProgramPreview.TabStop = false;
             this.pictureProgramPreview.LoadCompleted += new System.ComponentModel.AsyncCompletedEventHandler(this.pictureProgramPreview_LoadCompleted);

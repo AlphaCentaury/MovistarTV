@@ -11,7 +11,7 @@ using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 
-namespace Project.DvbIpTv.Internal.Tools.GuiTools
+namespace Project.IpTv.Internal.Tools.GuiTools
 {
     internal static class MyApplication
     {

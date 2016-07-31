@@ -3,13 +3,13 @@
 
 using Etsi.Ts102034.v010501.XmlSerialization;
 using Etsi.Ts102034.v010501.XmlSerialization.ProviderDiscovery;
-using Project.DvbIpTv.Common.Telemetry;
-using Project.DvbIpTv.UiServices.Common.Forms;
-using Project.DvbIpTv.UiServices.Configuration;
-using Project.DvbIpTv.UiServices.Configuration.Logos;
-using Project.DvbIpTv.UiServices.Discovery;
-using Project.DvbIpTv.UiServices.DvbStpClient;
-using Project.DvbIpTv.UiServices.Forms;
+using Project.IpTv.Common.Telemetry;
+using Project.IpTv.UiServices.Common.Forms;
+using Project.IpTv.UiServices.Configuration;
+using Project.IpTv.UiServices.Configuration.Logos;
+using Project.IpTv.UiServices.Discovery;
+using Project.IpTv.UiServices.DvbStpClient;
+using Project.IpTv.UiServices.Forms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -20,7 +20,7 @@ using System.Net;
 using System.Text;
 using System.Windows.Forms;
 
-namespace Project.DvbIpTv.ChannelList
+namespace Project.IpTv.ChannelList
 {
     public partial class SelectProviderDialog : CommonBaseForm
     {

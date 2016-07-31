@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Project.DvbIpTv.UiServices.EPG
+namespace Project.IpTv.UiServices.EPG
 {
     public class EpgMiniBarButtonClickedEventArgs : EventArgs
     {

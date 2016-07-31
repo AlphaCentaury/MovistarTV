@@ -11,7 +11,7 @@ using System.Text;
 using System.Xml;
 using System.Xml.Serialization;
 
-namespace Project.DvbIpTv.Services.EPG.TvAnytime
+namespace Project.IpTv.Services.EPG.TvAnytime
 {
     [Serializable()]
     [DebuggerStepThrough()]

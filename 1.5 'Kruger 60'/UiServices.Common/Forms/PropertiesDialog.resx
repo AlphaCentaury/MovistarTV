@@ -262,7 +262,7 @@
     <value>pictureBoxItemIcon</value>
   </data>
   <data name="&gt;&gt;pictureBoxItemIcon.Type" xml:space="preserve">
-    <value>Project.DvbIpTv.UiServices.Common.Controls.PictureBoxEx, UiServices.Common, Version=1.5.20.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>Project.IpTv.UiServices.Common.Controls.PictureBoxEx, UiServices.Common, Version=1.5.20.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;pictureBoxItemIcon.Parent" xml:space="preserve">
     <value>$this</value>
@@ -286,7 +286,7 @@
     <value>listViewProperties</value>
   </data>
   <data name="&gt;&gt;listViewProperties.Type" xml:space="preserve">
-    <value>Project.DvbIpTv.UiServices.Common.Controls.ListViewSortable, UiServices.Common, Version=1.5.20.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>Project.IpTv.UiServices.Common.Controls.ListViewSortable, UiServices.Common, Version=1.5.20.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;listViewProperties.Parent" xml:space="preserve">
     <value>$this</value>

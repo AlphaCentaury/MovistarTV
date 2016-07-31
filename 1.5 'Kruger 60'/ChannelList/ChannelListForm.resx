@@ -1664,7 +1664,7 @@
     <value>epgMiniBar</value>
   </data>
   <data name="&gt;&gt;epgMiniBar.Type" xml:space="preserve">
-    <value>Project.DvbIpTv.UiServices.EPG.EpgMiniBar, UiServices.EPG, Version=1.5.30.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>Project.IpTv.UiServices.EPG.EpgMiniBar, UiServices.EPG, Version=1.5.30.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;epgMiniBar.Parent" xml:space="preserve">
     <value>$this</value>
@@ -1688,7 +1688,7 @@
     <value>listViewChannelList</value>
   </data>
   <data name="&gt;&gt;listViewChannelList.Type" xml:space="preserve">
-    <value>Project.DvbIpTv.UiServices.Common.Controls.ListViewSortable, UiServices.Common, Version=1.5.30.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>Project.IpTv.UiServices.Common.Controls.ListViewSortable, UiServices.Common, Version=1.5.30.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;listViewChannelList.Parent" xml:space="preserve">
     <value>$this</value>
@@ -1835,7 +1835,7 @@
     <value>724, 422</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Channel list - DVB-IPTV</value>
+    <value>Channel list - IPTV</value>
   </data>
   <data name="&gt;&gt;imageListChannelsLarge.Name" xml:space="preserve">
     <value>imageListChannelsLarge</value>
@@ -2369,6 +2369,6 @@
     <value>ChannelListForm</value>
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>Project.DvbIpTv.UiServices.Common.Forms.CommonBaseForm, UiServices.Common, Version=1.5.30.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>Project.IpTv.UiServices.Common.Forms.CommonBaseForm, UiServices.Common, Version=1.5.30.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
 </root>

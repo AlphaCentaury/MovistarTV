@@ -9,17 +9,17 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using Project.DvbIpTv.Common.Telemetry;
-using Project.DvbIpTv.Core.IpTvProvider;
-using Project.DvbIpTv.Services.EPG;
-using Project.DvbIpTv.Services.EPG.Serialization;
-using Project.DvbIpTv.Services.SqlServerCE;
-using Project.DvbIpTv.UiServices.Common.Forms;
-using Project.DvbIpTv.UiServices.Configuration;
-using Project.DvbIpTv.UiServices.Discovery;
-using Project.DvbIpTv.UiServices.Discovery.BroadcastList;
+using Project.IpTv.Common.Telemetry;
+using Project.IpTv.Core.IpTvProvider;
+using Project.IpTv.Services.EPG;
+using Project.IpTv.Services.EPG.Serialization;
+using Project.IpTv.Services.SqlServerCE;
+using Project.IpTv.UiServices.Common.Forms;
+using Project.IpTv.UiServices.Configuration;
+using Project.IpTv.UiServices.Discovery;
+using Project.IpTv.UiServices.Discovery.BroadcastList;
 
-namespace Project.DvbIpTv.UiServices.EPG
+namespace Project.IpTv.UiServices.EPG
 {
     public partial class EpgBasicGridDialog : Form
     {

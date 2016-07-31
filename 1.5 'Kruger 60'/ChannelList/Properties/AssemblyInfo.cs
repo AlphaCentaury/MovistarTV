@@ -8,7 +8,7 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute parameters to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("DVB-IPTV: Canales y servicios movistar+")]
+[assembly: AssemblyTitle("IPTV: Canales y servicios movistar+")]
 [assembly: AssemblyDescription("ChannelList app")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCopyright(SolutionVersion.DefaultCopyright)]

@@ -286,7 +286,7 @@
     <value>timeSpanLength</value>
   </data>
   <data name="&gt;&gt;timeSpanLength.Type" xml:space="preserve">
-    <value>Project.DvbIpTv.UiServices.Controls.TimeSpanUpDown, UiServices.Controls, Version=1.0.1000.200, Culture=neutral, PublicKeyToken=null</value>
+    <value>Project.IpTv.UiServices.Controls.TimeSpanUpDown, UiServices.Controls, Version=1.0.1000.200, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;timeSpanLength.Parent" xml:space="preserve">
     <value>$this</value>

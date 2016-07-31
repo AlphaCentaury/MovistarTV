@@ -1,7 +1,7 @@
 ﻿// Copyright (C) 2014-2016, Codeplex user AlphaCentaury
 // All rights reserved, except those granted by the governing license of this software. See 'license.txt' file in the project root for complete license information.
 
-namespace Project.DvbIpTv.UiServices.Discovery
+namespace Project.IpTv.UiServices.Discovery
 {
     partial class UiBroadcastDiscoveryMergeResultDetailsDialog
     {
@@ -70,14 +70,14 @@ namespace Project.DvbIpTv.UiServices.Discovery
             // 
             resources.ApplyResources(this.buttonClose, "buttonClose");
             this.buttonClose.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.buttonClose.Image = global::Project.DvbIpTv.UiServices.Discovery.Properties.Resources.Action_Ok_16x16;
+            this.buttonClose.Image = global::Project.IpTv.UiServices.Discovery.Properties.Resources.Action_Ok_16x16;
             this.buttonClose.Name = "buttonClose";
             this.buttonClose.UseVisualStyleBackColor = true;
             // 
             // buttonCopy
             // 
             resources.ApplyResources(this.buttonCopy, "buttonCopy");
-            this.buttonCopy.Image = global::Project.DvbIpTv.UiServices.Discovery.Properties.Resources.Action_Copy_Clip_16x16;
+            this.buttonCopy.Image = global::Project.IpTv.UiServices.Discovery.Properties.Resources.Action_Copy_Clip_16x16;
             this.buttonCopy.Name = "buttonCopy";
             this.buttonCopy.UseVisualStyleBackColor = true;
             this.buttonCopy.Click += new System.EventHandler(this.buttonCopy_Click);

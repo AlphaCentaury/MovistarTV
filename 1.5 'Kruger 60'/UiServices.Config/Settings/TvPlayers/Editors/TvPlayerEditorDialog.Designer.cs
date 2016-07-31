@@ -1,4 +1,4 @@
-﻿namespace Project.DvbIpTv.UiServices.Configuration.Settings.TvPlayers.Editors
+﻿namespace Project.IpTv.UiServices.Configuration.Settings.TvPlayers.Editors
 {
     partial class TvPlayerEditorDialog
     {
@@ -36,7 +36,7 @@
             this.buttonSelectPlayer = new System.Windows.Forms.Button();
             this.picturePlayerIcon = new System.Windows.Forms.PictureBox();
             this.selectPlayerDialog = new System.Windows.Forms.OpenFileDialog();
-            this.argumentsEditor = new Project.DvbIpTv.UiServices.Configuration.Editors.ArgumentsEditor();
+            this.argumentsEditor = new Project.IpTv.UiServices.Configuration.Editors.ArgumentsEditor();
             ((System.ComponentModel.ISupportInitialize)(this.picturePlayerIcon)).BeginInit();
             this.SuspendLayout();
             // 
@@ -56,7 +56,7 @@
             // 
             resources.ApplyResources(this.buttonOk, "buttonOk");
             this.buttonOk.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.buttonOk.Image = global::Project.DvbIpTv.UiServices.Configuration.CommonUiResources.Action_Ok_16x16;
+            this.buttonOk.Image = global::Project.IpTv.UiServices.Configuration.CommonUiResources.Action_Ok_16x16;
             this.buttonOk.Name = "buttonOk";
             this.buttonOk.UseVisualStyleBackColor = true;
             this.buttonOk.Click += new System.EventHandler(this.buttonOk_Click);
@@ -65,14 +65,14 @@
             // 
             resources.ApplyResources(this.buttonCancel, "buttonCancel");
             this.buttonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.buttonCancel.Image = global::Project.DvbIpTv.UiServices.Configuration.CommonUiResources.Action_Cancel_16x16;
+            this.buttonCancel.Image = global::Project.IpTv.UiServices.Configuration.CommonUiResources.Action_Cancel_16x16;
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.UseVisualStyleBackColor = true;
             // 
             // buttonSelectPlayer
             // 
             resources.ApplyResources(this.buttonSelectPlayer, "buttonSelectPlayer");
-            this.buttonSelectPlayer.Image = global::Project.DvbIpTv.UiServices.Configuration.CommonUiResources.Action_AttachFile_16x16;
+            this.buttonSelectPlayer.Image = global::Project.IpTv.UiServices.Configuration.CommonUiResources.Action_AttachFile_16x16;
             this.buttonSelectPlayer.Name = "buttonSelectPlayer";
             this.buttonSelectPlayer.UseVisualStyleBackColor = true;
             this.buttonSelectPlayer.Click += new System.EventHandler(this.buttonSelectPlayer_Click);

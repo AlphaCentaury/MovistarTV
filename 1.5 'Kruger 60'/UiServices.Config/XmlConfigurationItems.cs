@@ -1,4 +1,4 @@
-﻿using Project.DvbIpTv.Common.Serialization;
+﻿using Project.IpTv.Common.Serialization;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -8,7 +8,7 @@ using System.Xml;
 using System.Xml.Serialization;
 using System.Xml.XPath;
 
-namespace Project.DvbIpTv.UiServices.Configuration
+namespace Project.IpTv.UiServices.Configuration
 {
     [Serializable]
     public class XmlConfigurationItems

@@ -1,13 +1,13 @@
 ﻿// Copyright (C) 2014-2016, Codeplex user AlphaCentaury
 // All rights reserved, except those granted by the governing license of this software. See 'license.txt' file in the project root for complete license information.
 
-using Project.DvbIpTv.Common;
-using Project.DvbIpTv.Common.Serialization;
-using Project.DvbIpTv.DvbStp.Client;
-using Project.DvbIpTv.Services.EPG;
-using Project.DvbIpTv.Services.EPG.Serialization;
-using Project.DvbIpTv.Services.EPG.TvAnytime;
-using Project.DvbIpTv.Services.SqlServerCE;
+using Project.IpTv.Common;
+using Project.IpTv.Common.Serialization;
+using Project.IpTv.DvbStp.Client;
+using Project.IpTv.Services.EPG;
+using Project.IpTv.Services.EPG.Serialization;
+using Project.IpTv.Services.EPG.TvAnytime;
+using Project.IpTv.Services.SqlServerCE;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlServerCe;
@@ -18,11 +18,11 @@ using System.Reflection;
 using System.Text;
 using System.Threading;
 using System.Globalization;
-using Project.DvbIpTv.UiServices.DvbStpClient;
+using Project.IpTv.UiServices.DvbStpClient;
 using Etsi.Ts102034.v010501.XmlSerialization.ContentGuideDiscovery;
 using Etsi.Ts102034.v010501.XmlSerialization;
 
-namespace Project.DvbIpTv.Internal.ConsoleEPGLoader
+namespace Project.IpTv.Internal.ConsoleEPGLoader
 {
     class Program
     {

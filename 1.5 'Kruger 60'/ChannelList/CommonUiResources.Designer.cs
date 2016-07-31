@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Project.DvbIpTv.ChannelList {
+namespace Project.IpTv.ChannelList {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace Project.DvbIpTv.ChannelList {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Project.DvbIpTv.ChannelList.CommonUiResources", typeof(CommonUiResources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Project.IpTv.ChannelList.CommonUiResources", typeof(CommonUiResources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

@@ -1,13 +1,13 @@
 ﻿// Copyright (C) 2014-2016, Codeplex user AlphaCentaury
 // All rights reserved, except those granted by the governing license of this software. See 'license.txt' file in the project root for complete license information.
 
-using Project.DvbIpTv.Common.Telemetry;
-using Project.DvbIpTv.Services.Record.Serialization;
-using Project.DvbIpTv.UiServices.Common.Forms;
-using Project.DvbIpTv.UiServices.Configuration;
-using Project.DvbIpTv.UiServices.Configuration.Logos;
-using Project.DvbIpTv.UiServices.Configuration.Schema2014.Config;
-using Project.DvbIpTv.UiServices.Record.Controls;
+using Project.IpTv.Common.Telemetry;
+using Project.IpTv.Services.Record.Serialization;
+using Project.IpTv.UiServices.Common.Forms;
+using Project.IpTv.UiServices.Configuration;
+using Project.IpTv.UiServices.Configuration.Logos;
+using Project.IpTv.UiServices.Configuration.Schema2014.Config;
+using Project.IpTv.UiServices.Record.Controls;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,7 +15,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Windows.Forms;
 
-namespace Project.DvbIpTv.UiServices.Record
+namespace Project.IpTv.UiServices.Record
 {
     public partial class RecordChannelDialog : CommonBaseForm
     {

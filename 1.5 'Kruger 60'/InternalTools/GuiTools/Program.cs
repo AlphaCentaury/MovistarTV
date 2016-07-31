@@ -7,7 +7,7 @@ using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
 
-namespace Project.DvbIpTv.Internal.Tools.GuiTools
+namespace Project.IpTv.Internal.Tools.GuiTools
 {
     static class Program
     {

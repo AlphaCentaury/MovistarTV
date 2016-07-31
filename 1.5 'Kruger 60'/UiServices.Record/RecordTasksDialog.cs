@@ -10,13 +10,13 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using Project.DvbIpTv.Services.Record;
-using Project.DvbIpTv.Services.Record.Serialization;
-using Project.DvbIpTv.UiServices.Record.Properties;
-using Project.DvbIpTv.UiServices.Common.Forms;
-using Project.DvbIpTv.Common.Telemetry;
+using Project.IpTv.Services.Record;
+using Project.IpTv.Services.Record.Serialization;
+using Project.IpTv.UiServices.Record.Properties;
+using Project.IpTv.UiServices.Common.Forms;
+using Project.IpTv.Common.Telemetry;
 
-namespace Project.DvbIpTv.UiServices.Record
+namespace Project.IpTv.UiServices.Record
 {
     public partial class RecordTasksDialog : CommonBaseForm
     {
@@ -210,17 +210,17 @@ namespace Project.DvbIpTv.UiServices.Record
 
         private void buttonEditTask_Click_Implementation(object sender, EventArgs e)
         {
-            Project.DvbIpTv.UiServices.Common.Forms.NotImplementedBox.ShowBox(this, "buttonEditTask");
+            Project.IpTv.UiServices.Common.Forms.NotImplementedBox.ShowBox(this, "buttonEditTask");
         } // buttonEditTask_Click_Implementation
 
         private void buttonDeleteTasks_Click_Implementation(object sender, EventArgs e)
         {
-            Project.DvbIpTv.UiServices.Common.Forms.NotImplementedBox.ShowBox(this, "buttonDeleteTasks");
+            Project.IpTv.UiServices.Common.Forms.NotImplementedBox.ShowBox(this, "buttonDeleteTasks");
         } // buttonDeleteTasks_Click_Implementation
 
         private void buttonViewRecordings_Click_Implementation(object sender, EventArgs e)
         {
-            Project.DvbIpTv.UiServices.Common.Forms.NotImplementedBox.ShowBox(this, "buttonViewRecordings");
+            Project.IpTv.UiServices.Common.Forms.NotImplementedBox.ShowBox(this, "buttonViewRecordings");
         } // buttonViewRecordings_Click_Implementation
 
         #endregion

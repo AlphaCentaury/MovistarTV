@@ -2,9 +2,9 @@
 // All rights reserved, except those granted by the governing license of this software. See 'license.txt' file in the project root for complete license information.
 
 using Microsoft.Win32;
-using Project.DvbIpTv.Common.Telemetry;
-using Project.DvbIpTv.Tools.FirstTimeConfig.Properties;
-using Project.DvbIpTv.UiServices.Configuration;
+using Project.IpTv.Common.Telemetry;
+using Project.IpTv.Tools.FirstTimeConfig.Properties;
+using Project.IpTv.UiServices.Configuration;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,7 +16,7 @@ using System.Reflection;
 using System.Text;
 using System.Windows.Forms;
 
-namespace Project.DvbIpTv.Tools.FirstTimeConfig
+namespace Project.IpTv.Tools.FirstTimeConfig
 {
     internal class Installation
     {
@@ -436,7 +436,7 @@ namespace Project.DvbIpTv.Tools.FirstTimeConfig
                             fileVersionInfo.OriginalFilename, "{0}", SolutionVersion.AssemblyProduct);
 
                         // for reasons unknown the path can not contain the '~' symbol!!
-                        // before discovering this, the installation path was \Documents\DVB-IPTV\MovistarTV~1.0~Wolf424\bin\
+                        // before discovering this, the installation path was \Documents\IPTV\MovistarTV~1.0~Wolf424\bin\
                         // so the WiX setup needs to be changed to remove the '~' from the path name
                         firewall.AllowProgram(programPath, name, description);
                     } // foreach program

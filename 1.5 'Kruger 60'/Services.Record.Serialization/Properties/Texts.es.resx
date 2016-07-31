@@ -121,7 +121,7 @@
     <value>&gt;&gt;&gt; Detalles del canal &lt;&lt;&lt;
 Canal de TV: {0} {1}
 URL: {2}
-Servicio DVB-IPTV: {3}</value>
+Servicio IPTV: {3}</value>
   </data>
   <data name="BuildDescriptionDuration" xml:space="preserve">
     <value>La duración programada de la grabación era de {0}, con un margen de seguridad de {1} minutos.

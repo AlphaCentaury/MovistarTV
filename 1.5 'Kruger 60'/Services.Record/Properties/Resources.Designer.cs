@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Project.DvbIpTv.Services.Record.Properties {
+namespace Project.IpTv.Services.Record.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace Project.DvbIpTv.Services.Record.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Project.DvbIpTv.Services.Record.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Project.IpTv.Services.Record.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,7 +61,7 @@ namespace Project.DvbIpTv.Services.Record.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 1DCDA40A-A9D5-4CF3-B3C5-971B8811F127: DVB-IPTV Record Task
+        ///   Looks up a localized string similar to 1DCDA40A-A9D5-4CF3-B3C5-971B8811F127: IPTV Record Task
         ///TaskId: {0}
         ///Database: {1}.
         /// </summary>
@@ -72,7 +72,7 @@ namespace Project.DvbIpTv.Services.Record.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 1DCDA40A-A9D5-4CF3-B3C5-971B8811F127: DVB-IPTV Record Task.
+        ///   Looks up a localized string similar to 1DCDA40A-A9D5-4CF3-B3C5-971B8811F127: IPTV Record Task.
         /// </summary>
         internal static string DefinitionRegistrationInfo_Documentation_Begins {
             get {

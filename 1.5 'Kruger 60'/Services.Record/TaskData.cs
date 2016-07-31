@@ -5,9 +5,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Project.DvbIpTv.Services.Record.Serialization;
+using Project.IpTv.Services.Record.Serialization;
 
-namespace Project.DvbIpTv.Services.Record
+namespace Project.IpTv.Services.Record
 {
     public class TaskData
     {

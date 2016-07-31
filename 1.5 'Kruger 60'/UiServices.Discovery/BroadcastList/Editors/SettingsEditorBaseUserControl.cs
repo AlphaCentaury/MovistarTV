@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace Project.DvbIpTv.UiServices.Discovery.BroadcastList.Editors
+namespace Project.IpTv.UiServices.Discovery.BroadcastList.Editors
 {
     internal class SettingsEditorBaseUserControl : UserControl, ISettingsEditor
     {

@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Project.DvbIpTv.RecorderLauncher
+namespace Project.IpTv.RecorderLauncher
 {
     internal static class InternalExtensions
     {

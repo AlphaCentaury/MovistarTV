@@ -1,7 +1,7 @@
 ﻿// Copyright (C) 2014-2016, Codeplex user AlphaCentaury
 // All rights reserved, except those granted by the governing license of this software. See 'license.txt' file in the project root for complete license information.
 
-namespace Project.DvbIpTv.UiServices.Record.Controls
+namespace Project.IpTv.UiServices.Record.Controls
 {
     partial class RecordingSchedule
     {
@@ -40,11 +40,11 @@ namespace Project.DvbIpTv.UiServices.Record.Controls
             this.radioOneTime = new System.Windows.Forms.RadioButton();
             this.radioRightNow = new System.Windows.Forms.RadioButton();
             this.panelPlaceholder = new System.Windows.Forms.Panel();
-            this.fragmentDaily = new Project.DvbIpTv.UiServices.Record.Controls.RecordingDailyScheduleFragment();
-            this.fragmentOneTime = new Project.DvbIpTv.UiServices.Record.Controls.RecordingOneTimeScheduleFragment();
-            this.fragmentMonthly = new Project.DvbIpTv.UiServices.Record.Controls.RecordingMonthlyScheduleFragment();
-            this.fragmentRightNow = new Project.DvbIpTv.UiServices.Record.Controls.RecordingRightNowScheduleFragment();
-            this.fragmentWeekly = new Project.DvbIpTv.UiServices.Record.Controls.RecordingWeeklyScheduleFragment();
+            this.fragmentDaily = new Project.IpTv.UiServices.Record.Controls.RecordingDailyScheduleFragment();
+            this.fragmentOneTime = new Project.IpTv.UiServices.Record.Controls.RecordingOneTimeScheduleFragment();
+            this.fragmentMonthly = new Project.IpTv.UiServices.Record.Controls.RecordingMonthlyScheduleFragment();
+            this.fragmentRightNow = new Project.IpTv.UiServices.Record.Controls.RecordingRightNowScheduleFragment();
+            this.fragmentWeekly = new Project.IpTv.UiServices.Record.Controls.RecordingWeeklyScheduleFragment();
             this.SuspendLayout();
             // 
             // dateTimeStartTime

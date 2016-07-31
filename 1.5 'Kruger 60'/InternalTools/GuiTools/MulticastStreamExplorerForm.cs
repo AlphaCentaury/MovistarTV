@@ -13,7 +13,7 @@ using System.Net.Sockets;
 using System.Text;
 using System.Windows.Forms;
 
-namespace Project.DvbIpTv.Internal.Tools.GuiTools
+namespace Project.IpTv.Internal.Tools.GuiTools
 {
     public partial class MulticastStreamExplorerForm : Form
     {
@@ -33,7 +33,7 @@ namespace Project.DvbIpTv.Internal.Tools.GuiTools
         private void MulticastStreamExplorerForm_Load(object sender, EventArgs e)
         {
             var appExe = Path.GetFileNameWithoutExtension(Application.ExecutablePath);
-            var folder = string.Format("DVB-IPTV\\{0} {1}\\Data", appExe, Application.ProductVersion);
+            var folder = string.Format("IPTV\\{0} {1}\\Data", appExe, Application.ProductVersion);
             var baseFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), folder);
             textBaseDumpFolder.Text = baseFolder;
 

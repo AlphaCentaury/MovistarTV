@@ -1,4 +1,4 @@
-Decodificador DVB-IPTV para movistar+ versión 1.5 “Kruger 60” alpha 4
+Decodificador IPTV para movistar+ versión 1.5 “Kruger 60” alpha 4
 
 ESTE SOFTWARE SE PROPORCIONA "TAL CUAL", SIN GARANTÍA DE NINGÚN TIPO, expresa o implícita, incluyendo (pero no limitándose a) las garantías de comerciabilidad, idoneidad para un propósito particular y no infracción.
 En ningún caso, los autores o titulares del Copyright serán responsables de ninguna reclamación, daños o cualquier otra responsabilidad, ya sea en una acción de contrato, agravio o cualquier otro motivo, con o sin relación con el software o el uso u otros aspectos del software.

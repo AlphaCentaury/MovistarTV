@@ -7,7 +7,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 
-namespace Project.DvbIpTv.Internal.ConsoleEPGLoader
+namespace Project.IpTv.Internal.ConsoleEPGLoader
 {
     internal partial class UnsafeNativeMethods
     {

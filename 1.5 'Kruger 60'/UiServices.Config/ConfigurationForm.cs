@@ -1,4 +1,4 @@
-﻿using Project.DvbIpTv.Common.Telemetry;
+﻿using Project.IpTv.Common.Telemetry;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace Project.DvbIpTv.UiServices.Configuration
+namespace Project.IpTv.UiServices.Configuration
 {
     public partial class ConfigurationForm : Form
     {

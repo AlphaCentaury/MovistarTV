@@ -1,7 +1,7 @@
 ﻿// Copyright (C) 2014-2016, Codeplex user AlphaCentaury
 // All rights reserved, except those granted by the governing license of this software. See 'license.txt' file in the project root for complete license information.
 
-namespace Project.DvbIpTv.UiServices.Discovery.BroadcastList.Editors
+namespace Project.IpTv.UiServices.Discovery.BroadcastList.Editors
 {
     partial class UiBroadcastListSettingsEditor
     {
@@ -142,35 +142,35 @@ namespace Project.DvbIpTv.UiServices.Discovery.BroadcastList.Editors
             resources.ApplyResources(this.toolButtonDetails, "toolButtonDetails");
             this.toolButtonDetails.BackColor = System.Drawing.SystemColors.Window;
             this.toolButtonDetails.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.toolButtonDetails.Image = global::Project.DvbIpTv.UiServices.Discovery.Properties.Resources.ListView_Details_16x16;
+            this.toolButtonDetails.Image = global::Project.IpTv.UiServices.Discovery.Properties.Resources.ListView_Details_16x16;
             this.toolButtonDetails.Name = "toolButtonDetails";
             this.toolButtonDetails.Click += new System.EventHandler(this.toolButtonDetails_Click);
             // 
             // toolButtonLarge
             // 
             resources.ApplyResources(this.toolButtonLarge, "toolButtonLarge");
-            this.toolButtonLarge.Image = global::Project.DvbIpTv.UiServices.Discovery.Properties.Resources.ListView_MediumIcons_16x16;
+            this.toolButtonLarge.Image = global::Project.IpTv.UiServices.Discovery.Properties.Resources.ListView_MediumIcons_16x16;
             this.toolButtonLarge.Name = "toolButtonLarge";
             this.toolButtonLarge.Click += new System.EventHandler(this.toolButtonLarge_Click);
             // 
             // toolButtonSmall
             // 
             resources.ApplyResources(this.toolButtonSmall, "toolButtonSmall");
-            this.toolButtonSmall.Image = global::Project.DvbIpTv.UiServices.Discovery.Properties.Resources.ListView_SmallIcons_16x16;
+            this.toolButtonSmall.Image = global::Project.IpTv.UiServices.Discovery.Properties.Resources.ListView_SmallIcons_16x16;
             this.toolButtonSmall.Name = "toolButtonSmall";
             this.toolButtonSmall.Click += new System.EventHandler(this.toolButtonSmall_Click);
             // 
             // toolButtonList
             // 
             resources.ApplyResources(this.toolButtonList, "toolButtonList");
-            this.toolButtonList.Image = global::Project.DvbIpTv.UiServices.Discovery.Properties.Resources.ListView_List_16x16;
+            this.toolButtonList.Image = global::Project.IpTv.UiServices.Discovery.Properties.Resources.ListView_List_16x16;
             this.toolButtonList.Name = "toolButtonList";
             this.toolButtonList.Click += new System.EventHandler(this.toolButtonList_Click);
             // 
             // toolButtonTile
             // 
             resources.ApplyResources(this.toolButtonTile, "toolButtonTile");
-            this.toolButtonTile.Image = global::Project.DvbIpTv.UiServices.Discovery.Properties.Resources.ListView_Tiles_16x16;
+            this.toolButtonTile.Image = global::Project.IpTv.UiServices.Discovery.Properties.Resources.ListView_Tiles_16x16;
             this.toolButtonTile.Name = "toolButtonTile";
             this.toolButtonTile.Click += new System.EventHandler(this.toolButtonTile_Click);
             // 

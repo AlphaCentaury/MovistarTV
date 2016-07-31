@@ -9,15 +9,15 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using Project.DvbIpTv.Core.IpTvProvider;
-using Project.DvbIpTv.Core.IpTvProvider.EPG;
-using Project.DvbIpTv.Services.EPG;
-using Project.DvbIpTv.UiServices.Common.Forms;
-using Project.DvbIpTv.UiServices.Configuration.Logos;
-using Project.DvbIpTv.UiServices.Discovery;
-using Project.DvbIpTv.UiServices.Discovery.BroadcastList;
+using Project.IpTv.Core.IpTvProvider;
+using Project.IpTv.Core.IpTvProvider.EPG;
+using Project.IpTv.Services.EPG;
+using Project.IpTv.UiServices.Common.Forms;
+using Project.IpTv.UiServices.Configuration.Logos;
+using Project.IpTv.UiServices.Discovery;
+using Project.IpTv.UiServices.Discovery.BroadcastList;
 
-namespace Project.DvbIpTv.UiServices.EPG
+namespace Project.IpTv.UiServices.EPG
 {
     public partial class EpgExtendedInfoDialog : Form
     {

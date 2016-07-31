@@ -8,7 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 
-namespace Project.DvbIpTv.RecorderLauncher
+namespace Project.IpTv.RecorderLauncher
 {
     internal static class Logger
     {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Project.DvbIpTv.Services.Record
+namespace Project.IpTv.Services.Record
 {
     public class TaskListBuildOptions
     {

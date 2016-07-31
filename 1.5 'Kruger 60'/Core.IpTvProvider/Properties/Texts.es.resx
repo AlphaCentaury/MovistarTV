@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ExternalPlayerShortcutDescription" xml:space="preserve">
-    <value>Abre el reproductor {0} para ver el canal DVB-IPTV '{1}'</value>
+    <value>Abre el reproductor {0} para ver el canal IPTV '{1}'</value>
   </data>
   <data name="ShowTvChannelInactiveService" xml:space="preserve">
     <value>El canal de TV seleccionado ha sido marcado como inactivo y puede no estar disponible.

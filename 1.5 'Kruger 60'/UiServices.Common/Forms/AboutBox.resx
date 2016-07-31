@@ -604,6 +604,6 @@
     <value>AboutBox</value>
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>Project.DvbIpTv.UiServices.Controls.CommonBaseForm, UiServices.Controls, Version=1.5.20.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>Project.IpTv.UiServices.Controls.CommonBaseForm, UiServices.Controls, Version=1.5.20.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
 </root>

@@ -8,7 +8,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 
-namespace Project.DvbIpTv.UiServices.DvbStpClient
+namespace Project.IpTv.UiServices.DvbStpClient
 {
     public class UiDvbStpSimpleDownloadRequest: UiDvbStpBaseDownloadRequest
     {

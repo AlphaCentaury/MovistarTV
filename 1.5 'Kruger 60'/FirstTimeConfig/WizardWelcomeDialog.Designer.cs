@@ -1,7 +1,7 @@
 ﻿// Copyright (C) 2015, Codeplex user AlphaCentaury
 // All rights reserved, except those granted by the governing license of this software. See 'license.txt' file in the project root for complete license information.
 
-namespace Project.DvbIpTv.Tools.FirstTimeConfig
+namespace Project.IpTv.Tools.FirstTimeConfig
 {
     partial class WizardWelcomeDialog
     {
@@ -48,8 +48,8 @@ namespace Project.DvbIpTv.Tools.FirstTimeConfig
             // pictureWelcome
             // 
             resources.ApplyResources(this.pictureWelcome, "pictureWelcome");
-            this.pictureWelcome.BackgroundImage = global::Project.DvbIpTv.Tools.FirstTimeConfig.Properties.Resources.WizardSidePattern;
-            this.pictureWelcome.Image = global::Project.DvbIpTv.Tools.FirstTimeConfig.Properties.Resources.WizardSide;
+            this.pictureWelcome.BackgroundImage = global::Project.IpTv.Tools.FirstTimeConfig.Properties.Resources.WizardSidePattern;
+            this.pictureWelcome.Image = global::Project.IpTv.Tools.FirstTimeConfig.Properties.Resources.WizardSide;
             this.pictureWelcome.Name = "pictureWelcome";
             this.pictureWelcome.TabStop = false;
             // 
@@ -67,14 +67,14 @@ namespace Project.DvbIpTv.Tools.FirstTimeConfig
             // 
             this.buttonBack.DialogResult = System.Windows.Forms.DialogResult.No;
             resources.ApplyResources(this.buttonBack, "buttonBack");
-            this.buttonBack.Image = global::Project.DvbIpTv.Tools.FirstTimeConfig.Properties.Resources.ActionBack_Medium_16;
+            this.buttonBack.Image = global::Project.IpTv.Tools.FirstTimeConfig.Properties.Resources.ActionBack_Medium_16;
             this.buttonBack.Name = "buttonBack";
             this.buttonBack.UseVisualStyleBackColor = true;
             // 
             // buttonNext
             // 
             this.buttonNext.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.buttonNext.Image = global::Project.DvbIpTv.Tools.FirstTimeConfig.Properties.Resources.ActionForward_Medium_16;
+            this.buttonNext.Image = global::Project.IpTv.Tools.FirstTimeConfig.Properties.Resources.ActionForward_Medium_16;
             resources.ApplyResources(this.buttonNext, "buttonNext");
             this.buttonNext.Name = "buttonNext";
             this.buttonNext.UseVisualStyleBackColor = true;
@@ -82,7 +82,7 @@ namespace Project.DvbIpTv.Tools.FirstTimeConfig
             // buttonCancel
             // 
             this.buttonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.buttonCancel.Image = global::Project.DvbIpTv.Tools.FirstTimeConfig.Properties.Resources.ActionCancel_16x16;
+            this.buttonCancel.Image = global::Project.IpTv.Tools.FirstTimeConfig.Properties.Resources.ActionCancel_16x16;
             resources.ApplyResources(this.buttonCancel, "buttonCancel");
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.UseVisualStyleBackColor = true;

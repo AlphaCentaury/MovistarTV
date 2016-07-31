@@ -1,11 +1,11 @@
 ﻿// Copyright (C) 2014-2016, Codeplex user AlphaCentaury
 // All rights reserved, except those granted by the governing license of this software. See 'license.txt' file in the project root for complete license information.
 
-using Project.DvbIpTv.Common.Telemetry;
-using Project.DvbIpTv.UiServices.Common.Forms;
-using Project.DvbIpTv.UiServices.Configuration.Logos;
-using Project.DvbIpTv.UiServices.Discovery;
-using Project.DvbIpTv.UiServices.Forms.Properties;
+using Project.IpTv.Common.Telemetry;
+using Project.IpTv.UiServices.Common.Forms;
+using Project.IpTv.UiServices.Configuration.Logos;
+using Project.IpTv.UiServices.Discovery;
+using Project.IpTv.UiServices.Forms.Properties;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,7 +17,7 @@ using System.Net.Sockets;
 using System.Threading;
 using System.Windows.Forms;
 
-namespace Project.DvbIpTv.UiServices.Forms
+namespace Project.IpTv.UiServices.Forms
 {
     //CA1301	Avoid duplicate accelerators	Define unique accelerators for the following controls in 'MulticastScannerDialog' that all currently use &C as an accelerator: MulticastScannerDialog.buttonRequestCancel, MulticastScannerDialog.buttonClose.	ChannelList	MulticastScannerDialog.cs	23
     //This is OK. Both buttons are never active at the same time; in fact, one replaces the other when scan is completed (or cancelled)

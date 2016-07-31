@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Project.DvbIpTv.Services.EPG
+namespace Project.IpTv.Services.EPG
 {
     internal class Common
     {

@@ -236,7 +236,7 @@
     <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;listViewTasks.Type" xml:space="preserve">
-    <value>Project.DvbIpTv.UiServices.Controls.ListViewSortable, UiServices.Controls, Version=1.5.20.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>Project.IpTv.UiServices.Controls.ListViewSortable, UiServices.Controls, Version=1.5.20.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="buttonDeleteTasks.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -360,7 +360,7 @@
     <value>System.Windows.Forms.SplitterPanel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>Project.DvbIpTv.UiServices.Controls.CommonBaseForm, UiServices.Controls, Version=1.5.20.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>Project.IpTv.UiServices.Controls.CommonBaseForm, UiServices.Controls, Version=1.5.20.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;textBoxTaskDetails.Parent" xml:space="preserve">
     <value>splitContainer1.Panel2</value>

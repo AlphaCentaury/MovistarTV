@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Project.DvbIpTv.UiServices.Common.Start
+namespace Project.IpTv.UiServices.Common.Start
 {
     public interface ISplashScreenAwareForm : IDisposable
     {

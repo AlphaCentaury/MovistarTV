@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Project.DvbIpTv.UiServices.Configuration
+namespace Project.IpTv.UiServices.Configuration
 {
     // interface for marking configuration items
     public interface IConfigurationItem

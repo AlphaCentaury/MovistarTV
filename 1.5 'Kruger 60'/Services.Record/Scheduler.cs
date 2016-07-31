@@ -7,14 +7,14 @@ using System.Linq;
 using System.Text;
 using Microsoft.Win32.TaskScheduler;
 using System.Globalization;
-using Project.DvbIpTv.Services.Record.Serialization;
+using Project.IpTv.Services.Record.Serialization;
 using System.Reflection;
 using System.IO;
-using Project.DvbIpTv.Services.Record.Properties;
+using Project.IpTv.Services.Record.Properties;
 using System.Text.RegularExpressions;
-using Project.DvbIpTv.Common;
+using Project.IpTv.Common;
 
-namespace Project.DvbIpTv.Services.Record
+namespace Project.IpTv.Services.Record
 {
     public class Scheduler
     {
@@ -299,7 +299,7 @@ namespace Project.DvbIpTv.Services.Record
         {
             string userDescription;
 
-            TaskName = GetUniqueTaskName(task, "DVB-IPTV");
+            TaskName = GetUniqueTaskName(task, "IPTV");
             task.Description.TaskSchedulerName = TaskName;
 
             userDescription = task.Description.Description;

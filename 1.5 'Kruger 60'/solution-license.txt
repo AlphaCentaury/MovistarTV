@@ -1,4 +1,4 @@
-movistar+ DVB-IPTV decoder version 1.5 “Kruger 60” Alpha 4
+movistar+ IPTV decoder version 1.5 “Kruger 60” Alpha 4
 
 THIS SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, express or implied, including but not limited to the warranties of merchantability, fitness for a particular purpose and non-infringement.
 In no event shall the authors or the copyright holders be liable for any claim, damages or other liability, whether in action of contract, tort or otherwise, arising from, out of or in connection with the software or the use or other dealings in the software.

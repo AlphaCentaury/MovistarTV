@@ -1,7 +1,7 @@
 ﻿// Copyright (C) 2014-2016, Codeplex user AlphaCentaury
 // All rights reserved, except those granted by the governing license of this software. See 'license.txt' file in the project root for complete license information.
 
-namespace Project.DvbIpTv.ChannelList
+namespace Project.IpTv.ChannelList
 {
     partial class ChannelListForm
     {
@@ -129,8 +129,8 @@ namespace Project.DvbIpTv.ChannelList
             this.contextMenuListProperties = new System.Windows.Forms.ToolStripMenuItem();
             this.labelNotification = new System.Windows.Forms.Label();
             this.timerDismissNotification = new System.Windows.Forms.Timer(this.components);
-            this.epgMiniBar = new Project.DvbIpTv.UiServices.EPG.EpgMiniBar();
-            this.listViewChannelList = new Project.DvbIpTv.UiServices.Common.Controls.ListViewSortable();
+            this.epgMiniBar = new Project.IpTv.UiServices.EPG.EpgMiniBar();
+            this.listViewChannelList = new Project.IpTv.UiServices.Common.Controls.ListViewSortable();
             this.pictureNotificationIcon = new System.Windows.Forms.PictureBox();
             this.buttonRecordChannel = new System.Windows.Forms.Button();
             this.buttonDisplayChannel = new System.Windows.Forms.Button();
@@ -194,7 +194,7 @@ namespace Project.DvbIpTv.ChannelList
             this.menuItemDvbRecent7,
             this.menuItemDvbRecent8,
             this.menuItemDvbRecent9});
-            this.menuItemDvbRecent.Image = global::Project.DvbIpTv.ChannelList.CommonUiResources.Action_History_MD_16x16;
+            this.menuItemDvbRecent.Image = global::Project.IpTv.ChannelList.CommonUiResources.Action_History_MD_16x16;
             this.menuItemDvbRecent.Name = "menuItemDvbRecent";
             resources.ApplyResources(this.menuItemDvbRecent, "menuItemDvbRecent");
             this.menuItemDvbRecent.DropDownOpening += new System.EventHandler(this.menuItemDvbRecent_DropDownOpening);
@@ -284,14 +284,14 @@ namespace Project.DvbIpTv.ChannelList
             // 
             // menuItemProviderSelect
             // 
-            this.menuItemProviderSelect.Image = global::Project.DvbIpTv.ChannelList.Properties.Resources.ListBullets_16x16;
+            this.menuItemProviderSelect.Image = global::Project.IpTv.ChannelList.Properties.Resources.ListBullets_16x16;
             this.menuItemProviderSelect.Name = "menuItemProviderSelect";
             resources.ApplyResources(this.menuItemProviderSelect, "menuItemProviderSelect");
             this.menuItemProviderSelect.Click += new System.EventHandler(this.menuItemProviderSelect_Click);
             // 
             // menuItemProviderDetails
             // 
-            this.menuItemProviderDetails.Image = global::Project.DvbIpTv.ChannelList.CommonUiResources.Action_Properties_16x16;
+            this.menuItemProviderDetails.Image = global::Project.IpTv.ChannelList.CommonUiResources.Action_Properties_16x16;
             this.menuItemProviderDetails.Name = "menuItemProviderDetails";
             resources.ApplyResources(this.menuItemProviderDetails, "menuItemProviderDetails");
             this.menuItemProviderDetails.Click += new System.EventHandler(this.menuItemProviderDetails_Click);
@@ -307,14 +307,14 @@ namespace Project.DvbIpTv.ChannelList
             // menuItemPackagesSelect
             // 
             resources.ApplyResources(this.menuItemPackagesSelect, "menuItemPackagesSelect");
-            this.menuItemPackagesSelect.Image = global::Project.DvbIpTv.ChannelList.Properties.Resources.ListBullets_16x16;
+            this.menuItemPackagesSelect.Image = global::Project.IpTv.ChannelList.Properties.Resources.ListBullets_16x16;
             this.menuItemPackagesSelect.Name = "menuItemPackagesSelect";
             this.menuItemPackagesSelect.Click += new System.EventHandler(this.menuItemPackagesSelect_Click);
             // 
             // menuItemPackagesManage
             // 
             resources.ApplyResources(this.menuItemPackagesManage, "menuItemPackagesManage");
-            this.menuItemPackagesManage.Image = global::Project.DvbIpTv.ChannelList.CommonUiResources.Action_Edit_16x16;
+            this.menuItemPackagesManage.Image = global::Project.IpTv.ChannelList.CommonUiResources.Action_Edit_16x16;
             this.menuItemPackagesManage.Name = "menuItemPackagesManage";
             this.menuItemPackagesManage.Click += new System.EventHandler(this.menuItemPackagesManage_Click);
             // 
@@ -325,14 +325,14 @@ namespace Project.DvbIpTv.ChannelList
             // 
             // menuItemDvbSettings
             // 
-            this.menuItemDvbSettings.Image = global::Project.DvbIpTv.ChannelList.CommonUiResources.Action_Settings_16x16;
+            this.menuItemDvbSettings.Image = global::Project.IpTv.ChannelList.CommonUiResources.Action_Settings_16x16;
             this.menuItemDvbSettings.Name = "menuItemDvbSettings";
             resources.ApplyResources(this.menuItemDvbSettings, "menuItemDvbSettings");
             this.menuItemDvbSettings.Click += new System.EventHandler(this.menuItemDvbSettings_Click);
             // 
             // menuItemDvbExport
             // 
-            this.menuItemDvbExport.Image = global::Project.DvbIpTv.ChannelList.CommonUiResources.Action_Export_Data;
+            this.menuItemDvbExport.Image = global::Project.IpTv.ChannelList.CommonUiResources.Action_Export_Data;
             this.menuItemDvbExport.Name = "menuItemDvbExport";
             resources.ApplyResources(this.menuItemDvbExport, "menuItemDvbExport");
             this.menuItemDvbExport.Click += new System.EventHandler(this.menuItemDvbExport_Click);
@@ -344,7 +344,7 @@ namespace Project.DvbIpTv.ChannelList
             // 
             // menuItemDvbExit
             // 
-            this.menuItemDvbExit.Image = global::Project.DvbIpTv.ChannelList.CommonUiResources.Action_Close_16x16;
+            this.menuItemDvbExit.Image = global::Project.IpTv.ChannelList.CommonUiResources.Action_Close_16x16;
             resources.ApplyResources(this.menuItemDvbExit, "menuItemDvbExit");
             this.menuItemDvbExit.Name = "menuItemDvbExit";
             this.menuItemDvbExit.Click += new System.EventHandler(this.menuItemDvbExit_Click);
@@ -382,7 +382,7 @@ namespace Project.DvbIpTv.ChannelList
             this.menuItemChannelFavoritesSeparator1,
             this.menuItemChannelFavoritesAdd,
             this.menuItemChannelFavoritesEdit});
-            this.menuItemChannelFavorites.Image = global::Project.DvbIpTv.ChannelList.CommonUiResources.Action_Favorites_16x16;
+            this.menuItemChannelFavorites.Image = global::Project.IpTv.ChannelList.CommonUiResources.Action_Favorites_16x16;
             this.menuItemChannelFavorites.Name = "menuItemChannelFavorites";
             resources.ApplyResources(this.menuItemChannelFavorites, "menuItemChannelFavorites");
             // 
@@ -463,14 +463,14 @@ namespace Project.DvbIpTv.ChannelList
             // 
             // menuItemChannelFavoritesAdd
             // 
-            this.menuItemChannelFavoritesAdd.Image = global::Project.DvbIpTv.ChannelList.CommonUiResources.Action_Favorites_16x16;
+            this.menuItemChannelFavoritesAdd.Image = global::Project.IpTv.ChannelList.CommonUiResources.Action_Favorites_16x16;
             this.menuItemChannelFavoritesAdd.Name = "menuItemChannelFavoritesAdd";
             resources.ApplyResources(this.menuItemChannelFavoritesAdd, "menuItemChannelFavoritesAdd");
             // 
             // menuItemChannelFavoritesEdit
             // 
             resources.ApplyResources(this.menuItemChannelFavoritesEdit, "menuItemChannelFavoritesEdit");
-            this.menuItemChannelFavoritesEdit.Image = global::Project.DvbIpTv.ChannelList.CommonUiResources.Action_Edit_16x16;
+            this.menuItemChannelFavoritesEdit.Image = global::Project.IpTv.ChannelList.CommonUiResources.Action_Edit_16x16;
             this.menuItemChannelFavoritesEdit.Name = "menuItemChannelFavoritesEdit";
             this.menuItemChannelFavoritesEdit.Click += new System.EventHandler(this.menuItemChannelFavoritesEdit_Click);
             // 
@@ -481,7 +481,7 @@ namespace Project.DvbIpTv.ChannelList
             // 
             // menuItemChannelShow
             // 
-            this.menuItemChannelShow.Image = global::Project.DvbIpTv.ChannelList.CommonUiResources.Action_Play_LG_16x16;
+            this.menuItemChannelShow.Image = global::Project.IpTv.ChannelList.CommonUiResources.Action_Play_LG_16x16;
             this.menuItemChannelShow.Name = "menuItemChannelShow";
             resources.ApplyResources(this.menuItemChannelShow, "menuItemChannelShow");
             this.menuItemChannelShow.Click += new System.EventHandler(this.menuItemChannelShow_Click);
@@ -499,14 +499,14 @@ namespace Project.DvbIpTv.ChannelList
             // 
             // menuItemChannelListView
             // 
-            this.menuItemChannelListView.Image = global::Project.DvbIpTv.ChannelList.CommonUiResources.ListView_Tiles_16x16;
+            this.menuItemChannelListView.Image = global::Project.IpTv.ChannelList.CommonUiResources.ListView_Tiles_16x16;
             this.menuItemChannelListView.Name = "menuItemChannelListView";
             resources.ApplyResources(this.menuItemChannelListView, "menuItemChannelListView");
             this.menuItemChannelListView.Click += new System.EventHandler(this.menuItemChannelListView_Click);
             // 
             // menuItemChannelEditList
             // 
-            this.menuItemChannelEditList.Image = global::Project.DvbIpTv.ChannelList.CommonUiResources.Action_Edit_16x16;
+            this.menuItemChannelEditList.Image = global::Project.IpTv.ChannelList.CommonUiResources.Action_Edit_16x16;
             this.menuItemChannelEditList.Name = "menuItemChannelEditList";
             resources.ApplyResources(this.menuItemChannelEditList, "menuItemChannelEditList");
             // 
@@ -517,21 +517,21 @@ namespace Project.DvbIpTv.ChannelList
             // 
             // menuItemChannelVerify
             // 
-            this.menuItemChannelVerify.Image = global::Project.DvbIpTv.ChannelList.Properties.Resources.Settings_16x616;
+            this.menuItemChannelVerify.Image = global::Project.IpTv.ChannelList.Properties.Resources.Settings_16x616;
             this.menuItemChannelVerify.Name = "menuItemChannelVerify";
             resources.ApplyResources(this.menuItemChannelVerify, "menuItemChannelVerify");
             this.menuItemChannelVerify.Click += new System.EventHandler(this.menuItemChannelVerify_Click);
             // 
             // menuItemChannelRefreshList
             // 
-            this.menuItemChannelRefreshList.Image = global::Project.DvbIpTv.ChannelList.CommonUiResources.Action_Refresh_Blue_16x16;
+            this.menuItemChannelRefreshList.Image = global::Project.IpTv.ChannelList.CommonUiResources.Action_Refresh_Blue_16x16;
             this.menuItemChannelRefreshList.Name = "menuItemChannelRefreshList";
             resources.ApplyResources(this.menuItemChannelRefreshList, "menuItemChannelRefreshList");
             this.menuItemChannelRefreshList.Click += new System.EventHandler(this.menuItemChannelRefreshList_Click);
             // 
             // menuItemChannelDetails
             // 
-            this.menuItemChannelDetails.Image = global::Project.DvbIpTv.ChannelList.CommonUiResources.Action_Properties_16x16;
+            this.menuItemChannelDetails.Image = global::Project.IpTv.ChannelList.CommonUiResources.Action_Properties_16x16;
             this.menuItemChannelDetails.Name = "menuItemChannelDetails";
             resources.ApplyResources(this.menuItemChannelDetails, "menuItemChannelDetails");
             this.menuItemChannelDetails.Click += new System.EventHandler(this.menuItemChannelDetails_Click);
@@ -548,7 +548,7 @@ namespace Project.DvbIpTv.ChannelList
             // 
             // menuItemRecordingsRecord
             // 
-            this.menuItemRecordingsRecord.Image = global::Project.DvbIpTv.ChannelList.Properties.Resources.Record_16x16;
+            this.menuItemRecordingsRecord.Image = global::Project.IpTv.ChannelList.Properties.Resources.Record_16x16;
             this.menuItemRecordingsRecord.Name = "menuItemRecordingsRecord";
             resources.ApplyResources(this.menuItemRecordingsRecord, "menuItemRecordingsRecord");
             this.menuItemRecordingsRecord.Click += new System.EventHandler(this.menuItemRecordingsRecord_Click);
@@ -556,7 +556,7 @@ namespace Project.DvbIpTv.ChannelList
             // menuItemRecordingsManage
             // 
             resources.ApplyResources(this.menuItemRecordingsManage, "menuItemRecordingsManage");
-            this.menuItemRecordingsManage.Image = global::Project.DvbIpTv.ChannelList.CommonUiResources.Action_Edit_16x16;
+            this.menuItemRecordingsManage.Image = global::Project.IpTv.ChannelList.CommonUiResources.Action_Edit_16x16;
             this.menuItemRecordingsManage.Name = "menuItemRecordingsManage";
             this.menuItemRecordingsManage.Click += new System.EventHandler(this.menuItemRecordingsManage_Click);
             // 
@@ -568,7 +568,7 @@ namespace Project.DvbIpTv.ChannelList
             // menuItemRecordingsRepair
             // 
             resources.ApplyResources(this.menuItemRecordingsRepair, "menuItemRecordingsRepair");
-            this.menuItemRecordingsRepair.Image = global::Project.DvbIpTv.ChannelList.CommonUiResources.Action_Repair_16x16;
+            this.menuItemRecordingsRepair.Image = global::Project.IpTv.ChannelList.CommonUiResources.Action_Repair_16x16;
             this.menuItemRecordingsRepair.Name = "menuItemRecordingsRepair";
             this.menuItemRecordingsRepair.Click += new System.EventHandler(this.menuItemRecordingsRepair_Click);
             // 
@@ -630,7 +630,7 @@ namespace Project.DvbIpTv.ChannelList
             // 
             // menuItemEpgRefresh
             // 
-            this.menuItemEpgRefresh.Image = global::Project.DvbIpTv.ChannelList.Properties.Resources.RefreshBlue_16x16;
+            this.menuItemEpgRefresh.Image = global::Project.IpTv.ChannelList.Properties.Resources.RefreshBlue_16x16;
             this.menuItemEpgRefresh.Name = "menuItemEpgRefresh";
             resources.ApplyResources(this.menuItemEpgRefresh, "menuItemEpgRefresh");
             this.menuItemEpgRefresh.Click += new System.EventHandler(this.menuItemEpgRefresh_Click);
@@ -650,21 +650,21 @@ namespace Project.DvbIpTv.ChannelList
             // 
             // menuItemHelpDocumentation
             // 
-            this.menuItemHelpDocumentation.Image = global::Project.DvbIpTv.ChannelList.Properties.Resources.Help_16x16;
+            this.menuItemHelpDocumentation.Image = global::Project.IpTv.ChannelList.Properties.Resources.Help_16x16;
             this.menuItemHelpDocumentation.Name = "menuItemHelpDocumentation";
             resources.ApplyResources(this.menuItemHelpDocumentation, "menuItemHelpDocumentation");
             this.menuItemHelpDocumentation.Click += new System.EventHandler(this.menuItemHelpDocumentation_Click);
             // 
             // menuItemHelpHomePage
             // 
-            this.menuItemHelpHomePage.Image = global::Project.DvbIpTv.ChannelList.Properties.Resources.WebBrowser_16x16;
+            this.menuItemHelpHomePage.Image = global::Project.IpTv.ChannelList.Properties.Resources.WebBrowser_16x16;
             this.menuItemHelpHomePage.Name = "menuItemHelpHomePage";
             resources.ApplyResources(this.menuItemHelpHomePage, "menuItemHelpHomePage");
             this.menuItemHelpHomePage.Click += new System.EventHandler(this.menuItemHelpHomePage_Click);
             // 
             // menuItemHelpReportIssue
             // 
-            this.menuItemHelpReportIssue.Image = global::Project.DvbIpTv.ChannelList.CommonUiResources.Action_ReportError_16x16;
+            this.menuItemHelpReportIssue.Image = global::Project.IpTv.ChannelList.CommonUiResources.Action_ReportError_16x16;
             this.menuItemHelpReportIssue.Name = "menuItemHelpReportIssue";
             resources.ApplyResources(this.menuItemHelpReportIssue, "menuItemHelpReportIssue");
             this.menuItemHelpReportIssue.Click += new System.EventHandler(this.menuItemHelpReportIssue_Click);
@@ -676,14 +676,14 @@ namespace Project.DvbIpTv.ChannelList
             // 
             // menuItemHelpCheckUpdates
             // 
-            this.menuItemHelpCheckUpdates.Image = global::Project.DvbIpTv.ChannelList.Properties.Resources.DownloadWebSettings_16x16;
+            this.menuItemHelpCheckUpdates.Image = global::Project.IpTv.ChannelList.Properties.Resources.DownloadWebSettings_16x16;
             this.menuItemHelpCheckUpdates.Name = "menuItemHelpCheckUpdates";
             resources.ApplyResources(this.menuItemHelpCheckUpdates, "menuItemHelpCheckUpdates");
             this.menuItemHelpCheckUpdates.Click += new System.EventHandler(this.menuItemHelpCheckUpdates_Click);
             // 
             // menuItemHelpAbout
             // 
-            this.menuItemHelpAbout.Image = global::Project.DvbIpTv.ChannelList.CommonUiResources.Action_Properties_16x16;
+            this.menuItemHelpAbout.Image = global::Project.IpTv.ChannelList.CommonUiResources.Action_Properties_16x16;
             this.menuItemHelpAbout.Name = "menuItemHelpAbout";
             resources.ApplyResources(this.menuItemHelpAbout, "menuItemHelpAbout");
             this.menuItemHelpAbout.Click += new System.EventHandler(this.menuItemHelpAbout_Click);
@@ -717,14 +717,14 @@ namespace Project.DvbIpTv.ChannelList
             // 
             // contextMenuListShow
             // 
-            this.contextMenuListShow.Image = global::Project.DvbIpTv.ChannelList.CommonUiResources.Action_Play_LG_16x16;
+            this.contextMenuListShow.Image = global::Project.IpTv.ChannelList.CommonUiResources.Action_Play_LG_16x16;
             this.contextMenuListShow.Name = "contextMenuListShow";
             resources.ApplyResources(this.contextMenuListShow, "contextMenuListShow");
             this.contextMenuListShow.Click += new System.EventHandler(this.contextMenuListShow_Click);
             // 
             // contextMenuListRecord
             // 
-            this.contextMenuListRecord.Image = global::Project.DvbIpTv.ChannelList.Properties.Resources.Record_16x16;
+            this.contextMenuListRecord.Image = global::Project.IpTv.ChannelList.Properties.Resources.Record_16x16;
             this.contextMenuListRecord.Name = "contextMenuListRecord";
             resources.ApplyResources(this.contextMenuListRecord, "contextMenuListRecord");
             this.contextMenuListRecord.Click += new System.EventHandler(this.menuItemRecordingsRecord_Click);
@@ -759,14 +759,14 @@ namespace Project.DvbIpTv.ChannelList
             this.contextMenuListCopyAll,
             this.separatorContextList3,
             this.contextMenuListExportM3u});
-            this.contextMenuListCopy.Image = global::Project.DvbIpTv.ChannelList.CommonUiResources.Action_Copy_Clip_16x16;
+            this.contextMenuListCopy.Image = global::Project.IpTv.ChannelList.CommonUiResources.Action_Copy_Clip_16x16;
             this.contextMenuListCopy.Name = "contextMenuListCopy";
             resources.ApplyResources(this.contextMenuListCopy, "contextMenuListCopy");
             this.contextMenuListCopy.DropDownOpening += new System.EventHandler(this.contextMenuListCopy_DropDownOpening);
             // 
             // contextMenuListCopyURL
             // 
-            this.contextMenuListCopyURL.Image = global::Project.DvbIpTv.ChannelList.CommonUiResources.Action_Hyperlink_16x16;
+            this.contextMenuListCopyURL.Image = global::Project.IpTv.ChannelList.CommonUiResources.Action_Hyperlink_16x16;
             this.contextMenuListCopyURL.Name = "contextMenuListCopyURL";
             resources.ApplyResources(this.contextMenuListCopyURL, "contextMenuListCopyURL");
             this.contextMenuListCopyURL.Click += new System.EventHandler(this.contextMenuListCopyURL_Click);
@@ -779,7 +779,7 @@ namespace Project.DvbIpTv.ChannelList
             // 
             // contextMenuListCopyAll
             // 
-            this.contextMenuListCopyAll.Image = global::Project.DvbIpTv.ChannelList.CommonUiResources.Action_Copy_Table;
+            this.contextMenuListCopyAll.Image = global::Project.IpTv.ChannelList.CommonUiResources.Action_Copy_Table;
             this.contextMenuListCopyAll.Name = "contextMenuListCopyAll";
             resources.ApplyResources(this.contextMenuListCopyAll, "contextMenuListCopyAll");
             this.contextMenuListCopyAll.Click += new System.EventHandler(this.contextMenuListCopyAll_Click);
@@ -817,8 +817,8 @@ namespace Project.DvbIpTv.ChannelList
             this.epgMiniBar.DetailsButtonEnabled = true;
             this.epgMiniBar.IsDisabled = false;
             this.epgMiniBar.Name = "epgMiniBar";
-            this.epgMiniBar.ButtonClicked += new System.EventHandler<Project.DvbIpTv.UiServices.EPG.EpgMiniBarButtonClickedEventArgs>(this.epgMiniBar_ButtonClicked);
-            this.epgMiniBar.NavigationButtonsChanged += new System.EventHandler<Project.DvbIpTv.UiServices.EPG.EpgMiniBarNavigationButtonsChangedEventArgs>(this.epgMiniBar_NavigationButtonsChanged);
+            this.epgMiniBar.ButtonClicked += new System.EventHandler<Project.IpTv.UiServices.EPG.EpgMiniBarButtonClickedEventArgs>(this.epgMiniBar_ButtonClicked);
+            this.epgMiniBar.NavigationButtonsChanged += new System.EventHandler<Project.IpTv.UiServices.EPG.EpgMiniBarNavigationButtonsChangedEventArgs>(this.epgMiniBar_NavigationButtonsChanged);
             // 
             // listViewChannelList
             // 
@@ -841,7 +841,7 @@ namespace Project.DvbIpTv.ChannelList
             // buttonRecordChannel
             // 
             resources.ApplyResources(this.buttonRecordChannel, "buttonRecordChannel");
-            this.buttonRecordChannel.Image = global::Project.DvbIpTv.ChannelList.Properties.Resources.Record_16x16;
+            this.buttonRecordChannel.Image = global::Project.IpTv.ChannelList.Properties.Resources.Record_16x16;
             this.buttonRecordChannel.Name = "buttonRecordChannel";
             this.buttonRecordChannel.UseVisualStyleBackColor = true;
             this.buttonRecordChannel.Click += new System.EventHandler(this.buttonRecordChannel_Click);
@@ -849,7 +849,7 @@ namespace Project.DvbIpTv.ChannelList
             // buttonDisplayChannel
             // 
             resources.ApplyResources(this.buttonDisplayChannel, "buttonDisplayChannel");
-            this.buttonDisplayChannel.Image = global::Project.DvbIpTv.ChannelList.CommonUiResources.Action_Play_LG_16x16;
+            this.buttonDisplayChannel.Image = global::Project.IpTv.ChannelList.CommonUiResources.Action_Play_LG_16x16;
             this.buttonDisplayChannel.Name = "buttonDisplayChannel";
             this.buttonDisplayChannel.UseVisualStyleBackColor = true;
             this.buttonDisplayChannel.Click += new System.EventHandler(this.buttonDisplayChannel_Click);

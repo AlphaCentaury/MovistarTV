@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Project.DvbIpTv.Tools.FirstTimeConfig.Properties {
+namespace Project.IpTv.Tools.FirstTimeConfig.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace Project.DvbIpTv.Tools.FirstTimeConfig.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Project.DvbIpTv.Tools.FirstTimeConfig.Properties.Texts", typeof(Texts).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Project.IpTv.Tools.FirstTimeConfig.Properties.Texts", typeof(Texts).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -531,7 +531,7 @@ namespace Project.DvbIpTv.Tools.FirstTimeConfig.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to movistar+ DVB-IPTV Decoder 1.5 “Kruger 60” Alpha 4.
+        ///   Looks up a localized string similar to movistar+ IPTV Decoder 1.5 “Kruger 60” Alpha 4.
         /// </summary>
         internal static string ProductFullName {
             get {
@@ -623,7 +623,7 @@ namespace Project.DvbIpTv.Tools.FirstTimeConfig.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to DVB-IPTV folder.
+        ///   Looks up a localized string similar to IPTV folder.
         /// </summary>
         internal static string TaskSchedulerFolderDvbIpTv {
             get {

@@ -3,10 +3,10 @@
 
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using Project.DvbIpTv.Services.EPG;
-using Project.DvbIpTv.Services.EPG.Serialization;
-using Project.DvbIpTv.Services.SqlServerCE;
-using Project.DvbIpTv.UiServices.EPG;
+using Project.IpTv.Services.EPG;
+using Project.IpTv.Services.EPG.Serialization;
+using Project.IpTv.Services.SqlServerCE;
+using Project.IpTv.UiServices.EPG;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlServerCe;
@@ -14,14 +14,14 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
-using Project.DvbIpTv.MovistarPlus;
+using Project.IpTv.MovistarPlus;
 
-namespace Project.DvbIpTv.Internal.Tools.ConsoleExperiments
+namespace Project.IpTv.Internal.Tools.ConsoleExperiments
 {
     static class EpgInfoDownload
     {
         static WebClient WebClient;
-        static string BasePath = @"C:\Users\Developer\Documents\DVB-IPTV\movistar+ (v1.5 Kruger-60)\Cache";
+        static string BasePath = @"C:\Users\Developer\Documents\IPTV\movistar+ (v1.5 Kruger-60)\Cache";
 
         public static void Experiment()
         {

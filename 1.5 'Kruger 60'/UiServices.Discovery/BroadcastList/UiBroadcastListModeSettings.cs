@@ -1,8 +1,8 @@
 ﻿// Copyright (C) 2014-2016, Codeplex user AlphaCentaury
 // All rights reserved, except those granted by the governing license of this software. See 'license.txt' file in the project root for complete license information.
 
-using Project.DvbIpTv.Common.Serialization;
-using Project.DvbIpTv.UiServices.Configuration.Logos;
+using Project.IpTv.Common.Serialization;
+using Project.IpTv.UiServices.Configuration.Logos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +10,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Xml.Serialization;
 
-namespace Project.DvbIpTv.UiServices.Discovery.BroadcastList
+namespace Project.IpTv.UiServices.Discovery.BroadcastList
 {
     [Serializable]
     public class UiBroadcastListModeSettings

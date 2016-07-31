@@ -1,11 +1,11 @@
 ﻿// Copyright (C) 2014-2016, Codeplex user AlphaCentaury
 // All rights reserved, except those granted by the governing license of this software. See 'license.txt' file in the project root for complete license information.
 
-using Project.DvbIpTv.Common.Telemetry;
-using Project.DvbIpTv.Tools.FirstTimeConfig.Properties;
-using Project.DvbIpTv.UiServices.Common.Forms;
-using Project.DvbIpTv.UiServices.Configuration;
-using Project.DvbIpTv.UiServices.Configuration.Schema2014.Config;
+using Project.IpTv.Common.Telemetry;
+using Project.IpTv.Tools.FirstTimeConfig.Properties;
+using Project.IpTv.UiServices.Common.Forms;
+using Project.IpTv.UiServices.Configuration;
+using Project.IpTv.UiServices.Configuration.Schema2014.Config;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,7 +17,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace Project.DvbIpTv.Tools.FirstTimeConfig
+namespace Project.IpTv.Tools.FirstTimeConfig
 {
     public partial class ConfigForm : Form
     {

@@ -4,11 +4,11 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using Newtonsoft.Json;
-using Project.DvbIpTv.Core.IpTvProvider.EPG;
-using Project.DvbIpTv.Services.EPG;
-using Project.DvbIpTv.UiServices.Discovery;
+using Project.IpTv.Core.IpTvProvider.EPG;
+using Project.IpTv.Services.EPG;
+using Project.IpTv.UiServices.Discovery;
 
-namespace Project.DvbIpTv.MovistarPlus
+namespace Project.IpTv.MovistarPlus
 {
     internal class EpgInfoProvider: IEpgInfoProvider
     {

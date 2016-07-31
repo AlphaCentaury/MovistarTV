@@ -1,4 +1,4 @@
-﻿namespace Project.DvbIpTv.UiServices.Configuration
+﻿namespace Project.IpTv.UiServices.Configuration
 {
     partial class ConfigurationForm
     {
@@ -42,7 +42,7 @@
             // 
             resources.ApplyResources(this.buttonOk, "buttonOk");
             this.buttonOk.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.buttonOk.Image = global::Project.DvbIpTv.UiServices.Configuration.CommonUiResources.Action_Ok_16x16;
+            this.buttonOk.Image = global::Project.IpTv.UiServices.Configuration.CommonUiResources.Action_Ok_16x16;
             this.buttonOk.Name = "buttonOk";
             this.buttonOk.UseVisualStyleBackColor = true;
             this.buttonOk.Click += new System.EventHandler(this.buttonOk_Click);
@@ -51,7 +51,7 @@
             // 
             resources.ApplyResources(this.buttonCancel, "buttonCancel");
             this.buttonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.buttonCancel.Image = global::Project.DvbIpTv.UiServices.Configuration.CommonUiResources.Action_Cancel_16x16;
+            this.buttonCancel.Image = global::Project.IpTv.UiServices.Configuration.CommonUiResources.Action_Cancel_16x16;
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.UseVisualStyleBackColor = true;
             // 

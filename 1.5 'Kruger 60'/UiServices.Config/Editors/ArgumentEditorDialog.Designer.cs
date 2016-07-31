@@ -1,7 +1,7 @@
 ﻿// Copyright (C) 2014-2016, Codeplex user AlphaCentaury
 // All rights reserved, except those granted by the governing license of this software. See 'license.txt' file in the project root for complete license information.
 
-namespace Project.DvbIpTv.UiServices.Configuration.Editors
+namespace Project.IpTv.UiServices.Configuration.Editors
 {
     partial class ArgumentEditorDialog
     {
@@ -32,7 +32,7 @@ namespace Project.DvbIpTv.UiServices.Configuration.Editors
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ArgumentEditorDialog));
-            this.parameterEditor = new Project.DvbIpTv.UiServices.Configuration.Editors.ArgumentEditor();
+            this.parameterEditor = new Project.IpTv.UiServices.Configuration.Editors.ArgumentEditor();
             this.buttonCancel = new System.Windows.Forms.Button();
             this.buttonOk = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -51,7 +51,7 @@ namespace Project.DvbIpTv.UiServices.Configuration.Editors
             // 
             resources.ApplyResources(this.buttonCancel, "buttonCancel");
             this.buttonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.buttonCancel.Image = global::Project.DvbIpTv.UiServices.Configuration.CommonUiResources.Action_Cancel_16x16;
+            this.buttonCancel.Image = global::Project.IpTv.UiServices.Configuration.CommonUiResources.Action_Cancel_16x16;
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.UseVisualStyleBackColor = true;
             // 
@@ -59,7 +59,7 @@ namespace Project.DvbIpTv.UiServices.Configuration.Editors
             // 
             resources.ApplyResources(this.buttonOk, "buttonOk");
             this.buttonOk.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.buttonOk.Image = global::Project.DvbIpTv.UiServices.Configuration.CommonUiResources.Action_Ok_16x16;
+            this.buttonOk.Image = global::Project.IpTv.UiServices.Configuration.CommonUiResources.Action_Ok_16x16;
             this.buttonOk.Name = "buttonOk";
             this.buttonOk.UseVisualStyleBackColor = true;
             // 

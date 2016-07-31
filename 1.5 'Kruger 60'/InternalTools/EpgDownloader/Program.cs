@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 
-namespace Project.DvbIpTv.Services.EPG.EpgDownloader
+namespace Project.IpTv.Services.EPG.EpgDownloader
 {
     static class Program
     {

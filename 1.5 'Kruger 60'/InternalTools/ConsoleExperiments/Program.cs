@@ -1,13 +1,13 @@
 ﻿// Copyright (C) 2014-2016, Codeplex user AlphaCentaury
 // All rights reserved, except those granted by the governing license of this software. See 'license.txt' file in the project root for complete license information.
 
-using Project.DvbIpTv.Common;
-using Project.DvbIpTv.Common.Serialization;
-using Project.DvbIpTv.Services.EPG;
-using Project.DvbIpTv.Services.EPG.Serialization;
-using Project.DvbIpTv.Services.EPG.TvAnytime;
-using Project.DvbIpTv.Services.SqlServerCE;
-using Project.DvbIpTv.UiServices.EPG;
+using Project.IpTv.Common;
+using Project.IpTv.Common.Serialization;
+using Project.IpTv.Services.EPG;
+using Project.IpTv.Services.EPG.Serialization;
+using Project.IpTv.Services.EPG.TvAnytime;
+using Project.IpTv.Services.SqlServerCE;
+using Project.IpTv.UiServices.EPG;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlServerCe;
@@ -19,7 +19,7 @@ using System.Windows.Forms;
 using System.Xml;
 using System.Xml.Serialization;
 
-namespace Project.DvbIpTv.Internal.Tools.ConsoleExperiments
+namespace Project.IpTv.Internal.Tools.ConsoleExperiments
 {
     class Program
     {

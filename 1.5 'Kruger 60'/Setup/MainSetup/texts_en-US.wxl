@@ -9,11 +9,11 @@ All rights reserved, except those granted by the governing license of this softw
   <String Id="DowngradeErrorMessage">A new version of [ProductName] is already installed.</String>
   <String Id="NetFrameworkNotPresent">This application requires .NET Framework 3.5 SP1. Please install the .NET Framework then run this installer again. You can find help at http://movistartv.codeplex.com/documentation</String>
   <String Id="ProductName">movistar+ Decoder 1.5 “Kruger 60” Alpha 4</String>
-  <String Id="PackageDescription">movistar+ DVB-IPTV Decoder 1.5 “Kruger 60” Alpha 4</String>
+  <String Id="PackageDescription">movistar+ IPTV Decoder 1.5 “Kruger 60” Alpha 4</String>
   <String Id="WIXUI_EXITDIALOGOPTIONALCHECKBOXTEXT">Launch “First-time Configuration Wizard”</String>
   <String Id="SourceFileLicenseAgreement">solution-license</String>
   <String Id="FileLicenseAgreement">License agreement</String>
-  <String Id="DvbIpTvStartMenuFolder">DVB-IPTV</String>
+  <String Id="DvbIpTvStartMenuFolder">IPTV</String>
   <String Id="ProgramStartMenuFolder">movistar+ TV v1.5 “Kruger 60”</String>
   <String Id="ChannelList.exe.lnk">movistar+ channels</String>
   <String Id="FirstTimeConfig.exe.lnk">First-time Configuration Wizard</String>
