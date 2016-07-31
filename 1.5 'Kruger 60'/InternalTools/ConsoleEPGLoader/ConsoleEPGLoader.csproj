@@ -7,7 +7,7 @@
     <ProjectGuid>{3935C593-1E31-42EC-8C9F-23F8D548C112}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Project.DvbIpTv.Internal.ConsoleEPGLoader</RootNamespace>
+    <RootNamespace>Project.IpTv.Internal.ConsoleEPGLoader</RootNamespace>
     <AssemblyName>ConsoleEPGLoader</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

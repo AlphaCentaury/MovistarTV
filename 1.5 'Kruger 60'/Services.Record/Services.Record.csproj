@@ -7,7 +7,7 @@
     <ProjectGuid>{A4172CDD-C8FD-4C91-9AAF-54A948F26273}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Project.DvbIpTv.Services.Record</RootNamespace>
+    <RootNamespace>Project.IpTv.Services.Record</RootNamespace>
     <AssemblyName>Services.Record</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

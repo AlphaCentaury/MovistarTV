@@ -7,7 +7,7 @@
     <ProjectGuid>{E1748F45-DD50-4479-96F6-F7EBA6F3E28B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Project.DvbIpTv.MovistarPlus</RootNamespace>
+    <RootNamespace>Project.IpTv.MovistarPlus</RootNamespace>
     <AssemblyName>IpTv.MovistarPlus</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

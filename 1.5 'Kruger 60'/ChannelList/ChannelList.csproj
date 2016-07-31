@@ -7,7 +7,7 @@
     <ProjectGuid>{3FB48C93-85EC-4894-8FE7-E035DDC0618C}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Project.DvbIpTv.ChannelList</RootNamespace>
+    <RootNamespace>Project.IpTv.ChannelList</RootNamespace>
     <AssemblyName>ChannelList</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
