@@ -96,13 +96,15 @@ namespace Project.IpTv.ChannelList
             this.separatorRecordings1 = new System.Windows.Forms.ToolStripSeparator();
             this.menuItemRecordingsRepair = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemEpg = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuItemEpgBasicGrid = new System.Windows.Forms.ToolStripMenuItem();
+            this.separatorEpg1 = new System.Windows.Forms.ToolStripSeparator();
             this.menuItemEpgNow = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemEpgToday = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemEpgTomorrow = new System.Windows.Forms.ToolStripMenuItem();
-            this.separatorEpg1 = new System.Windows.Forms.ToolStripSeparator();
+            this.separatorEpg2 = new System.Windows.Forms.ToolStripSeparator();
             this.menuItemEpgPrevious = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemEpgNext = new System.Windows.Forms.ToolStripMenuItem();
-            this.separatorEpg2 = new System.Windows.Forms.ToolStripSeparator();
+            this.separatorEpg3 = new System.Windows.Forms.ToolStripSeparator();
             this.menuItemEpgRefresh = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemHelp = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemHelpDocumentation = new System.Windows.Forms.ToolStripMenuItem();
@@ -129,14 +131,11 @@ namespace Project.IpTv.ChannelList
             this.contextMenuListProperties = new System.Windows.Forms.ToolStripMenuItem();
             this.labelNotification = new System.Windows.Forms.Label();
             this.timerDismissNotification = new System.Windows.Forms.Timer(this.components);
-            this.epgMiniBar = new Project.IpTv.UiServices.EPG.EpgMiniBar();
             this.listViewChannelList = new Project.IpTv.UiServices.Common.Controls.ListViewSortable();
             this.pictureNotificationIcon = new System.Windows.Forms.PictureBox();
             this.buttonRecordChannel = new System.Windows.Forms.Button();
             this.buttonDisplayChannel = new System.Windows.Forms.Button();
             this.pictureProviderLogo = new System.Windows.Forms.PictureBox();
-            this.separatorEpg3 = new System.Windows.Forms.ToolStripSeparator();
-            this.menuItemEpgBasicGrid = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStripMain.SuspendLayout();
             this.contextMenuList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureNotificationIcon)).BeginInit();
@@ -588,52 +587,56 @@ namespace Project.IpTv.ChannelList
             this.menuItemEpg.Name = "menuItemEpg";
             resources.ApplyResources(this.menuItemEpg, "menuItemEpg");
             // 
-            // menuItemEpgNow
+            // menuItemEpgBasicGrid
             // 
-            this.menuItemEpgNow.Name = "menuItemEpgNow";
-            resources.ApplyResources(this.menuItemEpgNow, "menuItemEpgNow");
-            this.menuItemEpgNow.Click += new System.EventHandler(this.menuItemEpgNow_Click);
-            // 
-            // menuItemEpgToday
-            // 
-            this.menuItemEpgToday.Name = "menuItemEpgToday";
-            resources.ApplyResources(this.menuItemEpgToday, "menuItemEpgToday");
-            this.menuItemEpgToday.Click += new System.EventHandler(this.menuItemEpgToday_Click);
-            // 
-            // menuItemEpgTomorrow
-            // 
-            this.menuItemEpgTomorrow.Name = "menuItemEpgTomorrow";
-            resources.ApplyResources(this.menuItemEpgTomorrow, "menuItemEpgTomorrow");
-            this.menuItemEpgTomorrow.Click += new System.EventHandler(this.menuItemEpgTomorrow_Click);
+            this.menuItemEpgBasicGrid.Name = "menuItemEpgBasicGrid";
+            resources.ApplyResources(this.menuItemEpgBasicGrid, "menuItemEpgBasicGrid");
             // 
             // separatorEpg1
             // 
             this.separatorEpg1.Name = "separatorEpg1";
             resources.ApplyResources(this.separatorEpg1, "separatorEpg1");
             // 
-            // menuItemEpgPrevious
+            // menuItemEpgNow
             // 
-            this.menuItemEpgPrevious.Name = "menuItemEpgPrevious";
-            resources.ApplyResources(this.menuItemEpgPrevious, "menuItemEpgPrevious");
-            this.menuItemEpgPrevious.Click += new System.EventHandler(this.menuItemEpgPrevious_Click);
+            this.menuItemEpgNow.Name = "menuItemEpgNow";
+            resources.ApplyResources(this.menuItemEpgNow, "menuItemEpgNow");
             // 
-            // menuItemEpgNext
+            // menuItemEpgToday
             // 
-            this.menuItemEpgNext.Name = "menuItemEpgNext";
-            resources.ApplyResources(this.menuItemEpgNext, "menuItemEpgNext");
-            this.menuItemEpgNext.Click += new System.EventHandler(this.menuItemEpgNext_Click);
+            this.menuItemEpgToday.Name = "menuItemEpgToday";
+            resources.ApplyResources(this.menuItemEpgToday, "menuItemEpgToday");
+            // 
+            // menuItemEpgTomorrow
+            // 
+            this.menuItemEpgTomorrow.Name = "menuItemEpgTomorrow";
+            resources.ApplyResources(this.menuItemEpgTomorrow, "menuItemEpgTomorrow");
             // 
             // separatorEpg2
             // 
             this.separatorEpg2.Name = "separatorEpg2";
             resources.ApplyResources(this.separatorEpg2, "separatorEpg2");
             // 
+            // menuItemEpgPrevious
+            // 
+            this.menuItemEpgPrevious.Name = "menuItemEpgPrevious";
+            resources.ApplyResources(this.menuItemEpgPrevious, "menuItemEpgPrevious");
+            // 
+            // menuItemEpgNext
+            // 
+            this.menuItemEpgNext.Name = "menuItemEpgNext";
+            resources.ApplyResources(this.menuItemEpgNext, "menuItemEpgNext");
+            // 
+            // separatorEpg3
+            // 
+            this.separatorEpg3.Name = "separatorEpg3";
+            resources.ApplyResources(this.separatorEpg3, "separatorEpg3");
+            // 
             // menuItemEpgRefresh
             // 
             this.menuItemEpgRefresh.Image = global::Project.IpTv.ChannelList.Properties.Resources.RefreshBlue_16x16;
             this.menuItemEpgRefresh.Name = "menuItemEpgRefresh";
             resources.ApplyResources(this.menuItemEpgRefresh, "menuItemEpgRefresh");
-            this.menuItemEpgRefresh.Click += new System.EventHandler(this.menuItemEpgRefresh_Click);
             // 
             // menuItemHelp
             // 
@@ -810,16 +813,6 @@ namespace Project.IpTv.ChannelList
             // 
             this.timerDismissNotification.Tick += new System.EventHandler(this.timerDismissNotification_Tick);
             // 
-            // epgMiniBar
-            // 
-            resources.ApplyResources(this.epgMiniBar, "epgMiniBar");
-            this.epgMiniBar.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.epgMiniBar.DetailsButtonEnabled = true;
-            this.epgMiniBar.IsDisabled = false;
-            this.epgMiniBar.Name = "epgMiniBar";
-            this.epgMiniBar.ButtonClicked += new System.EventHandler<Project.IpTv.UiServices.EPG.EpgMiniBarButtonClickedEventArgs>(this.epgMiniBar_ButtonClicked);
-            this.epgMiniBar.NavigationButtonsChanged += new System.EventHandler<Project.IpTv.UiServices.EPG.EpgMiniBarNavigationButtonsChangedEventArgs>(this.epgMiniBar_NavigationButtonsChanged);
-            // 
             // listViewChannelList
             // 
             resources.ApplyResources(this.listViewChannelList, "listViewChannelList");
@@ -860,17 +853,6 @@ namespace Project.IpTv.ChannelList
             this.pictureProviderLogo.Name = "pictureProviderLogo";
             this.pictureProviderLogo.TabStop = false;
             // 
-            // separatorEpg3
-            // 
-            this.separatorEpg3.Name = "separatorEpg3";
-            resources.ApplyResources(this.separatorEpg3, "separatorEpg3");
-            // 
-            // menuItemEpgBasicGrid
-            // 
-            this.menuItemEpgBasicGrid.Name = "menuItemEpgBasicGrid";
-            resources.ApplyResources(this.menuItemEpgBasicGrid, "menuItemEpgBasicGrid");
-            this.menuItemEpgBasicGrid.Click += new System.EventHandler(this.menuItemEpgBasicGrid_Click);
-            // 
             // ChannelListForm
             // 
             resources.ApplyResources(this, "$this");
@@ -883,7 +865,6 @@ namespace Project.IpTv.ChannelList
             this.Controls.Add(this.labelProviderName);
             this.Controls.Add(this.pictureProviderLogo);
             this.Controls.Add(this.menuStripMain);
-            this.Controls.Add(this.epgMiniBar);
             this.MainMenuStrip = this.menuStripMain;
             this.Name = "ChannelListForm";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ChannelListForm_FormClosing);
@@ -986,7 +967,6 @@ namespace Project.IpTv.ChannelList
         private System.Windows.Forms.ToolStripSeparator separatorDvb3;
         private System.Windows.Forms.ToolStripMenuItem menuItemHelpReportIssue;
         private System.Windows.Forms.ToolStripMenuItem menuItemDvbSettings;
-        private UiServices.EPG.EpgMiniBar epgMiniBar;
         private System.Windows.Forms.ToolStripMenuItem menuItemEpgPrevious;
         private System.Windows.Forms.ToolStripMenuItem menuItemEpgNext;
         private System.Windows.Forms.ToolStripSeparator separatorEpg2;

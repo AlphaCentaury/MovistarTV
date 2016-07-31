@@ -194,10 +194,12 @@ namespace Project.IpTv.UiServices.Configuration
             set;
         } // IsDirty
 
+        /*
         public string EpgDatabaseFile
         {
             get { return Path.Combine(Folders.Cache, "EPG.sdf"); }
         } // EpgDatabaseFile
+        */
 
         #region Public methods
 

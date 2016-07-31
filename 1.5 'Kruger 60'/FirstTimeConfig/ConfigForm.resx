@@ -1661,6 +1661,9 @@ Which channels should appear first?</value>
   <data name="&gt;&gt;checkEpg.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
+  <data name="groupEPG.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
   <data name="groupEPG.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 6</value>
   </data>
@@ -2010,7 +2013,7 @@ Which channels should appear first?</value>
     <value>wizardControl</value>
   </data>
   <data name="&gt;&gt;wizardControl.Type" xml:space="preserve">
-    <value>Project.IpTv.Tools.FirstTimeConfig.WizardTabControl, FirstTimeConfig, Version=1.5.20.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>Project.IpTv.Tools.FirstTimeConfig.WizardTabControl, FirstTimeConfig, Version=1.5.40.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;wizardControl.Parent" xml:space="preserve">
     <value>$this</value>
@@ -2027,9 +2030,6 @@ Which channels should appear first?</value>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
     <value>493, 359</value>
   </data>
-  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
   <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
     <value>CenterScreen</value>
   </data>
@@ -2040,7 +2040,7 @@ Which channels should appear first?</value>
     <value>selectFolder</value>
   </data>
   <data name="&gt;&gt;selectFolder.Type" xml:space="preserve">
-    <value>Project.IpTv.UiServices.Common.Controls.SelectFolderDialog, UiServices.Common, Version=1.5.20.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>Project.IpTv.UiServices.Common.Controls.SelectFolderDialog, UiServices.Common, Version=1.5.40.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;openFile.Name" xml:space="preserve">
     <value>openFile</value>

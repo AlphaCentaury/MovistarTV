@@ -48,11 +48,8 @@
     <Compile Include="..\AssemblySolutionInfo.cs">
       <Link>Properties\AssemblySolutionInfo.cs</Link>
     </Compile>
-    <Compile Include="EpgInfoProvider.cs" />
     <Compile Include="IpTvProviderMovistarPlus.cs" />
     <Compile Include="MovistarCrId.cs" />
-    <Compile Include="MovistarEpgInfo.cs" />
-    <Compile Include="MovistarJsonEpgInfoResponse.cs" />
     <Compile Include="MovistarJsonResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -63,10 +60,6 @@
     <ProjectReference Include="..\Core.IpTvProvider\Core.IpTvProvider.csproj">
       <Project>{36b8e0a1-f1b1-498d-8fe7-a39bb7fd68ca}</Project>
       <Name>Core.IpTvProvider</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Services.EPG\Services.EPG.csproj">
-      <Project>{ed5c1cf5-0975-4995-8933-9a7df39fd739}</Project>
-      <Name>Services.EPG</Name>
     </ProjectReference>
     <ProjectReference Include="..\UiServices.Config\UiServices.Config.csproj">
       <Project>{a722de9d-ae51-479c-825f-a19f4c69bd75}</Project>

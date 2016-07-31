@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChannelList", "ChannelList\ChannelList.csproj", "{3FB48C93-85EC-4894-8FE7-E035DDC0618C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DvbStpClient", "DvbStpClient\DvbStpClient.csproj", "{8AD3C34B-A1D3-4385-A8A9-C429BD9A37D3}"
@@ -45,19 +47,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DB", "DB", "{21AADDF8-BB39-
 		DB\RecordTasks.sdf = DB\RecordTasks.sdf
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services.EPG", "Services.EPG\Services.EPG.csproj", "{ED5C1CF5-0975-4995-8933-9A7DF39FD739}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "InternalTools", "InternalTools", "{C1DAEFDD-689E-4324-A05D-66FA30B574B5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleExperiments", "InternalTools\ConsoleExperiments\ConsoleExperiments.csproj", "{0BA7DA0C-3C45-4834-9927-C8CB5B49DD7B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Project.Common", "Project.Common\Project.Common.csproj", "{8DA15060-5A78-4F89-A9F1-7AA56B0D622C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleEPGLoader", "InternalTools\ConsoleEPGLoader\ConsoleEPGLoader.csproj", "{3935C593-1E31-42EC-8C9F-23F8D548C112}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services.SqlServerCE", "Services.SqlServerCE\Services.SqlServerCE.csproj", "{3A053F34-4EDF-4071-B966-923255A0AE14}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UiServices.EPG", "UiServices.EPG\UiServices.EPG.csproj", "{004C3829-FED4-4084-B23B-871193AFA8C7}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common.UI", "Common.UI", "{1A7A0EC8-D85A-4674-8DF7-89FF64D0A158}"
 EndProject
@@ -167,95 +163,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Project.Native", "Project.Native\Project.Native.csproj", "{8986CD52-0C65-42D6-9C47-20FF47CF87BB}"
 EndProject
 Global
-	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 27
-		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccTeamFoundationServer = https://tfs.codeplex.com/tfs/tfs30
-		SccLocalPath0 = .
-		SccProjectUniqueName1 = ChannelList\\ChannelList.csproj
-		SccProjectName1 = ChannelList
-		SccLocalPath1 = ChannelList
-		SccProjectUniqueName2 = DvbStpClient\\DvbStpClient.csproj
-		SccProjectName2 = DvbStpClient
-		SccLocalPath2 = DvbStpClient
-		SccProjectUniqueName3 = FirstTimeConfig\\FirstTimeConfig.csproj
-		SccProjectName3 = FirstTimeConfig
-		SccLocalPath3 = FirstTimeConfig
-		SccProjectUniqueName4 = IpTvRecorderLauncher\\IpTvRecorderLauncher.csproj
-		SccProjectName4 = IpTvRecorderLauncher
-		SccLocalPath4 = IpTvRecorderLauncher
-		SccProjectUniqueName5 = UiServices.Config\\UiServices.Config.csproj
-		SccProjectName5 = UiServices.Config
-		SccLocalPath5 = UiServices.Config
-		SccProjectUniqueName6 = UiServices.Discovery\\UiServices.Discovery.csproj
-		SccProjectName6 = UiServices.Discovery
-		SccLocalPath6 = UiServices.Discovery
-		SccProjectUniqueName7 = UiServices.Forms\\UiServices.Forms.csproj
-		SccProjectName7 = UiServices.Forms
-		SccLocalPath7 = UiServices.Forms
-		SccProjectUniqueName8 = Setup\\MainSetup\\MainSetup.wixproj
-		SccProjectTopLevelParentUniqueName8 = MovistarTV.sln
-		SccProjectName8 = Setup/MainSetup
-		SccLocalPath8 = Setup\\MainSetup
-		SccProjectUniqueName9 = Logos\\Logos.csproj
-		SccProjectName9 = Logos
-		SccLocalPath9 = Logos
-		SccProjectUniqueName10 = Services.Record.Serialization\\Services.Record.Serialization.csproj
-		SccProjectName10 = Services.Record.Serialization
-		SccLocalPath10 = Services.Record.Serialization
-		SccProjectUniqueName11 = UiServices.DvbStpClient\\UiServices.DvbStpClient.csproj
-		SccProjectName11 = UiServices.DvbStpClient
-		SccLocalPath11 = UiServices.DvbStpClient
-		SccProjectUniqueName12 = Services.Record\\Services.Record.csproj
-		SccProjectName12 = Services.Record
-		SccLocalPath12 = Services.Record
-		SccProjectUniqueName13 = UiServices.Record\\UiServices.Record.csproj
-		SccProjectName13 = UiServices.Record
-		SccLocalPath13 = UiServices.Record
-		SccProjectUniqueName14 = Services.EPG\\Services.EPG.csproj
-		SccProjectName14 = Services.EPG
-		SccLocalPath14 = Services.EPG
-		SccProjectUniqueName15 = InternalTools\\ConsoleExperiments\\ConsoleExperiments.csproj
-		SccProjectTopLevelParentUniqueName15 = MovistarTV.sln
-		SccProjectName15 = InternalTools/ConsoleExperiments
-		SccLocalPath15 = InternalTools\\ConsoleExperiments
-		SccProjectUniqueName16 = Project.Common\\Project.Common.csproj
-		SccProjectName16 = Project.Common
-		SccLocalPath16 = Project.Common
-		SccProjectUniqueName17 = InternalTools\\ConsoleEPGLoader\\ConsoleEPGLoader.csproj
-		SccProjectTopLevelParentUniqueName17 = MovistarTV.sln
-		SccProjectName17 = InternalTools/ConsoleEPGLoader
-		SccLocalPath17 = InternalTools\\ConsoleEPGLoader
-		SccProjectUniqueName18 = Services.SqlServerCE\\Services.SqlServerCE.csproj
-		SccProjectName18 = Services.SqlServerCE
-		SccLocalPath18 = Services.SqlServerCE
-		SccProjectUniqueName19 = UiServices.EPG\\UiServices.EPG.csproj
-		SccProjectName19 = UiServices.EPG
-		SccLocalPath19 = UiServices.EPG
-		SccProjectUniqueName20 = UiServices.Common\\UiServices.Common.csproj
-		SccProjectName20 = UiServices.Common
-		SccLocalPath20 = UiServices.Common
-		SccProjectUniqueName21 = Etsi.Ts102034\\Etsi.Ts102034.csproj
-		SccProjectName21 = Etsi.Ts102034
-		SccLocalPath21 = Etsi.Ts102034
-		SccProjectUniqueName22 = InternalTools\\EpgDownloader\\EpgDownloader.csproj
-		SccProjectTopLevelParentUniqueName22 = MovistarTV.sln
-		SccProjectName22 = InternalTools/EpgDownloader
-		SccLocalPath22 = InternalTools\\EpgDownloader
-		SccProjectUniqueName23 = InternalTools\\GuiTools\\GuiTools.csproj
-		SccProjectTopLevelParentUniqueName23 = MovistarTV.sln
-		SccProjectName23 = InternalTools/GuiTools
-		SccLocalPath23 = InternalTools\\GuiTools
-		SccProjectUniqueName24 = Core.IpTvProvider\\Core.IpTvProvider.csproj
-		SccProjectName24 = Core.IpTvProvider
-		SccLocalPath24 = Core.IpTvProvider
-		SccProjectUniqueName25 = IpTv.MovistarPlus\\IpTv.MovistarPlus.csproj
-		SccProjectName25 = IpTv.MovistarPlus
-		SccLocalPath25 = IpTv.MovistarPlus
-		SccProjectUniqueName26 = Project.Native\\Project.Native.csproj
-		SccProjectName26 = Project.Native
-		SccLocalPath26 = Project.Native
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Debug|Mixed Platforms = Debug|Mixed Platforms
@@ -459,21 +366,6 @@ Global
 		{971B720E-2AE8-4EA4-B5CE-7A1AF11C3743}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{971B720E-2AE8-4EA4-B5CE-7A1AF11C3743}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{971B720E-2AE8-4EA4-B5CE-7A1AF11C3743}.Release|x86.ActiveCfg = Release|Any CPU
-		{ED5C1CF5-0975-4995-8933-9A7DF39FD739}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{ED5C1CF5-0975-4995-8933-9A7DF39FD739}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{ED5C1CF5-0975-4995-8933-9A7DF39FD739}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{ED5C1CF5-0975-4995-8933-9A7DF39FD739}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{ED5C1CF5-0975-4995-8933-9A7DF39FD739}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{ED5C1CF5-0975-4995-8933-9A7DF39FD739}.Release + Setup|Any CPU.ActiveCfg = Release|Any CPU
-		{ED5C1CF5-0975-4995-8933-9A7DF39FD739}.Release + Setup|Any CPU.Build.0 = Release|Any CPU
-		{ED5C1CF5-0975-4995-8933-9A7DF39FD739}.Release + Setup|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{ED5C1CF5-0975-4995-8933-9A7DF39FD739}.Release + Setup|Mixed Platforms.Build.0 = Release|Any CPU
-		{ED5C1CF5-0975-4995-8933-9A7DF39FD739}.Release + Setup|x86.ActiveCfg = Release|Any CPU
-		{ED5C1CF5-0975-4995-8933-9A7DF39FD739}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{ED5C1CF5-0975-4995-8933-9A7DF39FD739}.Release|Any CPU.Build.0 = Release|Any CPU
-		{ED5C1CF5-0975-4995-8933-9A7DF39FD739}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{ED5C1CF5-0975-4995-8933-9A7DF39FD739}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{ED5C1CF5-0975-4995-8933-9A7DF39FD739}.Release|x86.ActiveCfg = Release|Any CPU
 		{0BA7DA0C-3C45-4834-9927-C8CB5B49DD7B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0BA7DA0C-3C45-4834-9927-C8CB5B49DD7B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0BA7DA0C-3C45-4834-9927-C8CB5B49DD7B}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
@@ -504,21 +396,6 @@ Global
 		{8DA15060-5A78-4F89-A9F1-7AA56B0D622C}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{8DA15060-5A78-4F89-A9F1-7AA56B0D622C}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{8DA15060-5A78-4F89-A9F1-7AA56B0D622C}.Release|x86.ActiveCfg = Release|Any CPU
-		{3935C593-1E31-42EC-8C9F-23F8D548C112}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3935C593-1E31-42EC-8C9F-23F8D548C112}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3935C593-1E31-42EC-8C9F-23F8D548C112}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{3935C593-1E31-42EC-8C9F-23F8D548C112}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{3935C593-1E31-42EC-8C9F-23F8D548C112}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{3935C593-1E31-42EC-8C9F-23F8D548C112}.Release + Setup|Any CPU.ActiveCfg = Release|Any CPU
-		{3935C593-1E31-42EC-8C9F-23F8D548C112}.Release + Setup|Any CPU.Build.0 = Release|Any CPU
-		{3935C593-1E31-42EC-8C9F-23F8D548C112}.Release + Setup|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{3935C593-1E31-42EC-8C9F-23F8D548C112}.Release + Setup|Mixed Platforms.Build.0 = Release|Any CPU
-		{3935C593-1E31-42EC-8C9F-23F8D548C112}.Release + Setup|x86.ActiveCfg = Release|Any CPU
-		{3935C593-1E31-42EC-8C9F-23F8D548C112}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3935C593-1E31-42EC-8C9F-23F8D548C112}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3935C593-1E31-42EC-8C9F-23F8D548C112}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{3935C593-1E31-42EC-8C9F-23F8D548C112}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{3935C593-1E31-42EC-8C9F-23F8D548C112}.Release|x86.ActiveCfg = Release|Any CPU
 		{3A053F34-4EDF-4071-B966-923255A0AE14}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3A053F34-4EDF-4071-B966-923255A0AE14}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3A053F34-4EDF-4071-B966-923255A0AE14}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
@@ -534,21 +411,6 @@ Global
 		{3A053F34-4EDF-4071-B966-923255A0AE14}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{3A053F34-4EDF-4071-B966-923255A0AE14}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{3A053F34-4EDF-4071-B966-923255A0AE14}.Release|x86.ActiveCfg = Release|Any CPU
-		{004C3829-FED4-4084-B23B-871193AFA8C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{004C3829-FED4-4084-B23B-871193AFA8C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{004C3829-FED4-4084-B23B-871193AFA8C7}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{004C3829-FED4-4084-B23B-871193AFA8C7}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{004C3829-FED4-4084-B23B-871193AFA8C7}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{004C3829-FED4-4084-B23B-871193AFA8C7}.Release + Setup|Any CPU.ActiveCfg = Release|Any CPU
-		{004C3829-FED4-4084-B23B-871193AFA8C7}.Release + Setup|Any CPU.Build.0 = Release|Any CPU
-		{004C3829-FED4-4084-B23B-871193AFA8C7}.Release + Setup|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{004C3829-FED4-4084-B23B-871193AFA8C7}.Release + Setup|Mixed Platforms.Build.0 = Release|Any CPU
-		{004C3829-FED4-4084-B23B-871193AFA8C7}.Release + Setup|x86.ActiveCfg = Release|Any CPU
-		{004C3829-FED4-4084-B23B-871193AFA8C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{004C3829-FED4-4084-B23B-871193AFA8C7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{004C3829-FED4-4084-B23B-871193AFA8C7}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{004C3829-FED4-4084-B23B-871193AFA8C7}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{004C3829-FED4-4084-B23B-871193AFA8C7}.Release|x86.ActiveCfg = Release|Any CPU
 		{76346905-AC2F-4F01-BA99-BBFFBB2A6FE9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{76346905-AC2F-4F01-BA99-BBFFBB2A6FE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{76346905-AC2F-4F01-BA99-BBFFBB2A6FE9}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
@@ -659,13 +521,12 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{21AADDF8-BB39-4D0F-A6EF-EFD64AB3BC16} = {227520B6-B11F-45B8-84B2-8FDF27A2492C}
-		{1A7A0EC8-D85A-4674-8DF7-89FF64D0A158} = {227520B6-B11F-45B8-84B2-8FDF27A2492C}
 		{F3FC11C7-8850-4874-9CF3-8BA4DE43959A} = {B1F1A4A8-719B-4863-BEE0-EC79E7F06DEB}
+		{21AADDF8-BB39-4D0F-A6EF-EFD64AB3BC16} = {227520B6-B11F-45B8-84B2-8FDF27A2492C}
 		{0BA7DA0C-3C45-4834-9927-C8CB5B49DD7B} = {C1DAEFDD-689E-4324-A05D-66FA30B574B5}
-		{3935C593-1E31-42EC-8C9F-23F8D548C112} = {C1DAEFDD-689E-4324-A05D-66FA30B574B5}
+		{1A7A0EC8-D85A-4674-8DF7-89FF64D0A158} = {227520B6-B11F-45B8-84B2-8FDF27A2492C}
+		{4B6AC9D7-14AF-4C52-9154-59F4B4A3EC0E} = {1A7A0EC8-D85A-4674-8DF7-89FF64D0A158}
 		{BE376EFA-C7CC-44DB-B41E-506DBCB66A25} = {C1DAEFDD-689E-4324-A05D-66FA30B574B5}
 		{9D077B2F-1E74-4031-B28D-3F6F97829BEC} = {C1DAEFDD-689E-4324-A05D-66FA30B574B5}
-		{4B6AC9D7-14AF-4C52-9154-59F4B4A3EC0E} = {1A7A0EC8-D85A-4674-8DF7-89FF64D0A158}
 	EndGlobalSection
 EndGlobal
