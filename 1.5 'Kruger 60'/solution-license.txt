@@ -1,13 +1,12 @@
-movistar+ DVB-IPTV decoder version 1.5 “Kruger 60” Alpha 3c
+movistar+ DVB-IPTV decoder version 1.5 “Kruger 60” Alpha 4
 
-NOTICE: This software IS NOT SUPPORTED NOR ENDORSED by Movistar or Telefónica. Telefónica de España has no responsibility if there are channels that can not be seen on the PC, even if they are part of contracted services.
-DO NOT EVER CALL 1002 nor 1004 if channels disappear from the list or can not be seen or any other abnormality. Telefónica only provides help and support for their physical decoder and only for the contracted services.
-
-This Software, either in binary or source code form, is licensed under the terms of the Microsoft Reciprocal License (Ms-RL) except when noted in "EXCEPTIONS".
-All other rights are reserved by the author(s) of the software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, express or implied, including but not limited to the warranties of merchantability, fitness for a particular purpose and non-infringement.
+THIS SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, express or implied, including but not limited to the warranties of merchantability, fitness for a particular purpose and non-infringement.
 In no event shall the authors or the copyright holders be liable for any claim, damages or other liability, whether in action of contract, tort or otherwise, arising from, out of or in connection with the software or the use or other dealings in the software.
+
+The Software, either in binary or source code form, is licensed under the terms of the Microsoft Reciprocal License (Ms-RL) except when noted in "EXCEPTIONS". All other rights are reserved by the author(s) of the software.
+
+NOTICE: The software IS NOT SUPPORTED NOR ENDORSED by Movistar or Telefónica.  DO NOT EVER CALL 1002 nor 1004 if channels disappear from the list or can not be seen or any other problems arising from the use of this sofware.
+Telefónica de España only provides help and support for their physical decoder and only for the contracted services.
 
 The logos for most/all movistar+ channels broadcasting at the time of writing this software, are provided in this package. These logos are the property of the respective channels and businesses.
 Logos are provided in "good faith", in order to identify the different channels and no copyright infringment is intended.

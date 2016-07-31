@@ -531,7 +531,7 @@ namespace Project.DvbIpTv.Tools.FirstTimeConfig.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to movistar+ DVB-IPTV Decoder 1.5 “Kruger 60” Alpha 3c.
+        ///   Looks up a localized string similar to movistar+ DVB-IPTV Decoder 1.5 “Kruger 60” Alpha 4.
         /// </summary>
         internal static string ProductFullName {
             get {
@@ -549,7 +549,7 @@ namespace Project.DvbIpTv.Tools.FirstTimeConfig.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to v1.5 “Kruger 60” Alpha 3c.
+        ///   Looks up a localized string similar to v1.5 “Kruger 60” Alpha 4.
         /// </summary>
         internal static string ProductShortName {
             get {
