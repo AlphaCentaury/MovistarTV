@@ -165,13 +165,24 @@ namespace Project.IpTv.UiServices.Configuration.Logos
 
                 partialPath = GetFolderForDomain((serviceLogos.DomainRedirection == null) ? serviceDomainName : serviceLogos.DomainRedirection);
 
-                return new ServiceLogo(BasePathLogos, partialPath, logoFile,
-                    string.Format(Properties.InvariantTexts.FormatServiceLogoKey, logoFile, partialPath));
+                return GetLogo(partialPath, logoFile);
             } // while
 
-            // obtain default icon
+            // avoid infinite recursion if default domain name contains no logos or doesn't exists
+            if (providerDomain == Properties.InvariantTexts.DefaultDomainNameServiceLogo)
+            {
+                return GetLogo("unknown", "unknown");
+            } // if
+
+            // obtain default logo
             return Get(null, Properties.InvariantTexts.DefaultDomainNameServiceLogo, serviceTypeId, serviceTypeId);
         } // Get
+
+        ServiceLogo GetLogo(string partialPath, string logoFile)
+        {
+            return new ServiceLogo(BasePathLogos, partialPath, logoFile,
+                    string.Format(Properties.InvariantTexts.FormatServiceLogoKey, logoFile, partialPath));
+        } // GetLogo
 
         public ServiceLogo FromServiceKey(string serviceKey)
         {
