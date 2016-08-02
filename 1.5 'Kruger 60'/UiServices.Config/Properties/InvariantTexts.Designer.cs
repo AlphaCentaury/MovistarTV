@@ -61,7 +61,7 @@ namespace Project.IpTv.UiServices.Configuration.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to IPTV.
+        ///   Looks up a localized string similar to DBV-IPTV.
         /// </summary>
         internal static string DefaultDomainNameProviderLogo {
             get {
