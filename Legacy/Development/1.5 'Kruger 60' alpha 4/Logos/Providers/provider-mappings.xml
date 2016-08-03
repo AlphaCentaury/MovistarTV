@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Logos-Providers xmlns="http://movistartv.codeplex.com/schema/2015:Configuration:Mappings">
+  <Package name="&lt;default&gt;">
+    <Mapping domainName="DVB-IPTV" logo="DVB-IPTV" />
+  </Package>
+  <Package name="movistarTV">
+    <Mapping domainName="DEM_1.imagenio.es" annotation="Cataluña" logo="movistarTV-Cataluna" />
+    <Mapping domainName="DEM_4.imagenio.es" annotation="Castilla y León" logo="movistarTV-Leon" />
+    <Mapping domainName="DEM_6.imagenio.es" annotation="Valencia" logo="movistarTV-Valencia" />
+    <Mapping domainName="DEM_10.imagenio.es" annotation="Baleares" logo="movistarTV-Baleares" />
+    <Mapping domainName="DEM_12.imagenio.es" annotation="Murcia" logo="movistarTV-Murcia" />
+    <Mapping domainName="DEM_13.imagenio.es" annotation="Asturias" logo="movistarTV-Asturias" />
+    <Mapping domainName="DEM_15.imagenio.es" annotation="Andalucía" logo="movistarTV-Andalucia" />
+    <Mapping domainName="DEM_19.imagenio.es" annotation="Madrid" logo="movistarTV-Madrid" />
+    <Mapping domainName="DEM_24.imagenio.es" annotation="Galicia" logo="movistarTV-Galicia" />
+    <Mapping domainName="DEM_29.imagenio.es" annotation="Cantabria" logo="movistarTV-Cantabria" />
+    <Mapping domainName="DEM_31.imagenio.es" annotation="Rioja" logo="movistarTV-Rioja" />
+    <Mapping domainName="DEM_32.imagenio.es" annotation="Extremadura" logo="movistarTV-Extremadura" />
+    <Mapping domainName="DEM_34.imagenio.es" annotation="Aragón" logo="movistarTV-Aragon" />
+    <Mapping domainName="DEM_35.imagenio.es" annotation="Navarra" logo="movistarTV-Navarra" />
+    <Mapping domainName="DEM_36.imagenio.es" annotation="País Vasco" logo="movistarTV-Vasco" />
+    <Mapping domainName="DEM_37.imagenio.es" annotation="Canarias" logo="movistarTV-Canarias" />
+    <Mapping domainName="DEM_38.imagenio.es" annotation="Castilla-La Mancha" logo="movistarTV-Mancha" />
+  </Package>
+</Logos-Providers>

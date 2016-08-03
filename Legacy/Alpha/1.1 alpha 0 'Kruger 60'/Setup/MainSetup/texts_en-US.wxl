@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (C) 2014-2015, Codeplex user AlphaCentaury
+All rights reserved, except those granted by the governing license of this software. See 'license.txt' file in the project root for complete license information.
+-->
+<WixLocalization Culture="en-US" Codepage="1252" xmlns="http://schemas.microsoft.com/wix/2006/localization">
+  <String Id="LANGUAGE">1033</String>
+  <String Id="DowngradeErrorMessage">A new version of [ProductName] is already installed.</String>
+  <String Id="NetFrameworkNotPresent">This application requires .NET Framework 3.5 SP1. Please install the .NET Framework then run this installer again.</String>
+  <String Id="ProductName">Movistar TV Decoder 1.5 Alpha 0 “Kruger 60”</String>
+  <String Id="PackageDescription">Movistar TV DVB-IPTV Decoder 1.5 “Kruger 60” Alpha 0</String>
+  <String Id="WIXUI_EXITDIALOGOPTIONALCHECKBOXTEXT">Launch First-time configuration helper</String>
+  <String Id="SourceFileLicenseAgreement">solution-license</String>
+  <String Id="FileLicenseAgreement">License agreement</String>
+  <String Id="DvbIpTvStartMenuFolder">DVB-IPTV decoder</String>
+  <String Id="ProgramStartMenuFolder">Movistar TV v1.5 “Kruger 60”</String>
+  <String Id="ToolsStartMenuFolder">Tools</String>
+  <String Id="ChannelList.exe.lnk">Channel list</String>
+  <String Id="FirstTimeConfig.exe.lnk">First-time configuration wizard</String>
+</WixLocalization>

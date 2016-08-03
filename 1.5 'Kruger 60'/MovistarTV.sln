@@ -18,7 +18,10 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{227520B6-B11F-45B8-84B2-8FDF27A2492C}"
 	ProjectSection(SolutionItems) = preProject
 		AssemblySolutionInfo.cs = AssemblySolutionInfo.cs
+		..\LICENSE = ..\LICENSE
+		..\LICENSE_ES = ..\LICENSE_ES
 		movistartv-config.xml = movistartv-config.xml
+		..\README.md = ..\README.md
 		solution-license.rtf = solution-license.rtf
 		solution-license.txt = solution-license.txt
 		solution-license_es.rtf = solution-license_es.rtf
