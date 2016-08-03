@@ -12,11 +12,10 @@ All rights reserved, except those granted by the governing license of this softw
     <ComponentGroup Id="RegistryConfiguration">
       <Component Id="RegistryConfiguration_Install" Guid="*" Directory="ProgramStartMenuFolder">
         <RegistryKey Root='HKCU' Key='$(var.BaseRegistryKey)' ForceDeleteOnUninstall='yes'>
+          <RegistryValue Type='string' Value='!(loc.ProductName)' />
           <RegistryValue Type='string' Name='Installed' Value='1' KeyPath='yes' />
-          <RegistryKey Key='Folders'>
-            <RegistryValue Type='string' Name='Base' Value='[BaseFolder]' />
-            <RegistryValue Type='string' Name='Install' Value='[INSTALLFOLDER]' />
-          </RegistryKey>
+          <RegistryValue Type='string' Name='Folder.Base' Value='[BaseFolder]' />
+          <RegistryValue Type='string' Name='Folder.Install' Value='[INSTALLFOLDER]' />
           <RegistryKey Key='Features'>
           </RegistryKey>
         </RegistryKey>

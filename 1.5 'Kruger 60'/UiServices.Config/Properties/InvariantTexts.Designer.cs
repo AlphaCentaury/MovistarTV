@@ -115,16 +115,7 @@ namespace Project.IpTv.UiServices.Configuration.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Folders.
-        /// </summary>
-        internal static string RegistryKey_Folders {
-            get {
-                return ResourceManager.GetString("RegistryKey_Folders", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Software\movistartv.codeplex.com\DVBIPTV\v1.5.
+        ///   Looks up a localized string similar to Software\movistartv.codeplex.com\IPTViewr\movistar+\v1.5.40.0.
         /// </summary>
         internal static string RegistryKey_Root {
             get {
@@ -142,20 +133,20 @@ namespace Project.IpTv.UiServices.Configuration.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Base.
+        ///   Looks up a localized string similar to Folder.Base.
         /// </summary>
-        internal static string RegistryValue_Folders_Base {
+        internal static string RegistryValue_Folder_Base {
             get {
-                return ResourceManager.GetString("RegistryValue_Folders_Base", resourceCulture);
+                return ResourceManager.GetString("RegistryValue_Folder_Base", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Install.
+        ///   Looks up a localized string similar to Folder.Install.
         /// </summary>
-        internal static string RegistryValue_Folders_Install {
+        internal static string RegistryValue_Folder_Install {
             get {
-                return ResourceManager.GetString("RegistryValue_Folders_Install", resourceCulture);
+                return ResourceManager.GetString("RegistryValue_Folder_Install", resourceCulture);
             }
         }
         

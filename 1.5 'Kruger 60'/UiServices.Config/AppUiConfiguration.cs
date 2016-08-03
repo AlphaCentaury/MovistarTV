@@ -367,26 +367,16 @@ namespace Project.IpTv.UiServices.Configuration
                         } // using writableRoot
                     } // if
 
-                    fullKeyPath = InvariantTexts.RegistryKey_Root + "\\" + InvariantTexts.RegistryKey_Folders;
-                    using (var folders = root.OpenSubKey(InvariantTexts.RegistryKey_Folders))
-                    {
-                        if (folders == null) return string.Format(Texts.AppConfigRegistryMissingKey, fullKeyPath);
-
-                        var baseFolder = folders.GetValue(InvariantTexts.RegistryValue_Folders_Base);
-                        if (baseFolder == null) return string.Format(Texts.AppConfigRegistryMissingValue, fullKeyPath, InvariantTexts.RegistryValue_Folders_Base);
-
-                        Folders.Base = overrideBasePath ?? baseFolder as string;
-
+                    var baseFolder = root.GetValue(InvariantTexts.RegistryValue_Folder_Base);
+                    if (baseFolder == null) return string.Format(Texts.AppConfigRegistryMissingValue, fullKeyPath, InvariantTexts.RegistryValue_Folder_Base);
+                    Folders.Base = overrideBasePath ?? baseFolder as string;
 #if DEBUG
-                        //var location = System.Reflection.Assembly.GetEntryAssembly().Location;
-                        //var installFolder = Path.GetDirectoryName(location);
-                        string installFolder = null;
+                    string installFolder = null;
 #else
-                        var installFolder = folders.GetValue(InvariantTexts.RegistryValue_Folders_Install);
-                        if (installFolder == null) return string.Format(Texts.AppConfigRegistryMissingValue, fullKeyPath, InvariantTexts.RegistryValue_Folders_Install);
+                    var installFolder = root.GetValue(InvariantTexts.RegistryValue_Folders_Install);
+                    if (installFolder == null) return string.Format(Texts.AppConfigRegistryMissingValue, fullKeyPath, InvariantTexts.RegistryValue_Folders_Install);
 #endif
-                        Folders.Install = installFolder as string;
-                    } // using folders
+                    Folders.Install = installFolder as string;
                 } // using root
             } // using hkcu
 
