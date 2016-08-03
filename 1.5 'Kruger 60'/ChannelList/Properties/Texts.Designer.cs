@@ -61,7 +61,7 @@ namespace Project.IpTv.ChannelList.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to movistar+ channels and services - IPTV (1.5“Kruger 60” Alpha 4).
+        ///   Looks up a localized string similar to movistar+ channels - IPTViewr (1.5“Kruger 60” Alpha 4).
         /// </summary>
         internal static string AppCaption {
             get {
@@ -70,7 +70,7 @@ namespace Project.IpTv.ChannelList.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to IPTV: movistar+ channels and services.
+        ///   Looks up a localized string similar to IPTViewr: Software Decoder for movistar+.
         /// </summary>
         internal static string AppName {
             get {

@@ -78,7 +78,8 @@ ipch/
 *.ncb
 *.opendb
 *.opensdf
-*.sdf
+# SQL Server Compact database
+# *.sdf
 *.cachefile
 *.VC.db
 *.VC.VC.opendb

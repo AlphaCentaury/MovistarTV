@@ -65,8 +65,8 @@ All rights reserved, except those granted by the governing license of this softw
   <Fragment>
     <Directory Id="TARGETDIR" Name="SourceDir">
       <Directory Id="PersonalFolder">
-        <Directory Id="DvbFolder" Name="IPTV">
-          <Directory Id="BaseFolder" Name="movistar+ (v1.5 Kruger-60)">
+        <Directory Id="DvbFolder" Name="IPTViewr">
+          <Directory Id="BaseFolder" Name="$(var.BaseInstallFolder)">
             <Directory Id="INSTALLFOLDER" Name="bin">
               <Directory Id="RedistFolderBase" Name ="Redist">
                 <Directory Id="RedistFolder" Name="!(loc.RedistLanguage)">
@@ -87,7 +87,7 @@ All rights reserved, except those granted by the governing license of this softw
       </Directory>
 
       <Directory Id="ProgramMenuFolder">
-        <Directory Id="DvbIpTvStartMenuFolder" Name="!(loc.DvbIpTvStartMenuFolder)">
+        <Directory Id="IPTViewrStartMenuFolder" Name="!(loc.IPTViewrStartMenuFolder)">
           <Directory Id="ProgramStartMenuFolder" Name="!(loc.ProgramStartMenuFolder)" />
         </Directory>
       </Directory>
@@ -112,7 +112,7 @@ All rights reserved, except those granted by the governing license of this softw
       
         <RemoveFile Id="Purge_ProgramStartMenuFolder" Name="*.*" On="uninstall" Directory="ProgramStartMenuFolder"/>
 
-        <RemoveFolder Id="Remove_DvbIpTvStartMenuFolder" On="uninstall" Directory="DvbIpTvStartMenuFolder" />
+        <RemoveFolder Id="Remove_IPTViewrStartMenuFolder" On="uninstall" Directory="IPTViewrStartMenuFolder" />
         <RemoveFolder Id="Remove_ProgramStartMenuFolder" On="uninstall" Directory="ProgramStartMenuFolder"/>
       </Component>
     </ComponentGroup>
