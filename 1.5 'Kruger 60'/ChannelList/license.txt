@@ -9,7 +9,7 @@ Todos los demás derechos están reservados por el/los autor(es) del software.
 Aviso: Las traducciones al Español de este archivo se proporcionan únicamente a modo informativo y no tienen caracter vinculante o validez legal alguna.
 
 --------------------------------------------------------------------------------
-Copyright (C) 2014-2016, Codeplex user AlphaCentaury and its contributors
+Copyright (C) 2014-2016, Codeplex/GitHub user AlphaCentaury and its contributors
 --------------------------------------------------------------------------------
 
 NOTICE: This software IS NOT SUPPORTED NOR ENDORSED by Movistar or Telefónica. Telefónica de España has no responsibility if there are channels that can not be seen on the PC, even if they are part of contracted services.
