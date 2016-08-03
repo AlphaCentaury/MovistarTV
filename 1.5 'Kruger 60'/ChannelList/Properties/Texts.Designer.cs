@@ -369,10 +369,8 @@ namespace Project.IpTv.ChannelList.Properties {
         /// <summary>
         ///   Looks up a localized string similar to movistar+ IPTV decoder version 1.5 “Kruger 60” Alpha 4
         ///
-        ///NOTICE: This software IS NOT SUPPORTED NOR ENDORSED by Movistar or Telefónica. Telefónica de España has no responsibility if there are channels that can not be seen on the PC, even if they are part of contracted services.
-        ///DO NOT EVER CALL 1002 nor 1004 if channels disappear from the list or can not be seen or any other abnormality. Telefónica only provides help and support for their physical decoder and only for the contracted services.
-        ///
-        ///This  [rest of string was truncated]&quot;;.
+        ///THIS SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, express or implied, including but not limited to the warranties of merchantability, fitness for a particular purpose and non-infringement.
+        ///In no event shall the authors or the copyright holders be liable for any claim, damages or other liability, whether in action of contract, tort or otherwise, arising from, out of or in connection with the software or the use or other dealings in the [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string SolutionLicense {
             get {
@@ -381,10 +379,11 @@ namespace Project.IpTv.ChannelList.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {\rtf1\ansi\ansicpg1252\deff0\deflang3082{\fonttbl{\f0\fnil\fcharset0 Segoe UI;}{\f1\fnil\fcharset2 Symbol;}}
+        ///   Looks up a localized string similar to {\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang3082{\fonttbl{\f0\fnil\fcharset0 Segoe UI;}{\f1\fnil\fcharset2 Symbol;}}
         ///{\colortbl ;\red0\green0\blue255;}
-        ///{\*\generator Msftedit 5.41.21.2510;}\viewkind4\uc1\pard\nowidctlpar\sa200\sl276\slmult1\qj\lang10\b\f0\fs22 movistar+ IPTV decoder version 1.5 \ldblquote Kruger 60\rdblquote  Alpha 3c\ul\fs18\par
-        ///NOTICE:\ulnone\b0  \b\i This software IS NOT SUPPORTED NOR ENDORSED by Movistar or Telef\&apos;f3nica\b0\i0 . Telef\&apos;f3nica de Espa\&apos;f1a has no responsibility if there  [rest of string was truncated]&quot;;.
+        ///{\*\generator Riched20 10.0.10586}\viewkind4\uc1 
+        ///\pard\nowidctlpar\sa200\sl276\slmult1\qj\b\f0\fs22\lang10 movistar+ IPTV decoder version 1.5 \ldblquote Kruger 60\rdblquote  Alpha 4\ul\fs18\par
+        ///\ulnone\i THIS SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND,\b0\i0  express or implied, including but not limited to the warranties of merchant [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string SolutionLicenseRtf {
             get {
