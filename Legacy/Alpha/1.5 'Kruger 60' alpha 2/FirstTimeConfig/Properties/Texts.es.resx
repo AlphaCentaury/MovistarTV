@@ -1,0 +1,372 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AnalyticsKeepChecked" xml:space="preserve">
+    <value>Por favor, ¡mantenga esta opción seleccionada!
+La recopilación de datos de uso nos ayuda a mejorar el programa y ésto es crucial en las versiones preliminares.</value>
+  </data>
+  <data name="ConfigurationCreateException" xml:space="preserve">
+    <value>No ha sido posible crear el archivo de configuración. Se ha producido un error.
+
+{0}</value>
+  </data>
+  <data name="ConfigurationCreateOk" xml:space="preserve">
+    <value>Los archivos de configuración han sido creados satisfactoriamente.
+El proceso de configuración inicial ha finalizado y la aplicación ya está lista para poder utilizarse.</value>
+  </data>
+  <data name="ConfirmUserCancel" xml:space="preserve">
+    <value>¿Está seguro de que desea cancelar la configuración de la aplicación?</value>
+  </data>
+  <data name="DownloadEmbFile" xml:space="preserve">
+    <value>ESN\x64\SQLServer2005_EMB.msi</value>
+  </data>
+  <data name="DownloadEmbFile32bit" xml:space="preserve">
+    <value>ESN\x86\SQLServer2005_EMB.msi</value>
+  </data>
+  <data name="DownloadFromVendor32bit" xml:space="preserve">
+    <value>La página de descargas de {0} ofrece múltiples descargas. Puesto que está ejecutando una versión de 32 bits de Windows, asegurese de seleccionar e instalar el siguiente archivo:
+'{1}'</value>
+  </data>
+  <data name="DownloadFromVendor64bit" xml:space="preserve">
+    <value>La página de descargas de {0} ofrece múltiples descargas. Puesto que está ejecutando una versión de 64 bits de Windows, asegurese de seleccionar e instalar el siguiente archivo:
+'{1}'</value>
+  </data>
+  <data name="DownloadSqlCeFile" xml:space="preserve">
+    <value>ESN\SSCERuntime_x64-ESN.exe</value>
+  </data>
+  <data name="DownloadSqlCeFile32bit" xml:space="preserve">
+    <value>ESN\SSCERuntime_x86-ESN.exe</value>
+  </data>
+  <data name="DownloadUrlEmb" xml:space="preserve">
+    <value>http://www.microsoft.com/es-es/download/details.aspx?id=20101</value>
+  </data>
+  <data name="DownloadUrlNet" xml:space="preserve">
+    <value>http://www.microsoft.com/es-es/download/details.aspx?id=22</value>
+  </data>
+  <data name="DownloadUrlSqlCe" xml:space="preserve">
+    <value>http://www.microsoft.com/es-ES/download/details.aspx?id=30709</value>
+  </data>
+  <data name="DownloadUrlVlc" xml:space="preserve">
+    <value>http://www.videolan.org/vlc/index.es.html</value>
+  </data>
+  <data name="DvbIpTv_PreferredLanguages" xml:space="preserve">
+    <value>spa;eng</value>
+  </data>
+  <data name="ExceptionForceUiCulture" xml:space="preserve">
+    <value>No se ha podido cambiar el idioma de la aplicación.
+El identificador de idioma ("cultura") puede no ser válido o no ser reconocido por el sistema.
+Verifique el valor del argumento 'ForceUICulture' pasado al programa.
+
+Unable to change the application UI language.
+The language ("culture") id may not be valid or not recognized by the system.
+Please verify the value of the 'ForceUICulture' program argument.</value>
+  </data>
+  <data name="FirewallDvbIpTvRuleDescription" xml:space="preserve">
+    <value>Permitir conexiones {1} entrantes a {0} (parte de {2})</value>
+  </data>
+  <data name="FirewallException" xml:space="preserve">
+    <value>Se ha producido un error al ejecutar el programa de configuración del cortafuegos.</value>
+  </data>
+  <data name="FirewallOk" xml:space="preserve">
+    <value>Se ha realizado correctamente la configuración del cortafuegos.</value>
+  </data>
+  <data name="FirewallUserCancel" xml:space="preserve">
+    <value>Se ha cancelado la modificación de la configuración del cortafuegos.</value>
+  </data>
+  <data name="FirewallVlcRuleDescription" xml:space="preserve">
+    <value>Permitir conexiones {0} entrantes al reproductor VLC</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="GoogleTelemetry" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\..\channellist\resources\googletelemetry_es.rtf;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="IsEmbInstalledException" xml:space="preserve">
+    <value>No ha sido posible determinar si el componente Microsoft® Exception Message Box se encuentra instalado.
+
+{0}</value>
+  </data>
+  <data name="IsEmbInstalledNotInstalled" xml:space="preserve">
+    <value>El componente Microsoft® Exception Message Box no está instalado en este equipo.</value>
+  </data>
+  <data name="IsEmbInstalledOk" xml:space="preserve">
+    <value>Se ha verificado la instalación del component Microsoft® Exception Message Box (v{0}).</value>
+  </data>
+  <data name="IsNetInstalledException" xml:space="preserve">
+    <value>No ha sido posible determinar la versión instalada de Microsoft® .NET Framework.
+
+{0}</value>
+  </data>
+  <data name="IsNetInstalledKeyValueLessThan" xml:space="preserve">
+    <value>El valor de registro '{0}' del .NET Framework v3.5  es menor que  {1}.</value>
+  </data>
+  <data name="IsNetInstalledKeyValueNotFound" xml:space="preserve">
+    <value>No se ha localizado el valor de registro '{0}' del .NET Framework v3.5.</value>
+  </data>
+  <data name="IsNetInstalledNotInstalled" xml:space="preserve">
+    <value>.NET Framework v3.5 no está instalado en este equipo.</value>
+  </data>
+  <data name="IsNetInstalledOk" xml:space="preserve">
+    <value>Se ha verificado la instalación de Microsoft® .NET Framework v3.5 Service Pack 1 (o superior).</value>
+  </data>
+  <data name="IsSqlCeInstalledException" xml:space="preserve">
+    <value>No ha sido posible determinar si Microsoft® SQL Server® Compact 4.0 SP1 se encuentra instalado.
+
+{0}</value>
+  </data>
+  <data name="IsSqlCeInstalledNotInstalled" xml:space="preserve">
+    <value>Microsoft® SQL Server® Compact 4.0 SP1 no está instalado en este equipo.</value>
+  </data>
+  <data name="IsSqlCeInstalledOk" xml:space="preserve">
+    <value>Se ha verificado la instalación de Microsoft® SQL Server® Compact 4.0 SP1 (v{0}).</value>
+  </data>
+  <data name="IsVlcInstalledException" xml:space="preserve">
+    <value>No es posible determinar si el reproductor VLC está correctamente instalado.
+
+{0}</value>
+  </data>
+  <data name="IsVlcInstalledNotInstalled" xml:space="preserve">
+    <value>El archivo de programa de VLC no se ha localizado en '{0}'.</value>
+  </data>
+  <data name="IsVlcInstalledOk" xml:space="preserve">
+    <value>Se ha verificado la instalación del reproductor VLC (versión {0}) y de su archivo de librería (versión {1}).</value>
+  </data>
+  <data name="IsVlcInstalledVersion" xml:space="preserve">
+    <value>El reproductor VLC versión {0} (o superior) no está instalado en este equipo.
+La versión actualmente instalada es {1}.</value>
+  </data>
+  <data name="IsVlcLibInstalledNotInstalled" xml:space="preserve">
+    <value>El archivo de la librería VLC no se ha localizado en '{0}'.</value>
+  </data>
+  <data name="IsVlcLibInstalledVersion" xml:space="preserve">
+    <value>La librería VLC versión {0} (o superior) no está instalada en este equipo.
+La versión actualmente instalada es {1}.</value>
+  </data>
+  <data name="LaunchProgramException" xml:space="preserve">
+    <value>No ha sido posible ejecutar el programa '{0}'.
+
+{1}</value>
+  </data>
+  <data name="LaunchSetupError" xml:space="preserve">
+    <value>El proceso de instalación de {0} ha finalizado con error (código: {1:N0}).
+
+Intente ejecutar el programa de instalación de nuevo.</value>
+  </data>
+  <data name="LaunchSetupException" xml:space="preserve">
+    <value>No ha sido posible ejecutar el archivo de instalación '{0}' para '{1}.
+
+{2}</value>
+  </data>
+  <data name="LaunchSetupSuccess" xml:space="preserve">
+    <value>El proceso de instalación de {0} ha finalizado.
+
+Haga clic en 'Comprobar' para verificar la correcta instalación del componente.</value>
+  </data>
+  <data name="OpenFileVlcFilter" xml:space="preserve">
+    <value>Reproductor VLC|vlc.exe|Programas|*.exe</value>
+  </data>
+  <data name="OpenFileVlcTitle" xml:space="preserve">
+    <value>Seleccione la ubicación del reproductor VLC</value>
+  </data>
+  <data name="OpenUrlError" xml:space="preserve">
+    <value>No ha sido posible abrir un navegador para mostrar la URL '{0}'.
+{1}</value>
+  </data>
+  <data name="OverwriteXmlConfigFile" xml:space="preserve">
+    <value>El archivo 'user-config.xml' ya existe.
+Si sobreescribe el archivo se perderá cualquier configuración personalizada.
+
+¿Desea sobreescribir el archivo?</value>
+  </data>
+  <data name="ProductFullName" xml:space="preserve">
+    <value>Decodificador DVB-IPTV para movistar+ 1.5 “Kruger 60” alpha 2</value>
+  </data>
+  <data name="ProductMainProgramName" xml:space="preserve">
+    <value>Canales movistar+</value>
+  </data>
+  <data name="ProductShortName" xml:space="preserve">
+    <value>v1.5 “Kruger 60” alpha 2</value>
+  </data>
+  <data name="Readme" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\readme_es.rtf;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="RedistSetupInstalling" xml:space="preserve">
+    <value>Instalando {0}...</value>
+  </data>
+  <data name="SaveLocationMoviesFolder" xml:space="preserve">
+    <value>Películas</value>
+  </data>
+  <data name="SaveLocationMoviesName" xml:space="preserve">
+    <value>Películas</value>
+  </data>
+  <data name="SaveLocationSeriesFolder" xml:space="preserve">
+    <value>Series</value>
+  </data>
+  <data name="SaveLocationSeriesName" xml:space="preserve">
+    <value>Series</value>
+  </data>
+  <data name="SelectFolderSaveDescription" xml:space="preserve">
+    <value>Por favor, especifique la carpeta en la que, por defecto, se grabarán los programas de TV.</value>
+  </data>
+  <data name="TaskSchedulerFolderDvbIpTv" xml:space="preserve">
+    <value>Carpeta DVB-IPTV</value>
+  </data>
+  <data name="TelemetryHelpCaption" xml:space="preserve">
+    <value>Recolección de datos del programa</value>
+  </data>
+  <data name="TestVlcInstallationException" xml:space="preserve">
+    <value>No es posible determinar si el reproductor VLC está correctamente instalado.
+
+{0}</value>
+  </data>
+  <data name="TestVlcInstallationOk" xml:space="preserve">
+    <value>Se ha abierto correctamente el reproductor VLC.</value>
+  </data>
+  <data name="WizardEndTextAbort" xml:space="preserve">
+    <value>La aplicación no está configurada adecuadamente y no se podrá ejecutar.
+Para configurar adecuadamente la aplicación mas tarde, ejecute el asistente de nuevo.</value>
+  </data>
+  <data name="WizardEndTextCancel" xml:space="preserve">
+    <value>La aplicación no está configurada adecuadamente y no se podrá ejecutar.
+Para configurar adecuadamente la aplicación mas tarde, ejecute el asistente de nuevo.</value>
+  </data>
+  <data name="WizardEndTextOk" xml:space="preserve">
+    <value>El proceso de configuración inicial ha finalizado y la aplicación ya está lista para poder utilizarse.</value>
+  </data>
+  <data name="WizardEndTitleAbort" xml:space="preserve">
+    <value>No es posible realizar la configuración inicial de la aplicación.</value>
+  </data>
+  <data name="WizardEndTitleCancel" xml:space="preserve">
+    <value>Se ha cancelado la configuración inicial de la aplicación.</value>
+  </data>
+  <data name="WizardEndTitleOk" xml:space="preserve">
+    <value>Los archivos de configuración han sido creados satisfactoriamente.</value>
+  </data>
+  <data name="WizardResultAborted" xml:space="preserve">
+    <value>No es posible realizar la configuración inicial de la aplicación.
+
+La aplicación no está configurada adecuadamente y no se podrá ejecutar.
+Para configurar adecuadamente la aplicación mas tarde, ejecute el asistente de nuevo.</value>
+  </data>
+  <data name="WizardResultUserCancel" xml:space="preserve">
+    <value>Se ha cancelado la configuración inicial de la aplicación.
+
+La aplicación no está configurada adecuadamente y no se podrá ejecutar.
+Para configurar adecuadamente la aplicación mas tarde, ejecute el asistente de nuevo.</value>
+  </data>
+</root>
