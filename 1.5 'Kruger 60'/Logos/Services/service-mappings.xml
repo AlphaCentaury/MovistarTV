@@ -309,8 +309,8 @@ All rights reserved, except those granted by the governing license of this softw
       <Mapping serviceName="2783" logo="movistar_generico" remarks="PRUEBAS DRM 2" />
       <Mapping serviceName="2784" logo="hd_movistar_generico" remarks="PRUEBAS DRM 2 HD" />
       <Mapping serviceName="2803" logo="cplus" remarks="CANAL+" />
-      <Mapping serviceName="2804" logo="cplus_series" remarks="CANAL+ Series" />
-      <Mapping serviceName="2807" logo="cplus_series_xtra" remarks="CANAL+ Series Xtra" />
+      <Mapping serviceName="2804" logo="movistar_series" remarks="movistar Series" />
+      <Mapping serviceName="2807" logo="movistar_series_xtra" remarks="movistar Series Xtra" />
       <Mapping serviceName="2809" logo="cplus_deportes" remarks="CANAL+ Deportes" />
       <Mapping serviceName="2810" logo="cplus_deportes_2" remarks="CANAL+ Deportes 2" />
       <Mapping serviceName="2811" logo="cplus_golf" remarks="CANAL+ Golf" />
@@ -325,8 +325,8 @@ All rights reserved, except those granted by the governing license of this softw
       <Mapping serviceName="2820" logo="cplus_partidazo" remarks="CANAL+ Partidazo" />
       <Mapping serviceName="2821" logo="cplus_liga_2" remarks="CANAL+ Liga 2" />
       <Mapping serviceName="2822" logo="cplus_futbol" remarks="CANAL+ Fútbol" />
-      <Mapping serviceName="2823" logo="hd_cplus_series" remarks="CANAL+ Series HD" />
-      <Mapping serviceName="2824" logo="hd_cplus_series_xtra" remarks="CANAL+ Series Xtra HD" />
+      <Mapping serviceName="2823" logo="hd_movistar_series" remarks="movistar Series HD" />
+      <Mapping serviceName="2824" logo="hd_movistar_series_xtra" remarks="movistar Series Xtra HD" />
       <Mapping serviceName="2825" logo="hd_cplus_deportes" remarks="CANAL+ Deportes HD" />
       <Mapping serviceName="2826" logo="hd_cplus_deportes_2" remarks="CANAL+ Deportes 2 HD" />
       <Mapping serviceName="2827" logo="hd_cplus_golf" remarks="CANAL+ Golf HD" />
