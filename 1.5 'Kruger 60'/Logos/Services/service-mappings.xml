@@ -314,12 +314,12 @@ All rights reserved, except those granted by the governing license of this softw
       <Mapping serviceName="2809" logo="cplus_deportes" remarks="CANAL+ Deportes" />
       <Mapping serviceName="2810" logo="cplus_deportes_2" remarks="CANAL+ Deportes 2" />
       <Mapping serviceName="2811" logo="cplus_golf" remarks="CANAL+ Golf" />
-      <Mapping serviceName="2812" logo="cplus_estrenos" remarks="CANAL+ Estrenos" />
-      <Mapping serviceName="2813" logo="cplus_xtra" remarks="CANAL+ Xtra" />
-      <Mapping serviceName="2814" logo="cplus_accion" remarks="CANAL+ Acción" />
-      <Mapping serviceName="2815" logo="cplus_comedia" remarks="CANAL+ Comedia" />
-      <Mapping serviceName="2816" logo="cplus_dcine" remarks="CANAL+ DCine" />
-      <Mapping serviceName="2817" logo="cplus_dcine_espanol" remarks="DCine Español" />
+      <Mapping serviceName="2812" logo="movistar_cine_estrenos" remarks="movistar Cine Estrenos" />
+      <Mapping serviceName="2813" logo="movistar_cine_xtra" remarks="movistar Cine Xtra" />
+      <Mapping serviceName="2814" logo="movistar_cine_accion" remarks="movistar Cine Acción" />
+      <Mapping serviceName="2815" logo="movistar_cine_comedia" remarks="movistar Cine Comedia" />
+      <Mapping serviceName="2816" logo="movistar_cine_dcine" remarks="movistar Cine DCine" />
+      <Mapping serviceName="2817" logo="movistar_cine_cine_n" remarks="movistar Cine Cine Ñ" />
       <Mapping serviceName="2818" logo="cplus_toros" remarks="CANAL+ Toros" />
       <Mapping serviceName="2819" logo="cplus_cazapesca" remarks="Caza y Pesca" />
       <Mapping serviceName="2820" logo="cplus_partidazo" remarks="CANAL+ Partidazo" />
@@ -330,11 +330,11 @@ All rights reserved, except those granted by the governing license of this softw
       <Mapping serviceName="2825" logo="hd_cplus_deportes" remarks="CANAL+ Deportes HD" />
       <Mapping serviceName="2826" logo="hd_cplus_deportes_2" remarks="CANAL+ Deportes 2 HD" />
       <Mapping serviceName="2827" logo="hd_cplus_golf" remarks="CANAL+ Golf HD" />
-      <Mapping serviceName="2828" logo="hd_cplus_estrenos" remarks="CANAL+ Estrenos HD" />
-      <Mapping serviceName="2829" logo="hd_cplus_xtra" remarks="CANAL+ Xtra HD" />
-      <Mapping serviceName="2830" logo="hd_cplus_accion" remarks="CANAL+ Acción HD" />
-      <Mapping serviceName="2831" logo="hd_cplus_comedia" remarks="CANAL+ Comedia HD" />
-      <Mapping serviceName="2832" logo="hd_cplus_dcine" remarks="CANAL+ DCine HD" />
+      <Mapping serviceName="2828" logo="hd_movistar_cine_estrenos" remarks="movistar Cine Estrenos HD" />
+      <Mapping serviceName="2829" logo="hd_movistar_cine_xtra" remarks="movistar Cine Xtra HD" />
+      <Mapping serviceName="2830" logo="hd_movistar_cine_accion" remarks="movistar Cine Acción HD" />
+      <Mapping serviceName="2831" logo="hd_movistar_cine_comedia" remarks="movistar Cine Comedia HD" />
+      <Mapping serviceName="2832" logo="hd_movistar_cine_dcine" remarks="movistar Cine DCine HD" />
       <Mapping serviceName="2833" logo="hd_cplus_toros" remarks="CANAL+ Toros HD" />
       <Mapping serviceName="2837" logo="hd_cplus_liga_2" remarks="CANAL+ Liga 2 HD" />
       <Mapping serviceName="2840" logo="hd_cplus_futbol" remarks="CANAL+ Fútbol HD" />
