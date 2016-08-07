@@ -326,8 +326,9 @@ namespace Project.IpTv.Internal.Tools.ChannelLogos
 
             foreach (var service in q)
             {
-                listViewLocalLogos.Items.Add(service.DisplayLogicalNumber + " " + service.DisplayName, service.Logo.Key);
-                listViewWebLogos.Items.Add(service.DisplayLogicalNumber + " " + service.DisplayName, service.Logo.Key);
+                var display = string.Format("{0} {1} ({2})", service.DisplayLogicalNumber, service.DisplayName, service.ServiceName);
+                listViewLocalLogos.Items.Add(display, service.Logo.Key);
+                listViewWebLogos.Items.Add(display, service.Logo.Key);
             } // foreach
         } // FillList
 
@@ -375,6 +376,7 @@ namespace Project.IpTv.Internal.Tools.ChannelLogos
             foreach (var data in list)
             {
                 imgListLocalLogos.Images.Add(data.Key, data.Value);
+                data.Value.Dispose();
             } // foreach
 
             progressLocal.Value = e.ProgressPercentage;
