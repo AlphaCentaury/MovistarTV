@@ -58,7 +58,7 @@ All rights reserved, except those granted by the governing license of this softw
       <Mapping serviceName="579" logo="nickelodeon" />
       <Mapping serviceName="581" logo="vh1" />
       <Mapping serviceName="582" logo="intereconomia" />
-      <Mapping serviceName="597" logo="movistarplus" />
+      <Mapping serviceName="597" logo="movistarplus" remarks ="Canal inicial" />
       <Mapping serviceName="657" logo="discovery_max" />
       <Mapping serviceName="663" logo="divinity" />
       <Mapping serviceName="697" logo="crimen-investigacion" />
@@ -117,7 +117,7 @@ All rights reserved, except those granted by the governing license of this softw
       <Mapping serviceName="999" logo="hd_fox" />
       <Mapping serviceName="1019" logo="panda" />
       <Mapping serviceName="1039" logo="sundance" />
-      <Mapping serviceName="1040" logo="movistar_series" />
+      <Mapping serviceName="1040" logo="movistarplus_tematicos_series" remarks="Canales de series" />
       <Mapping serviceName="1061" logo="cplus_ligacampeones" />
       <Mapping serviceName="1063" logo="cplus_liga_2" remarks="C+ Liga 2 A" />
       <Mapping serviceName="1081" logo="cplus_1" />
@@ -272,7 +272,7 @@ All rights reserved, except those granted by the governing license of this softw
       <Mapping serviceName="2305" logo="hd_movistar_generico" />
       <Mapping serviceName="2306" logo="hd_movistar_generico" />
       <Mapping serviceName="2307" logo="hd_movistar_generico" />
-      <Mapping serviceName="2383" logo="hd_movistar_series" />
+      <Mapping serviceName="2383" logo="hd_movistarplus_tematicos_series" remarks="Canales de series HD" />
       <Mapping serviceName="2423" logo="hd_cplus_1_bar" />
       <Mapping serviceName="2443" logo="hd_cplus_1_bar" />
       <Mapping serviceName="2463" logo="orbe21" />
@@ -289,10 +289,10 @@ All rights reserved, except those granted by the governing license of this softw
       <Mapping serviceName="2533" logo="mtv_spain" />
       <Mapping serviceName="2543" logo="hd_tve_1" remarks="La 1 HD" />
       <Mapping serviceName="2544" logo="hd_tve_teledeporte" remarks="Teledeporte HD" />
-      <Mapping serviceName="2603" logo="movistar_deportes" remarks="Movistar Deportes" />
-      <Mapping serviceName="2604" logo="movistar_cine" remarks="Movistar Cine" />
-      <Mapping serviceName="2607" logo="hd_movistar_deportes" remarks="Movistar Deportes HD" />
-      <Mapping serviceName="2608" logo="hd_movistar_cine" remarks="Movistar Cine HD" />
+      <Mapping serviceName="2603" logo="movistarplus_tematicos_deportes" remarks="Canales de deportes" />
+      <Mapping serviceName="2604" logo="movistarplus_tematicos_cine" remarks="Canales de cine" />
+      <Mapping serviceName="2607" logo="hd_movistarplus_tematicos_deportes" remarks="Canales de deportes HD" />
+      <Mapping serviceName="2608" logo="hd_movistarplus_tematicos_cine" remarks="Canales de cine HD" />
       <Mapping serviceName="2644" logo="movistar_generico" remarks="Contingencia SD2" />
       <Mapping serviceName="2645" logo="movistar_generico" remarks="Contingencia SD3" />
       <Mapping serviceName="2646" logo="hd_movistar_generico" remarks="Contingencia HD1" />
@@ -378,6 +378,7 @@ All rights reserved, except those granted by the governing license of this softw
       <Mapping serviceName="3043" logo="movistar_generico" remarks="Promocional Virtual" />
       <Mapping serviceName="3044" logo="hd_movistar_generico" remarks="Canal Distribuidores HD" />
       <Mapping serviceName="3063" logo="hd_realmadridtv" remarks="Real Madrid TV HD" />
+      <Mapping serviceName="3103" logo="hd_movistarplus" remarks ="Canal inicial HD" />
     </Domain>
     <Domain name="dem_1.imagenio.es" redirectDomain="imagenio.es">
       <Mapping serviceName="56" logo="autonomico_cataluna" remarks="TV3" />
