@@ -139,6 +139,7 @@
     <Compile Include="UiBroadcastService.cs" />
     <Compile Include="UiProviderDiscovery.cs" />
     <Compile Include="UiServiceProvider.cs" />
+    <Compile Include="UiServicesLogicalNumbers.cs" />
     <Compile Include="Utils.cs" />
   </ItemGroup>
   <ItemGroup>

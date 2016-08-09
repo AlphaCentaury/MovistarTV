@@ -6,6 +6,7 @@ using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Linq;
 using System.Xml.Serialization;
 
 namespace Etsi.Ts102034.v010501.XmlSerialization.PackageDiscovery
@@ -26,5 +27,18 @@ namespace Etsi.Ts102034.v010501.XmlSerialization.PackageDiscovery
 
         [XmlElement("PackageDiscovery")]
         public PackagedServices[] PackageDiscovery;
+
+        /// <summary>
+        /// Returns all packages of all PackageDiscoveries in a linear fashion
+        /// </summary>
+        /// <returns>Inemerable of all packages</returns>
+        public IEnumerable<Package> GetPackages()
+        {
+            var packages = from discovery in PackageDiscovery
+                           from package in discovery.Packages
+                           select package;
+
+            return packages;
+        } // GetPackages
     } // class BroadcastDiscoveryRoot
 } // namespace

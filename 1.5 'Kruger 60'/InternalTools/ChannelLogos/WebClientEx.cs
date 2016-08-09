@@ -41,16 +41,9 @@ namespace Project.IpTv.Internal.Tools.ChannelLogos
 
         protected override WebResponse GetWebResponse(WebRequest request)
         {
-            try
-            {
-                WebResponse response = base.GetWebResponse(request);
-                ReadCookies(response);
-                return response;
-            }
-            catch
-            {
-                throw;
-            }
+            WebResponse response = base.GetWebResponse(request);
+            ReadCookies(response);
+            return response;
         }
 
         private void ReadCookies(WebResponse r)

@@ -41,6 +41,7 @@
             this.labelStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.progressLocal = new System.Windows.Forms.ToolStripProgressBar();
             this.progressWeb = new System.Windows.Forms.ToolStripProgressBar();
+            this.checkWebLogos = new System.Windows.Forms.CheckBox();
             ChannelLocal = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             ChannelWeb = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.splitContainer1.Panel1.SuspendLayout();
@@ -172,11 +173,24 @@
             this.progressWeb.Overflow = System.Windows.Forms.ToolStripItemOverflow.Never;
             this.progressWeb.Size = new System.Drawing.Size(75, 16);
             // 
+            // checkWebLogos
+            // 
+            this.checkWebLogos.AutoSize = true;
+            this.checkWebLogos.Checked = true;
+            this.checkWebLogos.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkWebLogos.Location = new System.Drawing.Point(244, 17);
+            this.checkWebLogos.Name = "checkWebLogos";
+            this.checkWebLogos.Size = new System.Drawing.Size(135, 17);
+            this.checkWebLogos.TabIndex = 3;
+            this.checkWebLogos.Text = "Download official logos";
+            this.checkWebLogos.UseVisualStyleBackColor = true;
+            // 
             // FormLogos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(484, 396);
+            this.Controls.Add(this.checkWebLogos);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.buttonLoad);
             this.Controls.Add(this.splitContainer1);
@@ -205,6 +219,7 @@
         private System.Windows.Forms.ToolStripStatusLabel labelStatus;
         private System.Windows.Forms.ToolStripProgressBar progressLocal;
         private System.Windows.Forms.ToolStripProgressBar progressWeb;
+        private System.Windows.Forms.CheckBox checkWebLogos;
     }
 }
 
