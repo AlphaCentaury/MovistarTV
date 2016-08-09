@@ -3,18 +3,24 @@
 
 using Etsi.Ts102034.v010501.XmlSerialization;
 using Etsi.Ts102034.v010501.XmlSerialization.ProviderDiscovery;
+using Project.IpTv.Common.Telemetry;
 using Project.IpTv.UiServices.Common.Forms;
 using Project.IpTv.UiServices.Configuration;
 using Project.IpTv.UiServices.Configuration.Logos;
 using Project.IpTv.UiServices.Discovery;
 using Project.IpTv.UiServices.DvbStpClient;
+using Project.IpTv.UiServices.Forms;
 using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Net;
+using System.Text;
 using System.Windows.Forms;
 
-namespace Project.IpTv.Internal.Tools.ChannelLogos
+namespace Project.IpTv.UiServices.Forms
 {
     public partial class SelectProviderDialog : CommonBaseForm
     {
@@ -29,7 +35,7 @@ namespace Project.IpTv.Internal.Tools.ChannelLogos
 
         protected override void OnExceptionThrown(object sender, CommonBaseFormExceptionThrownEventArgs e)
         {
-            Program.HandleException(sender as IWin32Window, e.Message, e.Exception);
+            HandleException(e.Message, e.Exception);
         } // OnExceptionThrown
 
         #endregion
@@ -75,6 +81,8 @@ namespace Project.IpTv.Internal.Tools.ChannelLogos
 
         private void SelectProviderDialog_Load_Implementation(object sender, EventArgs e)
         {
+            BasicGoogleTelemetry.SendScreenHit(this);
+
             if (SelectedServiceProvider == null)
             {
                 SelectedIndexChanged();
@@ -93,7 +101,7 @@ namespace Project.IpTv.Internal.Tools.ChannelLogos
 
             using (var dlg = new PropertiesDialog()
             {
-                Caption = "Properties.Texts.SPProperties",
+                Caption = Properties.DiscoveryTexts.SPProperties,
                 ItemProperties = SelectedServiceProvider.DumpProperties(),
                 Description = SelectedServiceProvider.DisplayName,
                 ItemIcon = SelectedServiceProvider.Logo.GetImage(LogoSize.Size64, true),
@@ -105,9 +113,9 @@ namespace Project.IpTv.Internal.Tools.ChannelLogos
 
         #endregion
 
-        public static UiServiceProvider GetLastUserSelectedProvider()
+        public static UiServiceProvider GetLastUserSelectedProvider(string lastSelectedServiceProvider)
         {
-            string lastSelectedProvider = null; //Properties.Settings.Default.LastSelectedServiceProvider;
+            var lastSelectedProvider = lastSelectedServiceProvider;
             if (lastSelectedProvider == null) return null;
 
             var baseIpAddress = AppUiConfiguration.Current.ContentProvider.Bootstrap.MulticastAddress;
@@ -147,14 +155,14 @@ namespace Project.IpTv.Internal.Tools.ChannelLogos
                             SegmentId = null, // accept any segment
                             MulticastAddress = IPAddress.Parse(baseIpAddress),
                             MulticastPort = basePort,
-                            Description = "Properties.Texts.SPObtainingList",
-                            DescriptionParsing = "Properties.Texts.SPParsingList",
+                            Description = Properties.DiscoveryTexts.SPObtainingList,
+                            DescriptionParsing = Properties.DiscoveryTexts.SPParsingList,
                             PayloadDataType = typeof(ProviderDiscoveryRoot),
                             AllowXmlExtraWhitespace = false,
                             XmlNamespaceReplacer = NamespaceUnification.Replacer,
                         },
-                        TextUserCancelled = "Properties.Texts.UserCancelListRefresh",
-                        TextDownloadException = "Properties.Texts.SPListUnableRefresh",
+                        TextUserCancelled = Properties.DiscoveryTexts.UserCancelListRefresh,
+                        TextDownloadException = Properties.DiscoveryTexts.SPListUnableRefresh,
                     };
                     downloader.Download(this);
                     if (!downloader.IsOk) return false;
@@ -170,8 +178,7 @@ namespace Project.IpTv.Internal.Tools.ChannelLogos
             }
             catch (Exception ex)
             {
-                Program.HandleException(this, null,
-                    "Unable to obtain the list of service providers.", ex);
+                HandleException(Properties.DiscoveryTexts.SPListUnableRefresh, ex);
                 return false;
             } // try-catch
         } // LoadServiceProviderList

@@ -34,6 +34,12 @@ namespace Project.IpTv.UiServices.Common.Forms
         /// <remarks>Descendants who override this method should not call base.HandleException</remarks>
         protected virtual void OnExceptionThrown(object sender, CommonBaseFormExceptionThrownEventArgs e)
         {
+            var parent = ParentForm as CommonBaseForm;
+            if (parent != null)
+            {
+                parent.OnExceptionThrown(sender, e);
+            } // if
+
             if (ExceptionThrown != null)
             {
                 ExceptionThrown(this, e);

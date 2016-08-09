@@ -88,7 +88,7 @@ namespace Project.IpTv.UiServices.Forms
             // 
             resources.ApplyResources(this.buttonStart, "buttonStart");
             this.buttonStart.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.buttonStart.Image = global::Project.IpTv.UiServices.Forms.Properties.Resources.Action_Run_16x16;
+            this.buttonStart.Image = global::Project.IpTv.UiServices.Forms.Properties.CommonUiResources.Action_Run_16x16;
             this.buttonStart.Name = "buttonStart";
             this.buttonStart.UseVisualStyleBackColor = true;
             this.buttonStart.Click += new System.EventHandler(this.buttonStart_Click);
@@ -131,7 +131,7 @@ namespace Project.IpTv.UiServices.Forms
             // 
             resources.ApplyResources(this.buttonRequestCancel, "buttonRequestCancel");
             this.buttonRequestCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.buttonRequestCancel.Image = global::Project.IpTv.UiServices.Forms.Properties.Resources.Action_Cancel_16x16;
+            this.buttonRequestCancel.Image = global::Project.IpTv.UiServices.Forms.Properties.CommonUiResources.Action_Cancel_16x16;
             this.buttonRequestCancel.Name = "buttonRequestCancel";
             this.buttonRequestCancel.UseVisualStyleBackColor = true;
             // 
