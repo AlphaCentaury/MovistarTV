@@ -91,18 +91,25 @@ namespace Project.IpTv.Internal.Tools.ChannelLogos
             SelectProvider();
             if (SelectedServiceProvider == null) return;
 
+            LoadDisplayProgress("Loading channels");
+            if (!LoadBroadcastDiscovery(true))
+            {
+                LoadDisplayProgress("Error loading channels");
+                return;
+            } // if
+
             buttonLoad.Enabled = false;
             splitContainer1.Enabled = true;
-
-            LoadDisplayProgress("Loading channels");
-            LoadBroadcastDiscovery(true);
 
             LoadDisplayProgress("Creating list");
             FillList();
 
             LoadDisplayProgress("Loading logos");
             LoadLocalLogos();
-            LoadWebLogos();
+            if (checkWebLogos.Checked)
+            {
+                LoadWebLogos();
+            } // if
         } // buttonLoad_Click
 
         private InitializationResult LoadConfiguration()
@@ -220,18 +227,26 @@ namespace Project.IpTv.Internal.Tools.ChannelLogos
             } // try-catch
         } // LoadBroadcastDiscovery
 
-        private void GetLogicalNumbers(UiBroadcastDiscovery uiDiscovery, PackageDiscoveryRoot xmlPackage, bool hdPriority)
+        private void GetLogicalNumbers(UiBroadcastDiscovery uiDiscovery, PackageDiscoveryRoot packageDiscovery, bool highDefinitionPriority)
         {
-            var packages = from discovery in xmlPackage.PackageDiscovery
+            DumpPackagesInfo(uiDiscovery, packageDiscovery);
+
+            UiServicesLogicalNumbers.AssignLogicalNumbers(uiDiscovery, packageDiscovery, SelectedServiceProvider.DomainName, highDefinitionPriority);
+        }  // GetLogicalNumbers
+
+        private void DumpPackagesInfo(UiBroadcastDiscovery uiDiscovery, PackageDiscoveryRoot packageDiscovery)
+        {
+            var data = new Dictionary<UiBroadcastService, IList<KeyValuePair<string, string>>>(uiDiscovery.Services.Count);
+            foreach (var service in uiDiscovery.Services)
+            {
+                data.Add(service, new List<KeyValuePair<string, string>>());
+            } // foreach
+
+            var packages = from discovery in packageDiscovery.PackageDiscovery
                            from package in discovery.Packages
                            select package;
 
-            var sortedPackages = from package in packages
-                                 orderby package.Services.Count descending
-                                 select package;
-
-            // assign channel number (duplicated logical numbers may exist)
-            foreach (var package in sortedPackages)
+            foreach (var package in packages)
             {
                 foreach (var service in package.Services)
                 {
@@ -239,84 +254,62 @@ namespace Project.IpTv.Internal.Tools.ChannelLogos
                     var refService = uiDiscovery.TryGetService(fullName);
                     if (refService == null) continue;
 
-                    int number;
-                    string logical;
-                    if (int.TryParse(service.LogicalChannelNumber, out number))
-                    {
-                        logical = string.Format("{0:000}", number);
-                    }
-                    else
-                    {
-                        logical = service.LogicalChannelNumber;
-                    } // if-else
+                    data[refService].Add(new KeyValuePair<string, string>(service.LogicalChannelNumber, package.Id));
+                } // foreach service
+            } // foreach package
 
-                    if (refService.ServiceLogicalNumber == null)
-                    {
-                        refService.ServiceLogicalNumber = logical;
-                    }
-                    else if (refService.ServiceLogicalNumber != logical)
-                    {
-
-                    } // if-else
-                } // foreach
-            } // foreach
-
-            // renumber channels, to avoid duplicated logical numbers as much as possible
-            // if HD channels priority, the goal is to ensure HD services get the intended logical number and SD channels get 'Sxxx'
-            // otherwise, the goal is to ensure SD services get the intended logical number and HD channels get 'Hxxx'
-            // duplicated logical numbers will get 'Hxxx' or 'Sxxx' as appropriate
-            // renumbering algorithm will not take into account user-assigned logical numbers and no attemp will be made to correct
-            // colisions
-            var numbers = new Dictionary<string, UiBroadcastService>(uiDiscovery.Services.Count, StringComparer.CurrentCultureIgnoreCase);
-            var noNumber = 1;
-            foreach (var service in uiDiscovery.Services)
+            var filename = string.Format("{0}\\channels-numbers.csv", AppUiConfiguration.Current.Folders.Cache);
+            using (var file = new System.IO.StreamWriter(filename))
             {
-                UiBroadcastService existing;
-
-                if (service.ServiceLogicalNumber == null)
+                foreach (var entry in data)
                 {
-                    service.ServiceLogicalNumber = string.Format("X{0:000}", noNumber++);
-                    continue;
-                } // if
+                    file.WriteLine("\"{0}\";{1};;", entry.Key.ServiceName, entry.Key.DisplayName);
+                    foreach (var number in entry.Value)
+                    {
+                        file.WriteLine(";;{0};\"{1}\"", number.Key, number.Value);
+                    } // foreach
+                } // foreach entry
+            } // using file
 
-                if (!numbers.TryGetValue(service.ServiceLogicalNumber, out existing))
+            var numbers = new Dictionary<string, IList<UiBroadcastService>>();
+
+            foreach (var package in packages)
+            {
+                foreach (var service in package.Services)
                 {
-                    // add
-                    numbers[service.ServiceLogicalNumber] = service;
-                }
-                else
+                    var fullName = service.TextualIdentifiers[0].ServiceName + "@" + SelectedServiceProvider.DomainName;
+                    var refService = uiDiscovery.TryGetService(fullName);
+                    IList<UiBroadcastService> list;
+
+                    if (!numbers.TryGetValue(service.LogicalChannelNumber, out list))
+                    {
+                        list = new List<UiBroadcastService>();
+                        numbers.Add(service.LogicalChannelNumber, list);
+                    } // if
+
+                    list.Add(refService);
+                } // foreach service
+            } // foreach package
+
+            filename = string.Format("{0}\\numbers-channels.csv", AppUiConfiguration.Current.Folders.Cache);
+            using (var file = new System.IO.StreamWriter(filename))
+            {
+                file.WriteLine("\"Logical\";");
+                foreach (var entry in numbers)
                 {
-                    bool assign;
-
-                    if (service.IsHighDefinitionTv == existing.IsHighDefinitionTv)
+                    file.WriteLine("{0}", entry.Key);
+                    foreach (var channel in entry.Value)
                     {
-                        assign = true;
-                    }
-                    else
-                    {
-                        assign = hdPriority ? service.IsStandardDefinitionTv : service.IsHighDefinitionTv;
-                    } // if-else
-
-                    if (assign)
-                    {
-                        var prefix = service.IsStandardDefinitionTv ? 'S' : 'H';
-                        service.ServiceLogicalNumber = prefix + service.ServiceLogicalNumber;
-                        numbers[service.ServiceLogicalNumber] = service;
-
-                    }
-                    else
-                    {
-                        var prefix = hdPriority ? 'S' : 'H';
-                        numbers[service.ServiceLogicalNumber] = service;
-                        if ((existing.ServiceLogicalNumber.Length > 0) && (existing.ServiceLogicalNumber[0] != prefix))
-                        {
-                            existing.ServiceLogicalNumber = prefix + existing.ServiceLogicalNumber;
-                        } // if
-                        numbers[existing.ServiceLogicalNumber] = existing;
-                    }
-                } // if-else
-            } // foreach
-        }  // GetLogicalNumbers
+                        file.WriteLine(";\"{0}\";{1};{2};\"{3}\";\"{4}\";{5}", channel.DisplayName,
+                            channel.IsHighDefinitionTv ? "HD" : null,
+                            (channel.ReplacementService != null) ? "~HD" : null,
+                            channel.ServiceName,
+                            (channel.ReplacementService == null) ? null : channel.ReplacementService.ServiceName,
+                            channel.ServiceType);
+                    } // foreach channel
+                } // foreach entry
+            } // using file
+        } // DumpPackagesInfo
 
         void FillList()
         {
@@ -328,7 +321,7 @@ namespace Project.IpTv.Internal.Tools.ChannelLogos
             {
                 var display = string.Format("{0} {1} ({2})", service.DisplayLogicalNumber, service.DisplayName, service.ServiceName);
                 listViewLocalLogos.Items.Add(display, service.Logo.Key);
-                listViewWebLogos.Items.Add(display, service.Logo.Key);
+                listViewWebLogos.Items.Add(display, "movistar+::" + service.ServiceName);
             } // foreach
         } // FillList
 
@@ -429,12 +422,11 @@ namespace Project.IpTv.Internal.Tools.ChannelLogos
             {
                 try
                 {
-                    var logo = service.Logo;
                     var data = client.DownloadData(string.Format("http://www-60.svc.imagenio.telefonica.net:2001/incoming/epg/MAY_1/channelLogo/NUX/{0}.jpg", service.ServiceName));
                     using (var memory = new System.IO.MemoryStream(data, false))
                     {
                         var img = new Bitmap(memory);
-                        list.Add(new KeyValuePair<string, Image>(logo.Key, img));
+                        list.Add(new KeyValuePair<string, Image>("movistar+::" + service.ServiceName, img));
                         count++;
                     } // using memory
 

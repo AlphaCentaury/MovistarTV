@@ -23,7 +23,6 @@ namespace Project.IpTv.UiServices.Discovery
     [XmlType(TypeName="UI-BroadcastService", Namespace=SerializationCommon.XmlNamespace)]
     public class UiBroadcastService
     {
-        private string fieldKey;
         private string fieldDisplayOriginalName;
         private string fieldDisplayShortName;
         private string fieldDisplayDescription;
@@ -42,13 +41,18 @@ namespace Project.IpTv.UiServices.Discovery
         {
         } // constructor
 
+        public static string GetKey(TextualIdentifier serviceIdentifier, string defaultDomainName)
+        {
+            return string.Format(Properties.InvariantTexts.FormatServiceProviderKey, serviceIdentifier.ServiceName, serviceIdentifier.DomainName?? defaultDomainName);
+        } // CreateKey
+
         public UiBroadcastService(IpService service, string providerDomainName)
         {
             if (service == null) throw new ArgumentNullException("IpService service");
 
             Data = service;
             DomainName = Data.TextualIdentifier.DomainName ?? providerDomainName;
-            Key = string.Format(Properties.InvariantTexts.FormatServiceProviderKey, ServiceName, DomainName);
+            Key = GetKey(service.TextualIdentifier, providerDomainName);
         } // constructor
 
         #region Data for UI display
@@ -278,19 +282,8 @@ namespace Project.IpTv.UiServices.Discovery
 
         public string Key
         {
-            get
-            {
-                if (fieldKey == null)
-                {
-                    fieldKey = string.Format(Properties.InvariantTexts.FormatServiceProviderKey, ServiceName, DomainName);
-                } // if
-
-                return fieldKey;
-            } // get
-            set
-            {
-                fieldKey = value;
-            } // set
+            get;
+            set;
         } // Key
 
         [DefaultValue(false)]
