@@ -136,7 +136,7 @@ namespace Project.IpTv.ChannelList
             */
 
             // load from cache, if available
-            SelectedServiceProvider = SelectProviderDialog.GetLastUserSelectedProvider();
+            SelectedServiceProvider = SelectProviderDialog.GetLastUserSelectedProvider(Properties.Settings.Default.LastSelectedServiceProvider);
             ServiceProviderChanged();
 
             // notify Splash Screeen the form has finished loading and is about to be shown

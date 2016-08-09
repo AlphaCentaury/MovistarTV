@@ -4,6 +4,7 @@ using Etsi.Ts102034.v010501.XmlSerialization.PackageDiscovery;
 using Project.IpTv.UiServices.Configuration;
 using Project.IpTv.UiServices.Discovery;
 using Project.IpTv.UiServices.DvbStpClient;
+using Project.IpTv.UiServices.Forms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
