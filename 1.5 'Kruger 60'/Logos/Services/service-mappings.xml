@@ -47,7 +47,7 @@ All rights reserved, except those granted by the governing license of this softw
       <Mapping serviceName="197" logo="bbc_world" />
       <Mapping serviceName="198" logo="tv5monde" />
       <Mapping serviceName="338" logo="eurosport_2" />
-      <Mapping serviceName="339" logo="cplus_liga" />
+      <Mapping serviceName="339" logo="movistar_generico_futbol" />
       <Mapping serviceName="340" logo="a-and-e" />
       <Mapping serviceName="341" logo="solmusica" />
       <Mapping serviceName="342" logo="cnni" />
@@ -102,7 +102,7 @@ All rights reserved, except those granted by the governing license of this softw
       <Mapping serviceName="884" logo="energy" />
       <Mapping serviceName="886" logo="ltc" />
       <Mapping serviceName="891" logo="telesur" />
-      <Mapping serviceName="898" logo="hd_cplus_liga" />
+      <Mapping serviceName="898" logo="hd_movistar_generico_futbol" />
       <Mapping serviceName="900" logo="disney_cinemagic" />
       <Mapping serviceName="904" logo="hd_axn" />
       <Mapping serviceName="927" logo="hd_amc" />
@@ -118,31 +118,13 @@ All rights reserved, except those granted by the governing license of this softw
       <Mapping serviceName="1019" logo="panda" />
       <Mapping serviceName="1039" logo="sundance" />
       <Mapping serviceName="1040" logo="movistarplus_tematicos_series" remarks="Canales de series" />
-      <Mapping serviceName="1061" logo="cplus_ligacampeones" />
-      <Mapping serviceName="1063" logo="cplus_liga_2" remarks="C+ Liga 2 A" />
-      <Mapping serviceName="1161" logo="cplus_liga_2" remarks="C+ Liga 2 C" />
-      <Mapping serviceName="1162" logo="cplus_liga_2" remarks="C+ Liga 2 D" />
       <Mapping serviceName="1214" logo="hd_movistar_generico" />
       <Mapping serviceName="1221" logo="paramountchannel" />
-      <Mapping serviceName="1243" logo="hd_cplus_ligacampeones" />
-      <Mapping serviceName="1263" logo="movistar_generico_futbol" remarks="Europa League 6" />
-      <Mapping serviceName="1264" logo="movistar_generico_futbol" remarks="Euro 8" />
-      <Mapping serviceName="1276" logo="movistar_generico_futbol" remarks="Euro M1" />
-      <Mapping serviceName="1277" logo="movistar_generico_futbol" remarks="Europa League 2" />
-      <Mapping serviceName="1278" logo="movistar_generico_futbol" remarks="Europa League 3" />
-      <Mapping serviceName="1279" logo="movistar_generico_futbol" remarks="Europa League 4" />
-      <Mapping serviceName="1280" logo="movistar_generico_futbol" remarks="Europa League 5" />
-      <Mapping serviceName="1281" logo="cplus_liga_bar" />
+      <Mapping serviceName="1281" logo="hd_movistar_generico_futbol" />
       <Mapping serviceName="1283" logo="hd_movistar_generico_futbol" />
-      <Mapping serviceName="1303" logo="cplus_liga_2" remarks="C+ Liga 2 B" />
-      <Mapping serviceName="1343" logo="gol_2_internacional" />
       <Mapping serviceName="1363" logo="hd_movistar_generico" remarks="Series HD Pruebas" />
-      <Mapping serviceName="1403" logo="cplus_ligacampeones_bar" />
       <Mapping serviceName="1563" logo="natgeo_wild" />
-      <Mapping serviceName="1597" logo="cplus_ligacampeones" />
-      <Mapping serviceName="1603" logo="cplus_liga" />
-      <Mapping serviceName="1605" logo="cplus_liga_bar" />
-      <Mapping serviceName="1606" logo="cplus_ligacampeones_bar" />
+      <Mapping serviceName="1605" logo="movistar_generico_futbol" />
       <Mapping serviceName="1607" logo="hd_fox" />
       <Mapping serviceName="1608" logo="hd_axn" />
       <Mapping serviceName="1609" logo="hd_tnt" />
@@ -156,20 +138,15 @@ All rights reserved, except those granted by the governing license of this softw
       <Mapping serviceName="1617" logo="hd_viajar" />
       <Mapping serviceName="1618" logo="hd_odisea" />
       <Mapping serviceName="1619" logo="hd_natgeo_wild" />
-      <Mapping serviceName="1620" logo="hd_cplus_ligacampeones_2" />
-      <Mapping serviceName="1621" logo="hd_cplus_ligacampeones" />
-      <Mapping serviceName="1622" logo="hd_cplus_liga" />
+      <Mapping serviceName="1622" logo="hd_movistar_generico_futbol" />
       <Mapping serviceName="1623" logo="hd_eurosport" />
       <Mapping serviceName="1643" logo="hd_natgeo" />
       <Mapping serviceName="1663" logo="hd_calle13" />
-      <Mapping serviceName="1664" logo="hd_gol_2_internacional" />
-      <Mapping serviceName="1667" logo="hd_gol_2_internacional" />
       <Mapping serviceName="1683" logo="hd_unitel_classica" />
       <Mapping serviceName="1703" logo="hd_syfy" />
       <Mapping serviceName="1705" logo="hd_calle13" />
       <Mapping serviceName="1706" logo="calle13" />
       <Mapping serviceName="1743" logo="hd_movistar_generico" />
-      <Mapping serviceName="1763" logo="gol_2_internacional" />
       <Mapping serviceName="1805" logo="cnc_world" />
       <Mapping serviceName="1807" logo="i24news" />
       <Mapping serviceName="1823" logo="hd_cuatro" />
@@ -179,7 +156,7 @@ All rights reserved, except those granted by the governing license of this softw
       <Mapping serviceName="1843" logo="cuatro" />
       <Mapping serviceName="1844" logo="tele5" />
       <Mapping serviceName="1905" logo="playboy" />
-      <Mapping serviceName="1907" logo="movistar_generico_motogp" />
+      <Mapping serviceName="1907" logo="movistar_generico_f1" remarks="M. Fórmula 1" />
       <Mapping serviceName="1909" logo="movistar_generico_f1" />
       <Mapping serviceName="1911" logo="movistar_generico_f1" />
       <Mapping serviceName="1913" logo="movistar_generico_f1" />
@@ -197,11 +174,11 @@ All rights reserved, except those granted by the governing license of this softw
       <Mapping serviceName="1931" logo="movistar_generico_f1" />
       <Mapping serviceName="1932" logo="hd_movistar_generico" />
       <Mapping serviceName="1940" logo="movistar_generico" />
-      <Mapping serviceName="1964" logo="movistar_generico_motogp" />
+      <Mapping serviceName="1964" logo="movistar_motogp" remarks="M. MotoGP" />
       <Mapping serviceName="2024" logo="movistar_generico_f1" />
       <Mapping serviceName="2025" logo="hd_movistar_generico_f1" />
-      <Mapping serviceName="2064" logo="hd_movistar_generico_f1" />
-      <Mapping serviceName="2065" logo="hd_movistar_generico_motogp" />
+      <Mapping serviceName="2064" logo="hd_movistar_f1" />
+      <Mapping serviceName="2065" logo="hd_movistar_motogp" />
       <Mapping serviceName="2084" logo="hd_movistar_generico_f1" />
       <Mapping serviceName="2085" logo="hd_movistar_generico_f1" />
       <Mapping serviceName="2086" logo="hd_movistar_generico_f1" />
@@ -300,48 +277,45 @@ All rights reserved, except those granted by the governing license of this softw
       <Mapping serviceName="2764" logo="autonomico_cataluna_3-24" remarks="3/24" />
       <Mapping serviceName="2783" logo="movistar_generico" remarks="PRUEBAS DRM 2" />
       <Mapping serviceName="2784" logo="hd_movistar_generico" remarks="PRUEBAS DRM 2 HD" />
-      <Mapping serviceName="2803" logo="movistar_#0" remarks="CANAL+" />
+      <Mapping serviceName="2803" logo="movistar_#0" remarks="movistar" />
       <Mapping serviceName="2804" logo="movistar_series" remarks="movistar Series" />
       <Mapping serviceName="2807" logo="movistar_series_xtra" remarks="movistar Series Xtra" />
-      <Mapping serviceName="2809" logo="cplus_deportes" remarks="CANAL+ Deportes" />
-      <Mapping serviceName="2810" logo="cplus_deportes_2" remarks="CANAL+ Deportes 2" />
-      <Mapping serviceName="2811" logo="cplus_golf" remarks="CANAL+ Golf" />
+      <Mapping serviceName="2809" logo="movistar_deportes_1" remarks="movistar Deportes" />
+      <Mapping serviceName="2810" logo="movistar_deportes_2" remarks="movistar Deportes 2" />
+      <Mapping serviceName="2811" logo="movistar_golf" remarks="movistar Golf" />
       <Mapping serviceName="2812" logo="movistar_cine_estrenos" remarks="movistar Cine Estrenos" />
       <Mapping serviceName="2813" logo="movistar_cine_xtra" remarks="movistar Cine Xtra" />
       <Mapping serviceName="2814" logo="movistar_cine_accion" remarks="movistar Cine Acción" />
       <Mapping serviceName="2815" logo="movistar_cine_comedia" remarks="movistar Cine Comedia" />
       <Mapping serviceName="2816" logo="movistar_cine_dcine" remarks="movistar Cine DCine" />
       <Mapping serviceName="2817" logo="movistar_cine_cine_n" remarks="movistar Cine Cine Ñ" />
-      <Mapping serviceName="2818" logo="cplus_toros" remarks="CANAL+ Toros" />
-      <Mapping serviceName="2819" logo="cplus_cazapesca" remarks="Caza y Pesca" />
-      <Mapping serviceName="2820" logo="cplus_partidazo" remarks="CANAL+ Partidazo" />
-      <Mapping serviceName="2821" logo="cplus_liga_2" remarks="CANAL+ Liga 2" />
-      <Mapping serviceName="2822" logo="cplus_futbol" remarks="CANAL+ Fútbol" />
+      <Mapping serviceName="2818" logo="torostv" remarks="movistar Toros" />
+      <Mapping serviceName="2819" logo="caza-pesca" remarks="Caza y Pesca" />
+      <Mapping serviceName="2820" logo="movistar_partidazo" remarks="movistar Partidazo" />
+      <Mapping serviceName="2822" logo="movistar_futbol" remarks="movistar Fútbol" />
       <Mapping serviceName="2823" logo="hd_movistar_series" remarks="movistar Series HD" />
       <Mapping serviceName="2824" logo="hd_movistar_series_xtra" remarks="movistar Series Xtra HD" />
-      <Mapping serviceName="2825" logo="hd_cplus_deportes" remarks="CANAL+ Deportes HD" />
-      <Mapping serviceName="2826" logo="hd_cplus_deportes_2" remarks="CANAL+ Deportes 2 HD" />
-      <Mapping serviceName="2827" logo="hd_cplus_golf" remarks="CANAL+ Golf HD" />
+      <Mapping serviceName="2825" logo="hd_movistar_deportes_1" remarks="movistar Deportes HD" />
+      <Mapping serviceName="2826" logo="hd_movistar_deportes_2" remarks="movistar Deportes 2 HD" />
+      <Mapping serviceName="2827" logo="hd_movistar_golf" remarks="movistar Golf HD" />
       <Mapping serviceName="2828" logo="hd_movistar_cine_estrenos" remarks="movistar Cine Estrenos HD" />
       <Mapping serviceName="2829" logo="hd_movistar_cine_xtra" remarks="movistar Cine Xtra HD" />
       <Mapping serviceName="2830" logo="hd_movistar_cine_accion" remarks="movistar Cine Acción HD" />
       <Mapping serviceName="2831" logo="hd_movistar_cine_comedia" remarks="movistar Cine Comedia HD" />
       <Mapping serviceName="2832" logo="hd_movistar_cine_dcine" remarks="movistar Cine DCine HD" />
-      <Mapping serviceName="2833" logo="hd_cplus_toros" remarks="CANAL+ Toros HD" />
-      <Mapping serviceName="2837" logo="hd_cplus_liga_2" remarks="CANAL+ Liga 2 HD" />
-      <Mapping serviceName="2840" logo="hd_cplus_futbol" remarks="CANAL+ Fútbol HD" />
-      <Mapping serviceName="2841" logo="hd_cplus_partidazo_bar" remarks="CANAL+ Partidazo Bar HD" />
-      <Mapping serviceName="2842" logo="cplus_partidazo_bar" remarks="CANAL+ Partidazo Bar" />
+      <Mapping serviceName="2833" logo="hd_torostv" remarks="movistar Toros HD" />
+      <Mapping serviceName="2840" logo="hd_movistar_futbol" remarks="movistar Fútbol HD" />
+      <Mapping serviceName="2841" logo="hd_movistar_partidazo_bar" remarks="movistar Partidazo Bar HD" />
+      <Mapping serviceName="2842" logo="movistar_partidazo_bar" remarks="movistar Partidazo Bar" />
       <Mapping serviceName="2843" logo="realmadridtv" remarks="Real Madrid TV" />
-      <Mapping serviceName="2844" logo="hd_movistar_#0" remarks="CANAL+ HD" />
-      <Mapping serviceName="2845" logo="hd_cplus_partidazo" remarks="CANAL+ Partidazo HD" />
-      <Mapping serviceName="2846" logo="cplus_liga_multi" remarks="C+Liga Multi" />
+      <Mapping serviceName="2844" logo="hd_movistar_#0" remarks="movistar HD" />
+      <Mapping serviceName="2845" logo="hd_movistar_partidazo" remarks="movistar Partidazo HD" />
       <Mapping serviceName="2847" logo="movistar_deportes" remarks="Multideporte" />
       <Mapping serviceName="2863" logo="atresmedia_mega" remarks="MEGA" />
-      <Mapping serviceName="2883" logo="cplus_deportes" remarks="C+Deportes SD" />
+      <Mapping serviceName="2883" logo="movistar_deportes_1" remarks="C+Deportes SD" />
       <Mapping serviceName="2884" logo="movistar_generico" remarks="Pruebas DRM SD" />
       <Mapping serviceName="2885" logo="hd_movistar_generico" remarks="Pruebas DRM HD" />
-      <Mapping serviceName="2886" logo="hd_cplus_deportes_2" remarks="C+ Deportes 2 HD" />
+      <Mapping serviceName="2886" logo="hd_movistar_deportes_2" remarks="C+ Deportes 2 HD" />
       <Mapping serviceName="2903" logo="hd_movistar_generico" remarks="Contingencia HD2" />
       <Mapping serviceName="2923" logo="iberalia" remarks="Iberalia TV" />
       <Mapping serviceName="2924" logo="hd_iberalia" remarks="Iberalia TV HD" />
@@ -354,9 +328,9 @@ All rights reserved, except those granted by the governing license of this softw
       <Mapping serviceName="2968" logo="movistarplus_multifutbol" remarks="Multifútbol 7" />
       <Mapping serviceName="2969" logo="movistarplus_multifutbol" remarks="Multifútbol 2" />
       <Mapping serviceName="2970" logo="movistarplus_multideporte" remarks="Multideporte" />
-      <Mapping serviceName="2983" logo="cplus_partidazo_bar" remarks="C+Partidazo BAR" />
-      <Mapping serviceName="2984" logo="hd_cplus_partidazo_bar" remarks="C+Partidazo BAR HD" />
-      <Mapping serviceName="2989" logo="hd_cplus_liga_bar" remarks="C+Liga Loc.Pub. HD" />
+      <Mapping serviceName="2983" logo="movistar_generico_futbol" remarks="La Liga TV" />
+      <Mapping serviceName="2984" logo="hd_movistar_generico_futbol" remarks="La Liga TV HD" />
+      <Mapping serviceName="2989" logo="hd_movistar_generico_futbol" remarks="C+Liga Loc.Pub. HD" />
       <Mapping serviceName="3003" logo="movistarplus_multideporte" remarks="Multideporte 2" />
       <Mapping serviceName="3004" logo="movistarplus_multideporte" remarks="Multideporte 3" />
       <Mapping serviceName="3005" logo="movistarplus_multideporte" remarks="Multideporte 4" />
@@ -364,18 +338,31 @@ All rights reserved, except those granted by the governing license of this softw
       <Mapping serviceName="3007" logo="movistarplus_multideporte" remarks="Multideporte 6" />
       <Mapping serviceName="3008" logo="movistarplus_multideporte" remarks="Multideporte 7" />
       <Mapping serviceName="3009" logo="movistarplus_multideporte" remarks="Multideporte 8" />
-      <Mapping serviceName="3023" logo="cplus_partidazo_bar" remarks="C+Partidazo L.Pub." />
-      <Mapping serviceName="3024" logo="hd_cplus_partidazo_bar" remarks="C+Partidazo L.Pub.HD" />
-      <Mapping serviceName="3026" logo="hd_cplus_liga_bar" remarks="C+Liga L.Pub.HD" />
+      <Mapping serviceName="3023" logo="movistar_partidazo_bar" remarks="C+Partidazo L.Pub." />
+      <Mapping serviceName="3024" logo="hd_movistar_partidazo_bar" remarks="C+Partidazo L.Pub.HD" />
+      <Mapping serviceName="3026" logo="hd_movistar_generico_futbol" remarks="C+Liga L.Pub.HD" />
       <Mapping serviceName="3043" logo="movistar_generico" remarks="Promocional Virtual" />
       <Mapping serviceName="3044" logo="hd_movistar_generico" remarks="Canal Distribuidores HD" />
       <Mapping serviceName="3063" logo="hd_realmadridtv" remarks="Real Madrid TV HD" />
       <Mapping serviceName="3103" logo="hd_movistarplus" remarks ="Canal inicial HD" />
+      <Mapping serviceName="3124" logo="hd_movistar_generico" remarks ="Canal Distribuidores HD" />
+      <Mapping serviceName="3184" logo="movistar_generico_cine" remarks ="movistar+ Cine de Vacaciones" />
+      <Mapping serviceName="3185" logo="hd_movistar_generico_cine" remarks ="movistar+ Cine de Vacaciones HD" />
       <Mapping serviceName="3186" logo="atreseries" remarks ="A3S" />
+      <Mapping serviceName="3188" logo="hd_iberalia" remarks="Iberalia TV HD" />
       <Mapping serviceName="3223" logo="hd_atreseries" remarks ="A3S HD" />
       <Mapping serviceName="3363" logo="ewtn" remarks ="EWTN" />
+      <Mapping serviceName="3403" logo="movistar_f1" remarks ="movistar F1" />
+      <Mapping serviceName="3404" logo="hd_movistar_f1" remarks ="movistar F1 HD" />
+      <Mapping serviceName="3405" logo="movistar_motogp" remarks ="movistar MotoGP" />
+      <Mapping serviceName="3406" logo="hd_movistar_motogp" remarks ="movistar MotoGP HD" />
       <Mapping serviceName="3443" logo="hd_ten" remarks ="Ten (HD)" />
+      <Mapping serviceName="3503" logo="hd_caza-pesca" remarks="Caza y Pesca HD" />
+      <Mapping serviceName="3543" logo="autonomico_cataluna_8tv" remarks="8 TV" />
       <Mapping serviceName="3683" logo="libertad-digital-tv" remarks ="Libertad Digital TV" />
+      <Mapping serviceName="3763" logo="movistar_generico_futbol" remarks ="La Liga Bar TV" />
+      <Mapping serviceName="3764" logo="hd_movistar_generico_futbol" remarks ="La Liga Bar TV" />
+      <Mapping serviceName="3765" logo="hd_movistar_generico_futbol" remarks ="La Liga Bar TV HD" />
     </Domain>
     <Domain name="dem_1.imagenio.es" redirectDomain="imagenio.es">
       <Mapping serviceName="56" logo="autonomico_cataluna" remarks="TV3" />
