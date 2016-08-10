@@ -125,15 +125,15 @@ All rights reserved, except those granted by the governing license of this softw
       <Mapping serviceName="1214" logo="hd_movistar_generico" />
       <Mapping serviceName="1221" logo="paramountchannel" />
       <Mapping serviceName="1243" logo="hd_cplus_ligacampeones" />
-      <Mapping serviceName="1263" logo="movistar_futbol" remarks="Europa League 6" />
-      <Mapping serviceName="1264" logo="movistar_futbol" remarks="Euro 8" />
-      <Mapping serviceName="1276" logo="movistar_futbol" remarks="Euro M1" />
-      <Mapping serviceName="1277" logo="movistar_futbol" remarks="Europa League 2" />
-      <Mapping serviceName="1278" logo="movistar_futbol" remarks="Europa League 3" />
-      <Mapping serviceName="1279" logo="movistar_futbol" remarks="Europa League 4" />
-      <Mapping serviceName="1280" logo="movistar_futbol" remarks="Europa League 5" />
+      <Mapping serviceName="1263" logo="movistar_generico_futbol" remarks="Europa League 6" />
+      <Mapping serviceName="1264" logo="movistar_generico_futbol" remarks="Euro 8" />
+      <Mapping serviceName="1276" logo="movistar_generico_futbol" remarks="Euro M1" />
+      <Mapping serviceName="1277" logo="movistar_generico_futbol" remarks="Europa League 2" />
+      <Mapping serviceName="1278" logo="movistar_generico_futbol" remarks="Europa League 3" />
+      <Mapping serviceName="1279" logo="movistar_generico_futbol" remarks="Europa League 4" />
+      <Mapping serviceName="1280" logo="movistar_generico_futbol" remarks="Europa League 5" />
       <Mapping serviceName="1281" logo="cplus_liga_bar" />
-      <Mapping serviceName="1283" logo="hd_movistar_futbol" />
+      <Mapping serviceName="1283" logo="hd_movistar_generico_futbol" />
       <Mapping serviceName="1303" logo="cplus_liga_2" remarks="C+ Liga 2 B" />
       <Mapping serviceName="1343" logo="gol_2_internacional" />
       <Mapping serviceName="1363" logo="hd_movistar_generico" remarks="Series HD Pruebas" />
@@ -179,90 +179,90 @@ All rights reserved, except those granted by the governing license of this softw
       <Mapping serviceName="1843" logo="cuatro" />
       <Mapping serviceName="1844" logo="tele5" />
       <Mapping serviceName="1905" logo="playboy" />
-      <Mapping serviceName="1907" logo="movistar_motogp" />
-      <Mapping serviceName="1909" logo="movistar_f1" />
-      <Mapping serviceName="1911" logo="movistar_f1" />
-      <Mapping serviceName="1913" logo="movistar_f1" />
-      <Mapping serviceName="1915" logo="movistar_f1" />
-      <Mapping serviceName="1917" logo="movistar_f1" />
-      <Mapping serviceName="1919" logo="movistar_f1" />
+      <Mapping serviceName="1907" logo="movistar_generico_motogp" />
+      <Mapping serviceName="1909" logo="movistar_generico_f1" />
+      <Mapping serviceName="1911" logo="movistar_generico_f1" />
+      <Mapping serviceName="1913" logo="movistar_generico_f1" />
+      <Mapping serviceName="1915" logo="movistar_generico_f1" />
+      <Mapping serviceName="1917" logo="movistar_generico_f1" />
+      <Mapping serviceName="1919" logo="movistar_generico_f1" />
       <Mapping serviceName="1920" logo="hd_movistar_generico" />
       <Mapping serviceName="1921" logo="hd_movistar_generico" />
-      <Mapping serviceName="1922" logo="movistar_f1" />
-      <Mapping serviceName="1923" logo="movistar_f1" />
+      <Mapping serviceName="1922" logo="movistar_generico_f1" />
+      <Mapping serviceName="1923" logo="movistar_generico_f1" />
       <Mapping serviceName="1924" logo="hd_movistar_generico" />
-      <Mapping serviceName="1925" logo="movistar_f1" />
+      <Mapping serviceName="1925" logo="movistar_generico_f1" />
       <Mapping serviceName="1927" logo="hd_movistar_generico" />
-      <Mapping serviceName="1928" logo="movistar_f1" />
-      <Mapping serviceName="1931" logo="movistar_f1" />
+      <Mapping serviceName="1928" logo="movistar_generico_f1" />
+      <Mapping serviceName="1931" logo="movistar_generico_f1" />
       <Mapping serviceName="1932" logo="hd_movistar_generico" />
       <Mapping serviceName="1940" logo="movistar_generico" />
-      <Mapping serviceName="1964" logo="movistar_motogp" />
-      <Mapping serviceName="2024" logo="movistar_f1" />
-      <Mapping serviceName="2025" logo="hd_movistar_f1" />
-      <Mapping serviceName="2064" logo="hd_movistar_f1" />
-      <Mapping serviceName="2065" logo="hd_movistar_motogp" />
-      <Mapping serviceName="2084" logo="hd_movistar_f1" />
-      <Mapping serviceName="2085" logo="hd_movistar_f1" />
-      <Mapping serviceName="2086" logo="hd_movistar_f1" />
-      <Mapping serviceName="2087" logo="hd_movistar_f1" />
-      <Mapping serviceName="2088" logo="hd_movistar_f1" />
-      <Mapping serviceName="2090" logo="hd_movistar_f1" />
-      <Mapping serviceName="2091" logo="hd_movistar_f1" />
-      <Mapping serviceName="2094" logo="hd_movistar_f1" />
-      <Mapping serviceName="2096" logo="hd_movistar_f1" />
-      <Mapping serviceName="2097" logo="hd_movistar_f1" />
+      <Mapping serviceName="1964" logo="movistar_generico_motogp" />
+      <Mapping serviceName="2024" logo="movistar_generico_f1" />
+      <Mapping serviceName="2025" logo="hd_movistar_generico_f1" />
+      <Mapping serviceName="2064" logo="hd_movistar_generico_f1" />
+      <Mapping serviceName="2065" logo="hd_movistar_generico_motogp" />
+      <Mapping serviceName="2084" logo="hd_movistar_generico_f1" />
+      <Mapping serviceName="2085" logo="hd_movistar_generico_f1" />
+      <Mapping serviceName="2086" logo="hd_movistar_generico_f1" />
+      <Mapping serviceName="2087" logo="hd_movistar_generico_f1" />
+      <Mapping serviceName="2088" logo="hd_movistar_generico_f1" />
+      <Mapping serviceName="2090" logo="hd_movistar_generico_f1" />
+      <Mapping serviceName="2091" logo="hd_movistar_generico_f1" />
+      <Mapping serviceName="2094" logo="hd_movistar_generico_f1" />
+      <Mapping serviceName="2096" logo="hd_movistar_generico_f1" />
+      <Mapping serviceName="2097" logo="hd_movistar_generico_f1" />
       <Mapping serviceName="2128" logo="hd_eurosport" />
-      <Mapping serviceName="2163" logo="hd_movistar_f1" />
+      <Mapping serviceName="2163" logo="hd_movistar_generico_f1" />
       <Mapping serviceName="2184" logo="hd_movistar_generico" />
       <Mapping serviceName="2203" logo="hd_fox_life" />
       <Mapping serviceName="2204" logo="hd_tcm" />
       <Mapping serviceName="2205" logo="hd_discovery" />
       <Mapping serviceName="2224" logo="hd_comedycentral" />
-      <Mapping serviceName="2243" logo="movistar_motogp" remarks="Multicámara6 MotoGP" />
-      <Mapping serviceName="2244" logo="movistar_motogp" remarks="Multicámara5 MotoGP" />
-      <Mapping serviceName="2245" logo="movistar_motogp" remarks="Multicámara4 MotoGP" />
-      <Mapping serviceName="2246" logo="movistar_motogp" remarks="Miuticámara3 MotoGP" />
-      <Mapping serviceName="2247" logo="movistar_motogp" remarks="Multicámara2 MotoGP" />
-      <Mapping serviceName="2248" logo="movistar_motogp" remarks="Multicámara1 MotoGP" />
-      <Mapping serviceName="2249" logo="movistar_motogp" remarks="Multi1 MotoGP" />
-      <Mapping serviceName="2250" logo="movistar_motogp" remarks="Multi2 MotoGP" />
-      <Mapping serviceName="2251" logo="movistar_motogp" remarks="Multi3 MotoGP" />
-      <Mapping serviceName="2252" logo="movistar_motogp" remarks="Multi4 MotoGP" />
-      <Mapping serviceName="2253" logo="movistar_motogp" remarks="Multi5 MotoGP" />
-      <Mapping serviceName="2254" logo="movistar_motogp" remarks="Multi6 MotoGP" />
-      <Mapping serviceName="2255" logo="hd_movistar_motogp" remarks="Multicámara6 HD MotoGP" />
-      <Mapping serviceName="2256" logo="hd_movistar_motogp" remarks="Multicámara5 HD MotoGP" />
-      <Mapping serviceName="2257" logo="hd_movistar_motogp" remarks="Multicámara4 HD MotoGP" />
-      <Mapping serviceName="2258" logo="hd_movistar_motogp" remarks="Multicámara3 HD MotoGP" />
-      <Mapping serviceName="2259" logo="hd_movistar_motogp" remarks="Multicámara2 HD MotoGP" />
-      <Mapping serviceName="2260" logo="hd_movistar_motogp" remarks="Multicámara1 HD MotoGP" />
-      <Mapping serviceName="2261" logo="hd_movistar_motogp" />
-      <Mapping serviceName="2262" logo="hd_movistar_motogp" remarks="Multi2 HD MotoGP" />
-      <Mapping serviceName="2263" logo="hd_movistar_motogp" remarks="Multi3 HD MotoGP" />
-      <Mapping serviceName="2264" logo="hd_movistar_motogp" remarks="Multi4 HD MotoGP" />
-      <Mapping serviceName="2265" logo="hd_movistar_motogp" remarks="Multi5 HD MotoGP" />
-      <Mapping serviceName="2266" logo="hd_movistar_motogp" remarks="Multi6 HD MotoGP" />
-      <Mapping serviceName="2267" logo="movistar_futbol" />
-      <Mapping serviceName="2268" logo="hd_movistar_futbol" />
+      <Mapping serviceName="2243" logo="movistar_generico_motogp" remarks="Multicámara6 MotoGP" />
+      <Mapping serviceName="2244" logo="movistar_generico_motogp" remarks="Multicámara5 MotoGP" />
+      <Mapping serviceName="2245" logo="movistar_generico_motogp" remarks="Multicámara4 MotoGP" />
+      <Mapping serviceName="2246" logo="movistar_generico_motogp" remarks="Miuticámara3 MotoGP" />
+      <Mapping serviceName="2247" logo="movistar_generico_motogp" remarks="Multicámara2 MotoGP" />
+      <Mapping serviceName="2248" logo="movistar_generico_motogp" remarks="Multicámara1 MotoGP" />
+      <Mapping serviceName="2249" logo="movistar_generico_motogp" remarks="Multi1 MotoGP" />
+      <Mapping serviceName="2250" logo="movistar_generico_motogp" remarks="Multi2 MotoGP" />
+      <Mapping serviceName="2251" logo="movistar_generico_motogp" remarks="Multi3 MotoGP" />
+      <Mapping serviceName="2252" logo="movistar_generico_motogp" remarks="Multi4 MotoGP" />
+      <Mapping serviceName="2253" logo="movistar_generico_motogp" remarks="Multi5 MotoGP" />
+      <Mapping serviceName="2254" logo="movistar_generico_motogp" remarks="Multi6 MotoGP" />
+      <Mapping serviceName="2255" logo="hd_movistar_generico_motogp" remarks="Multicámara6 HD MotoGP" />
+      <Mapping serviceName="2256" logo="hd_movistar_generico_motogp" remarks="Multicámara5 HD MotoGP" />
+      <Mapping serviceName="2257" logo="hd_movistar_generico_motogp" remarks="Multicámara4 HD MotoGP" />
+      <Mapping serviceName="2258" logo="hd_movistar_generico_motogp" remarks="Multicámara3 HD MotoGP" />
+      <Mapping serviceName="2259" logo="hd_movistar_generico_motogp" remarks="Multicámara2 HD MotoGP" />
+      <Mapping serviceName="2260" logo="hd_movistar_generico_motogp" remarks="Multicámara1 HD MotoGP" />
+      <Mapping serviceName="2261" logo="hd_movistar_generico_motogp" />
+      <Mapping serviceName="2262" logo="hd_movistar_generico_motogp" remarks="Multi2 HD MotoGP" />
+      <Mapping serviceName="2263" logo="hd_movistar_generico_motogp" remarks="Multi3 HD MotoGP" />
+      <Mapping serviceName="2264" logo="hd_movistar_generico_motogp" remarks="Multi4 HD MotoGP" />
+      <Mapping serviceName="2265" logo="hd_movistar_generico_motogp" remarks="Multi5 HD MotoGP" />
+      <Mapping serviceName="2266" logo="hd_movistar_generico_motogp" remarks="Multi6 HD MotoGP" />
+      <Mapping serviceName="2267" logo="movistar_generico_futbol" />
+      <Mapping serviceName="2268" logo="hd_movistar_generico_futbol" />
       <Mapping serviceName="2269" logo="autonomico_vasco_sat" />
       <Mapping serviceName="2271" logo="autonomico_cataluna_sat" />
       <Mapping serviceName="2273" logo="autonomico_galicia_europa" />
       <Mapping serviceName="2275" logo="autonomico_andalucia_sat" />
       <Mapping serviceName="2277" logo="movistar_generico" remarks="Canal Distribuidores" />
-      <Mapping serviceName="2278" logo="hd_movistar_futbol" remarks="Qualifier 6 HD" />
+      <Mapping serviceName="2278" logo="hd_movistar_generico_futbol" remarks="Qualifier 6 HD" />
       <Mapping serviceName="2279" logo="mezzo" />
       <Mapping serviceName="2280" logo="hd_mezzo" />
-      <Mapping serviceName="2281" logo="movistar_futbol" remarks="Qualifier 8" />
-      <Mapping serviceName="2282" logo="hd_movistar_futbol" remarks="Qualifier 8 HD" />
-      <Mapping serviceName="2283" logo="movistar_futbol" remarks="Qualifier 9" />
-      <Mapping serviceName="2284" logo="hd_movistar_futbol" remarks="Qualifier 9 HD" />
-      <Mapping serviceName="2285" logo="movistar_futbol" remarks="Qualifier 10" />
-      <Mapping serviceName="2286" logo="hd_movistar_futbol" remarks="Qualifier 10 HD" />
-      <Mapping serviceName="2287" logo="movistar_futbol" remarks="Qualifier 11" />
-      <Mapping serviceName="2288" logo="hd_movistar_futbol" remarks="Qualifier 11 HD" />
-      <Mapping serviceName="2289" logo="movistar_futbol" remarks="Qualifier 12" />
-      <Mapping serviceName="2290" logo="hd_movistar_futbol" remarks="Qualifier 12 HD" />
+      <Mapping serviceName="2281" logo="movistar_generico_futbol" remarks="Qualifier 8" />
+      <Mapping serviceName="2282" logo="hd_movistar_generico_futbol" remarks="Qualifier 8 HD" />
+      <Mapping serviceName="2283" logo="movistar_generico_futbol" remarks="Qualifier 9" />
+      <Mapping serviceName="2284" logo="hd_movistar_generico_futbol" remarks="Qualifier 9 HD" />
+      <Mapping serviceName="2285" logo="movistar_generico_futbol" remarks="Qualifier 10" />
+      <Mapping serviceName="2286" logo="hd_movistar_generico_futbol" remarks="Qualifier 10 HD" />
+      <Mapping serviceName="2287" logo="movistar_generico_futbol" remarks="Qualifier 11" />
+      <Mapping serviceName="2288" logo="hd_movistar_generico_futbol" remarks="Qualifier 11 HD" />
+      <Mapping serviceName="2289" logo="movistar_generico_futbol" remarks="Qualifier 12" />
+      <Mapping serviceName="2290" logo="hd_movistar_generico_futbol" remarks="Qualifier 12 HD" />
       <Mapping serviceName="2303" logo="hd_movistar_generico" />
       <Mapping serviceName="2304" logo="hd_movistar_generico" />
       <Mapping serviceName="2305" logo="hd_movistar_generico" />
