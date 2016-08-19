@@ -118,8 +118,16 @@ All rights reserved, except those granted by the governing license of this softw
       <Mapping serviceName="1019" logo="panda" />
       <Mapping serviceName="1039" logo="sundance" />
       <Mapping serviceName="1040" logo="movistarplus_tematicos_series" remarks="Canales de series" />
+      <Mapping serviceName="1061" logo="bein_sports" remarks="050 beIN SPORTS" />
       <Mapping serviceName="1214" logo="hd_movistar_generico" />
       <Mapping serviceName="1221" logo="paramountchannel" />
+      <Mapping serviceName="1263" logo="bein_sports_max_6" remarks="189 beIN MAX 6" />
+      <Mapping serviceName="1264" logo="bein_sports_max_7" remarks="190 beIN MAX 7" />
+      <Mapping serviceName="1276" logo="bein_sports_max" remarks="051 beIN MAX" />
+      <Mapping serviceName="1277" logo="bein_sports_max_2" remarks="052 beIN MAX 2" />
+      <Mapping serviceName="1278" logo="bein_sports_max_3" remarks="186 beIN MAX 3" />
+      <Mapping serviceName="1279" logo="bein_sports_max_4" remarks="187 beIN MAX 4" />
+      <Mapping serviceName="1280" logo="bein_sports_max_5" remarks="188 beIN MAX 5" />
       <Mapping serviceName="1281" logo="hd_movistar_generico_futbol" />
       <Mapping serviceName="1283" logo="hd_movistar_generico_futbol" />
       <Mapping serviceName="1363" logo="hd_movistar_generico" remarks="Series HD Pruebas" />
@@ -138,6 +146,7 @@ All rights reserved, except those granted by the governing license of this softw
       <Mapping serviceName="1617" logo="hd_viajar" />
       <Mapping serviceName="1618" logo="hd_odisea" />
       <Mapping serviceName="1619" logo="hd_natgeo_wild" />
+      <Mapping serviceName="1621" logo="hd_bein_sports" remarks="050 beIN SPORTS HD" />
       <Mapping serviceName="1622" logo="hd_movistar_generico_futbol" />
       <Mapping serviceName="1623" logo="hd_eurosport" />
       <Mapping serviceName="1643" logo="hd_natgeo" />
@@ -351,6 +360,8 @@ All rights reserved, except those granted by the governing license of this softw
       <Mapping serviceName="3186" logo="atreseries" remarks ="A3S" />
       <Mapping serviceName="3188" logo="hd_iberalia" remarks="Iberalia TV HD" />
       <Mapping serviceName="3223" logo="hd_atreseries" remarks ="A3S HD" />
+      <Mapping serviceName="3263" logo="bein_sports_max_8" remarks="191 beIN MAX 8" />
+      <Mapping serviceName="3264" logo="hd_bein_sports_max" remarks="051 beIN MAX 1 HD" />
       <Mapping serviceName="3363" logo="ewtn" remarks ="EWTN" />
       <Mapping serviceName="3403" logo="movistar_f1" remarks ="movistar F1" />
       <Mapping serviceName="3404" logo="hd_movistar_f1" remarks ="movistar F1 HD" />
@@ -359,6 +370,15 @@ All rights reserved, except those granted by the governing license of this softw
       <Mapping serviceName="3443" logo="hd_ten" remarks ="Ten (HD)" />
       <Mapping serviceName="3503" logo="hd_caza-pesca" remarks="Caza y Pesca HD" />
       <Mapping serviceName="3543" logo="autonomico_cataluna_8tv" remarks="8 TV" />
+      <Mapping serviceName="3623" logo="bein_sports_laliga" remarks ="047 beIN LaLiga" />
+      <Mapping serviceName="3625" logo="bein_sports_laliga_1" remarks ="048 beIN LaLiga 1" />
+      <Mapping serviceName="3627" logo="bein_sports_laliga_2" remarks ="049 beIN LaLiga 2" />
+      <Mapping serviceName="3628" logo="bein_sports_laliga_3" remarks ="181 beIN LaLiga 3" />
+      <Mapping serviceName="3629" logo="bein_sports_laliga_4" remarks ="182 beIN LaLiga 4" />
+      <Mapping serviceName="3645" logo="hd_bein_sports_laliga_1" remarks ="048 beIN LaLiga 1 HD" />
+      <Mapping serviceName="3646" logo="hd_bein_sports_laliga_2" remarks ="049 beIN LaLiga 2 HD" />
+      <Mapping serviceName="3647" logo="hd_bein_sports_laliga_3" remarks ="181 beIN LaLiga 3 HD" />
+      <Mapping serviceName="3663" logo="hd_bein_sports_laliga" remarks ="047 beIN LaLiga HD" />
       <Mapping serviceName="3683" logo="libertad-digital-tv" remarks ="Libertad Digital TV" />
       <Mapping serviceName="3763" logo="movistar_generico_futbol" remarks ="La Liga Bar TV" />
       <Mapping serviceName="3764" logo="hd_movistar_generico_futbol" remarks ="La Liga Bar TV" />
