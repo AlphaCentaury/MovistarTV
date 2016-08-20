@@ -59,5 +59,15 @@ namespace Project.IpTv.Internal.Tools.ChannelLogos.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon IPTViewr_Tool {
+            get {
+                object obj = ResourceManager.GetObject("IPTViewr_Tool", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
     }
 }

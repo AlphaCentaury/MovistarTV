@@ -16,7 +16,7 @@ namespace Project.IpTv.Internal.Tools.ChannelLogos
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormLogos());
+            Application.Run(new FormStart());
         }
 
         internal static void HandleException(IWin32Window owner, string message, Exception ex)

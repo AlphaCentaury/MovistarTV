@@ -17,6 +17,7 @@
             {
                 components.Dispose();
             }
+            DoDispose(disposing);
             base.Dispose(disposing);
         }
 
@@ -28,11 +29,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.ColumnHeader ChannelLocal;
             System.Windows.Forms.ColumnHeader ChannelWeb;
-            this.imgListLocalLogos = new System.Windows.Forms.ImageList(this.components);
-            this.imgListWebLogos = new System.Windows.Forms.ImageList(this.components);
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.listViewLocalLogos = new System.Windows.Forms.ListView();
             this.listViewWebLogos = new System.Windows.Forms.ListView();
@@ -42,6 +40,11 @@
             this.progressLocal = new System.Windows.Forms.ToolStripProgressBar();
             this.progressWeb = new System.Windows.Forms.ToolStripProgressBar();
             this.checkWebLogos = new System.Windows.Forms.CheckBox();
+            this.comboLogoSize = new System.Windows.Forms.ComboBox();
+            this.checkFromCache = new System.Windows.Forms.CheckBox();
+            this.checkHighDefPriority = new System.Windows.Forms.CheckBox();
+            this.labelServiceProvider = new System.Windows.Forms.Label();
+            this.buttonSelectServiceProvider = new System.Windows.Forms.Button();
             ChannelLocal = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             ChannelWeb = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.splitContainer1.Panel1.SuspendLayout();
@@ -60,18 +63,6 @@
             ChannelWeb.Text = "Channel";
             ChannelWeb.Width = 190;
             // 
-            // imgListLocalLogos
-            // 
-            this.imgListLocalLogos.ColorDepth = System.Windows.Forms.ColorDepth.Depth32Bit;
-            this.imgListLocalLogos.ImageSize = new System.Drawing.Size(128, 128);
-            this.imgListLocalLogos.TransparentColor = System.Drawing.Color.Transparent;
-            // 
-            // imgListWebLogos
-            // 
-            this.imgListWebLogos.ColorDepth = System.Windows.Forms.ColorDepth.Depth32Bit;
-            this.imgListWebLogos.ImageSize = new System.Drawing.Size(128, 128);
-            this.imgListWebLogos.TransparentColor = System.Drawing.Color.Transparent;
-            // 
             // splitContainer1
             // 
             this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -89,9 +80,9 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.listViewWebLogos);
             this.splitContainer1.Panel2MinSize = 75;
-            this.splitContainer1.Size = new System.Drawing.Size(460, 328);
+            this.splitContainer1.Size = new System.Drawing.Size(460, 312);
             this.splitContainer1.SplitterDistance = 228;
-            this.splitContainer1.TabIndex = 0;
+            this.splitContainer1.TabIndex = 5;
             // 
             // listViewLocalLogos
             // 
@@ -100,11 +91,9 @@
             this.listViewLocalLogos.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listViewLocalLogos.FullRowSelect = true;
             this.listViewLocalLogos.HideSelection = false;
-            this.listViewLocalLogos.LargeImageList = this.imgListLocalLogos;
             this.listViewLocalLogos.Location = new System.Drawing.Point(0, 0);
             this.listViewLocalLogos.Name = "listViewLocalLogos";
-            this.listViewLocalLogos.Size = new System.Drawing.Size(228, 328);
-            this.listViewLocalLogos.SmallImageList = this.imgListLocalLogos;
+            this.listViewLocalLogos.Size = new System.Drawing.Size(228, 312);
             this.listViewLocalLogos.TabIndex = 0;
             this.listViewLocalLogos.UseCompatibleStateImageBehavior = false;
             this.listViewLocalLogos.View = System.Windows.Forms.View.Tile;
@@ -117,11 +106,9 @@
             this.listViewWebLogos.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listViewWebLogos.FullRowSelect = true;
             this.listViewWebLogos.HideSelection = false;
-            this.listViewWebLogos.LargeImageList = this.imgListWebLogos;
             this.listViewWebLogos.Location = new System.Drawing.Point(0, 0);
             this.listViewWebLogos.Name = "listViewWebLogos";
-            this.listViewWebLogos.Size = new System.Drawing.Size(228, 328);
-            this.listViewWebLogos.SmallImageList = this.imgListWebLogos;
+            this.listViewWebLogos.Size = new System.Drawing.Size(228, 312);
             this.listViewWebLogos.TabIndex = 0;
             this.listViewWebLogos.UseCompatibleStateImageBehavior = false;
             this.listViewWebLogos.View = System.Windows.Forms.View.Tile;
@@ -131,8 +118,8 @@
             // 
             this.buttonLoad.Location = new System.Drawing.Point(12, 12);
             this.buttonLoad.Name = "buttonLoad";
-            this.buttonLoad.Size = new System.Drawing.Size(125, 25);
-            this.buttonLoad.TabIndex = 1;
+            this.buttonLoad.Size = new System.Drawing.Size(100, 25);
+            this.buttonLoad.TabIndex = 0;
             this.buttonLoad.Text = "Load logos";
             this.buttonLoad.UseVisualStyleBackColor = true;
             this.buttonLoad.Click += new System.EventHandler(this.buttonLoad_Click);
@@ -143,10 +130,10 @@
             this.labelStatus,
             this.progressLocal,
             this.progressWeb});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 374);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 389);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(484, 22);
-            this.statusStrip1.TabIndex = 2;
+            this.statusStrip1.TabIndex = 8;
             this.statusStrip1.Text = "statusStrip1";
             // 
             // labelStatus
@@ -178,24 +165,94 @@
             this.checkWebLogos.AutoSize = true;
             this.checkWebLogos.Checked = true;
             this.checkWebLogos.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkWebLogos.Location = new System.Drawing.Point(244, 17);
+            this.checkWebLogos.Location = new System.Drawing.Point(224, 17);
             this.checkWebLogos.Name = "checkWebLogos";
-            this.checkWebLogos.Size = new System.Drawing.Size(135, 17);
-            this.checkWebLogos.TabIndex = 3;
-            this.checkWebLogos.Text = "Download official logos";
+            this.checkWebLogos.Size = new System.Drawing.Size(86, 17);
+            this.checkWebLogos.TabIndex = 2;
+            this.checkWebLogos.Text = "Official logos";
             this.checkWebLogos.UseVisualStyleBackColor = true;
+            // 
+            // comboLogoSize
+            // 
+            this.comboLogoSize.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboLogoSize.FormattingEnabled = true;
+            this.comboLogoSize.Items.AddRange(new object[] {
+            "Small (32x32)",
+            "Normal (48x48)",
+            "Medium (64x64)",
+            "Large (96x96)",
+            "Extra Large (128x128)",
+            "Huge (256x256)"});
+            this.comboLogoSize.Location = new System.Drawing.Point(118, 15);
+            this.comboLogoSize.Name = "comboLogoSize";
+            this.comboLogoSize.Size = new System.Drawing.Size(100, 21);
+            this.comboLogoSize.TabIndex = 1;
+            this.comboLogoSize.SelectedIndexChanged += new System.EventHandler(this.comboLogoSize_SelectedIndexChanged);
+            // 
+            // checkFromCache
+            // 
+            this.checkFromCache.AutoSize = true;
+            this.checkFromCache.Checked = true;
+            this.checkFromCache.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkFromCache.Location = new System.Drawing.Point(316, 17);
+            this.checkFromCache.Name = "checkFromCache";
+            this.checkFromCache.Size = new System.Drawing.Size(82, 17);
+            this.checkFromCache.TabIndex = 3;
+            this.checkFromCache.Text = "From cache";
+            this.checkFromCache.UseVisualStyleBackColor = true;
+            this.checkFromCache.CheckedChanged += new System.EventHandler(this.checkFromCache_CheckedChanged);
+            // 
+            // checkHighDefPriority
+            // 
+            this.checkHighDefPriority.AutoSize = true;
+            this.checkHighDefPriority.Checked = true;
+            this.checkHighDefPriority.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkHighDefPriority.Enabled = false;
+            this.checkHighDefPriority.Location = new System.Drawing.Point(404, 17);
+            this.checkHighDefPriority.Name = "checkHighDefPriority";
+            this.checkHighDefPriority.Size = new System.Drawing.Size(62, 17);
+            this.checkHighDefPriority.TabIndex = 4;
+            this.checkHighDefPriority.Text = "HD prio";
+            this.checkHighDefPriority.UseVisualStyleBackColor = true;
+            // 
+            // labelServiceProvider
+            // 
+            this.labelServiceProvider.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelServiceProvider.AutoSize = true;
+            this.labelServiceProvider.Location = new System.Drawing.Point(93, 367);
+            this.labelServiceProvider.Name = "labelServiceProvider";
+            this.labelServiceProvider.Size = new System.Drawing.Size(189, 13);
+            this.labelServiceProvider.TabIndex = 7;
+            this.labelServiceProvider.Text = "No service provider has been selected";
+            // 
+            // buttonSelectServiceProvider
+            // 
+            this.buttonSelectServiceProvider.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.buttonSelectServiceProvider.Location = new System.Drawing.Point(12, 361);
+            this.buttonSelectServiceProvider.Name = "buttonSelectServiceProvider";
+            this.buttonSelectServiceProvider.Size = new System.Drawing.Size(75, 25);
+            this.buttonSelectServiceProvider.TabIndex = 6;
+            this.buttonSelectServiceProvider.Text = "Select...";
+            this.buttonSelectServiceProvider.UseVisualStyleBackColor = true;
+            this.buttonSelectServiceProvider.Click += new System.EventHandler(this.buttonSelectServiceProvider_Click);
             // 
             // FormLogos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(484, 396);
+            this.ClientSize = new System.Drawing.Size(484, 411);
+            this.Controls.Add(this.buttonSelectServiceProvider);
+            this.Controls.Add(this.labelServiceProvider);
+            this.Controls.Add(this.checkHighDefPriority);
+            this.Controls.Add(this.checkFromCache);
+            this.Controls.Add(this.comboLogoSize);
             this.Controls.Add(this.checkWebLogos);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.buttonLoad);
             this.Controls.Add(this.splitContainer1);
             this.Name = "FormLogos";
-            this.Text = "Channel logos";
+            this.Text = "Grid - Channel logos";
             this.Load += new System.EventHandler(this.FormLogos_Load);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
@@ -208,9 +265,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.ImageList imgListLocalLogos;
-        private System.Windows.Forms.ImageList imgListWebLogos;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.ListView listViewLocalLogos;
         private System.Windows.Forms.ListView listViewWebLogos;
@@ -220,6 +274,11 @@
         private System.Windows.Forms.ToolStripProgressBar progressLocal;
         private System.Windows.Forms.ToolStripProgressBar progressWeb;
         private System.Windows.Forms.CheckBox checkWebLogos;
+        private System.Windows.Forms.ComboBox comboLogoSize;
+        private System.Windows.Forms.CheckBox checkFromCache;
+        private System.Windows.Forms.CheckBox checkHighDefPriority;
+        private System.Windows.Forms.Label labelServiceProvider;
+        private System.Windows.Forms.Button buttonSelectServiceProvider;
     }
 }
 
