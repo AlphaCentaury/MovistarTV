@@ -262,13 +262,13 @@ namespace Project.IpTv.UiServices.Configuration
             Cultures = GetUiCultures();
 
             // Record tasks
-            Folders.RecordTasks = Path.Combine(Folders.Base, "RecordTasks");
+            Folders.RecordTasks = Path.Combine(Folders.Base, Properties.InvariantTexts.FolderRecordTasks);
 
             // Cache
-            Folders.Cache = Path.Combine(Folders.Base, "Cache");
+            Folders.Cache = Path.Combine(Folders.Base, Properties.InvariantTexts.FolderCache);
 
             // Logos
-            Folders.Logos = Path.Combine(Folders.Base, "Logos");
+            Folders.Logos = new AppUiConfigurationFolders.FolderLogos(Path.Combine(Folders.Base, Properties.InvariantTexts.FolderLogosRoot));
 
             var descriptionServiceType = new Dictionary<string, string>();
             descriptionServiceType.Add("1", Properties.Texts.DvbServiceTypeDescription_01); // SD TV
@@ -299,12 +299,8 @@ namespace Project.IpTv.UiServices.Configuration
 
             Cache = new CacheManager(Folders.Cache);
 
-            ProviderLogoMappings = new ProviderLogoMappings(
-                Path.Combine(Folders.Logos, Properties.InvariantTexts.FileLogoProviderMappings));
-
-            ServiceLogoMappings = new ServiceLogoMappings(
-                Path.Combine(Folders.Logos, Properties.InvariantTexts.FileLogoDomainMappings),
-                Path.Combine(Folders.Logos, Properties.InvariantTexts.FileLogoServiceMappings));
+            ProviderLogoMappings = new ProviderLogoMappings(Folders.Logos.FileProviderMappings);
+            ServiceLogoMappings = new ServiceLogoMappings(Folders.Logos.FileServiceDomainMappings, Folders.Logos.FileServiceMappings);
 
             return InitializationResult.Ok;
         } // LoadBasicConfiguration
@@ -373,8 +369,8 @@ namespace Project.IpTv.UiServices.Configuration
 #if DEBUG
                     string installFolder = null;
 #else
-                    var installFolder = root.GetValue(InvariantTexts.RegistryValue_Folders_Install);
-                    if (installFolder == null) return string.Format(Texts.AppConfigRegistryMissingValue, fullKeyPath, InvariantTexts.RegistryValue_Folders_Install);
+                    var installFolder = root.GetValue(InvariantTexts.RegistryValue_Folder_Install);
+                    if (installFolder == null) return string.Format(Texts.AppConfigRegistryMissingValue, fullKeyPath, InvariantTexts.RegistryValue_Folder_Install);
 #endif
                     Folders.Install = installFolder as string;
                 } // using root
@@ -398,7 +394,7 @@ namespace Project.IpTv.UiServices.Configuration
                 return result;
             } // if
 
-            if (!Directory.Exists(Folders.Logos))
+            if (!Directory.Exists(Folders.Logos.Root))
             {
                 result.Message = string.Format(Properties.Texts.AppConfigValidationLogosPath, Folders.Logos);
                 return result;

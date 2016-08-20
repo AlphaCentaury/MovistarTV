@@ -124,13 +124,28 @@
     <value>IPTV</value>
   </data>
   <data name="FileLogoDomainMappings" xml:space="preserve">
-    <value>Services\domain-mappings.xml</value>
+    <value>domain-mappings.xml</value>
   </data>
   <data name="FileLogoProviderMappings" xml:space="preserve">
-    <value>Providers\provider-mappings.xml</value>
+    <value>provider-mappings.xml</value>
   </data>
   <data name="FileLogoServiceMappings" xml:space="preserve">
-    <value>Services\service-mappings.xml</value>
+    <value>service-mappings.xml</value>
+  </data>
+  <data name="FolderCache" xml:space="preserve">
+    <value>Cache</value>
+  </data>
+  <data name="FolderLogosProviders" xml:space="preserve">
+    <value>Providers</value>
+  </data>
+  <data name="FolderLogosRoot" xml:space="preserve">
+    <value>Logos</value>
+  </data>
+  <data name="FolderLogosServices" xml:space="preserve">
+    <value>Services</value>
+  </data>
+  <data name="FolderRecordTasks" xml:space="preserve">
+    <value>RecordTasks</value>
   </data>
   <data name="FormatServiceLogoKey" xml:space="preserve">
     <value>{0}::{1}</value>

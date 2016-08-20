@@ -99,6 +99,15 @@ namespace Project.IpTv.UiServices.Configuration.Schema2014.Logos
             set;
         } // Logo
 
+#if DEBUG
+        [XmlAttribute("remarks")]
+        public string Remarks
+        {
+            get;
+            set;
+        } // Remarks
+#endif
+
         public override string ToString()
         {
             return string.Format("Service mapping: {0}=>{1}", Name, Logo);
