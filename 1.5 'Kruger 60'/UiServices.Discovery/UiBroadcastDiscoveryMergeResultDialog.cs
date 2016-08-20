@@ -20,11 +20,14 @@ namespace Project.IpTv.UiServices.Discovery
         {
             var result = UiBroadcastDiscovery.Merge(oldDiscovery, newDiscovery);
 
-            using (var dialog = new UiBroadcastDiscoveryMergeResultDialog())
+            if (oldDiscovery != null)
             {
-                dialog.MergeResult = result;
-                dialog.ShowDialog(owner);
-            } // using dialog
+                using (var dialog = new UiBroadcastDiscoveryMergeResultDialog())
+                {
+                    dialog.MergeResult = result;
+                    dialog.ShowDialog(owner);
+                } // using dialog
+            } // if
 
             return result;
         } // Merge

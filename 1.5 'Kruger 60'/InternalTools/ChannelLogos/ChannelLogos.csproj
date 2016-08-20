@@ -56,10 +56,11 @@
   <ItemGroup>
     <Compile Include="Common.cs" />
     <Compile Include="ConsistencyCheck.cs" />
+    <Compile Include="ConsistencyCheckAllServices.cs" />
     <Compile Include="ConsistencyCheckMissingLogoFiles.cs" />
     <Compile Include="ConsistencyCheckMissingServiceLogos.cs" />
-    <Compile Include="ConsistencyCheckUnusedEntries.cs" />
-    <Compile Include="ConsistencyCheckUnusedFiles.cs" />
+    <Compile Include="ConsistencyCheckUnusedServiceMappingEntries.cs" />
+    <Compile Include="ConsistencyCheckUnusedLogoFiles.cs" />
     <Compile Include="FormConsistency.cs">
       <SubType>Form</SubType>
     </Compile>

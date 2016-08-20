@@ -2,15 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows.Forms;
 
 namespace Project.IpTv.Internal.Tools.ChannelLogos
 {
     abstract class ConsistencyCheck
     {
+        protected IWin32Window Owner;
+
         public class ProgressChangedEventArgs: EventArgs
         {
-            public string Message;
-            public double Percentage;
+            public string[] Messages;
         } // class ProgressChangedEventArgs
 
         public event EventHandler<ProgressChangedEventArgs> ProgressChanged;
@@ -70,7 +72,14 @@ namespace Project.IpTv.Internal.Tools.ChannelLogos
             private set;
         } // Results
 
-        public abstract void Run();
+        public void Execute(IWin32Window owner)
+        {
+            Owner = owner;
+            Run();
+            Owner = null;
+        } // Execute
+
+        protected abstract void Run();
 
         protected void AddResult(Severity severity, params string[] data)
         {
@@ -80,7 +89,7 @@ namespace Project.IpTv.Internal.Tools.ChannelLogos
             {
                 var e = new ProgressChangedEventArgs()
                 {
-                    Message = data[0]
+                    Messages = data
                 };
 
                 OnProgressChanged(this, e);

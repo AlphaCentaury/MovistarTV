@@ -169,7 +169,7 @@ namespace Project.IpTv.Internal.Tools.ChannelLogos
             } // Add
         } // DomainFile
 
-        public override void Run()
+        protected override void Run()
         {
             AddResult(Severity.Info, "Get list of files");
             var files = GetLogosFiles();

@@ -46,10 +46,10 @@
             this.comboCheck.FormattingEnabled = true;
             this.comboCheck.Items.AddRange(new object[] {
             "-- BroadcastDiscovery",
-            "01 Channels without logo",
-            "02 Missing logo files",
+            "01 Missing logos",
             "-- service-mappings.xml",
-            "03 Unused service-mappings entries",
+            "02 Unused entries",
+            "03 Missing logo files",
             "04 Unused logo files"});
             this.comboCheck.Location = new System.Drawing.Point(12, 15);
             this.comboCheck.Name = "comboCheck";
@@ -74,7 +74,6 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.listViewResults.FullRowSelect = true;
             this.listViewResults.GridLines = true;
-            this.listViewResults.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.listViewResults.HideSelection = false;
             this.listViewResults.LargeImageList = this.imageListSeverity;
             this.listViewResults.Location = new System.Drawing.Point(12, 42);
@@ -111,7 +110,7 @@
             this.labelStatus.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.labelStatus.Name = "labelStatus";
             this.labelStatus.Overflow = System.Windows.Forms.ToolStripItemOverflow.Never;
-            this.labelStatus.Size = new System.Drawing.Size(311, 17);
+            this.labelStatus.Size = new System.Drawing.Size(342, 17);
             this.labelStatus.Spring = true;
             this.labelStatus.Text = "Ready";
             this.labelStatus.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -133,7 +132,7 @@
             this.Controls.Add(this.buttonRun);
             this.Controls.Add(this.comboCheck);
             this.Name = "FormConsistency";
-            this.Text = "FormConsistency";
+            this.Text = "Consistency checks - Channel logos";
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);

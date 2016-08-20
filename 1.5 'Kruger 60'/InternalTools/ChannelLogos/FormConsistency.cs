@@ -30,21 +30,29 @@ namespace Project.IpTv.Internal.Tools.ChannelLogos
         {
             ConsistencyCheck check;
 
+            // init list
+            var maxColumns = 3;
             listViewResults.Items.Clear();
+            var width = (listViewResults.Width - SystemInformation.VerticalScrollBarWidth - 4) / maxColumns;
+            listViewResults.Columns.Add("Activity").Width = width;
+            for (int i = 1; i < maxColumns; i++)
+            {
+                listViewResults.Columns.Add("Details").AutoResize(ColumnHeaderAutoResizeStyle.ColumnContent);
+            } // for i
 
-            var index = int.Parse(comboCheck.SelectedItem.ToString().Substring(0, 2));
-            switch (index)
+            var test = int.Parse(comboCheck.SelectedItem.ToString().Substring(0, 2));
+            switch (test)
             {
                 case 1: check = new ConsistencyCheckMissingServiceLogos(); break;
-                case 2: check = new ConsistencyCheckMissingLogoFiles(); break;
-                case 3: check = new ConsistencyCheckUnusedEntries(); break;
-                case 4: check = new ConsistencyCheckUnusedFiles(); break;
+                case 2: check = new ConsistencyCheckUnusedServiceMappingEntries(); break;
+                case 3: check = new ConsistencyCheckMissingLogoFiles(); break;
+                case 4: check = new ConsistencyCheckUnusedLogoFiles(); break;
                 default:
                     return;
             } // switch
 
             check.ProgressChanged += Check_ProgressChanged;
-            check.Run();
+            check.Execute(this);
             ShowResults(check);
         } // buttonRun_Click
 
@@ -56,7 +64,12 @@ namespace Project.IpTv.Internal.Tools.ChannelLogos
 
         private void Check_ProgressChanged(object sender, ConsistencyCheck.ProgressChangedEventArgs e)
         {
-            LoadDisplayProgress(e.Message);
+            LoadDisplayProgress(e.Messages[0]);
+
+            var item = new ListViewItem(e.Messages);
+            item.ImageKey = ConsistencyCheck.Severity.Info.ToString();
+            listViewResults.Items.Add(item);
+            item.EnsureVisible();
         } // Check_ProgressChanged
 
         private void ShowResults(ConsistencyCheck consistencyCheck)
@@ -65,6 +78,7 @@ namespace Project.IpTv.Internal.Tools.ChannelLogos
 
             listViewResults.BeginUpdate();
             listViewResults.Columns.Clear();
+            listViewResults.Items.Clear();
 
             foreach (var result in consistencyCheck.Results)
             {
@@ -83,11 +97,13 @@ namespace Project.IpTv.Internal.Tools.ChannelLogos
                 listViewResults.Items.Add(item);
             } // foreach result
 
-            for (int i = 0; i < maxColumns + 2; i++)
+            listViewResults.Columns.Add("Activity").AutoResize(ColumnHeaderAutoResizeStyle.ColumnContent);
+            for (int i = 1; i < maxColumns; i++)
             {
-                listViewResults.Columns.Add(i.ToString());
-                listViewResults.Columns[i].AutoResize(ColumnHeaderAutoResizeStyle.ColumnContent);
+                listViewResults.Columns.Add("Details").AutoResize(ColumnHeaderAutoResizeStyle.ColumnContent);
             } // for i
+            listViewResults.Columns.Add("Ellapsed").AutoResize(ColumnHeaderAutoResizeStyle.ColumnContent);
+
             listViewResults.EndUpdate();
         } // ShowResults
     } // class FormConsistency

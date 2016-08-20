@@ -8,7 +8,7 @@ using System.Text;
 
 namespace Project.IpTv.Internal.Tools.ChannelLogos
 {
-    sealed class ConsistencyCheckUnusedFiles: ConsistencyCheck
+    sealed class ConsistencyCheckUnusedLogoFiles: ConsistencyCheck
     {
         private class Domain
         {
@@ -37,7 +37,7 @@ namespace Project.IpTv.Internal.Tools.ChannelLogos
             } // constructor
         } // Unused
 
-        public override void Run()
+        protected override void Run()
         {
             AddResult(Severity.Info, "Get list of files");
             var files = ConsistencyCheckMissingLogoFiles.GetLogosFiles();
@@ -115,5 +115,5 @@ namespace Project.IpTv.Internal.Tools.ChannelLogos
                 AddResult(Severity.Ok, "No unused files");
             }
         } // ListUnusedFiles
-    } // sealed class ConsistencyCheckUnusedFiles
+    } // sealed class ConsistencyCheckUnusedLogoFiles
 } // namespace
