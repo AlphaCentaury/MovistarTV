@@ -6,18 +6,18 @@ All rights reserved, except those granted by the governing license of this softw
 <Logos-Services xmlns="http://movistartv.codeplex.com/schema/2015:Configuration:Mappings">
   <Package name="&lt;default&gt;">
     <Domain name="generic">
-      <Mapping serviceName="&lt;any&gt;" logo="dvb" />
-      <Mapping serviceName="1" logo="tv" />
+      <Mapping serviceName="&lt;any&gt;" logo="dvb-iptv" />
+      <Mapping serviceName="1" logo="tv" remarks="MPEG-2" />
       <Mapping serviceName="2" logo="radio" />
       <Mapping serviceName="3" logo="teletext" />
-      <Mapping serviceName="6" logo="dvb" remarks="Mosaic (Mpeg-2)" />
+      <Mapping serviceName="6" logo="dvb-iptv" remarks="Mosaic (MPEG-2)" />
       <Mapping serviceName="10" logo="hd_radio" />
-      <Mapping serviceName="11" logo="dvb" remarks="Mosaic (advanced codec)" />
+      <Mapping serviceName="11" logo="dvb-iptv" remarks="Mosaic (AVC)" />
       <Mapping serviceName="12" logo="data" />
       <Mapping serviceName="16" logo="mhp" />
-      <Mapping serviceName="17" logo="hd_tv" />
-      <Mapping serviceName="22" logo="tv" />
-      <Mapping serviceName="25" logo="hd_tv" />
+      <Mapping serviceName="17" logo="hd_tv" remarks="MPEG-2" />
+      <Mapping serviceName="22" logo="tv" remarks="AVC" />
+      <Mapping serviceName="25" logo="hd_tv" remarks="AVC" />
     </Domain>
   </Package>
   <Package name="movistarTV">
