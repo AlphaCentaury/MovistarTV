@@ -6,13 +6,10 @@ All rights reserved, except those granted by the governing license of this softw
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
   <?include Strings.wxi ?>
   <Fragment>
-    <Icon Id='ChannelList.ico' SourceFile='$(var.ChannelList.ProjectDir)\Resources\IPTV.ico' />
-    <Icon Id='FirstTimeConfig.ico' SourceFile='$(var.FirstTimeConfig.ProjectDir)\Resources\install.ico' />
-    
     <ComponentGroup Id="RegistryConfiguration">
       <Component Id="RegistryConfiguration_Install" Guid="*" Directory="ProgramStartMenuFolder">
         <RegistryKey Root='HKCU' Key='$(var.BaseRegistryKey)' ForceDeleteOnUninstall='yes'>
-          <RegistryValue Type='string' Value='!(loc.ProductName)' />
+          <RegistryValue Type='string' Value='!(loc.ProductName)'></RegistryValue>
           <RegistryValue Type='string' Name='Installed' Value='1' KeyPath='yes' />
           <RegistryValue Type='string' Name='Folder.Base' Value='[BaseFolder]' />
           <RegistryValue Type='string' Name='Folder.Install' Value='[INSTALLFOLDER]' />
@@ -96,16 +93,17 @@ All rights reserved, except those granted by the governing license of this softw
   <Fragment>
     <ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
       <Component Id="ChannelList">
-        <File Id="ChannelList.exe" Source="$(var.ChannelList.TargetDir)ChannelList.exe" KeyPath="yes">
-          <Shortcut Id='ChannelList.exe.lnk'
-                    Directory='ProgramStartMenuFolder'
-                    Name='!(loc.ChannelList.exe.lnk)'
-                    Icon='ChannelList.ico' IconIndex='0'
-                    WorkingDirectory='INSTALLFOLDER'
-                    Advertise='yes' />
-        </File>
+        <File Id="ChannelList.exe" Source="$(var.ChannelList.TargetDir)ChannelList.exe" KeyPath="yes" />
         <File Id='ChannelList.exe.config' Source='$(var.ChannelList.TargetDir)ChannelList.exe.config' />
         <File Id='ChannelList.pdb' Source='$(var.ChannelList.TargetDir)ChannelList.pdb' />
+      </Component>
+      <Component Id="Shortcut.ChannelList">
+        <RegistryValue Root='HKCU' Key="$(var.BaseRegistryKey)\Shortcuts" Name="ChannelList" Type="integer" Value="1" KeyPath="yes"/>
+        <Shortcut Id='ChannelList.exe.lnk'
+                  Directory='ProgramStartMenuFolder'
+                  Name='!(loc.ChannelList.exe.lnk)'
+                  WorkingDirectory='INSTALLFOLDER'
+                  Target='[#ChannelList.exe]' />
       </Component>
     </ComponentGroup>
 

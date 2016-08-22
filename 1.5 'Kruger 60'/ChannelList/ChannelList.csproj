@@ -187,6 +187,7 @@
     <None Include="Resources\Info_24x24.png" />
     <None Include="Resources\DownloadWeb_16x16.png" />
     <None Include="Resources\DownloadWebSettings_16x16.png" />
+    <Content Include="Resources\AboutIcon.png" />
     <Content Include="Resources\IPTV.ico" />
     <None Include="Resources\Splash.png" />
     <None Include="Resources\SortAZ_16x16.png" />

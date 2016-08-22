@@ -18,7 +18,11 @@ namespace Project.IpTv.Tools.FirstTimeConfig
         public WizardWelcomeDialog()
         {
             InitializeComponent();
-            this.Icon = Properties.Resources.InstallIcon;
+            this.Icon = Properties.Resources.FirstTimeConfigIcon;
+#if DEBUG
+            checkAnalytics.Checked = false;
+            checkAnalytics.Enabled = false;
+#endif
         } // constructor
 
         private void WizardWelcomeDialog_Load(object sender, EventArgs e)

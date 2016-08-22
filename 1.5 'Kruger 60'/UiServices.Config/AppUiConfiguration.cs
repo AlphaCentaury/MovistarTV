@@ -366,10 +366,9 @@ namespace Project.IpTv.UiServices.Configuration
                     var baseFolder = root.GetValue(InvariantTexts.RegistryValue_Folder_Base);
                     if (baseFolder == null) return string.Format(Texts.AppConfigRegistryMissingValue, fullKeyPath, InvariantTexts.RegistryValue_Folder_Base);
                     Folders.Base = overrideBasePath ?? baseFolder as string;
-#if DEBUG
-                    string installFolder = null;
-#else
+
                     var installFolder = root.GetValue(InvariantTexts.RegistryValue_Folder_Install);
+#if (DEBUG == false)
                     if (installFolder == null) return string.Format(Texts.AppConfigRegistryMissingValue, fullKeyPath, InvariantTexts.RegistryValue_Folder_Install);
 #endif
                     Folders.Install = installFolder as string;

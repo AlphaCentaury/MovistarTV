@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
-	<Fragment>
+  <?include Strings.wxi ?>
+  <Fragment>
     <Feature Id="Feature.Tools"
              Absent="disallow"
              Display="collapse"
@@ -18,15 +19,17 @@
 
     <!-- First-time configuration assistant -->
     <ComponentGroup Id="Tools.FirstTimeConfig" Directory="INSTALLFOLDER">
-      <Component Id="FirstTimeConfig">
-        <File Id="FirstTimeConfig.exe" Source="$(var.FirstTimeConfig.TargetDir)FirstTimeConfig.exe" KeyPath="yes">
-          <Shortcut Id='FirstTimeConfig.exe.lnk'
-                    Directory='ProgramStartMenuFolder'
-                    Name='!(loc.FirstTimeConfig.exe.lnk)'
-                    Icon='FirstTimeConfig.ico' IconIndex='0'
-                    WorkingDirectory='INSTALLFOLDER' Advertise='yes' />
-        </File>
+      <Component Id="FirstTimeConfig" >
+        <File Id="FirstTimeConfig.exe" Source="$(var.FirstTimeConfig.TargetDir)FirstTimeConfig.exe" KeyPath="yes" />
         <File Id="FirstTimeConfig.pdb" Source="$(var.FirstTimeConfig.TargetDir)FirstTimeConfig.pdb" />
+      </Component>
+      <Component Id="Shortcut.FirstTimeConfig" >
+        <RegistryValue Root='HKCU' Key="$(var.BaseRegistryKey)\Shortcuts" Name="FirstTimeConfig" Type="integer" Value="1" KeyPath="yes"/>
+        <Shortcut Id='FirstTimeConfig.exe.lnk'
+                  Directory='ProgramStartMenuFolder'
+                  Name='!(loc.FirstTimeConfig.exe.lnk)'
+                  Target='[#FirstTimeConfig.exe]'
+                  WorkingDirectory='INSTALLFOLDER' />
       </Component>
     </ComponentGroup>
 

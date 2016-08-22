@@ -300,7 +300,7 @@ Si sobreescribe el archivo se perderá cualquier configuración personalizada.
 ¿Desea sobreescribir el archivo?</value>
   </data>
   <data name="ProductFullName" xml:space="preserve">
-    <value>IPTViewr: decodificador software para movistar+</value>
+    <value>IPTViewr: decodificador virtual para movistar+</value>
   </data>
   <data name="ProductMainProgramName" xml:space="preserve">
     <value>Canales movistar+</value>

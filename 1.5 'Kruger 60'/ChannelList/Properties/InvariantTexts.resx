@@ -134,7 +134,7 @@ Verifique el valor de  la propiedad 'ForceUICulture' del archivo '.config'</valu
     <value>http://movistartv.codeplex.com</value>
   </data>
   <data name="UrlCheckForUpdatesManual" xml:space="preserve">
-    <value>http://movistartv.codeplex.com/wikipage?title=Update-v1.5.35.5</value>
+    <value>http://movistartv.codeplex.com/wikipage?title=Update-v1.5.4.0</value>
   </data>
   <data name="UrlDocumentation" xml:space="preserve">
     <value>http://movistartv.codeplex.com/documentation</value>

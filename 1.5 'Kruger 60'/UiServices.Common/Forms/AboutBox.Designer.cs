@@ -54,6 +54,7 @@ namespace Project.IpTv.UiServices.Common.Forms
             // 
             // logoPictureBox
             // 
+            this.logoPictureBox.Image = global::Project.IpTv.UiServices.Common.Properties.Resources.DefaultAbout;
             resources.ApplyResources(this.logoPictureBox, "logoPictureBox");
             this.logoPictureBox.Name = "logoPictureBox";
             this.logoPictureBox.TabStop = false;

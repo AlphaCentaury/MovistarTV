@@ -531,7 +531,7 @@ namespace Project.IpTv.Tools.FirstTimeConfig.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to IPTViewr: Software Decoder for movistar+.
+        ///   Looks up a localized string similar to IPTViewr: virtual decoder for movistar+.
         /// </summary>
         internal static string ProductFullName {
             get {

@@ -17,7 +17,7 @@ namespace Project.IpTv.Tools.FirstTimeConfig
         public WizardEndDialog()
         {
             InitializeComponent();
-            this.Icon = Properties.Resources.InstallIcon;
+            this.Icon = Properties.Resources.FirstTimeConfigIcon;
         } // constructor
 
         public DialogResult EndResult

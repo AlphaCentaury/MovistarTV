@@ -657,6 +657,7 @@ namespace Project.IpTv.ChannelList
                 box.ExceptionThrown += OnExceptionThrown;
                 box.ApplicationData = new AboutBoxApplicationData()
                 {
+                    LargeIcon = Properties.Resources.AboutIcon,
                     Name = Texts.AppName,
                     Version = Texts.AppVersion,
                     Status = Texts.AppStatus,

@@ -210,6 +210,7 @@
   <ItemGroup>
     <Content Include="bannrbmp.bmp" />
     <Content Include="dlgbmp.bmp" />
+    <Content Include="iptviewr-for-movistarplus_alt.ico" />
     <Content Include="License.txt" />
     <Content Include="Redist\ENU\SSCERuntime_x64-ENU.exe" />
     <Content Include="Redist\ENU\SSCERuntime_x86-ENU.exe" />

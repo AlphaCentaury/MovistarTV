@@ -23,11 +23,11 @@ namespace Project.IpTv.Tools.FirstTimeConfig
     {
         private string DefaultRecordingsSavePath;
         private bool IsFormAllowedToClose;
-        
+
         public ConfigForm()
         {
             InitializeComponent();
-            this.Icon = Properties.Resources.InstallIcon;
+            this.Icon = Properties.Resources.FirstTimeConfigIcon;
             wizardControl.LabelTitle = labelStepTitle;
             wizardControl.PreviousButton = buttonPreviousPage;
             wizardControl.NextButton = buttonNextPage;
@@ -58,10 +58,12 @@ namespace Project.IpTv.Tools.FirstTimeConfig
             wizardControl.Initialization[wizardPageRecordings.Name] = PageRecordings_Setup;
 
             wizardControl.SelectedTab = null;
+            wizardControl.Visible = false;
         } // ConfigForm_Load
 
         private void ConfigForm_Shown(object sender, EventArgs e)
         {
+            wizardControl.Visible = true;
             wizardControl.IsPageAllowed[wizardPageReadme.Name] = true;
             wizardControl.SelectedIndex = 0;
         } // ConfigForm_Shown
@@ -102,7 +104,11 @@ namespace Project.IpTv.Tools.FirstTimeConfig
         {
             richTextReadme.Rtf = Texts.Readme;
             checkReadmeAck.Enabled = false;
+#if DEBUG
+            wizardControl.IsPageAllowed[wizardPagePrerequisites.Name] = true;
+#else
             wizardControl.IsPageAllowed[wizardPagePrerequisites.Name] = false;
+#endif
         } // PageReadme_Setup
 
         private void richTextReadme_VScroll(object sender, EventArgs e)
@@ -122,9 +128,9 @@ namespace Project.IpTv.Tools.FirstTimeConfig
             wizardControl.UpdateWizardButtons();
         } // checkReadmeAck_CheckedChanged
 
-        #endregion
+#endregion
 
-        #region Prerequisites Page
+#region Prerequisites Page
 
         private void PagePrerequisites_Setup()
         {
@@ -363,14 +369,17 @@ namespace Project.IpTv.Tools.FirstTimeConfig
             if (!installed) return;
         } // buttonTestVlc_Click
 
-        #endregion
+#endregion
 
-        #region Firewall page
+#region Firewall page
 
         private void PageFirewall_Setup()
         {
             checkBoxFirewallDecoder.Checked = true;
             checkBoxFirewallVlc.Checked = true;
+#if DEBUG
+            checkEnableAnalytics.Checked = false;
+#endif
         } // PageFirewall_Setup
 
         private void checkBoxFirewall_CheckedChanged(object sender, EventArgs e)
@@ -426,10 +435,12 @@ namespace Project.IpTv.Tools.FirstTimeConfig
         {
             var enabled = checkEnableAnalytics.Checked;
 
+#if (DEBUG == false)
             if (!enabled)
             {
                 MessageBox.Show(this, Properties.Texts.AnalyticsKeepChecked, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
             } // if
+#endif
 
             checkAnalyticsUsage.Checked = enabled;
             checkAnalyticsUsage.Enabled = enabled;
@@ -443,18 +454,18 @@ namespace Project.IpTv.Tools.FirstTimeConfig
             HelpDialog.ShowRtfHelp(this, Properties.Texts.GoogleTelemetry, Properties.Texts.TelemetryHelpCaption);
         } // linkAnalyticsHelp_LinkClicked
 
-        #endregion
+#endregion
 
-        #region Basic page
+#region Basic page
 
         private void PageBasic_Setup()
         {
             wizardControl.IsPageAllowed[wizardPageRecordings.Name] = true;
         } // PageBasic_Setup
 
-        #endregion
+#endregion
 
-        #region Recording page 
+#region Recording page 
 
         private void PageRecordings_Setup()
         {
@@ -524,9 +535,9 @@ namespace Project.IpTv.Tools.FirstTimeConfig
             } // if-else
         } // buttonConfig_Click
 
-        #endregion
+#endregion
 
-        #region End wizard
+#region End wizard
 
         private void EndWizard(DialogResult result, string message, Exception ex)
         {
@@ -535,6 +546,6 @@ namespace Project.IpTv.Tools.FirstTimeConfig
             Close();
         } // EndWizard
 
-        #endregion
+#endregion
     } // class ConfigForm
 } // namespace

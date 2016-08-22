@@ -198,8 +198,7 @@ namespace Project.IpTv.Tools.FirstTimeConfig.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ChannelList.exe
-        ///ConsoleEPGLoader.exe.
+        ///   Looks up a localized string similar to ChannelList.exe.
         /// </summary>
         internal static string FirewallProgramList {
             get {
@@ -219,9 +218,9 @@ namespace Project.IpTv.Tools.FirstTimeConfig.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
-        internal static System.Drawing.Icon InstallIcon {
+        internal static System.Drawing.Icon FirstTimeConfigIcon {
             get {
-                object obj = ResourceManager.GetObject("InstallIcon", resourceCulture);
+                object obj = ResourceManager.GetObject("FirstTimeConfigIcon", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
             }
         }

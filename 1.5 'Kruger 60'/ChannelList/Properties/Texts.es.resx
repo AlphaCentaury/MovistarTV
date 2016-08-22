@@ -121,7 +121,7 @@
     <value>Canales movistar+ - IPTViewr (1.5 “Kruger 60” alpha 4)</value>
   </data>
   <data name="AppName" xml:space="preserve">
-    <value>IPTViewr: decodificador software para movistar+</value>
+    <value>IPTViewr: decodificador virtual para movistar+</value>
   </data>
   <data name="AppStatus" xml:space="preserve">
     <value>Alpha (experimental)</value>

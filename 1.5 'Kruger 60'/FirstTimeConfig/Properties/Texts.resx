@@ -298,7 +298,7 @@ If you overwrite the file all custom configurations will be lost.
 Do you want to overwrite the existing file?</value>
   </data>
   <data name="ProductFullName" xml:space="preserve">
-    <value>IPTViewr: Software Decoder for movistar+</value>
+    <value>IPTViewr: virtual decoder for movistar+</value>
   </data>
   <data name="ProductMainProgramName" xml:space="preserve">
     <value>movistar+ channels</value>

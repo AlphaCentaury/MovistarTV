@@ -63,6 +63,16 @@ namespace Project.IpTv.ChannelList.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap AboutIcon {
+            get {
+                object obj = ResourceManager.GetObject("AboutIcon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap DownloadWeb_16x16 {
             get {
                 object obj = ResourceManager.GetObject("DownloadWeb_16x16", resourceCulture);
