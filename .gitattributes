@@ -1,9 +1,7 @@
-﻿# ----------------------------------
-# global git configuration for windows
+﻿# global git configuration for windows
 # git config --global core.autocrlf true
 # git config --global core.eol native
 # git config --global core.safecrlf true
-# ----------------------------------
 
 # general text files
 *.txt text
