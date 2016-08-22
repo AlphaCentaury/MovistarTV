@@ -82,6 +82,7 @@ namespace Project.IpTv.Internal.Tools.ChannelLogos
             {
                 var q = from entry in Sizes
                         where entry.Value == false
+                        where entry.Key != "@24" // optional (for now)
                         select entry.Key;
 
                 return q;
@@ -92,6 +93,7 @@ namespace Project.IpTv.Internal.Tools.ChannelLogos
                 Logo = logo;
                 Sizes = new Dictionary<string, bool>(7);
                 Sizes.Add(".ico", false);
+                Sizes.Add("@24", false);
                 Sizes.Add("@32", false);
                 Sizes.Add("@48", false);
                 Sizes.Add("@64", false);

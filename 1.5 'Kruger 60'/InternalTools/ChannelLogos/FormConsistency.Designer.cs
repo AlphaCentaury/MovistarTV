@@ -29,16 +29,28 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormConsistency));
             this.comboCheck = new System.Windows.Forms.ComboBox();
             this.buttonRun = new System.Windows.Forms.Button();
             this.listViewResults = new System.Windows.Forms.ListView();
+            this.contextMenuListView = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.menuItemListContextCopyActivity = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuItemListContextCopyFirstDetail = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuItemListContextCopyRow = new System.Windows.Forms.ToolStripMenuItem();
             this.imageListSeverity = new System.Windows.Forms.ImageList(this.components);
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.labelStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.progressLocal = new System.Windows.Forms.ToolStripProgressBar();
+            toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.contextMenuListView.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // toolStripSeparator1
+            // 
+            toolStripSeparator1.Name = "toolStripSeparator1";
+            toolStripSeparator1.Size = new System.Drawing.Size(154, 6);
             // 
             // comboCheck
             // 
@@ -72,6 +84,7 @@
             this.listViewResults.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.listViewResults.ContextMenuStrip = this.contextMenuListView;
             this.listViewResults.FullRowSelect = true;
             this.listViewResults.GridLines = true;
             this.listViewResults.HideSelection = false;
@@ -83,6 +96,38 @@
             this.listViewResults.TabIndex = 2;
             this.listViewResults.UseCompatibleStateImageBehavior = false;
             this.listViewResults.View = System.Windows.Forms.View.Details;
+            // 
+            // contextMenuListView
+            // 
+            this.contextMenuListView.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuItemListContextCopyFirstDetail,
+            toolStripSeparator1,
+            this.menuItemListContextCopyActivity,
+            this.menuItemListContextCopyRow});
+            this.contextMenuListView.Name = "contextMenuListView";
+            this.contextMenuListView.Size = new System.Drawing.Size(158, 98);
+            this.contextMenuListView.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuListView_Opening);
+            // 
+            // menuItemListContextCopyActivity
+            // 
+            this.menuItemListContextCopyActivity.Name = "menuItemListContextCopyActivity";
+            this.menuItemListContextCopyActivity.Size = new System.Drawing.Size(157, 22);
+            this.menuItemListContextCopyActivity.Text = "Copy activity";
+            this.menuItemListContextCopyActivity.Click += new System.EventHandler(this.menuItemListContextCopyActivity_Click);
+            // 
+            // menuItemListContextCopyFirstDetail
+            // 
+            this.menuItemListContextCopyFirstDetail.Name = "menuItemListContextCopyFirstDetail";
+            this.menuItemListContextCopyFirstDetail.Size = new System.Drawing.Size(157, 22);
+            this.menuItemListContextCopyFirstDetail.Text = "Copy first detail";
+            this.menuItemListContextCopyFirstDetail.Click += new System.EventHandler(this.menuItemListContextCopyFirstDetail_Click);
+            // 
+            // menuItemListContextCopyRow
+            // 
+            this.menuItemListContextCopyRow.Name = "menuItemListContextCopyRow";
+            this.menuItemListContextCopyRow.Size = new System.Drawing.Size(157, 22);
+            this.menuItemListContextCopyRow.Text = "Copy row data";
+            this.menuItemListContextCopyRow.Click += new System.EventHandler(this.menuItemListContextCopyRow_Click);
             // 
             // imageListSeverity
             // 
@@ -133,6 +178,7 @@
             this.Controls.Add(this.comboCheck);
             this.Name = "FormConsistency";
             this.Text = "Consistency checks - Channel logos";
+            this.contextMenuListView.ResumeLayout(false);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -149,5 +195,9 @@
         private System.Windows.Forms.ToolStripStatusLabel labelStatus;
         private System.Windows.Forms.ToolStripProgressBar progressLocal;
         private System.Windows.Forms.ImageList imageListSeverity;
+        private System.Windows.Forms.ContextMenuStrip contextMenuListView;
+        private System.Windows.Forms.ToolStripMenuItem menuItemListContextCopyRow;
+        private System.Windows.Forms.ToolStripMenuItem menuItemListContextCopyActivity;
+        private System.Windows.Forms.ToolStripMenuItem menuItemListContextCopyFirstDetail;
     }
 }

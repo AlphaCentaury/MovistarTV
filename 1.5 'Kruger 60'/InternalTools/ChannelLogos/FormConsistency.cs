@@ -56,6 +56,59 @@ namespace Project.IpTv.Internal.Tools.ChannelLogos
             ShowResults(check);
         } // buttonRun_Click
 
+        private void contextMenuListView_Opening(object sender, CancelEventArgs e)
+        {
+            var selectedItem = (listViewResults.SelectedIndices.Count == 0)? null : listViewResults.SelectedItems[0];
+            if ((selectedItem == null) || (selectedItem.SubItems.Count == 0))
+            {
+                menuItemListContextCopyActivity.Enabled = false;
+                menuItemListContextCopyFirstDetail.Enabled = false;
+                menuItemListContextCopyRow.Enabled = false;
+                return;
+            } // if
+
+            menuItemListContextCopyActivity.Enabled = true;
+            menuItemListContextCopyFirstDetail.Enabled = (selectedItem.SubItems.Count > 1);
+            menuItemListContextCopyRow.Enabled = true;
+        } // contextMenuListView_Opening
+
+        private void menuItemListContextCopyActivity_Click(object sender, EventArgs e)
+        {
+            CopySubitemToClipboard(listViewResults, 0);
+        } // menuItemListContextCopyActivity_Click
+
+        private void menuItemListContextCopyFirstDetail_Click(object sender, EventArgs e)
+        {
+            CopySubitemToClipboard(listViewResults, 1);
+        } // menuItemListContextCopyFirstDetail_Click
+
+        private bool CopySubitemToClipboard(ListView list, int index)
+        {
+            var selectedItem = (list.SelectedIndices.Count == 0) ? null : list.SelectedItems[0];
+            if (selectedItem == null) return false;
+
+            if (index > selectedItem.SubItems.Count) return false;
+
+            Clipboard.SetText(selectedItem.SubItems[index].Text);
+            return true;
+        } // CopySubitemToClipboard
+
+        private void menuItemListContextCopyRow_Click(object sender, EventArgs e)
+        {
+            if (listViewResults.SelectedIndices.Count == 0) return;
+            var selectedItem = listViewResults.SelectedItems[0];
+
+            var result = new StringBuilder();
+            result.Append(selectedItem.ImageKey);
+            foreach (var subitem in selectedItem.SubItems)
+            {
+                result.Append('\t');
+                result.Append(subitem);
+            } // foreach subitem
+
+            Clipboard.SetText(result.ToString());
+        } // menuItemListContextCopyRow_Click
+
         private void LoadDisplayProgress(string text)
         {
             labelStatus.Text = text;

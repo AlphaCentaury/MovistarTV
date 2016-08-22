@@ -106,7 +106,7 @@ namespace Project.IpTv.Internal.Tools.ChannelLogos
 
             foreach (var file in unused)
             {
-                AddResult(Severity.Warning, file.Logo, file.DomainName);
+                AddResult(Severity.Warning, "Unused", file.Logo, file.DomainName);
                 errorCount++;
             } // foreach file
 
