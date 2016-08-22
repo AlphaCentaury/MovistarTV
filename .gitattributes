@@ -1,0 +1,31 @@
+﻿# ----------------------------------
+# global git configuration
+# git config --global core.autocrlf false
+# git config --global core.eol native
+# git config --global core.safecrlf true
+# ----------------------------------
+
+# general text files
+*.txt text=set
+*.md text=set
+
+# Visual Studio
+*.sln text=set
+
+# C# projects
+*.csproj text=set
+*.cs text=set
+*.resx text=set
+
+# Wix projects
+*.wixproj text=set
+*.wxs text=set
+*.wxi text=set
+*.wxl text=set
+
+# XML
+*.xml text=set
+*.xsd text=set
+
+# Other text files
+*.config text=set
