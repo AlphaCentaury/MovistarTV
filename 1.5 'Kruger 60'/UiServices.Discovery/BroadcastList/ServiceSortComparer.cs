@@ -36,7 +36,8 @@ namespace Project.IpTv.UiServices.Discovery.BroadcastList
                 data1 = GetTextWithNumberForTextSorting(data1, Buffer);
                 data2 = GetTextWithNumberForTextSorting(data2, Buffer);
 
-                compare = data1.CompareTo(data2) * (sort.IsAscending ? 1 : -1);
+                compare = data1.CompareTo(data2);
+                compare *= (sort.IsAscending ? 1 : -1);
 
                 if (compare != 0) break;
             } // foreach sort
