@@ -110,6 +110,7 @@
     <Compile Include="BroadcastList\Editors\SettingsEditorSorting.Designer.cs">
       <DependentUpon>SettingsEditorSorting.cs</DependentUpon>
     </Compile>
+    <Compile Include="UiBroadcastDiscoveryDownloader.cs" />
     <Compile Include="UiBroadcastDiscoveryMergeResult.cs" />
     <Compile Include="UiBroadcastDiscovery.cs" />
     <Compile Include="UiBroadcastDiscoveryMergeResultDetailsDialog.cs">
@@ -143,6 +144,10 @@
     <Compile Include="Utils.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DvbStpClient\DvbStpClient.csproj">
+      <Project>{8ad3c34b-a1d3-4385-a8a9-c429bd9a37d3}</Project>
+      <Name>DvbStpClient</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Etsi.Ts102034\Etsi.Ts102034.csproj">
       <Project>{b91c438d-0333-4d06-86cd-74ce82df6f40}</Project>
       <Name>Etsi.Ts102034</Name>
@@ -158,6 +163,10 @@
     <ProjectReference Include="..\UiServices.Config\UiServices.Config.csproj">
       <Project>{a722de9d-ae51-479c-825f-a19f4c69bd75}</Project>
       <Name>UiServices.Config</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UiServices.DvbStpClient\UiServices.DvbStpClient.csproj">
+      <Project>{ba481e42-f570-4d2c-94d4-21c4cce27762}</Project>
+      <Name>UiServices.DvbStpClient</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -1,4 +1,5 @@
 ﻿using Microsoft.SqlServer.MessageBox;
+using Project.IpTv.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -50,6 +51,11 @@ namespace Project.IpTv.Internal.Tools.ChannelLogos
                 Symbol = TranslateIconToSymbol(icon),
             };
             box.Show(owner);
+        } // HandleException
+
+        internal static void HandleException(object sender, HandleExceptionEventArgs e)
+        {
+            HandleException(e.OwnerWindow, e.Caption, e.Message, e.Exception);
         } // HandleException
 
         private static ExceptionMessageBoxSymbol TranslateIconToSymbol(MessageBoxIcon icon)

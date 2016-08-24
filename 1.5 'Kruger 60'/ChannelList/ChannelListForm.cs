@@ -730,82 +730,35 @@ namespace Project.IpTv.ChannelList
 
         private bool LoadBroadcastDiscovery(bool fromCache)
         {
-            UiBroadcastDiscovery uiDiscovery;
-
-            try
+            var downloader = new UiBroadcastDiscoveryDownloader();
+            downloader.AfterCacheLoad += (sender, e) =>
             {
-                uiDiscovery = null;
-                if (fromCache)
+                if (e.CachedDiscovery == null)
                 {
-                    var cachedDiscovery = AppUiConfiguration.Current.Cache.LoadXmlDocument<UiBroadcastDiscovery>("UiBroadcastDiscovery", SelectedServiceProvider.Key);
-                    if (cachedDiscovery == null)
-                    {
-                        Notify(Properties.Resources.Error_24x24, Properties.Texts.ChannelListNoCache, 60000);
-                    }
-                    else
-                    {
-                        uiDiscovery = cachedDiscovery.Document;
-                        NotifyChannelListAge((int)cachedDiscovery.Age.TotalDays);
-                    } // if
+                    Notify(Properties.Resources.Error_24x24, Properties.Texts.ChannelListNoCache, 60000);
+                }
+                else
+                {
+                    NotifyChannelListAge((int)e.CachedDiscovery.Age.TotalDays);
                 } // if
+            };
+            downloader.Exception += MyApplication.HandleException;
 
-                if (uiDiscovery == null)
-                {
-                    var downloader = new UiDvbStpEnhancedDownloader()
-                    {
-                        Request = new UiDvbStpEnhancedDownloadRequest(2)
-                        {
-                            MulticastAddress = IPAddress.Parse(SelectedServiceProvider.Offering.Push[0].Address),
-                            MulticastPort = SelectedServiceProvider.Offering.Push[0].Port,
-                            Description = Properties.Texts.BroadcastObtainingList,
-                            DescriptionParsing = Properties.Texts.BroadcastParsingList,
-                            AllowXmlExtraWhitespace = false,
-                            XmlNamespaceReplacer = NamespaceUnification.Replacer,
-#if DEBUG
-                            DumpToFolder = AppUiConfiguration.Current.Folders.Cache
-#endif
-                        },
-                        TextUserCancelled = Properties.Texts.UserCancelListRefresh,
-                        TextDownloadException = Properties.Texts.BroadcastListUnableRefresh,
-                    };
-                    downloader.Request.AddPayload(0x02, null, Properties.Texts.Payload02DisplayName, typeof(BroadcastDiscoveryRoot));
-                    downloader.Request.AddPayload(0x05, null, Properties.Texts.Payload05DisplayName, typeof(PackageDiscoveryRoot));
-                    downloader.Download(this);
-                    BasicGoogleTelemetry.SendScreenHit(this);
-                    if (!downloader.IsOk) return false;
+            var uiDiscovery = downloader.Download(this, SelectedServiceProvider, BroadcastDiscovery, fromCache);
+            if (uiDiscovery == null) return false;
 
-                    var xmlDiscovery = downloader.Request.Payloads[0].XmlDeserializedData as BroadcastDiscoveryRoot;
-                    uiDiscovery = new UiBroadcastDiscovery(xmlDiscovery, SelectedServiceProvider.DomainName, downloader.Request.Payloads[0].SegmentVersion);
+            //ShowEpgMiniBar(false);
+            SetBroadcastDiscovery(uiDiscovery);
 
-                    UiBroadcastDiscoveryMergeResultDialog.Merge(this, BroadcastDiscovery, uiDiscovery);
-
-                    var packageDiscovery = downloader.Request.Payloads[1].XmlDeserializedData as PackageDiscoveryRoot;
-                    var highDefinitionPriority = !AppUiConfiguration.Current.User.ChannelNumberStandardDefinitionPriority;
-
-                    UiServicesLogicalNumbers.AssignLogicalNumbers(uiDiscovery, packageDiscovery, SelectedServiceProvider.DomainName, highDefinitionPriority);
-
-                    AppUiConfiguration.Current.Cache.SaveXml("PackageDiscovery", SelectedServiceProvider.Key, 0, packageDiscovery);
-                    AppUiConfiguration.Current.Cache.SaveXml("UiBroadcastDiscovery", SelectedServiceProvider.Key, uiDiscovery.Version, uiDiscovery);
-                } // if
-
-                //ShowEpgMiniBar(false);
-                SetBroadcastDiscovery(uiDiscovery);
-
-                if (fromCache)
-                {
-                    if (BroadcastDiscovery.Services.Count <= 0)
-                    {
-                        Notify(Properties.Resources.Info_24x24, Properties.Texts.ChannelListCacheEmpty, 30000);
-                    } // if
-                } // if-else
-
-                return true;
-            }
-            catch (Exception ex)
+            if (fromCache)
             {
-                MyApplication.HandleException(this, null, Properties.Texts.BroadcastListUnableRefresh, ex);
-                return false;
-            } // try-catch
+                if (BroadcastDiscovery.Services.Count <= 0)
+                {
+                    Notify(Properties.Resources.Info_24x24, Properties.Texts.ChannelListCacheEmpty, 30000);
+                } // if
+            } // if-else
+
+            return true;
         } // LoadBroadcastDiscovery
 
         private void SetBroadcastDiscovery(UiBroadcastDiscovery broadcastDiscovery)

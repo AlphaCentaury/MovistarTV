@@ -65,7 +65,10 @@ namespace Project.IpTv.Internal.Tools.ChannelLogos
             foreach (var provider in providers)
             {
                 AddResult(Severity.Info, "Loading broadcast data", provider.DisplayName);
-                var uiDiscovery = Common.LoadBroadcastDiscovery(Owner, provider, null, true, !AppUiConfiguration.Current.User.ChannelNumberStandardDefinitionPriority);
+
+                var downloader = new UiBroadcastDiscoveryDownloader();
+                var uiDiscovery = downloader.Download(Owner, provider, null, true, null);
+
                 if (uiDiscovery == null)
                 {
                     AddResult(Severity.Error, "Missing broadcast data", provider.DisplayName);

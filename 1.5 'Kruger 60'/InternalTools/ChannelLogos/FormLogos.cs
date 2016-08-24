@@ -56,7 +56,7 @@ namespace Project.IpTv.Internal.Tools.ChannelLogos
             if (!SelectProvider()) return;
 
             LoadDisplayProgress("Loading channels");
-            if (!LoadBroadcastDiscovery(checkFromCache.Checked))
+            if (!LoadBroadcastDiscovery())
             {
                 LoadDisplayProgress("Error loading channels");
                 return;
@@ -160,9 +160,10 @@ namespace Project.IpTv.Internal.Tools.ChannelLogos
             return true;
         } // SelectProvider
 
-        private bool LoadBroadcastDiscovery(bool fromCache)
+        private bool LoadBroadcastDiscovery()
         {
-            var uiDiscovery = Common.LoadBroadcastDiscovery(this, SelectedServiceProvider, BroadcastDiscovery, checkFromCache.Checked, checkHighDefPriority.Checked);
+            var downloader = new UiBroadcastDiscoveryDownloader();
+            var uiDiscovery = downloader.Download(this, SelectedServiceProvider, BroadcastDiscovery, checkFromCache.Checked, checkHighDefPriority.Checked);
             if (uiDiscovery == null) return false;
 
             BroadcastDiscovery = uiDiscovery;

@@ -123,6 +123,15 @@
   <data name="BroadcastListRefreshSuccess" xml:space="preserve">
     <value>The channel list has been successfully refreshed.</value>
   </data>
+  <data name="BroadcastListUnableRefresh" xml:space="preserve">
+    <value>Unable to obtain the list of TV channels/services</value>
+  </data>
+  <data name="BroadcastObtainingList" xml:space="preserve">
+    <value>Obtaining list of TV channels/services...</value>
+  </data>
+  <data name="BroadcastParsingList" xml:space="preserve">
+    <value>Parsing and extracting the list of TV channels/services...</value>
+  </data>
   <data name="BroadcastUnknownDisplayDescription" xml:space="preserve">
     <value>No description is available for this TV channel/service</value>
   </data>
@@ -174,8 +183,17 @@
   <data name="NotProvidedValue" xml:space="preserve">
     <value>&lt;Not provided&gt;</value>
   </data>
+  <data name="Payload02DisplayName" xml:space="preserve">
+    <value>Channel description and data</value>
+  </data>
+  <data name="Payload05DisplayName" xml:space="preserve">
+    <value>Packages and channel numbers</value>
+  </data>
   <data name="ProviderUnknownDisplayDescription" xml:space="preserve">
     <value>No description is available for this service provider</value>
+  </data>
+  <data name="UserCancelListRefresh" xml:space="preserve">
+    <value>The refreshing of the list has been cancelled by the user.</value>
   </data>
   <data name="Yes" xml:space="preserve">
     <value>Yes</value>

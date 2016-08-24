@@ -54,7 +54,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Common.cs" />
     <Compile Include="ConsistencyCheck.cs" />
     <Compile Include="ConsistencyCheckAllServices.cs" />
     <Compile Include="ConsistencyCheckMissingLogoFiles.cs" />
@@ -132,6 +131,10 @@
     <ProjectReference Include="..\..\IpTv.MovistarPlus\IpTv.MovistarPlus.csproj">
       <Project>{e1748f45-dd50-4479-96f6-f7eba6f3e28b}</Project>
       <Name>IpTv.MovistarPlus</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Project.Common\Project.Common.csproj">
+      <Project>{8da15060-5a78-4f89-a9f1-7aa56b0d622c}</Project>
+      <Name>Project.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\UiServices.Common\UiServices.Common.csproj">
       <Project>{76346905-ac2f-4f01-ba99-bbffbb2a6fe9}</Project>

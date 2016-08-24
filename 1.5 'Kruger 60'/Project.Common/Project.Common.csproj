@@ -52,6 +52,7 @@
     <Compile Include="..\AssemblySolutionInfo.cs">
       <Link>Properties\AssemblySolutionInfo.cs</Link>
     </Compile>
+    <Compile Include="HandleExceptionEventArgs.cs" />
     <Compile Include="Telemetry\BasicGoogleTelemetry.cs" />
     <Compile Include="ArgumentsManager.cs" />
     <Compile Include="CommandLineArguments.cs" />
