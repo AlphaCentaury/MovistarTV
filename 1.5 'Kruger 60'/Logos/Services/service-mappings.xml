@@ -46,7 +46,6 @@ All rights reserved, except those granted by the governing license of this softw
       <Mapping serviceName="197" logo="bbc_world" />
       <Mapping serviceName="198" logo="tv5monde" />
       <Mapping serviceName="338" logo="eurosport_2" />
-      <Mapping serviceName="339" logo="movistar_generico_futbol" />
       <Mapping serviceName="340" logo="a-and-e" />
       <Mapping serviceName="341" logo="solmusica" />
       <Mapping serviceName="342" logo="cnni" />
@@ -98,7 +97,6 @@ All rights reserved, except those granted by the governing license of this softw
       <Mapping serviceName="884" logo="energy" />
       <Mapping serviceName="886" logo="ltc" />
       <Mapping serviceName="891" logo="telesur" />
-      <Mapping serviceName="898" logo="hd_movistar_generico_futbol" />
       <Mapping serviceName="904" logo="hd_axn" />
       <Mapping serviceName="927" logo="hd_amc" />
       <Mapping serviceName="934" logo="neox" />
@@ -122,9 +120,7 @@ All rights reserved, except those granted by the governing license of this softw
       <Mapping serviceName="1278" logo="bein_sports_max_3" remarks="186 beIN MAX 3" />
       <Mapping serviceName="1279" logo="bein_sports_max_4" remarks="187 beIN MAX 4" />
       <Mapping serviceName="1280" logo="bein_sports_max_5" remarks="188 beIN MAX 5" />
-      <Mapping serviceName="1281" logo="hd_movistar_generico_futbol" />
       <Mapping serviceName="1563" logo="natgeo_wild" />
-      <Mapping serviceName="1605" logo="movistar_generico_futbol" />
       <Mapping serviceName="1607" logo="hd_fox" />
       <Mapping serviceName="1608" logo="hd_axn" />
       <Mapping serviceName="1609" logo="hd_tnt" />
@@ -138,7 +134,6 @@ All rights reserved, except those granted by the governing license of this softw
       <Mapping serviceName="1618" logo="hd_odisea" />
       <Mapping serviceName="1619" logo="hd_natgeo_wild" />
       <Mapping serviceName="1621" logo="hd_bein_sports" remarks="050 beIN SPORTS HD" />
-      <Mapping serviceName="1622" logo="hd_movistar_generico_futbol" />
       <Mapping serviceName="1623" logo="hd_eurosport_1" />
       <Mapping serviceName="1643" logo="hd_natgeo" />
       <Mapping serviceName="1683" logo="hd_unitel_classica" />
@@ -230,7 +225,6 @@ All rights reserved, except those granted by the governing license of this softw
       <Mapping serviceName="2818" logo="torostv" remarks="movistar Toros" />
       <Mapping serviceName="2819" logo="caza-pesca" remarks="Caza y Pesca" />
       <Mapping serviceName="2820" logo="movistar_partidazo" remarks="movistar Partidazo" />
-      <Mapping serviceName="2821" logo="movistar_generico_futbol" remarks="S873 C+ Liga 2" />
       <Mapping serviceName="2822" logo="movistar_futbol" remarks="movistar Fútbol" />
       <Mapping serviceName="2823" logo="hd_movistar_series" remarks="movistar Series HD" />
       <Mapping serviceName="2824" logo="hd_movistar_series_xtra" remarks="movistar Series Xtra HD" />
@@ -243,7 +237,6 @@ All rights reserved, except those granted by the governing license of this softw
       <Mapping serviceName="2831" logo="hd_movistar_cine_comedia" remarks="movistar Cine Comedia HD" />
       <Mapping serviceName="2832" logo="hd_movistar_cine_dcine" remarks="movistar Cine DCine HD" />
       <Mapping serviceName="2833" logo="hd_torostv" remarks="movistar Toros HD" />
-      <Mapping serviceName="2837" logo="hd_movistar_generico_futbol" remarks="873 C+ Liga2 HD" />
       <Mapping serviceName="2840" logo="hd_movistar_futbol" remarks="movistar Fútbol HD" />
       <Mapping serviceName="2843" logo="realmadridtv" remarks="Real Madrid TV" />
       <Mapping serviceName="2844" logo="hd_movistar_cero" remarks="movistar HD" />
@@ -258,15 +251,12 @@ All rights reserved, except those granted by the governing license of this softw
       <Mapping serviceName="2966" logo="movistarplus_multifutbol" remarks="Multifútbol 5" />
       <Mapping serviceName="2969" logo="movistarplus_multifutbol" remarks="Multifútbol 2" />
       <Mapping serviceName="2970" logo="movistarplus_multideporte" remarks="Multideporte" />
-      <Mapping serviceName="2989" logo="hd_movistar_generico_futbol" remarks="C+Liga Loc.Pub. HD" />
       <Mapping serviceName="3003" logo="movistarplus_multideporte" remarks="Multideporte 2" />
       <Mapping serviceName="3004" logo="movistarplus_multideporte" remarks="Multideporte 3" />
       <Mapping serviceName="3005" logo="movistarplus_multideporte" remarks="Multideporte 4" />
       <Mapping serviceName="3006" logo="movistarplus_multideporte" remarks="Multideporte 5" />
       <Mapping serviceName="3007" logo="movistarplus_multideporte" remarks="Multideporte 6" />
       <Mapping serviceName="3008" logo="movistarplus_multideporte" remarks="Multideporte 7" />
-      <Mapping serviceName="3023" logo="movistar_partidazo_bar" remarks="C+Partidazo L.Pub." />
-      <Mapping serviceName="3026" logo="hd_movistar_generico_futbol" remarks="C+Liga L.Pub.HD" />
       <Mapping serviceName="3063" logo="hd_realmadridtv" remarks="Real Madrid TV HD" />
       <Mapping serviceName="3103" logo="hd_movistarplus" remarks ="Canal inicial HD" />
       <Mapping serviceName="3124" logo="hd_movistar_generico" remarks ="Canal Distribuidores HD" />
@@ -284,6 +274,12 @@ All rights reserved, except those granted by the governing license of this softw
       <Mapping serviceName="3327" logo="movistar_generico" remarks ="829 Reserva TDT 5" />
       <Mapping serviceName="3328" logo="movistar_generico" remarks ="830 Reserva TDT 6" />
       <Mapping serviceName="3363" logo="ewtn" remarks ="143 EWTN" />
+      <Mapping serviceName="3383" logo="movistar_generico" remarks ="834 Prueba Progam.1" />
+      <Mapping serviceName="3384" logo="movistar_generico" remarks ="835 Prueba Progam.2" />
+      <Mapping serviceName="3385" logo="movistar_generico" remarks ="836 Prueba Progam.3" />
+      <Mapping serviceName="3386" logo="movistar_generico" remarks ="837 Pruebas Program.4" />
+      <Mapping serviceName="3387" logo="movistar_generico" remarks ="838 Pruebas Program.5" />
+      <Mapping serviceName="3388" logo="movistar_generico" remarks ="839 Pruebas Program.6" />
       <Mapping serviceName="3403" logo="movistar_f1" remarks ="movistar F1" />
       <Mapping serviceName="3404" logo="hd_movistar_f1" remarks ="movistar F1 HD" />
       <Mapping serviceName="3405" logo="movistar_motogp" remarks ="movistar MotoGP" />
@@ -292,7 +288,6 @@ All rights reserved, except those granted by the governing license of this softw
       <Mapping serviceName="3503" logo="hd_caza-pesca" remarks="Caza y Pesca HD" />
       <Mapping serviceName="3524" logo="movistar_generico_futbol" remarks ="232 Reserva fútbol 2" />
       <Mapping serviceName="3543" logo="autonomico_cataluna_8tv" remarks="8 TV" />
-      <Mapping serviceName="3583" logo="laxarxa-televisions" remarks ="843 Xarxa Pruebas" />
       <Mapping serviceName="3603" logo="discovery_kiss" remarks ="082 DKISS" />
       <Mapping serviceName="3623" logo="bein_sports_laliga" remarks ="047 beIN LaLiga" />
       <Mapping serviceName="3625" logo="bein_sports_laliga_1" remarks ="048 beIN LaLiga 1" />
