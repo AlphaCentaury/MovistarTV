@@ -330,7 +330,7 @@ Si sobreescribe el archivo se perderá cualquier configuración personalizada.
     <value>Por favor, especifique la carpeta en la que, por defecto, se grabarán los programas de TV.</value>
   </data>
   <data name="TaskSchedulerFolderDvbIpTv" xml:space="preserve">
-    <value>Carpeta IPTV</value>
+    <value>Carpeta IPTViewr</value>
   </data>
   <data name="TelemetryHelpCaption" xml:space="preserve">
     <value>Recolección de datos del programa</value>

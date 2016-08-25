@@ -328,7 +328,7 @@ Do you want to overwrite the existing file?</value>
     <value>Please select a default folder for saving TV recordings.</value>
   </data>
   <data name="TaskSchedulerFolderDvbIpTv" xml:space="preserve">
-    <value>IPTV folder</value>
+    <value>IPTViewr folder</value>
   </data>
   <data name="TelemetryHelpCaption" xml:space="preserve">
     <value>Program data recollection</value>

@@ -623,7 +623,7 @@ namespace Project.IpTv.Tools.FirstTimeConfig.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to IPTV folder.
+        ///   Looks up a localized string similar to IPTViewr folder.
         /// </summary>
         internal static string TaskSchedulerFolderDvbIpTv {
             get {

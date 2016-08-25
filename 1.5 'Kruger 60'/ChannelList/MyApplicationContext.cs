@@ -140,22 +140,31 @@ namespace Project.IpTv.ChannelList
 
         private static InitializationResult ValidateConfiguration(AppUiConfiguration config)
         {
+            string recorderPath;
+
+            recorderPath = config.Folders.Install;
+#if !DEBUG
             var myPath = Application.StartupPath;
-#if DEBUG
-            var recorderLauncher = myPath.EndsWith(Properties.Settings.Default.DevelopmentLocationPath, StringComparison.OrdinalIgnoreCase) ? Properties.Settings.Default.RecorderLauncherDevelopment : Properties.Settings.Default.RecorderLauncher;
-#else
-            var recorderLauncher = Properties.Settings.Default.RecorderLauncher;
+            if (myPath.EndsWith(Properties.InvariantTexts.DebugLocationPath, StringComparison.OrdinalIgnoreCase))
+            {
+                recorderPath = Path.Combine(myPath, Properties.InvariantTexts.DebugRecorderLauncherPath);
+                recorderPath = Path.GetFullPath(recorderPath);
+            }
+            else
+            {
+                recorderPath = config.Folders.Install;
+            } // if-else
 #endif // DEBUG
 
-            MyApplication.RecorderLauncherPath = Path.Combine(myPath, recorderLauncher);
-            MyApplication.RecorderLauncherPath = Path.GetFullPath(MyApplication.RecorderLauncherPath);
-            if (!File.Exists(MyApplication.RecorderLauncherPath))
+            var recorderLauncherPath = Path.Combine(recorderPath, Properties.InvariantTexts.ExeRecorderLauncher);
+            if (!File.Exists(recorderLauncherPath))
             {
                 return new InitializationResult()
                 {
-                    Message = string.Format(Properties.Texts.MyAppRecorderLauncherNotFound, MyApplication.RecorderLauncherPath)
+                    Message = string.Format(Properties.Texts.MyAppRecorderLauncherNotFound, recorderLauncherPath)
                 };
             } // if
+            MyApplication.RecorderLauncherPath = recorderLauncherPath;
 
             return InitializationResult.Ok;
         } // ValidateConfiguration

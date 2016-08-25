@@ -55,7 +55,7 @@ namespace Project.IpTv.Tools.FirstTimeConfig
                             new RecordTaskSchedulerFolder()
                             {
                                 Name = Properties.Texts.TaskSchedulerFolderDvbIpTv,
-                                Path = "\\IPTV"
+                                Path = "\\IPTViewr"
                             } // RecordTaskSchedulerFolder
                         }, // TaskSchedulerFolders
                         Recorders = new RecorderConfig[]

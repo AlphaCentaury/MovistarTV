@@ -207,7 +207,7 @@ namespace Project.IpTv.Tools.FirstTimeConfig.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to IPTV v1.5 &apos;Kruger 60&apos;: {0}.
+        ///   Looks up a localized string similar to IPTViewr v1.5 &apos;Kruger 60&apos;: {0}.
         /// </summary>
         internal static string FirewallRulePrefix {
             get {
@@ -332,7 +332,7 @@ namespace Project.IpTv.Tools.FirstTimeConfig.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 2.1.5.
+        ///   Looks up a localized string similar to 2.2.4.0.
         /// </summary>
         internal static string VlcExeTargetVersion {
             get {
@@ -350,7 +350,7 @@ namespace Project.IpTv.Tools.FirstTimeConfig.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 2.1.2.
+        ///   Looks up a localized string similar to 2.2.0.0.
         /// </summary>
         internal static string VlcLibTargetVersion {
             get {

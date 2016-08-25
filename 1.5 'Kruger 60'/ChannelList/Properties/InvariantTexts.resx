@@ -121,6 +121,12 @@
     <value>UA-66146192-3</value>
     <comment>Get new property for every new major version or new phase!</comment>
   </data>
+  <data name="DebugLocationPath" xml:space="preserve">
+    <value>\bin\debug</value>
+  </data>
+  <data name="DebugRecorderLauncherPath" xml:space="preserve">
+    <value>..\..\..\IpTvRecorderLauncher\bin\debug\</value>
+  </data>
   <data name="ExceptionForceUiCulture" xml:space="preserve">
     <value>Unable to change the applicationt UI language.
 The language ("culture") id may not be valid or not recognized by the system.
@@ -130,11 +136,14 @@ No se ha podido cambiar el idioma de la aplicación.
 El identificador de idioma ("cultura") puede no ser válido o no ser reconocido por el sistema.
 Verifique el valor de  la propiedad 'ForceUICulture' del archivo '.config'</value>
   </data>
+  <data name="ExeRecorderLauncher" xml:space="preserve">
+    <value>IpTvRecorderLauncher.exe</value>
+  </data>
   <data name="SplashScreenDefaultStatus" xml:space="preserve">
     <value>http://movistartv.codeplex.com</value>
   </data>
   <data name="UrlCheckForUpdatesManual" xml:space="preserve">
-    <value>http://movistartv.codeplex.com/wikipage?title=Update-v1.5.4.0</value>
+    <value>http://movistartv.codeplex.com/wikipage?title=Update-v1.5.40.0</value>
   </data>
   <data name="UrlDocumentation" xml:space="preserve">
     <value>http://movistartv.codeplex.com/documentation</value>

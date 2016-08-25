@@ -1,5 +1,5 @@
 *****************************************************************************
-IPTViewr: IPTV Decoder for movistar+ version 1.5 “Kruger 60” Alpha 4
+IPTViewr: Virtual Decoder for movistar+ version 1.5 “Kruger 60” Alpha 4
 *****************************************************************************
 
 Copyright (C) 2014-2016, Codeplex user AlphaCentaury and its contributors
@@ -18,19 +18,9 @@ The logos for most/all movistar+ channels broadcasting at the time of writing th
 All trademarks, service marks, trade names, product names and logos are the property of their respective owners, including in some instances Grupo Telefónica.  
 Its use in the context of this product does not constitute endorsement nor support by their respective owners.
 
-<<<<<<< HEAD
---------------------------------------------------------------------------------
-Copyright (C) 2014-2016, Codeplex/GitHub user AlphaCentaury and its contributors
---------------------------------------------------------------------------------
-
-*****************************************************************************
-** Microsoft Reciprocal License (Ms-RL)                                    **
-*****************************************************************************
-=======
 -----------------------------------------------------------------------------
   Microsoft Reciprocal License (Ms-RL)
 -----------------------------------------------------------------------------
->>>>>>> refs/remotes/origin/master
 
 This license governs use of the accompanying software. If you use the software, you accept this license. If you do not accept the license, do not use the software.
 
@@ -95,7 +85,5 @@ http://json.codeplex.com/
 -----------------------------------------------------------------------------
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
-
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.

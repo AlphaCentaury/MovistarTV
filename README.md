@@ -4,7 +4,7 @@
 
 IPTViewr emula, parcialmente, el funcionamiento del decodificador físico de movistar+. El propósito de este proyecto es llegar a cubrir el 95% de la funcionalidad del decodificador.
 
-La version actual, [v1.5 ‘Kruger 60’ alpha 3c][Kruger-60], dispone de las siguientes funcionalidades:
+La version actual, [v1.5 ‘Kruger 60’ alpha 4][Kruger-60], dispone de las siguientes funcionalidades:
 - Lista completa de canales
   - Se muestran todos los canales disponibles, con independencia de si forman parte o no del programa contratado.
   - Sólo pueden visualizarse los canales contratados.
@@ -41,7 +41,9 @@ Su uso en el contexto de este software no constituye un respaldo ni apoyo por pa
 ## Licencia de uso y acceso al código ##
 
 IPTViewr es un proyecto de código abierto, regido por la “Licencia Recíproca de Microsoft” (MS-Rl), según se describe en los archivos [LICENSE_ES][] y [LICENSE][].  
-Cualquiera puede tener acceso al código fuente, proponer mejoras y utilizar parte(s) del código para sus propios fines.
+Cualquiera puede tener acceso al código fuente, proponer mejoras y utilizar parte(s) del código para sus propios fines.  
+No obstante, y de acuerdo con la licencia, el uso del código en otros programas requiere atribuación.
+Así mismo, cualquier cambio en el código por terceros conlleva la obligación de hacer público dicho código modificado.
 
 Este proyecto estaba alojado previamente en [movistartv.codeplex.com][codeplex].  
 De manera progresiva se va a proceder a migrar toda la documentación existente al formato Wiki de GitHub.  
@@ -50,4 +52,4 @@ Se mantendrá activo el sitio web de codeplex para alojar los archivos de instal
 [LICENSE]: LICENSE
 [LICENSE_ES]: LICENSE_ES
 [codeplex]: https://movistartv.codeplex.com
-[Kruger-60]: https://movistartv.codeplex.com/releases/view/617844
+[Kruger-60]: https://movistartv.codeplex.com/releases/view/625739
