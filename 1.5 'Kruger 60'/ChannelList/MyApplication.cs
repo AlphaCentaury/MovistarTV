@@ -1,4 +1,4 @@
-﻿// Copyright (C) 2014-2016, Codeplex user AlphaCentaury
+﻿// Copyright (C) 2014-2016, Codeplex/GitHub user AlphaCentaury
 // All rights reserved, except those granted by the governing license of this software. See 'license.txt' file in the project root for complete license information.
 
 using Microsoft.SqlServer.MessageBox;
@@ -12,6 +12,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
+using Project.IpTv.Common;
 
 namespace Project.IpTv.ChannelList
 {
@@ -70,6 +71,16 @@ namespace Project.IpTv.ChannelList
                 Symbol = TranslateIconToSymbol(icon),
             };
             box.Show(owner);
+        } // HandleException
+
+        internal static void HandleException(HandleExceptionEventArgs e)
+        {
+            MyApplication.HandleException(e.OwnerWindow, e.Caption, e.Message, e.Exception);
+        } // HandleException
+
+        internal static void HandleException(object sender, HandleExceptionEventArgs e)
+        {
+            MyApplication.HandleException(e.OwnerWindow, e.Caption, e.Message, e.Exception);
         } // HandleException
 
         private static ExceptionMessageBoxSymbol TranslateIconToSymbol(MessageBoxIcon icon)

@@ -1,4 +1,4 @@
-﻿// Copyright (C) 2014-2016, Codeplex user AlphaCentaury
+﻿// Copyright (C) 2014-2016, Codeplex/GitHub user AlphaCentaury
 // All rights reserved, except those granted by the governing license of this software. See 'license.txt' file in the project root for complete license information.
 
 using Etsi.Ts102034.v010501.XmlSerialization;
@@ -136,7 +136,7 @@ namespace Project.IpTv.ChannelList
             */
 
             // load from cache, if available
-            SelectedServiceProvider = SelectProviderDialog.GetLastUserSelectedProvider();
+            SelectedServiceProvider = SelectProviderDialog.GetLastUserSelectedProvider(Properties.Settings.Default.LastSelectedServiceProvider);
             ServiceProviderChanged();
 
             // notify Splash Screeen the form has finished loading and is about to be shown
@@ -657,6 +657,7 @@ namespace Project.IpTv.ChannelList
                 box.ExceptionThrown += OnExceptionThrown;
                 box.ApplicationData = new AboutBoxApplicationData()
                 {
+                    LargeIcon = Properties.Resources.AboutIcon,
                     Name = Texts.AppName,
                     Version = Texts.AppVersion,
                     Status = Texts.AppStatus,
@@ -729,78 +730,35 @@ namespace Project.IpTv.ChannelList
 
         private bool LoadBroadcastDiscovery(bool fromCache)
         {
-            UiBroadcastDiscovery uiDiscovery;
-
-            try
+            var downloader = new UiBroadcastDiscoveryDownloader();
+            downloader.AfterCacheLoad += (sender, e) =>
             {
-                uiDiscovery = null;
-                if (fromCache)
+                if (e.CachedDiscovery == null)
                 {
-                    var cachedDiscovery = AppUiConfiguration.Current.Cache.LoadXmlDocument<UiBroadcastDiscovery>("UiBroadcastDiscovery", SelectedServiceProvider.Key);
-                    if (cachedDiscovery == null)
-                    {
-                        Notify(Properties.Resources.Error_24x24, Properties.Texts.ChannelListNoCache, 60000);
-                    }
-                    else
-                    {
-                        uiDiscovery = cachedDiscovery.Document;
-                        NotifyChannelListAge((int)cachedDiscovery.Age.TotalDays);
-                    } // if
+                    Notify(Properties.Resources.Error_24x24, Properties.Texts.ChannelListNoCache, 60000);
+                }
+                else
+                {
+                    NotifyChannelListAge((int)e.CachedDiscovery.Age.TotalDays);
                 } // if
+            };
+            downloader.Exception += MyApplication.HandleException;
 
-                if (uiDiscovery == null)
-                {
-                    var downloader = new UiDvbStpEnhancedDownloader()
-                    {
-                        Request = new UiDvbStpEnhancedDownloadRequest(2)
-                        {
-                            MulticastAddress = IPAddress.Parse(SelectedServiceProvider.Offering.Push[0].Address),
-                            MulticastPort = SelectedServiceProvider.Offering.Push[0].Port,
-                            Description = Properties.Texts.BroadcastObtainingList,
-                            DescriptionParsing = Properties.Texts.BroadcastParsingList,
-                            AllowXmlExtraWhitespace = false,
-                            XmlNamespaceReplacer = NamespaceUnification.Replacer,
-#if DEBUG
-                            DumpToFolder = AppUiConfiguration.Current.Folders.Cache
-#endif
-                        },
-                        TextUserCancelled = Properties.Texts.UserCancelListRefresh,
-                        TextDownloadException = Properties.Texts.BroadcastListUnableRefresh,
-                    };
-                    downloader.Request.AddPayload(0x02, null, Properties.Texts.Payload02DisplayName, typeof(BroadcastDiscoveryRoot));
-                    downloader.Request.AddPayload(0x05, null, Properties.Texts.Payload05DisplayName, typeof(PackageDiscoveryRoot));
-                    downloader.Download(this);
-                    BasicGoogleTelemetry.SendScreenHit(this);
-                    if (!downloader.IsOk) return false;
+            var uiDiscovery = downloader.Download(this, SelectedServiceProvider, BroadcastDiscovery, fromCache);
+            if (uiDiscovery == null) return false;
 
-                    var xmlDiscovery = downloader.Request.Payloads[0].XmlDeserializedData as BroadcastDiscoveryRoot;
-                    uiDiscovery = new UiBroadcastDiscovery(xmlDiscovery, SelectedServiceProvider.DomainName, downloader.Request.Payloads[0].SegmentVersion);
+            //ShowEpgMiniBar(false);
+            SetBroadcastDiscovery(uiDiscovery);
 
-                    UiBroadcastDiscoveryMergeResultDialog.Merge(this, BroadcastDiscovery, uiDiscovery);
-
-                    var xmlPackageDiscovery = downloader.Request.Payloads[1].XmlDeserializedData as PackageDiscoveryRoot;
-                    GetLogicalNumbers(uiDiscovery, xmlPackageDiscovery, !AppUiConfiguration.Current.User.ChannelNumberStandardDefinitionPriority);
-                    AppUiConfiguration.Current.Cache.SaveXml("UiBroadcastDiscovery", SelectedServiceProvider.Key, uiDiscovery.Version, uiDiscovery);
-                } // if
-
-                //ShowEpgMiniBar(false);
-                SetBroadcastDiscovery(uiDiscovery);
-
-                if (fromCache)
-                {
-                    if (BroadcastDiscovery.Services.Count <= 0)
-                    {
-                        Notify(Properties.Resources.Info_24x24, Properties.Texts.ChannelListCacheEmpty, 30000);
-                    } // if
-                } // if-else
-
-                return true;
-            }
-            catch (Exception ex)
+            if (fromCache)
             {
-                MyApplication.HandleException(this, null, Properties.Texts.BroadcastListUnableRefresh, ex);
-                return false;
-            } // try-catch
+                if (BroadcastDiscovery.Services.Count <= 0)
+                {
+                    Notify(Properties.Resources.Info_24x24, Properties.Texts.ChannelListCacheEmpty, 30000);
+                } // if
+            } // if-else
+
+            return true;
         } // LoadBroadcastDiscovery
 
         private void SetBroadcastDiscovery(UiBroadcastDiscovery broadcastDiscovery)
@@ -1235,147 +1193,6 @@ namespace Project.IpTv.ChannelList
             } // using form
         } // ShowEpgList
     */
-
-        private void GetLogicalNumbers(UiBroadcastDiscovery uiDiscovery, PackageDiscoveryRoot xmlPackage, bool hdPriority)
-        {
-            var packages = from discovery in xmlPackage.PackageDiscovery
-                           from package in discovery.Packages
-                           select package;
-
-            /*
-            var buffer = new StringBuilder();
-            foreach (var package in packages)
-            {
-                buffer.Append(package.Id);
-                buffer.Append("\t");
-                buffer.Append(package.Name.SafeGetLanguageValue(AppUiConfiguration.Current.User.PreferredLanguagesList, AppUiConfiguration.Current.DisplayPreferredOrFirst, null));
-                buffer.Append("\t");
-                buffer.Append(package.Services.Count);
-                buffer.AppendLine();
-            } // foreach
-            var list = buffer.ToString();
-
-            buffer = new StringBuilder();
-            foreach (var package in packages)
-            {
-                buffer.Append(package.Id);
-                buffer.Append("\t");
-                buffer.Append(package.Name.SafeGetLanguageValue(AppUiConfiguration.Current.User.PreferredLanguagesList, AppUiConfiguration.Current.DisplayPreferredOrFirst, null));
-                buffer.Append("\t");
-                buffer.Append(package.Services.Count);
-                buffer.AppendLine();
-
-                foreach (var service in package.Services)
-                {
-                    var fullName = service.TextualIdentifiers[0].ServiceName + "@" + SelectedServiceProvider.DomainName;
-                    buffer.Append("\t");
-                    buffer.Append("\t");
-                    var refService = uiDiscovery.TryGetService(fullName);
-                    buffer.Append(fullName);
-                    buffer.Append("\t");
-                    buffer.Append(service.LogicalChannelNumber);
-                    buffer.Append("\t");
-                    buffer.Append((refService != null) ? refService.DisplayName : "<null>");
-                    buffer.Append("\t");
-                    buffer.Append((refService != null) ? refService.DisplayServiceType : "<null>");
-                    buffer.AppendLine();
-                } // foreach service
-            } // foreach
-
-            var list2 = buffer.ToString();
-            */
-
-            var sortedPackages = from package in packages
-                                 orderby package.Services.Count descending
-                                 select package;
-
-            // assign channel number (duplicated logical numbers may exist)
-            foreach (var package in sortedPackages)
-            {
-                foreach (var service in package.Services)
-                {
-                    var fullName = service.TextualIdentifiers[0].ServiceName + "@" + SelectedServiceProvider.DomainName;
-                    var refService = uiDiscovery.TryGetService(fullName);
-                    if (refService == null) continue;
-
-                    int number;
-                    string logical;
-                    if (int.TryParse(service.LogicalChannelNumber, out number))
-                    {
-                        logical = string.Format("{0:000}", number);
-                    }
-                    else
-                    {
-                        logical = service.LogicalChannelNumber;
-                    } // if-else
-
-                    if (refService.ServiceLogicalNumber == null)
-                    {
-                        refService.ServiceLogicalNumber = logical;
-                    }
-                    else if (refService.ServiceLogicalNumber != logical)
-                    {
-
-                    } // if-else
-                } // foreach
-            } // foreach
-
-            // renumber channels, to avoid duplicated logical numbers as much as possible
-            // if HD channels priority, the goal is to ensure HD services get the intended logical number and SD channels get 'Sxxx'
-            // otherwise, the goal is to ensure SD services get the intended logical number and HD channels get 'Hxxx'
-            // duplicated logical numbers will get 'Hxxx' or 'Sxxx' as appropriate
-            // renumbering algorithm will not take into account user-assigned logical numbers and no attemp will be made to correct
-            // colisions
-            var numbers = new Dictionary<string, UiBroadcastService>(uiDiscovery.Services.Count, StringComparer.CurrentCultureIgnoreCase);
-            var noNumber = 1;
-            foreach (var service in uiDiscovery.Services)
-            {
-                UiBroadcastService existing;
-
-                if (service.ServiceLogicalNumber == null)
-                {
-                    service.ServiceLogicalNumber = string.Format("X{0:000}", noNumber++);
-                    continue;
-                } // if
-
-                if (!numbers.TryGetValue(service.ServiceLogicalNumber, out existing))
-                {
-                    // add
-                    numbers[service.ServiceLogicalNumber] = service;
-                }
-                else
-                {
-                    bool assign;
-
-                    if (service.IsHighDefinitionTv == existing.IsHighDefinitionTv)
-                    {
-                        assign = true;
-                    }
-                    else
-                    {
-                        assign = hdPriority ? service.IsStandardDefinitionTv : service.IsHighDefinitionTv;
-                    } // if-else
-
-                    if (assign)
-                    {
-                        var prefix = service.IsStandardDefinitionTv ? 'S' : 'H';
-                        service.ServiceLogicalNumber = prefix + service.ServiceLogicalNumber;
-                        numbers[service.ServiceLogicalNumber] = service;
-
-                    }
-                    else
-                    {
-                        var prefix = hdPriority ? 'S' : 'H';
-                        numbers[service.ServiceLogicalNumber] = service;
-                        if ((existing.ServiceLogicalNumber.Length > 0) && (existing.ServiceLogicalNumber[0] != prefix))
-                        {
-                            existing.ServiceLogicalNumber = prefix + existing.ServiceLogicalNumber;
-                        } // if
-                        numbers[existing.ServiceLogicalNumber] = existing;
-                    }
-                } // if-else
-            } // foreach
-        }  // GetLogicalNumbers
 
         private void contextMenuListExportM3u_Click(object sender, EventArgs e)
         {

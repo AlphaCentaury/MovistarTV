@@ -124,31 +124,43 @@
     <value>IPTV</value>
   </data>
   <data name="FileLogoDomainMappings" xml:space="preserve">
-    <value>Services\domain-mappings.xml</value>
+    <value>domain-mappings.xml</value>
   </data>
   <data name="FileLogoProviderMappings" xml:space="preserve">
-    <value>Providers\provider-mappings.xml</value>
+    <value>provider-mappings.xml</value>
   </data>
   <data name="FileLogoServiceMappings" xml:space="preserve">
-    <value>Services\service-mappings.xml</value>
+    <value>service-mappings.xml</value>
+  </data>
+  <data name="FolderCache" xml:space="preserve">
+    <value>Cache</value>
+  </data>
+  <data name="FolderLogosProviders" xml:space="preserve">
+    <value>Providers</value>
+  </data>
+  <data name="FolderLogosRoot" xml:space="preserve">
+    <value>Logos</value>
+  </data>
+  <data name="FolderLogosServices" xml:space="preserve">
+    <value>Services</value>
+  </data>
+  <data name="FolderRecordTasks" xml:space="preserve">
+    <value>RecordTasks</value>
   </data>
   <data name="FormatServiceLogoKey" xml:space="preserve">
     <value>{0}::{1}</value>
   </data>
-  <data name="RegistryKey_Folders" xml:space="preserve">
-    <value>Folders</value>
-  </data>
   <data name="RegistryKey_Root" xml:space="preserve">
-    <value>Software\movistartv.codeplex.com\DVBIPTV\v1.5</value>
+    <value>Software\movistartv.codeplex.com\IPTViewr\movistar+\v1.5.40.0</value>
   </data>
   <data name="RegistryValue_Analytics_ClientId" xml:space="preserve">
     <value>Analytics.ClientId</value>
   </data>
-  <data name="RegistryValue_Folders_Base" xml:space="preserve">
-    <value>Base</value>
+  <data name="RegistryValue_Folder_Base" xml:space="preserve">
+    <value>Folder.Base</value>
   </data>
-  <data name="RegistryValue_Folders_Install" xml:space="preserve">
-    <value>Install</value>
+  <data name="RegistryValue_Folder_Install" xml:space="preserve">
+    <value>Folder.Install</value>
   </data>
   <data name="RegistryValue_Installed" xml:space="preserve">
     <value>Installed</value>

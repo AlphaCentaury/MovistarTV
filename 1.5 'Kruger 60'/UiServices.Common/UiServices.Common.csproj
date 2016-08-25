@@ -169,6 +169,7 @@
     </Content>
     <Content Include="License.txt" />
     <None Include="Resources\DefaultSplash.png" />
+    <Content Include="Resources\DefaultAbout.png" />
     <Content Include="Resources\NotImplemented_200x200.png" />
   </ItemGroup>
   <ItemGroup />

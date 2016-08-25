@@ -1,26 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2014-2016, Codeplex user AlphaCentaury
+Copyright (C) 2014-2016, Codeplex/GitHub user AlphaCentaury
 All rights reserved, except those granted by the governing license of this software. See 'license.txt' file in the project root for complete license information.
 -->
 <Include>
-  <?define ProductId = "{12250F78-069A-4378-8063-EB67F9228670}" ?>
-  <?define UpgradeCode = "{5F17FC29-2428-4B6A-B0DD-27734B3AE4B4}" ?>
+  <!-- Allow side-by-side installation with other versions -->
+  <?define ProductId = "{5BE7CB08-BCB3-44A2-9B29-AFF68FF70249}" ?>
+  <?define UpgradeCode = "{F8CA4CFF-7F15-406C-BDA8-BDDCE7F48ED2}" ?>
   <?define Manufacturer = "http://movistartv.codeplex.com" ?>
   <?define Version = "1.5.40.0" ?>
-  <?define BaseRegistryKey = "Software\movistartv.codeplex.com\DVBIPTV\v1.5" ?>
+  <?define BaseRegistryKey = "Software\movistartv.codeplex.com\IPTViewr\movistar+\v1.5.40.0" ?>
+  <?define BaseInstallFolder = "movistar+ (v1.5.40.0 'Kruger 60')" ?>
 
-  <?define Guid.Component.Folders = "{2B5991EC-84E0-4E64-8AEF-68A470CECA2B}" ?>
+  <?define Guid.Component.Folders = "{D431270E-BE57-4DDE-9622-11C2B98CC660}" ?>
 
-  <?define Guid.Component.CommonAssemblies = "{1494991C-6027-4713-9976-6F00201F1368}" ?>
-  <?define Guid.Component.CommonAssemblies.PDB = "{EC84B538-A651-492F-8E90-5D8A0FBF8D14}" ?>
-  <?define Guid.Component.CommonAssemblies.Localization.es = "{08AE1848-F8D0-4FA4-98C1-1204E0D007DC}" ?>
+  <?define Guid.Component.CommonAssemblies = "{CF9D08F3-91C8-4336-8791-A380C3E21FCA}" ?>
+  <?define Guid.Component.CommonAssemblies.PDB = "{2BEE539E-9555-4810-A25A-C5D42531838B}" ?>
+  <?define Guid.Component.CommonAssemblies.Localization.es = "{04B22423-1FB4-4354-AB14-CB546173FA4F}" ?>
 
-  <?define Guid.Component.Record.Assemblies = "{6F71F0CA-FF19-4383-9CBA-FD1B78CF4044}" ?>
-  <?define Guid.Component.Record.Assemblies.PDB = "{C432239F-EA88-472A-BF75-8E816ABC292C}" ?>
-  <?define Guid.Component.Record.Assemblies.Localization.es = "{AEAAA944-0FCA-4640-94B3-ACD37D1573E8}" ?>
+  <?define Guid.Component.Record.Assemblies = "{A990ECBE-7026-4C4E-A18C-4C1EEE617F50}" ?>
+  <?define Guid.Component.Record.Assemblies.PDB = "{AC80CCBC-696C-407E-B354-3DA3FE983DF4}" ?>
+  <?define Guid.Component.Record.Assemblies.Localization.es = "{DB1FEA71-AC72-4669-9263-E5A11B355FA0}" ?>
 
-  <?define Guid.Component.EPG.Assemblies = "{A4BD0F9E-74D0-4B39-AA15-809C9A8FD58D}" ?>
-  <?define Guid.Component.EPG.PDB = "{77533CB9-47F7-4313-B5C7-B79BD2C4FD4B}" ?>
-  <?define Guid.Component.EPG.Assemblies.Localization.es = "{2E2F929E-4359-4F6F-97B5-94D0E15D4B32}" ?>
+  <!--
+    <?define Guid.Component.EPG.Assemblies = "{A4BD0F9E-74D0-4B39-AA15-809C9A8FD58D}" ?>
+    <?define Guid.Component.EPG.PDB = "{77533CB9-47F7-4313-B5C7-B79BD2C4FD4B}" ?>
+    <?define Guid.Component.EPG.Assemblies.Localization.es = "{2E2F929E-4359-4F6F-97B5-94D0E15D4B32}" ?>
+  -->
 </Include>

@@ -1,4 +1,4 @@
-﻿// Copyright (C) 2014-2016, Codeplex user AlphaCentaury
+﻿// Copyright (C) 2014-2016, Codeplex/GitHub user AlphaCentaury
 // All rights reserved, except those granted by the governing license of this software. See 'license.txt' file in the project root for complete license information.
 
 using System;
@@ -36,7 +36,8 @@ namespace Project.IpTv.UiServices.Discovery.BroadcastList
                 data1 = GetTextWithNumberForTextSorting(data1, Buffer);
                 data2 = GetTextWithNumberForTextSorting(data2, Buffer);
 
-                compare = data1.CompareTo(data2) * (sort.IsAscending ? 1 : -1);
+                compare = data1.CompareTo(data2);
+                compare *= (sort.IsAscending ? 1 : -1);
 
                 if (compare != 0) break;
             } // foreach sort

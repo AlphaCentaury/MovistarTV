@@ -1,4 +1,4 @@
-﻿// Copyright (C) 2014-2016, Codeplex user AlphaCentaury
+﻿// Copyright (C) 2014-2016, Codeplex/GitHub user AlphaCentaury
 // All rights reserved, except those granted by the governing license of this software. See 'license.txt' file in the project root for complete license information.
 
 using System;
@@ -21,7 +21,7 @@ namespace Project.IpTv.UiServices.Discovery.BroadcastList
         public const LogoSize LargeLogoSize = LogoSize.Size48;
 
         private IList<UiBroadcastService> fieldBroadcastServices;
-        private IList<UiBroadcastService> fieldDisplayBroadcastServices;
+        private IList<UiBroadcastService> DisplayedBroadcastServices;
         private IEnumerable<UiBroadcastService> SortedBroadcastServices;
         private UiBroadcastListSettings fieldOldSettings;
         private UiBroadcastListSettings fieldSettings;
@@ -250,11 +250,9 @@ namespace Project.IpTv.UiServices.Discovery.BroadcastList
             set
             {
                 fieldBroadcastServices = value;
-                fieldDisplayBroadcastServices = null;
                 SortedBroadcastServices = null;
                 fieldSelectedService = null;
                 ApplySorting();
-                FillList(false);
                 FireStatusChanged();
                 FireSelectionChanged();
             } // set
@@ -315,8 +313,10 @@ namespace Project.IpTv.UiServices.Discovery.BroadcastList
 
         public void Refesh()
         {
-            fieldDisplayBroadcastServices = null;
-            FillList(false);
+            DisplayedBroadcastServices = null;
+            ListView.BeginUpdate();
+            FillList();
+            ListView.EndUpdate();
         } // Refresh
 
         public bool EnableService(UiBroadcastService service, bool isInactive, bool isHidden)
@@ -356,12 +356,12 @@ namespace Project.IpTv.UiServices.Discovery.BroadcastList
 
         public IList<UiBroadcastService> GetDisplayedBroadcastList()
         {
-            if (fieldDisplayBroadcastServices == null)
+            if (DisplayedBroadcastServices == null)
             {
-                fieldDisplayBroadcastServices = GetDisplayBroadcastList();
+                DisplayedBroadcastServices = GetDisplayBroadcastList();
             } // if
 
-            return fieldDisplayBroadcastServices;
+            return DisplayedBroadcastServices;
         } // GetDisplayedBroadcastList
 
         public UiBroadcastListSettings ShowSettingsEditor(IWin32Window owner, bool autoApplyChanges)
@@ -370,8 +370,7 @@ namespace Project.IpTv.UiServices.Discovery.BroadcastList
 
             if ((result != null) && (autoApplyChanges))
             {
-                UiBroadcastListSettingsRegistration.Settings = result;
-                AppUiConfiguration.Current.Save();
+                SaveSettings(result);
                 Settings = result;
             } // if
 
@@ -470,8 +469,8 @@ namespace Project.IpTv.UiServices.Discovery.BroadcastList
                 Settings[Settings.CurrentMode].Sort = ServiceSortComparer.GetSuggestedSortColumns(sortColumn.Column, sortColumn.IsAscending, 3);
             } // if-else
 
+            SaveSettings(Settings);
             ApplySorting();
-            FillList(false);
         } // ListView_ColumnClick
 
         #endregion
@@ -524,7 +523,6 @@ namespace Project.IpTv.UiServices.Discovery.BroadcastList
                 if (NeedToApplySorting(oldSettings, newSettings))
                 {
                     ApplySorting();
-                    FillList(true);
                 }
                 else
                 {
@@ -535,6 +533,12 @@ namespace Project.IpTv.UiServices.Discovery.BroadcastList
                 ListView.EndUpdate();
             } // if-else
         } // ApplySettings
+
+        private void SaveSettings(UiBroadcastListSettings settings)
+        {
+            UiBroadcastListSettingsRegistration.Settings = settings;
+            AppUiConfiguration.Current.Save();
+        } // SaveSettings
 
         private void BuildListLayout()
         {
@@ -551,10 +555,9 @@ namespace Project.IpTv.UiServices.Discovery.BroadcastList
             } // foreach
             ListView.Columns[0].Width += SmallImageList.ImageSize.Width + 5;
 
-            fieldDisplayBroadcastServices = null;
             ApplyCosmeticSettings(null, fieldSettings);
             ApplySorting();
-            FillList(true);
+            FillList();
             ListView.EndUpdate();
         } // BuildListLayout
 
@@ -578,18 +581,15 @@ namespace Project.IpTv.UiServices.Discovery.BroadcastList
             return result;
         } // GetDisplayBroadcastList
 
-        private void FillList(bool insideUpdate)
+        private void FillList()
         {
             // save selected service
             var savedSelectedService = fieldSelectedService;
-
-            if (!insideUpdate) ListView.BeginUpdate();
 
             ListView.Items.Clear();
             var services = GetDisplayedBroadcastList();
             if (services.Count == 0)
             {
-                if (!insideUpdate) ListView.EndUpdate();
                 return;
             } // if
 
@@ -625,8 +625,6 @@ namespace Project.IpTv.UiServices.Discovery.BroadcastList
             {
                 SelectedService = savedSelectedService;
             } // if
-
-            if (!insideUpdate) ListView.EndUpdate();
         } // FillList
 
         private bool ApplyCosmeticSettings(UiBroadcastListSettings oldSettings, UiBroadcastListSettings newSettings)
@@ -668,9 +666,11 @@ namespace Project.IpTv.UiServices.Discovery.BroadcastList
                 SortedBroadcastServices = fieldBroadcastServices.OrderBy(item => item, comparer);
             } // if-else
 
-            FillList(true);
+            // force use of SortedBroadcastServices when filling the list
+            DisplayedBroadcastServices = null;
+            FillList();
 
-            // update 'arrow'
+            // Update the 'arrow' in the header
             if (Settings.CurrentMode == View.Details)
             {
                 var q = from index in Enumerable.Range(0, Settings.CurrentColumns.Count)

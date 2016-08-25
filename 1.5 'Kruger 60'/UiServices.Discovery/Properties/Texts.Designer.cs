@@ -79,6 +79,33 @@ namespace Project.IpTv.UiServices.Discovery.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Unable to obtain the list of TV channels/services.
+        /// </summary>
+        internal static string BroadcastListUnableRefresh {
+            get {
+                return ResourceManager.GetString("BroadcastListUnableRefresh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Obtaining list of TV channels/services....
+        /// </summary>
+        internal static string BroadcastObtainingList {
+            get {
+                return ResourceManager.GetString("BroadcastObtainingList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Parsing and extracting the list of TV channels/services....
+        /// </summary>
+        internal static string BroadcastParsingList {
+            get {
+                return ResourceManager.GetString("BroadcastParsingList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No description is available for this TV channel/service.
         /// </summary>
         internal static string BroadcastUnknownDisplayDescription {
@@ -232,11 +259,38 @@ namespace Project.IpTv.UiServices.Discovery.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Channel description and data.
+        /// </summary>
+        internal static string Payload02DisplayName {
+            get {
+                return ResourceManager.GetString("Payload02DisplayName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Packages and channel numbers.
+        /// </summary>
+        internal static string Payload05DisplayName {
+            get {
+                return ResourceManager.GetString("Payload05DisplayName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No description is available for this service provider.
         /// </summary>
         internal static string ProviderUnknownDisplayDescription {
             get {
                 return ResourceManager.GetString("ProviderUnknownDisplayDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The refreshing of the list has been cancelled by the user..
+        /// </summary>
+        internal static string UserCancelListRefresh {
+            get {
+                return ResourceManager.GetString("UserCancelListRefresh", resourceCulture);
             }
         }
         

@@ -93,6 +93,16 @@ namespace Project.IpTv.UiServices.Common.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap DefaultAbout {
+            get {
+                object obj = ResourceManager.GetObject("DefaultAbout", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap DefaultSplash {
             get {
                 object obj = ResourceManager.GetObject("DefaultSplash", resourceCulture);

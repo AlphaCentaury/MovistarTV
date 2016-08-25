@@ -1,4 +1,4 @@
-﻿// Copyright (C) 2015, Codeplex user AlphaCentaury
+﻿// Copyright (C) 2015, Codeplex/GitHub user AlphaCentaury
 // All rights reserved, except those granted by the governing license of this software. See 'license.txt' file in the project root for complete license information.
 
 using Project.IpTv.Common.Telemetry;
@@ -17,7 +17,7 @@ namespace Project.IpTv.Tools.FirstTimeConfig
         public WizardEndDialog()
         {
             InitializeComponent();
-            this.Icon = Properties.Resources.InstallIcon;
+            this.Icon = Properties.Resources.FirstTimeConfigIcon;
         } // constructor
 
         public DialogResult EndResult

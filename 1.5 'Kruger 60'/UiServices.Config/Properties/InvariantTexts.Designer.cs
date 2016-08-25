@@ -79,7 +79,7 @@ namespace Project.IpTv.UiServices.Configuration.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Services\domain-mappings.xml.
+        ///   Looks up a localized string similar to domain-mappings.xml.
         /// </summary>
         internal static string FileLogoDomainMappings {
             get {
@@ -88,7 +88,7 @@ namespace Project.IpTv.UiServices.Configuration.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Providers\provider-mappings.xml.
+        ///   Looks up a localized string similar to provider-mappings.xml.
         /// </summary>
         internal static string FileLogoProviderMappings {
             get {
@@ -97,11 +97,56 @@ namespace Project.IpTv.UiServices.Configuration.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Services\service-mappings.xml.
+        ///   Looks up a localized string similar to service-mappings.xml.
         /// </summary>
         internal static string FileLogoServiceMappings {
             get {
                 return ResourceManager.GetString("FileLogoServiceMappings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cache.
+        /// </summary>
+        internal static string FolderCache {
+            get {
+                return ResourceManager.GetString("FolderCache", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Providers.
+        /// </summary>
+        internal static string FolderLogosProviders {
+            get {
+                return ResourceManager.GetString("FolderLogosProviders", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Logos.
+        /// </summary>
+        internal static string FolderLogosRoot {
+            get {
+                return ResourceManager.GetString("FolderLogosRoot", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Services.
+        /// </summary>
+        internal static string FolderLogosServices {
+            get {
+                return ResourceManager.GetString("FolderLogosServices", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to RecordTasks.
+        /// </summary>
+        internal static string FolderRecordTasks {
+            get {
+                return ResourceManager.GetString("FolderRecordTasks", resourceCulture);
             }
         }
         
@@ -115,16 +160,7 @@ namespace Project.IpTv.UiServices.Configuration.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Folders.
-        /// </summary>
-        internal static string RegistryKey_Folders {
-            get {
-                return ResourceManager.GetString("RegistryKey_Folders", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Software\movistartv.codeplex.com\DVBIPTV\v1.5.
+        ///   Looks up a localized string similar to Software\movistartv.codeplex.com\IPTViewr\movistar+\v1.5.40.0.
         /// </summary>
         internal static string RegistryKey_Root {
             get {
@@ -142,20 +178,20 @@ namespace Project.IpTv.UiServices.Configuration.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Base.
+        ///   Looks up a localized string similar to Folder.Base.
         /// </summary>
-        internal static string RegistryValue_Folders_Base {
+        internal static string RegistryValue_Folder_Base {
             get {
-                return ResourceManager.GetString("RegistryValue_Folders_Base", resourceCulture);
+                return ResourceManager.GetString("RegistryValue_Folder_Base", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Install.
+        ///   Looks up a localized string similar to Folder.Install.
         /// </summary>
-        internal static string RegistryValue_Folders_Install {
+        internal static string RegistryValue_Folder_Install {
             get {
-                return ResourceManager.GetString("RegistryValue_Folders_Install", resourceCulture);
+                return ResourceManager.GetString("RegistryValue_Folder_Install", resourceCulture);
             }
         }
         

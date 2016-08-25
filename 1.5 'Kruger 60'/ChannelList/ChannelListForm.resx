@@ -611,8 +611,14 @@
   <data name="menuItemDvbRecent.Text" xml:space="preserve">
     <value>Recent channels</value>
   </data>
+  <data name="menuItemDvbRecent.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
   <data name="separatorDvb1.Size" type="System.Drawing.Size, System.Drawing">
     <value>157, 6</value>
+  </data>
+  <data name="separatorDvb1.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="menuItemProviderSelect.Size" type="System.Drawing.Size, System.Drawing">
     <value>200, 22</value>
@@ -656,6 +662,9 @@
   <data name="menuItemDvbPackages.Text" xml:space="preserve">
     <value>P&amp;ackage</value>
   </data>
+  <data name="menuItemDvbPackages.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
   <data name="separatorDvb2.Size" type="System.Drawing.Size, System.Drawing">
     <value>157, 6</value>
   </data>
@@ -670,6 +679,9 @@
   </data>
   <data name="menuItemDvbExport.Text" xml:space="preserve">
     <value>Export data...</value>
+  </data>
+  <data name="menuItemDvbExport.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="separatorDvb3.Size" type="System.Drawing.Size, System.Drawing">
     <value>157, 6</value>
@@ -687,10 +699,10 @@
     <value>Exit</value>
   </data>
   <data name="menuItemDvbIpTv.Size" type="System.Drawing.Size, System.Drawing">
-    <value>70, 20</value>
+    <value>65, 20</value>
   </data>
   <data name="menuItemDvbIpTv.Text" xml:space="preserve">
-    <value>DVB-&amp;IPTV</value>
+    <value>&amp;IPTViewr</value>
   </data>
   <data name="menuItemChannelFavorites0.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -1107,8 +1119,14 @@
   <data name="menuItemChannelFavorites.Text" xml:space="preserve">
     <value>&amp;Favorites</value>
   </data>
+  <data name="menuItemChannelFavorites.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
   <data name="separatorChannel1.Size" type="System.Drawing.Size, System.Drawing">
     <value>222, 6</value>
+  </data>
+  <data name="separatorChannel1.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="menuItemChannelShow.Size" type="System.Drawing.Size, System.Drawing">
     <value>225, 22</value>
@@ -1136,6 +1154,9 @@
   </data>
   <data name="menuItemChannelEditList.Text" xml:space="preserve">
     <value>Edit channel list...</value>
+  </data>
+  <data name="menuItemChannelEditList.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="separatorChannel3.Size" type="System.Drawing.Size, System.Drawing">
     <value>222, 6</value>
@@ -1188,8 +1209,14 @@
   <data name="menuItemRecordingsManage.Text" xml:space="preserve">
     <value>&amp;Manage recordings...</value>
   </data>
+  <data name="menuItemRecordingsManage.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
   <data name="separatorRecordings1.Size" type="System.Drawing.Size, System.Drawing">
     <value>182, 6</value>
+  </data>
+  <data name="separatorRecordings1.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="menuItemRecordingsRepair.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -1199,6 +1226,9 @@
   </data>
   <data name="menuItemRecordingsRepair.Text" xml:space="preserve">
     <value>Repair &amp;tasks...</value>
+  </data>
+  <data name="menuItemRecordingsRepair.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="menuItemRecordings.Size" type="System.Drawing.Size, System.Drawing">
     <value>78, 20</value>
@@ -1712,7 +1742,7 @@
     <value>724, 422</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Channel list - IPTV</value>
+    <value>Channel list - IPTViewr</value>
   </data>
   <data name="&gt;&gt;imageListChannelsLarge.Name" xml:space="preserve">
     <value>imageListChannelsLarge</value>

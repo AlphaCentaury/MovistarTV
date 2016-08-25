@@ -100,12 +100,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="SelectProviderDialog.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="SelectProviderDialog.Designer.cs">
-      <DependentUpon>SelectProviderDialog.cs</DependentUpon>
-    </Compile>
     <Compile Include="Properties\InvariantTexts.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -150,12 +144,6 @@
       <SubType>Designer</SubType>
       <LastGenOutput>CommonUiResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="SelectProviderDialog.es.resx">
-      <DependentUpon>SelectProviderDialog.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SelectProviderDialog.resx">
-      <DependentUpon>SelectProviderDialog.cs</DependentUpon>
-    </EmbeddedResource>
     <None Include="..\solution-license.rtf">
       <Link>Resources\solution-license.rtf</Link>
     </None>
@@ -199,6 +187,7 @@
     <None Include="Resources\Info_24x24.png" />
     <None Include="Resources\DownloadWeb_16x16.png" />
     <None Include="Resources\DownloadWebSettings_16x16.png" />
+    <Content Include="Resources\AboutIcon.png" />
     <Content Include="Resources\IPTV.ico" />
     <None Include="Resources\Splash.png" />
     <None Include="Resources\SortAZ_16x16.png" />

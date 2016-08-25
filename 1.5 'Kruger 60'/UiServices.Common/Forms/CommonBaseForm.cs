@@ -1,4 +1,4 @@
-﻿// Copyright (C) 2014-2016, Codeplex user AlphaCentaury
+﻿// Copyright (C) 2014-2016, Codeplex/GitHub user AlphaCentaury
 // All rights reserved, except those granted by the governing license of this software. See 'license.txt' file in the project root for complete license information.
 
 using Microsoft.SqlServer.MessageBox;
@@ -34,6 +34,12 @@ namespace Project.IpTv.UiServices.Common.Forms
         /// <remarks>Descendants who override this method should not call base.HandleException</remarks>
         protected virtual void OnExceptionThrown(object sender, CommonBaseFormExceptionThrownEventArgs e)
         {
+            var parent = ParentForm as CommonBaseForm;
+            if (parent != null)
+            {
+                parent.OnExceptionThrown(sender, e);
+            } // if
+
             if (ExceptionThrown != null)
             {
                 ExceptionThrown(this, e);

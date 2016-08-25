@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-Copyright (C) 2014-2016, Codeplex user AlphaCentaury
+Copyright (C) 2014-2016, Codeplex/GitHub user AlphaCentaury
 All rights reserved, except those granted by the governing license of this software. See 'license.txt' file in the project root for complete license information.
 -->
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi" xmlns:netfx="http://schemas.microsoft.com/wix/NetFxExtension">
@@ -20,7 +20,12 @@ All rights reserved, except those granted by the governing license of this softw
     <MediaTemplate EmbedCab="yes" />
 
     <Feature Id="ProductFeature" Title="!(loc.ProductName)" Level="1" Absent="disallow" Display="expand">
-      <Feature Id="Base" Title="Archivos comunes" Absent="disallow">
+      <FeatureRef Id="Feature.Tools" />
+      <Feature Id="Features" Display="expand" Title="Aditional features">
+        <FeatureRef Id="Feature.Record" />
+        <!-- <FeatureRef Id="Feature.EPG" /> -->
+      </Feature>
+      <Feature Id="Base" Title="Common files" Absent="disallow">
         <ComponentGroupRef Id="RegistryConfiguration" />
         <ComponentGroupRef Id="CommonComponents" />
         <ComponentGroupRef Id="CommonComponents.Localization" />
@@ -32,11 +37,6 @@ All rights reserved, except those granted by the governing license of this softw
         <ComponentGroupRef Id="ThirdParty"/>
         <ComponentGroupRef Id="Redist"/>
       </Feature>
-      <Feature Id="Features" Display="expand" Title="Aditional features">
-        <FeatureRef Id="Feature.Record" />
-        <!-- <FeatureRef Id="Feature.EPG" /> -->
-      </Feature>
-      <FeatureRef Id="Feature.Tools" />
     </Feature>
 
     <UIRef Id='WixUI_Minimal'/>
@@ -46,8 +46,8 @@ All rights reserved, except those granted by the governing license of this softw
     <!-- ATENCION: WixVariable no permite utilizar !(loc.xxx); por tanto, el nombre del archivo de licencia va a "piñon fijo"; hay que buscar la forma de solucionar esto; cuando se crea un instalador para otro idioma es necesario modificar manualmente el nombre del archivo para que se incluya el acuerdo de licencia en el idioma correcto -->
     <WixVariable Id="WixUILicenseRtf" Value="$(var.SolutionDir)solution-license_es.rtf" />
 
-    <Icon Id="ProductIcon" SourceFile="$(var.ChannelList.ProjectDir)Resources\IPTV.ico"/>
-    <Property Id="ARPPRODUCTICON" Value="ProductIcon" />
+    <Icon Id="Icon.Product" SourceFile="iptviewr-for-movistarplus_alt.ico"/>
+    <Property Id="ARPPRODUCTICON" Value="Icon.Product" />
     <Property Id='ARPHELPLINK'>http://movistartv.codeplex.com/documentation/</Property>
     <Property Id='ARPURLINFOABOUT'>http://movistartv.codeplex.com/</Property>
     <Property Id='ARPURLUPDATEINFO'>http://movistartv.codeplex.com/releases/</Property>
@@ -65,8 +65,8 @@ All rights reserved, except those granted by the governing license of this softw
   <Fragment>
     <Directory Id="TARGETDIR" Name="SourceDir">
       <Directory Id="PersonalFolder">
-        <Directory Id="DvbFolder" Name="IPTV">
-          <Directory Id="BaseFolder" Name="movistar+ (v1.5 Kruger-60)">
+        <Directory Id="DvbFolder" Name="IPTViewr">
+          <Directory Id="BaseFolder" Name="$(var.BaseInstallFolder)">
             <Directory Id="INSTALLFOLDER" Name="bin">
               <Directory Id="RedistFolderBase" Name ="Redist">
                 <Directory Id="RedistFolder" Name="!(loc.RedistLanguage)">
@@ -87,9 +87,7 @@ All rights reserved, except those granted by the governing license of this softw
       </Directory>
 
       <Directory Id="ProgramMenuFolder">
-        <Directory Id="DvbIpTvStartMenuFolder" Name="!(loc.DvbIpTvStartMenuFolder)">
-          <Directory Id="ProgramStartMenuFolder" Name="!(loc.ProgramStartMenuFolder)" />
-        </Directory>
+        <Directory Id="ProgramStartMenuFolder" Name="!(loc.ProgramStartMenuFolder)" />
       </Directory>
     </Directory>
 
@@ -112,7 +110,6 @@ All rights reserved, except those granted by the governing license of this softw
       
         <RemoveFile Id="Purge_ProgramStartMenuFolder" Name="*.*" On="uninstall" Directory="ProgramStartMenuFolder"/>
 
-        <RemoveFolder Id="Remove_DvbIpTvStartMenuFolder" On="uninstall" Directory="DvbIpTvStartMenuFolder" />
         <RemoveFolder Id="Remove_ProgramStartMenuFolder" On="uninstall" Directory="ProgramStartMenuFolder"/>
       </Component>
     </ComponentGroup>

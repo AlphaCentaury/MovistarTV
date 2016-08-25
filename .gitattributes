@@ -1,0 +1,43 @@
+﻿# global git configuration for windows
+# git config --global core.autocrlf true
+# git config --global core.eol native
+# git config --global core.safecrlf true
+
+# general text files
+*.txt text
+*.md text
+
+# Visual Studio
+*.sln text
+*.config text
+*.settings text
+
+# C# projects
+*.csproj text
+*.cs text
+*.resx text
+
+# Wix projects
+*.wixproj text
+*.wxs text
+*.wxi text
+*.wxl text
+
+# XML
+*.xml text
+*.xsd text
+
+# pseudo-text files
+*.rtf -text
+
+# binary files
+*.bmp binary
+*.dll binary
+*.exe binary
+*.ico binary
+*.msi binary
+*.pdb binary
+*.pdf binary
+*.png binary
+*.sdf binary
+*.zip binary

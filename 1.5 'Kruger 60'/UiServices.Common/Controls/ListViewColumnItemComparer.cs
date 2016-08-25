@@ -1,4 +1,4 @@
-﻿// Copyright (C) 2014-2016, Codeplex user AlphaCentaury
+﻿// Copyright (C) 2014-2016, Codeplex/GitHub user AlphaCentaury
 // All rights reserved, except those granted by the governing license of this software. See 'license.txt' file in the project root for complete license information.
 
 using System;
@@ -32,7 +32,7 @@ namespace Project.IpTv.UiServices.Common.Controls
             if (object.Equals(item1, item2)) return 0;
 
             compare = ResultSign * string.Compare(GetSafeText(item1, ColumnIndex), GetSafeText(item2, ColumnIndex));
-            if (compare == 0)
+            if ((compare == 0) && (ColumnIndex > 0))
             {
                 compare = string.Compare(item1.SubItems[0].Text, item2.SubItems[0].Text);
             } // if

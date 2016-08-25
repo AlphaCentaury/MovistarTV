@@ -308,6 +308,7 @@
     <Content Include="License.txt" />
     <None Include="Resources\Action_AddVariable_16.png" />
     <Content Include="Resources\BrokenFile_256.png" />
+    <None Include="Resources\domain-mappings.xml" />
     <Content Include="Resources\NetworkSettings_32.png" />
     <Content Include="Resources\NetworkSettings_48.png" />
     <Content Include="Resources\TvPlayersSettings_256.png" />

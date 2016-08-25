@@ -70,6 +70,24 @@ namespace Project.IpTv.ChannelList.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to \bin\debug.
+        /// </summary>
+        internal static string DebugLocationPath {
+            get {
+                return ResourceManager.GetString("DebugLocationPath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ..\..\..\IpTvRecorderLauncher\bin\debug\.
+        /// </summary>
+        internal static string DebugRecorderLauncherPath {
+            get {
+                return ResourceManager.GetString("DebugRecorderLauncherPath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Unable to change the applicationt UI language.
         ///The language (&quot;culture&quot;) id may not be valid or not recognized by the system.
         ///Please verify the value of the &apos;ForceUICulture&apos; property in &apos;.config&apos; file.
@@ -85,6 +103,15 @@ namespace Project.IpTv.ChannelList.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to IpTvRecorderLauncher.exe.
+        /// </summary>
+        internal static string ExeRecorderLauncher {
+            get {
+                return ResourceManager.GetString("ExeRecorderLauncher", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to http://movistartv.codeplex.com.
         /// </summary>
         internal static string SplashScreenDefaultStatus {
@@ -94,7 +121,7 @@ namespace Project.IpTv.ChannelList.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://movistartv.codeplex.com/wikipage?title=Update-v1.5.35.5.
+        ///   Looks up a localized string similar to http://movistartv.codeplex.com/wikipage?title=Update-v1.5.40.0.
         /// </summary>
         internal static string UrlCheckForUpdatesManual {
             get {

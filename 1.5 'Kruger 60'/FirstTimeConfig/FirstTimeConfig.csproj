@@ -36,7 +36,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>Resources\install.ico</ApplicationIcon>
+    <ApplicationIcon>Resources\first-time-config.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
     <StartupObject />
@@ -150,6 +150,19 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Resources\ActionCancel_16x16.png" />
+    <None Include="Resources\ActionOk_16x16.png" />
+    <None Include="Resources\ActionRun_16x16.png" />
+    <None Include="Resources\ApproveReject_16x16.png" />
+    <None Include="Resources\AttachFileHS.png" />
+    <None Include="Resources\Exclamation_48x48.png" />
+    <None Include="Resources\Firewall_48x48.png" />
+    <None Include="Resources\openfolderHS.png" />
+    <None Include="Resources\Readme_en.rtf" />
+    <None Include="Resources\Readme_es.rtf" />
+    <None Include="Resources\Settings_16x616.png" />
+    <None Include="Resources\WizardSide.png" />
+    <None Include="Resources\WizardSidePattern.png" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="..\Common.UI\Resources\Status_Pending_16x16.png">
@@ -161,28 +174,15 @@
     <Content Include="License.txt" />
     <Content Include="Resources\ActionBack_Medium_16.png" />
     <Content Include="Resources\ActionForward_Medium_16.png" />
-    <Content Include="Resources\WizardTop.png" />
-    <None Include="Resources\Exclamation_48x48.png" />
-    <None Include="Resources\Firewall_48x48.png" />
-    <None Include="Resources\Readme_en.rtf" />
-    <None Include="Resources\Readme_es.rtf" />
-    <None Include="Resources\WizardSide.png" />
-    <None Include="Resources\WizardSidePattern.png" />
-    <Content Include="Resources\Warning_48x48.png" />
-    <None Include="Resources\ActionRun_16x16.png" />
-    <None Include="Resources\ActionOk_16x16.png" />
     <Content Include="Resources\Error_16x16.png" />
-    <None Include="Resources\Settings_16x616.png" />
     <Content Include="Resources\firewall.ico" />
+    <Content Include="Resources\first-time-config.ico" />
     <Content Include="Resources\Shield_16x16.png" />
     <Content Include="Resources\Shield_32x32.png" />
     <Content Include="Resources\Success_48x48.png" />
     <Content Include="Resources\Sucess_16x16.png" />
-    <None Include="Resources\ActionCancel_16x16.png" />
-    <None Include="Resources\openfolderHS.png" />
-    <None Include="Resources\AttachFileHS.png" />
-    <None Include="Resources\ApproveReject_16x16.png" />
-    <None Include="Resources\install.ico" />
+    <Content Include="Resources\Warning_48x48.png" />
+    <Content Include="Resources\WizardTop.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Core.IpTvProvider\Core.IpTvProvider.csproj">

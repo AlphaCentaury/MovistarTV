@@ -1,4 +1,4 @@
-﻿// Copyright (C) 2014-2016, Codeplex user AlphaCentaury
+﻿// Copyright (C) 2014-2016, Codeplex/GitHub user AlphaCentaury
 // All rights reserved, except those granted by the governing license of this software. See 'license.txt' file in the project root for complete license information.
 
 namespace Project.IpTv.UiServices.Common.Forms
@@ -54,6 +54,7 @@ namespace Project.IpTv.UiServices.Common.Forms
             // 
             // logoPictureBox
             // 
+            this.logoPictureBox.Image = global::Project.IpTv.UiServices.Common.Properties.Resources.DefaultAbout;
             resources.ApplyResources(this.logoPictureBox, "logoPictureBox");
             this.logoPictureBox.Name = "logoPictureBox";
             this.logoPictureBox.TabStop = false;

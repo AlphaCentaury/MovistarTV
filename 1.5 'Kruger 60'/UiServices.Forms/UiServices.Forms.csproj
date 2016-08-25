@@ -47,6 +47,11 @@
     <Compile Include="..\AssemblySolutionInfo.cs">
       <Link>Properties\AssemblySolutionInfo.cs</Link>
     </Compile>
+    <Compile Include="Properties\CommonUiResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CommonUiResources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\DiscoveryTexts.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -75,8 +80,18 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="SelectProviderDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SelectProviderDialog.Designer.cs">
+      <DependentUpon>SelectProviderDialog.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Properties\CommonUiResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>CommonUiResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\DiscoveryTexts.es.resx" />
     <EmbeddedResource Include="Properties\DiscoveryTexts.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -104,31 +119,23 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectProviderDialog.es.resx">
+      <DependentUpon>SelectProviderDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectProviderDialog.resx">
+      <DependentUpon>SelectProviderDialog.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="..\Common.UI\Resources\Action_Cancel_16x16.png">
-      <Link>Resources\Action_Cancel_16x16.png</Link>
-    </Content>
-    <Content Include="..\Common.UI\Resources\Action_Copy_Clip_16x16.png">
-      <Link>Resources\Action_Copy_Clip_16x16.png</Link>
-    </Content>
-    <Content Include="..\Common.UI\Resources\Action_Copy_Table.png">
-      <Link>Resources\Action_Copy_Table.png</Link>
-    </Content>
-    <Content Include="..\Common.UI\Resources\Action_Ok_16x16.png">
-      <Link>Resources\Action_Ok_16x16.png</Link>
-    </Content>
-    <Content Include="..\Common.UI\Resources\Action_Properties_16x16.png">
-      <Link>Resources\Action_Properties_16x16.png</Link>
-    </Content>
-    <Content Include="..\Common.UI\Resources\Action_Refresh_Blue_16x16.png">
-      <Link>Resources\Action_Refresh_Blue_16x16.png</Link>
-    </Content>
-    <Content Include="..\Common.UI\Resources\Action_Run_16x16.png">
-      <Link>Resources\Action_Run_16x16.png</Link>
-    </Content>
     <Content Include="License.txt" />
+    <None Include="Resources\Action_Run_16x16.png" />
+    <None Include="Resources\Action_Refresh_Blue_16x16.png" />
+    <None Include="Resources\Action_Properties_16x16.png" />
+    <None Include="Resources\Action_Ok_16x16.png" />
+    <None Include="Resources\Action_Copy_Table.png" />
+    <None Include="Resources\Action_Cancel_16x16.png" />
     <None Include="Resources\128-scan-tv.png" />
   </ItemGroup>
   <ItemGroup>

@@ -1,4 +1,4 @@
-﻿// Copyright (C) 2014-2016, Codeplex user AlphaCentaury
+﻿// Copyright (C) 2014-2016, Codeplex/GitHub user AlphaCentaury
 // All rights reserved, except those granted by the governing license of this software. See 'license.txt' file in the project root for complete license information.
 
 namespace Project.IpTv.UiServices.Forms
@@ -95,7 +95,7 @@ namespace Project.IpTv.UiServices.Forms
             // buttonRequestCancel
             // 
             this.buttonRequestCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.buttonRequestCancel.Image = global::Project.IpTv.UiServices.Forms.Properties.Resources.Action_Cancel_16x16;
+            this.buttonRequestCancel.Image = global::Project.IpTv.UiServices.Forms.Properties.CommonUiResources.Action_Cancel_16x16;
             resources.ApplyResources(this.buttonRequestCancel, "buttonRequestCancel");
             this.buttonRequestCancel.Name = "buttonRequestCancel";
             this.buttonRequestCancel.UseVisualStyleBackColor = true;
@@ -149,7 +149,7 @@ namespace Project.IpTv.UiServices.Forms
             // buttonClose
             // 
             this.buttonClose.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.buttonClose.Image = global::Project.IpTv.UiServices.Forms.Properties.Resources.Action_Ok_16x16;
+            this.buttonClose.Image = global::Project.IpTv.UiServices.Forms.Properties.CommonUiResources.Action_Ok_16x16;
             resources.ApplyResources(this.buttonClose, "buttonClose");
             this.buttonClose.Name = "buttonClose";
             this.buttonClose.UseVisualStyleBackColor = true;
