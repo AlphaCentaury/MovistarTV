@@ -549,7 +549,7 @@ namespace Project.IpTv.Tools.FirstTimeConfig.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to v1.5 “Kruger 60” Alpha 4.
+        ///   Looks up a localized string similar to v1.5 “Kruger 60” Beta 1.
         /// </summary>
         internal static string ProductShortName {
             get {
