@@ -6,10 +6,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using Project.IpTv.UiServices.Configuration;
-using Project.IpTv.UiServices.Discovery;
+using IpTviewr.UiServices.Configuration;
+using IpTviewr.UiServices.Discovery;
 
-namespace Project.IpTv.Core.IpTvProvider
+namespace IpTviewr.Core.IpTvProvider
 {
     public abstract class IpTvProvider
     {

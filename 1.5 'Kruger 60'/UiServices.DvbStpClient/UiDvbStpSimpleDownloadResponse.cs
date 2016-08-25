@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Project.IpTv.UiServices.DvbStpClient
+namespace IpTviewr.UiServices.DvbStpClient
 {
     public class UiDvbStpSimpleDownloadResponse : UiDvbStpBaseDownloadResponse
     {

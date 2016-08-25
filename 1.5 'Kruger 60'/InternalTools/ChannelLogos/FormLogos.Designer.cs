@@ -1,4 +1,4 @@
-﻿namespace Project.IpTv.Internal.Tools.ChannelLogos
+﻿namespace IpTviewr.Internal.Tools.ChannelLogos
 {
     partial class FormLogos
     {

@@ -1,7 +1,7 @@
 ﻿// Copyright (C) 2014-2016, Codeplex/GitHub user AlphaCentaury
 // All rights reserved, except those granted by the governing license of this software. See 'license.txt' file in the project root for complete license information.
 
-namespace Project.IpTv.UiServices.Record.Controls
+namespace IpTviewr.UiServices.Record.Controls
 {
     partial class RecordingDuration
     {
@@ -38,7 +38,7 @@ namespace Project.IpTv.UiServices.Record.Controls
             this.dateTimeEndDate = new System.Windows.Forms.DateTimePicker();
             this.radioEndDateTime = new System.Windows.Forms.RadioButton();
             this.radioTimeSpan = new System.Windows.Forms.RadioButton();
-            this.timeSpanLength = new Project.IpTv.UiServices.Common.Controls.TimeSpanUpDown();
+            this.timeSpanLength = new IpTviewr.UiServices.Common.Controls.TimeSpanUpDown();
             this.SuspendLayout();
             // 
             // comboQuickSetting
@@ -129,6 +129,6 @@ namespace Project.IpTv.UiServices.Record.Controls
         private System.Windows.Forms.DateTimePicker dateTimeEndDate;
         private System.Windows.Forms.RadioButton radioEndDateTime;
         private System.Windows.Forms.RadioButton radioTimeSpan;
-        private Project.IpTv.UiServices.Common.Controls.TimeSpanUpDown timeSpanLength;
+        private IpTviewr.UiServices.Common.Controls.TimeSpanUpDown timeSpanLength;
     }
 }

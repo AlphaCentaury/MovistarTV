@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Xml;
 
-namespace Project.IpTv.Common.Serialization
+namespace IpTviewr.Common.Serialization
 {
     public class XmlTextReaderTrimExtraWhitespace : XmlTextReader
     {

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Project.IpTv.UiServices.Discovery.Properties {
+namespace IpTviewr.UiServices.Discovery.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace Project.IpTv.UiServices.Discovery.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Project.IpTv.UiServices.Discovery.Properties.ListViewManager", typeof(ListViewManager).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("IpTviewr.UiServices.Discovery.Properties.ListViewManager", typeof(ListViewManager).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace Project.IpTv.Internal.Tools.ChannelLogos
+namespace IpTviewr.Internal.Tools.ChannelLogos
 {
     abstract class ConsistencyCheck
     {

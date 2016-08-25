@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Project.IpTv.UiServices.Configuration.Cache
+namespace IpTviewr.UiServices.Configuration.Cache
 {
     public sealed class CachedXmlDocument<T> : CachedItemBase
     {

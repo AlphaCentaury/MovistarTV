@@ -1,7 +1,7 @@
 ﻿// Copyright (C) 2014-2016, Codeplex/GitHub user AlphaCentaury
 // All rights reserved, except those granted by the governing license of this software. See 'license.txt' file in the project root for complete license information.
 
-namespace Project.IpTv.UiServices.Forms
+namespace IpTviewr.UiServices.Forms
 {
     partial class SelectProviderDialog
     {
@@ -79,7 +79,7 @@ namespace Project.IpTv.UiServices.Forms
             // buttonProviderDetails
             // 
             resources.ApplyResources(this.buttonProviderDetails, "buttonProviderDetails");
-            this.buttonProviderDetails.Image = global::Project.IpTv.UiServices.Forms.Properties.CommonUiResources.Action_Properties_16x16;
+            this.buttonProviderDetails.Image = global::IpTviewr.UiServices.Forms.Properties.CommonUiResources.Action_Properties_16x16;
             this.buttonProviderDetails.Name = "buttonProviderDetails";
             this.buttonProviderDetails.UseVisualStyleBackColor = true;
             this.buttonProviderDetails.Click += new System.EventHandler(this.buttonProviderDetails_Click);
@@ -87,7 +87,7 @@ namespace Project.IpTv.UiServices.Forms
             // buttonRefreshServiceProviderList
             // 
             resources.ApplyResources(this.buttonRefreshServiceProviderList, "buttonRefreshServiceProviderList");
-            this.buttonRefreshServiceProviderList.Image = global::Project.IpTv.UiServices.Forms.Properties.CommonUiResources.Action_Refresh_Blue_16x16;
+            this.buttonRefreshServiceProviderList.Image = global::IpTviewr.UiServices.Forms.Properties.CommonUiResources.Action_Refresh_Blue_16x16;
             this.buttonRefreshServiceProviderList.Name = "buttonRefreshServiceProviderList";
             this.buttonRefreshServiceProviderList.UseVisualStyleBackColor = true;
             this.buttonRefreshServiceProviderList.Click += new System.EventHandler(this.buttonRefreshServiceProviderList_Click);
@@ -96,7 +96,7 @@ namespace Project.IpTv.UiServices.Forms
             // 
             resources.ApplyResources(this.buttonOk, "buttonOk");
             this.buttonOk.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.buttonOk.Image = global::Project.IpTv.UiServices.Forms.Properties.CommonUiResources.Action_Ok_16x16;
+            this.buttonOk.Image = global::IpTviewr.UiServices.Forms.Properties.CommonUiResources.Action_Ok_16x16;
             this.buttonOk.Name = "buttonOk";
             this.buttonOk.UseVisualStyleBackColor = true;
             // 
@@ -104,7 +104,7 @@ namespace Project.IpTv.UiServices.Forms
             // 
             resources.ApplyResources(this.buttonCancel, "buttonCancel");
             this.buttonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.buttonCancel.Image = global::Project.IpTv.UiServices.Forms.Properties.CommonUiResources.Action_Cancel_16x16;
+            this.buttonCancel.Image = global::IpTviewr.UiServices.Forms.Properties.CommonUiResources.Action_Cancel_16x16;
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.UseVisualStyleBackColor = true;
             // 

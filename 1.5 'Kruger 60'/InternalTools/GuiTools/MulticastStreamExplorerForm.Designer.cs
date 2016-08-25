@@ -1,7 +1,7 @@
 ﻿// Copyright (C) 2014-2016, Codeplex/GitHub user AlphaCentaury
 // All rights reserved, except those granted by the governing license of this software. See 'license.txt' file in the project root for complete license information.
 
-namespace Project.IpTv.Internal.Tools.GuiTools
+namespace IpTviewr.Internal.Tools.GuiTools
 {
     partial class MulticastStreamExplorerForm
     {
@@ -49,7 +49,7 @@ namespace Project.IpTv.Internal.Tools.GuiTools
             // buttonStart
             // 
             this.buttonStart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonStart.Image = global::Project.IpTv.Internal.Tools.GuiTools.Properties.Resources.Action_Play_LG_16x16;
+            this.buttonStart.Image = global::IpTviewr.Internal.Tools.GuiTools.Properties.Resources.Action_Play_LG_16x16;
             this.buttonStart.Location = new System.Drawing.Point(466, 12);
             this.buttonStart.Name = "buttonStart";
             this.buttonStart.Size = new System.Drawing.Size(100, 25);
@@ -63,7 +63,7 @@ namespace Project.IpTv.Internal.Tools.GuiTools
             // buttonStop
             // 
             this.buttonStop.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonStop.Image = global::Project.IpTv.Internal.Tools.GuiTools.Properties.Resources.Action_Cancel_Red_16x16;
+            this.buttonStop.Image = global::IpTviewr.Internal.Tools.GuiTools.Properties.Resources.Action_Cancel_Red_16x16;
             this.buttonStop.Location = new System.Drawing.Point(572, 12);
             this.buttonStop.Name = "buttonStop";
             this.buttonStop.Size = new System.Drawing.Size(100, 25);

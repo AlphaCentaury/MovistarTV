@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Xml.Serialization;
 
-namespace Project.IpTv.UiServices.Configuration
+namespace IpTviewr.UiServices.Configuration
 {
     [Serializable]
     public class StringPair

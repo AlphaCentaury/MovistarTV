@@ -9,7 +9,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Services.SqlServerCE")]
-[assembly: AssemblyDescription("Project.IpTv.Services.SqlServerCE")]
+[assembly: AssemblyDescription("IpTviewr.Services.SqlServerCE")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCopyright(SolutionVersion.DefaultCopyright)]
 [assembly: AssemblyCulture("")]

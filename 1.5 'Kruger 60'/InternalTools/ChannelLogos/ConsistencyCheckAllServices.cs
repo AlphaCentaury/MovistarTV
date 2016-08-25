@@ -1,15 +1,15 @@
 ﻿using Etsi.Ts102034.v010501.XmlSerialization.ProviderDiscovery;
-using Project.IpTv.UiServices.Configuration;
-using Project.IpTv.UiServices.Configuration.Logos;
-using Project.IpTv.UiServices.Configuration.Schema2014.Logos;
-using Project.IpTv.UiServices.Discovery;
-using Project.IpTv.UiServices.Forms;
+using IpTviewr.UiServices.Configuration;
+using IpTviewr.UiServices.Configuration.Logos;
+using IpTviewr.UiServices.Configuration.Schema2014.Logos;
+using IpTviewr.UiServices.Discovery;
+using IpTviewr.UiServices.Forms;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Project.IpTv.Internal.Tools.ChannelLogos
+namespace IpTviewr.Internal.Tools.ChannelLogos
 {
     abstract class ConsistencyCheckAllServices: ConsistencyCheck
     {

@@ -10,7 +10,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
 
-namespace Project.IpTv.UiServices.Common.Controls
+namespace IpTviewr.UiServices.Common.Controls
 {
     [ToolboxBitmap(typeof(ListView))]
     public class ListViewSortable : ListView

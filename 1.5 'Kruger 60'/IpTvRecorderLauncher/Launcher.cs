@@ -2,8 +2,8 @@
 // All rights reserved, except those granted by the governing license of this software. See 'license.txt' file in the project root for complete license information.
 
 using Microsoft.Win32.SafeHandles;
-using Project.IpTv.Common;
-using Project.IpTv.Services.Record.Serialization;
+using IpTviewr.Common;
+using IpTviewr.Services.Record.Serialization;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,7 +16,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Xml.Serialization;
 
-namespace Project.IpTv.RecorderLauncher
+namespace IpTviewr.RecorderLauncher
 {
     internal class Launcher
     {

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Project.IpTv.Services.EPG.EpgDownloader.Properties {
+namespace IpTviewr.Services.EPG.EpgDownloader.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]

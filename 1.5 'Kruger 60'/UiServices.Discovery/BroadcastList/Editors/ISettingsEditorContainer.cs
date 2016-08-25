@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Project.IpTv.UiServices.Discovery.BroadcastList.Editors
+namespace IpTviewr.UiServices.Discovery.BroadcastList.Editors
 {
     internal interface ISettingsEditorContainer
     {

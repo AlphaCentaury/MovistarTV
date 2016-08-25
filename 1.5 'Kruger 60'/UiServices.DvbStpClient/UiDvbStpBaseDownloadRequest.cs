@@ -5,7 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 
-namespace Project.IpTv.UiServices.DvbStpClient
+namespace IpTviewr.UiServices.DvbStpClient
 {
     public abstract class UiDvbStpBaseDownloadRequest
     {

@@ -1,8 +1,8 @@
 ﻿// Copyright (C) 2014-2016, Codeplex/GitHub user AlphaCentaury
 // All rights reserved, except those granted by the governing license of this software. See 'license.txt' file in the project root for complete license information.
 
-using Project.IpTv.Common.Serialization;
-using Project.IpTv.Services.SqlServerCE;
+using IpTviewr.Common.Serialization;
+using IpTviewr.Services.SqlServerCE;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -13,7 +13,7 @@ using System.Text;
 using System.Xml;
 using System.Xml.Serialization;
 
-namespace Project.IpTv.Services.Record.Serialization
+namespace IpTviewr.Services.Record.Serialization
 {
     public static class RecordTaskSerialization
     {

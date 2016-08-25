@@ -1,14 +1,14 @@
 ﻿// Copyright (C) 2014-2016, Codeplex/GitHub user AlphaCentaury
 // All rights reserved, except those granted by the governing license of this software. See 'license.txt' file in the project root for complete license information.
 
-using Project.IpTv.UiServices.Configuration.Schema2014.Logos;
+using IpTviewr.UiServices.Configuration.Schema2014.Logos;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
 
-namespace Project.IpTv.UiServices.Configuration.Logos
+namespace IpTviewr.UiServices.Configuration.Logos
 {
     public partial class ServiceLogoMappings
     {

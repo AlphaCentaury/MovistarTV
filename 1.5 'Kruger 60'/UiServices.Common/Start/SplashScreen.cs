@@ -10,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace Project.IpTv.UiServices.Common.Start
+namespace IpTviewr.UiServices.Common.Start
 {
     internal partial class SplashScreen : Form
     {

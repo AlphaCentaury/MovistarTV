@@ -7,7 +7,7 @@
     <ProjectGuid>{6B23C0BE-C1CE-457A-B701-55870E355560}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Project.IpTv.Tools.FirstTimeConfig</RootNamespace>
+    <RootNamespace>IpTviewr.Tools.FirstTimeConfig</RootNamespace>
     <AssemblyName>FirstTimeConfig</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

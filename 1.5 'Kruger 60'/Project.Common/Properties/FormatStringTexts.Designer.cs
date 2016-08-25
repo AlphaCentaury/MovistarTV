@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Project.IpTv.Common.Properties {
+namespace IpTviewr.Common.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace Project.IpTv.Common.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Project.IpTv.Common.Properties.FormatStringTexts", typeof(FormatStringTexts).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("IpTviewr.Common.Properties.FormatStringTexts", typeof(FormatStringTexts).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

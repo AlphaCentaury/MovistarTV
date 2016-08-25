@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Xml.Serialization;
 
-namespace Project.IpTv.Services.Record.Serialization
+namespace IpTviewr.Services.Record.Serialization
 {
     [Serializable]
     [XmlInclude(typeof(RecordRightNow))]

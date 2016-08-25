@@ -403,7 +403,7 @@
     <value>pictureBoxServiceLogo</value>
   </data>
   <data name="&gt;&gt;pictureBoxServiceLogo.Type" xml:space="preserve">
-    <value>Project.IpTv.UiServices.Controls.PictureBoxEx, UiServices.Controls, Version=1.5.20.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>IpTviewr.UiServices.Controls.PictureBoxEx, UiServices.Controls, Version=1.5.20.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;pictureBoxServiceLogo.Parent" xml:space="preserve">
     <value>$this</value>
@@ -430,7 +430,7 @@
     <value>pictureBoxIcon</value>
   </data>
   <data name="&gt;&gt;pictureBoxIcon.Type" xml:space="preserve">
-    <value>Project.IpTv.UiServices.Controls.PictureBoxEx, UiServices.Controls, Version=1.5.20.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>IpTviewr.UiServices.Controls.PictureBoxEx, UiServices.Controls, Version=1.5.20.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;pictureBoxIcon.Parent" xml:space="preserve">
     <value>$this</value>
@@ -508,6 +508,6 @@
     <value>MulticastScannerDialog</value>
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>Project.IpTv.UiServices.Controls.CommonBaseForm, UiServices.Controls, Version=1.5.20.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>IpTviewr.UiServices.Controls.CommonBaseForm, UiServices.Controls, Version=1.5.20.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
 </root>

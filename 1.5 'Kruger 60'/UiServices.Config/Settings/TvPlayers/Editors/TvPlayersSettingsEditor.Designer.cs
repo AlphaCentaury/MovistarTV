@@ -1,7 +1,7 @@
 ﻿// Copyright (C) 2014-2016, Codeplex/GitHub user AlphaCentaury
 // All rights reserved, except those granted by the governing license of this software. See 'license.txt' file in the project root for complete license information.
 
-namespace Project.IpTv.UiServices.Configuration.Settings.TvPlayers.Editors
+namespace IpTviewr.UiServices.Configuration.Settings.TvPlayers.Editors
 {
     partial class TvPlayersSettingsEditor
     {
@@ -80,7 +80,7 @@ namespace Project.IpTv.UiServices.Configuration.Settings.TvPlayers.Editors
             // 
             resources.ApplyResources(this.buttonAdd, "buttonAdd");
             this.buttonAdd.CausesValidation = false;
-            this.buttonAdd.Image = global::Project.IpTv.UiServices.Configuration.CommonUiResources.Action_Add_16xM;
+            this.buttonAdd.Image = global::IpTviewr.UiServices.Configuration.CommonUiResources.Action_Add_16xM;
             this.buttonAdd.Name = "buttonAdd";
             this.buttonAdd.UseVisualStyleBackColor = true;
             this.buttonAdd.Click += new System.EventHandler(this.buttonAdd_Click);
@@ -89,7 +89,7 @@ namespace Project.IpTv.UiServices.Configuration.Settings.TvPlayers.Editors
             // 
             resources.ApplyResources(this.buttonSetDefault, "buttonSetDefault");
             this.buttonSetDefault.CausesValidation = false;
-            this.buttonSetDefault.Image = global::Project.IpTv.UiServices.Configuration.CommonUiResources.Status_Ok_SmallCircle_16x16;
+            this.buttonSetDefault.Image = global::IpTviewr.UiServices.Configuration.CommonUiResources.Status_Ok_SmallCircle_16x16;
             this.buttonSetDefault.Name = "buttonSetDefault";
             this.buttonSetDefault.UseVisualStyleBackColor = true;
             this.buttonSetDefault.Click += new System.EventHandler(this.buttonSetDefault_Click);
@@ -98,7 +98,7 @@ namespace Project.IpTv.UiServices.Configuration.Settings.TvPlayers.Editors
             // 
             resources.ApplyResources(this.buttonDelete, "buttonDelete");
             this.buttonDelete.CausesValidation = false;
-            this.buttonDelete.Image = global::Project.IpTv.UiServices.Configuration.CommonUiResources.Action_Delete_16x16;
+            this.buttonDelete.Image = global::IpTviewr.UiServices.Configuration.CommonUiResources.Action_Delete_16x16;
             this.buttonDelete.Name = "buttonDelete";
             this.buttonDelete.UseVisualStyleBackColor = true;
             this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click);
@@ -106,7 +106,7 @@ namespace Project.IpTv.UiServices.Configuration.Settings.TvPlayers.Editors
             // buttonEdit
             // 
             resources.ApplyResources(this.buttonEdit, "buttonEdit");
-            this.buttonEdit.Image = global::Project.IpTv.UiServices.Configuration.CommonUiResources.Action_Properties_16x16;
+            this.buttonEdit.Image = global::IpTviewr.UiServices.Configuration.CommonUiResources.Action_Properties_16x16;
             this.buttonEdit.Name = "buttonEdit";
             this.buttonEdit.UseVisualStyleBackColor = true;
             this.buttonEdit.Click += new System.EventHandler(this.buttonEdit_Click);
@@ -143,7 +143,7 @@ namespace Project.IpTv.UiServices.Configuration.Settings.TvPlayers.Editors
             // 
             // pictureIconInfo
             // 
-            this.pictureIconInfo.Image = global::Project.IpTv.UiServices.Configuration.CommonUiResources.Status_Info_16x16;
+            this.pictureIconInfo.Image = global::IpTviewr.UiServices.Configuration.CommonUiResources.Status_Info_16x16;
             resources.ApplyResources(this.pictureIconInfo, "pictureIconInfo");
             this.pictureIconInfo.Name = "pictureIconInfo";
             this.pictureIconInfo.TabStop = false;

@@ -10,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace Project.IpTv.UiServices.Discovery.BroadcastList.Editors
+namespace IpTviewr.UiServices.Discovery.BroadcastList.Editors
 {
     internal partial class SettingsEditorModeSingleColumn : SettingsEditorModeBaseColumn
     {

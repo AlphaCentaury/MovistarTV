@@ -8,7 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 
-namespace Project.IpTv.RecorderLauncher
+namespace IpTviewr.RecorderLauncher
 {
     internal static class Logger
     {

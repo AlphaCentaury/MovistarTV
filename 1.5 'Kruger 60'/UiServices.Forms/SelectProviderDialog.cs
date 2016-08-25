@@ -3,13 +3,13 @@
 
 using Etsi.Ts102034.v010501.XmlSerialization;
 using Etsi.Ts102034.v010501.XmlSerialization.ProviderDiscovery;
-using Project.IpTv.Common.Telemetry;
-using Project.IpTv.UiServices.Common.Forms;
-using Project.IpTv.UiServices.Configuration;
-using Project.IpTv.UiServices.Configuration.Logos;
-using Project.IpTv.UiServices.Discovery;
-using Project.IpTv.UiServices.DvbStpClient;
-using Project.IpTv.UiServices.Forms;
+using IpTviewr.Common.Telemetry;
+using IpTviewr.UiServices.Common.Forms;
+using IpTviewr.UiServices.Configuration;
+using IpTviewr.UiServices.Configuration.Logos;
+using IpTviewr.UiServices.Discovery;
+using IpTviewr.UiServices.DvbStpClient;
+using IpTviewr.UiServices.Forms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -20,7 +20,7 @@ using System.Net;
 using System.Text;
 using System.Windows.Forms;
 
-namespace Project.IpTv.UiServices.Forms
+namespace IpTviewr.UiServices.Forms
 {
     public partial class SelectProviderDialog : CommonBaseForm
     {

@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Xml.Serialization;
 
-namespace Project.IpTv.UiServices.Configuration.Schema2014.Config
+namespace IpTviewr.UiServices.Configuration.Schema2014.Config
 {
     [Serializable]
     [XmlType(TypeName = "TelemetryConfiguration", Namespace = ConfigCommon.ConfigXmlNamespace)]

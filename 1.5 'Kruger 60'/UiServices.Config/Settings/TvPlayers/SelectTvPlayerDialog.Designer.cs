@@ -1,4 +1,4 @@
-﻿namespace Project.IpTv.UiServices.Configuration.Settings.TvPlayers
+﻿namespace IpTviewr.UiServices.Configuration.Settings.TvPlayers
 {
     partial class SelectTvPlayerDialog
     {
@@ -44,7 +44,7 @@
             // 
             resources.ApplyResources(this.buttonCancel, "buttonCancel");
             this.buttonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.buttonCancel.Image = global::Project.IpTv.UiServices.Configuration.CommonUiResources.Action_Cancel_16x16;
+            this.buttonCancel.Image = global::IpTviewr.UiServices.Configuration.CommonUiResources.Action_Cancel_16x16;
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.UseVisualStyleBackColor = true;
             // 
@@ -52,7 +52,7 @@
             // 
             resources.ApplyResources(this.buttonOk, "buttonOk");
             this.buttonOk.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.buttonOk.Image = global::Project.IpTv.UiServices.Configuration.CommonUiResources.Action_Ok_16x16;
+            this.buttonOk.Image = global::IpTviewr.UiServices.Configuration.CommonUiResources.Action_Ok_16x16;
             this.buttonOk.Name = "buttonOk";
             this.buttonOk.UseVisualStyleBackColor = true;
             // 

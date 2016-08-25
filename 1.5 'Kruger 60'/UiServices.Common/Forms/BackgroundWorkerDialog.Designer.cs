@@ -1,7 +1,7 @@
 ﻿// Copyright (C) 2014-2016, Codeplex/GitHub user AlphaCentaury
 // All rights reserved, except those granted by the governing license of this software. See 'license.txt' file in the project root for complete license information.
 
-namespace Project.IpTv.UiServices.Common.Forms
+namespace IpTviewr.UiServices.Common.Forms
 {
     partial class BackgroundWorkerDialog
     {
@@ -45,7 +45,7 @@ namespace Project.IpTv.UiServices.Common.Forms
             // 
             // pictureWaitIcon
             // 
-            this.pictureWaitIcon.Image = global::Project.IpTv.UiServices.Common.Properties.Resources.WaitClock_64x64;
+            this.pictureWaitIcon.Image = global::IpTviewr.UiServices.Common.Properties.Resources.WaitClock_64x64;
             resources.ApplyResources(this.pictureWaitIcon, "pictureWaitIcon");
             this.pictureWaitIcon.Name = "pictureWaitIcon";
             this.pictureWaitIcon.TabStop = false;

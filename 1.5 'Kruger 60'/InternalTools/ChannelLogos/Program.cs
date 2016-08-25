@@ -1,11 +1,11 @@
 ﻿using Microsoft.SqlServer.MessageBox;
-using Project.IpTv.Common;
+using IpTviewr.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 
-namespace Project.IpTv.Internal.Tools.ChannelLogos
+namespace IpTviewr.Internal.Tools.ChannelLogos
 {
     static class Program
     {

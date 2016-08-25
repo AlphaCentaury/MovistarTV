@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace Project.IpTv.UiServices.Common.Controls
+namespace IpTviewr.UiServices.Common.Controls
 {
     [ToolboxBitmap(typeof(TabControl))]
     public sealed class TabControlEx: TabControl

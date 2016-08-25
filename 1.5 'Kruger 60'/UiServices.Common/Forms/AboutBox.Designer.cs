@@ -1,7 +1,7 @@
 ﻿// Copyright (C) 2014-2016, Codeplex/GitHub user AlphaCentaury
 // All rights reserved, except those granted by the governing license of this software. See 'license.txt' file in the project root for complete license information.
 
-namespace Project.IpTv.UiServices.Common.Forms
+namespace IpTviewr.UiServices.Common.Forms
 {
     partial class AboutBox
     {
@@ -49,12 +49,12 @@ namespace Project.IpTv.UiServices.Common.Forms
             // 
             resources.ApplyResources(this.okButton, "okButton");
             this.okButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.okButton.Image = global::Project.IpTv.UiServices.Common.Properties.Resources.Action_Ok_16x16;
+            this.okButton.Image = global::IpTviewr.UiServices.Common.Properties.Resources.Action_Ok_16x16;
             this.okButton.Name = "okButton";
             // 
             // logoPictureBox
             // 
-            this.logoPictureBox.Image = global::Project.IpTv.UiServices.Common.Properties.Resources.DefaultAbout;
+            this.logoPictureBox.Image = global::IpTviewr.UiServices.Common.Properties.Resources.DefaultAbout;
             resources.ApplyResources(this.logoPictureBox, "logoPictureBox");
             this.logoPictureBox.Name = "logoPictureBox";
             this.logoPictureBox.TabStop = false;

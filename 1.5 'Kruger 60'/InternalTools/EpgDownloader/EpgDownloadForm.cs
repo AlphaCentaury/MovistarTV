@@ -10,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace Project.IpTv.Services.EPG.EpgDownloader
+namespace IpTviewr.Services.EPG.EpgDownloader
 {
     public partial class EpgDownloadForm : Form
     {

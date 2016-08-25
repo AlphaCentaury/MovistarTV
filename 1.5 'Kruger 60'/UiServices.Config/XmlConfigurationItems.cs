@@ -1,4 +1,4 @@
-﻿using Project.IpTv.Common.Serialization;
+﻿using IpTviewr.Common.Serialization;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -8,7 +8,7 @@ using System.Xml;
 using System.Xml.Serialization;
 using System.Xml.XPath;
 
-namespace Project.IpTv.UiServices.Configuration
+namespace IpTviewr.UiServices.Configuration
 {
     [Serializable]
     public class XmlConfigurationItems

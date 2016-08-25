@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Project.IpTv.Services.EPG.EpgDownloader.Properties {
+namespace IpTviewr.Services.EPG.EpgDownloader.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace Project.IpTv.Services.EPG.EpgDownloader.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Project.IpTv.Services.EPG.EpgDownloader.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("IpTviewr.Services.EPG.EpgDownloader.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

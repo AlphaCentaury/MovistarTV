@@ -9,7 +9,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute parameters to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("IPTV project internal tools: GuiTools")]
-[assembly: AssemblyDescription("Project.IpTv.Internal.Tools.GuiTools")]
+[assembly: AssemblyDescription("IpTviewr.Internal.Tools.GuiTools")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCopyright(SolutionVersion.DefaultCopyright)]
 [assembly: AssemblyCulture("")]

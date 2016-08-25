@@ -7,7 +7,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 
-namespace Project.IpTv.UiServices.Common.Forms
+namespace IpTviewr.UiServices.Common.Forms
 {
     public class AboutBoxApplicationData
     {

@@ -1,7 +1,7 @@
 ﻿// Copyright (C) 2014-2016, Codeplex/GitHub user AlphaCentaury
 // All rights reserved, except those granted by the governing license of this software. See 'license.txt' file in the project root for complete license information.
 
-using Project.IpTv.UiServices.DvbStpClient;
+using IpTviewr.UiServices.DvbStpClient;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,7 +13,7 @@ using System.Net;
 using System.Text;
 using System.Windows.Forms;
 
-namespace Project.IpTv.Internal.Tools.GuiTools
+namespace IpTviewr.Internal.Tools.GuiTools
 {
     public partial class SimpleDvbStpDownloadForm : Form
     {

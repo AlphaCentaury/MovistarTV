@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Xml.Serialization;
 
-namespace Project.IpTv.UiServices.Configuration.Logos
+namespace IpTviewr.UiServices.Configuration.Logos
 {
     public enum LogoSize
     {

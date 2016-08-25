@@ -7,7 +7,7 @@
     <ProjectGuid>{A722DE9D-AE51-479C-825F-A19F4C69BD75}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Project.IpTv.UiServices.Configuration</RootNamespace>
+    <RootNamespace>IpTviewr.UiServices.Configuration</RootNamespace>
     <AssemblyName>UiServices.Configuration</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

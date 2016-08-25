@@ -7,7 +7,7 @@
     <ProjectGuid>{36B8E0A1-F1B1-498D-8FE7-A39BB7FD68CA}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Project.IpTv.Core.IpTvProvider</RootNamespace>
+    <RootNamespace>IpTviewr.Core.IpTvProvider</RootNamespace>
     <AssemblyName>Core.IpTvProvider</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

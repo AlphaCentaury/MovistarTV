@@ -9,9 +9,9 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using Project.IpTv.Services.Record.Serialization;
+using IpTviewr.Services.Record.Serialization;
 
-namespace Project.IpTv.UiServices.Record.Controls
+namespace IpTviewr.UiServices.Record.Controls
 {
     public partial class RecordingSchedule : UserControl
     {

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Project.IpTv.UiServices.Configuration {
+namespace IpTviewr.UiServices.Configuration {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace Project.IpTv.UiServices.Configuration {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Project.IpTv.UiServices.Configuration.CommonUiResources", typeof(CommonUiResources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("IpTviewr.UiServices.Configuration.CommonUiResources", typeof(CommonUiResources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

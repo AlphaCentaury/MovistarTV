@@ -11,7 +11,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 
-namespace Project.IpTv.UiServices.Configuration
+namespace IpTviewr.UiServices.Configuration
 {
     public static class WindowsBitness
     {

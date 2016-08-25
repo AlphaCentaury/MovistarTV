@@ -9,10 +9,10 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using Project.IpTv.UiServices.Common.Properties;
+using IpTviewr.UiServices.Common.Properties;
 using System.Threading;
 
-namespace Project.IpTv.UiServices.Common.Forms
+namespace IpTviewr.UiServices.Common.Forms
 {
     public partial class BackgroundWorkerDialog : CommonBaseForm, IBackgroundWorkerDialog
     {

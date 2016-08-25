@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Xml.Serialization;
 
-namespace Project.IpTv.UiServices.Discovery.BroadcastList
+namespace IpTviewr.UiServices.Discovery.BroadcastList
 {
     [Serializable]
     public struct UiBroadcastListSortColumn

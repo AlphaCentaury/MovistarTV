@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace Project.IpTv.Common
+namespace IpTviewr.Common
 {
     public class Launcher
     {

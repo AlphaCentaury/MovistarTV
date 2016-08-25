@@ -10,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace Project.IpTv.UiServices.Configuration.Settings.Network.Editors
+namespace IpTviewr.UiServices.Configuration.Settings.Network.Editors
 {
     public partial class NetworkSettingsEditor : UserControl, IConfigurationItemEditor
     {

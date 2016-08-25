@@ -1,9 +1,9 @@
 ﻿// Copyright (C) 2014-2016, Codeplex/GitHub user AlphaCentaury
 // All rights reserved, except those granted by the governing license of this software. See 'license.txt' file in the project root for complete license information.
 
-using Project.IpTv.Common.Telemetry;
-using Project.IpTv.UiServices.Common.Start;
-using Project.IpTv.UiServices.Configuration;
+using IpTviewr.Common.Telemetry;
+using IpTviewr.UiServices.Common.Start;
+using IpTviewr.UiServices.Configuration;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -12,7 +12,7 @@ using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 
-namespace Project.IpTv.ChannelList
+namespace IpTviewr.ChannelList
 {
     internal class MyApplicationContext : SplashApplicationContext
     {

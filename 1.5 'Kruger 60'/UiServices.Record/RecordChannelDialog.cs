@@ -1,13 +1,13 @@
 ﻿// Copyright (C) 2014-2016, Codeplex/GitHub user AlphaCentaury
 // All rights reserved, except those granted by the governing license of this software. See 'license.txt' file in the project root for complete license information.
 
-using Project.IpTv.Common.Telemetry;
-using Project.IpTv.Services.Record.Serialization;
-using Project.IpTv.UiServices.Common.Forms;
-using Project.IpTv.UiServices.Configuration;
-using Project.IpTv.UiServices.Configuration.Logos;
-using Project.IpTv.UiServices.Configuration.Schema2014.Config;
-using Project.IpTv.UiServices.Record.Controls;
+using IpTviewr.Common.Telemetry;
+using IpTviewr.Services.Record.Serialization;
+using IpTviewr.UiServices.Common.Forms;
+using IpTviewr.UiServices.Configuration;
+using IpTviewr.UiServices.Configuration.Logos;
+using IpTviewr.UiServices.Configuration.Schema2014.Config;
+using IpTviewr.UiServices.Record.Controls;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,7 +15,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Windows.Forms;
 
-namespace Project.IpTv.UiServices.Record
+namespace IpTviewr.UiServices.Record
 {
     public partial class RecordChannelDialog : CommonBaseForm
     {

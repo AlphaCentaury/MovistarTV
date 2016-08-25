@@ -1,7 +1,7 @@
 ﻿// Copyright (C) 2014-2016, Codeplex/GitHub user AlphaCentaury
 // All rights reserved, except those granted by the governing license of this software. See 'license.txt' file in the project root for complete license information.
 
-namespace Project.IpTv.UiServices.Record
+namespace IpTviewr.UiServices.Record
 {
     partial class RecordTasksDialog
     {
@@ -33,7 +33,7 @@ namespace Project.IpTv.UiServices.Record
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RecordTasksDialog));
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.listViewTasks = new Project.IpTv.UiServices.Common.Controls.ListViewSortable();
+            this.listViewTasks = new IpTviewr.UiServices.Common.Controls.ListViewSortable();
             this.columnTaskChannel = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnTaskName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnTaskSchedule = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -114,7 +114,7 @@ namespace Project.IpTv.UiServices.Record
             // 
             resources.ApplyResources(this.buttonOk, "buttonOk");
             this.buttonOk.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.buttonOk.Image = global::Project.IpTv.UiServices.Record.Properties.Resources.Action_Ok_16x16;
+            this.buttonOk.Image = global::IpTviewr.UiServices.Record.Properties.Resources.Action_Ok_16x16;
             this.buttonOk.Name = "buttonOk";
             this.buttonOk.UseVisualStyleBackColor = true;
             // 
@@ -122,7 +122,7 @@ namespace Project.IpTv.UiServices.Record
             // 
             resources.ApplyResources(this.buttonViewRecordings, "buttonViewRecordings");
             this.buttonViewRecordings.CausesValidation = false;
-            this.buttonViewRecordings.Image = global::Project.IpTv.UiServices.Record.Properties.Resources.Action_Play_LG_16x16;
+            this.buttonViewRecordings.Image = global::IpTviewr.UiServices.Record.Properties.Resources.Action_Play_LG_16x16;
             this.buttonViewRecordings.Name = "buttonViewRecordings";
             this.buttonViewRecordings.UseVisualStyleBackColor = true;
             this.buttonViewRecordings.Click += new System.EventHandler(this.buttonViewRecordings_Click);
@@ -131,7 +131,7 @@ namespace Project.IpTv.UiServices.Record
             // 
             resources.ApplyResources(this.buttonDeleteTasks, "buttonDeleteTasks");
             this.buttonDeleteTasks.CausesValidation = false;
-            this.buttonDeleteTasks.Image = global::Project.IpTv.UiServices.Record.Properties.Resources.Action_Delete_16x16;
+            this.buttonDeleteTasks.Image = global::IpTviewr.UiServices.Record.Properties.Resources.Action_Delete_16x16;
             this.buttonDeleteTasks.Name = "buttonDeleteTasks";
             this.buttonDeleteTasks.UseVisualStyleBackColor = true;
             this.buttonDeleteTasks.Click += new System.EventHandler(this.buttonDeleteTasks_Click);
@@ -139,7 +139,7 @@ namespace Project.IpTv.UiServices.Record
             // buttonEditTask
             // 
             resources.ApplyResources(this.buttonEditTask, "buttonEditTask");
-            this.buttonEditTask.Image = global::Project.IpTv.UiServices.Record.Properties.Resources.Action_EditTask_16x16;
+            this.buttonEditTask.Image = global::IpTviewr.UiServices.Record.Properties.Resources.Action_EditTask_16x16;
             this.buttonEditTask.Name = "buttonEditTask";
             this.buttonEditTask.UseVisualStyleBackColor = true;
             this.buttonEditTask.Click += new System.EventHandler(this.buttonEditTask_Click);
@@ -170,7 +170,7 @@ namespace Project.IpTv.UiServices.Record
         #endregion
 
         private System.Windows.Forms.SplitContainer splitContainer1;
-        private global::Project.IpTv.UiServices.Common.Controls.ListViewSortable listViewTasks;
+        private global::IpTviewr.UiServices.Common.Controls.ListViewSortable listViewTasks;
         private System.Windows.Forms.ColumnHeader columnTaskName;
         private System.Windows.Forms.ColumnHeader columnTaskChannel;
         private System.Windows.Forms.TextBox textBoxTaskDetails;

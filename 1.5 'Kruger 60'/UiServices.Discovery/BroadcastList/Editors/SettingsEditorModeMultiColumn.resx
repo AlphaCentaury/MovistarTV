@@ -337,6 +337,6 @@
     <value>SettingsEditorModeMultiColumn</value>
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>Project.IpTv.UiServices.Discovery.BroadcastList.Editors.SettingsEditorModeBaseColumn, UiServices.Discovery, Version=1.5.30.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>IpTviewr.UiServices.Discovery.BroadcastList.Editors.SettingsEditorModeBaseColumn, UiServices.Discovery, Version=1.5.30.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
 </root>

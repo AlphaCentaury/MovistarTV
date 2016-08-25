@@ -13,7 +13,7 @@ using System.Net.Sockets;
 using System.Text;
 using System.Windows.Forms;
 
-namespace Project.IpTv.Internal.Tools.GuiTools
+namespace IpTviewr.Internal.Tools.GuiTools
 {
     public partial class OpchExplorerForm : Form
     {

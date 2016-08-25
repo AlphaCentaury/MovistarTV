@@ -7,14 +7,14 @@ using System.Linq;
 using System.Text;
 using Microsoft.Win32.TaskScheduler;
 using System.Globalization;
-using Project.IpTv.Services.Record.Serialization;
+using IpTviewr.Services.Record.Serialization;
 using System.Reflection;
 using System.IO;
-using Project.IpTv.Services.Record.Properties;
+using IpTviewr.Services.Record.Properties;
 using System.Text.RegularExpressions;
-using Project.IpTv.Common;
+using IpTviewr.Common;
 
-namespace Project.IpTv.Services.Record
+namespace IpTviewr.Services.Record
 {
     public class Scheduler
     {

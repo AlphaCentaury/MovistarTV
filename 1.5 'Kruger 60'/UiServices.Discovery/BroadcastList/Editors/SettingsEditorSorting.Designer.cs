@@ -1,7 +1,7 @@
 ﻿// Copyright (C) 2014-2016, Codeplex/GitHub user AlphaCentaury
 // All rights reserved, except those granted by the governing license of this software. See 'license.txt' file in the project root for complete license information.
 
-namespace Project.IpTv.UiServices.Discovery.BroadcastList.Editors
+namespace IpTviewr.UiServices.Discovery.BroadcastList.Editors
 {
     partial class SettingsEditorSorting
     {
@@ -69,7 +69,7 @@ namespace Project.IpTv.UiServices.Discovery.BroadcastList.Editors
             // 
             resources.ApplyResources(this.buttonThirdDirection, "buttonThirdDirection");
             this.buttonThirdDirection.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlDark;
-            this.buttonThirdDirection.Image = global::Project.IpTv.UiServices.Discovery.Properties.Resources.Action_SortAscending_16x16;
+            this.buttonThirdDirection.Image = global::IpTviewr.UiServices.Discovery.Properties.Resources.Action_SortAscending_16x16;
             this.buttonThirdDirection.Name = "buttonThirdDirection";
             this.buttonThirdDirection.UseVisualStyleBackColor = true;
             this.buttonThirdDirection.Click += new System.EventHandler(this.buttonThirdDirection_Click);
@@ -89,7 +89,7 @@ namespace Project.IpTv.UiServices.Discovery.BroadcastList.Editors
             // 
             resources.ApplyResources(this.buttonSecondDirection, "buttonSecondDirection");
             this.buttonSecondDirection.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlDark;
-            this.buttonSecondDirection.Image = global::Project.IpTv.UiServices.Discovery.Properties.Resources.Action_SortAscending_16x16;
+            this.buttonSecondDirection.Image = global::IpTviewr.UiServices.Discovery.Properties.Resources.Action_SortAscending_16x16;
             this.buttonSecondDirection.Name = "buttonSecondDirection";
             this.buttonSecondDirection.UseVisualStyleBackColor = true;
             this.buttonSecondDirection.Click += new System.EventHandler(this.buttonSecondDirection_Click);
@@ -109,7 +109,7 @@ namespace Project.IpTv.UiServices.Discovery.BroadcastList.Editors
             // 
             resources.ApplyResources(this.buttonFirstDirection, "buttonFirstDirection");
             this.buttonFirstDirection.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlDark;
-            this.buttonFirstDirection.Image = global::Project.IpTv.UiServices.Discovery.Properties.Resources.Action_SortAscending_16x16;
+            this.buttonFirstDirection.Image = global::IpTviewr.UiServices.Discovery.Properties.Resources.Action_SortAscending_16x16;
             this.buttonFirstDirection.Name = "buttonFirstDirection";
             this.buttonFirstDirection.UseVisualStyleBackColor = true;
             this.buttonFirstDirection.Click += new System.EventHandler(this.buttonFirstDirection_Click);

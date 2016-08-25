@@ -7,7 +7,7 @@
     <ProjectGuid>{8AD3C34B-A1D3-4385-A8A9-C429BD9A37D3}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Project.IpTv.DvbStp.Client</RootNamespace>
+    <RootNamespace>IpTviewr.DvbStp.Client</RootNamespace>
     <AssemblyName>DvbStpClient</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

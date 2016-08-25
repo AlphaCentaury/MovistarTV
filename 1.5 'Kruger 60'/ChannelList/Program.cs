@@ -1,15 +1,15 @@
 ﻿// Copyright (C) 2014-2016, Codeplex/GitHub user AlphaCentaury
 // All rights reserved, except those granted by the governing license of this software. See 'license.txt' file in the project root for complete license information.
 
-using Project.IpTv.Common.Telemetry;
-using Project.IpTv.UiServices.Forms;
+using IpTviewr.Common.Telemetry;
+using IpTviewr.UiServices.Forms;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
 
-namespace Project.IpTv.ChannelList
+namespace IpTviewr.ChannelList
 {
     static class Program
     {

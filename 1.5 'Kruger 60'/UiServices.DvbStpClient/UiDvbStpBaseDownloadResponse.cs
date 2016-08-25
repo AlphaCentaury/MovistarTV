@@ -1,11 +1,11 @@
-﻿using Project.IpTv.Common.Serialization;
+﻿using IpTviewr.Common.Serialization;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
 
-namespace Project.IpTv.UiServices.DvbStpClient
+namespace IpTviewr.UiServices.DvbStpClient
 {
     public abstract class UiDvbStpBaseDownloadResponse
     {

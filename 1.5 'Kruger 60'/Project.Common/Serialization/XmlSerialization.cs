@@ -9,7 +9,7 @@ using System.Text;
 using System.Xml;
 using System.Xml.Serialization;
 
-namespace Project.IpTv.Common.Serialization
+namespace IpTviewr.Common.Serialization
 {
     public static class XmlSerialization
     {

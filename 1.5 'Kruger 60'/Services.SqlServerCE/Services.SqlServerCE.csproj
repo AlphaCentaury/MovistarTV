@@ -7,7 +7,7 @@
     <ProjectGuid>{3A053F34-4EDF-4071-B966-923255A0AE14}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Project.IpTv.Services.SqlServerCE</RootNamespace>
+    <RootNamespace>IpTviewr.Services.SqlServerCE</RootNamespace>
     <AssemblyName>Services.SqlServerCE</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

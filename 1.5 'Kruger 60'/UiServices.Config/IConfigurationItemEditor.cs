@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace Project.IpTv.UiServices.Configuration
+namespace IpTviewr.UiServices.Configuration
 {
     public interface IConfigurationItemEditor
     {

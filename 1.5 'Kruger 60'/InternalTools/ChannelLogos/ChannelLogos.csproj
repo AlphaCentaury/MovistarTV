@@ -7,7 +7,7 @@
     <ProjectGuid>{A51CC220-48C4-46F6-BF5D-3178CC317426}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Project.IpTv.Internal.Tools.ChannelLogos</RootNamespace>
+    <RootNamespace>IpTviewr.Internal.Tools.ChannelLogos</RootNamespace>
     <AssemblyName>ChannelLogos</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

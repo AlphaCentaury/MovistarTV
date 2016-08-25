@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Project.IpTv.DvbStp.Client
+namespace IpTviewr.DvbStp.Client
 {
     public partial class DvbStpEnhancedClient
     {

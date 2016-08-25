@@ -10,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace Project.IpTv.UiServices.Configuration.Editors
+namespace IpTviewr.UiServices.Configuration.Editors
 {
     public partial class ArgumentEditorDialog : Form
     {

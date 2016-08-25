@@ -1,7 +1,7 @@
 ﻿// Copyright (C) 2014-2016, Codeplex/GitHub user AlphaCentaury
 // All rights reserved, except those granted by the governing license of this software. See 'license.txt' file in the project root for complete license information.
 
-using Project.IpTv.UiServices.Configuration.Schema2014.Config;
+using IpTviewr.UiServices.Configuration.Schema2014.Config;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -10,7 +10,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Xml.Serialization;
 
-namespace Project.IpTv.UiServices.Configuration.Settings.TvPlayers
+namespace IpTviewr.UiServices.Configuration.Settings.TvPlayers
 {
     [XmlRoot("TvPlayers", Namespace = ConfigCommon.ConfigXmlNamespace)]
     public class TvPlayersSettings : IConfigurationItem

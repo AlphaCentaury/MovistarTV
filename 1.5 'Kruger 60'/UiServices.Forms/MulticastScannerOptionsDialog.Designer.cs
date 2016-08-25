@@ -1,7 +1,7 @@
 ﻿// Copyright (C) 2014-2016, Codeplex/GitHub user AlphaCentaury
 // All rights reserved, except those granted by the governing license of this software. See 'license.txt' file in the project root for complete license information.
 
-namespace Project.IpTv.UiServices.Forms
+namespace IpTviewr.UiServices.Forms
 {
     partial class MulticastScannerOptionsDialog
     {
@@ -42,7 +42,7 @@ namespace Project.IpTv.UiServices.Forms
             this.radioScanAll = new System.Windows.Forms.RadioButton();
             this.labelInfo = new System.Windows.Forms.Label();
             this.buttonRequestCancel = new System.Windows.Forms.Button();
-            this.pictureIcon = new Project.IpTv.UiServices.Common.Controls.PictureBoxEx();
+            this.pictureIcon = new IpTviewr.UiServices.Common.Controls.PictureBoxEx();
             ((System.ComponentModel.ISupportInitialize)(this.numericTimeout)).BeginInit();
             this.groupScanWhat.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureIcon)).BeginInit();
@@ -88,7 +88,7 @@ namespace Project.IpTv.UiServices.Forms
             // 
             resources.ApplyResources(this.buttonStart, "buttonStart");
             this.buttonStart.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.buttonStart.Image = global::Project.IpTv.UiServices.Forms.Properties.CommonUiResources.Action_Run_16x16;
+            this.buttonStart.Image = global::IpTviewr.UiServices.Forms.Properties.CommonUiResources.Action_Run_16x16;
             this.buttonStart.Name = "buttonStart";
             this.buttonStart.UseVisualStyleBackColor = true;
             this.buttonStart.Click += new System.EventHandler(this.buttonStart_Click);
@@ -131,13 +131,13 @@ namespace Project.IpTv.UiServices.Forms
             // 
             resources.ApplyResources(this.buttonRequestCancel, "buttonRequestCancel");
             this.buttonRequestCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.buttonRequestCancel.Image = global::Project.IpTv.UiServices.Forms.Properties.CommonUiResources.Action_Cancel_16x16;
+            this.buttonRequestCancel.Image = global::IpTviewr.UiServices.Forms.Properties.CommonUiResources.Action_Cancel_16x16;
             this.buttonRequestCancel.Name = "buttonRequestCancel";
             this.buttonRequestCancel.UseVisualStyleBackColor = true;
             // 
             // pictureIcon
             // 
-            this.pictureIcon.Image = global::Project.IpTv.UiServices.Forms.Properties.Resources.ScanTv_128x128;
+            this.pictureIcon.Image = global::IpTviewr.UiServices.Forms.Properties.Resources.ScanTv_128x128;
             resources.ApplyResources(this.pictureIcon, "pictureIcon");
             this.pictureIcon.Name = "pictureIcon";
             this.pictureIcon.TabStop = false;
@@ -174,7 +174,7 @@ namespace Project.IpTv.UiServices.Forms
 
         #endregion
 
-        private Project.IpTv.UiServices.Common.Controls.PictureBoxEx pictureIcon;
+        private IpTviewr.UiServices.Common.Controls.PictureBoxEx pictureIcon;
         private System.Windows.Forms.Label labelCaption;
         private System.Windows.Forms.Label labelScanTimeout;
         private System.Windows.Forms.NumericUpDown numericTimeout;

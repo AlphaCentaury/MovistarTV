@@ -327,6 +327,6 @@
     <value>BackgroundWorkerDialog</value>
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>Project.IpTv.UiServices.Controls.CommonBaseForm, UiServices.Controls, Version=1.1.0.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>IpTviewr.UiServices.Controls.CommonBaseForm, UiServices.Controls, Version=1.1.0.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
 </root>

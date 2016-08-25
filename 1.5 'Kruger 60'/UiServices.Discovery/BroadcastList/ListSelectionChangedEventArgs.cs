@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Project.IpTv.UiServices.Discovery.BroadcastList
+namespace IpTviewr.UiServices.Discovery.BroadcastList
 {
     public class ListSelectionChangedEventArgs: EventArgs
     {

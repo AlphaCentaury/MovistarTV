@@ -1,14 +1,14 @@
 ﻿// Copyright (C) 2014-2016, Codeplex/GitHub user AlphaCentaury
 // All rights reserved, except those granted by the governing license of this software. See 'license.txt' file in the project root for complete license information.
 
-using Project.IpTv.Common;
-using Project.IpTv.Common.Serialization;
+using IpTviewr.Common;
+using IpTviewr.Common.Serialization;
 /*
-using Project.IpTv.Services.EPG;
-using Project.IpTv.Services.EPG.Serialization;
-using Project.IpTv.Services.EPG.TvAnytime;
-using Project.IpTv.Services.SqlServerCE;
-using Project.IpTv.UiServices.EPG;
+using IpTviewr.Services.EPG;
+using IpTviewr.Services.EPG.Serialization;
+using IpTviewr.Services.EPG.TvAnytime;
+using IpTviewr.Services.SqlServerCE;
+using IpTviewr.UiServices.EPG;
 */
 using System;
 using System.Collections.Generic;
@@ -21,7 +21,7 @@ using System.Windows.Forms;
 using System.Xml;
 using System.Xml.Serialization;
 
-namespace Project.IpTv.Internal.Tools.ConsoleExperiments
+namespace IpTviewr.Internal.Tools.ConsoleExperiments
 {
     class Program
     {

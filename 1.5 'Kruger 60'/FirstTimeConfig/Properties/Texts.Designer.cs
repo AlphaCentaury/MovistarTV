@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Project.IpTv.Tools.FirstTimeConfig.Properties {
+namespace IpTviewr.Tools.FirstTimeConfig.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace Project.IpTv.Tools.FirstTimeConfig.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Project.IpTv.Tools.FirstTimeConfig.Properties.Texts", typeof(Texts).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("IpTviewr.Tools.FirstTimeConfig.Properties.Texts", typeof(Texts).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

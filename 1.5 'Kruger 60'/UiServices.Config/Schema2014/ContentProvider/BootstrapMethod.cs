@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Xml.Serialization;
 
-namespace Project.IpTv.UiServices.Configuration.Schema2014.ContentProvider
+namespace IpTviewr.UiServices.Configuration.Schema2014.ContentProvider
 {
     /// <summary>
     /// WARNING: Only 'Manual' is supported right now

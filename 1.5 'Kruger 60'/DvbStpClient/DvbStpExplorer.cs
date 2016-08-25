@@ -7,7 +7,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 
-namespace Project.IpTv.DvbStp.Client
+namespace IpTviewr.DvbStp.Client
 {
     public partial class DvbStpExplorer : DvbStpBaseClient
     {

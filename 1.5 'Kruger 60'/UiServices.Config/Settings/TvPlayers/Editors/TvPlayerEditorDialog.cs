@@ -11,7 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace Project.IpTv.UiServices.Configuration.Settings.TvPlayers.Editors
+namespace IpTviewr.UiServices.Configuration.Settings.TvPlayers.Editors
 {
     public partial class TvPlayerEditorDialog : Form
     {

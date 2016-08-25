@@ -1,10 +1,10 @@
 ﻿using Etsi.Ts102034.v010501.XmlSerialization;
 using Etsi.Ts102034.v010501.XmlSerialization.BroadcastDiscovery;
 using Etsi.Ts102034.v010501.XmlSerialization.PackageDiscovery;
-using Project.IpTv.Common;
-using Project.IpTv.UiServices.Configuration;
-using Project.IpTv.UiServices.Configuration.Cache;
-using Project.IpTv.UiServices.DvbStpClient;
+using IpTviewr.Common;
+using IpTviewr.UiServices.Configuration;
+using IpTviewr.UiServices.Configuration.Cache;
+using IpTviewr.UiServices.DvbStpClient;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +12,7 @@ using System.Net;
 using System.Text;
 using System.Windows.Forms;
 
-namespace Project.IpTv.UiServices.Discovery
+namespace IpTviewr.UiServices.Discovery
 {
     public class UiBroadcastDiscoveryDownloader
     {

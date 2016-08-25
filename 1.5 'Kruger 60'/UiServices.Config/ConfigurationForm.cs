@@ -1,4 +1,4 @@
-﻿using Project.IpTv.Common.Telemetry;
+﻿using IpTviewr.Common.Telemetry;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace Project.IpTv.UiServices.Configuration
+namespace IpTviewr.UiServices.Configuration
 {
     public partial class ConfigurationForm : Form
     {

@@ -138,7 +138,7 @@
     <value>Multicast proxy</value>
   </data>
   <data name="&gt;&gt;parametersEditorMulticastProxy.Type" xml:space="preserve">
-    <value>Project.IpTv.UiServices.Configuration.Editors.ParametersEditor, UiServices.Configuration, Version=1.5.30.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>IpTviewr.UiServices.Configuration.Editors.ParametersEditor, UiServices.Configuration, Version=1.5.30.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;pictureIconWarning.Name" xml:space="preserve">
     <value>pictureIconWarning</value>

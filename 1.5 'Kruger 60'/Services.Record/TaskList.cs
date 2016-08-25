@@ -6,11 +6,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
-using Project.IpTv.Services.Record.Serialization;
-using Project.IpTv.Services.Record.Properties;
+using IpTviewr.Services.Record.Serialization;
+using IpTviewr.Services.Record.Properties;
 using Microsoft.Win32.TaskScheduler;
 
-namespace Project.IpTv.Services.Record
+namespace IpTviewr.Services.Record
 {
     public class TaskList: ICollection<TaskData>
     {

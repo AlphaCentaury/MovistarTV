@@ -5,23 +5,23 @@ using Etsi.Ts102034.v010501.XmlSerialization;
 using Etsi.Ts102034.v010501.XmlSerialization.BroadcastDiscovery;
 using Etsi.Ts102034.v010501.XmlSerialization.PackageDiscovery;
 using Microsoft.SqlServer.MessageBox;
-using Project.IpTv.ChannelList.Properties;
-using Project.IpTv.Common;
-using Project.IpTv.Common.Telemetry;
-using Project.IpTv.Services.Record;
-using Project.IpTv.Services.Record.Serialization;
-using Project.IpTv.UiServices.Common.Forms;
-using Project.IpTv.UiServices.Common.Start;
-using Project.IpTv.UiServices.Configuration;
-using Project.IpTv.UiServices.Configuration.Logos;
-using Project.IpTv.UiServices.Configuration.Schema2014.Config;
-using Project.IpTv.UiServices.Configuration.Settings.TvPlayers;
-using Project.IpTv.UiServices.Discovery;
-using Project.IpTv.UiServices.Discovery.BroadcastList;
-using Project.IpTv.UiServices.DvbStpClient;
-//using Project.IpTv.UiServices.EPG;
-using Project.IpTv.UiServices.Forms;
-using Project.IpTv.UiServices.Record;
+using IpTviewr.ChannelList.Properties;
+using IpTviewr.Common;
+using IpTviewr.Common.Telemetry;
+using IpTviewr.Services.Record;
+using IpTviewr.Services.Record.Serialization;
+using IpTviewr.UiServices.Common.Forms;
+using IpTviewr.UiServices.Common.Start;
+using IpTviewr.UiServices.Configuration;
+using IpTviewr.UiServices.Configuration.Logos;
+using IpTviewr.UiServices.Configuration.Schema2014.Config;
+using IpTviewr.UiServices.Configuration.Settings.TvPlayers;
+using IpTviewr.UiServices.Discovery;
+using IpTviewr.UiServices.Discovery.BroadcastList;
+using IpTviewr.UiServices.DvbStpClient;
+//using IpTviewr.UiServices.EPG;
+using IpTviewr.UiServices.Forms;
+using IpTviewr.UiServices.Record;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -31,11 +31,11 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Windows.Forms;
-using Project.IpTv.Core.IpTvProvider;
-//using Project.IpTv.Core.IpTvProvider.EPG;
+using IpTviewr.Core.IpTvProvider;
+//using IpTviewr.Core.IpTvProvider.EPG;
 using System.Diagnostics;
 
-namespace Project.IpTv.ChannelList
+namespace IpTviewr.ChannelList
 {
     public sealed partial class ChannelListForm : CommonBaseForm, ISplashScreenAwareForm
     {
@@ -1109,7 +1109,7 @@ namespace Project.IpTv.ChannelList
             if (hours < 0) return;
 
             var dbFile = Path.Combine(AppUiConfiguration.Current.Folders.Cache, "EPG.sdf");
-            var status = Project.IpTv.Services.EPG.Serialization.EpgDbQuery.GetStatus(dbFile);
+            var status = IpTviewr.Services.EPG.Serialization.EpgDbQuery.GetStatus(dbFile);
 
             if (status.IsNew)
             {

@@ -8,7 +8,7 @@ using System.Runtime.InteropServices;
 using System.Security.Permissions;
 using System.Text;
 
-namespace Project.IpTv.Tools.FirstTimeConfig
+namespace IpTviewr.Tools.FirstTimeConfig
 {
     public class KnownFolders
     {

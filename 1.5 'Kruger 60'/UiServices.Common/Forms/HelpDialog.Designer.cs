@@ -1,7 +1,7 @@
 ﻿// Copyright (C) 2014-2016, Codeplex/GitHub user AlphaCentaury
 // All rights reserved, except those granted by the governing license of this software. See 'license.txt' file in the project root for complete license information.
 
-namespace Project.IpTv.UiServices.Common.Forms
+namespace IpTviewr.UiServices.Common.Forms
 {
     partial class HelpDialog
     {
@@ -50,7 +50,7 @@ namespace Project.IpTv.UiServices.Common.Forms
             // buttonClose
             // 
             this.buttonClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.buttonClose.Image = global::Project.IpTv.UiServices.Common.Properties.Resources.Action_Ok_16x16;
+            this.buttonClose.Image = global::IpTviewr.UiServices.Common.Properties.Resources.Action_Ok_16x16;
             resources.ApplyResources(this.buttonClose, "buttonClose");
             this.buttonClose.Name = "buttonClose";
             this.buttonClose.UseVisualStyleBackColor = true;

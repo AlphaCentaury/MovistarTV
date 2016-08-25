@@ -4,11 +4,11 @@
 using Etsi.Ts102034.v010501.XmlSerialization;
 using Etsi.Ts102034.v010501.XmlSerialization.BroadcastDiscovery;
 using Etsi.Ts102034.v010501.XmlSerialization.Common;
-using Project.IpTv.Common;
-using Project.IpTv.UiServices.Configuration;
-using Project.IpTv.UiServices.Configuration.Logos;
-using Project.IpTv.UiServices.Configuration.Schema2014;
-using Project.IpTv.UiServices.Configuration.Settings.Network;
+using IpTviewr.Common;
+using IpTviewr.UiServices.Configuration;
+using IpTviewr.UiServices.Configuration.Logos;
+using IpTviewr.UiServices.Configuration.Schema2014;
+using IpTviewr.UiServices.Configuration.Settings.Network;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,7 +17,7 @@ using System.Text;
 using System.Xml.Serialization;
 using Property = System.Collections.Generic.KeyValuePair<string, string>;
 
-namespace Project.IpTv.UiServices.Discovery
+namespace IpTviewr.UiServices.Discovery
 {
     [Serializable]
     [XmlType(TypeName="UI-BroadcastService", Namespace=SerializationCommon.XmlNamespace)]

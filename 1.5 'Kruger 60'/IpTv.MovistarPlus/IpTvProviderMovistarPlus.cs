@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Project.IpTv.UiServices.Configuration;
+using IpTviewr.UiServices.Configuration;
 
-namespace Project.IpTv.MovistarPlus
+namespace IpTviewr.MovistarPlus
 {
     public class IpTvProviderMovistarPlus : Core.IpTvProvider.IpTvProvider
     {

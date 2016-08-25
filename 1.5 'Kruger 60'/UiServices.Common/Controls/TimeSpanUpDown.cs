@@ -10,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace Project.IpTv.UiServices.Common.Controls
+namespace IpTviewr.UiServices.Common.Controls
 {
     [ToolboxBitmap(typeof(NumericUpDown))]
     public partial class TimeSpanUpDown : UserControl

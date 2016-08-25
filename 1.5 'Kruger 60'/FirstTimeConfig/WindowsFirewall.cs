@@ -8,7 +8,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 
-namespace Project.IpTv.Tools.FirstTimeConfig
+namespace IpTviewr.Tools.FirstTimeConfig
 {
     internal class WindowsFirewall : IDisposable
     {

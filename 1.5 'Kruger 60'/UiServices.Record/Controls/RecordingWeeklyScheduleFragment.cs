@@ -9,10 +9,10 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using Project.IpTv.Services.Record.Serialization;
-using Project.IpTv.UiServices.Record.Properties;
+using IpTviewr.Services.Record.Serialization;
+using IpTviewr.UiServices.Record.Properties;
 
-namespace Project.IpTv.UiServices.Record.Controls
+namespace IpTviewr.UiServices.Record.Controls
 {
     internal partial class RecordingWeeklyScheduleFragment : UserControl, IRecordingScheduleFragment
     {

@@ -11,7 +11,7 @@ using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 
-namespace Project.IpTv.Internal.Tools.GuiTools
+namespace IpTviewr.Internal.Tools.GuiTools
 {
     internal static class MyApplication
     {
