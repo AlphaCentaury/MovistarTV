@@ -46,18 +46,50 @@ namespace IpTviewr.Internal.Tools.GuiTools
             this.textBaseDumpFolder = new System.Windows.Forms.TextBox();
             this.labelBaseDumpFolder = new System.Windows.Forms.Label();
             this.checkDumpDatagrams = new System.Windows.Forms.CheckBox();
-            this.labelDataReception = new System.Windows.Forms.Label();
-            this.labelReceiving = new System.Windows.Forms.Label();
-            this.labelDatagramCount = new System.Windows.Forms.Label();
-            this.labelByteCount = new System.Windows.Forms.Label();
-            this.listViewFiles = new System.Windows.Forms.ListView();
+            this.listViewFiles = new IpTviewr.UiServices.Common.Controls.ListViewSortable();
+            this.statusStripMain = new System.Windows.Forms.StatusStrip();
+            this.statusLabelReceiving = new System.Windows.Forms.ToolStripStatusLabel();
+            this.statusLabelDataReception = new System.Windows.Forms.ToolStripStatusLabel();
+            this.statusLabelDatagramCount = new System.Windows.Forms.ToolStripStatusLabel();
+            this.statusLabelByteCount = new System.Windows.Forms.ToolStripStatusLabel();
             columnHeaderFilename = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             columnHeaderFragment = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             columnHeaderSize = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             columnHeaderSuffix = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             columnHeaderCount = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             columnHeaderPrefix = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.statusStripMain.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // columnHeaderFilename
+            // 
+            columnHeaderFilename.Text = "Filename";
+            columnHeaderFilename.Width = 150;
+            // 
+            // columnHeaderFragment
+            // 
+            columnHeaderFragment.Text = "Fragment";
+            columnHeaderFragment.Width = 75;
+            // 
+            // columnHeaderSize
+            // 
+            columnHeaderSize.Text = "Size";
+            columnHeaderSize.Width = 75;
+            // 
+            // columnHeaderSuffix
+            // 
+            columnHeaderSuffix.Text = "Suffix";
+            columnHeaderSuffix.Width = 100;
+            // 
+            // columnHeaderCount
+            // 
+            columnHeaderCount.Text = "Count";
+            columnHeaderCount.Width = 75;
+            // 
+            // columnHeaderPrefix
+            // 
+            columnHeaderPrefix.Text = "Prefix";
+            columnHeaderPrefix.Width = 100;
             // 
             // buttonStart
             // 
@@ -150,48 +182,6 @@ namespace IpTviewr.Internal.Tools.GuiTools
             this.checkDumpDatagrams.UseVisualStyleBackColor = true;
             this.checkDumpDatagrams.CheckedChanged += new System.EventHandler(this.checkDumpPayloads_CheckedChanged);
             // 
-            // labelDataReception
-            // 
-            this.labelDataReception.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.labelDataReception.Font = new System.Drawing.Font("Wingdings", 9F);
-            this.labelDataReception.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.labelDataReception.Location = new System.Drawing.Point(12, 390);
-            this.labelDataReception.Name = "labelDataReception";
-            this.labelDataReception.Size = new System.Drawing.Size(100, 13);
-            this.labelDataReception.TabIndex = 24;
-            this.labelDataReception.Text = "l";
-            this.labelDataReception.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // labelReceiving
-            // 
-            this.labelReceiving.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.labelReceiving.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.labelReceiving.Location = new System.Drawing.Point(118, 390);
-            this.labelReceiving.Name = "labelReceiving";
-            this.labelReceiving.Size = new System.Drawing.Size(175, 13);
-            this.labelReceiving.TabIndex = 23;
-            this.labelReceiving.Text = "Data reception is in progress";
-            // 
-            // labelDatagramCount
-            // 
-            this.labelDatagramCount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.labelDatagramCount.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.labelDatagramCount.Location = new System.Drawing.Point(299, 390);
-            this.labelDatagramCount.Name = "labelDatagramCount";
-            this.labelDatagramCount.Size = new System.Drawing.Size(175, 13);
-            this.labelDatagramCount.TabIndex = 25;
-            this.labelDatagramCount.Text = "(Count)";
-            // 
-            // labelByteCount
-            // 
-            this.labelByteCount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.labelByteCount.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.labelByteCount.Location = new System.Drawing.Point(480, 390);
-            this.labelByteCount.Name = "labelByteCount";
-            this.labelByteCount.Size = new System.Drawing.Size(175, 13);
-            this.labelByteCount.TabIndex = 26;
-            this.labelByteCount.Text = "(Byte count)";
-            // 
             // listViewFiles
             // 
             this.listViewFiles.AllowColumnReorder = true;
@@ -207,7 +197,10 @@ namespace IpTviewr.Internal.Tools.GuiTools
             columnHeaderSuffix});
             this.listViewFiles.FullRowSelect = true;
             this.listViewFiles.GridLines = true;
+            this.listViewFiles.HeaderCustomFont = null;
+            this.listViewFiles.HeaderCustomForeColor = System.Drawing.Color.Empty;
             this.listViewFiles.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.listViewFiles.IsDoubleBuffered = true;
             this.listViewFiles.Location = new System.Drawing.Point(12, 69);
             this.listViewFiles.MultiSelect = false;
             this.listViewFiles.Name = "listViewFiles";
@@ -216,46 +209,57 @@ namespace IpTviewr.Internal.Tools.GuiTools
             this.listViewFiles.UseCompatibleStateImageBehavior = false;
             this.listViewFiles.View = System.Windows.Forms.View.Details;
             // 
-            // columnHeaderFilename
+            // statusStripMain
             // 
-            columnHeaderFilename.Text = "Filename";
-            columnHeaderFilename.Width = 150;
+            this.statusStripMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.statusLabelReceiving,
+            this.statusLabelDataReception,
+            this.statusLabelDatagramCount,
+            this.statusLabelByteCount});
+            this.statusStripMain.Location = new System.Drawing.Point(0, 390);
+            this.statusStripMain.Name = "statusStripMain";
+            this.statusStripMain.Size = new System.Drawing.Size(684, 22);
+            this.statusStripMain.TabIndex = 36;
+            this.statusStripMain.Text = "statusStrip1";
             // 
-            // columnHeaderFragment
+            // statusLabelReceiving
             // 
-            columnHeaderFragment.Text = "Fragment";
-            columnHeaderFragment.Width = 75;
+            this.statusLabelReceiving.AutoSize = false;
+            this.statusLabelReceiving.Name = "statusLabelReceiving";
+            this.statusLabelReceiving.Size = new System.Drawing.Size(175, 17);
+            this.statusLabelReceiving.Text = "Data reception is in progress";
             // 
-            // columnHeaderSize
+            // statusLabelDataReception
             // 
-            columnHeaderSize.Text = "Size";
-            columnHeaderSize.Width = 75;
+            this.statusLabelDataReception.AutoSize = false;
+            this.statusLabelDataReception.Font = new System.Drawing.Font("Wingdings", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(2)));
+            this.statusLabelDataReception.Name = "statusLabelDataReception";
+            this.statusLabelDataReception.Size = new System.Drawing.Size(125, 17);
+            this.statusLabelDataReception.Text = "lll";
             // 
-            // columnHeaderSuffix
+            // statusLabelDatagramCount
             // 
-            columnHeaderSuffix.Text = "Suffix";
-            columnHeaderSuffix.Width = 100;
+            this.statusLabelDatagramCount.AutoSize = false;
+            this.statusLabelDatagramCount.Name = "statusLabelDatagramCount";
+            this.statusLabelDatagramCount.Size = new System.Drawing.Size(175, 17);
+            this.statusLabelDatagramCount.Text = "Datagram count";
+            this.statusLabelDatagramCount.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // columnHeaderCount
+            // statusLabelByteCount
             // 
-            columnHeaderCount.Text = "Count";
-            columnHeaderCount.Width = 75;
-            // 
-            // columnHeaderPrefix
-            // 
-            columnHeaderPrefix.Text = "Prefix";
-            columnHeaderPrefix.Width = 100;
+            this.statusLabelByteCount.AutoSize = false;
+            this.statusLabelByteCount.Name = "statusLabelByteCount";
+            this.statusLabelByteCount.Size = new System.Drawing.Size(175, 17);
+            this.statusLabelByteCount.Text = "Total received bytes";
+            this.statusLabelByteCount.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // OpchExplorerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(684, 412);
+            this.Controls.Add(this.statusStripMain);
             this.Controls.Add(this.listViewFiles);
-            this.Controls.Add(this.labelByteCount);
-            this.Controls.Add(this.labelDatagramCount);
-            this.Controls.Add(this.labelDataReception);
-            this.Controls.Add(this.labelReceiving);
             this.Controls.Add(this.textBaseDumpFolder);
             this.Controls.Add(this.labelBaseDumpFolder);
             this.Controls.Add(this.checkDumpDatagrams);
@@ -267,8 +271,10 @@ namespace IpTviewr.Internal.Tools.GuiTools
             this.Controls.Add(this.buttonStart);
             this.Name = "OpchExplorerForm";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;
-            this.Text = "OPCH Stream Explorer";
-            this.Load += new System.EventHandler(this.MulticastStreamExplorerForm_Load);
+            this.Text = "OPCH Stream Explorer - GuiTools";
+            this.Load += new System.EventHandler(this.OpchExplorerForm_Load);
+            this.statusStripMain.ResumeLayout(false);
+            this.statusStripMain.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -285,10 +291,11 @@ namespace IpTviewr.Internal.Tools.GuiTools
         private System.Windows.Forms.TextBox textBaseDumpFolder;
         private System.Windows.Forms.Label labelBaseDumpFolder;
         private System.Windows.Forms.CheckBox checkDumpDatagrams;
-        private System.Windows.Forms.Label labelDataReception;
-        private System.Windows.Forms.Label labelReceiving;
-        private System.Windows.Forms.Label labelDatagramCount;
-        private System.Windows.Forms.Label labelByteCount;
-        private System.Windows.Forms.ListView listViewFiles;
+        private global::IpTviewr.UiServices.Common.Controls.ListViewSortable listViewFiles;
+        private System.Windows.Forms.StatusStrip statusStripMain;
+        private System.Windows.Forms.ToolStripStatusLabel statusLabelReceiving;
+        private System.Windows.Forms.ToolStripStatusLabel statusLabelDataReception;
+        private System.Windows.Forms.ToolStripStatusLabel statusLabelDatagramCount;
+        private System.Windows.Forms.ToolStripStatusLabel statusLabelByteCount;
     } // class OpchExplorerForm
 } // namespace

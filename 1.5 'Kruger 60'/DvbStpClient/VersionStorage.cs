@@ -82,6 +82,9 @@ namespace IpTviewr.DvbStp.Client
                 if (assembler.IsSegmentComplete)
                 {
                     OnSegmentReceived(assembler);
+                    // discard data
+                    assembler = null;
+                    Versions.Remove(header.SegmentVersion);
                 } // if
             } // if
 
@@ -117,9 +120,6 @@ namespace IpTviewr.DvbStp.Client
                 var args = new PayloadStorage.SegmentPayloadReceivedEventArgs(assembler);
                 SegmentPayloadReceived(this, args);
             } // if
-
-            // discard data
-            assembler.Reset();
         } // OnSegmentReceived
     } // VersionStorage
 } // namespace

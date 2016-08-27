@@ -81,6 +81,15 @@ namespace IpTviewr.Internal.Tools.GuiTools.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to IPTViewr\{0} {1}\Data.
+        /// </summary>
+        internal static string DefaultDumpFolder {
+            get {
+                return ResourceManager.GetString("DefaultDumpFolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
         internal static System.Drawing.Icon GuiTools {

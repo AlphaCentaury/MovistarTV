@@ -25,6 +25,7 @@ namespace IpTviewr.Internal.Tools.GuiTools
             Form form = null;
 
             if (radioSimpleDownload.Checked) form = new SimpleDvbStpDownloadForm();
+            else if (radioDvbStpExplorer.Checked) form = new DvbStpStreamExplorerForm();
             else if (radioMulticastExplorer.Checked) form = new MulticastStreamExplorerForm();
             else if (radioOpchExplorer.Checked) form = new OpchExplorerForm();
 

@@ -11,8 +11,7 @@ namespace IpTviewr.UiServices.DvbStpClient
     {
         public UiDvbStpBaseDownloadRequest()
         {
-            // TODO: get default values from app configuration
-            ReceiveDatagramTimeout = 7500;
+            ReceiveDatagramTimeout = 10000;
             NoDataTimeout = 45000;
             DialogCloseDelay = 500;
         } // constructor

@@ -30,21 +30,20 @@ namespace IpTviewr.Internal.Tools.GuiTools
             this.Icon = Properties.Resources.GuiTools;
         } // constructor
 
-        private void MulticastStreamExplorerForm_Load(object sender, EventArgs e)
+        private void OpchExplorerForm_Load(object sender, EventArgs e)
         {
             var appExe = Path.GetFileNameWithoutExtension(Application.ExecutablePath);
-            var folder = string.Format("IPTV\\{0} {1}\\Data", appExe, Application.ProductVersion);
+            var folder = string.Format(Properties.Resources.DefaultDumpFolder, appExe, Application.ProductVersion);
             var baseFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), folder);
             textBaseDumpFolder.Text = baseFolder;
 
-            checkDumpDatagrams.Checked = true;
-            labelDataReception.Visible = false;
-            labelReceiving.Visible = false;
-            labelDatagramCount.Text = null;
-            labelByteCount.Text = null;
+            statusLabelDataReception.Text = null;
+            statusLabelReceiving.Text = null;
+            statusLabelDatagramCount.Text = null;
+            statusLabelByteCount.Text = null;
 
             buttonStop.Enabled = false;
-        } // MulticastStreamExplorerForm_Load
+        } // OpchExplorerForm_Load
 
         private void checkDumpPayloads_CheckedChanged(object sender, EventArgs e)
         {
@@ -82,13 +81,15 @@ namespace IpTviewr.Internal.Tools.GuiTools
                 return;
             } // try-catch
 
-            DatagramCount = 0;
-            DatagramByteCount = 0;
             buttonStart.Enabled = false;
             buttonStop.Enabled = true;
+
+            DatagramCount = 0;
+            DatagramByteCount = 0;
             checkDumpDatagrams.Enabled = false;
-            labelDatagramCount.Text = null;
-            labelByteCount.Text = null;
+
+            statusLabelDatagramCount.Text = string.Format("{0:N0} datagrams received", DatagramCount);
+            statusLabelByteCount.Text = string.Format("{0:N0} bytes received", DatagramByteCount);
             listViewFiles.Items.Clear();
 
             Worker = new BackgroundWorker()
@@ -115,8 +116,8 @@ namespace IpTviewr.Internal.Tools.GuiTools
             buttonStart.Enabled = true;
             buttonStop.Text = "Stop";
             buttonStop.Image = Properties.Resources.Action_Cancel_Red_16x16;
-            labelDataReception.Visible = false;
-            labelReceiving.Visible = false;
+            statusLabelDataReception.Text = null;
+            statusLabelReceiving.Text = null;
 
             Worker.Dispose();
             Worker = null;
@@ -128,14 +129,17 @@ namespace IpTviewr.Internal.Tools.GuiTools
             var file = Encoding.UTF8.GetString(data, 12, 32);
             var l = data.Length;
 
+            if (statusLabelDataReception.Text == null)
+            {
+                statusLabelDataReception.Text = "l";
+                statusLabelReceiving.Text = "Receiving data";
+            } // if
+
             var index = file.IndexOf('\0');
             if (index > 0)
             {
                 file = file.Substring(0, index);
             } // if
-
-            labelDataReception.Visible = true;
-            labelReceiving.Visible = true;
 
             if (DumpFolder != null)
             {
@@ -163,10 +167,10 @@ namespace IpTviewr.Internal.Tools.GuiTools
             DatagramByteCount += data.Length;
 
             int length = (DatagramCount % 10) + 1;
-            labelDataReception.Text = new string(labelDataReception.Text[0], length);
+            statusLabelDataReception.Text = new string('l', length);
 
-            labelDatagramCount.Text = string.Format("{0:N0} datagrams received", DatagramCount);
-            labelByteCount.Text = string.Format("{0:N0} bytes received", DatagramByteCount);
+            statusLabelDatagramCount.Text = string.Format("{0:N0} datagrams received", DatagramCount);
+            statusLabelByteCount.Text = string.Format("{0:N0} bytes received", DatagramByteCount);
         } // Worker_ProgressChanged
 
         void Worker_DoWork(object sender, DoWorkEventArgs e)
@@ -179,6 +183,8 @@ namespace IpTviewr.Internal.Tools.GuiTools
             {
                 client = new UdpClient(MulticastPort);
                 client.JoinMulticastGroup(MulticastIpAddress);
+
+                statusLabelReceiving.Text = "Trying to connect...";
 
                 endPoint = null;
                 while (!Worker.CancellationPending)
