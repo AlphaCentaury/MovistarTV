@@ -15,7 +15,7 @@ namespace IpTviewr.Services.Record.Serialization
     [XmlRoot(ElementName = "RecordTask", Namespace = RecordTask.XmlNamespace)]
     public class RecordTask
     {
-        public const string XmlNamespace = "urn:Project-DvbIpTV:2014:RecordTask";
+        public const string XmlNamespace = "urn:AlphaCentaury:IpTViewr:2014:RecordTask";
 
         public RecordTask()
         {
