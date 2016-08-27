@@ -67,7 +67,7 @@ namespace IpTviewr.Internal.Tools.GuiTools
                 context = "Dump folder";
                 if (checkDumpDatagrams.Checked)
                 {
-                    DumpFolder = Path.Combine(textBaseDumpFolder.Text, string.Format("OpchStream\\{0}~{1}\\{2:yyyy-MM-dd hh-mm-ss}", MulticastIpAddress, MulticastPort, DateTime.Now));
+                    DumpFolder = Path.Combine(textBaseDumpFolder.Text, string.Format("OpchStream\\{0}~{1}\\{2:yyyy-MM-dd HH-mm-ss}", MulticastIpAddress, MulticastPort, DateTime.Now));
                     Directory.CreateDirectory(DumpFolder);
                 }
                 else
