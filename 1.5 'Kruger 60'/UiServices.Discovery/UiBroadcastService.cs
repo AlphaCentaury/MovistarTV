@@ -43,7 +43,9 @@ namespace IpTviewr.UiServices.Discovery
 
         public static string GetKey(TextualIdentifier serviceIdentifier, string defaultDomainName)
         {
-            return string.Format(Properties.InvariantTexts.FormatServiceProviderKey, serviceIdentifier.ServiceName, serviceIdentifier.DomainName?? defaultDomainName);
+            var domain = serviceIdentifier.DomainName ?? defaultDomainName;
+
+            return string.Format(Properties.InvariantTexts.FormatServiceProviderKey, serviceIdentifier.ServiceName.ToLowerInvariant(), domain.ToLowerInvariant());
         } // CreateKey
 
         public UiBroadcastService(IpService service, string providerDomainName)
@@ -51,7 +53,7 @@ namespace IpTviewr.UiServices.Discovery
             if (service == null) throw new ArgumentNullException("IpService service");
 
             Data = service;
-            DomainName = Data.TextualIdentifier.DomainName ?? providerDomainName;
+            DomainName = (Data.TextualIdentifier.DomainName ?? providerDomainName).ToLowerInvariant();
             Key = GetKey(service.TextualIdentifier, providerDomainName);
         } // constructor
 
