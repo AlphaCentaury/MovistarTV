@@ -7,7 +7,7 @@
     <ProjectGuid>{0BA7DA0C-3C45-4834-9927-C8CB5B49DD7B}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Project.DvbIpTv.Internal.Tools.ConsoleExperiments</RootNamespace>
+    <RootNamespace>IpTviewr.Internal.Tools.ConsoleExperiments</RootNamespace>
     <AssemblyName>ConsoleExperiments</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -59,10 +59,16 @@
     <Compile Include="..\..\AssemblySolutionInfo.cs">
       <Link>Properties\AssemblySolutionInfo.cs</Link>
     </Compile>
+    <Compile Include="Experiment.cs" />
+    <Compile Include="ProcessRawEpgData.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Etsi.Ts102034\Etsi.Ts102034.csproj">
+      <Project>{b91c438d-0333-4d06-86cd-74ce82df6f40}</Project>
+      <Name>Etsi.Ts102034</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\IpTv.MovistarPlus\IpTv.MovistarPlus.csproj">
       <Project>{e1748f45-dd50-4479-96f6-f7eba6f3e28b}</Project>
       <Name>IpTv.MovistarPlus</Name>
@@ -71,9 +77,21 @@
       <Project>{8da15060-5a78-4f89-a9f1-7aa56b0d622c}</Project>
       <Name>Project.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Services.EPG.Serialization\Services.EPG.Serialization.csproj">
+      <Project>{5a171dbb-855c-452b-93c6-229c7aa6c7a6}</Project>
+      <Name>Services.EPG.Serialization</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Services.SqlServerCE\Services.SqlServerCE.csproj">
       <Project>{3a053f34-4edf-4071-b966-923255a0ae14}</Project>
       <Name>Services.SqlServerCE</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\UiServices.Config\UiServices.Config.csproj">
+      <Project>{a722de9d-ae51-479c-825f-a19f4c69bd75}</Project>
+      <Name>UiServices.Config</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\UiServices.Discovery\UiServices.Discovery.csproj">
+      <Project>{7e5e21b9-4bd6-4fb3-9055-9b09cc479c6c}</Project>
+      <Name>UiServices.Discovery</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

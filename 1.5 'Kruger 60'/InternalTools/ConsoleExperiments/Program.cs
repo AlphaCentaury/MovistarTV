@@ -25,46 +25,15 @@ namespace IpTviewr.Internal.Tools.ConsoleExperiments
 {
     class Program
     {
-        static void Main(string[] args)
+        static int Main(string[] args)
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            //EpgInfoDownload.Experiment();
-            //EpgInfoDownload.GetJsonSchema();
-            //EpgInfoDownload.ExploreJsonValues();
-            //EpgInfoDownload.DisplayJsonData();
+            Experiment experiment;
 
-            return;
-
-            DateTime start;
-            DateTime end;
-            DateTime now;
-
-            start = new DateTime(2015, 03, 05, 20, 35, 0);
-            now = new DateTime(2015, 03, 06, 7, 20, 0);
-            end = new DateTime(2015, 03, 07, 10, 15, 0);
-
-            Console.WriteLine("{0} {1} => {2}", start, end, FormatString.DateTimeFromToMinutes(start, end, now));
-
-            start = new DateTime(2015, 03, 05, 20, 35, 0);
-            now = new DateTime(2015, 03, 06, 7, 20, 0);
-            end = new DateTime(2015, 03, 06, 10, 15, 0);
-
-            Console.WriteLine("{0} {1} => {2}", start, end, FormatString.DateTimeFromToMinutes(start, end, now));
-
-            start = new DateTime(2015, 03, 06, 7, 35, 0);
-            now = new DateTime(2015, 03, 06, 17, 20, 0);
-            end = new DateTime(2015, 03, 07, 10, 15, 0);
-
-            Console.WriteLine("{0} {1} => {2}", start, end, FormatString.DateTimeFromToMinutes(start, end, now));
-
-            start = new DateTime(2015, 03, 06, 7, 35, 0);
-            now = new DateTime(2015, 03, 06, 17, 20, 0);
-            end = new DateTime(2015, 03, 06, 22, 15, 0);
-
-            Console.WriteLine("{0} {1} => {2}", start, end, FormatString.DateTimeFromToMinutes(start, end, now));
-        }
-
+            experiment = new ProcessRawEpgData();
+            return experiment.Execute(args);
+        } // Main
     } // class Program
 } // namespace
