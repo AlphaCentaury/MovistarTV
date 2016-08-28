@@ -140,10 +140,7 @@ namespace IpTviewr.ChannelList
             ServiceProviderChanged();
 
             // notify Splash Screeen the form has finished loading and is about to be shown
-            if (FormLoadCompleted != null)
-            {
-                FormLoadCompleted(this, e);
-            } // if
+            FormLoadCompleted?.Invoke(this, e);
         } // ChannelListForm_Load_Implementation
 
         #endregion

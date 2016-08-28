@@ -186,10 +186,7 @@ namespace IpTviewr.UiServices.Discovery.BroadcastList.Editors
             EnableCombos();
             SetDataChanged();
 
-            if (UseGlobalSortChanged != null)
-            {
-                UseGlobalSortChanged(this, EventArgs.Empty);
-            } // if
+            UseGlobalSortChanged?.Invoke(this, EventArgs.Empty);
         } // checkGlobalSorting_CheckedChanged
 
         private void EnableCombos()

@@ -50,12 +50,12 @@ namespace IpTviewr.UiServices.Configuration
             AppUiConfiguration config;
             InitializationResult result;
 
-            if (displayProgress != null) displayProgress(Properties.Texts.LoadProgress_Start);
+            displayProgress?.Invoke(Properties.Texts.LoadProgress_Start);
             config = new AppUiConfiguration();
             result = config.LoadBasicConfiguration(overrideBasePath);
             if (result.IsError) return result;
 
-            if (displayProgress != null) displayProgress(Properties.Texts.LoadProgress_UserConfig);
+            displayProgress?.Invoke(Properties.Texts.LoadProgress_UserConfig);
             result = config.LoadUserConfiguration();
             if (result.IsError) return result;
 
@@ -65,7 +65,7 @@ namespace IpTviewr.UiServices.Configuration
             result = config.ProcessXmlConfigurationItems();
             if (result.IsError) return result;
 
-            if (displayProgress != null) displayProgress(Properties.Texts.LoadProgress_ContentProvider);
+            displayProgress?.Invoke(Properties.Texts.LoadProgress_ContentProvider);
             result = config.LoadIpTvProviderData();
             if (result.IsError) return result;
 

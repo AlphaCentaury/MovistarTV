@@ -158,10 +158,7 @@ namespace IpTviewr.UiServices.Common.Controls
             // force redraw to update the "arrow" on the header
             RedrawHeader();
 
-            if (AfterSorting != null)
-            {
-                AfterSorting(this, EventArgs.Empty);
-            } // if
+            AfterSorting?.Invoke(this, EventArgs.Empty);
         } // Sort
 
         protected override void OnColumnClick(ColumnClickEventArgs e)

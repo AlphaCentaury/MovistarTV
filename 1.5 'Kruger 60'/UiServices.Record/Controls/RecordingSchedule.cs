@@ -178,10 +178,7 @@ namespace IpTviewr.UiServices.Record.Controls
                 } // if
             } // foreach
 
-            if (ScheduleKindChanged != null)
-            {
-                ScheduleKindChanged(this, new KindChangedEventArgs(kind));
-            } // if
+            ScheduleKindChanged?.Invoke(this, new KindChangedEventArgs(kind));
         } // SetPatternKind
 
         private void StartDateChanged()
@@ -195,10 +192,7 @@ namespace IpTviewr.UiServices.Record.Controls
                 fragment.UpdateStartDate(startDate);
             } // foreach
 
-            if (DateTimeChanged != null)
-            {
-                DateTimeChanged(this, new DateTimeChangedEventArgs(startDate));
-            } // if
+            DateTimeChanged?.Invoke(this, new DateTimeChangedEventArgs(startDate));
         } // StartDateChanged
     } // class namespace
 } // namespace

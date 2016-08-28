@@ -81,10 +81,7 @@ namespace IpTviewr.UiServices.Configuration.Editors
 
         private void textBoxCommandLine_TextChanged(object sender, EventArgs e)
         {
-            if (CommandLineChanged != null)
-            {
-                CommandLineChanged(this, EventArgs.Empty);
-            } // if
+            CommandLineChanged?.Invoke(this, EventArgs.Empty);
         } // textBoxCommandLine_TextChanged
 
         private void listParameters_SelectedIndexChanged(object sender, EventArgs e)

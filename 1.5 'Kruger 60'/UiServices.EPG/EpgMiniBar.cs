@@ -180,22 +180,14 @@ namespace IpTviewr.UiServices.EPG
 
         private void buttonBack_Click(object sender, EventArgs e)
         {
-            var buttonClicked = ButtonClicked;
-            if (buttonClicked != null)
-            {
-                buttonClicked(this, new EpgMiniBarButtonClickedEventArgs(Button.Back));
-            } // if
+            ButtonClicked?.Invoke(this, new EpgMiniBarButtonClickedEventArgs(Button.Back));
 
             GoBack();
         } // buttonBack_Click
 
         private void buttonForward_Click(object sender, EventArgs e)
         {
-            var buttonClicked = ButtonClicked;
-            if (buttonClicked != null)
-            {
-                buttonClicked(this, new EpgMiniBarButtonClickedEventArgs(Button.Forward));
-            } // if
+            ButtonClicked?.Invoke(this, new EpgMiniBarButtonClickedEventArgs(Button.Forward));
 
             GoForward();
         } // buttonForward_Click
@@ -363,10 +355,7 @@ namespace IpTviewr.UiServices.EPG
             buttonBack.Enabled = back;
             buttonForward.Enabled = forward;
 
-            if (NavigationButtonsChanged != null)
-            {
-                NavigationButtonsChanged(this, new EpgMiniBarNavigationButtonsChangedEventArgs(back, forward));
-            } // if
+            NavigationButtonsChanged?.Invoke(this, new EpgMiniBarNavigationButtonsChangedEventArgs(back, forward));
         } // EnableBackForward
 
         private void SetAutoRefreshTimer(bool enabled)

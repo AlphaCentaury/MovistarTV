@@ -381,18 +381,12 @@ namespace IpTviewr.UiServices.Discovery.BroadcastList
 
         protected virtual void OnStatusChanged(object sender, ListStatusChangedEventArgs e)
         {
-            if (StatusChanged != null)
-            {
-                StatusChanged(sender, e);
-            } // if
+            StatusChanged?.Invoke(sender, e);
         } // OnStatusChanged
 
         protected virtual void OnSelectionChanged(object sender, ListSelectionChangedEventArgs e)
         {
-            if (SelectionChanged != null)
-            {
-                SelectionChanged(sender, e);
-            } // if
+            SelectionChanged?.Invoke(sender, e);
         } // OnSelectionChanged
 
         private void FireStatusChanged()

@@ -103,10 +103,7 @@ namespace IpTviewr.UiServices.Common.Forms
 
             buttonRequestCancel.Enabled = Options.AllowCancelButton;
 
-            if (Options.BeforeTask != null)
-            {
-                Options.BeforeTask(Options, this);
-            } // if
+            Options.BeforeTask?.Invoke(Options, this);
         } // BackgroundWorkerDialog_Load_Implementation
 
         private void BackgroundWorkerDialog_Shown_Implementation(object sender, EventArgs e)
@@ -135,7 +132,7 @@ namespace IpTviewr.UiServices.Common.Forms
                 currentThread.CurrentUICulture = parentThread.CurrentUICulture; // UICulture not inherited from spwawning thread
             } // if
 
-            if (Options.BackgroundBeforeTask != null) Options.BackgroundBeforeTask(Options, this);
+            Options.BackgroundBeforeTask?.Invoke(Options, this);
             if (Options.BackgroundTask != null) Options.BackgroundTask(Options, this);
             if (Options.BackgroundAfterTask != null) Options.BackgroundAfterTask(Options, this);
         } // Worker_DoWork
