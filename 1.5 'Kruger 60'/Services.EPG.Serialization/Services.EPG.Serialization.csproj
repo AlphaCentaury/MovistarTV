@@ -40,6 +40,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common.cs" />
+    <Compile Include="EpgProgram.cs" />
+    <Compile Include="EpgCodedValue.cs" />
+    <Compile Include="EpgService.cs" />
+    <Compile Include="EpgProgramExtended.cs" />
     <Compile Include="Properties\AssemblySolutionInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TvAnytime\Common.cs" />

@@ -100,7 +100,8 @@ namespace IpTviewr.Services.EPG.Serialization.TvAnytime
                 }
                 else
                 {
-                    PublishedStartTime = XmlConvert.ToDateTime(value, XmlDateTimeSerializationMode.RoundtripKind);
+                    var time = XmlConvert.ToDateTime(value, XmlDateTimeSerializationMode.RoundtripKind);
+                    PublishedStartTime = DateTime.SpecifyKind(time, DateTimeKind.Utc);
                 } // if-else
             } // set
         } // XmlPublishedStartTime
@@ -129,7 +130,8 @@ namespace IpTviewr.Services.EPG.Serialization.TvAnytime
                 }
                 else
                 {
-                    StartTime = XmlConvert.ToDateTime(value, XmlDateTimeSerializationMode.RoundtripKind);
+                    var time =  XmlConvert.ToDateTime(value, XmlDateTimeSerializationMode.RoundtripKind);
+                    StartTime = DateTime.SpecifyKind(time, DateTimeKind.Utc);
                 } // if-else
             } // set
         } // XmlPublishedStartTime
