@@ -32,7 +32,8 @@ namespace IpTviewr.Internal.Tools.ConsoleExperiments
 
             Experiment experiment;
 
-            experiment = new ProcessRawEpgData();
+            //experiment = new ProcessRawEpgData();
+            experiment = new TestEpgDownloader();
             return experiment.Execute(args);
         } // Main
     } // class Program

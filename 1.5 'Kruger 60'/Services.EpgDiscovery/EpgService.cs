@@ -63,7 +63,7 @@ namespace IpTviewr.Services.EpgDiscovery
         public LinkedList<EpgProgram> Programs
         {
             get;
-            protected set;
+            internal set;
         } // Events
 
         [XmlArray("Programs")]
