@@ -51,6 +51,7 @@
     <Compile Include="DvbStpEnhancedClient.cs" />
     <Compile Include="DvbStpEnhancedClient.EventArgs.cs" />
     <Compile Include="DvbStpClientSegmentInfo.cs" />
+    <Compile Include="DvbStpStreamClient.cs" />
     <Compile Include="DvbStpExplorer.cs" />
     <Compile Include="DvbStpSegmentIdentity.cs" />
     <Compile Include="PayloadStorage.cs" />
