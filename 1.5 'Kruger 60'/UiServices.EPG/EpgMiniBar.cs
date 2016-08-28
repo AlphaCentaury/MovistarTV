@@ -1,4 +1,4 @@
-﻿// Copyright (C) 2014-2016, Codeplex user AlphaCentaury
+﻿// Copyright (C) 2014-2016, Codeplex/GitHub user AlphaCentaury
 // All rights reserved, except those granted by the governing license of this software. See 'license.txt' file in the project root for complete license information.
 
 using System;
@@ -9,27 +9,27 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using Project.IpTv.Services.EPG;
-using Project.IpTv.Services.EPG.Serialization;
-using Project.IpTv.Services.SqlServerCE;
-using Project.IpTv.Common;
+using IpTviewr.Services.EPG;
+using IpTviewr.Services.EPG.Serialization;
+using IpTviewr.Services.SqlServerCE;
+using IpTviewr.Common;
 
-namespace Project.IpTv.UiServices.EPG
+namespace IpTviewr.UiServices.EPG
 {
     public partial class EpgMiniBar : UserControl
     {
-        private EpgEvent[] EpgEvents;
+        private EpgProgram[] EpgPrograms;
         private int EpgIndex;
         private int CurrentRequestId;
 
-        private class LoadEpgEventsData
+        private class LoadEpgProgramsData
         {
             public int RequestId;
             public string FullServiceName;
             public string FullAlternateServiceName;
             public DateTime ReferenceTime;
-            public EpgEvent[] EpgEvents;
-        } // class LoadEpgEventsData
+            public EpgProgram[] EpgPrograms;
+        } // class LoadEpgProgramsData
 
         public enum Button
         {
@@ -49,9 +49,9 @@ namespace Project.IpTv.UiServices.EPG
             AutoRefresh = true;
         } // constructor
 
-        public EpgEvent SelectedEvent
+        public EpgProgram SelectedEvent
         {
-            get { return (EpgEvents == null) ? null : EpgEvents[EpgIndex]; }
+            get { return (EpgPrograms == null) ? null : EpgPrograms[EpgIndex]; }
         } // SelectedEvent
 
         public bool IsDisabled
@@ -108,18 +108,18 @@ namespace Project.IpTv.UiServices.EPG
         {
             try
             {
-                RefreshEpgEvents(DateTime.Now);
+                RefreshEpgPrograms(DateTime.Now);
             }
             catch
             {
             } // try-catch
         } // timerAutoRefresh_Tick
 
-        public void ClearEpgEvents()
+        public void ClearEpgPrograms()
         {
             timerLoadingData.Enabled = false;
             SetAutoRefreshTimer(false);
-            EpgEvents = null;
+            EpgPrograms = null;
             EpgIndex = -1;
 
             pictureChannelLogo.Image = null;
@@ -134,9 +134,9 @@ namespace Project.IpTv.UiServices.EPG
             EnableBackForward(false, false);
             buttonEpgGrid.Enabled = true;
             buttonDetails.Enabled = false;
-        } // ClearEpgEvents
+        } // ClearEpgPrograms
 
-        public void DisplayEpgEvents(Image channelLogo, string fullServiceName, string fullAlternateServiceName, DateTime referenceTime, string epgDatabase)
+        public void DisplayEpgPrograms(Image channelLogo, string fullServiceName, string fullAlternateServiceName, DateTime referenceTime, string epgDatabase)
         {
             EpgDatabase = epgDatabase;
             FullServiceName = fullServiceName;
@@ -144,38 +144,38 @@ namespace Project.IpTv.UiServices.EPG
             ReferenceTime = new DateTime(referenceTime.Year, referenceTime.Month, referenceTime.Day, referenceTime.Hour, referenceTime.Minute, 0, 0);
             
             // clean-up UI
-            ClearEpgEvents();
+            ClearEpgPrograms();
             pictureChannelLogo.Image = channelLogo;
 
-            LoadEpgEventsAsync();
-        } // DisplayEpgEvents
+            LoadEpgProgramsAsync();
+        } // DisplayEpgPrograms
 
-        public void RefreshEpgEvents(DateTime referenceTime)
+        public void RefreshEpgPrograms(DateTime referenceTime)
         {
             ReferenceTime = new DateTime(referenceTime.Year, referenceTime.Month, referenceTime.Day, referenceTime.Hour, referenceTime.Minute, 0, 0);
-            LoadEpgEventsAsync();
-        } // RefreshEpgEvents
+            LoadEpgProgramsAsync();
+        } // RefreshEpgPrograms
 
-        public EpgEvent[] GetEpgEvents()
+        public EpgProgram[] GetEpgPrograms()
         {
-            if (EpgEvents == null) return null;
+            if (EpgPrograms == null) return null;
 
-            var result = new EpgEvent[EpgEvents.Length];
-            Array.Copy(EpgEvents, result, EpgEvents.Length);
+            var result = new EpgProgram[EpgPrograms.Length];
+            Array.Copy(EpgPrograms, result, EpgPrograms.Length);
 
             return result;
-        } // GetEpgEvents
+        } // GetEpgPrograms
 
         public void GoBack()
         {
             if (EpgIndex < 0) return;
-            DisplayEpgEvent(EpgIndex - 1);
+            DisplayEpgProgram(EpgIndex - 1);
         } // GoBack
 
         public void GoForward()
         {
             if (EpgIndex > 2) return;
-            DisplayEpgEvent(EpgIndex + 1);
+            DisplayEpgProgram(EpgIndex + 1);
         } // GoFoward
 
         private void buttonBack_Click(object sender, EventArgs e)
@@ -224,7 +224,7 @@ namespace Project.IpTv.UiServices.EPG
             buttonClicked(this, new EpgMiniBarButtonClickedEventArgs(Button.EpgGrid));
         } // buttonEpgGrid_Click
 
-        private void LoadEpgEventsAsync()
+        private void LoadEpgProgramsAsync()
         {
             if (IsDisabled) return;
 
@@ -233,7 +233,7 @@ namespace Project.IpTv.UiServices.EPG
             timerLoadingData.Enabled = false;
             timerLoadingData.Enabled = true;
 
-            var data = new LoadEpgEventsData()
+            var data = new LoadEpgProgramsData()
             {
                 RequestId = ++CurrentRequestId,
                 FullServiceName = this.FullServiceName,
@@ -241,30 +241,31 @@ namespace Project.IpTv.UiServices.EPG
                 ReferenceTime = this.ReferenceTime
             };
 
-            System.Threading.ThreadPool.QueueUserWorkItem((o) => LoadEpgEvents(data), null);
-        } // LoadEpgEventsAsync
+            System.Threading.ThreadPool.QueueUserWorkItem((o) => LoadEpgPrograms(data), null);
+        } // LoadEpgProgramsAsync
 
-        private void LoadEpgEvents(LoadEpgEventsData data)
+        private void LoadEpgPrograms(LoadEpgProgramsData data)
         {
             int serviceDbId;
 
             using (var cn = DbServices.GetConnection(EpgDatabase))
             {
-                serviceDbId = EpgDbQuery.GetDatabaseIdForServiceId(FullServiceName, cn);
-                data.EpgEvents = EpgDbQuery.GetBeforeNowAndThenEvents(cn, serviceDbId, ReferenceTime.ToUniversalTime());
+                // TODO: EPG
+                // serviceDbId = EpgDbQuery.GetDatabaseIdForServiceId(FullServiceName, cn);
+                // data.EpgPrograms = EpgDbQuery.GetBeforeNowAndThenEvents(cn, serviceDbId, ReferenceTime.ToUniversalTime());
 
                 // try alternate service if no EPG data
-                if ((data.EpgEvents == null) && (FullAlternateServiceName != null))
+                if ((data.EpgPrograms == null) && (FullAlternateServiceName != null))
                 {
-                    serviceDbId = EpgDbQuery.GetDatabaseIdForServiceId(FullAlternateServiceName, cn);
-                    data.EpgEvents = EpgDbQuery.GetBeforeNowAndThenEvents(cn, serviceDbId, ReferenceTime.ToUniversalTime());
+                    // serviceDbId = EpgDbQuery.GetDatabaseIdForServiceId(FullAlternateServiceName, cn);
+                    // data.EpgPrograms = EpgDbQuery.GetBeforeNowAndThenEvents(cn, serviceDbId, ReferenceTime.ToUniversalTime());
                 } // if
 
-                this.BeginInvoke(new Action<LoadEpgEventsData>(DisplayEpgEvents), data);
+                this.BeginInvoke(new Action<LoadEpgProgramsData>(DisplayEpgPrograms), data);
             } // using
-        } // LoadEpgEvents
+        } // LoadEpgPrograms
 
-        private void DisplayEpgEvents(LoadEpgEventsData data)
+        private void DisplayEpgPrograms(LoadEpgProgramsData data)
         {
             // ignore data if not from current request
             // as data is loading async, "old" load request may arrive if channel is quickly changed
@@ -273,39 +274,39 @@ namespace Project.IpTv.UiServices.EPG
             timerLoadingData.Enabled = false;
             SetAutoRefreshTimer(true);
 
-            EpgEvents = data.EpgEvents;
-            buttonFullView.Enabled = (EpgEvents != null);
+            EpgPrograms = data.EpgPrograms;
+            buttonFullView.Enabled = (EpgPrograms != null);
 
-            if (EpgEvents == null)
+            if (EpgPrograms == null)
             {
-                DisplayEpgEvent(0);
+                DisplayEpgProgram(0);
             }
             else
             {
-                if ((EpgIndex != -1) && (EpgEvents[EpgIndex] != null))
+                if ((EpgIndex != -1) && (EpgPrograms[EpgIndex] != null))
                 {
-                    DisplayEpgEvent(EpgIndex);
+                    DisplayEpgProgram(EpgIndex);
                 }
-                else if (EpgEvents[1] != null)
+                else if (EpgPrograms[1] != null)
                 {
-                    DisplayEpgEvent(1);
+                    DisplayEpgProgram(1);
                 }
-                else if (EpgEvents[0] != null)
+                else if (EpgPrograms[0] != null)
                 {
-                    DisplayEpgEvent(0);
+                    DisplayEpgProgram(0);
                 }
-                else if (EpgEvents[2] != null)
+                else if (EpgPrograms[2] != null)
                 {
-                    DisplayEpgEvent(2);
+                    DisplayEpgProgram(2);
                 }
                 else
                 {
-                    DisplayEpgEvent(0);
+                    DisplayEpgProgram(0);
                 } // if-else
             } // if-else
-        } // DisplayEpgEvents
+        } // DisplayEpgPrograms
 
-        private void DisplayEpgEvent(int index)
+        private void DisplayEpgProgram(int index)
         {
             TimeSpan ellapsed;
 
@@ -316,10 +317,10 @@ namespace Project.IpTv.UiServices.EPG
             labelStartTime.Visible = (index == 1);
             labelFromTo.Visible = (index != 1);
 
-            var epgEvent = (EpgEvents != null) ? EpgEvents[EpgIndex] : null;
+            var EpgProgram = (EpgPrograms != null) ? EpgPrograms[EpgIndex] : null;
 
-            buttonDetails.Enabled = DetailsButtonEnabled && (epgEvent != null);
-            if (epgEvent == null)
+            buttonDetails.Enabled = DetailsButtonEnabled && (EpgProgram != null);
+            if (EpgProgram == null)
             {
                 labelProgramTitle.Text = Properties.Texts.EpgNoInformation;
                 labelFromTo.Text = null;
@@ -329,33 +330,33 @@ namespace Project.IpTv.UiServices.EPG
                 return;
             } // if
 
-            labelProgramTitle.Text = epgEvent.Title;
+            labelProgramTitle.Text = EpgProgram.Title;
 
             switch (EpgIndex)
             {
                 case 0:
-                    labelFromTo.Text = FormatString.DateTimeFromToMinutes(epgEvent.LocalStartTime, epgEvent.LocalEndTime, ReferenceTime);
-                    ellapsed = (ReferenceTime - epgEvent.LocalEndTime);
+                    labelFromTo.Text = FormatString.DateTimeFromToMinutes(EpgProgram.LocalStartTime, EpgProgram.LocalEndTime, ReferenceTime);
+                    ellapsed = (ReferenceTime - EpgProgram.LocalEndTime);
                     labelEllapsed.Text = string.Format(Properties.Texts.ProgramEnded, FormatString.TimeSpanTotalMinutes(ellapsed, FormatString.Format.Extended));
-                    EnableBackForward(false, EpgEvents[1] != null);
+                    EnableBackForward(false, EpgPrograms[1] != null);
                     break;
                 case 1:
-                    labelStartTime.Text = string.Format("{0:HH:mm}", epgEvent.LocalStartTime);
-                    labelEndTime.Text = string.Format("{0:t}", epgEvent.LocalEndTime);
-                    ellapsed = (ReferenceTime - epgEvent.LocalStartTime);
-                    epgProgressBar.MaximumValue = epgEvent.Duration.TotalMinutes;
+                    labelStartTime.Text = string.Format("{0:HH:mm}", EpgProgram.LocalStartTime);
+                    labelEndTime.Text = string.Format("{0:t}", EpgProgram.LocalEndTime);
+                    ellapsed = (ReferenceTime - EpgProgram.LocalStartTime);
+                    epgProgressBar.MaximumValue = EpgProgram.Duration.TotalMinutes;
                     epgProgressBar.Value = ellapsed.TotalMinutes;
                     labelEllapsed.Text = string.Format(Properties.Texts.ProgramStarted, FormatString.TimeSpanTotalMinutes(ellapsed, FormatString.Format.Extended));
-                    EnableBackForward(EpgEvents[0] != null, EpgEvents[2] != null);
+                    EnableBackForward(EpgPrograms[0] != null, EpgPrograms[2] != null);
                     break;
                 default:
-                    labelFromTo.Text = FormatString.DateTimeFromToMinutes(epgEvent.LocalStartTime, epgEvent.LocalEndTime, ReferenceTime);
-                    ellapsed = (epgEvent.LocalStartTime - ReferenceTime);
+                    labelFromTo.Text = FormatString.DateTimeFromToMinutes(EpgProgram.LocalStartTime, EpgProgram.LocalEndTime, ReferenceTime);
+                    ellapsed = (EpgProgram.LocalStartTime - ReferenceTime);
                     labelEllapsed.Text = string.Format(Properties.Texts.ProgramWillStart, FormatString.TimeSpanTotalMinutes(ellapsed, FormatString.Format.Extended));
-                    EnableBackForward(EpgEvents[1] != null, false);
+                    EnableBackForward(EpgPrograms[1] != null, false);
                     break;
             } // switch
-        } // DisplayEpgEvent
+        } // DisplayEpgProgram
 
         private void EnableBackForward(bool back, bool forward)
         {

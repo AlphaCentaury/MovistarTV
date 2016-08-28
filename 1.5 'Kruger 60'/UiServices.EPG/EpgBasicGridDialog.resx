@@ -270,28 +270,28 @@
   <data name="&gt;&gt;buttonDisplayChannel.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
-  <data name="epgEventDisplay.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+  <data name="EpgProgramDisplay.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Left, Right</value>
   </data>
-  <data name="epgEventDisplay.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="EpgProgramDisplay.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 310</value>
   </data>
-  <data name="epgEventDisplay.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="EpgProgramDisplay.Size" type="System.Drawing.Size, System.Drawing">
     <value>454, 90</value>
   </data>
-  <data name="epgEventDisplay.TabIndex" type="System.Int32, mscorlib">
+  <data name="EpgProgramDisplay.TabIndex" type="System.Int32, mscorlib">
     <value>35</value>
   </data>
-  <data name="&gt;&gt;epgEventDisplay.Name" xml:space="preserve">
-    <value>epgEventDisplay</value>
+  <data name="&gt;&gt;EpgProgramDisplay.Name" xml:space="preserve">
+    <value>EpgProgramDisplay</value>
   </data>
-  <data name="&gt;&gt;epgEventDisplay.Type" xml:space="preserve">
-    <value>Project.IpTv.UiServices.EPG.EpgEventMiniBar, UiServices.EPG, Version=1.5.30.0, Culture=neutral, PublicKeyToken=null</value>
+  <data name="&gt;&gt;EpgProgramDisplay.Type" xml:space="preserve">
+    <value>IpTviewr.UiServices.EPG.EpgProgramMiniBar, UiServices.EPG, Version=1.5.30.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
-  <data name="&gt;&gt;epgEventDisplay.Parent" xml:space="preserve">
+  <data name="&gt;&gt;EpgProgramDisplay.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;epgEventDisplay.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;EpgProgramDisplay.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">

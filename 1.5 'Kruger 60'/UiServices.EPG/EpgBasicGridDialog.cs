@@ -1,4 +1,4 @@
-﻿// Copyright (C) 2014-2016, Codeplex user AlphaCentaury
+﻿// Copyright (C) 2014-2016, Codeplex/GitHub user AlphaCentaury
 // All rights reserved, except those granted by the governing license of this software. See 'license.txt' file in the project root for complete license information.
 
 using System;
@@ -9,24 +9,24 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using Project.IpTv.Common.Telemetry;
-using Project.IpTv.Core.IpTvProvider;
-using Project.IpTv.Services.EPG;
-using Project.IpTv.Services.EPG.Serialization;
-using Project.IpTv.Services.SqlServerCE;
-using Project.IpTv.UiServices.Common.Forms;
-using Project.IpTv.UiServices.Configuration;
-using Project.IpTv.UiServices.Discovery;
-using Project.IpTv.UiServices.Discovery.BroadcastList;
+using IpTviewr.Common.Telemetry;
+using IpTviewr.Core.IpTvProvider;
+using IpTviewr.Services.EPG;
+using IpTviewr.Services.EPG.Serialization;
+using IpTviewr.Services.SqlServerCE;
+using IpTviewr.UiServices.Common.Forms;
+using IpTviewr.UiServices.Configuration;
+using IpTviewr.UiServices.Discovery;
+using IpTviewr.UiServices.Discovery.BroadcastList;
 
-namespace Project.IpTv.UiServices.EPG
+namespace IpTviewr.UiServices.EPG
 {
     public partial class EpgBasicGridDialog : Form
     {
         private IList<UiBroadcastService> ServicesList;
         private UiBroadcastService CurrentService;
         private UiBroadcastService SelectedService;
-        private EpgEvent[,] EpgEvents;
+        private EpgProgram[,] EpgPrograms;
         private int CurrentRowIndex, SelectedRowIndex;
         private DateTime ReferenceTime;
 
@@ -67,9 +67,9 @@ namespace Project.IpTv.UiServices.EPG
                 } // if
             } // foreach
 
-            EpgEvents = new EpgEvent[ServicesList.Count, 3];
+            EpgPrograms = new EpgProgram[ServicesList.Count, 3];
 
-            epgEventDisplay.Visible = false;
+            EpgProgramDisplay.Visible = false;
             buttonDisplayChannel.Enabled = false;
             buttonRecordChannel.Enabled = false;
         } // EpgBasicGridDialog_Load
@@ -78,7 +78,7 @@ namespace Project.IpTv.UiServices.EPG
         {
             var workerOptions = new BackgroundWorkerOptions()
             {
-                OutputData = EpgEvents,
+                OutputData = EpgPrograms,
                 BackgroundTask = AsyncBuildList,
                 AllowAutoClose = true,
                 TaskDescription = Properties.Texts.EpgDataLoadingList,
@@ -98,16 +98,16 @@ namespace Project.IpTv.UiServices.EPG
             } // if
             */
 
-            for (int index = 0; index < EpgEvents.GetLength(0); index++)
+            for (int index = 0; index < EpgPrograms.GetLength(0); index++)
             {
                 var row = dataGridPrograms.Rows[index];
                 for (int cellIndex = 0; cellIndex < 3; cellIndex++)
                 {
-                    var epgEvent = EpgEvents[index, cellIndex];
+                    var epgProgram = EpgPrograms[index, cellIndex];
                     var cell = row.Cells[cellIndex + 1];
-                    if (epgEvent != null)
+                    if (epgProgram != null)
                     {
-                        cell.Value = epgEvent.Title;
+                        cell.Value = epgProgram.Title;
                     }
                     else
                     {
@@ -127,11 +127,11 @@ namespace Project.IpTv.UiServices.EPG
 
         private void AsyncBuildList(BackgroundWorkerOptions options, IBackgroundWorkerDialog dialog)
         {
-            var result = options.OutputData as EpgEvent[,];
+            var result = options.OutputData as EpgProgram[,];
 
-            using (var cn = DbServices.GetConnection(AppUiConfiguration.Current.EpgDatabaseFile))
+            using (var cn = DbServices.GetConnection(null)) // TODO: EPG AppUiConfiguration.Current.EpgDatabaseFile))
             {
-                var serviceEvents = new Dictionary<string, EpgEvent[]>(ServicesList.Count, StringComparer.InvariantCultureIgnoreCase);
+                var serviceEvents = new Dictionary<string, EpgProgram[]>(ServicesList.Count, StringComparer.InvariantCultureIgnoreCase);
                 foreach (var service in ServicesList)
                 {
                     // TODO: do not assume imagenio.es
@@ -140,18 +140,20 @@ namespace Project.IpTv.UiServices.EPG
 
                 var now = DateTime.Now;
                 ReferenceTime = new DateTime(now.Year, now.Month, now.Day, now.Hour, now.Minute, 0);
+                // TODO: EPG
+                /*
                 var events = EpgDbQuery.GetAllServicesNowEvent(cn, ReferenceTime);
 
                 foreach (var epgServiceEvent in events)
                 {
-                    var epgEvents = new EpgEvent[3];
-                    epgEvents[0] = epgServiceEvent.EpgEvent;
-                    serviceEvents[epgServiceEvent.FullServiceName] = epgEvents;
+                    var epgPrograms = new EpgProgram[3];
+                    epgPrograms[0] = epgServiceEvent.EpgProgram;
+                    serviceEvents[epgServiceEvent.FullServiceName] = epgPrograms;
                 } // foreach
 
                 foreach (var serviceName in serviceEvents.Keys.ToList())
                 {
-                    EpgEvent[] epgEvents;
+                    EpgProgram[] epgPrograms;
                     DateTime start;
 
                     if (dialog.QueryCancel()) return;
@@ -159,34 +161,34 @@ namespace Project.IpTv.UiServices.EPG
                     var serviceDbId = EpgDbQuery.GetDatabaseIdForServiceId(serviceName, cn);
                     if (serviceDbId <= 0) continue;
 
-                    epgEvents = serviceEvents[serviceName];
-                    start = (epgEvents != null) ? start = epgEvents[0].LocalEndTime : ReferenceTime;
+                    EpgPrograms = serviceEvents[serviceName];
+                    start = (epgPrograms != null) ? start = EpgPrograms[0].LocalEndTime : ReferenceTime;
 
                     var afterEvents = EpgDbQuery.GetDateRange(cn, serviceDbId, start, null, 2);
                     if (afterEvents.Count > 0)
                     {
-                        if (epgEvents == null)
+                        if (EpgPrograms == null)
                         {
-                            epgEvents = new EpgEvent[3];
-                            serviceEvents[serviceName] = epgEvents;
+                            EpgPrograms = new EpgProgram[3];
+                            serviceEvents[serviceName] = EpgPrograms;
                         } // if
                         for (int epgIndex = 0; epgIndex < afterEvents.Count; epgIndex++)
                         {
-                            epgEvents[epgIndex + 1] = afterEvents[epgIndex];
+                            EpgPrograms[epgIndex + 1] = afterEvents[epgIndex];
                         } // for epgIndex
                     } // if
                 } // foreach
 
                 for (int index = 0; index < ServicesList.Count; index++)
                 {
-                    EpgEvent[] epgEvents;
+                    EpgProgram[] epgPrograms;
 
                     if (dialog.QueryCancel()) return;
 
                     // TODO: do not assume imagenio.es
                     var service = ServicesList[index];
-                    epgEvents = serviceEvents[service.ServiceName + ".imagenio.es"];
-                    if (epgEvents == null)
+                    EpgPrograms = serviceEvents[service.ServiceName + ".imagenio.es"];
+                    if (EpgPrograms == null)
                     {
                         if (service.Data.ServiceInformation.ReplacementService != null)
                         {
@@ -194,9 +196,9 @@ namespace Project.IpTv.UiServices.EPG
                             {
                                 if (replacement.Kind != "5") continue;
                                 if (replacement.TextualIdentifier == null) continue;
-                                if (serviceEvents.TryGetValue(replacement.TextualIdentifier.ServiceName + ".imagenio.es", out epgEvents))
+                                if (serviceEvents.TryGetValue(replacement.TextualIdentifier.ServiceName + ".imagenio.es", out EpgPrograms))
                                 {
-                                    if (epgEvents != null)
+                                    if (EpgPrograms != null)
                                     {
                                         break;
                                     } // if
@@ -205,19 +207,20 @@ namespace Project.IpTv.UiServices.EPG
                         } // if
                     } // if
 
-                    if (epgEvents == null) continue;
+                    if (EpgPrograms == null) continue;
 
-                    for (int epgIndex = 0; epgIndex < epgEvents.Length; epgIndex++)
+                    for (int epgIndex = 0; epgIndex < EpgPrograms.Length; epgIndex++)
                     {
-                        EpgEvents[index, epgIndex] = epgEvents[epgIndex];
+                        EpgPrograms[index, epgIndex] = EpgPrograms[epgIndex];
                     } // if
                 } // for index
+                */
             } // using cn
         }  // AsyncBuildList
 
         private void dataGridPrograms_SelectionChanged(object sender, EventArgs e)
         {
-            EpgEvent epgEvent;
+            EpgProgram epgProgram;
             int columnIndex;
             string caption;
 
@@ -227,7 +230,7 @@ namespace Project.IpTv.UiServices.EPG
                 SelectedService = null;
                 SelectedRowIndex = -1;
                 columnIndex = -1;
-                epgEvent = null;
+                epgProgram = null;
             }
             else
             {
@@ -235,7 +238,7 @@ namespace Project.IpTv.UiServices.EPG
                 SelectedService = ServicesList[SelectedRowIndex];
 
                 columnIndex = cell.ColumnIndex;
-                epgEvent = (columnIndex > 0)? EpgEvents[cell.RowIndex, columnIndex - 1] : null;
+                epgProgram = (columnIndex > 0)? EpgPrograms[cell.RowIndex, columnIndex - 1] : null;
 
                 switch (columnIndex)
                 {
@@ -247,12 +250,12 @@ namespace Project.IpTv.UiServices.EPG
                         break;
                 } // switch
 
-                epgEventDisplay.DisplayData(ServicesList[SelectedRowIndex], epgEvent, ReferenceTime, caption);
+                EpgProgramDisplay.DisplayData(ServicesList[SelectedRowIndex], epgProgram, ReferenceTime, caption);
             } // if-else
 
-            epgEventDisplay.Visible = (columnIndex > 0);
+            EpgProgramDisplay.Visible = (columnIndex > 0);
             buttonDisplayChannel.Enabled = (columnIndex == 1);
-            buttonRecordChannel.Enabled = (columnIndex >= 1) && (epgEvent != null);
+            buttonRecordChannel.Enabled = (columnIndex >= 1) && (epgProgram != null);
         } // dataGridPrograms_SelectionChanged
 
         private void buttonDisplayChannel_Click(object sender, EventArgs e)

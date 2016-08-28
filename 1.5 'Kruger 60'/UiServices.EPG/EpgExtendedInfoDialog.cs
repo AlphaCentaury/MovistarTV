@@ -1,4 +1,4 @@
-﻿// Copyright (C) 2014-2016, Codeplex user AlphaCentaury
+﻿// Copyright (C) 2014-2016, Codeplex/GitHub user AlphaCentaury
 // All rights reserved, except those granted by the governing license of this software. See 'license.txt' file in the project root for complete license information.
 
 using System;
@@ -9,31 +9,36 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using Project.IpTv.Core.IpTvProvider;
-using Project.IpTv.Core.IpTvProvider.EPG;
-using Project.IpTv.Services.EPG;
-using Project.IpTv.UiServices.Common.Forms;
-using Project.IpTv.UiServices.Configuration.Logos;
-using Project.IpTv.UiServices.Discovery;
-using Project.IpTv.UiServices.Discovery.BroadcastList;
+using IpTviewr.Core.IpTvProvider;
+// TODO: EPG
+// using IpTviewr.Core.IpTvProvider.EPG;
+using IpTviewr.Services.EPG;
+using IpTviewr.UiServices.Common.Forms;
+using IpTviewr.UiServices.Configuration.Logos;
+using IpTviewr.UiServices.Discovery;
+using IpTviewr.UiServices.Discovery.BroadcastList;
+using IpTviewr.Services.EPG.Serialization;
 
-namespace Project.IpTv.UiServices.EPG
+namespace IpTviewr.UiServices.EPG
 {
     public partial class EpgExtendedInfoDialog : Form
     {
         private Encoding Ansi1252Encoding;
         private DateTime ReferenceTime;
 
-        public static void ShowExtendedInfo(IWin32Window owner, UiBroadcastService service, EpgEvent epgEvent)
+        public static void ShowExtendedInfo(IWin32Window owner, UiBroadcastService service, EpgProgram epgProgram)
         {
             using (var dialog = new EpgExtendedInfoDialog())
             {
+                // TODO: EPG
+                /*
                 dialog.ProgramInfo = new ProgramEpgInfo()
                 {
                     Service = service,
-                    Base = epgEvent,
+                    Base = epgProgram,
                 };
                 dialog.ShowDialog(owner);
+                */
             } // using dialog
         } // ShowExtendedInfo
 
@@ -44,11 +49,14 @@ namespace Project.IpTv.UiServices.EPG
             Ansi1252Encoding = Encoding.GetEncoding(1252);
         } // constructor
 
+        // TODO: EPG
+        /*
         public ProgramEpgInfo ProgramInfo
         {
             get;
             set;
         } // ProgramInfo
+        */
 
         private void EpgExtendedInfoDialog_Load(object sender, EventArgs e)
         {
@@ -56,7 +64,8 @@ namespace Project.IpTv.UiServices.EPG
             buttonPrevious.Visible = false; //(NavigationCallback != null);
             buttonNext.Visible = false; // (NavigationCallback != null);
 
-            if (ProgramInfo == null) return;
+            // TODO: EPG
+            // if (ProgramInfo == null) return;
 
             /*
             if ((CurrentEpgInfo == null) && (NavigationCallback == null))
@@ -70,14 +79,16 @@ namespace Project.IpTv.UiServices.EPG
             } // if
             */
 
-            pictureChannelLogo.Image = ProgramInfo.Service.Logo.GetImage(LogoSize.Size48, true);
-            labelChannelName.Text = UiBroadcastListManager.GetColumnData(ProgramInfo.Service, UiBroadcastListColumn.NumberAndNameCrlf);
+            // TODO: EPG
+            // pictureChannelLogo.Image = ProgramInfo.Service.Logo.GetImage(LogoSize.Size48, true);
+            // labelChannelName.Text = UiBroadcastListManager.GetColumnData(ProgramInfo.Service, UiBroadcastListColumn.NumberAndNameCrlf);
             richTextProgramData.Text = Properties.EpgRtf.LoadingProgramData;
             labelAdditionalDetails.Text = null;
 
             pictureProgramPreview.Image = Properties.Resources.EpgLoadingProgramImage;
             pictureProgramPreview.ImageLocation = null;
-            pictureProgramPreview.ImageLocation = IpTvProvider.Current.EpgInfo.GetEpgProgramThumbnailUrl(ProgramInfo.Service, ProgramInfo.Base, true);
+            // TODO: EPG
+            // pictureProgramPreview.ImageLocation = IpTvProvider.Current.EpgInfo.GetEpgProgramThumbnailUrl(ProgramInfo.Service, ProgramInfo.Base, true);
 
             buttonShowProgram.Enabled = false;
             buttonRecordProgram.Enabled = false;
@@ -85,19 +96,21 @@ namespace Project.IpTv.UiServices.EPG
 
         private void EpgExtendedInfoDialog_Shown(object sender, EventArgs e)
         {
-            ProgramInfo.Extended = IpTvProvider.Current.EpgInfo.GetEpgInfo(ProgramInfo.Service, ProgramInfo.Base, true);
-            if (ProgramInfo.Extended == null)
-            {
+            // TODO: EPG
+            // ProgramInfo.Extended = IpTvProvider.Current.EpgInfo.GetEpgInfo(ProgramInfo.Service, ProgramInfo.Base, true);
+            // if (ProgramInfo.Extended == null)
+            // {
                 richTextProgramData.Text = Properties.EpgRtf.NullProgramData;
-            }
-            else
-            {
-                DisplayEpgInfo();
-            } // if-else
+            // }
+            // else
+            // {
+            //    DisplayEpgInfo();
+            // } // if-else
         } // EpgExtendedInfoDialog_Shown
 
         private void DisplayEpgInfo()
         {
+            /*
             StringBuilder rtf;
             
             //buttonPrevious.Enabled = CurrentEpgInfo.PreviousEnabled;
@@ -147,6 +160,7 @@ namespace Project.IpTv.UiServices.EPG
 
             buttonShowProgram.Enabled = (ProgramInfo.Base.LocalStartTime <= ReferenceTime) && (ProgramInfo.Base.LocalEndTime > ReferenceTime);
             buttonRecordProgram.Enabled = (ProgramInfo.Base.LocalEndTime >= ReferenceTime);
+            */
         } // DisplayEpgInfo
 
         private string Extract(string[] longText, string[] shortText, string defaultText)
@@ -266,7 +280,8 @@ namespace Project.IpTv.UiServices.EPG
 
         private void buttonShowProgram_Click(object sender, EventArgs e)
         {
-            ExternalTvPlayer.ShowTvChannel(this, ProgramInfo.Service);
+            // TODO: EPG
+            // ExternalTvPlayer.ShowTvChannel(this, ProgramInfo.Service);
         }
 
         private void buttonRecordProgram_Click(object sender, EventArgs e)
@@ -280,6 +295,6 @@ namespace Project.IpTv.UiServices.EPG
             {
                 (sender as PictureBox).Image = Properties.Resources.EpgNoProgramImage;
             } // if
-        }
+        } // pictureProgramPreview_LoadCompleted
     } // class 
 } // namespace

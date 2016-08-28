@@ -1,7 +1,7 @@
-﻿// Copyright (C) 2014-2016, Codeplex user AlphaCentaury
+﻿// Copyright (C) 2014-2016, Codeplex/GitHub user AlphaCentaury
 // All rights reserved, except those granted by the governing license of this software. See 'license.txt' file in the project root for complete license information.
 
-namespace Project.IpTv.UiServices.EPG
+namespace IpTviewr.UiServices.EPG
 {
     partial class EpgBasicGridDialog
     {
@@ -40,7 +40,7 @@ namespace Project.IpTv.UiServices.EPG
             this.buttonOk = new System.Windows.Forms.Button();
             this.buttonRecordChannel = new System.Windows.Forms.Button();
             this.buttonDisplayChannel = new System.Windows.Forms.Button();
-            this.epgEventDisplay = new Project.IpTv.UiServices.EPG.EpgEventMiniBar();
+            this.EpgProgramDisplay = new IpTviewr.UiServices.EPG.EpgProgramMiniBar();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridPrograms)).BeginInit();
             this.SuspendLayout();
             // 
@@ -101,14 +101,14 @@ namespace Project.IpTv.UiServices.EPG
             // 
             resources.ApplyResources(this.buttonOk, "buttonOk");
             this.buttonOk.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.buttonOk.Image = global::Project.IpTv.UiServices.EPG.CommonUiResources.Action_Ok_16x16;
+            this.buttonOk.Image = global::IpTviewr.UiServices.EPG.CommonUiResources.Action_Ok_16x16;
             this.buttonOk.Name = "buttonOk";
             this.buttonOk.UseVisualStyleBackColor = true;
             // 
             // buttonRecordChannel
             // 
             resources.ApplyResources(this.buttonRecordChannel, "buttonRecordChannel");
-            this.buttonRecordChannel.Image = global::Project.IpTv.UiServices.EPG.CommonUiResources.Action_Record_16x16;
+            this.buttonRecordChannel.Image = global::IpTviewr.UiServices.EPG.CommonUiResources.Action_Record_16x16;
             this.buttonRecordChannel.Name = "buttonRecordChannel";
             this.buttonRecordChannel.UseVisualStyleBackColor = true;
             this.buttonRecordChannel.Click += new System.EventHandler(this.buttonRecordChannel_Click);
@@ -116,21 +116,21 @@ namespace Project.IpTv.UiServices.EPG
             // buttonDisplayChannel
             // 
             resources.ApplyResources(this.buttonDisplayChannel, "buttonDisplayChannel");
-            this.buttonDisplayChannel.Image = global::Project.IpTv.UiServices.EPG.CommonUiResources.Action_Play_LG_16x16;
+            this.buttonDisplayChannel.Image = global::IpTviewr.UiServices.EPG.CommonUiResources.Action_Play_LG_16x16;
             this.buttonDisplayChannel.Name = "buttonDisplayChannel";
             this.buttonDisplayChannel.UseVisualStyleBackColor = true;
             this.buttonDisplayChannel.Click += new System.EventHandler(this.buttonDisplayChannel_Click);
             // 
-            // epgEventDisplay
+            // EpgProgramDisplay
             // 
-            resources.ApplyResources(this.epgEventDisplay, "epgEventDisplay");
-            this.epgEventDisplay.Name = "epgEventDisplay";
+            resources.ApplyResources(this.EpgProgramDisplay, "EpgProgramDisplay");
+            this.EpgProgramDisplay.Name = "EpgProgramDisplay";
             // 
             // EpgBasicGridDialog
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.epgEventDisplay);
+            this.Controls.Add(this.EpgProgramDisplay);
             this.Controls.Add(this.buttonOk);
             this.Controls.Add(this.buttonRecordChannel);
             this.Controls.Add(this.buttonDisplayChannel);
@@ -151,7 +151,7 @@ namespace Project.IpTv.UiServices.EPG
         private System.Windows.Forms.Button buttonRecordChannel;
         private System.Windows.Forms.Button buttonDisplayChannel;
         private System.Windows.Forms.Button buttonOk;
-        private EpgEventMiniBar epgEventDisplay;
+        private EpgProgramMiniBar EpgProgramDisplay;
         private System.Windows.Forms.DataGridViewTextBoxColumn columnChannel;
         private System.Windows.Forms.DataGridViewTextBoxColumn columnProgramNow;
         private System.Windows.Forms.DataGridViewTextBoxColumn columnProgramThen;

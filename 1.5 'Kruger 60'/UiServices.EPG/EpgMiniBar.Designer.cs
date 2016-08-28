@@ -1,7 +1,7 @@
-﻿// Copyright (C) 2014-2016, Codeplex user AlphaCentaury
+﻿// Copyright (C) 2014-2016, Codeplex/GitHub user AlphaCentaury
 // All rights reserved, except those granted by the governing license of this software. See 'license.txt' file in the project root for complete license information.
 
-namespace Project.IpTv.UiServices.EPG
+namespace IpTviewr.UiServices.EPG
 {
     partial class EpgMiniBar
     {
@@ -45,7 +45,7 @@ namespace Project.IpTv.UiServices.EPG
             this.buttonForward = new System.Windows.Forms.Button();
             this.buttonBack = new System.Windows.Forms.Button();
             this.labelFromTo = new System.Windows.Forms.Label();
-            this.epgProgressBar = new Project.IpTv.UiServices.EPG.EpgProgressBarFixed();
+            this.epgProgressBar = new IpTviewr.UiServices.EPG.EpgProgressBarFixed();
             this.pictureChannelLogo = new System.Windows.Forms.PictureBox();
             this.buttonFullView = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureChannelLogo)).BeginInit();
@@ -92,7 +92,7 @@ namespace Project.IpTv.UiServices.EPG
             // 
             resources.ApplyResources(this.buttonDetails, "buttonDetails");
             this.buttonDetails.FlatAppearance.BorderSize = 0;
-            this.buttonDetails.Image = global::Project.IpTv.UiServices.EPG.CommonUiResources.Action_Properties_16x16;
+            this.buttonDetails.Image = global::IpTviewr.UiServices.EPG.CommonUiResources.Action_Properties_16x16;
             this.buttonDetails.Name = "buttonDetails";
             this.toolTipControl.SetToolTip(this.buttonDetails, resources.GetString("buttonDetails.ToolTip"));
             this.buttonDetails.UseVisualStyleBackColor = true;
@@ -102,7 +102,7 @@ namespace Project.IpTv.UiServices.EPG
             // 
             resources.ApplyResources(this.buttonEpgGrid, "buttonEpgGrid");
             this.buttonEpgGrid.FlatAppearance.BorderSize = 0;
-            this.buttonEpgGrid.Image = global::Project.IpTv.UiServices.EPG.Properties.Resources.Action_Epg_16x16;
+            this.buttonEpgGrid.Image = global::IpTviewr.UiServices.EPG.Properties.Resources.Action_Epg_16x16;
             this.buttonEpgGrid.Name = "buttonEpgGrid";
             this.toolTipControl.SetToolTip(this.buttonEpgGrid, resources.GetString("buttonEpgGrid.ToolTip"));
             this.buttonEpgGrid.UseVisualStyleBackColor = true;
@@ -112,7 +112,7 @@ namespace Project.IpTv.UiServices.EPG
             // 
             resources.ApplyResources(this.buttonForward, "buttonForward");
             this.buttonForward.FlatAppearance.BorderSize = 0;
-            this.buttonForward.Image = global::Project.IpTv.UiServices.EPG.CommonUiResources.Action_Forward_16x16;
+            this.buttonForward.Image = global::IpTviewr.UiServices.EPG.CommonUiResources.Action_Forward_16x16;
             this.buttonForward.Name = "buttonForward";
             this.toolTipControl.SetToolTip(this.buttonForward, resources.GetString("buttonForward.ToolTip"));
             this.buttonForward.UseVisualStyleBackColor = true;
@@ -122,7 +122,7 @@ namespace Project.IpTv.UiServices.EPG
             // 
             this.buttonBack.FlatAppearance.BorderSize = 0;
             resources.ApplyResources(this.buttonBack, "buttonBack");
-            this.buttonBack.Image = global::Project.IpTv.UiServices.EPG.CommonUiResources.Action_Back_16x16;
+            this.buttonBack.Image = global::IpTviewr.UiServices.EPG.CommonUiResources.Action_Back_16x16;
             this.buttonBack.Name = "buttonBack";
             this.toolTipControl.SetToolTip(this.buttonBack, resources.GetString("buttonBack.ToolTip"));
             this.buttonBack.UseVisualStyleBackColor = true;
@@ -148,7 +148,7 @@ namespace Project.IpTv.UiServices.EPG
             // 
             resources.ApplyResources(this.buttonFullView, "buttonFullView");
             this.buttonFullView.FlatAppearance.BorderSize = 0;
-            this.buttonFullView.Image = global::Project.IpTv.UiServices.EPG.CommonUiResources.Action_FullView_16x16;
+            this.buttonFullView.Image = global::IpTviewr.UiServices.EPG.CommonUiResources.Action_FullView_16x16;
             this.buttonFullView.Name = "buttonFullView";
             this.toolTipControl.SetToolTip(this.buttonFullView, resources.GetString("buttonFullView.ToolTip"));
             this.buttonFullView.UseVisualStyleBackColor = true;
