@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 
-namespace IpTviewr.Services.EPG.Serialization.TvAnytime
+namespace IpTviewr.Services.EpgDiscovery.TvAnytime
 {
     [XmlType(TypeName= "ExtendedPurchaseItemType", Namespace = Common.TvaExtendedNamespace)]
     public class ExtendedPurchaseItem: TvaMain

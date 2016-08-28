@@ -197,7 +197,7 @@
       <Project>{8da15060-5a78-4f89-a9f1-7aa56b0d622c}</Project>
       <Name>Project.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Services.EPG.Serialization\Services.EPG.Serialization.csproj">
+    <ProjectReference Include="..\Services.EpgDiscovery\Services.EpgDiscovery.csproj">
       <Project>{5a171dbb-855c-452b-93c6-229c7aa6c7a6}</Project>
       <Name>Services.EPG.Serialization</Name>
     </ProjectReference>

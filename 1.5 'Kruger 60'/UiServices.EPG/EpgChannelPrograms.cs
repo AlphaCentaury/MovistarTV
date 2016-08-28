@@ -3,8 +3,7 @@
 
 using IpTviewr.Common;
 using IpTviewr.Common.Telemetry;
-using IpTviewr.Services.EPG;
-using IpTviewr.Services.EPG.Serialization;
+using IpTviewr.Services.EpgDiscovery;
 using IpTviewr.UiServices.Configuration.Logos;
 using IpTviewr.UiServices.Discovery;
 using System;

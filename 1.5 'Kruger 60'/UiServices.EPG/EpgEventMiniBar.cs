@@ -9,12 +9,11 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using IpTviewr.Services.EPG;
 using IpTviewr.Common;
 using IpTviewr.Core.IpTvProvider;
 using IpTviewr.UiServices.Discovery;
 using IpTviewr.UiServices.Common.Forms;
-using IpTviewr.Services.EPG.Serialization;
+using IpTviewr.Services.EpgDiscovery;
 
 namespace IpTviewr.UiServices.EPG
 {

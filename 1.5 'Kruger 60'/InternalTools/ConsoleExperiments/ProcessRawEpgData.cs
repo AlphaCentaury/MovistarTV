@@ -1,7 +1,7 @@
 ﻿using Etsi.Ts102034.v010501.XmlSerialization.ProviderDiscovery;
 using IpTviewr.Common.Serialization;
-using IpTviewr.Services.EPG.Serialization;
-using IpTviewr.Services.EPG.Serialization.TvAnytime;
+using IpTviewr.Services.EpgDiscovery;
+using IpTviewr.Services.EpgDiscovery.TvAnytime;
 using IpTviewr.UiServices.Configuration;
 using IpTviewr.UiServices.Discovery;
 using System;

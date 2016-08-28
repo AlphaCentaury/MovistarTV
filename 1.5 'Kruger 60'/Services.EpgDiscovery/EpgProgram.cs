@@ -10,7 +10,7 @@ using System.Runtime.Remoting.Metadata.W3cXsd2001;
 using System.Text;
 using System.Xml.Serialization;
 
-namespace IpTviewr.Services.EPG.Serialization
+namespace IpTviewr.Services.EpgDiscovery
 {
     [Serializable()]
     [DebuggerStepThrough]

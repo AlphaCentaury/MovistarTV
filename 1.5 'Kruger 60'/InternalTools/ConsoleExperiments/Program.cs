@@ -5,7 +5,7 @@ using IpTviewr.Common;
 using IpTviewr.Common.Serialization;
 /*
 using IpTviewr.Services.EPG;
-using IpTviewr.Services.EPG.Serialization;
+using IpTviewr.Services.EpgDiscovery;
 using IpTviewr.Services.EPG.TvAnytime;
 using IpTviewr.Services.SqlServerCE;
 using IpTviewr.UiServices.EPG;

@@ -9,8 +9,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using IpTviewr.Services.EPG;
-using IpTviewr.Services.EPG.Serialization;
+using IpTviewr.Services.EpgDiscovery;
 using IpTviewr.Services.SqlServerCE;
 using IpTviewr.Common;
 

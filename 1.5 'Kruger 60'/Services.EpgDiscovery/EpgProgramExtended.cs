@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace IpTviewr.Services.EPG.Serialization
+namespace IpTviewr.Services.EpgDiscovery
 {
     public class EpgProgramExtended
     {

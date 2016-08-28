@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace IpTviewr.Services.EPG.Serialization
+namespace IpTviewr.Services.EpgDiscovery
 {
     public sealed class EpgDownloader
     {
@@ -66,7 +66,7 @@ namespace IpTviewr.Services.EPG.Serialization
 
         private void Download()
         {
-            var client = new DvbStpStreamClient();
+            var client = new DvbStpStreamClient(MulticastIpAddress, MulticastPort);
         } // Download
 
         private void Enqueue(byte[] payload)

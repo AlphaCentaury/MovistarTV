@@ -12,12 +12,11 @@ using System.Windows.Forms;
 using IpTviewr.Core.IpTvProvider;
 // TODO: EPG
 // using IpTviewr.Core.IpTvProvider.EPG;
-using IpTviewr.Services.EPG;
 using IpTviewr.UiServices.Common.Forms;
 using IpTviewr.UiServices.Configuration.Logos;
 using IpTviewr.UiServices.Discovery;
 using IpTviewr.UiServices.Discovery.BroadcastList;
-using IpTviewr.Services.EPG.Serialization;
+using IpTviewr.Services.EpgDiscovery;
 
 namespace IpTviewr.UiServices.EPG
 {

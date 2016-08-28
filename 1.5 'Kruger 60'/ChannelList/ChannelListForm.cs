@@ -1106,7 +1106,7 @@ namespace IpTviewr.ChannelList
             if (hours < 0) return;
 
             var dbFile = Path.Combine(AppUiConfiguration.Current.Folders.Cache, "EPG.sdf");
-            var status = IpTviewr.Services.EPG.Serialization.EpgDbQuery.GetStatus(dbFile);
+            var status = IpTviewr.Services.EpgDiscovery.EpgDbQuery.GetStatus(dbFile);
 
             if (status.IsNew)
             {

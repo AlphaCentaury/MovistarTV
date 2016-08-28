@@ -10,7 +10,7 @@ using System.Text;
 using System.Xml;
 using System.Xml.Serialization;
 
-namespace IpTviewr.Services.EPG.Serialization.TvAnytime
+namespace IpTviewr.Services.EpgDiscovery.TvAnytime
 {
     [Serializable()]
     [DebuggerStepThrough()]

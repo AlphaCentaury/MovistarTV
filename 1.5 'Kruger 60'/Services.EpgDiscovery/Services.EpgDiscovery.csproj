@@ -7,8 +7,8 @@
     <ProjectGuid>{5A171DBB-855C-452B-93C6-229C7AA6C7A6}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>IpTviewr.Services.EPG.Serialization</RootNamespace>
-    <AssemblyName>Services.EPG.Serialization</AssemblyName>
+    <RootNamespace>IpTviewr.Services.EpgDiscovery</RootNamespace>
+    <AssemblyName>Services.EpgDiscovery</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
