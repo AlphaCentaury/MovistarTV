@@ -28,6 +28,25 @@ namespace IpTviewr.Services.EpgDiscovery
             set;
         } // StorageMethod
 
+        public override ICollection<string> GetServicesRefs()
+        {
+            return Data.Keys;
+        } // GetServicesRefs
+
+        public override IEpgLinkedList GetPrograms(string serviceIdRef, DateTime? localTime, int nodesBefore, int nodesAfter)
+        {
+            EpgService epgService;
+
+            if (!Data.TryGetValue(serviceIdRef, out epgService)) return null;
+
+            return GetLinkedList(epgService, localTime);
+        } // GetPrograms
+
+        public override IDictionary<string, IEpgLinkedList> GetAllPrograms(DateTime? localTime, int nodesBefore, int nodesAfter)
+        {
+            throw new NotImplementedException();
+        } // GetAllPrograms
+
         protected override void AddEpgService(EpgService epgService)
         {
             Console.WriteLine("Store.Add: {0} with {1} programs", epgService.ServiceIdReference, epgService.Programs?.Count);
@@ -49,5 +68,59 @@ namespace IpTviewr.Services.EpgDiscovery
             // TODO
             throw new NotImplementedException();
         } // Merge
+
+
+        private IEpgLinkedList GetLinkedList(EpgService service, DateTime? localTime)
+        {
+            LinkedListNode<EpgProgram> node;
+            EpgProgram program;
+            EpgProgram phantomProgram;
+
+            if ((service.Programs == null) || (service.Programs.First == null)) return null;
+
+            if (localTime == null) localTime = DateTime.Now;
+            var utcTime = localTime.Value.ToUniversalTime();
+            var truncatedUtcTime = Common.TruncateToMinutes(utcTime);
+
+            program = service.Programs.First.Value;
+            if (utcTime < program.UtcStartTime)
+            {
+                phantomProgram = new EpgProgram()
+                {
+                    Title = Properties.Texts.EpgBlankTitle,
+                    IsBlank = true,
+                    UtcStartTime = truncatedUtcTime,
+                    Duration = program.UtcStartTime - truncatedUtcTime - new TimeSpan(0, 15, 0)
+                };
+
+                return new EpgLinkedListWrapper(service.ServiceIdReference, service.Programs, phantomProgram);
+            } // if
+
+            program = service.Programs.Last.Value;
+            if (utcTime >= program.UtcEndTime)
+            {
+                phantomProgram = new EpgProgram()
+                {
+                    Title = Properties.Texts.EpgBlankTitle,
+                    IsBlank = true,
+                    UtcStartTime = program.UtcEndTime,
+                    Duration = (truncatedUtcTime - program.UtcEndTime) + new TimeSpan(0, 15, 0)
+                };
+
+                return new EpgLinkedListWrapper(service.ServiceIdReference, service.Programs, phantomProgram, false);
+            } // if
+
+            node = service.Programs.First;
+            while (program != null)
+            {
+                if ((utcTime >= node.Value.UtcStartTime) && (utcTime < node.Value.UtcEndTime))
+                {
+                    break;
+                } // if
+                node = node.Next;
+            } // while
+
+            return new EpgLinkedListWrapper(service.ServiceIdReference, service.Programs, node);
+        } // GetLinkedList
     } // class EpgMemoryDatastore
 } // namespace

@@ -8,17 +8,6 @@ namespace IpTviewr.Services.EpgDiscovery
 {
     public abstract class EpgDatastore
     {
-        static EpgDatastore()
-        {
-            Current = new EpgNullDatastore();
-        } // static constructor
-
-        public static EpgDatastore Current
-        {
-            get;
-            set;
-        } // Current
-
         public bool IsProgramDataUnsorted
         {
             get;
@@ -36,6 +25,12 @@ namespace IpTviewr.Services.EpgDiscovery
 
             AddEpgService(epgService);
         } // Add
+
+        public abstract ICollection<string> GetServicesRefs();
+
+        public abstract IEpgLinkedList GetPrograms(string serviceIdRef, DateTime? localTime, int nodesBefore, int nodesAfter);
+
+        public abstract IDictionary<string, IEpgLinkedList> GetAllPrograms(DateTime? localTime, int nodesBefore, int nodesAfter);
 
         protected abstract void AddEpgService(EpgService epgService);
 
@@ -79,7 +74,8 @@ namespace IpTviewr.Services.EpgDiscovery
                 {
                     var empty = new EpgProgram()
                     {
-                        Title = "<blank>",
+                        Title = Properties.Texts.EpgBlankTitle,
+                        IsBlank = true,
                         UtcStartTime = utcEndTime,
                         Duration = current.Value.UtcStartTime - utcEndTime
                     };

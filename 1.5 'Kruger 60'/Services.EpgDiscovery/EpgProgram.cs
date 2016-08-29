@@ -78,6 +78,13 @@ namespace IpTviewr.Services.EpgDiscovery
             set;
         } // Duration
 
+        [XmlAttribute("isBlank")]
+        public bool IsBlank
+        {
+            get;
+            set;
+        } // IsBlank
+
         [XmlElement("Duration")]
         [Browsable(false), EditorBrowsable(EditorBrowsableState.Never)]
         public string XmlDuration
@@ -100,7 +107,12 @@ namespace IpTviewr.Services.EpgDiscovery
                 UtcStartTime = utcStartTime.Value
             };
 
-            if (item.Description == null) return result;
+            if (item.Description == null)
+            {
+                result.Title = Properties.Texts.EpgBlankTitle;
+                result.IsBlank = true;
+                return result;
+            }
 
             result.Title = item.Description.Title;
             result.Genre = EpgCodedValue.ToCodedValue(item.Description.Genre);

@@ -11,23 +11,17 @@ namespace IpTviewr.Internal.Tools.ConsoleExperiments
     {
         protected override int Run(string[] args)
         {
-            EpgDatastore.Current = new EpgMemoryDatastore();
+            var datastore = new EpgMemoryDatastore();
             var downloader = new EpgDownloader("239.0.2.145:3937");
 
             Console.WriteLine("Start");
 
-            var task = downloader.StartAsync();
+            var task = downloader.StartAsync(datastore);
             task.Wait(new TimeSpan(0, 10, 0));
 
             Console.WriteLine("Ended");
 
             return 0;
         } // Run
-
-        protected async Task Run()
-        {
-            var downloader = new EpgDownloader("239.0.2.145:3937");
-            await downloader.StartAsync();
-        }
     } // class TestEpgDownloader
 } // namespace

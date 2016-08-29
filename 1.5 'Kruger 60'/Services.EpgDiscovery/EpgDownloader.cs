@@ -18,14 +18,11 @@ using System.Threading.Tasks;
 
 namespace IpTviewr.Services.EpgDiscovery
 {
-    public sealed class EpgDownloader
+    public sealed partial class EpgDownloader
     {
         private IPEndPoint Endpoint;
-        ConcurrentQueue<byte[]> Queue;
-        AutoResetEvent EnqueuedItems;
-        AutoResetEvent ProcessSegmentsEnded;
-        bool EndQueue;
-        DvbStpStreamClient StreamClient;
+        private DvbStpStreamClient StreamClient;
+        private SegmentsProcessor Processor;
 
         public IPAddress MulticastIpAddress
         {
@@ -38,6 +35,12 @@ namespace IpTviewr.Services.EpgDiscovery
             get;
             private set;
         } // MulticastPort
+
+        private EpgDatastore Datastore
+        {
+            get;
+            set;
+        } // Datastore
 
         public EpgDownloader(string multicastIpEndPoint)
         {
@@ -69,8 +72,9 @@ namespace IpTviewr.Services.EpgDiscovery
             Endpoint = endpoint;
         } // constructor
 
-        public async Task StartAsync()
+        public async Task StartAsync(EpgDatastore datastore)
         {
+            Datastore = datastore;
             await Task.Run((Action)Download);
         } // StartAsync
 
@@ -82,13 +86,7 @@ namespace IpTviewr.Services.EpgDiscovery
 
             try
             {
-                Queue = new ConcurrentQueue<byte[]>();
-                EnqueuedItems = new AutoResetEvent(false);
-                ProcessSegmentsEnded = new AutoResetEvent(false);
-                EndQueue = false;
-
-                var worker = new Thread(ProcessReceivedSegments);
-                worker.Start();
+                Processor = new SegmentsProcessor();
 
                 // initialize DVB-STP client
                 StreamClient = new DvbStpStreamClient(MulticastIpAddress, MulticastPort);
@@ -102,6 +100,7 @@ namespace IpTviewr.Services.EpgDiscovery
                     var retry = false;
                     try
                     {
+                        Processor.Start(Datastore);
                         StreamClient.DownloadStream();
                         break;
                     }
@@ -127,14 +126,7 @@ namespace IpTviewr.Services.EpgDiscovery
                     } // if
                 } // while
 
-                Console.WriteLine("Reception ended");
-
-                // await queue to end
-                EndQueue = true;
-                EnqueuedItems.Set();
-                ProcessSegmentsEnded.WaitOne();
-
-                Console.WriteLine("Segments completed");
+                Processor.WaitCompletion();
             }
             finally
             {
@@ -144,86 +136,25 @@ namespace IpTviewr.Services.EpgDiscovery
                     StreamClient = null;
                 } // if
 
-                if (EnqueuedItems != null)
+                if (Processor != null)
                 {
-                    EnqueuedItems.Dispose();
-                    EnqueuedItems = null;
+                    Processor.Dispose();
+                    Processor = null;
                 } // if
 
-                if (ProcessSegmentsEnded != null)
-                {
-                    ProcessSegmentsEnded.Dispose();
-                    ProcessSegmentsEnded = null;
-                } // if
-
+                Datastore = null;
             } // try-finally
         } // Download
 
-        private void ProcessReceivedSegments()
-        {
-            byte[] payload;
-
-            while ((payload = Dequeue()) != null)
-            {
-                try
-                {
-                    var item = XmlSerialization.Deserialize<TvaMain>(payload, trimExtraWhitespace: true, namespaceReplacer: NamespaceUnification.Replacer) as ExtendedPurchaseItem;
-                    var schedule = item?.ProgramDescription?.LocationTable?.Schedule;
-                    if (schedule == null)
-                    {
-                        // TODO: log
-                        continue;
-                    } // if
-                    var epgService = EpgService.FromSchedule(schedule);
-                    EpgDatastore.Current.Add(epgService);
-                }
-                catch (Exception ex)
-                {
-                    // TODO: log
-                    Console.WriteLine("Unable to parse: {0}", ex.Message);
-                    return;
-                } // try-catch
-            } // while
-
-            ProcessSegmentsEnded.Set();
-        } // ProcessReceivedSegments
-
         private void SegmentPayloadReceived(object sender, PayloadStorage.SegmentPayloadReceivedEventArgs e)
         {
-            Console.WriteLine("{0} ({1} received)", e.SegmentIdentity, StreamClient.DatagramCount);
-            Enqueue(e.Payload);
+            Console.WriteLine("{0}:{1} ({2} received)", e.SegmentIdentity, e.Payload.Length, StreamClient.DatagramCount);
+            Processor.AddSegment(e.Payload);
 
             if (StreamClient.DatagramCount > 500)
             {
                 StreamClient.CancelRequest();
             } // if
         } // SegmentPayloadReceived
-
-        private void Enqueue(byte[] payload)
-        {
-            Console.WriteLine("Enqueue");
-            Queue.Enqueue(payload);
-            EnqueuedItems.Set();
-        } // Enqueue
-
-        private byte[] Dequeue()
-        {
-            byte[] payload;
-
-            while (true)
-            {
-                Console.WriteLine("Queue: {0} items", Queue.Count);
-                if (Queue.TryDequeue(out payload))
-                {
-                    Console.WriteLine("Dequeue.Ok");
-                    return payload;
-                } // if
-
-                if (EndQueue) return null;
-
-                Console.WriteLine("Dequeue.Wait");
-                EnqueuedItems.WaitOne();
-            } // while
-        } // Dequeue
     } // class EpgDownloader
 } // namespace
