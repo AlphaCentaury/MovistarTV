@@ -25,6 +25,15 @@ namespace IpTviewr.UiServices.Configuration.Schema2014.Config
             Path = path;
         } // constructor
 
+        public static RecordSaveLocation GetDefaultSaveLocation(IEnumerable<RecordSaveLocation> saveLocations)
+        {
+            var q = from location in saveLocations
+                    where location.IsDefaultSaveLocation
+                    select location;
+
+            return q.First();
+        } // GetDefaultSaveLocation
+
         [XmlAttribute("name")]
         public string Name
         {
@@ -38,6 +47,11 @@ namespace IpTviewr.UiServices.Configuration.Schema2014.Config
             get { return Item2; }
             set { Item2 = ConfigCommon.Normalize(value); }
         } // Value
+
+        public bool IsDefaultSaveLocation
+        {
+            get { return string.IsNullOrEmpty(Name); }
+        } // IsDefaultSaveLocation
 
         public string Validate(string ownerTag)
         {

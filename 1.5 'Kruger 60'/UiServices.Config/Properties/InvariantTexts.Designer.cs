@@ -160,6 +160,15 @@ namespace IpTviewr.UiServices.Configuration.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to IpTvRecorderLauncher.exe.
+        /// </summary>
+        internal static string RecorderLauncher {
+            get {
+                return ResourceManager.GetString("RecorderLauncher", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Software\movistartv.codeplex.com\IPTViewr\movistar+\v1.5.1010.0.
         /// </summary>
         internal static string RegistryKey_Root {
