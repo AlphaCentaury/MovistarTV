@@ -112,10 +112,10 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="BuildDescriptionChannel" xml:space="preserve">
     <value>&gt;&gt; Channel details &lt;&lt;
@@ -207,5 +207,8 @@ Task description: {1}</value>
   </data>
   <data name="VerbalizeStartExpiryDate" xml:space="preserve">
     <value>Starting on {0:D} and ending on {1:D}.</value>
+  </data>
+  <data name="RecordTaskNameSuggestedNameFormat" xml:space="preserve">
+    <value>{0} [{1:yyyy\-MM\-dd} {2:HH\-mm\-ss}]</value>
   </data>
 </root>

@@ -166,6 +166,15 @@ namespace IpTviewr.Services.Record.Serialization.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} [{1:yyyy\-MM\-dd} {2:HH\-mm\-ss}].
+        /// </summary>
+        internal static string RecordTaskNameSuggestedNameFormat {
+            get {
+                return ResourceManager.GetString("RecordTaskNameSuggestedNameFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Daily recording, every {0} days at {1:T}, with a safety margin of {2} minutes..
         /// </summary>
         internal static string VerbalizeRecordDaily {

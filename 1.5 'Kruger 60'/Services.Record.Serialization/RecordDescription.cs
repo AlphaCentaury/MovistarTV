@@ -13,36 +13,59 @@ namespace IpTviewr.Services.Record.Serialization
     [XmlType(Namespace = RecordTask.XmlNamespace)]
     public class RecordDescription
     {
+        public static string CreateTaskName(RecordChannel channel, DateTime startDateTime)
+        {
+            return string.Format(Properties.Texts.RecordTaskNameSuggestedNameFormat, channel.Name, startDateTime, startDateTime);
+        } // CreateTaskName
+
+        /// <summary>
+        /// The user-provided name for the record task.
+        /// </summary>
         public string Name
         {
             get;
             set;
         } // Name
 
+        /// <summary>
+        /// The name of the task in Task Scheduler. Filled by Scheduler
+        /// </summary>
         public string TaskSchedulerName
         {
             get;
             set;
         } // TaskSchedulerName
 
+        /// <summary>
+        /// User-provided description
+        /// </summary>
         public string Description
         {
             get;
             set;
         } // Description
 
+        /// <summary>
+        /// The details of the task in TaskScheduler. Filled by Scheduler
+        /// </summary>
         public string Details
         {
             get;
             set;
         } // Details
 
+        /// <summary>
+        /// The task name for Task Scheduler will have an standard prefix (IPTViewr) on it's name
+        /// </summary>
         public bool AddPrefix
         {
             get;
             set;
         } // AddPrefix
 
+        /// <summary>
+        /// When filling the Details propery, Scheduler will verbalize the most important aspects of the task
+        /// </summary>
         public bool AddDetails
         {
             get;

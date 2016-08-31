@@ -61,7 +61,7 @@ namespace IpTviewr.Services.Record.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 1DCDA40A-A9D5-4CF3-B3C5-971B8811F127: IPTV Record Task
+        ///   Looks up a localized string similar to D57F4237-4AD5-4094-85CD-49E56D98DED5: IPTViewr Record Task
         ///TaskId: {0}
         ///Database: {1}.
         /// </summary>
@@ -72,30 +72,11 @@ namespace IpTviewr.Services.Record.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 1DCDA40A-A9D5-4CF3-B3C5-971B8811F127: IPTV Record Task.
+        ///   Looks up a localized string similar to D57F4237-4AD5-4094-85CD-49E56D98DED5: IPTViewr Record Task.
         /// </summary>
         internal static string DefinitionRegistrationInfo_Documentation_Begins {
             get {
                 return ResourceManager.GetString("DefinitionRegistrationInfo_Documentation_Begins", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Task Id: {0}
-        ///Task file: {1}.
-        /// </summary>
-        internal static string DefinitionRegistrationInfo_DocumentationV1 {
-            get {
-                return ResourceManager.GetString("DefinitionRegistrationInfo_DocumentationV1", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Task Id:.
-        /// </summary>
-        internal static string DefinitionRegistrationInfo_DocumentationV1_Begins {
-            get {
-                return ResourceManager.GetString("DefinitionRegistrationInfo_DocumentationV1_Begins", resourceCulture);
             }
         }
         

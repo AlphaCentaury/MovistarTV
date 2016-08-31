@@ -54,11 +54,7 @@ namespace IpTviewr.Services.Record
 
             if (!schedulerTask.Definition.RegistrationInfo.Documentation.StartsWith(Resources.DefinitionRegistrationInfo_Documentation_Begins, StringComparison.InvariantCultureIgnoreCase))
             {
-                // try v1 documentation format
-                if (!schedulerTask.Definition.RegistrationInfo.Documentation.StartsWith(Resources.DefinitionRegistrationInfo_DocumentationV1_Begins, StringComparison.InvariantCultureIgnoreCase))
-                {
-                    return false;
-                } // if
+                return false;
             } // if
 
             try
@@ -69,7 +65,7 @@ namespace IpTviewr.Services.Record
             catch
             {
                 // ignore, but return a null RecordTask
-                return true;
+                return false;
             } // try-catch
         } // IsRecordSchedulerTask
 
@@ -299,7 +295,7 @@ namespace IpTviewr.Services.Record
         {
             string userDescription;
 
-            TaskName = GetUniqueTaskName(task, "IPTV");
+            TaskName = GetUniqueTaskName(task, "IPTViewr");
             task.Description.TaskSchedulerName = TaskName;
 
             userDescription = task.Description.Description;
