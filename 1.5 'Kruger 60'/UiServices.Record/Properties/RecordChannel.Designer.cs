@@ -101,15 +101,6 @@ namespace IpTviewr.UiServices.Record.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} [{1:yyyy\-MM\-dd} {2:HH\-mm\-ss}].
-        /// </summary>
-        internal static string RecordTaskNameSuggestedNameFormat {
-            get {
-                return ResourceManager.GetString("RecordTaskNameSuggestedNameFormat", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to &lt;Custom location&gt;.
         /// </summary>
         internal static string SaveCustomLocation {

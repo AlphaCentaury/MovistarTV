@@ -80,6 +80,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Texts.resx</DependentUpon>
     </Compile>
+    <Compile Include="TextUtils.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="License.txt" />

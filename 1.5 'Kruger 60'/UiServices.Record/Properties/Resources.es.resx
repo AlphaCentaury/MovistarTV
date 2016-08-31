@@ -117,35 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="EmptyFileExtension" xml:space="preserve">
-    <value>The extension of the file of the recording can not be empty.
-Please specify a file extension.</value>
+  <data name="RecordDeadTvChannel" xml:space="preserve">
+    <value>El canal de TV seleccionado ha sido marcado como inactivo y puede no estar disponible.
+
+¿Todavía desea programar una grabación para {0}?</value>
   </data>
-  <data name="EmptyFileName" xml:space="preserve">
-    <value>The name of the file of the recording can not be empty.
-Please specify a name.</value>
-  </data>
-  <data name="EmptyTaskName" xml:space="preserve">
-    <value>The name of the task can not be empty.
-Please specify a name.</value>
-  </data>
-  <data name="NoSaveLocation" xml:space="preserve">
-    <value>A save location has not been selected.
-Please select one or browse for a folder.</value>
-  </data>
-  <data name="SaveCustomLocation" xml:space="preserve">
-    <value>&lt;Custom location&gt;</value>
-  </data>
-  <data name="SaveDefaultLocation" xml:space="preserve">
-    <value>&lt;Default&gt;</value>
-  </data>
-  <data name="SaveMissingLocation" xml:space="preserve">
-    <value>&lt;Missing location&gt;</value>
-  </data>
-  <data name="TaskSchedulerRootFolder" xml:space="preserve">
-    <value>&lt;No folder&gt;</value>
-  </data>
-  <data name="TooLongTaskName" xml:space="preserve">
-    <value>The name of the task is too long. Maximum name length is {0}.</value>
+  <data name="SchedulerCreateTaskOk" xml:space="preserve">
+    <value>Se ha creado correctamente la tarea de grabación.</value>
   </data>
 </root>

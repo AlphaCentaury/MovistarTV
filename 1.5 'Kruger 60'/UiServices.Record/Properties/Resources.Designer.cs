@@ -109,5 +109,25 @@ namespace IpTviewr.UiServices.Record.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The selected TV channel has been marked as inactive and might not be available.
+        ///
+        ///Do you still want to schedule a recording of {0}?.
+        /// </summary>
+        internal static string RecordDeadTvChannel {
+            get {
+                return ResourceManager.GetString("RecordDeadTvChannel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The recording task has been sucessfully created..
+        /// </summary>
+        internal static string SchedulerCreateTaskOk {
+            get {
+                return ResourceManager.GetString("SchedulerCreateTaskOk", resourceCulture);
+            }
+        }
     }
 }

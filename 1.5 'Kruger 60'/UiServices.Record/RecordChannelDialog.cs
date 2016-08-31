@@ -19,6 +19,8 @@ namespace IpTviewr.UiServices.Record
 {
     public partial class RecordChannelDialog : CommonBaseForm
     {
+        public static readonly TimeSpan DefaultExpiryDateTimeSpan = new TimeSpan(1, 0, 0, 0);
+
         private const string ListLocationsSelectedImageKey = "selected";
         private const string ListLocationsDefaultImageKey = "folder";
 
@@ -167,7 +169,7 @@ namespace IpTviewr.UiServices.Record
             else
             {
                 checkBoxExpiryDate.Checked = false;
-                dateTimeExpiryDate.Value = CurrentStartDateTime + new TimeSpan(15, 0, 0, 0);
+                dateTimeExpiryDate.Value = CurrentStartDateTime + DefaultExpiryDateTimeSpan;
             } // if-else
 
             // Safety margin
@@ -364,7 +366,7 @@ namespace IpTviewr.UiServices.Record
         {
             if (IsTaskNameUserProvided) return;
 
-            var taskName = string.Format(Properties.RecordChannel.RecordTaskNameSuggestedNameFormat, Task.Channel.Name, CurrentStartDateTime, CurrentStartDateTime);
+            var taskName = RecordDescription.CreateTaskName(Task.Channel, CurrentStartDateTime);
             textTaskName.SetText(taskName, false);
         } // UpdateTaskName
 

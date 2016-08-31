@@ -1,6 +1,7 @@
 ﻿// Copyright (C) 2014-2016, Codeplex/GitHub user AlphaCentaury
 // All rights reserved, except those granted by the governing license of this software. See 'license.txt' file in the project root for complete license information.
 
+using IpTviewr.Common;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -20,32 +21,8 @@ namespace IpTviewr.UiServices.Common.Controls
 
         public FilenameTextBox()
         {
-            InvalidCharacters = Path.GetInvalidFileNameChars();
+            InvalidCharacters = TextUtils.GetFilenameInvalidChars();
         } // constructor
-
-        public static string RemoveOffendingChars(string text, char[] offendingChars)
-        {
-            bool modified;
-
-            return RemoveOffendingChars(text, offendingChars, null, out modified);
-        } // RemoveOffendingChars
-
-        public static string RemoveOffendingChars(string text, char[] offendingChars, string replacementText)
-        {
-            bool modified;
-
-            return RemoveOffendingChars(text, offendingChars, replacementText, out modified);
-        } // RemoveOffendingChars
-
-        public static string RemoveOffendingChars(string text, char[] offendingChars, string replacementText, out bool modified)
-        {
-            if ((offendingChars == null) || (offendingChars.Length == 0))
-            {
-                throw new ArgumentException("offendingChars");
-            } // if
-
-            return InternalRemoveOffendingChars(text, offendingChars, replacementText, out modified);
-        } // RemoveOffendingChars
 
         /// <summary>
         /// Sets the text and removes invalid characters if needed
@@ -55,7 +32,7 @@ namespace IpTviewr.UiServices.Common.Controls
         {
             ManualUpdateOfValue = true;
             this.Text = text;
-            RemoveOffendingChars(false);
+            RemoveInvalidChars(false);
             ManualUpdateOfValue = false;
 
             if (raiseTextChangedEvent)
@@ -67,7 +44,7 @@ namespace IpTviewr.UiServices.Common.Controls
         protected override void OnTextChanged(EventArgs e)
         {
             if (ManualUpdateOfValue) return;
-            if (RemoveOffendingChars(true)) return;
+            if (RemoveInvalidChars(true)) return;
 
             base.OnTextChanged(e);
         } // OnTextChanged
@@ -100,12 +77,12 @@ namespace IpTviewr.UiServices.Common.Controls
                 MessageBoxButtons.OK, MessageBoxIcon.Warning);
         } // DisplayInvalidCharacterWarning
 
-        private bool RemoveOffendingChars(bool displayWarning)
+        private bool RemoveInvalidChars(bool displayWarning)
         {
             bool modified;
             int caretPos;
 
-            var newText = InternalRemoveOffendingChars(this.Text, InvalidCharacters, null, out modified);
+            var newText = TextUtils.RemoveInvalidChars(this.Text, InvalidCharacters, null, out modified);
             if (!modified) return false;
 
             if (displayWarning)
@@ -120,47 +97,6 @@ namespace IpTviewr.UiServices.Common.Controls
             ManualUpdateOfValue = false;
 
             return true;
-        } // RemoveOffendingChars
-
-        private static string InternalRemoveOffendingChars(string text, char[] offendingChars, string replacementString, out bool modified)
-        {
-            StringBuilder buffer;
-            int startIndex, index;
-
-            modified = false;
-
-            // do nothing is null or empty
-            if (string.IsNullOrEmpty(text)) return text;
-
-            // quick test: any offending char?
-            index = text.IndexOfAny(offendingChars);
-            if (index < 0) return text;
-
-            buffer = new StringBuilder(text.Length * 2);
-            startIndex = 0;
-            while (index >= 0)
-            {
-                if (index != startIndex)
-                {
-                    buffer.Append(text.Substring(startIndex, (index - startIndex)));
-                    if (replacementString != null)
-                    {
-                        buffer.Append(replacementString);
-                    } // if
-                } // if
-
-                startIndex = index + 1;
-                index = (startIndex < text.Length) ? text.IndexOfAny(offendingChars, startIndex) : -1;
-            } // while
-
-            // add final text
-            if (startIndex < text.Length)
-            {
-                buffer.Append(text.Substring(startIndex, text.Length - startIndex));
-            } // if
-
-            modified = true;
-            return buffer.ToString();
-        } // RemoveOffendingChars
+        } // RemoveInvalidChars
     } // class FilenameTextBox
 } // namespace
