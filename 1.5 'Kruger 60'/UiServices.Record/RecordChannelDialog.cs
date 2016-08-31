@@ -41,6 +41,14 @@ namespace IpTviewr.UiServices.Record
             set;
         } // IsNewTask
 
+        public static string[] GetFilenameExtensions()
+        {
+            var separators = new string[] { "\r\n" };
+            var extensions = Properties.RecordChannel.FileExtensions.Split(separators, StringSplitOptions.RemoveEmptyEntries);
+
+            return extensions;
+        } // GetFilenameExtensions
+
         public RecordChannelDialog()
         {
             InitializeComponent();
@@ -376,6 +384,9 @@ namespace IpTviewr.UiServices.Record
 
         private void InitSaveData()
         {
+            // Fill extensions combo
+            comboFileExtension.Items.AddRange(GetFilenameExtensions());
+
             // Name (filename)
             if (IsNewTask)
             {

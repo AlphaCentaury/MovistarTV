@@ -91,12 +91,44 @@ namespace IpTviewr.UiServices.Record.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to .ts
+        ///.raw
+        ///.mpg
+        ///.mp2
+        ///.mp4
+        ///.m2ts.
+        /// </summary>
+        internal static string FileExtensions {
+            get {
+                return ResourceManager.GetString("FileExtensions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to A save location has not been selected.
         ///Please select one or browse for a folder..
         /// </summary>
         internal static string NoSaveLocation {
             get {
                 return ResourceManager.GetString("NoSaveLocation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Record.
+        /// </summary>
+        internal static string RecordButtonDefault {
+            get {
+                return ResourceManager.GetString("RecordButtonDefault", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Record....
+        /// </summary>
+        internal static string RecordButtonSettings {
+            get {
+                return ResourceManager.GetString("RecordButtonSettings", resourceCulture);
             }
         }
         
@@ -124,6 +156,24 @@ namespace IpTviewr.UiServices.Record.Properties {
         internal static string SaveMissingLocation {
             get {
                 return ResourceManager.GetString("SaveMissingLocation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No program has been selected or there is insufficient information..
+        /// </summary>
+        internal static string SelectedProgramIsNullOrBlank {
+            get {
+                return ResourceManager.GetString("SelectedProgramIsNullOrBlank", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The program has already begun. It will be recorded from now..
+        /// </summary>
+        internal static string SelectedProgramIsRightNow {
+            get {
+                return ResourceManager.GetString("SelectedProgramIsRightNow", resourceCulture);
             }
         }
         

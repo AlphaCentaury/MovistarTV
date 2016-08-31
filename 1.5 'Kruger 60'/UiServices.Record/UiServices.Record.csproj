@@ -119,6 +119,12 @@
     <Compile Include="RecordChannelDialog.Designer.cs">
       <DependentUpon>RecordChannelDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="RecordProgramOptions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RecordProgramOptions.Designer.cs">
+      <DependentUpon>RecordProgramOptions.cs</DependentUpon>
+    </Compile>
     <Compile Include="RecordHelper.cs" />
     <Compile Include="RecordTasksDialog.cs">
       <SubType>Form</SubType>
@@ -194,6 +200,12 @@
     <EmbeddedResource Include="RecordChannelDialog.resx">
       <DependentUpon>RecordChannelDialog.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="RecordProgramOptions.es.resx">
+      <DependentUpon>RecordProgramOptions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RecordProgramOptions.resx">
+      <DependentUpon>RecordProgramOptions.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="RecordTasksDialog.es.resx">
       <DependentUpon>RecordTasksDialog.cs</DependentUpon>
     </EmbeddedResource>
@@ -257,6 +269,11 @@
       <Link>Resources\Action_Play_LG_16x16.png</Link>
     </Content>
     <Content Include="License.txt" />
+    <Content Include="Resources\Action_Record_16x16.png" />
+    <Content Include="Resources\Icon_Record_48x48.png" />
+    <Content Include="Resources\Icon_Recorder.ico" />
+    <Content Include="Resources\Status_Info_16x16.png" />
+    <Content Include="Resources\Status_Warning_16x16.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

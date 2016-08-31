@@ -112,22 +112,22 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="ColumnName.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <metadata name="ColumnName.GenerateMember" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
   </metadata>
   <data name="ColumnName.Text" xml:space="preserve">
     <value>Name</value>
   </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="ColumnName.Width" type="System.Int32, mscorlib">
     <value>150</value>
   </data>
-  <metadata name="ColumnLocation.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <metadata name="ColumnLocation.GenerateMember" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
   </metadata>
   <data name="ColumnLocation.Text" xml:space="preserve">
@@ -136,11 +136,11 @@
   <data name="ColumnLocation.Width" type="System.Int32, mscorlib">
     <value>250</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="labelChannelName.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
   </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="labelChannelName.Font" type="System.Drawing.Font, System.Drawing">
     <value>Segoe UI, 12pt, style=Bold</value>
   </data>
@@ -163,7 +163,7 @@
     <value>labelChannelName</value>
   </data>
   <data name="&gt;&gt;labelChannelName.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;labelChannelName.Parent" xml:space="preserve">
     <value>$this</value>
@@ -199,7 +199,7 @@
     <value>labelChannelDescription</value>
   </data>
   <data name="&gt;&gt;labelChannelDescription.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;labelChannelDescription.Parent" xml:space="preserve">
     <value>$this</value>
@@ -232,7 +232,7 @@
     <value>buttonOk</value>
   </data>
   <data name="&gt;&gt;buttonOk.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;buttonOk.Parent" xml:space="preserve">
     <value>$this</value>
@@ -268,7 +268,7 @@
     <value>buttonCancel</value>
   </data>
   <data name="&gt;&gt;buttonCancel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;buttonCancel.Parent" xml:space="preserve">
     <value>$this</value>
@@ -292,7 +292,7 @@
     <value>dateTimeExpiryDate</value>
   </data>
   <data name="&gt;&gt;dateTimeExpiryDate.Type" xml:space="preserve">
-    <value>System.Windows.Forms.DateTimePicker, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.DateTimePicker, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;dateTimeExpiryDate.Parent" xml:space="preserve">
     <value>tabPageSchedule</value>
@@ -322,7 +322,7 @@
     <value>checkBoxExpiryDate</value>
   </data>
   <data name="&gt;&gt;checkBoxExpiryDate.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;checkBoxExpiryDate.Parent" xml:space="preserve">
     <value>tabPageSchedule</value>
@@ -352,7 +352,7 @@
     <value>labelStartMarginSufix</value>
   </data>
   <data name="&gt;&gt;labelStartMarginSufix.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;labelStartMarginSufix.Parent" xml:space="preserve">
     <value>tabPageSchedule</value>
@@ -376,7 +376,7 @@
     <value>numericStartMargin</value>
   </data>
   <data name="&gt;&gt;numericStartMargin.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;numericStartMargin.Parent" xml:space="preserve">
     <value>tabPageSchedule</value>
@@ -406,7 +406,7 @@
     <value>checkBoxStartMargin</value>
   </data>
   <data name="&gt;&gt;checkBoxStartMargin.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;checkBoxStartMargin.Parent" xml:space="preserve">
     <value>tabPageSchedule</value>
@@ -427,7 +427,7 @@
     <value>recordingSchedule</value>
   </data>
   <data name="&gt;&gt;recordingSchedule.Type" xml:space="preserve">
-    <value>IpTviewr.UiServices.Record.Controls.RecordingSchedule, UiServices.Record, Version=1.5.20.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>IpTviewr.UiServices.Record.Controls.RecordingSchedule, UiServices.Record, Version=1.5.1010.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;recordingSchedule.Parent" xml:space="preserve">
     <value>tabPageSchedule</value>
@@ -454,7 +454,7 @@
     <value>tabPageSchedule</value>
   </data>
   <data name="&gt;&gt;tabPageSchedule.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;tabPageSchedule.Parent" xml:space="preserve">
     <value>tabProperties</value>
@@ -475,7 +475,7 @@
     <value>recordingTime</value>
   </data>
   <data name="&gt;&gt;recordingTime.Type" xml:space="preserve">
-    <value>IpTviewr.UiServices.Record.Controls.RecordingDuration, UiServices.Record, Version=1.5.20.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>IpTviewr.UiServices.Record.Controls.RecordingDuration, UiServices.Record, Version=1.5.1010.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;recordingTime.Parent" xml:space="preserve">
     <value>tabPageLength</value>
@@ -505,7 +505,7 @@
     <value>labelEndMarginSufix</value>
   </data>
   <data name="&gt;&gt;labelEndMarginSufix.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;labelEndMarginSufix.Parent" xml:space="preserve">
     <value>tabPageLength</value>
@@ -529,7 +529,7 @@
     <value>numericEndMargin</value>
   </data>
   <data name="&gt;&gt;numericEndMargin.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;numericEndMargin.Parent" xml:space="preserve">
     <value>tabPageLength</value>
@@ -559,7 +559,7 @@
     <value>checkBoxEndMargin</value>
   </data>
   <data name="&gt;&gt;checkBoxEndMargin.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;checkBoxEndMargin.Parent" xml:space="preserve">
     <value>tabPageLength</value>
@@ -586,7 +586,7 @@
     <value>tabPageLength</value>
   </data>
   <data name="&gt;&gt;tabPageLength.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;tabPageLength.Parent" xml:space="preserve">
     <value>tabProperties</value>
@@ -619,7 +619,7 @@
     <value>checkAppendRecordingDetails</value>
   </data>
   <data name="&gt;&gt;checkAppendRecordingDetails.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;checkAppendRecordingDetails.Parent" xml:space="preserve">
     <value>tabPageDescription</value>
@@ -646,7 +646,7 @@
     <value>textTaskDescription</value>
   </data>
   <data name="&gt;&gt;textTaskDescription.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;textTaskDescription.Parent" xml:space="preserve">
     <value>tabPageDescription</value>
@@ -676,7 +676,7 @@
     <value>labelTaskDescription</value>
   </data>
   <data name="&gt;&gt;labelTaskDescription.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;labelTaskDescription.Parent" xml:space="preserve">
     <value>tabPageDescription</value>
@@ -706,7 +706,7 @@
     <value>checkAddTaskPrefix</value>
   </data>
   <data name="&gt;&gt;checkAddTaskPrefix.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;checkAddTaskPrefix.Parent" xml:space="preserve">
     <value>tabPageDescription</value>
@@ -736,7 +736,7 @@
     <value>labelTaskName</value>
   </data>
   <data name="&gt;&gt;labelTaskName.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;labelTaskName.Parent" xml:space="preserve">
     <value>tabPageDescription</value>
@@ -760,7 +760,7 @@
     <value>textTaskName</value>
   </data>
   <data name="&gt;&gt;textTaskName.Type" xml:space="preserve">
-    <value>IpTviewr.UiServices.Controls.FilenameTextBox, UiServices.Controls, Version=1.5.20.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>IpTviewr.UiServices.Common.Controls.FilenameTextBox, UiServices.Common, Version=1.5.1010.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;textTaskName.Parent" xml:space="preserve">
     <value>tabPageDescription</value>
@@ -784,7 +784,7 @@
     <value>tabPageDescription</value>
   </data>
   <data name="&gt;&gt;tabPageDescription.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;tabPageDescription.Parent" xml:space="preserve">
     <value>tabProperties</value>
@@ -801,58 +801,58 @@
   <data name="listViewLocations.Size" type="System.Drawing.Size, System.Drawing">
     <value>425, 156</value>
   </data>
-  <metadata name="imageListLocations.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <metadata name="imageListLocations.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
   <data name="imageListLocations.ImageStream" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
-        AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj0yLjAuMC4w
+        AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
         LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
         ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAAA0
-        CwAAAk1TRnQBSQFMAgEBAgEAAegBAQHoAQEBEAEAARABAAT/ASEBAAj/AUIBTQE2BwABNgMAASgDAAFA
-        AwABEAMAAQEBAAEgBgABEDIAA1MBqgM4AVz4AAG4AUUBAAH/AbgBRQEAAf8DOAFcFAABuAGjAZQB/wEq
-        ARABAAH/ASoBEAEAAf8BKgEQAQAB/wEqARABAAH/ASoBEAEAAf8BKgEQAQAB/wEqARABAAH/ASoBEAEA
-        Af8BKgEQAQAB/wEqARABAAH/ASoBEAEAAf8BKgEQAQAB/wEqARABAAH/ASoBEAEAAf8BKgEQAQAB/6AA
-        AbgBRQEAAf8B8QHMAY4B/wG4AUUBAAH/AzgBXBAAAbkBpAGVAf8B9QHoAd8B/wHwAdwBzgH/Ae8B2QHL
+        CwAAAk1TRnQBSQFMAgEBAgEAAfABAQHwAQEBEAEAARABAAT/ASEBAAj/AUIBTQE2BwABNgMAASgDAAFA
+        AwABEAMAAQEBAAEgBgABEDIAA1MBqgM4AVz4AAG4AUQBAAH/AbgBRAEAAf8DOAFcFAABuAGjAZQB/wEp
+        AQ8BAAH/ASkBDwEAAf8BKQEPAQAB/wEpAQ8BAAH/ASkBDwEAAf8BKQEPAQAB/wEpAQ8BAAH/ASkBDwEA
+        Af8BKQEPAQAB/wEpAQ8BAAH/ASkBDwEAAf8BKQEPAQAB/wEpAQ8BAAH/ASkBDwEAAf8BKQEPAQAB/6AA
+        AbgBRAEAAf8B8QHMAY4B/wG4AUQBAAH/AzgBXBAAAbkBpAGVAf8B9QHoAd8B/wHwAdwBzgH/Ae8B2QHL
         Af8B7QHSAcMB/wHpAc0BuwH/AegByAGzAf8B5gHEAa8B/wHkAcABqQH/AeMBvQGkAf8B4wG8AaUB/wHi
-        AbwBowH/AeIBuwGjAf8B4gG4AZ4B/wHfAbYBnQH/ASoBEAEAAf+gAAG4AUUBAAH/AfABwAEzAf8B7wHK
-        AYwB/wG4AUUBAAH/AzgBXAwAAboBpQGWAf8B+QHxAewB/wH2AeoB4wH/AfUB5wHeAf8B8wHjAdkB/wHy
+        AbwBowH/AeIBuwGjAf8B4gG4AZ4B/wHfAbYBnQH/ASkBDwEAAf+gAAG4AUQBAAH/AfABwAEyAf8B7wHK
+        AYwB/wG4AUQBAAH/AzgBXAwAAboBpQGWAf8B+QHxAewB/wH2AeoB4wH/AfUB5wHeAf8B8wHjAdkB/wHy
         AeAB1QH/AfAB3AHQAf8B7wHZAcsB/wHtAdUBxgH/AewB0gHCAf8B6QHNAbkB/wHnAcgBswH/AeYBwwGt
-        Af8B5AG9AaYB/wHhAbcBngH/ASoBEAEAAf+AAANDAXcBuAFFAQAB/wG4AUUBAAH/AbgBRQEAAf8BuAFF
-        AQAB/wG4AUUBAAH/AbgBRQEAAf8BuAFFAQAB/wG4AUUBAAH/AfMBxQE1Af8B5QGZAQAB/wHvAcsBjAH/
-        AbgBRQEAAf8DSgGKCAABvAGmAZcB/wH5AfMB7gH/AfcB7QHmAf8B9gHqAeIB/wH1AeYB3QH/AfMB4wHY
+        Af8B5AG9AaYB/wHhAbcBngH/ASkBDwEAAf+AAANDAXcBuAFEAQAB/wG4AUQBAAH/AbgBRAEAAf8BuAFE
+        AQAB/wG4AUQBAAH/AbgBRAEAAf8BuAFEAQAB/wG4AUQBAAH/AfMBxQE0Af8B5QGZAQAB/wHvAcsBjAH/
+        AbgBRAEAAf8DSgGKCAABvAGmAZcB/wH5AfMB7gH/AfcB7QHmAf8B9gHqAeIB/wH1AeYB3QH/AfMB4wHY
         Af8B8gHfAdQB/wHwAdwBzwH/Ae8B2AHKAf8B7QHVAcUB/wHsAdEBwQH/AeoBzgG9Af8B6QHKAbcB/wHn
-        AcQBsAH/AeMBvQGlAf8BKgEQAQAB/4AAAaUBLQEAAf8B6QG6AS4B/wHuAcEBMwH/AfQBxwE2Af8B9wHM
-        ATgB/wH6Ac8BOgH/AfsBzwE6Af8B+wHPAToB/wH5AcwBOQH/AfIBsQEAAf8B6wGhAQAB/wHlAZkBAAH/
-        Ae8BygGMAf8BsgE9AQAB/wM4AVwEAAG9AagBmQH/AfoB9QHxAf8B+AHvAeoB/wH3AewB5QH/AfYB6QHh
+        AcQBsAH/AeMBvQGlAf8BKQEPAQAB/4AAAaUBLAEAAf8B6QG6AS0B/wHuAcEBMgH/AfQBxwE1Af8B9wHM
+        ATcB/wH6Ac8BOQH/AfsBzwE5Af8B+wHPATkB/wH5AcwBOAH/AfIBsQEAAf8B6wGhAQAB/wHlAZkBAAH/
+        Ae8BygGMAf8BsgE8AQAB/wM4AVwEAAG9AagBmQH/AfoB9QHxAf8B+AHvAeoB/wH3AewB5QH/AfYB6QHh
         Af8B9AHlAdwB/wHzAeIB1wH/AfEB3gHTAf8B8AHbAc4B/wHuAdcByQH/Ae0B1AHEAf8B6wHRAcAB/wHq
-        AcwBuwH/AecBxgGzAf8B5AG+AacB/wEqARABAAH/gAABpQEtAQAB/wFoAVMBKwH8Ad0BlAEAAf8B5AGb
+        AcwBuwH/AecBxgGzAf8B5AG+AacB/wEpAQ8BAAH/gAABpQEsAQAB/wFnAVEBKwH8Ad0BlAEAAf8B5AGb
         AQAB/wHtAaUBAAH/AfMBrAEAAf8B+AGxAQAB/wH5AbIBAAH/AfkBsQEAAf8B9QGtAQAB/wHyAacBAAH/
-        AewBoAEAAf8B5AGWAQAB/wHvAckBiwH/AbIBPQEAAf8DOAFcAb8BqQGaAf8B+wH2AfIB/wH5AfIB7QH/
+        AewBoAEAAf8B5AGWAQAB/wHvAckBiwH/AbIBPAEAAf8DOAFcAb8BqQGaAf8B+wH2AfIB/wH5AfIB7QH/
         AfgB7wHpAf8B9wHrAeQB/wH1AegB4AH/AfQB5QHbAf8B8gHhAdYB/wHxAd4B0gH/Ae8B2gHNAf8B7gHX
-        AcgB/wHtAdMBwwH/AesB0AG/Af8B6gHMAbkB/wHjAb4BpwH/ASoBEAEAAf+AAAGlAS0BAAH/AWgBVwEr
+        AcgB/wHtAdMBwwH/AesB0AG/Af8B6gHMAbkB/wHjAb4BpwH/ASkBDwEAAf+AAAGlASwBAAH/AWcBVgEr
         AfwB3AGcAQAB/wHgAZ0BAAH/AecBoQEAAf8B7QGmAQAB/wHzAasBAAH/AfgBsQEAAf8B+QGyAQAB/wH4
-        AbEBAAH/AfUBrQEAAf8B8QGmAQAB/wHqAZ4BAAH/AeIBlQEAAf8B7wHMAZIB/wGzAT8BAAH/AcABqwGc
+        AbEBAAH/AfUBrQEAAf8B8QGmAQAB/wHqAZ4BAAH/AeIBlQEAAf8B7wHMAZIB/wGzAT4BAAH/AcABqwGc
         Af8B/AH3AfQB/wH6AfQB8AH/AfkB8QHsAf8B+AHuAegB/wH2AesB5AH/AfUB5wHfAf8B9AHkAdoB/wHy
-        AeAB1QH/AfEB3QHRAf8B7wHZAcwB/wHuAdYBxwH/AewB0wHDAf8B6wHPAb4B/wHkAcABqgH/ASoBEAEA
-        Af+AAAGlAS0BAAH/AdwBqQEcAf8B1wGZAQAB/wHeAaABAAH/AeQBpgEAAf8B6gGrAQAB/wHwAa4BAAH/
-        AfQBrwEAAf8B9wGxAQAB/wH5AbEBAAH/AfgBrwEAAf8B9AGrAQAB/wHwAaUBAAH/AfABugEeAf8BswE/
+        AeAB1QH/AfEB3QHRAf8B7wHZAcwB/wHuAdYBxwH/AewB0wHDAf8B6wHPAb4B/wHkAcABqgH/ASkBDwEA
+        Af+AAAGlASwBAAH/AdwBqQEbAf8B1wGZAQAB/wHeAaABAAH/AeQBpgEAAf8B6gGrAQAB/wHwAa4BAAH/
+        AfQBrwEAAf8B9wGxAQAB/wH5AbEBAAH/AfgBrwEAAf8B9AGrAQAB/wHwAaUBAAH/AfABugEdAf8BswE+
         AQAB/wM4AVwBwgGsAZ0B/wH8AfkB9wH/AfsB9gHzAf8B+gH0Ae8B/wH5AfEB6wH/AfgB7QHnAf8B9wHr
         AeUB/wH2AekB4QH/AfQB5QHcAf8B8wHjAdgB/wHxAd8B1AH/AfAB3AHQAf8B7wHZAcsB/wHuAdYByAH/
-        AecBxwGyAf8BKgEQAQAB/4AAAaUBLQEAAf8DXAHfAmQBXAHnAmUBXgHlAmUBXgHlAmUBXgHlAmUBXgHl
-        Al8BWAHjAmQBUwHxAfoBuQEAAf8B+gG4AQAB/wH4AbIBAAH/AfcBxAElAf8BswE/AQAB/wM4AVwEAAHD
+        AecBxwGyAf8BKQEPAQAB/4AAAaUBLAEAAf8DXAHfAmQBXAHnAmUBXgHlAmUBXgHlAmUBXgHlAmUBXgHl
+        Al8BWAHjAmQBUwHxAfoBuQEAAf8B+gG4AQAB/wH4AbIBAAH/AfcBxAEkAf8BswE+AQAB/wM4AVwEAAHD
         Aa4BnwH/Af0B+wH4Af8B/AH4AfYB/wH7AfYB8gH/AfoB8wHvAf8B+QHwAeoB/wH4AfEB7AH/AfgB7wHp
-        Af8B9gHtAeYB/wH2AeoB4gH/AfUB6QHgAf8B9QHlAd4B/wH0AeQB2gH/AfMB4QHXAf8B7wHYAcoB/wEq
-        ARABAAH/gAADQwF3AaUBLQEAAf8BpQEtAQAB/wGlAS0BAAH/AaUBLQEAAf8BpQEtAQAB/wGlAS0BAAH/
-        AaUBLQEAAf8BpQEtAQAB/wH4AbwBCAH/AfsBwQEKAf8B/AHSAT8B/wGzAT8BAAH/AzgBXAgAAcUBrwGg
+        Af8B9gHtAeYB/wH2AeoB4gH/AfUB6QHgAf8B9QHlAd4B/wH0AeQB2gH/AfMB4QHXAf8B7wHYAcoB/wEp
+        AQ8BAAH/gAADQwF3AaUBLAEAAf8BpQEsAQAB/wGlASwBAAH/AaUBLAEAAf8BpQEsAQAB/wGlASwBAAH/
+        AaUBLAEAAf8BpQEsAQAB/wH4AbwBBwH/AfsBwQEJAf8B/AHSAT4B/wGzAT4BAAH/AzgBXAgAAcUBrwGg
         Af8B/gH7AfgB/wH9AfoB+QH/AfwB+AH1Af8B+wH1AfIB/wH6AfIB7gH/AfkB8QHsAf8BvQGpAZsB/wG9
-        AakBmwH/Ab0BqQGbAf8BvQGpAZsB/wG9AakBmwH/Ab0BqQGbAf8BvQGpAZsB/wEqARABAAH/ASoBEAEA
-        Af+gAAGlAS0BAAH/AfMBtgEDAf8B+wHQAT4B/wGzAT8BAAH/AzgBXAwAAcYBsAGhAf8B/gH7AfoB/wH+
-        AfwB+wH/Af0B+gH4Af8B/AH3AfQB/wH7AfUB8QH/AfoB8wHuAf8BNwEeAQsB/wHWAdEBzgH/AckBxAHA
-        Af8BwQG7AbcB/wG5AbIBrAH/AbUBrQGnAf8BsgGpAaIB/wFDASoBGAH/pAABpQEtAQAB/wHzAcgBOQH/
-        AbMBPwEAAf8DOAFcEAABxwGxAaIC/wH7AfoB/wH+AvwB/wH+AfsB+QH/Af0B+QH3Af8B+wH3AfQB/wH6
-        AfYB8gH/AZ0BiAE9Af8B4AHcAdoB/wHcAdoB1wH/AdIB0QHPAf8B1QHUAdIB/wHLAcgBxgH/AbkBswGt
-        Af8BngGKAUEB/6QAAaUBLQEAAf8BswE/AQAB/wM4AVwUAAHIAbIBowH/AcYBsAGhAf8BxAGuAZ8B/wHB
+        AakBmwH/Ab0BqQGbAf8BvQGpAZsB/wG9AakBmwH/Ab0BqQGbAf8BvQGpAZsB/wEpAQ8BAAH/ASkBDwEA
+        Af+gAAGlASwBAAH/AfMBtgECAf8B+wHQAT0B/wGzAT4BAAH/AzgBXAwAAcYBsAGhAf8B/gH7AfoB/wH+
+        AfwB+wH/Af0B+gH4Af8B/AH3AfQB/wH7AfUB8QH/AfoB8wHuAf8BNgEdAQoB/wHWAdEBzgH/AckBxAHA
+        Af8BwQG7AbcB/wG5AbIBrAH/AbUBrQGnAf8BsgGpAaIB/wFCASkBFwH/pAABpQEsAQAB/wHzAcgBOAH/
+        AbMBPgEAAf8DOAFcEAABxwGxAaIC/wH7AfoB/wH+AvwB/wH+AfsB+QH/Af0B+QH3Af8B+wH3AfQB/wH6
+        AfYB8gH/AZ0BiAE8Af8B4AHcAdoB/wHcAdoB1wH/AdIB0QHPAf8B1QHUAdIB/wHLAcgBxgH/AbkBswGt
+        Af8BngGKAUAB/6QAAaUBLAEAAf8BswE+AQAB/wM4AVwUAAHIAbIBowH/AcYBsAGhAf8BxAGuAZ8B/wHB
         AasBnAH/Ab4BqQGaAf8BuwGmAZcB/wG5AaQBlQH/AbcBogGTAf8B2AHHAbwB/wHOAbwBrgH/AcgBtAGn
         Af8BwwGuAaAB/wG8AacBmAH/AbkBpAGVAf8BrQGZAYwB/6QAA1MBqgM4AVz/ANkAAUIBTQE+BwABPgMA
         ASgDAAFAAwABEAMAAQEBAAEBBQABgBcAA/8BAAH/AT8C/wQAAf8BHwYAAf8BDwYAAf8BBwcAAQMHAAEB
@@ -866,7 +866,7 @@
     <value>listViewLocations</value>
   </data>
   <data name="&gt;&gt;listViewLocations.Type" xml:space="preserve">
-    <value>IpTviewr.UiServices.Controls.ListViewSortable, UiServices.Controls, Version=1.5.20.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>IpTviewr.UiServices.Common.Controls.ListViewSortable, UiServices.Common, Version=1.5.1010.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;listViewLocations.Parent" xml:space="preserve">
     <value>tabPageSave</value>
@@ -896,7 +896,7 @@
     <value>buttonSelectFolder</value>
   </data>
   <data name="&gt;&gt;buttonSelectFolder.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;buttonSelectFolder.Parent" xml:space="preserve">
     <value>tabPageSave</value>
@@ -906,24 +906,6 @@
   </data>
   <data name="comboFileExtension.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
-  </data>
-  <data name="comboFileExtension.Items" xml:space="preserve">
-    <value>.ts</value>
-  </data>
-  <data name="comboFileExtension.Items1" xml:space="preserve">
-    <value>.raw</value>
-  </data>
-  <data name="comboFileExtension.Items2" xml:space="preserve">
-    <value>.mpg</value>
-  </data>
-  <data name="comboFileExtension.Items3" xml:space="preserve">
-    <value>.mp2</value>
-  </data>
-  <data name="comboFileExtension.Items4" xml:space="preserve">
-    <value>.mp4</value>
-  </data>
-  <data name="comboFileExtension.Items5" xml:space="preserve">
-    <value>.m2ts</value>
   </data>
   <data name="comboFileExtension.Location" type="System.Drawing.Point, System.Drawing">
     <value>368, 22</value>
@@ -938,7 +920,7 @@
     <value>comboFileExtension</value>
   </data>
   <data name="&gt;&gt;comboFileExtension.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;comboFileExtension.Parent" xml:space="preserve">
     <value>tabPageSave</value>
@@ -962,7 +944,7 @@
     <value>textFilename</value>
   </data>
   <data name="&gt;&gt;textFilename.Type" xml:space="preserve">
-    <value>IpTviewr.UiServices.Controls.FilenameTextBox, UiServices.Controls, Version=1.5.20.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>IpTviewr.UiServices.Common.Controls.FilenameTextBox, UiServices.Common, Version=1.5.1010.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;textFilename.Parent" xml:space="preserve">
     <value>tabPageSave</value>
@@ -992,7 +974,7 @@
     <value>labelFilename</value>
   </data>
   <data name="&gt;&gt;labelFilename.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;labelFilename.Parent" xml:space="preserve">
     <value>tabPageSave</value>
@@ -1022,7 +1004,7 @@
     <value>labelSaveLocation</value>
   </data>
   <data name="&gt;&gt;labelSaveLocation.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;labelSaveLocation.Parent" xml:space="preserve">
     <value>tabPageSave</value>
@@ -1046,7 +1028,7 @@
     <value>tabPageSave</value>
   </data>
   <data name="&gt;&gt;tabPageSave.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;tabPageSave.Parent" xml:space="preserve">
     <value>tabProperties</value>
@@ -1067,7 +1049,7 @@
     <value>timeSpanSchedulerDeleteTaskAfter</value>
   </data>
   <data name="&gt;&gt;timeSpanSchedulerDeleteTaskAfter.Type" xml:space="preserve">
-    <value>IpTviewr.UiServices.Controls.TimeSpanUpDown, UiServices.Controls, Version=1.5.20.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>IpTviewr.UiServices.Common.Controls.TimeSpanUpDown, UiServices.Common, Version=1.5.1010.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;timeSpanSchedulerDeleteTaskAfter.Parent" xml:space="preserve">
     <value>tabPageAdvanced</value>
@@ -1088,7 +1070,7 @@
     <value>timeSpanSchedulerRetry</value>
   </data>
   <data name="&gt;&gt;timeSpanSchedulerRetry.Type" xml:space="preserve">
-    <value>IpTviewr.UiServices.Controls.TimeSpanUpDown, UiServices.Controls, Version=1.5.20.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>IpTviewr.UiServices.Common.Controls.TimeSpanUpDown, UiServices.Common, Version=1.5.1010.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;timeSpanSchedulerRetry.Parent" xml:space="preserve">
     <value>tabPageAdvanced</value>
@@ -1121,7 +1103,7 @@
     <value>comboSchedulerAlreadyRunning</value>
   </data>
   <data name="&gt;&gt;comboSchedulerAlreadyRunning.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;comboSchedulerAlreadyRunning.Parent" xml:space="preserve">
     <value>tabPageAdvanced</value>
@@ -1151,7 +1133,7 @@
     <value>labelSchedulerConcurrent</value>
   </data>
   <data name="&gt;&gt;labelSchedulerConcurrent.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;labelSchedulerConcurrent.Parent" xml:space="preserve">
     <value>tabPageAdvanced</value>
@@ -1181,7 +1163,7 @@
     <value>checkSchedulerDeleteTask</value>
   </data>
   <data name="&gt;&gt;checkSchedulerDeleteTask.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;checkSchedulerDeleteTask.Parent" xml:space="preserve">
     <value>tabPageAdvanced</value>
@@ -1202,7 +1184,7 @@
     <value>numericSchedulerMaxRetries</value>
   </data>
   <data name="&gt;&gt;numericSchedulerMaxRetries.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;numericSchedulerMaxRetries.Parent" xml:space="preserve">
     <value>tabPageAdvanced</value>
@@ -1232,7 +1214,7 @@
     <value>labelSchedulerMaxRetries</value>
   </data>
   <data name="&gt;&gt;labelSchedulerMaxRetries.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;labelSchedulerMaxRetries.Parent" xml:space="preserve">
     <value>tabPageAdvanced</value>
@@ -1262,7 +1244,7 @@
     <value>checkSchedulerRetry</value>
   </data>
   <data name="&gt;&gt;checkSchedulerRetry.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;checkSchedulerRetry.Parent" xml:space="preserve">
     <value>tabPageAdvanced</value>
@@ -1292,7 +1274,7 @@
     <value>checkSchedulerASAP</value>
   </data>
   <data name="&gt;&gt;checkSchedulerASAP.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;checkSchedulerASAP.Parent" xml:space="preserve">
     <value>tabPageAdvanced</value>
@@ -1316,7 +1298,7 @@
     <value>comboSchedulerFolder</value>
   </data>
   <data name="&gt;&gt;comboSchedulerFolder.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;comboSchedulerFolder.Parent" xml:space="preserve">
     <value>tabPageAdvanced</value>
@@ -1346,7 +1328,7 @@
     <value>labelSchedulerFolder</value>
   </data>
   <data name="&gt;&gt;labelSchedulerFolder.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;labelSchedulerFolder.Parent" xml:space="preserve">
     <value>tabPageAdvanced</value>
@@ -1370,7 +1352,7 @@
     <value>tabPageAdvanced</value>
   </data>
   <data name="&gt;&gt;tabPageAdvanced.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;tabPageAdvanced.Parent" xml:space="preserve">
     <value>tabProperties</value>
@@ -1391,7 +1373,7 @@
     <value>tabProperties</value>
   </data>
   <data name="&gt;&gt;tabProperties.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabControl, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.TabControl, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;tabProperties.Parent" xml:space="preserve">
     <value>$this</value>
@@ -1424,7 +1406,7 @@
     <value>labelChannelNumber</value>
   </data>
   <data name="&gt;&gt;labelChannelNumber.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;labelChannelNumber.Parent" xml:space="preserve">
     <value>$this</value>
@@ -1451,7 +1433,7 @@
     <value>pictureChannelLogo</value>
   </data>
   <data name="&gt;&gt;pictureChannelLogo.Type" xml:space="preserve">
-    <value>IpTviewr.UiServices.Controls.PictureBoxEx, UiServices.Controls, Version=1.5.20.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>IpTviewr.UiServices.Common.Controls.PictureBoxEx, UiServices.Common, Version=1.5.1010.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;pictureChannelLogo.Parent" xml:space="preserve">
     <value>$this</value>
@@ -1459,10 +1441,10 @@
   <data name="&gt;&gt;pictureChannelLogo.ZOrder" xml:space="preserve">
     <value>6</value>
   </data>
-  <metadata name="selectFolder.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <metadata name="selectFolder.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>172, 17</value>
   </metadata>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
@@ -1481,30 +1463,30 @@
     <value>ColumnName</value>
   </data>
   <data name="&gt;&gt;ColumnName.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;ColumnLocation.Name" xml:space="preserve">
     <value>ColumnLocation</value>
   </data>
   <data name="&gt;&gt;ColumnLocation.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;imageListLocations.Name" xml:space="preserve">
     <value>imageListLocations</value>
   </data>
   <data name="&gt;&gt;imageListLocations.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ImageList, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.ImageList, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;selectFolder.Name" xml:space="preserve">
     <value>selectFolder</value>
   </data>
   <data name="&gt;&gt;selectFolder.Type" xml:space="preserve">
-    <value>IpTviewr.UiServices.Controls.SelectFolderDialog, UiServices.Controls, Version=1.5.20.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>IpTviewr.UiServices.Common.Controls.SelectFolderDialog, UiServices.Common, Version=1.5.1010.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>RecordChannelDialog</value>
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>IpTviewr.UiServices.Controls.CommonBaseForm, UiServices.Controls, Version=1.5.20.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>IpTviewr.UiServices.Common.Forms.CommonBaseForm, UiServices.Common, Version=1.5.1010.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
 </root>

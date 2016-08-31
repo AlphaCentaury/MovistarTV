@@ -117,56 +117,32 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="EmptyFileExtension" xml:space="preserve">
-    <value>The extension of the file of the recording can not be empty.
-Please specify a file extension.</value>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="radioRecordChannel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>251, 17</value>
   </data>
-  <data name="EmptyFileName" xml:space="preserve">
-    <value>The name of the file of the recording can not be empty.
-Please specify a name.</value>
+  <data name="radioRecordChannel.Text" xml:space="preserve">
+    <value>Grabar el canal actual con opciones avanzadas</value>
   </data>
-  <data name="EmptyTaskName" xml:space="preserve">
-    <value>The name of the task can not be empty.
-Please specify a name.</value>
+  <data name="radioRecordProgramEdit.Size" type="System.Drawing.Size, System.Drawing">
+    <value>305, 17</value>
   </data>
-  <data name="FileExtensions" xml:space="preserve">
-    <value>.ts
-.raw
-.mpg
-.mp2
-.mp4
-.m2ts</value>
-    <comment>One extension per line, starting with the dot [.]</comment>
+  <data name="radioRecordProgramEdit.Text" xml:space="preserve">
+    <value>Grabar el programa seleccionado (permite editar los ajustes)</value>
   </data>
-  <data name="NoSaveLocation" xml:space="preserve">
-    <value>A save location has not been selected.
-Please select one or browse for a folder.</value>
+  <data name="radioRecordProgramDefault.Size" type="System.Drawing.Size, System.Drawing">
+    <value>311, 17</value>
   </data>
-  <data name="RecordButtonDefault" xml:space="preserve">
-    <value>Record</value>
+  <data name="radioRecordProgramDefault.Text" xml:space="preserve">
+    <value>Grabar el programa seleccionado con los ajustes por defecto</value>
   </data>
-  <data name="RecordButtonSettings" xml:space="preserve">
-    <value>Record...</value>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>Opciones de grabación</value>
   </data>
-  <data name="SaveCustomLocation" xml:space="preserve">
-    <value>&lt;Custom location&gt;</value>
+  <data name="buttonCancel.Text" xml:space="preserve">
+    <value>Cancelar</value>
   </data>
-  <data name="SaveDefaultLocation" xml:space="preserve">
-    <value>&lt;Default&gt;</value>
-  </data>
-  <data name="SaveMissingLocation" xml:space="preserve">
-    <value>&lt;Missing location&gt;</value>
-  </data>
-  <data name="SelectedProgramIsNullOrBlank" xml:space="preserve">
-    <value>No program has been selected or there is insufficient information.</value>
-  </data>
-  <data name="SelectedProgramIsRightNow" xml:space="preserve">
-    <value>The program has already begun. It will be recorded from now.</value>
-  </data>
-  <data name="TaskSchedulerRootFolder" xml:space="preserve">
-    <value>&lt;No folder&gt;</value>
-  </data>
-  <data name="TooLongTaskName" xml:space="preserve">
-    <value>The name of the task is too long. Maximum name length is {0}.</value>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Seleccione las opciones de grabación</value>
   </data>
 </root>

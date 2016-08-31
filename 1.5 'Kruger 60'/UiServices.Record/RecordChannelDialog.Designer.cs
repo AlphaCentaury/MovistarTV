@@ -345,13 +345,6 @@ namespace IpTviewr.UiServices.Record
             // 
             resources.ApplyResources(this.comboFileExtension, "comboFileExtension");
             this.comboFileExtension.FormattingEnabled = true;
-            this.comboFileExtension.Items.AddRange(new object[] {
-            resources.GetString("comboFileExtension.Items"),
-            resources.GetString("comboFileExtension.Items1"),
-            resources.GetString("comboFileExtension.Items2"),
-            resources.GetString("comboFileExtension.Items3"),
-            resources.GetString("comboFileExtension.Items4"),
-            resources.GetString("comboFileExtension.Items5")});
             this.comboFileExtension.Name = "comboFileExtension";
             this.comboFileExtension.Validating += new System.ComponentModel.CancelEventHandler(this.comboFileExtension_Validating);
             // 

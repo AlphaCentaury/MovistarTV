@@ -133,6 +133,15 @@
   <data name="Action_Play_LG_16x16" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\..\common.ui\resources\action_play_lg_16x16.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Action_Record_16x16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\action_record_16x16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Icon_Recorder" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\icon_recorder.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Icon_Record_48x48" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\icon_record_48x48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="RecordDeadTvChannel" xml:space="preserve">
     <value>The selected TV channel has been marked as inactive and might not be available.
 
@@ -140,5 +149,11 @@ Do you still want to schedule a recording of {0}?</value>
   </data>
   <data name="SchedulerCreateTaskOk" xml:space="preserve">
     <value>The recording task has been sucessfully created.</value>
+  </data>
+  <data name="Status_Info_16x16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\status_info_16x16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Status_Warning_16x16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\status_warning_16x16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
