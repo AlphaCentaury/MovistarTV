@@ -91,7 +91,7 @@ namespace IpTviewr.UiServices.Configuration.Logos
             protected set;
         } // Key
 
-        public Image GetImage(LogoSize logoSize, bool noExceptions)
+        public Image GetImage(LogoSize logoSize, bool noExceptions = true)
         {
             if (!IsSizeAvailable(logoSize))
             {
