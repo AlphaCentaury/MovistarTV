@@ -113,7 +113,7 @@ namespace IpTviewr.Services.EpgDiscovery
             node = service.Programs.First;
             while (program != null)
             {
-                if ((utcTime >= node.Value.UtcStartTime) && (utcTime < node.Value.UtcEndTime))
+                if (program.IsCurrent(utcTime))
                 {
                     break;
                 } // if

@@ -93,6 +93,16 @@ namespace IpTviewr.Services.EpgDiscovery
             set { Duration = string.IsNullOrEmpty(value) ? new TimeSpan() : SoapDuration.Parse(value); }
         } // XmlDuration
 
+        public bool IsCurrent(DateTime referenceTime)
+        {
+            if (referenceTime.Kind != DateTimeKind.Utc)
+            {
+                referenceTime = referenceTime.ToLocalTime();
+            } // if
+
+            return (referenceTime >= UtcStartTime) && (referenceTime < UtcEndTime);
+        } // IsCurrent
+
         public static EpgProgram FromScheduleEvent(TvAnytime.TvaScheduleEvent item)
         {
             if (item == null) return null;
