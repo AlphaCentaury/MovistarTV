@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace IpTviewr.UiServices.EPG {
+namespace IpTviewr.UiServices.EPG.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace IpTviewr.UiServices.EPG {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("IpTviewr.UiServices.EPG.CommonUiResources", typeof(CommonUiResources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("IpTviewr.UiServices.EPG.Properties.CommonUiResources", typeof(CommonUiResources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

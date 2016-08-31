@@ -101,14 +101,14 @@ namespace IpTviewr.UiServices.EPG
             // 
             resources.ApplyResources(this.buttonOk, "buttonOk");
             this.buttonOk.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.buttonOk.Image = global::IpTviewr.UiServices.EPG.CommonUiResources.Action_Ok_16x16;
+            this.buttonOk.Image = global::IpTviewr.UiServices.EPG.Properties.CommonUiResources.Action_Ok_16x16;
             this.buttonOk.Name = "buttonOk";
             this.buttonOk.UseVisualStyleBackColor = true;
             // 
             // buttonRecordChannel
             // 
             resources.ApplyResources(this.buttonRecordChannel, "buttonRecordChannel");
-            this.buttonRecordChannel.Image = global::IpTviewr.UiServices.EPG.CommonUiResources.Action_Record_16x16;
+            this.buttonRecordChannel.Image = global::IpTviewr.UiServices.EPG.Properties.CommonUiResources.Action_Record_16x16;
             this.buttonRecordChannel.Name = "buttonRecordChannel";
             this.buttonRecordChannel.UseVisualStyleBackColor = true;
             this.buttonRecordChannel.Click += new System.EventHandler(this.buttonRecordChannel_Click);
@@ -116,7 +116,7 @@ namespace IpTviewr.UiServices.EPG
             // buttonDisplayChannel
             // 
             resources.ApplyResources(this.buttonDisplayChannel, "buttonDisplayChannel");
-            this.buttonDisplayChannel.Image = global::IpTviewr.UiServices.EPG.CommonUiResources.Action_Play_LG_16x16;
+            this.buttonDisplayChannel.Image = global::IpTviewr.UiServices.EPG.Properties.CommonUiResources.Action_Play_LG_16x16;
             this.buttonDisplayChannel.Name = "buttonDisplayChannel";
             this.buttonDisplayChannel.UseVisualStyleBackColor = true;
             this.buttonDisplayChannel.Click += new System.EventHandler(this.buttonDisplayChannel_Click);

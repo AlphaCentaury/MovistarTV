@@ -117,7 +117,7 @@ namespace IpTviewr.UiServices.EPG
             // 
             this.buttonDisplayChannel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonDisplayChannel.Enabled = false;
-            this.buttonDisplayChannel.Image = global::IpTviewr.UiServices.EPG.CommonUiResources.Action_Play_LG_16x16;
+            this.buttonDisplayChannel.Image = global::IpTviewr.UiServices.EPG.Properties.CommonUiResources.Action_Play_LG_16x16;
             this.buttonDisplayChannel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.buttonDisplayChannel.Location = new System.Drawing.Point(141, 325);
             this.buttonDisplayChannel.Name = "buttonDisplayChannel";
@@ -133,7 +133,7 @@ namespace IpTviewr.UiServices.EPG
             // 
             this.buttonRecordChannel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonRecordChannel.Enabled = false;
-            this.buttonRecordChannel.Image = global::IpTviewr.UiServices.EPG.CommonUiResources.Action_Record_16x16;
+            this.buttonRecordChannel.Image = global::IpTviewr.UiServices.EPG.Properties.CommonUiResources.Action_Record_16x16;
             this.buttonRecordChannel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.buttonRecordChannel.Location = new System.Drawing.Point(247, 325);
             this.buttonRecordChannel.Name = "buttonRecordChannel";
@@ -149,7 +149,7 @@ namespace IpTviewr.UiServices.EPG
             // 
             this.buttonOk.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonOk.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.buttonOk.Image = global::IpTviewr.UiServices.EPG.CommonUiResources.Action_Ok_16x16;
+            this.buttonOk.Image = global::IpTviewr.UiServices.EPG.Properties.CommonUiResources.Action_Ok_16x16;
             this.buttonOk.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.buttonOk.Location = new System.Drawing.Point(372, 325);
             this.buttonOk.Name = "buttonOk";

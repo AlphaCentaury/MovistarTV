@@ -79,7 +79,7 @@ namespace IpTviewr.UiServices.EPG
             // 
             // contextRtfMenuCopy
             // 
-            this.contextRtfMenuCopy.Image = global::IpTviewr.UiServices.EPG.CommonUiResources.Action_Copy_Clip_16x16;
+            this.contextRtfMenuCopy.Image = global::IpTviewr.UiServices.EPG.Properties.CommonUiResources.Action_Copy_Clip_16x16;
             this.contextRtfMenuCopy.Name = "contextRtfMenuCopy";
             resources.ApplyResources(this.contextRtfMenuCopy, "contextRtfMenuCopy");
             this.contextRtfMenuCopy.Click += new System.EventHandler(this.contextRtfMenuCopy_Click);
@@ -93,7 +93,7 @@ namespace IpTviewr.UiServices.EPG
             // buttonNext
             // 
             resources.ApplyResources(this.buttonNext, "buttonNext");
-            this.buttonNext.Image = global::IpTviewr.UiServices.EPG.CommonUiResources.Action_Forward_16x16;
+            this.buttonNext.Image = global::IpTviewr.UiServices.EPG.Properties.CommonUiResources.Action_Forward_16x16;
             this.buttonNext.Name = "buttonNext";
             this.buttonNext.UseVisualStyleBackColor = true;
             this.buttonNext.Click += new System.EventHandler(this.buttonNext_Click);
@@ -101,7 +101,7 @@ namespace IpTviewr.UiServices.EPG
             // buttonPrevious
             // 
             resources.ApplyResources(this.buttonPrevious, "buttonPrevious");
-            this.buttonPrevious.Image = global::IpTviewr.UiServices.EPG.CommonUiResources.Action_Back_16x16;
+            this.buttonPrevious.Image = global::IpTviewr.UiServices.EPG.Properties.CommonUiResources.Action_Back_16x16;
             this.buttonPrevious.Name = "buttonPrevious";
             this.buttonPrevious.UseVisualStyleBackColor = true;
             this.buttonPrevious.Click += new System.EventHandler(this.buttonPrevious_Click);
@@ -109,7 +109,7 @@ namespace IpTviewr.UiServices.EPG
             // buttonRecordProgram
             // 
             resources.ApplyResources(this.buttonRecordProgram, "buttonRecordProgram");
-            this.buttonRecordProgram.Image = global::IpTviewr.UiServices.EPG.CommonUiResources.Action_Record_16x16;
+            this.buttonRecordProgram.Image = global::IpTviewr.UiServices.EPG.Properties.CommonUiResources.Action_Record_16x16;
             this.buttonRecordProgram.Name = "buttonRecordProgram";
             this.buttonRecordProgram.UseVisualStyleBackColor = true;
             this.buttonRecordProgram.Click += new System.EventHandler(this.buttonRecordProgram_Click);
@@ -117,7 +117,7 @@ namespace IpTviewr.UiServices.EPG
             // buttonShowProgram
             // 
             resources.ApplyResources(this.buttonShowProgram, "buttonShowProgram");
-            this.buttonShowProgram.Image = global::IpTviewr.UiServices.EPG.CommonUiResources.Action_Play_LG_16x16;
+            this.buttonShowProgram.Image = global::IpTviewr.UiServices.EPG.Properties.CommonUiResources.Action_Play_LG_16x16;
             this.buttonShowProgram.Name = "buttonShowProgram";
             this.buttonShowProgram.UseVisualStyleBackColor = true;
             this.buttonShowProgram.Click += new System.EventHandler(this.buttonShowProgram_Click);
@@ -126,7 +126,7 @@ namespace IpTviewr.UiServices.EPG
             // 
             resources.ApplyResources(this.buttonOk, "buttonOk");
             this.buttonOk.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.buttonOk.Image = global::IpTviewr.UiServices.EPG.CommonUiResources.Action_Ok_16x16;
+            this.buttonOk.Image = global::IpTviewr.UiServices.EPG.Properties.CommonUiResources.Action_Ok_16x16;
             this.buttonOk.Name = "buttonOk";
             this.buttonOk.UseVisualStyleBackColor = true;
             // 
@@ -140,7 +140,7 @@ namespace IpTviewr.UiServices.EPG
             // 
             resources.ApplyResources(this.buttonZoom, "buttonZoom");
             this.buttonZoom.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.buttonZoom.Image = global::IpTviewr.UiServices.EPG.CommonUiResources.Action_FullView_16x16;
+            this.buttonZoom.Image = global::IpTviewr.UiServices.EPG.Properties.CommonUiResources.Action_FullView_16x16;
             this.buttonZoom.Name = "buttonZoom";
             this.buttonZoom.UseVisualStyleBackColor = true;
             // 

@@ -54,11 +54,6 @@
     <Compile Include="..\AssemblySolutionInfo.cs">
       <Link>Properties\AssemblySolutionInfo.cs</Link>
     </Compile>
-    <Compile Include="CommonUiResources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CommonUiResources.resx</DependentUpon>
-    </Compile>
     <Compile Include="EpgBasicGridDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -86,6 +81,11 @@
     <Compile Include="EpgMiniBarEventArgs.cs" />
     <Compile Include="EpgProgressBarFixed.cs">
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Properties\CommonUiResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CommonUiResources.resx</DependentUpon>
     </Compile>
     <Compile Include="Properties\EpgRtf.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -117,7 +117,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="CommonUiResources.resx">
+    <EmbeddedResource Include="Properties\CommonUiResources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
       <LastGenOutput>CommonUiResources.Designer.cs</LastGenOutput>
@@ -216,6 +216,10 @@
     <ProjectReference Include="..\UiServices.Discovery\UiServices.Discovery.csproj">
       <Project>{7e5e21b9-4bd6-4fb3-9055-9b09cc479c6c}</Project>
       <Name>UiServices.Discovery</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UiServices.Record\UiServices.Record.csproj">
+      <Project>{971b720e-2ae8-4ea4-b5ce-7a1af11c3743}</Project>
+      <Name>UiServices.Record</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
