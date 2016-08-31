@@ -8,7 +8,7 @@ namespace IpTviewr.Common
 {
     public class HandleExceptionEventArgs: EventArgs
     {
-        public IWin32Window OwnerWindow { get; set; }
+        public Form OwnerForm { get; set; }
         public string Caption { get; set; }
         public string Message { get; set; }
         public Exception Exception { get; set; }
@@ -18,9 +18,9 @@ namespace IpTviewr.Common
             // no-op
         } // default constructor
 
-        public HandleExceptionEventArgs(IWin32Window ownerWindow, string caption, string message, Exception ex)
+        public HandleExceptionEventArgs(Form ownerForm, string caption, string message, Exception ex)
         {
-            OwnerWindow = ownerWindow;
+            OwnerForm = ownerForm;
             Caption = caption;
             Message = message;
             Exception = ex;

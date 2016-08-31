@@ -1,6 +1,7 @@
 ﻿// Copyright (C) 2014-2016, Codeplex/GitHub user AlphaCentaury
 // All rights reserved, except those granted by the governing license of this software. See 'license.txt' file in the project root for complete license information.
 
+using IpTviewr.Common;
 using IpTviewr.Common.Telemetry;
 using IpTviewr.UiServices.Common.Forms;
 using IpTviewr.UiServices.Configuration.Logos;
@@ -270,7 +271,7 @@ namespace IpTviewr.UiServices.Forms
             else if (e.Error != null)
             {
                 labelCaption.Text = MulticastScanner.ScanningError;
-                HandleException(e.Error);
+                HandleException(new ExceptionEventData(e.Error));
             } // if-else
 
             AllowFormToClose = true;

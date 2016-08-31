@@ -41,23 +41,14 @@ namespace IpTviewr.UiServices.Common.Forms
             set;
         } // Options
 
-        protected override void OnExceptionThrown(object sender, CommonBaseFormExceptionThrownEventArgs e)
-        {
-            if (Options != null)
-            {
-                Options.OutputException = e.Exception;
-            } // if
-
-            dialogResult = DialogResult.Abort;
-            formCanClose = true;
-            this.Close();
-        } // OnExceptionThrown
-
         private void BackgroundWorkerDialog_Load(object sender, EventArgs e)
         {
             if (Options == null)
             {
-                HandleException(new ArgumentNullException());
+                dialogResult = DialogResult.Abort;
+                formCanClose = true;
+                this.Close();
+
                 return;
             } // if
             SafeCall(BackgroundWorkerDialog_Load_Implementation, sender, e);

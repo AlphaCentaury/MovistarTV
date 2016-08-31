@@ -15,6 +15,7 @@ using IpTviewr.Services.Record.Serialization;
 using IpTviewr.UiServices.Record.Properties;
 using IpTviewr.UiServices.Common.Forms;
 using IpTviewr.Common.Telemetry;
+using IpTviewr.Common;
 
 namespace IpTviewr.UiServices.Record
 {
@@ -81,7 +82,7 @@ namespace IpTviewr.UiServices.Record
                 result = worker.Options.OutputData as AsyncResult;
                 if (worker.Options.OutputException != null)
                 {
-                    HandleException(TasksTexts.ObtainingListException, worker.Options.OutputException);
+                    HandleException(new ExceptionEventData(TasksTexts.ObtainingListException, worker.Options.OutputException));
                     return;
                 } // if
                 if ((worker.DialogResult != DialogResult.OK) || (worker.Options.OutputData == null)) return;

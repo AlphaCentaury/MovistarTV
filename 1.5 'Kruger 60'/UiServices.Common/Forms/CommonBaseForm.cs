@@ -8,66 +8,87 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using IpTviewr.Common;
 
 namespace IpTviewr.UiServices.Common.Forms
 {
     public class CommonBaseForm : Form
     {
-        #region Helper methods
+        #region Exceptions
 
-        public event EventHandler<CommonBaseFormExceptionThrownEventArgs> ExceptionThrown;
-
-        protected void HandleException(Exception ex)
+        protected bool HandleOwnedFormsExceptions
         {
-            OnExceptionThrown(this, new CommonBaseFormExceptionThrownEventArgs(ex));
-        } // HandleException
+            get;
+            set;
+        } // HandleOwnedFormsExceptions
 
-        protected void HandleException(string message, Exception ex)
+        public Action<ExceptionEventData> GetExceptionHandler()
         {
-            OnExceptionThrown(this, new CommonBaseFormExceptionThrownEventArgs(message, ex));
-        } // HandleException
+            return HandleException;
+        } // GetExceptionHandler
 
         /// <summary>
-        /// Handles a caught exception, by displaying an ExceptionMessageBox. Descendants are encouraged to provide their own implementation.
+        /// Provides an unified way of handling exceptions.
         /// </summary>
-        /// <param name="e">Caught exception information</param>
-        /// <remarks>Descendants who override this method should not call base.HandleException</remarks>
-        protected virtual void OnExceptionThrown(object sender, CommonBaseFormExceptionThrownEventArgs e)
+        /// <param name="ex">The data about the exception, including additional information for the user, such a caption or a text</param>
+        /// <remarks>If a parent CommonForm exists, the exception will be passed along.
+        /// If no parent is found, the virtual method ExceptionHandler will be called</remarks>
+        protected void HandleException(ExceptionEventData ex)
         {
-            var parent = ParentForm as CommonBaseForm;
-            if (parent != null)
+            HandleOwnedFormException(this, ex);
+        } // HandleException
+
+        private void HandleOwnedFormException(CommonBaseForm form, ExceptionEventData ex)
+        {
+            if (!HandleOwnedFormsExceptions)
             {
-                parent.OnExceptionThrown(sender, e);
+                var parent = form.ParentForm as CommonBaseForm;
+                if (parent != null)
+                {
+                    parent.HandleOwnedFormException(this, ex);
+                } // if
             } // if
 
-            if (ExceptionThrown != null)
+            ExceptionHandler(form, ex);
+        } // HandleOwnedFormException
+
+        /// <summary>
+        /// Exception handler.
+        /// By default displays an ExceptionMessageBox. Descendants are encouraged to provide their own implementation.
+        /// </summary>
+        /// <param name="form">The form that 'throws' the exception</param>
+        /// <param name="ex">The data about the exception, including additional information for the user, such a caption or a text</param>
+        /// <remarks>Descendants who override this method MUST NOT call base.ExceptionHandler.
+        /// This method MUST NOT be called directly. To handle and exception, HandleException MUST be used instead.
+        /// </remarks>
+        protected virtual void ExceptionHandler(CommonBaseForm form, ExceptionEventData ex)
+        {
+            BasicGoogleTelemetry.SendExtendedExceptionHit(ex.Exception, true, ex.Message, this.GetType().Name);
+
+            var box = new ExceptionMessageBox()
             {
-                ExceptionThrown(this, e);
+                Caption = Properties.CommonForm.UncaughtExceptionCaption,
+                Buttons = ExceptionMessageBoxButtons.OK,
+                Symbol = ExceptionMessageBoxSymbol.Stop,
+            };
+
+            if (ex.Message == null)
+            {
+                box.Text = ex.Exception.Message;
+                box.Message = ex.Exception;
             }
             else
             {
-                BasicGoogleTelemetry.SendExtendedExceptionHit(e.Exception, true, e.Message, this.GetType().Name);
-
-                var box = new ExceptionMessageBox()
-                {
-                    Caption = Properties.CommonForm.UncaughtExceptionCaption,
-                    Buttons = ExceptionMessageBoxButtons.OK,
-                    Symbol = ExceptionMessageBoxSymbol.Stop,
-                };
-
-                if (e.Message == null)
-                {
-                    box.Message = e.Exception;
-                }
-                else
-                {
-                    box.Text = e.Message;
-                    box.InnerException = e.Exception;
-                } // if-else
-
-                box.Show(this);
+                box.Text = ex.Message;
+                box.InnerException = ex.Exception;
             } // if-else
-        } // OnExceptionThrown
+
+            box.Show(form);
+        } // ExceptionHandler
+
+        #endregion
+
+        #region 'Safe' functions
 
         protected void SafeDispose(IDisposable disposable)
         {
@@ -85,7 +106,7 @@ namespace IpTviewr.UiServices.Common.Forms
             }
             catch (Exception ex)
             {
-                HandleException(ex);
+                HandleException(new ExceptionEventData(ex));
                 return false;
             } // try-catch
         } // SafeCall
@@ -100,7 +121,7 @@ namespace IpTviewr.UiServices.Common.Forms
             }
             catch (Exception ex)
             {
-                HandleException(ex);
+                HandleException(new ExceptionEventData(ex));
                 return false;
             } // try-catch
         } // SafeCall<T>
@@ -115,7 +136,7 @@ namespace IpTviewr.UiServices.Common.Forms
             }
             catch (Exception ex)
             {
-                HandleException(ex);
+                HandleException(new ExceptionEventData(ex));
                 return false;
             } // try-catch
         } // SafeCall<T1, T2>

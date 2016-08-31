@@ -127,7 +127,6 @@
     <Compile Include="Forms\CommonBaseForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\CommonBaseFormExceptionThrownEventArgs.cs" />
     <Compile Include="Forms\IBackgroundWorkerDialog.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">

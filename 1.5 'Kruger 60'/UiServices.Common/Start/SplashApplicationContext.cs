@@ -127,8 +127,8 @@ namespace IpTviewr.UiServices.Common.Start
 
         protected abstract object DoBackgroundWork();
         protected abstract bool BackgroundWorkCompleted(RunWorkerCompletedEventArgs result);
-        protected abstract void DoDisplayMessage(IWin32Window splashScreen, string caption, string message, MessageBoxIcon icon);
-        protected abstract void DoDisplayException(IWin32Window splashScreen, string caption, string message, MessageBoxIcon icon, Exception exception);
+        protected abstract void DoDisplayMessage(Form splashScreen, string caption, string message, MessageBoxIcon icon);
+        protected abstract void DoDisplayException(Form splashScreen, string caption, string message, MessageBoxIcon icon, Exception exception);
         protected abstract Form GetMainForm();
 
         #endregion

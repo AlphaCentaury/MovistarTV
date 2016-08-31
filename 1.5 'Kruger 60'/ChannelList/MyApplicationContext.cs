@@ -81,12 +81,12 @@ namespace IpTviewr.ChannelList
             return true;
         } // BackgroundWorkCompleted
 
-        protected override void DoDisplayMessage(IWin32Window splashScreen, string caption, string message, MessageBoxIcon icon)
+        protected override void DoDisplayMessage(Form splashScreen, string caption, string message, MessageBoxIcon icon)
         {
             MyApplication.HandleException(splashScreen, caption, message ?? Properties.Texts.MyAppCtxExceptionMsg, icon, null);
         } // DoDisplayMessage
 
-        protected override void DoDisplayException(IWin32Window splashScreen, string caption, string message, MessageBoxIcon icon, Exception exception)
+        protected override void DoDisplayException(Form splashScreen, string caption, string message, MessageBoxIcon icon, Exception exception)
         {
             MyApplication.HandleException(splashScreen, caption, message ?? Properties.Texts.MyAppCtxExceptionMsg, icon, exception);
         } // DoDisplayException

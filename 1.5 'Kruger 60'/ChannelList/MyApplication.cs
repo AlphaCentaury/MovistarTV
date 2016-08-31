@@ -24,7 +24,9 @@ namespace IpTviewr.ChannelList
             set;
         } // RecorderLauncherPath
 
-        public static void HandleException(IWin32Window owner, Exception ex)
+        #region HandleException methods
+
+        public static void HandleException(Form owner, Exception ex)
         {
             BasicGoogleTelemetry.SendExtendedExceptionHit(ex);
             AddExceptionAdvancedInformation(ex);
@@ -39,7 +41,7 @@ namespace IpTviewr.ChannelList
             box.Show(owner);
         } // HandleException
 
-        public static void HandleException(IWin32Window owner, string message, Exception ex)
+        public static void HandleException(Form owner, string message, Exception ex)
         {
             HandleException(owner,
                 null,
@@ -48,7 +50,7 @@ namespace IpTviewr.ChannelList
                 ex);
         } // HandleException
 
-        public static void HandleException(IWin32Window owner, string caption, string message, Exception ex)
+        public static void HandleException(Form owner, string caption, string message, Exception ex)
         {
             HandleException(owner,
                 caption,
@@ -57,7 +59,7 @@ namespace IpTviewr.ChannelList
                 ex);
         } // HandleException
 
-        public static void HandleException(IWin32Window owner, string caption, string message, MessageBoxIcon icon, Exception ex)
+        public static void HandleException(Form owner, string caption, string message, MessageBoxIcon icon, Exception ex)
         {
             BasicGoogleTelemetry.SendExtendedExceptionHit(ex, true, message, null);
             AddExceptionAdvancedInformation(ex);
@@ -73,15 +75,17 @@ namespace IpTviewr.ChannelList
             box.Show(owner);
         } // HandleException
 
-        internal static void HandleException(HandleExceptionEventArgs e)
+        internal static void HandleException(Form form, ExceptionEventData ex)
         {
-            MyApplication.HandleException(e.OwnerWindow, e.Caption, e.Message, e.Exception);
+            MyApplication.HandleException(form, ex.Caption, ex.Message, ex.Exception);
         } // HandleException
 
         internal static void HandleException(object sender, HandleExceptionEventArgs e)
         {
-            MyApplication.HandleException(e.OwnerWindow, e.Caption, e.Message, e.Exception);
+            MyApplication.HandleException(e.OwnerForm, e.Caption, e.Message, e.Exception);
         } // HandleException
+
+        #endregion
 
         private static ExceptionMessageBoxSymbol TranslateIconToSymbol(MessageBoxIcon icon)
         {

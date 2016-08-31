@@ -3,6 +3,7 @@
 
 using Etsi.Ts102034.v010501.XmlSerialization;
 using Etsi.Ts102034.v010501.XmlSerialization.ProviderDiscovery;
+using IpTviewr.Common;
 using IpTviewr.Common.Telemetry;
 using IpTviewr.UiServices.Common.Forms;
 using IpTviewr.UiServices.Configuration;
@@ -30,15 +31,6 @@ namespace IpTviewr.UiServices.Forms
         {
             InitializeComponent();
         } // constructor
-
-        #region CommonBaseForm implementation
-
-        protected override void OnExceptionThrown(object sender, CommonBaseFormExceptionThrownEventArgs e)
-        {
-            HandleException(e.Message, e.Exception);
-        } // OnExceptionThrown
-
-        #endregion
 
         public UiServiceProvider SelectedServiceProvider
         {
@@ -178,7 +170,7 @@ namespace IpTviewr.UiServices.Forms
             }
             catch (Exception ex)
             {
-                HandleException(Properties.DiscoveryTexts.SPListUnableRefresh, ex);
+                HandleException(new ExceptionEventData(Properties.DiscoveryTexts.SPListUnableRefresh, ex));
                 return false;
             } // try-catch
         } // LoadServiceProviderList

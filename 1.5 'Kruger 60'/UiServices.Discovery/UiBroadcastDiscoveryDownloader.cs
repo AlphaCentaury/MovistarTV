@@ -96,7 +96,7 @@ namespace IpTviewr.UiServices.Discovery
         public event EventHandler<AssignNumbersArgs> AfterAssignNumbers;
         public event EventHandler<HandleExceptionEventArgs> Exception;
 
-        public UiBroadcastDiscovery Download(IWin32Window ownerWindow, UiServiceProvider serviceProvider, UiBroadcastDiscovery currentUiDiscovery, bool fromCache, bool? highDefinitionPriority = null)
+        public UiBroadcastDiscovery Download(Form ownerForm, UiServiceProvider serviceProvider, UiBroadcastDiscovery currentUiDiscovery, bool fromCache, bool? highDefinitionPriority = null)
         {
             UiBroadcastDiscovery uiDiscovery;
 
@@ -134,7 +134,7 @@ namespace IpTviewr.UiServices.Discovery
                     };
                     downloader.Request.AddPayload(0x02, null, Properties.Texts.Payload02DisplayName, typeof(BroadcastDiscoveryRoot));
                     downloader.Request.AddPayload(0x05, null, Properties.Texts.Payload05DisplayName, typeof(PackageDiscoveryRoot));
-                    downloader.Download(ownerWindow);
+                    downloader.Download(ownerForm);
                     OnAfterDownload(this, new DownloadEventArgs(downloader));
                     if (!downloader.IsOk) return null;
 
@@ -142,7 +142,7 @@ namespace IpTviewr.UiServices.Discovery
                     uiDiscovery = new UiBroadcastDiscovery(xmlDiscovery, serviceProvider.DomainName, downloader.Request.Payloads[0].SegmentVersion);
 
                     OnBeforeMerge(this, new MergeEventArgs(uiDiscovery, currentUiDiscovery));
-                    UiBroadcastDiscoveryMergeResultDialog.Merge(ownerWindow, currentUiDiscovery, uiDiscovery);
+                    UiBroadcastDiscoveryMergeResultDialog.Merge(ownerForm, currentUiDiscovery, uiDiscovery);
                     OnAfterMerge(this, new MergeEventArgs(uiDiscovery, currentUiDiscovery));
 
                     var packageDiscovery = downloader.Request.Payloads[1].XmlDeserializedData as PackageDiscoveryRoot;
@@ -160,7 +160,7 @@ namespace IpTviewr.UiServices.Discovery
             }
             catch (Exception ex)
             {
-                OnHandleException(this, new HandleExceptionEventArgs(ownerWindow, null, Properties.Texts.BroadcastListUnableRefresh, ex));
+                OnHandleException(this, new HandleExceptionEventArgs(ownerForm, null, Properties.Texts.BroadcastListUnableRefresh, ex));
                 return null;
             } // try-catch
         } // Download

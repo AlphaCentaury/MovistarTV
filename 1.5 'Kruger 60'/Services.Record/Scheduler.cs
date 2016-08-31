@@ -18,7 +18,7 @@ namespace IpTviewr.Services.Record
 {
     public class Scheduler
     {
-        private Action<string, Exception> ExceptionHandler;
+        private Action<ExceptionEventData> ExceptionHandler;
         private string RecordTasksFolder;
         private string RecorderLauncherPath;
         private string DbFile;
@@ -31,7 +31,7 @@ namespace IpTviewr.Services.Record
         private TaskFolder TaskFolder;
         private string TaskName;
 
-        public Scheduler(Action<string, Exception> exceptionHandler, string recordTasksFolder, string recorderLauncherPath)
+        public Scheduler(Action<ExceptionEventData> exceptionHandler, string recordTasksFolder, string recorderLauncherPath)
         {
             if ((exceptionHandler == null) || string.IsNullOrEmpty(recordTasksFolder) || string.IsNullOrEmpty(recorderLauncherPath))
             {
@@ -135,7 +135,7 @@ namespace IpTviewr.Services.Record
                     }
                     catch (Exception ex)
                     {
-                        ExceptionHandler(Texts.TaskRunException, ex);
+                        ExceptionHandler(new ExceptionEventData(Texts.TaskRunException, ex));
                         return false;
                     } // try-catch
                 } // if
@@ -144,7 +144,7 @@ namespace IpTviewr.Services.Record
             }
             catch (Exception ex)
             {
-                ExceptionHandler(Texts.TaskCreationException, ex);
+                ExceptionHandler(new ExceptionEventData(Texts.TaskCreationException, ex));
                 return false;
             }
             finally

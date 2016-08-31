@@ -8,7 +8,7 @@ namespace IpTviewr.Internal.Tools.ChannelLogos
 {
     abstract class ConsistencyCheck
     {
-        protected IWin32Window Owner;
+        protected Form Owner;
 
         public class ProgressChangedEventArgs: EventArgs
         {
@@ -72,7 +72,7 @@ namespace IpTviewr.Internal.Tools.ChannelLogos
             private set;
         } // Results
 
-        public void Execute(IWin32Window owner)
+        public void Execute(Form owner)
         {
             Owner = owner;
             Run();

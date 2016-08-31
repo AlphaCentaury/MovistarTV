@@ -55,7 +55,7 @@ namespace IpTviewr.Internal.Tools.ChannelLogos
 
         internal static void HandleException(object sender, HandleExceptionEventArgs e)
         {
-            HandleException(e.OwnerWindow, e.Caption, e.Message, e.Exception);
+            HandleException(e.OwnerForm, e.Caption, e.Message, e.Exception);
         } // HandleException
 
         private static ExceptionMessageBoxSymbol TranslateIconToSymbol(MessageBoxIcon icon)
