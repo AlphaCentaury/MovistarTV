@@ -551,6 +551,8 @@ namespace IpTviewr.Tools.FirstTimeConfig
             // checkEpg
             // 
             resources.ApplyResources(this.checkEpg, "checkEpg");
+            this.checkEpg.Checked = true;
+            this.checkEpg.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkEpg.Name = "checkEpg";
             this.checkEpg.UseVisualStyleBackColor = true;
             // 

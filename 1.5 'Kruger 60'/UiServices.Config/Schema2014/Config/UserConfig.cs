@@ -39,14 +39,12 @@ namespace IpTviewr.UiServices.Configuration.Schema2014.Config
             set;
         } // Record
 
-        /*
         [XmlElement("EPG")]
         public EpgConfig Epg
         {
             get;
             set;
         } // Epg
-        */
 
         public bool ChannelNumberStandardDefinitionPriority
         {

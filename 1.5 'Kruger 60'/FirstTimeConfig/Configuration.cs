@@ -21,7 +21,7 @@ namespace IpTviewr.Tools.FirstTimeConfig
 {
     internal class Configuration
     {
-        public static bool Create(string vlcPath, string rootSaveLocation, TelemetryConfiguration analytics, /*EpgConfig epg, */ bool sdPriority, string xmlConfigPath, out string message)
+        public static bool Create(string vlcPath, string rootSaveLocation, TelemetryConfiguration analytics, EpgConfig epg, bool sdPriority, string xmlConfigPath, out string message)
         {
             UserConfig user;
 
@@ -78,7 +78,7 @@ namespace IpTviewr.Tools.FirstTimeConfig
                             } // RecorderConfig
                         } // Recorders
                     }, // Record
-                    //Epg = epg,
+                    Epg = epg,
                     ChannelNumberStandardDefinitionPriority = sdPriority,
                 }; // user
 

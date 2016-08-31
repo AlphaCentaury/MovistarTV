@@ -1,4 +1,4 @@
-﻿// Copyright (C) 2015, Codeplex user AlphaCentaury
+﻿// Copyright (C) 2015-2016, Codeplex/GitHub user AlphaCentaury
 // All rights reserved, except those granted by the governing license of this software. See 'license.txt' file in the project root for complete license information.
 
 using System;
@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Xml.Serialization;
 
-namespace Project.IpTv.UiServices.Configuration.Schema2014.Config
+namespace IpTviewr.UiServices.Configuration.Schema2014.Config
 {
     [Serializable]
     [XmlType(TypeName = "EpgConfig", Namespace = ConfigCommon.ConfigXmlNamespace)]

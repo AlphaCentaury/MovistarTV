@@ -103,6 +103,7 @@
     <Compile Include="Logos\ProviderLogoMappings.cs" />
     <Compile Include="Schema2014\Config\AnalyticsConfig.cs" />
     <Compile Include="Schema2014\Config\ConfigCommon.cs" />
+    <Compile Include="Schema2014\Config\EpgConfig.cs" />
     <Compile Include="Schema2014\Config\RecordConfig.cs" />
     <Compile Include="Schema2014\Config\RecorderConfig.cs" />
     <Compile Include="Schema2014\Config\RecordSaveLocation.cs" />
