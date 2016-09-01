@@ -67,6 +67,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Third-party\TaskScheduler\2.2.2\v2.0\Microsoft.Win32.TaskScheduler.dll</HintPath>
     </Reference>
+    <Reference Include="Services.EpgDiscovery">
+      <HintPath>..\Services.EpgDiscovery\bin\Debug\Services.EpgDiscovery.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.SqlServerCe, Version=4.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
@@ -264,6 +267,10 @@
     <ProjectReference Include="..\UiServices.DvbStpClient\UiServices.DvbStpClient.csproj">
       <Project>{ba481e42-f570-4d2c-94d4-21c4cce27762}</Project>
       <Name>UiServices.DvbStpClient</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UiServices.EPG\UiServices.EPG.csproj">
+      <Project>{004C3829-FED4-4084-B23B-871193AFA8C7}</Project>
+      <Name>UiServices.EPG</Name>
     </ProjectReference>
     <ProjectReference Include="..\UiServices.Forms\UiServices.Forms.csproj">
       <Project>{90f750b3-64db-493f-96a6-e68de5ea60a1}</Project>

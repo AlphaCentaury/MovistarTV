@@ -104,8 +104,6 @@ namespace IpTviewr.ChannelList
             this.separatorEpg2 = new System.Windows.Forms.ToolStripSeparator();
             this.menuItemEpgPrevious = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemEpgNext = new System.Windows.Forms.ToolStripMenuItem();
-            this.separatorEpg3 = new System.Windows.Forms.ToolStripSeparator();
-            this.menuItemEpgRefresh = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemHelp = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemHelpDocumentation = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemHelpHomePage = new System.Windows.Forms.ToolStripMenuItem();
@@ -129,17 +127,16 @@ namespace IpTviewr.ChannelList
             this.separatorContextList3 = new System.Windows.Forms.ToolStripSeparator();
             this.contextMenuListExportM3u = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuListProperties = new System.Windows.Forms.ToolStripMenuItem();
-            this.labelNotification = new System.Windows.Forms.Label();
             this.timerDismissNotification = new System.Windows.Forms.Timer(this.components);
             this.listViewChannelList = new IpTviewr.UiServices.Common.Controls.ListViewSortable();
-            this.pictureNotificationIcon = new System.Windows.Forms.PictureBox();
-            this.buttonRecordChannel = new System.Windows.Forms.Button();
-            this.buttonDisplayChannel = new System.Windows.Forms.Button();
             this.pictureProviderLogo = new System.Windows.Forms.PictureBox();
+            this.statusMainStrip = new System.Windows.Forms.StatusStrip();
+            this.statusLabelMain = new System.Windows.Forms.ToolStripStatusLabel();
+            this.epgMiniGuide = new IpTviewr.UiServices.EPG.EpgMiniGuide();
             this.menuStripMain.SuspendLayout();
             this.contextMenuList.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureNotificationIcon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureProviderLogo)).BeginInit();
+            this.statusMainStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // imageListChannelsLarge
@@ -581,9 +578,7 @@ namespace IpTviewr.ChannelList
             this.menuItemEpgTomorrow,
             this.separatorEpg2,
             this.menuItemEpgPrevious,
-            this.menuItemEpgNext,
-            this.separatorEpg3,
-            this.menuItemEpgRefresh});
+            this.menuItemEpgNext});
             this.menuItemEpg.Name = "menuItemEpg";
             resources.ApplyResources(this.menuItemEpg, "menuItemEpg");
             // 
@@ -591,6 +586,7 @@ namespace IpTviewr.ChannelList
             // 
             this.menuItemEpgBasicGrid.Name = "menuItemEpgBasicGrid";
             resources.ApplyResources(this.menuItemEpgBasicGrid, "menuItemEpgBasicGrid");
+            this.menuItemEpgBasicGrid.Click += new System.EventHandler(this.menuItemEpgBasicGrid_Click);
             // 
             // separatorEpg1
             // 
@@ -606,11 +602,13 @@ namespace IpTviewr.ChannelList
             // 
             this.menuItemEpgToday.Name = "menuItemEpgToday";
             resources.ApplyResources(this.menuItemEpgToday, "menuItemEpgToday");
+            this.menuItemEpgToday.Click += new System.EventHandler(this.menuItemEpgToday_Click);
             // 
             // menuItemEpgTomorrow
             // 
             this.menuItemEpgTomorrow.Name = "menuItemEpgTomorrow";
             resources.ApplyResources(this.menuItemEpgTomorrow, "menuItemEpgTomorrow");
+            this.menuItemEpgTomorrow.Click += new System.EventHandler(this.menuItemEpgTomorrow_Click);
             // 
             // separatorEpg2
             // 
@@ -621,22 +619,13 @@ namespace IpTviewr.ChannelList
             // 
             this.menuItemEpgPrevious.Name = "menuItemEpgPrevious";
             resources.ApplyResources(this.menuItemEpgPrevious, "menuItemEpgPrevious");
+            this.menuItemEpgPrevious.Click += new System.EventHandler(this.menuItemEpgPrevious_Click);
             // 
             // menuItemEpgNext
             // 
             this.menuItemEpgNext.Name = "menuItemEpgNext";
             resources.ApplyResources(this.menuItemEpgNext, "menuItemEpgNext");
-            // 
-            // separatorEpg3
-            // 
-            this.separatorEpg3.Name = "separatorEpg3";
-            resources.ApplyResources(this.separatorEpg3, "separatorEpg3");
-            // 
-            // menuItemEpgRefresh
-            // 
-            this.menuItemEpgRefresh.Image = global::IpTviewr.ChannelList.Properties.Resources.RefreshBlue_16x16;
-            this.menuItemEpgRefresh.Name = "menuItemEpgRefresh";
-            resources.ApplyResources(this.menuItemEpgRefresh, "menuItemEpgRefresh");
+            this.menuItemEpgNext.Click += new System.EventHandler(this.menuItemEpgNext_Click);
             // 
             // menuItemHelp
             // 
@@ -804,11 +793,6 @@ namespace IpTviewr.ChannelList
             resources.ApplyResources(this.contextMenuListProperties, "contextMenuListProperties");
             this.contextMenuListProperties.Click += new System.EventHandler(this.menuItemChannelDetails_Click);
             // 
-            // labelNotification
-            // 
-            resources.ApplyResources(this.labelNotification, "labelNotification");
-            this.labelNotification.Name = "labelNotification";
-            // 
             // timerDismissNotification
             // 
             this.timerDismissNotification.Tick += new System.EventHandler(this.timerDismissNotification_Tick);
@@ -825,42 +809,45 @@ namespace IpTviewr.ChannelList
             this.listViewChannelList.UseCompatibleStateImageBehavior = false;
             this.listViewChannelList.DoubleClick += new System.EventHandler(this.listViewChannelsList_DoubleClick);
             // 
-            // pictureNotificationIcon
-            // 
-            resources.ApplyResources(this.pictureNotificationIcon, "pictureNotificationIcon");
-            this.pictureNotificationIcon.Name = "pictureNotificationIcon";
-            this.pictureNotificationIcon.TabStop = false;
-            // 
-            // buttonRecordChannel
-            // 
-            resources.ApplyResources(this.buttonRecordChannel, "buttonRecordChannel");
-            this.buttonRecordChannel.Image = global::IpTviewr.ChannelList.Properties.Resources.Record_16x16;
-            this.buttonRecordChannel.Name = "buttonRecordChannel";
-            this.buttonRecordChannel.UseVisualStyleBackColor = true;
-            this.buttonRecordChannel.Click += new System.EventHandler(this.buttonRecordChannel_Click);
-            // 
-            // buttonDisplayChannel
-            // 
-            resources.ApplyResources(this.buttonDisplayChannel, "buttonDisplayChannel");
-            this.buttonDisplayChannel.Image = global::IpTviewr.ChannelList.CommonUiResources.Action_Play_LG_16x16;
-            this.buttonDisplayChannel.Name = "buttonDisplayChannel";
-            this.buttonDisplayChannel.UseVisualStyleBackColor = true;
-            this.buttonDisplayChannel.Click += new System.EventHandler(this.buttonDisplayChannel_Click);
-            // 
             // pictureProviderLogo
             // 
             resources.ApplyResources(this.pictureProviderLogo, "pictureProviderLogo");
             this.pictureProviderLogo.Name = "pictureProviderLogo";
             this.pictureProviderLogo.TabStop = false;
             // 
+            // statusMainStrip
+            // 
+            this.statusMainStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.statusLabelMain});
+            resources.ApplyResources(this.statusMainStrip, "statusMainStrip");
+            this.statusMainStrip.Name = "statusMainStrip";
+            // 
+            // statusLabelMain
+            // 
+            resources.ApplyResources(this.statusLabelMain, "statusLabelMain");
+            this.statusLabelMain.Image = global::IpTviewr.ChannelList.Properties.Resources.Error_24x24;
+            this.statusLabelMain.Name = "statusLabelMain";
+            this.statusLabelMain.Padding = new System.Windows.Forms.Padding(50, 0, 0, 0);
+            this.statusLabelMain.Spring = true;
+            // 
+            // epgMiniGuide
+            // 
+            resources.ApplyResources(this.epgMiniGuide, "epgMiniGuide");
+            this.epgMiniGuide.BackColor = System.Drawing.Color.White;
+            this.epgMiniGuide.BasicGridEnabled = false;
+            this.epgMiniGuide.DetailsEnabled = false;
+            this.epgMiniGuide.IsDisabled = false;
+            this.epgMiniGuide.ManualActions = false;
+            this.epgMiniGuide.Name = "epgMiniGuide";
+            this.epgMiniGuide.ButtonClicked += new System.EventHandler<IpTviewr.UiServices.EPG.EpgMiniBarButtonClickedEventArgs>(this.epgMiniGuide_ButtonClicked);
+            this.epgMiniGuide.NavigationButtonsChanged += new System.EventHandler<IpTviewr.UiServices.EPG.EpgMiniBarNavigationButtonsChangedEventArgs>(this.epgMiniGuide_NavigationButtonsChanged);
+            // 
             // ChannelListForm
             // 
             resources.ApplyResources(this, "$this");
+            this.Controls.Add(this.epgMiniGuide);
+            this.Controls.Add(this.statusMainStrip);
             this.Controls.Add(this.listViewChannelList);
-            this.Controls.Add(this.labelNotification);
-            this.Controls.Add(this.pictureNotificationIcon);
-            this.Controls.Add(this.buttonRecordChannel);
-            this.Controls.Add(this.buttonDisplayChannel);
             this.Controls.Add(this.labelProviderDescription);
             this.Controls.Add(this.labelProviderName);
             this.Controls.Add(this.pictureProviderLogo);
@@ -873,8 +860,9 @@ namespace IpTviewr.ChannelList
             this.menuStripMain.ResumeLayout(false);
             this.menuStripMain.PerformLayout();
             this.contextMenuList.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureNotificationIcon)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureProviderLogo)).EndInit();
+            this.statusMainStrip.ResumeLayout(false);
+            this.statusMainStrip.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -895,12 +883,8 @@ namespace IpTviewr.ChannelList
         private System.Windows.Forms.PictureBox pictureProviderLogo;
         private System.Windows.Forms.Label labelProviderName;
         private System.Windows.Forms.Label labelProviderDescription;
-        private System.Windows.Forms.Button buttonRecordChannel;
-        private System.Windows.Forms.Button buttonDisplayChannel;
         private System.Windows.Forms.ToolStripMenuItem menuItemChannelListView;
         private System.Windows.Forms.ToolStripSeparator separatorChannel2;
-        private System.Windows.Forms.PictureBox pictureNotificationIcon;
-        private System.Windows.Forms.Label labelNotification;
         private System.Windows.Forms.Timer timerDismissNotification;
         private System.Windows.Forms.ToolStripMenuItem menuItemRecordings;
         private System.Windows.Forms.ToolStripMenuItem menuItemHelp;
@@ -922,7 +906,6 @@ namespace IpTviewr.ChannelList
         private System.Windows.Forms.ToolStripMenuItem menuItemPackagesManage;
         private System.Windows.Forms.ToolStripMenuItem menuItemEpg;
         private System.Windows.Forms.ToolStripSeparator separatorEpg1;
-        private System.Windows.Forms.ToolStripMenuItem menuItemEpgRefresh;
         private System.Windows.Forms.ToolStripMenuItem menuItemDvbRecent;
         private System.Windows.Forms.ToolStripMenuItem menuItemDvbRecent0;
         private System.Windows.Forms.ToolStripMenuItem menuItemDvbRecent1;
@@ -979,6 +962,8 @@ namespace IpTviewr.ChannelList
         private System.Windows.Forms.ToolStripSeparator separatorContextList3;
         private System.Windows.Forms.ToolStripMenuItem contextMenuListExportM3u;
         private System.Windows.Forms.ToolStripMenuItem menuItemEpgBasicGrid;
-        private System.Windows.Forms.ToolStripSeparator separatorEpg3;
+        private System.Windows.Forms.StatusStrip statusMainStrip;
+        private System.Windows.Forms.ToolStripStatusLabel statusLabelMain;
+        private UiServices.EPG.EpgMiniGuide epgMiniGuide;
     }
 }

@@ -112,12 +112,12 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="menuItemDvbRecent0.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAu
@@ -913,6 +913,12 @@
   <data name="menuItemRecordings.Text" xml:space="preserve">
     <value>&amp;Grabaciones</value>
   </data>
+  <data name="menuItemEpgBasicGrid.Size" type="System.Drawing.Size, System.Drawing">
+    <value>239, 22</value>
+  </data>
+  <data name="separatorEpg1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>236, 6</value>
+  </data>
   <data name="menuItemEpgNow.Size" type="System.Drawing.Size, System.Drawing">
     <value>239, 22</value>
   </data>
@@ -931,7 +937,7 @@
   <data name="menuItemEpgTomorrow.Text" xml:space="preserve">
     <value>&amp;Mañana / otros días...</value>
   </data>
-  <data name="separatorEpg1.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="separatorEpg2.Size" type="System.Drawing.Size, System.Drawing">
     <value>236, 6</value>
   </data>
   <data name="menuItemEpgPrevious.Size" type="System.Drawing.Size, System.Drawing">
@@ -945,15 +951,6 @@
   </data>
   <data name="menuItemEpgNext.Text" xml:space="preserve">
     <value>&amp;Siguiente programa</value>
-  </data>
-  <data name="separatorEpg2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>236, 6</value>
-  </data>
-  <data name="menuItemEpgRefresh.Size" type="System.Drawing.Size, System.Drawing">
-    <value>239, 22</value>
-  </data>
-  <data name="menuItemEpgRefresh.Text" xml:space="preserve">
-    <value>A&amp;ctualizar...</value>
   </data>
   <data name="menuItemEpg.Size" type="System.Drawing.Size, System.Drawing">
     <value>103, 20</value>
