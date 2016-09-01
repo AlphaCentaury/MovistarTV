@@ -111,9 +111,9 @@ namespace IpTviewr.Services.EpgDiscovery
             } // if
 
             node = service.Programs.First;
-            while (program != null)
+            while (node != null)
             {
-                if (program.IsCurrent(utcTime))
+                if (node.Value.IsCurrent(utcTime))
                 {
                     break;
                 } // if

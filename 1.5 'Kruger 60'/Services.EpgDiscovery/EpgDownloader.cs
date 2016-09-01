@@ -151,10 +151,10 @@ namespace IpTviewr.Services.EpgDiscovery
             Console.WriteLine("{0}:{1} ({2} received)", e.SegmentIdentity, e.Payload.Length, StreamClient.DatagramCount);
             Processor.AddSegment(e.Payload);
 
-            if (StreamClient.DatagramCount > 500)
-            {
-                StreamClient.CancelRequest();
-            } // if
+            // TODO: stop when EPG is complete
+            // Notify the caller.
+            // Give teh caller the option to download in a continuos loop
+            // or the restart the download after a given time
         } // SegmentPayloadReceived
     } // class EpgDownloader
 } // namespace
