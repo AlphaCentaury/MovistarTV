@@ -35,6 +35,11 @@ namespace IpTviewr.ChannelList
             BasicGoogleTelemetry.ManageSession(true);
             BasicGoogleTelemetry.EnsureHitsSents();
 
+            // Ensure all background threads end right now (like updating the EPG data with EpgDownloader)
+            // TODO: Don't to this
+            Thread.Sleep(1000);
+            Environment.Exit(exitCode);
+
             return exitCode;
         } // Main
 

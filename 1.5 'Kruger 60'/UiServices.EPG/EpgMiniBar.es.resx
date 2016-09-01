@@ -112,26 +112,16 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="labelStartTime.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="labelEndTime.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="labelEllapsed.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
   <data name="buttonDetails.ToolTip" xml:space="preserve">
     <value>Mostrar detalles del programa</value>
   </data>
-  <data name="buttonFullView.ToolTip" xml:space="preserve">
-    <value>Mostrar vista extendida de estos programas</value>
+  <data name="buttonEpgGrid.ToolTip" xml:space="preserve">
+    <value>Mostrar guía de programación</value>
   </data>
   <data name="buttonForward.ToolTip" xml:space="preserve">
     <value>Mostrar información del programa siguiente</value>
@@ -139,7 +129,19 @@
   <data name="buttonBack.ToolTip" xml:space="preserve">
     <value>Mostrar información del programa anterior</value>
   </data>
-  <data name="buttonEpgGrid.ToolTip" xml:space="preserve">
-    <value>Mostrar guía de programación</value>
+  <data name="buttonFullView.ToolTip" xml:space="preserve">
+    <value>Mostrar vista extendida de estos programas</value>
+  </data>
+  <data name="buttonRecordChannel.Text" xml:space="preserve">
+    <value>Gra&amp;bar...</value>
+  </data>
+  <data name="buttonRecordChannel.ToolTip" xml:space="preserve">
+    <value>Graba el programa seleccionado o el canal</value>
+  </data>
+  <data name="buttonDisplayChannel.Text" xml:space="preserve">
+    <value>&amp;Ver canal</value>
+  </data>
+  <data name="buttonDisplayChannel.ToolTip" xml:space="preserve">
+    <value>Muestra el canal de televisión seleccionado</value>
   </data>
 </root>

@@ -61,7 +61,7 @@ namespace IpTviewr.UiServices.EPG.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Loading EPG data....
+        ///   Looks up a localized string similar to Searching for program information....
         /// </summary>
         internal static string EpgDataLoading {
             get {
@@ -70,7 +70,7 @@ namespace IpTviewr.UiServices.EPG.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Loading EPG information....
+        ///   Looks up a localized string similar to Searching for EPG data....
         /// </summary>
         internal static string EpgDataLoadingList {
             get {
@@ -97,7 +97,7 @@ namespace IpTviewr.UiServices.EPG.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to (EPG information is not available).
+        ///   Looks up a localized string similar to Program information is not available.
         /// </summary>
         internal static string EpgNoInformation {
             get {

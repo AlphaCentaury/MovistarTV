@@ -9,9 +9,14 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using IpTviewr.Services.EpgDiscovery;
 using IpTviewr.Services.SqlServerCE;
 using IpTviewr.Common;
+using IpTviewr.UiServices.Discovery;
+using IpTviewr.UiServices.Record;
+using IpTviewr.UiServices.Common.Forms;
+using IpTviewr.Core.IpTvProvider;
+using IpTviewr.Services.EpgDiscovery;
+using System.Threading;
 
 namespace IpTviewr.UiServices.EPG
 {
@@ -36,22 +41,48 @@ namespace IpTviewr.UiServices.EPG
             Forward,
             Details,
             FullView,
-            EpgGrid
+            EpgGrid,
+            Show,
+            Record,
         } // enum Button
 
         public event EventHandler<EpgMiniBarButtonClickedEventArgs> ButtonClicked;
         public event EventHandler<EpgMiniBarNavigationButtonsChangedEventArgs> NavigationButtonsChanged;
 
-        public EpgMiniBar()
-        {
-            InitializeComponent();
-            AutoRefresh = true;
-        } // constructor
+        #region Properties
 
-        public EpgProgram SelectedEvent
+        public UiBroadcastService SelectedService
+        {
+            get;
+            private set;
+        } // SelectedService
+
+        public EpgProgram SelectedProgram
         {
             get { return (EpgPrograms == null) ? null : EpgPrograms[EpgIndex]; }
-        } // SelectedEvent
+        } // SelectedProgram
+
+        public DateTime LocalReferenceTime
+        {
+            get;
+            private set;
+        } // ReferenceTime
+
+        public EpgDatastore Datastore
+        {
+            get;
+            private set;
+        } // Datastore
+
+        /// <summary>
+        /// By default, the EpgMiniBar will handle all actions invoked by the buttons by itself.
+        /// If set to true, it's up to the control owner to implement the actions. For this to work, the owner has to subscribe to the ButtonClicked event.
+        /// </summary>
+        public bool ManualActions
+        {
+            get;
+            set;
+        } // ManualActions
 
         public bool IsDisabled
         {
@@ -66,35 +97,36 @@ namespace IpTviewr.UiServices.EPG
             set;
         } // AutoRefresh
 
-        public bool DetailsButtonEnabled
+        public bool DetailsEnabled
         {
             get;
             set;
         }  // DetailsButtonEnabled
 
-        public string EpgDatabase
+        public bool BasicGridEnabled
         {
             get;
-            private set;
-        } // EpgDatabase
+            set;
+        } // ButtonBasicGridEnabled
 
-        public string FullServiceName
-        {
-            get;
-            private set;
-        } // FullServiceName
+        #endregion Properties
 
-        public string FullAlternateServiceName
+        public EpgMiniBar()
         {
-            get;
-            private set;
-        } // FullAlternateServiceName
+            InitializeComponent();
+            AutoRefresh = true;
+        } // constructor
 
-        public DateTime ReferenceTime
+        #region Public static methods
+
+        internal static DateTime TruncateToMinutes(DateTime time)
         {
-            get;
-            private set;
-        } // ReferenceTime
+            return new DateTime(time.Year, time.Month, time.Day, time.Hour, time.Minute, 0, time.Kind); // set seconds to 0
+        } // TruncateToMinutes
+
+        #endregion
+
+        #region Event handlers
 
         private void timerLoadingData_Tick(object sender, EventArgs e)
         {
@@ -114,6 +146,79 @@ namespace IpTviewr.UiServices.EPG
             } // try-catch
         } // timerAutoRefresh_Tick
 
+        private void buttonBack_Click(object sender, EventArgs e)
+        {
+            ButtonClicked?.Invoke(this, new EpgMiniBarButtonClickedEventArgs(Button.Back));
+            if (ManualActions) return;
+
+            GoBack();
+        } // buttonBack_Click
+
+        private void buttonForward_Click(object sender, EventArgs e)
+        {
+            ButtonClicked?.Invoke(this, new EpgMiniBarButtonClickedEventArgs(Button.Forward));
+            if (ManualActions) return;
+
+            GoForward();
+        } // buttonForward_Click
+
+        private void buttonDetails_Click(object sender, EventArgs e)
+        {
+            ButtonClicked?.Invoke(this, new EpgMiniBarButtonClickedEventArgs(Button.Details));
+            if (ManualActions) return;
+
+            // TODO: auto action
+        } // buttonDetails_Click
+
+        private void buttonFullView_Click(object sender, EventArgs e)
+        {
+            ButtonClicked?.Invoke(this, new EpgMiniBarButtonClickedEventArgs(Button.FullView));
+            if (ManualActions) return;
+
+            // TODO: auto action
+        } // buttonFullView_Click
+
+        private void buttonEpgGrid_Click(object sender, EventArgs e)
+        {
+            ButtonClicked?.Invoke(this, new EpgMiniBarButtonClickedEventArgs(Button.EpgGrid));
+
+            // There's no automatic action for this button
+            // It must be handled by the owner
+        } // buttonEpgGrid_Click
+
+        private void buttonDisplayChannel_Click(object sender, EventArgs e)
+        {
+            ButtonClicked?.Invoke(this, new EpgMiniBarButtonClickedEventArgs(Button.Show));
+            if (ManualActions) return;
+
+            ExternalTvPlayer.ShowTvChannel(ParentForm, SelectedService, true);
+        } // buttonDisplayChannel_Click
+
+        private void buttonRecordChannel_Click(object sender, EventArgs e)
+        {
+            ButtonClicked?.Invoke(this, new EpgMiniBarButtonClickedEventArgs(Button.Record));
+            if (ManualActions) return;
+
+            RecordHelper.RecordService(ParentForm as CommonBaseForm, SelectedService, SelectedProgram, LocalReferenceTime, true);
+        } // buttonRecordChannel_Click
+
+        #endregion
+
+        #region Actions
+
+        public void SetEpgPrograms(UiBroadcastService service, DateTime localReferenceTime, EpgDatastore datastore)
+        {
+            SelectedService = service;
+            LocalReferenceTime = TruncateToMinutes(localReferenceTime);
+            Datastore = datastore;
+
+            // clean-up UI
+            ClearEpgPrograms();
+            ReplaceChannelLogo(service?.Logo.GetImage(Configuration.Logos.LogoSize.Size48));
+
+            LoadEpgProgramsAsync();
+        } // SetEpgPrograms
+
         public void ClearEpgPrograms()
         {
             timerLoadingData.Enabled = false;
@@ -121,7 +226,7 @@ namespace IpTviewr.UiServices.EPG
             EpgPrograms = null;
             EpgIndex = -1;
 
-            pictureChannelLogo.Image = null;
+            ReplaceChannelLogo(null);
 
             labelProgramTitle.Text = IsDisabled? Properties.Texts.EpgNoInformation : null;
             labelEllapsed.Text = null;
@@ -131,27 +236,18 @@ namespace IpTviewr.UiServices.EPG
             epgProgressBar.Visible = false;
 
             EnableBackForward(false, false);
-            buttonEpgGrid.Enabled = true;
+            buttonEpgGrid.Enabled = BasicGridEnabled;
+            buttonFullView.Enabled = false;
             buttonDetails.Enabled = false;
+
+            var enableButtons = (SelectedService != null) && (!SelectedService.IsHidden);
+            buttonDisplayChannel.Enabled = enableButtons;
+            buttonRecordChannel.Enabled = enableButtons;
         } // ClearEpgPrograms
 
-        public void DisplayEpgPrograms(Image channelLogo, string fullServiceName, string fullAlternateServiceName, DateTime referenceTime, string epgDatabase)
+        public void RefreshEpgPrograms(DateTime localReferenceTime)
         {
-            EpgDatabase = epgDatabase;
-            FullServiceName = fullServiceName;
-            FullAlternateServiceName = fullAlternateServiceName;
-            ReferenceTime = new DateTime(referenceTime.Year, referenceTime.Month, referenceTime.Day, referenceTime.Hour, referenceTime.Minute, 0, 0);
-            
-            // clean-up UI
-            ClearEpgPrograms();
-            pictureChannelLogo.Image = channelLogo;
-
-            LoadEpgProgramsAsync();
-        } // DisplayEpgPrograms
-
-        public void RefreshEpgPrograms(DateTime referenceTime)
-        {
-            ReferenceTime = new DateTime(referenceTime.Year, referenceTime.Month, referenceTime.Day, referenceTime.Hour, referenceTime.Minute, 0, 0);
+            LocalReferenceTime = TruncateToMinutes(localReferenceTime);
             LoadEpgProgramsAsync();
         } // RefreshEpgPrograms
 
@@ -167,53 +263,17 @@ namespace IpTviewr.UiServices.EPG
 
         public void GoBack()
         {
-            if (EpgIndex < 0) return;
             DisplayEpgProgram(EpgIndex - 1);
         } // GoBack
 
         public void GoForward()
         {
-            if (EpgIndex > 2) return;
             DisplayEpgProgram(EpgIndex + 1);
         } // GoFoward
 
-        private void buttonBack_Click(object sender, EventArgs e)
-        {
-            ButtonClicked?.Invoke(this, new EpgMiniBarButtonClickedEventArgs(Button.Back));
+        #endregion
 
-            GoBack();
-        } // buttonBack_Click
-
-        private void buttonForward_Click(object sender, EventArgs e)
-        {
-            ButtonClicked?.Invoke(this, new EpgMiniBarButtonClickedEventArgs(Button.Forward));
-
-            GoForward();
-        } // buttonForward_Click
-
-        private void buttonDetails_Click(object sender, EventArgs e)
-        {
-            var buttonClicked = ButtonClicked;
-            if (buttonClicked == null) return;
-
-            buttonClicked(this, new EpgMiniBarButtonClickedEventArgs(Button.Details));
-        } // buttonDetails_Click
-
-        private void buttonFullView_Click(object sender, EventArgs e)
-        {
-            var buttonClicked = ButtonClicked;
-            if (buttonClicked == null) return;
-
-            buttonClicked(this, new EpgMiniBarButtonClickedEventArgs(Button.FullView));
-        } // buttonFullView_Click
-
-        private void buttonEpgGrid_Click(object sender, EventArgs e)
-        {
-            var buttonClicked = ButtonClicked;
-            if (buttonClicked == null) return;
-
-            buttonClicked(this, new EpgMiniBarButtonClickedEventArgs(Button.EpgGrid));
-        } // buttonEpgGrid_Click
+        #region Auxuliary methods
 
         private void LoadEpgProgramsAsync()
         {
@@ -224,36 +284,48 @@ namespace IpTviewr.UiServices.EPG
             timerLoadingData.Enabled = false;
             timerLoadingData.Enabled = true;
 
+            // TODO: do NOT assume .imagenio.es
+            var fullServiceName = SelectedService.ServiceName + ".imagenio.es";
+            var fullAlternateServiceName = SelectedService.ReplacementService?.ServiceName + ".imagenio.es";
+
             var data = new LoadEpgProgramsData()
             {
-                RequestId = ++CurrentRequestId,
-                FullServiceName = this.FullServiceName,
-                FullAlternateServiceName = this.FullAlternateServiceName,
-                ReferenceTime = this.ReferenceTime
+                RequestId = Interlocked.Increment(ref CurrentRequestId),
+                FullServiceName = fullServiceName,
+                FullAlternateServiceName = fullAlternateServiceName,
+                ReferenceTime = this.LocalReferenceTime
             };
 
-            System.Threading.ThreadPool.QueueUserWorkItem((o) => LoadEpgPrograms(data), null);
+            ThreadPool.QueueUserWorkItem((o) => LoadEpgPrograms(data), null);
         } // LoadEpgProgramsAsync
 
         private void LoadEpgPrograms(LoadEpgProgramsData data)
         {
-            int serviceDbId;
+            var programs = Datastore.GetPrograms(data.FullServiceName, LocalReferenceTime, 1, 2);
 
-            using (var cn = DbServices.GetConnection(EpgDatabase))
+            // try alternate service if no EPG data
+            if ((programs == null) && (data.FullAlternateServiceName != null))
             {
-                // TODO: EPG
-                // serviceDbId = EpgDbQuery.GetDatabaseIdForServiceId(FullServiceName, cn);
-                // data.EpgPrograms = EpgDbQuery.GetBeforeNowAndThenEvents(cn, serviceDbId, ReferenceTime.ToUniversalTime());
+                programs = Datastore.GetPrograms(data.FullAlternateServiceName, LocalReferenceTime, 1, 2);
+            } // if
 
-                // try alternate service if no EPG data
-                if ((data.EpgPrograms == null) && (FullAlternateServiceName != null))
-                {
-                    // serviceDbId = EpgDbQuery.GetDatabaseIdForServiceId(FullAlternateServiceName, cn);
-                    // data.EpgPrograms = EpgDbQuery.GetBeforeNowAndThenEvents(cn, serviceDbId, ReferenceTime.ToUniversalTime());
-                } // if
+            // populate data
+            if (programs != null)
+            {
+                var epgPrograms = new EpgProgram[4];
+                epgPrograms[0] = programs.Requested?.Previous?.Program;
+                epgPrograms[1] = programs.Requested?.Program;
+                var next = programs.Requested?.Next;
+                epgPrograms[2] = next?.Program;
+                next = next?.Next;
+                epgPrograms[3] = next?.Program;
 
-                this.BeginInvoke(new Action<LoadEpgProgramsData>(DisplayEpgPrograms), data);
-            } // using
+                data.EpgPrograms = epgPrograms;
+
+                EpgIndex = 1;
+            } // if
+
+            this.BeginInvoke(new Action<LoadEpgProgramsData>(DisplayEpgPrograms), data);
         } // LoadEpgPrograms
 
         private void DisplayEpgPrograms(LoadEpgProgramsData data)
@@ -268,37 +340,20 @@ namespace IpTviewr.UiServices.EPG
             EpgPrograms = data.EpgPrograms;
             buttonFullView.Enabled = (EpgPrograms != null);
 
-            if (EpgPrograms == null)
+            if ((EpgPrograms == null) || (EpgIndex == -1))
             {
                 DisplayEpgProgram(0);
             }
             else
             {
-                if ((EpgIndex != -1) && (EpgPrograms[EpgIndex] != null))
-                {
-                    DisplayEpgProgram(EpgIndex);
-                }
-                else if (EpgPrograms[1] != null)
-                {
-                    DisplayEpgProgram(1);
-                }
-                else if (EpgPrograms[0] != null)
-                {
-                    DisplayEpgProgram(0);
-                }
-                else if (EpgPrograms[2] != null)
-                {
-                    DisplayEpgProgram(2);
-                }
-                else
-                {
-                    DisplayEpgProgram(0);
-                } // if-else
+                DisplayEpgProgram(EpgIndex);
             } // if-else
         } // DisplayEpgPrograms
 
         private void DisplayEpgProgram(int index)
         {
+            if ((index < 0) || (index > 3)) return;
+
             TimeSpan ellapsed;
 
             EpgIndex = index;
@@ -308,12 +363,13 @@ namespace IpTviewr.UiServices.EPG
             labelStartTime.Visible = (index == 1);
             labelFromTo.Visible = (index != 1);
 
-            var EpgProgram = (EpgPrograms != null) ? EpgPrograms[EpgIndex] : null;
+            var epgProgram = EpgPrograms?[EpgIndex];
 
-            buttonDetails.Enabled = DetailsButtonEnabled && (EpgProgram != null);
-            if (EpgProgram == null)
+            buttonDetails.Enabled = DetailsEnabled && (epgProgram != null) && (!epgProgram.IsBlank);
+            labelProgramTitle.Text = (epgProgram != null) ? epgProgram.Title : Properties.Texts.EpgNoInformation;
+
+            if (epgProgram == null)
             {
-                labelProgramTitle.Text = Properties.Texts.EpgNoInformation;
                 labelFromTo.Text = null;
                 labelStartTime.Text = null;
                 labelEllapsed.Text = null;
@@ -321,30 +377,28 @@ namespace IpTviewr.UiServices.EPG
                 return;
             } // if
 
-            labelProgramTitle.Text = EpgProgram.Title;
-
             switch (EpgIndex)
             {
                 case 0:
-                    labelFromTo.Text = FormatString.DateTimeFromToMinutes(EpgProgram.LocalStartTime, EpgProgram.LocalEndTime, ReferenceTime);
-                    ellapsed = (ReferenceTime - EpgProgram.LocalEndTime);
+                    labelFromTo.Text = FormatString.DateTimeFromToMinutes(epgProgram.LocalStartTime, epgProgram.LocalEndTime, LocalReferenceTime);
+                    ellapsed = (LocalReferenceTime - epgProgram.LocalEndTime);
                     labelEllapsed.Text = string.Format(Properties.Texts.ProgramEnded, FormatString.TimeSpanTotalMinutes(ellapsed, FormatString.Format.Extended));
                     EnableBackForward(false, EpgPrograms[1] != null);
                     break;
                 case 1:
-                    labelStartTime.Text = string.Format("{0:HH:mm}", EpgProgram.LocalStartTime);
-                    labelEndTime.Text = string.Format("{0:t}", EpgProgram.LocalEndTime);
-                    ellapsed = (ReferenceTime - EpgProgram.LocalStartTime);
-                    epgProgressBar.MaximumValue = EpgProgram.Duration.TotalMinutes;
+                    labelStartTime.Text = string.Format("{0:HH:mm}", epgProgram.LocalStartTime);
+                    labelEndTime.Text = string.Format("{0:t}", epgProgram.LocalEndTime);
+                    ellapsed = (LocalReferenceTime - epgProgram.LocalStartTime);
+                    epgProgressBar.MaximumValue = epgProgram.Duration.TotalMinutes;
                     epgProgressBar.Value = ellapsed.TotalMinutes;
                     labelEllapsed.Text = string.Format(Properties.Texts.ProgramStarted, FormatString.TimeSpanTotalMinutes(ellapsed, FormatString.Format.Extended));
                     EnableBackForward(EpgPrograms[0] != null, EpgPrograms[2] != null);
                     break;
                 default:
-                    labelFromTo.Text = FormatString.DateTimeFromToMinutes(EpgProgram.LocalStartTime, EpgProgram.LocalEndTime, ReferenceTime);
-                    ellapsed = (EpgProgram.LocalStartTime - ReferenceTime);
+                    labelFromTo.Text = FormatString.DateTimeFromToMinutes(epgProgram.LocalStartTime, epgProgram.LocalEndTime, LocalReferenceTime);
+                    ellapsed = (epgProgram.LocalStartTime - LocalReferenceTime);
                     labelEllapsed.Text = string.Format(Properties.Texts.ProgramWillStart, FormatString.TimeSpanTotalMinutes(ellapsed, FormatString.Format.Extended));
-                    EnableBackForward(EpgPrograms[1] != null, false);
+                    EnableBackForward(SafeGetItem(EpgPrograms, EpgIndex - 1) != null, SafeGetItem(EpgPrograms, EpgIndex + 1) != null);
                     break;
             } // switch
         } // DisplayEpgProgram
@@ -364,5 +418,20 @@ namespace IpTviewr.UiServices.EPG
 
             timerAutoRefresh.Enabled = enabled & AutoRefresh;
         } // SetAutoRefreshTimer
+
+        private void ReplaceChannelLogo(Image newLogo)
+        {
+            if (pictureChannelLogo.Image != null) pictureChannelLogo.Image = null;
+            pictureChannelLogo.Image = newLogo;
+        } // ReplaceServiceLogo
+
+        private T SafeGetItem<T>(T[] array, int index)
+        {
+            if ((index < 0) || (index >= array.Length)) return default(T);
+
+            return array[index];
+        } // SafeGetItem
+
+        #endregion
     } // class EpgMiniBar
 } // namespace
