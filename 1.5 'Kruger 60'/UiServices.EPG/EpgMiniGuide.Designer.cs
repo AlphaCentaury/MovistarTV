@@ -3,7 +3,7 @@
 
 namespace IpTviewr.UiServices.EPG
 {
-    partial class EpgMiniBar
+    partial class EpgMiniGuide
     {
         /// <summary> 
         /// Required designer variable.
@@ -32,7 +32,7 @@ namespace IpTviewr.UiServices.EPG
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EpgMiniBar));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EpgMiniGuide));
             this.labelProgramTitle = new System.Windows.Forms.Label();
             this.labelStartTime = new System.Windows.Forms.Label();
             this.labelEndTime = new System.Windows.Forms.Label();

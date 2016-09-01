@@ -72,13 +72,13 @@
     <Compile Include="EpgEventMiniBar.Designer.cs">
       <DependentUpon>EpgEventMiniBar.cs</DependentUpon>
     </Compile>
-    <Compile Include="EpgMiniBar.cs">
+    <Compile Include="EpgMiniGuide.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="EpgMiniBar.Designer.cs">
-      <DependentUpon>EpgMiniBar.cs</DependentUpon>
+    <Compile Include="EpgMiniGuide.Designer.cs">
+      <DependentUpon>EpgMiniGuide.cs</DependentUpon>
     </Compile>
-    <Compile Include="EpgMiniBarEventArgs.cs" />
+    <Compile Include="EpgMiniGuideEventArgs.cs" />
     <Compile Include="EpgProgressBarFixed.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -137,11 +137,11 @@
     <EmbeddedResource Include="EpgExtendedInfoDialog.es.resx">
       <DependentUpon>EpgExtendedInfoDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="EpgMiniBar.es.resx">
-      <DependentUpon>EpgMiniBar.cs</DependentUpon>
+    <EmbeddedResource Include="EpgMiniGuide.es.resx">
+      <DependentUpon>EpgMiniGuide.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="EpgMiniBar.resx">
-      <DependentUpon>EpgMiniBar.cs</DependentUpon>
+    <EmbeddedResource Include="EpgMiniGuide.resx">
+      <DependentUpon>EpgMiniGuide.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="EpgNowThenDialog.es.resx">
       <DependentUpon>EpgNowThenDialog.cs</DependentUpon>

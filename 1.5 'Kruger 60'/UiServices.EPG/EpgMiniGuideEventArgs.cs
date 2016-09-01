@@ -10,12 +10,12 @@ namespace IpTviewr.UiServices.EPG
 {
     public class EpgMiniBarButtonClickedEventArgs : EventArgs
     {
-        public EpgMiniBarButtonClickedEventArgs(EpgMiniBar.Button button)
+        public EpgMiniBarButtonClickedEventArgs(EpgMiniGuide.Button button)
         {
             Button = button;
         } // constructor
 
-        public EpgMiniBar.Button Button
+        public EpgMiniGuide.Button Button
         {
             get;
             private set;

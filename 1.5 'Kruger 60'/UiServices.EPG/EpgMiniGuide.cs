@@ -20,7 +20,7 @@ using System.Threading;
 
 namespace IpTviewr.UiServices.EPG
 {
-    public partial class EpgMiniBar : UserControl
+    public partial class EpgMiniGuide : UserControl
     {
         private EpgProgram[] EpgPrograms;
         private int EpgIndex;
@@ -111,7 +111,7 @@ namespace IpTviewr.UiServices.EPG
 
         #endregion Properties
 
-        public EpgMiniBar()
+        public EpgMiniGuide()
         {
             InitializeComponent();
             AutoRefresh = true;
