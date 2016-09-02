@@ -123,7 +123,7 @@
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="labelProgramDescription.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 9.75pt</value>
+    <value>Segoe UI, 9.75pt, style=Bold</value>
   </data>
   <data name="labelProgramDescription.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -169,13 +169,16 @@
     <value>82, 12</value>
   </data>
   <data name="labelChannelName.Size" type="System.Drawing.Size, System.Drawing">
-    <value>370, 25</value>
+    <value>370, 22</value>
   </data>
   <data name="labelChannelName.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
   </data>
   <data name="labelChannelName.Text" xml:space="preserve">
     <value>(Channel name)</value>
+  </data>
+  <data name="labelChannelName.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
   </data>
   <data name="&gt;&gt;labelChannelName.Name" xml:space="preserve">
     <value>labelChannelName</value>
@@ -220,7 +223,7 @@
     <value>Top, Left, Right</value>
   </data>
   <data name="labelProgramSchedule.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 9.75pt</value>
+    <value>Segoe UI, 9.75pt, style=Italic</value>
   </data>
   <data name="labelProgramSchedule.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -255,102 +258,6 @@
   <data name="groupBox1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
   </data>
-  <data name="&gt;&gt;pictureIconRec.Name" xml:space="preserve">
-    <value>pictureIconRec</value>
-  </data>
-  <data name="&gt;&gt;pictureIconRec.Type" xml:space="preserve">
-    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;pictureIconRec.Parent" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="&gt;&gt;pictureIconRec.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;labelInfo.Name" xml:space="preserve">
-    <value>labelInfo</value>
-  </data>
-  <data name="&gt;&gt;labelInfo.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;labelInfo.Parent" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="&gt;&gt;labelInfo.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;pictureIconInfo.Name" xml:space="preserve">
-    <value>pictureIconInfo</value>
-  </data>
-  <data name="&gt;&gt;pictureIconInfo.Type" xml:space="preserve">
-    <value>IpTviewr.UiServices.Common.Controls.PictureBoxEx, UiServices.Common, Version=1.5.1010.0, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;pictureIconInfo.Parent" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="&gt;&gt;pictureIconInfo.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;radioRecordChannel.Name" xml:space="preserve">
-    <value>radioRecordChannel</value>
-  </data>
-  <data name="&gt;&gt;radioRecordChannel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;radioRecordChannel.Parent" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="&gt;&gt;radioRecordChannel.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;radioRecordProgramEdit.Name" xml:space="preserve">
-    <value>radioRecordProgramEdit</value>
-  </data>
-  <data name="&gt;&gt;radioRecordProgramEdit.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;radioRecordProgramEdit.Parent" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="&gt;&gt;radioRecordProgramEdit.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="&gt;&gt;radioRecordProgramDefault.Name" xml:space="preserve">
-    <value>radioRecordProgramDefault</value>
-  </data>
-  <data name="&gt;&gt;radioRecordProgramDefault.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;radioRecordProgramDefault.Parent" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="&gt;&gt;radioRecordProgramDefault.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="groupBox1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 91</value>
-  </data>
-  <data name="groupBox1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>440, 115</value>
-  </data>
-  <data name="groupBox1.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
-  </data>
-  <data name="groupBox1.Text" xml:space="preserve">
-    <value>Recording options</value>
-  </data>
-  <data name="&gt;&gt;groupBox1.Name" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="&gt;&gt;groupBox1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;groupBox1.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;groupBox1.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
   <data name="pictureIconRec.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 19</value>
   </data>
@@ -379,7 +286,7 @@
     <value>Top, Left, Right</value>
   </data>
   <data name="labelInfo.Location" type="System.Drawing.Point, System.Drawing">
-    <value>74, 65</value>
+    <value>49, 65</value>
   </data>
   <data name="labelInfo.Size" type="System.Drawing.Size, System.Drawing">
     <value>360, 16</value>
@@ -406,7 +313,7 @@
     <value>1</value>
   </data>
   <data name="pictureIconInfo.Location" type="System.Drawing.Point, System.Drawing">
-    <value>52, 65</value>
+    <value>30, 65</value>
   </data>
   <data name="pictureIconInfo.Size" type="System.Drawing.Size, System.Drawing">
     <value>16, 16</value>
@@ -509,6 +416,30 @@
   </data>
   <data name="&gt;&gt;radioRecordProgramDefault.ZOrder" xml:space="preserve">
     <value>5</value>
+  </data>
+  <data name="groupBox1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 91</value>
+  </data>
+  <data name="groupBox1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>440, 115</value>
+  </data>
+  <data name="groupBox1.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>Recording options</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.Name" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.ZOrder" xml:space="preserve">
+    <value>2</value>
   </data>
   <data name="buttonCancel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>

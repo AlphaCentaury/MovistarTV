@@ -160,8 +160,11 @@ Please select one or browse for a folder.</value>
   <data name="SelectedProgramIsNullOrBlank" xml:space="preserve">
     <value>No program has been selected or there is insufficient information.</value>
   </data>
+  <data name="SelectedProgramIsOld" xml:space="preserve">
+    <value>The selected program has ended and can't be recorded.</value>
+  </data>
   <data name="SelectedProgramIsRightNow" xml:space="preserve">
-    <value>The program has already begun. It will be recorded from now.</value>
+    <value>The program has already begun. It will be recorded as soon as possible.</value>
   </data>
   <data name="TaskSchedulerRootFolder" xml:space="preserve">
     <value>&lt;No folder&gt;</value>

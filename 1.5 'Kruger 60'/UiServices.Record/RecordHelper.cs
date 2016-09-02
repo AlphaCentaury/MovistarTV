@@ -44,7 +44,7 @@ namespace IpTviewr.UiServices.Record
                 using (var dlg = new RecordChannelDialog())
                 {
                     dlg.Task = task;
-                    dlg.IsNewTask = false;
+                    dlg.IsNewTask = true;
                     dlg.ShowDialog(ownerForm);
                     task = dlg.Task;
                     if (dlg.DialogResult != DialogResult.OK) return false;

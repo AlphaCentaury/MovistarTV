@@ -97,11 +97,31 @@ namespace IpTviewr.Services.EpgDiscovery
         {
             if (referenceTime.Kind != DateTimeKind.Utc)
             {
-                referenceTime = referenceTime.ToLocalTime();
+                referenceTime = referenceTime.ToUniversalTime();
             } // if
 
             return (referenceTime >= UtcStartTime) && (referenceTime < UtcEndTime);
         } // IsCurrent
+
+        public bool IsOld(DateTime referenceTime)
+        {
+            if (referenceTime.Kind != DateTimeKind.Utc)
+            {
+                referenceTime = referenceTime.ToUniversalTime();
+            } // if
+
+            return (referenceTime >= UtcEndTime);
+        } // IsOld
+
+        public bool IsAfter(DateTime referenceTime)
+        {
+            if (referenceTime.Kind != DateTimeKind.Utc)
+            {
+                referenceTime = referenceTime.ToUniversalTime();
+            } // if
+
+            return (referenceTime < UtcStartTime);
+        } // IsAfter
 
         public static EpgProgram FromScheduleEvent(TvAnytime.TvaScheduleEvent item)
         {

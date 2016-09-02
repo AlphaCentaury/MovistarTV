@@ -169,7 +169,16 @@ namespace IpTviewr.UiServices.Record.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The program has already begun. It will be recorded from now..
+        ///   Looks up a localized string similar to The selected program has ended and can&apos;t be recorded..
+        /// </summary>
+        internal static string SelectedProgramIsOld {
+            get {
+                return ResourceManager.GetString("SelectedProgramIsOld", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The program has already begun. It will be recorded as soon as possible..
         /// </summary>
         internal static string SelectedProgramIsRightNow {
             get {

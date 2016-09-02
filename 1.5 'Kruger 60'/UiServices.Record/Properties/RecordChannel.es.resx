@@ -148,6 +148,9 @@ Por favor seleccione una ubicación o seleccione una carpeta.</value>
   <data name="SelectedProgramIsNullOrBlank" xml:space="preserve">
     <value>No se seleccionado ningún programa o la información es insuficiente.</value>
   </data>
+  <data name="SelectedProgramIsOld" xml:space="preserve">
+    <value>El programa seleccionado ya ha finalizado y no puede ser grabado.</value>
+  </data>
   <data name="SelectedProgramIsRightNow" xml:space="preserve">
     <value>El programa ya ha comenzado. Se grabará a partir de ahora.</value>
   </data>

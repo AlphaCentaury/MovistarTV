@@ -60,43 +60,48 @@ namespace IpTviewr.UiServices.Record
 
         private void RecordProgramOptions_Load(object sender, EventArgs e)
         {
-            pictureChannelLogo.Image = SelectedService.Logo.GetImage(Configuration.Logos.LogoSize.Size48);
-            labelChannelName.Text = string.Format("{0} {1}", SelectedService.DisplayLogicalNumber, SelectedService.DisplayName);
+            // logo, channel name and program data
+            SetChannelDetails();
 
-            if ((SelectedProgram == null) || (SelectedProgram.IsBlank))
+            // info text
+            var validProgram = (SelectedProgram != null) && (!SelectedProgram.IsBlank);
+            if (!validProgram)
             {
-                labelProgramDescription.Visible = false;
-                labelProgramSchedule.Visible = false;
-
                 pictureIconInfo.Image = Properties.Resources.Status_Warning_16x16;
                 labelInfo.Text = Properties.RecordChannel.SelectedProgramIsNullOrBlank;
-
-                radioRecordProgramDefault.Enabled = false;
-                radioRecordProgramEdit.Enabled = false;
-
-                if (AllowRecordChannel)
-                {
-                    radioRecordChannel.Checked = true;
-                }
-                else
-                {
-                    radioRecordChannel.Enabled = false;
-                    buttonOk.Enabled = false;
-                } // if-else
             }
             else
             {
-                labelProgramDescription.Text = SelectedProgram.Title;
-                labelProgramSchedule.Text = string.Format("{0} ({1})", FormatString.DateTimeFromToMinutes(SelectedProgram.LocalStartTime, SelectedProgram.LocalEndTime, LocalReferenceTime),
-                    FormatString.TimeSpanTotalMinutes(SelectedProgram.Duration, FormatString.Format.Extended));
-
-                if (SelectedProgram.IsCurrent(LocalReferenceTime))
+                if (SelectedProgram.IsOld(LocalReferenceTime))
+                {
+                    pictureIconInfo.Image = Properties.Resources.Status_Info_16x16;
+                    labelInfo.Text = Properties.RecordChannel.SelectedProgramIsOld;
+                    validProgram = false;
+                }
+                else if (SelectedProgram.IsCurrent(LocalReferenceTime))
                 {
                     pictureIconInfo.Image = Properties.Resources.Status_Info_16x16;
                     labelInfo.Text = Properties.RecordChannel.SelectedProgramIsRightNow;
-                } // if
+                } // if-else if
+            } // if-else
 
+            // radio buttons
+            radioRecordChannel.Enabled = AllowRecordChannel;
+            radioRecordProgramDefault.Enabled = validProgram;
+            radioRecordProgramEdit.Enabled = validProgram;
+
+            // check radio
+            if (radioRecordProgramDefault.Enabled)
+            {
                 radioRecordProgramDefault.Checked = true;
+            }
+            else if (radioRecordChannel.Enabled)
+            {
+                radioRecordChannel.Checked = true;
+            }
+            else
+            {
+                buttonOk.Enabled = false;
             } // if-else
         } // RecordProgramOptions_Load
 
@@ -130,5 +135,27 @@ namespace IpTviewr.UiServices.Record
         {
             buttonOk.Text = withOptions ? Properties.RecordChannel.RecordButtonSettings : Properties.RecordChannel.RecordButtonDefault;
         } // ChangeOkButtonText
+
+        private void SetChannelDetails()
+        {
+            pictureChannelLogo.Image = SelectedService.Logo.GetImage(Configuration.Logos.LogoSize.Size64);
+            labelChannelName.Text = string.Format("{0} {1}", SelectedService.DisplayLogicalNumber, SelectedService.DisplayName);
+
+            if (SelectedProgram != null)
+            {
+                labelProgramDescription.Text = SelectedProgram.Title;
+                labelProgramSchedule.Text = string.Format("{0} ({1})", FormatString.DateTimeFromToMinutes(SelectedProgram.LocalStartTime, SelectedProgram.LocalEndTime, LocalReferenceTime),
+                    FormatString.TimeSpanTotalMinutes(SelectedProgram.Duration, FormatString.Format.Extended));
+            }
+            else
+            {
+                labelChannelName.Top = pictureChannelLogo.Top;
+                labelChannelName.Height = pictureChannelLogo.Height;
+
+                labelProgramDescription.Visible = false;
+                labelProgramSchedule.Visible = false;
+
+            } // if-else
+        } // SetChannelDetails
     } // class RecordProgramOptions
 } // namespace
