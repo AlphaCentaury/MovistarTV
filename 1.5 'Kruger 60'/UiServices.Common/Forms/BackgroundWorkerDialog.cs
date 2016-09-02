@@ -124,8 +124,8 @@ namespace IpTviewr.UiServices.Common.Forms
             } // if
 
             Options.BackgroundBeforeTask?.Invoke(Options, this);
-            if (Options.BackgroundTask != null) Options.BackgroundTask(Options, this);
-            if (Options.BackgroundAfterTask != null) Options.BackgroundAfterTask(Options, this);
+            Options.BackgroundTask?.Invoke(Options, this);
+            Options.BackgroundAfterTask?.Invoke(Options, this);
         } // Worker_DoWork
 
         void Worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -255,6 +255,7 @@ namespace IpTviewr.UiServices.Common.Forms
         private void SetProgressText(string text)
         {
             labelProgressText.Text = text;
+            labelProgressText.Refresh();
         } // SetProgressText
 
         private void SetProgressMinMax(int min, int max)

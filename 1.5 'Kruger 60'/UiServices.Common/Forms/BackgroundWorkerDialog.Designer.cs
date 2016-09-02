@@ -98,7 +98,6 @@ namespace IpTviewr.UiServices.Common.Forms
             this.MinimizeBox = false;
             this.Name = "BackgroundWorkerDialog";
             this.ShowInTaskbar = false;
-            this.TopMost = true;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.BackgroundWorkerDialog_FormClosing);
             this.Load += new System.EventHandler(this.BackgroundWorkerDialog_Load);
             this.Shown += new System.EventHandler(this.BackgroundWorkerDialog_Shown);
