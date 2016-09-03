@@ -17,13 +17,6 @@ namespace IpTviewr.UiServices.Common.Controls
     [ToolboxBitmap(typeof(PictureBox))]
     public class PictureBoxEx : PictureBox
     {
-        protected override void OnPaint(PaintEventArgs pe)
-        {
-            pe.Graphics.CompositingQuality = CompositingQuality.HighQuality;
-            pe.Graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
-            base.OnPaint(pe);
-        } // OnPaint
-
         public static Bitmap ToGrayscale(Image original)
         {
             // create the grayscale ColorMatrix
@@ -54,5 +47,18 @@ namespace IpTviewr.UiServices.Common.Controls
             
             return greyscaleBitmap;
         } // ToGrayscale
+
+        public void SetImage(Image image)
+        {
+            if (Image != null) Image.Dispose();
+            Image = image;
+        } // SetImage
+
+        protected override void OnPaint(PaintEventArgs pe)
+        {
+            pe.Graphics.CompositingQuality = CompositingQuality.HighQuality;
+            pe.Graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
+            base.OnPaint(pe);
+        } // OnPaint
     } // class PictureBoxEx
 } // namespace
