@@ -5,11 +5,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using IpTviewr.
-using IpTviewr.UiServices.Discovery;
-using IpTviewr.Services.EpgDiscovery;
+using Project.IpTv.Services.EPG;
+using Project.IpTv.UiServices.Discovery;
 
-namespace IpTviewr.Core.IpTvProvider.EPG
+namespace Project.IpTv.Core.IpTvProvider.EPG
 {
     public class ProgramEpgInfo
     {
@@ -19,13 +18,13 @@ namespace IpTviewr.Core.IpTvProvider.EPG
             set;
         } // Service
 
-        public EpgProgram Base
+        public EpgEvent Base
         {
             get;
             set;
         } // Base
 
-        public EpgProgramExtended Extended
+        public ExtendedEpgEvent Extended
         {
             get;
             set;

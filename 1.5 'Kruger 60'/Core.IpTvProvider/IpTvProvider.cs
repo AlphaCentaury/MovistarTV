@@ -25,11 +25,13 @@ namespace IpTviewr.Core.IpTvProvider
 
         #region IpTvProvider Members
 
+        /*
         public EPG.IEpgInfoProvider EpgInfo
         {
             get;
             protected set;
         } // EpgInfo
+        */
 
         public abstract InitializationResult Initialize();
 
