@@ -44,12 +44,21 @@ namespace IpTviewr.Services.EpgDiscovery
 
         public override IDictionary<string, IEpgLinkedList> GetAllPrograms(DateTime? localTime, int nodesBefore, int nodesAfter)
         {
-            throw new NotImplementedException();
+            var result = new Dictionary<string, IEpgLinkedList>(Data.Count);
+            foreach(var entry in Data)
+            {
+                if (entry.Value.Programs.Count == 0) continue;
+
+                result[entry.Key] = GetLinkedList(entry.Value, localTime);
+            } // foreach
+
+            return result;
         } // GetAllPrograms
 
         protected override void AddEpgService(EpgService epgService)
         {
             Console.WriteLine("Store.Add: {0} with {1} programs", epgService.ServiceIdReference, epgService.Programs?.Count);
+            if (epgService.Programs == null) return;
 
             switch (StorageMethod)
             {
