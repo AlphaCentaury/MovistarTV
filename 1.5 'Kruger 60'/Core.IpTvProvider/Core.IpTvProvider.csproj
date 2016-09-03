@@ -54,6 +54,9 @@
     <Compile Include="..\AssemblySolutionInfo.cs">
       <Link>Properties\AssemblySolutionInfo.cs</Link>
     </Compile>
+    <Compile Include="EPG\EpgInfoProviderCapabilities.cs" />
+    <Compile Include="EPG\IEpgInfoProvider.cs" />
+    <Compile Include="EPG\ProgramEpgInfo.cs" />
     <Compile Include="ExternalTvPlayer.cs" />
     <Compile Include="IpTvProvider.cs" />
     <Compile Include="IpTvProviderSettings.cs" />
@@ -80,6 +83,10 @@
     <ProjectReference Include="..\Project.Native\Project.Native.csproj">
       <Project>{8986cd52-0c65-42d6-9c47-20ff47cf87bb}</Project>
       <Name>Project.Native</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Services.EpgDiscovery\Services.EpgDiscovery.csproj">
+      <Project>{5a171dbb-855c-452b-93c6-229c7aa6c7a6}</Project>
+      <Name>Services.EpgDiscovery</Name>
     </ProjectReference>
     <ProjectReference Include="..\UiServices.Config\UiServices.Config.csproj">
       <Project>{a722de9d-ae51-479c-825f-a19f4c69bd75}</Project>
