@@ -834,7 +834,7 @@ namespace IpTviewr.ChannelList
             // 
             resources.ApplyResources(this.epgMiniGuide, "epgMiniGuide");
             this.epgMiniGuide.BackColor = System.Drawing.Color.White;
-            this.epgMiniGuide.BasicGridEnabled = false;
+            this.epgMiniGuide.BasicGridEnabled = true;
             this.epgMiniGuide.DetailsEnabled = false;
             this.epgMiniGuide.IsDisabled = false;
             this.epgMiniGuide.ManualActions = false;

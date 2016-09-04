@@ -854,7 +854,7 @@ namespace IpTviewr.ChannelList
             // display mini bar
             // TODO: epgMiniGuide.DetailsEnabled
             epgMiniGuide.DetailsEnabled = false; //(IpTvProvider.Current.EpgInfo.Capabilities & EpgInfoProviderCapabilities.ExtendedInfo) != 0;
-            epgMiniGuide.SetEpgPrograms(ListManager.SelectedService, DateTime.Now, EpgDatastore);
+            epgMiniGuide.LoadEpgPrograms(ListManager.SelectedService, DateTime.Now, EpgDatastore);
         }  // ShowEpgMiniGuide
 
         private void ShowEpgNowThenForm()
@@ -865,8 +865,7 @@ namespace IpTviewr.ChannelList
 
         private void ShowEpgBasicGrid()
         {
-            // TODO: ShowEpgBasicGrid
-            // EpgBasicGridDialog.ShowGrid(this, ListManager.GetDisplayedBroadcastList(), ListManager.SelectedService);
+            EpgBasicGridDialog.ShowGrid(this, ListManager.GetDisplayedBroadcastList(), ListManager.SelectedService, EpgDatastore);
         } // ShowEpgBasicGrid
 
         private void ShowEpgExtendedInfo()
