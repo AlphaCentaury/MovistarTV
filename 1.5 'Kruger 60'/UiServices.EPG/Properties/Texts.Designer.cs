@@ -61,7 +61,7 @@ namespace IpTviewr.UiServices.EPG.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Searching for program information....
+        ///   Looks up a localized string similar to Loading program information....
         /// </summary>
         internal static string EpgDataLoading {
             get {
@@ -70,7 +70,7 @@ namespace IpTviewr.UiServices.EPG.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Searching for EPG data....
+        ///   Looks up a localized string similar to Loading EPG data....
         /// </summary>
         internal static string EpgDataLoadingList {
             get {
@@ -102,6 +102,15 @@ namespace IpTviewr.UiServices.EPG.Properties {
         internal static string EpgNoInformation {
             get {
                 return ResourceManager.GetString("EpgNoInformation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Not available.
+        /// </summary>
+        internal static string EpgNoInformationShort {
+            get {
+                return ResourceManager.GetString("EpgNoInformationShort", resourceCulture);
             }
         }
         
@@ -147,6 +156,15 @@ namespace IpTviewr.UiServices.EPG.Properties {
         internal static string EpgProgramThenCaption {
             get {
                 return ResourceManager.GetString("EpgProgramThenCaption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There was an error retrieving the list of programs.
+        /// </summary>
+        internal static string ObtainingListException {
+            get {
+                return ResourceManager.GetString("ObtainingListException", resourceCulture);
             }
         }
         

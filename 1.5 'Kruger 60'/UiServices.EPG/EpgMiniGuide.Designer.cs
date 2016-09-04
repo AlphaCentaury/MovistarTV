@@ -168,7 +168,6 @@ namespace IpTviewr.UiServices.EPG
             // 
             // pictureChannelLogo
             // 
-            this.pictureChannelLogo.BackColor = System.Drawing.Color.White;
             resources.ApplyResources(this.pictureChannelLogo, "pictureChannelLogo");
             this.pictureChannelLogo.Name = "pictureChannelLogo";
             this.pictureChannelLogo.TabStop = false;
@@ -178,7 +177,7 @@ namespace IpTviewr.UiServices.EPG
             resources.ApplyResources(this.epgProgressBar, "epgProgressBar");
             this.epgProgressBar.Name = "epgProgressBar";
             // 
-            // EpgMiniBar
+            // EpgMiniGuide
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -197,7 +196,7 @@ namespace IpTviewr.UiServices.EPG
             this.Controls.Add(this.buttonBack);
             this.Controls.Add(this.pictureChannelLogo);
             this.Controls.Add(this.labelFromTo);
-            this.Name = "EpgMiniBar";
+            this.Name = "EpgMiniGuide";
             ((System.ComponentModel.ISupportInitialize)(this.pictureChannelLogo)).EndInit();
             this.ResumeLayout(false);
 

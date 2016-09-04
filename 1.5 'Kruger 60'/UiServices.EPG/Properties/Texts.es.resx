@@ -132,6 +132,9 @@
   <data name="EpgNoInformation" xml:space="preserve">
     <value>Información de programa no disponible</value>
   </data>
+  <data name="EpgNoInformationShort" xml:space="preserve">
+    <value>No disponible</value>
+  </data>
   <data name="EpgNoParentalRating" xml:space="preserve">
     <value>Clasificación no disponible</value>
   </data>
@@ -146,6 +149,9 @@
   </data>
   <data name="EpgProgramThenCaption" xml:space="preserve">
     <value>A continuación</value>
+  </data>
+  <data name="ObtainingListException" xml:space="preserve">
+    <value>Se ha producido un error al recuperar la lista de programas</value>
   </data>
   <data name="ProgramEnded" xml:space="preserve">
     <value>Terminó hace {0}</value>
