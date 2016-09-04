@@ -66,6 +66,7 @@
     <Compile Include="RecordMonthly.cs" />
     <Compile Include="RecordMultipleInstances.cs" />
     <Compile Include="RecordOneTime.cs" />
+    <Compile Include="RecordProgram.cs" />
     <Compile Include="RecordRecorder.cs" />
     <Compile Include="RecordRightNow.cs" />
     <Compile Include="RecordSchedule.cs" />

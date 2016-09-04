@@ -35,6 +35,12 @@ namespace IpTviewr.Services.Record.Serialization
             set;
         } // Channel
 
+        public RecordProgram Program
+        {
+            get;
+            set;
+        } // Program
+
         [XmlElement("RightNow", typeof(RecordRightNow))]
         [XmlElement("OneTimeSchedule", typeof(RecordOneTime))]
         [XmlElement("DailySchedule", typeof(RecordDaily))]
