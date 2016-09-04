@@ -137,82 +137,13 @@
     <value>250</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="labelChannelName.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Left, Right</value>
-  </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="labelChannelName.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 12pt, style=Bold</value>
-  </data>
-  <data name="labelChannelName.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="labelChannelName.Location" type="System.Drawing.Point, System.Drawing">
-    <value>143, 12</value>
-  </data>
-  <data name="labelChannelName.Size" type="System.Drawing.Size, System.Drawing">
-    <value>308, 26</value>
-  </data>
-  <data name="labelChannelName.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="labelChannelName.Text" xml:space="preserve">
-    <value>(Channel name)</value>
-  </data>
-  <data name="&gt;&gt;labelChannelName.Name" xml:space="preserve">
-    <value>labelChannelName</value>
-  </data>
-  <data name="&gt;&gt;labelChannelName.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;labelChannelName.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;labelChannelName.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="labelChannelDescription.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Left, Right</value>
-  </data>
-  <data name="labelChannelDescription.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 9.75pt</value>
-  </data>
-  <data name="labelChannelDescription.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="labelChannelDescription.Location" type="System.Drawing.Point, System.Drawing">
-    <value>147, 38</value>
-  </data>
-  <data name="labelChannelDescription.Size" type="System.Drawing.Size, System.Drawing">
-    <value>304, 38</value>
-  </data>
-  <data name="labelChannelDescription.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="labelChannelDescription.Text" xml:space="preserve">
-    <value>(Channel description)</value>
-  </data>
-  <data name="labelChannelDescription.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleLeft</value>
-  </data>
-  <data name="&gt;&gt;labelChannelDescription.Name" xml:space="preserve">
-    <value>labelChannelDescription</value>
-  </data>
-  <data name="&gt;&gt;labelChannelDescription.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;labelChannelDescription.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;labelChannelDescription.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
   <data name="buttonOk.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
   </data>
   <data name="buttonOk.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="buttonOk.Location" type="System.Drawing.Point, System.Drawing">
     <value>246, 375</value>
   </data>
@@ -238,7 +169,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;buttonOk.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>6</value>
   </data>
   <data name="buttonCancel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
@@ -274,13 +205,13 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;buttonCancel.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>5</value>
   </data>
   <data name="tabProperties.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
   </data>
   <data name="dateTimeExpiryDate.Location" type="System.Drawing.Point, System.Drawing">
-    <value>25, 210</value>
+    <value>152, 210</value>
   </data>
   <data name="dateTimeExpiryDate.Size" type="System.Drawing.Size, System.Drawing">
     <value>215, 20</value>
@@ -307,7 +238,7 @@
     <value>NoControl</value>
   </data>
   <data name="checkBoxExpiryDate.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 187</value>
+    <value>130, 187</value>
   </data>
   <data name="checkBoxExpiryDate.Size" type="System.Drawing.Size, System.Drawing">
     <value>199, 17</value>
@@ -337,7 +268,7 @@
     <value>NoControl</value>
   </data>
   <data name="labelStartMarginSufix.Location" type="System.Drawing.Point, System.Drawing">
-    <value>168, 237</value>
+    <value>168, 239</value>
   </data>
   <data name="labelStartMarginSufix.Size" type="System.Drawing.Size, System.Drawing">
     <value>43, 13</value>
@@ -361,7 +292,7 @@
     <value>2</value>
   </data>
   <data name="numericStartMargin.Location" type="System.Drawing.Point, System.Drawing">
-    <value>122, 235</value>
+    <value>122, 237</value>
   </data>
   <data name="numericStartMargin.Size" type="System.Drawing.Size, System.Drawing">
     <value>40, 20</value>
@@ -391,7 +322,7 @@
     <value>NoControl</value>
   </data>
   <data name="checkBoxStartMargin.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 236</value>
+    <value>3, 238</value>
   </data>
   <data name="checkBoxStartMargin.Size" type="System.Drawing.Size, System.Drawing">
     <value>113, 17</value>
@@ -490,7 +421,7 @@
     <value>NoControl</value>
   </data>
   <data name="labelEndMarginSufix.Location" type="System.Drawing.Point, System.Drawing">
-    <value>168, 188</value>
+    <value>168, 239</value>
   </data>
   <data name="labelEndMarginSufix.Size" type="System.Drawing.Size, System.Drawing">
     <value>43, 13</value>
@@ -514,7 +445,7 @@
     <value>1</value>
   </data>
   <data name="numericEndMargin.Location" type="System.Drawing.Point, System.Drawing">
-    <value>122, 186</value>
+    <value>122, 237</value>
   </data>
   <data name="numericEndMargin.Size" type="System.Drawing.Size, System.Drawing">
     <value>40, 20</value>
@@ -544,7 +475,7 @@
     <value>NoControl</value>
   </data>
   <data name="checkBoxEndMargin.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 187</value>
+    <value>3, 238</value>
   </data>
   <data name="checkBoxEndMargin.Size" type="System.Drawing.Size, System.Drawing">
     <value>113, 17</value>
@@ -594,212 +525,14 @@
   <data name="&gt;&gt;tabPageLength.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="checkAppendRecordingDetails.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Left</value>
-  </data>
-  <data name="checkAppendRecordingDetails.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="checkAppendRecordingDetails.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="checkAppendRecordingDetails.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 204</value>
-  </data>
-  <data name="checkAppendRecordingDetails.Size" type="System.Drawing.Size, System.Drawing">
-    <value>289, 17</value>
-  </data>
-  <data name="checkAppendRecordingDetails.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
-  </data>
-  <data name="checkAppendRecordingDetails.Text" xml:space="preserve">
-    <value>Append recording details (channel name, schedule, etc)</value>
-  </data>
-  <data name="&gt;&gt;checkAppendRecordingDetails.Name" xml:space="preserve">
-    <value>checkAppendRecordingDetails</value>
-  </data>
-  <data name="&gt;&gt;checkAppendRecordingDetails.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;checkAppendRecordingDetails.Parent" xml:space="preserve">
-    <value>tabPageDescription</value>
-  </data>
-  <data name="&gt;&gt;checkAppendRecordingDetails.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="textTaskDescription.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Bottom, Left, Right</value>
-  </data>
-  <data name="textTaskDescription.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 98</value>
-  </data>
-  <data name="textTaskDescription.Multiline" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="textTaskDescription.Size" type="System.Drawing.Size, System.Drawing">
-    <value>425, 100</value>
-  </data>
-  <data name="textTaskDescription.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="&gt;&gt;textTaskDescription.Name" xml:space="preserve">
-    <value>textTaskDescription</value>
-  </data>
-  <data name="&gt;&gt;textTaskDescription.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;textTaskDescription.Parent" xml:space="preserve">
-    <value>tabPageDescription</value>
-  </data>
-  <data name="&gt;&gt;textTaskDescription.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="labelTaskDescription.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="labelTaskDescription.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="labelTaskDescription.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 82</value>
-  </data>
-  <data name="labelTaskDescription.Size" type="System.Drawing.Size, System.Drawing">
-    <value>202, 13</value>
-  </data>
-  <data name="labelTaskDescription.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="labelTaskDescription.Text" xml:space="preserve">
-    <value>Task and recording description (optional):</value>
-  </data>
-  <data name="&gt;&gt;labelTaskDescription.Name" xml:space="preserve">
-    <value>labelTaskDescription</value>
-  </data>
-  <data name="&gt;&gt;labelTaskDescription.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;labelTaskDescription.Parent" xml:space="preserve">
-    <value>tabPageDescription</value>
-  </data>
-  <data name="&gt;&gt;labelTaskDescription.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="checkAddTaskPrefix.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="checkAddTaskPrefix.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="checkAddTaskPrefix.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 49</value>
-  </data>
-  <data name="checkAddTaskPrefix.Size" type="System.Drawing.Size, System.Drawing">
-    <value>158, 17</value>
-  </data>
-  <data name="checkAddTaskPrefix.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="checkAddTaskPrefix.Text" xml:space="preserve">
-    <value>Add standard prefix to name</value>
-  </data>
-  <data name="&gt;&gt;checkAddTaskPrefix.Name" xml:space="preserve">
-    <value>checkAddTaskPrefix</value>
-  </data>
-  <data name="&gt;&gt;checkAddTaskPrefix.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;checkAddTaskPrefix.Parent" xml:space="preserve">
-    <value>tabPageDescription</value>
-  </data>
-  <data name="&gt;&gt;checkAddTaskPrefix.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="labelTaskName.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="labelTaskName.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="labelTaskName.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 7</value>
-  </data>
-  <data name="labelTaskName.Size" type="System.Drawing.Size, System.Drawing">
-    <value>184, 13</value>
-  </data>
-  <data name="labelTaskName.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="labelTaskName.Text" xml:space="preserve">
-    <value>Windows Task Scheduler task name:</value>
-  </data>
-  <data name="&gt;&gt;labelTaskName.Name" xml:space="preserve">
-    <value>labelTaskName</value>
-  </data>
-  <data name="&gt;&gt;labelTaskName.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;labelTaskName.Parent" xml:space="preserve">
-    <value>tabPageDescription</value>
-  </data>
-  <data name="&gt;&gt;labelTaskName.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="textTaskName.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Left, Right</value>
-  </data>
-  <data name="textTaskName.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 23</value>
-  </data>
-  <data name="textTaskName.Size" type="System.Drawing.Size, System.Drawing">
-    <value>425, 20</value>
-  </data>
-  <data name="textTaskName.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;textTaskName.Name" xml:space="preserve">
-    <value>textTaskName</value>
-  </data>
-  <data name="&gt;&gt;textTaskName.Type" xml:space="preserve">
-    <value>IpTviewr.UiServices.Common.Controls.FilenameTextBox, UiServices.Common, Version=1.5.1010.0, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;textTaskName.Parent" xml:space="preserve">
-    <value>tabPageDescription</value>
-  </data>
-  <data name="&gt;&gt;textTaskName.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="tabPageDescription.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 22</value>
-  </data>
-  <data name="tabPageDescription.Size" type="System.Drawing.Size, System.Drawing">
-    <value>432, 261</value>
-  </data>
-  <data name="tabPageDescription.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="tabPageDescription.Text" xml:space="preserve">
-    <value>Description</value>
-  </data>
-  <data name="&gt;&gt;tabPageDescription.Name" xml:space="preserve">
-    <value>tabPageDescription</value>
-  </data>
-  <data name="&gt;&gt;tabPageDescription.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tabPageDescription.Parent" xml:space="preserve">
-    <value>tabProperties</value>
-  </data>
-  <data name="&gt;&gt;tabPageDescription.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
   <data name="listViewLocations.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
   </data>
   <data name="listViewLocations.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 71</value>
+    <value>6, 71</value>
   </data>
   <data name="listViewLocations.Size" type="System.Drawing.Size, System.Drawing">
-    <value>425, 156</value>
+    <value>422, 155</value>
   </data>
   <metadata name="imageListLocations.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
@@ -808,55 +541,55 @@
     <value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
         LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
-        ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAAA0
-        CwAAAk1TRnQBSQFMAgEBAgEAAfABAQHwAQEBEAEAARABAAT/ASEBAAj/AUIBTQE2BwABNgMAASgDAAFA
-        AwABEAMAAQEBAAEgBgABEDIAA1MBqgM4AVz4AAG4AUQBAAH/AbgBRAEAAf8DOAFcFAABuAGjAZQB/wEp
-        AQ8BAAH/ASkBDwEAAf8BKQEPAQAB/wEpAQ8BAAH/ASkBDwEAAf8BKQEPAQAB/wEpAQ8BAAH/ASkBDwEA
-        Af8BKQEPAQAB/wEpAQ8BAAH/ASkBDwEAAf8BKQEPAQAB/wEpAQ8BAAH/ASkBDwEAAf8BKQEPAQAB/6AA
-        AbgBRAEAAf8B8QHMAY4B/wG4AUQBAAH/AzgBXBAAAbkBpAGVAf8B9QHoAd8B/wHwAdwBzgH/Ae8B2QHL
-        Af8B7QHSAcMB/wHpAc0BuwH/AegByAGzAf8B5gHEAa8B/wHkAcABqQH/AeMBvQGkAf8B4wG8AaUB/wHi
-        AbwBowH/AeIBuwGjAf8B4gG4AZ4B/wHfAbYBnQH/ASkBDwEAAf+gAAG4AUQBAAH/AfABwAEyAf8B7wHK
-        AYwB/wG4AUQBAAH/AzgBXAwAAboBpQGWAf8B+QHxAewB/wH2AeoB4wH/AfUB5wHeAf8B8wHjAdkB/wHy
-        AeAB1QH/AfAB3AHQAf8B7wHZAcsB/wHtAdUBxgH/AewB0gHCAf8B6QHNAbkB/wHnAcgBswH/AeYBwwGt
-        Af8B5AG9AaYB/wHhAbcBngH/ASkBDwEAAf+AAANDAXcBuAFEAQAB/wG4AUQBAAH/AbgBRAEAAf8BuAFE
-        AQAB/wG4AUQBAAH/AbgBRAEAAf8BuAFEAQAB/wG4AUQBAAH/AfMBxQE0Af8B5QGZAQAB/wHvAcsBjAH/
-        AbgBRAEAAf8DSgGKCAABvAGmAZcB/wH5AfMB7gH/AfcB7QHmAf8B9gHqAeIB/wH1AeYB3QH/AfMB4wHY
-        Af8B8gHfAdQB/wHwAdwBzwH/Ae8B2AHKAf8B7QHVAcUB/wHsAdEBwQH/AeoBzgG9Af8B6QHKAbcB/wHn
-        AcQBsAH/AeMBvQGlAf8BKQEPAQAB/4AAAaUBLAEAAf8B6QG6AS0B/wHuAcEBMgH/AfQBxwE1Af8B9wHM
-        ATcB/wH6Ac8BOQH/AfsBzwE5Af8B+wHPATkB/wH5AcwBOAH/AfIBsQEAAf8B6wGhAQAB/wHlAZkBAAH/
-        Ae8BygGMAf8BsgE8AQAB/wM4AVwEAAG9AagBmQH/AfoB9QHxAf8B+AHvAeoB/wH3AewB5QH/AfYB6QHh
-        Af8B9AHlAdwB/wHzAeIB1wH/AfEB3gHTAf8B8AHbAc4B/wHuAdcByQH/Ae0B1AHEAf8B6wHRAcAB/wHq
-        AcwBuwH/AecBxgGzAf8B5AG+AacB/wEpAQ8BAAH/gAABpQEsAQAB/wFnAVEBKwH8Ad0BlAEAAf8B5AGb
-        AQAB/wHtAaUBAAH/AfMBrAEAAf8B+AGxAQAB/wH5AbIBAAH/AfkBsQEAAf8B9QGtAQAB/wHyAacBAAH/
-        AewBoAEAAf8B5AGWAQAB/wHvAckBiwH/AbIBPAEAAf8DOAFcAb8BqQGaAf8B+wH2AfIB/wH5AfIB7QH/
-        AfgB7wHpAf8B9wHrAeQB/wH1AegB4AH/AfQB5QHbAf8B8gHhAdYB/wHxAd4B0gH/Ae8B2gHNAf8B7gHX
-        AcgB/wHtAdMBwwH/AesB0AG/Af8B6gHMAbkB/wHjAb4BpwH/ASkBDwEAAf+AAAGlASwBAAH/AWcBVgEr
-        AfwB3AGcAQAB/wHgAZ0BAAH/AecBoQEAAf8B7QGmAQAB/wHzAasBAAH/AfgBsQEAAf8B+QGyAQAB/wH4
-        AbEBAAH/AfUBrQEAAf8B8QGmAQAB/wHqAZ4BAAH/AeIBlQEAAf8B7wHMAZIB/wGzAT4BAAH/AcABqwGc
-        Af8B/AH3AfQB/wH6AfQB8AH/AfkB8QHsAf8B+AHuAegB/wH2AesB5AH/AfUB5wHfAf8B9AHkAdoB/wHy
-        AeAB1QH/AfEB3QHRAf8B7wHZAcwB/wHuAdYBxwH/AewB0wHDAf8B6wHPAb4B/wHkAcABqgH/ASkBDwEA
-        Af+AAAGlASwBAAH/AdwBqQEbAf8B1wGZAQAB/wHeAaABAAH/AeQBpgEAAf8B6gGrAQAB/wHwAa4BAAH/
-        AfQBrwEAAf8B9wGxAQAB/wH5AbEBAAH/AfgBrwEAAf8B9AGrAQAB/wHwAaUBAAH/AfABugEdAf8BswE+
-        AQAB/wM4AVwBwgGsAZ0B/wH8AfkB9wH/AfsB9gHzAf8B+gH0Ae8B/wH5AfEB6wH/AfgB7QHnAf8B9wHr
-        AeUB/wH2AekB4QH/AfQB5QHcAf8B8wHjAdgB/wHxAd8B1AH/AfAB3AHQAf8B7wHZAcsB/wHuAdYByAH/
-        AecBxwGyAf8BKQEPAQAB/4AAAaUBLAEAAf8DXAHfAmQBXAHnAmUBXgHlAmUBXgHlAmUBXgHlAmUBXgHl
-        Al8BWAHjAmQBUwHxAfoBuQEAAf8B+gG4AQAB/wH4AbIBAAH/AfcBxAEkAf8BswE+AQAB/wM4AVwEAAHD
-        Aa4BnwH/Af0B+wH4Af8B/AH4AfYB/wH7AfYB8gH/AfoB8wHvAf8B+QHwAeoB/wH4AfEB7AH/AfgB7wHp
-        Af8B9gHtAeYB/wH2AeoB4gH/AfUB6QHgAf8B9QHlAd4B/wH0AeQB2gH/AfMB4QHXAf8B7wHYAcoB/wEp
-        AQ8BAAH/gAADQwF3AaUBLAEAAf8BpQEsAQAB/wGlASwBAAH/AaUBLAEAAf8BpQEsAQAB/wGlASwBAAH/
-        AaUBLAEAAf8BpQEsAQAB/wH4AbwBBwH/AfsBwQEJAf8B/AHSAT4B/wGzAT4BAAH/AzgBXAgAAcUBrwGg
-        Af8B/gH7AfgB/wH9AfoB+QH/AfwB+AH1Af8B+wH1AfIB/wH6AfIB7gH/AfkB8QHsAf8BvQGpAZsB/wG9
-        AakBmwH/Ab0BqQGbAf8BvQGpAZsB/wG9AakBmwH/Ab0BqQGbAf8BvQGpAZsB/wEpAQ8BAAH/ASkBDwEA
-        Af+gAAGlASwBAAH/AfMBtgECAf8B+wHQAT0B/wGzAT4BAAH/AzgBXAwAAcYBsAGhAf8B/gH7AfoB/wH+
-        AfwB+wH/Af0B+gH4Af8B/AH3AfQB/wH7AfUB8QH/AfoB8wHuAf8BNgEdAQoB/wHWAdEBzgH/AckBxAHA
-        Af8BwQG7AbcB/wG5AbIBrAH/AbUBrQGnAf8BsgGpAaIB/wFCASkBFwH/pAABpQEsAQAB/wHzAcgBOAH/
-        AbMBPgEAAf8DOAFcEAABxwGxAaIC/wH7AfoB/wH+AvwB/wH+AfsB+QH/Af0B+QH3Af8B+wH3AfQB/wH6
-        AfYB8gH/AZ0BiAE8Af8B4AHcAdoB/wHcAdoB1wH/AdIB0QHPAf8B1QHUAdIB/wHLAcgBxgH/AbkBswGt
-        Af8BngGKAUAB/6QAAaUBLAEAAf8BswE+AQAB/wM4AVwUAAHIAbIBowH/AcYBsAGhAf8BxAGuAZ8B/wHB
-        AasBnAH/Ab4BqQGaAf8BuwGmAZcB/wG5AaQBlQH/AbcBogGTAf8B2AHHAbwB/wHOAbwBrgH/AcgBtAGn
-        Af8BwwGuAaAB/wG8AacBmAH/AbkBpAGVAf8BrQGZAYwB/6QAA1MBqgM4AVz/ANkAAUIBTQE+BwABPgMA
-        ASgDAAFAAwABEAMAAQEBAAEBBQABgBcAA/8BAAH/AT8C/wQAAf8BHwYAAf8BDwYAAf8BBwcAAQMHAAEB
-        HwABAQcAAQMGAAH/AQcBAAEBBAAB/wEPAQABAQQAAf8BHwEAAQEEAAH/AT8C/wQABP8EAAs=
+        ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAAAy
+        CwAAAk1TRnQBSQFMAgEBAgIAAQIBAAECARABAAEQAQAE/wEhAQAI/wFCAU0BNgcAATYDAAEoAwABQAMA
+        ARADAAEBAQABIAYAARAyAANTAaoDOAFc+AABuAFCAQAB/wG4AUIBAAH/AzgBXBQAAbgBowGUAf8BJwEN
+        AQAB/wEnAQ0BAAH/AScBDQEAAf8BJwENAQAB/wEnAQ0BAAH/AScBDQEAAf8BJwENAQAB/wEnAQ0BAAH/
+        AScBDQEAAf8BJwENAQAB/wEnAQ0BAAH/AScBDQEAAf8BJwENAQAB/wEnAQ0BAAH/AScBDQEAAf+gAAG4
+        AUIBAAH/AfEBzAGOAf8BuAFCAQAB/wM4AVwQAAG5AaQBlQH/AfUB6AHfAf8B8AHcAc4B/wHvAdkBywH/
+        Ae0B0gHDAf8B6QHNAbsB/wHoAcgBswH/AeYBxAGvAf8B5AHAAakB/wHjAb0BpAH/AeMBvAGlAf8B4gG8
+        AaMB/wHiAbsBowH/AeIBuAGeAf8B3wG2AZ0B/wEnAQ0BAAH/oAABuAFCAQAB/wHwAcABMAH/Ae8BygGM
+        Af8BuAFCAQAB/wM4AVwMAAG6AaUBlgH/AfkB8QHsAf8B9gHqAeMB/wH1AecB3gH/AfMB4wHZAf8B8gHg
+        AdUB/wHwAdwB0AH/Ae8B2QHLAf8B7QHVAcYB/wHsAdIBwgH/AekBzQG5Af8B5wHIAbMB/wHmAcMBrQH/
+        AeQBvQGmAf8B4QG3AZ4B/wEnAQ0BAAH/gAADQwF3AbgBQgEAAf8BuAFCAQAB/wG4AUIBAAH/AbgBQgEA
+        Af8BuAFCAQAB/wG4AUIBAAH/AbgBQgEAAf8BuAFCAQAB/wHzAcUBMgH/AeUBmQEAAf8B7wHLAYwB/wG4
+        AUIBAAH/A0oBiggAAbwBpgGXAf8B+QHzAe4B/wH3Ae0B5gH/AfYB6gHiAf8B9QHmAd0B/wHzAeMB2AH/
+        AfIB3wHUAf8B8AHcAc8B/wHvAdgBygH/Ae0B1QHFAf8B7AHRAcEB/wHqAc4BvQH/AekBygG3Af8B5wHE
+        AbAB/wHjAb0BpQH/AScBDQEAAf+AAAGlASoBAAH/AekBugErAf8B7gHBATAB/wH0AccBMwH/AfcBzAE1
+        Af8B+gHPATcB/wH7Ac8BNwH/AfsBzwE3Af8B+QHMATYB/wHyAbEBAAH/AesBoQEAAf8B5QGZAQAB/wHv
+        AcoBjAH/AbIBOgEAAf8DOAFcBAABvQGoAZkB/wH6AfUB8QH/AfgB7wHqAf8B9wHsAeUB/wH2AekB4QH/
+        AfQB5QHcAf8B8wHiAdcB/wHxAd4B0wH/AfAB2wHOAf8B7gHXAckB/wHtAdQBxAH/AesB0QHAAf8B6gHM
+        AbsB/wHnAcYBswH/AeQBvgGnAf8BJwENAQAB/4AAAaUBKgEAAf8BZQFNASsB/AHdAZQBAAH/AeQBmwEA
+        Af8B7QGlAQAB/wHzAawBAAH/AfgBsQEAAf8B+QGyAQAB/wH5AbEBAAH/AfUBrQEAAf8B8gGnAQAB/wHs
+        AaABAAH/AeQBlgEAAf8B7wHJAYsB/wGyAToBAAH/AzgBXAG/AakBmgH/AfsB9gHyAf8B+QHyAe0B/wH4
+        Ae8B6QH/AfcB6wHkAf8B9QHoAeAB/wH0AeUB2wH/AfIB4QHWAf8B8QHeAdIB/wHvAdoBzQH/Ae4B1wHI
+        Af8B7QHTAcMB/wHrAdABvwH/AeoBzAG5Af8B4wG+AacB/wEnAQ0BAAH/gAABpQEqAQAB/wFlAVMBKwH8
+        AdwBnAEAAf8B4AGdAQAB/wHnAaEBAAH/Ae0BpgEAAf8B8wGrAQAB/wH4AbEBAAH/AfkBsgEAAf8B+AGx
+        AQAB/wH1Aa0BAAH/AfEBpgEAAf8B6gGeAQAB/wHiAZUBAAH/Ae8BzAGSAf8BswE8AQAB/wHAAasBnAH/
+        AfwB9wH0Af8B+gH0AfAB/wH5AfEB7AH/AfgB7gHoAf8B9gHrAeQB/wH1AecB3wH/AfQB5AHaAf8B8gHg
+        AdUB/wHxAd0B0QH/Ae8B2QHMAf8B7gHWAccB/wHsAdMBwwH/AesBzwG+Af8B5AHAAaoB/wEnAQ0BAAH/
+        gAABpQEqAQAB/wHcAakBGQH/AdcBmQEAAf8B3gGgAQAB/wHkAaYBAAH/AeoBqwEAAf8B8AGuAQAB/wH0
+        Aa8BAAH/AfcBsQEAAf8B+QGxAQAB/wH4Aa8BAAH/AfQBqwEAAf8B8AGlAQAB/wHwAboBGwH/AbMBPAEA
+        Af8DOAFcAcIBrAGdAf8B/AH5AfcB/wH7AfYB8wH/AfoB9AHvAf8B+QHxAesB/wH4Ae0B5wH/AfcB6wHl
+        Af8B9gHpAeEB/wH0AeUB3AH/AfMB4wHYAf8B8QHfAdQB/wHwAdwB0AH/Ae8B2QHLAf8B7gHWAcgB/wHn
+        AccBsgH/AScBDQEAAf+AAAGlASoBAAH/A1wB3wJkAVwB5wJlAV4B5QJlAV4B5QJlAV4B5QJlAV4B5QJf
+        AVgB4wJkAVMB8QH6AbkBAAH/AfoBuAEAAf8B+AGyAQAB/wH3AcQBIgH/AbMBPAEAAf8DOAFcBAABwwGu
+        AZ8B/wH9AfsB+AH/AfwB+AH2Af8B+wH2AfIB/wH6AfMB7wH/AfkB8AHqAf8B+AHxAewB/wH4Ae8B6QH/
+        AfYB7QHmAf8B9gHqAeIB/wH1AekB4AH/AfUB5QHeAf8B9AHkAdoB/wHzAeEB1wH/Ae8B2AHKAf8BJwEN
+        AQAB/4AAA0MBdwGlASoBAAH/AaUBKgEAAf8BpQEqAQAB/wGlASoBAAH/AaUBKgEAAf8BpQEqAQAB/wGl
+        ASoBAAH/AaUBKgEAAf8B+AG8AQUB/wH7AcEBBwH/AfwB0gE8Af8BswE8AQAB/wM4AVwIAAHFAa8BoAH/
+        Af4B+wH4Af8B/QH6AfkB/wH8AfgB9QH/AfsB9QHyAf8B+gHyAe4B/wH5AfEB7AH/Ab0BqQGbAf8BvQGp
+        AZsB/wG9AakBmwH/Ab0BqQGbAf8BvQGpAZsB/wG9AakBmwH/Ab0BqQGbAf8BJwENAQAB/wEnAQ0BAAH/
+        oAABpQEqAQAB/wHzAbYBAAH/AfsB0AE7Af8BswE8AQAB/wM4AVwMAAHGAbABoQH/Af4B+wH6Af8B/gH8
+        AfsB/wH9AfoB+AH/AfwB9wH0Af8B+wH1AfEB/wH6AfMB7gH/ATQBGwEIAf8B1gHRAc4B/wHJAcQBwAH/
+        AcEBuwG3Af8BuQGyAawB/wG1Aa0BpwH/AbIBqQGiAf8BQAEnARUB/6QAAaUBKgEAAf8B8wHIATYB/wGz
+        ATwBAAH/AzgBXBAAAccBsQGiAv8B+wH6Af8B/gL8Af8B/gH7AfkB/wH9AfkB9wH/AfsB9wH0Af8B+gH2
+        AfIB/wGdAYgBOgH/AeAB3AHaAf8B3AHaAdcB/wHSAdEBzwH/AdUB1AHSAf8BywHIAcYB/wG5AbMBrQH/
+        AZ4BigE+Af+kAAGlASoBAAH/AbMBPAEAAf8DOAFcFAAByAGyAaMB/wHGAbABoQH/AcQBrgGfAf8BwQGr
+        AZwB/wG+AakBmgH/AbsBpgGXAf8BuQGkAZUB/wG3AaIBkwH/AdgBxwG8Af8BzgG8Aa4B/wHIAbQBpwH/
+        AcMBrgGgAf8BvAGnAZgB/wG5AaQBlQH/Aa0BmQGMAf+kAANTAaoDOAFc/wDZAAFCAU0BPgcAAT4DAAEo
+        AwABQAMAARADAAEBAQABAQUAAYAXAAP/AQAB/wE/Av8EAAH/AR8GAAH/AQ8GAAH/AQcHAAEDBwABAR8A
+        AQEHAAEDBgAB/wEHAQABAQQAAf8BDwEAAQEEAAH/AR8BAAEBBAAB/wE/Av8EAAT/BAAL
 </value>
   </data>
   <data name="listViewLocations.TabIndex" type="System.Int32, mscorlib">
@@ -881,7 +614,7 @@
     <value>NoControl</value>
   </data>
   <data name="buttonSelectFolder.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 233</value>
+    <value>6, 233</value>
   </data>
   <data name="buttonSelectFolder.Size" type="System.Drawing.Size, System.Drawing">
     <value>125, 25</value>
@@ -908,7 +641,7 @@
     <value>Top, Right</value>
   </data>
   <data name="comboFileExtension.Location" type="System.Drawing.Point, System.Drawing">
-    <value>368, 22</value>
+    <value>368, 23</value>
   </data>
   <data name="comboFileExtension.Size" type="System.Drawing.Size, System.Drawing">
     <value>60, 21</value>
@@ -932,10 +665,10 @@
     <value>Top, Left, Right</value>
   </data>
   <data name="textFilename.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 23</value>
+    <value>6, 23</value>
   </data>
   <data name="textFilename.Size" type="System.Drawing.Size, System.Drawing">
-    <value>359, 20</value>
+    <value>356, 20</value>
   </data>
   <data name="textFilename.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -1034,10 +767,208 @@
     <value>tabProperties</value>
   </data>
   <data name="&gt;&gt;tabPageSave.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="checkAppendRecordingDetails.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left</value>
+  </data>
+  <data name="checkAppendRecordingDetails.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="checkAppendRecordingDetails.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="checkAppendRecordingDetails.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 241</value>
+  </data>
+  <data name="checkAppendRecordingDetails.Size" type="System.Drawing.Size, System.Drawing">
+    <value>289, 17</value>
+  </data>
+  <data name="checkAppendRecordingDetails.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="checkAppendRecordingDetails.Text" xml:space="preserve">
+    <value>Append recording details (channel name, schedule, etc)</value>
+  </data>
+  <data name="&gt;&gt;checkAppendRecordingDetails.Name" xml:space="preserve">
+    <value>checkAppendRecordingDetails</value>
+  </data>
+  <data name="&gt;&gt;checkAppendRecordingDetails.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;checkAppendRecordingDetails.Parent" xml:space="preserve">
+    <value>tabPageDescription</value>
+  </data>
+  <data name="&gt;&gt;checkAppendRecordingDetails.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="textTaskDescription.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left, Right</value>
+  </data>
+  <data name="textTaskDescription.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 23</value>
+  </data>
+  <data name="textTaskDescription.Multiline" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="textTaskDescription.Size" type="System.Drawing.Size, System.Drawing">
+    <value>425, 212</value>
+  </data>
+  <data name="textTaskDescription.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;textTaskDescription.Name" xml:space="preserve">
+    <value>textTaskDescription</value>
+  </data>
+  <data name="&gt;&gt;textTaskDescription.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;textTaskDescription.Parent" xml:space="preserve">
+    <value>tabPageDescription</value>
+  </data>
+  <data name="&gt;&gt;textTaskDescription.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="labelTaskDescription.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="labelTaskDescription.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="labelTaskDescription.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 7</value>
+  </data>
+  <data name="labelTaskDescription.Size" type="System.Drawing.Size, System.Drawing">
+    <value>202, 13</value>
+  </data>
+  <data name="labelTaskDescription.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
   </data>
+  <data name="labelTaskDescription.Text" xml:space="preserve">
+    <value>Task and recording description (optional):</value>
+  </data>
+  <data name="&gt;&gt;labelTaskDescription.Name" xml:space="preserve">
+    <value>labelTaskDescription</value>
+  </data>
+  <data name="&gt;&gt;labelTaskDescription.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;labelTaskDescription.Parent" xml:space="preserve">
+    <value>tabPageDescription</value>
+  </data>
+  <data name="&gt;&gt;labelTaskDescription.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="tabPageDescription.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 22</value>
+  </data>
+  <data name="tabPageDescription.Size" type="System.Drawing.Size, System.Drawing">
+    <value>432, 261</value>
+  </data>
+  <data name="tabPageDescription.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="tabPageDescription.Text" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="&gt;&gt;tabPageDescription.Name" xml:space="preserve">
+    <value>tabPageDescription</value>
+  </data>
+  <data name="&gt;&gt;tabPageDescription.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tabPageDescription.Parent" xml:space="preserve">
+    <value>tabProperties</value>
+  </data>
+  <data name="&gt;&gt;tabPageDescription.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="checkAddTaskPrefix.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="checkAddTaskPrefix.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="checkAddTaskPrefix.Location" type="System.Drawing.Point, System.Drawing">
+    <value>270, 7</value>
+  </data>
+  <data name="checkAddTaskPrefix.Size" type="System.Drawing.Size, System.Drawing">
+    <value>158, 17</value>
+  </data>
+  <data name="checkAddTaskPrefix.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
+  <data name="checkAddTaskPrefix.Text" xml:space="preserve">
+    <value>Add standard prefix to name</value>
+  </data>
+  <data name="&gt;&gt;checkAddTaskPrefix.Name" xml:space="preserve">
+    <value>checkAddTaskPrefix</value>
+  </data>
+  <data name="&gt;&gt;checkAddTaskPrefix.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;checkAddTaskPrefix.Parent" xml:space="preserve">
+    <value>tabPageAdvanced</value>
+  </data>
+  <data name="&gt;&gt;checkAddTaskPrefix.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="labelTaskName.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="labelTaskName.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="labelTaskName.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 8</value>
+  </data>
+  <data name="labelTaskName.Size" type="System.Drawing.Size, System.Drawing">
+    <value>184, 13</value>
+  </data>
+  <data name="labelTaskName.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="labelTaskName.Text" xml:space="preserve">
+    <value>Windows Task Scheduler task name:</value>
+  </data>
+  <data name="&gt;&gt;labelTaskName.Name" xml:space="preserve">
+    <value>labelTaskName</value>
+  </data>
+  <data name="&gt;&gt;labelTaskName.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;labelTaskName.Parent" xml:space="preserve">
+    <value>tabPageAdvanced</value>
+  </data>
+  <data name="&gt;&gt;labelTaskName.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="textTaskName.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="textTaskName.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 24</value>
+  </data>
+  <data name="textTaskName.Size" type="System.Drawing.Size, System.Drawing">
+    <value>422, 20</value>
+  </data>
+  <data name="textTaskName.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="&gt;&gt;textTaskName.Name" xml:space="preserve">
+    <value>textTaskName</value>
+  </data>
+  <data name="&gt;&gt;textTaskName.Type" xml:space="preserve">
+    <value>IpTviewr.UiServices.Common.Controls.FilenameTextBox, UiServices.Common, Version=1.5.1010.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;textTaskName.Parent" xml:space="preserve">
+    <value>tabPageAdvanced</value>
+  </data>
+  <data name="&gt;&gt;textTaskName.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
   <data name="timeSpanSchedulerDeleteTaskAfter.Location" type="System.Drawing.Point, System.Drawing">
-    <value>22, 146</value>
+    <value>25, 194</value>
   </data>
   <data name="timeSpanSchedulerDeleteTaskAfter.Size" type="System.Drawing.Size, System.Drawing">
     <value>253, 20</value>
@@ -1055,10 +986,10 @@
     <value>tabPageAdvanced</value>
   </data>
   <data name="&gt;&gt;timeSpanSchedulerDeleteTaskAfter.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>3</value>
   </data>
   <data name="timeSpanSchedulerRetry.Location" type="System.Drawing.Point, System.Drawing">
-    <value>22, 97</value>
+    <value>25, 145</value>
   </data>
   <data name="timeSpanSchedulerRetry.Size" type="System.Drawing.Size, System.Drawing">
     <value>192, 20</value>
@@ -1076,7 +1007,7 @@
     <value>tabPageAdvanced</value>
   </data>
   <data name="&gt;&gt;timeSpanSchedulerRetry.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>4</value>
   </data>
   <data name="comboSchedulerAlreadyRunning.Items" xml:space="preserve">
     <value>Run in paralel (record both)</value>
@@ -1091,7 +1022,7 @@
     <value>Stop previous recording and proceed</value>
   </data>
   <data name="comboSchedulerAlreadyRunning.Location" type="System.Drawing.Point, System.Drawing">
-    <value>22, 195</value>
+    <value>25, 233</value>
   </data>
   <data name="comboSchedulerAlreadyRunning.Size" type="System.Drawing.Size, System.Drawing">
     <value>307, 21</value>
@@ -1109,7 +1040,7 @@
     <value>tabPageAdvanced</value>
   </data>
   <data name="&gt;&gt;comboSchedulerAlreadyRunning.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>5</value>
   </data>
   <data name="labelSchedulerConcurrent.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1118,7 +1049,7 @@
     <value>NoControl</value>
   </data>
   <data name="labelSchedulerConcurrent.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 179</value>
+    <value>3, 217</value>
   </data>
   <data name="labelSchedulerConcurrent.Size" type="System.Drawing.Size, System.Drawing">
     <value>278, 13</value>
@@ -1139,7 +1070,7 @@
     <value>tabPageAdvanced</value>
   </data>
   <data name="&gt;&gt;labelSchedulerConcurrent.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>6</value>
   </data>
   <data name="checkSchedulerDeleteTask.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1148,7 +1079,7 @@
     <value>NoControl</value>
   </data>
   <data name="checkSchedulerDeleteTask.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 123</value>
+    <value>6, 171</value>
   </data>
   <data name="checkSchedulerDeleteTask.Size" type="System.Drawing.Size, System.Drawing">
     <value>309, 17</value>
@@ -1169,10 +1100,10 @@
     <value>tabPageAdvanced</value>
   </data>
   <data name="&gt;&gt;checkSchedulerDeleteTask.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>7</value>
   </data>
   <data name="numericSchedulerMaxRetries.Location" type="System.Drawing.Point, System.Drawing">
-    <value>352, 97</value>
+    <value>355, 145</value>
   </data>
   <data name="numericSchedulerMaxRetries.Size" type="System.Drawing.Size, System.Drawing">
     <value>35, 20</value>
@@ -1190,7 +1121,7 @@
     <value>tabPageAdvanced</value>
   </data>
   <data name="&gt;&gt;numericSchedulerMaxRetries.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>8</value>
   </data>
   <data name="labelSchedulerMaxRetries.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1199,7 +1130,7 @@
     <value>NoControl</value>
   </data>
   <data name="labelSchedulerMaxRetries.Location" type="System.Drawing.Point, System.Drawing">
-    <value>220, 99</value>
+    <value>223, 147</value>
   </data>
   <data name="labelSchedulerMaxRetries.Size" type="System.Drawing.Size, System.Drawing">
     <value>126, 13</value>
@@ -1220,7 +1151,7 @@
     <value>tabPageAdvanced</value>
   </data>
   <data name="&gt;&gt;labelSchedulerMaxRetries.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>9</value>
   </data>
   <data name="checkSchedulerRetry.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1229,7 +1160,7 @@
     <value>NoControl</value>
   </data>
   <data name="checkSchedulerRetry.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 73</value>
+    <value>6, 122</value>
   </data>
   <data name="checkSchedulerRetry.Size" type="System.Drawing.Size, System.Drawing">
     <value>211, 17</value>
@@ -1250,7 +1181,7 @@
     <value>tabPageAdvanced</value>
   </data>
   <data name="&gt;&gt;checkSchedulerRetry.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>10</value>
   </data>
   <data name="checkSchedulerASAP.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1259,7 +1190,7 @@
     <value>NoControl</value>
   </data>
   <data name="checkSchedulerASAP.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 50</value>
+    <value>6, 99</value>
   </data>
   <data name="checkSchedulerASAP.Size" type="System.Drawing.Size, System.Drawing">
     <value>307, 17</value>
@@ -1280,16 +1211,16 @@
     <value>tabPageAdvanced</value>
   </data>
   <data name="&gt;&gt;checkSchedulerASAP.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>11</value>
   </data>
   <data name="comboSchedulerFolder.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
   </data>
   <data name="comboSchedulerFolder.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 23</value>
+    <value>6, 63</value>
   </data>
   <data name="comboSchedulerFolder.Size" type="System.Drawing.Size, System.Drawing">
-    <value>425, 21</value>
+    <value>422, 21</value>
   </data>
   <data name="comboSchedulerFolder.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -1304,7 +1235,7 @@
     <value>tabPageAdvanced</value>
   </data>
   <data name="&gt;&gt;comboSchedulerFolder.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>12</value>
   </data>
   <data name="labelSchedulerFolder.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1313,7 +1244,7 @@
     <value>NoControl</value>
   </data>
   <data name="labelSchedulerFolder.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 7</value>
+    <value>3, 47</value>
   </data>
   <data name="labelSchedulerFolder.Size" type="System.Drawing.Size, System.Drawing">
     <value>341, 13</value>
@@ -1334,7 +1265,7 @@
     <value>tabPageAdvanced</value>
   </data>
   <data name="&gt;&gt;labelSchedulerFolder.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>13</value>
   </data>
   <data name="tabPageAdvanced.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 22</value>
@@ -1379,40 +1310,118 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;tabProperties.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>4</value>
   </data>
-  <data name="labelChannelNumber.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 11pt, style=Bold</value>
+  <metadata name="selectFolder.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>172, 17</value>
+  </metadata>
+  <data name="labelProgramSchedule.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
   </data>
-  <data name="labelChannelNumber.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+  <data name="labelProgramSchedule.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 9.75pt, style=Italic</value>
+  </data>
+  <data name="labelProgramSchedule.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="labelChannelNumber.Location" type="System.Drawing.Point, System.Drawing">
-    <value>82, 12</value>
+  <data name="labelProgramSchedule.Location" type="System.Drawing.Point, System.Drawing">
+    <value>82, 58</value>
   </data>
-  <data name="labelChannelNumber.Size" type="System.Drawing.Size, System.Drawing">
-    <value>55, 64</value>
+  <data name="labelProgramSchedule.Size" type="System.Drawing.Size, System.Drawing">
+    <value>370, 18</value>
   </data>
-  <data name="labelChannelNumber.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
+  <data name="labelProgramSchedule.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
   </data>
-  <data name="labelChannelNumber.Text" xml:space="preserve">
-    <value>###</value>
+  <data name="labelProgramSchedule.Text" xml:space="preserve">
+    <value>(Program schedule)</value>
   </data>
-  <data name="labelChannelNumber.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleCenter</value>
+  <data name="labelProgramSchedule.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
   </data>
-  <data name="&gt;&gt;labelChannelNumber.Name" xml:space="preserve">
-    <value>labelChannelNumber</value>
+  <data name="&gt;&gt;labelProgramSchedule.Name" xml:space="preserve">
+    <value>labelProgramSchedule</value>
   </data>
-  <data name="&gt;&gt;labelChannelNumber.Type" xml:space="preserve">
+  <data name="&gt;&gt;labelProgramSchedule.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;labelChannelNumber.Parent" xml:space="preserve">
+  <data name="&gt;&gt;labelProgramSchedule.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;labelChannelNumber.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;labelProgramSchedule.ZOrder" xml:space="preserve">
     <value>0</value>
+  </data>
+  <data name="labelProgramDescription.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="labelProgramDescription.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 9.75pt, style=Bold</value>
+  </data>
+  <data name="labelProgramDescription.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="labelProgramDescription.Location" type="System.Drawing.Point, System.Drawing">
+    <value>82, 37</value>
+  </data>
+  <data name="labelProgramDescription.Size" type="System.Drawing.Size, System.Drawing">
+    <value>370, 18</value>
+  </data>
+  <data name="labelProgramDescription.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="labelProgramDescription.Text" xml:space="preserve">
+    <value>(Program description)</value>
+  </data>
+  <data name="labelProgramDescription.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="&gt;&gt;labelProgramDescription.Name" xml:space="preserve">
+    <value>labelProgramDescription</value>
+  </data>
+  <data name="&gt;&gt;labelProgramDescription.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;labelProgramDescription.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;labelProgramDescription.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="labelChannelName.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="labelChannelName.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 12pt, style=Bold</value>
+  </data>
+  <data name="labelChannelName.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="labelChannelName.Location" type="System.Drawing.Point, System.Drawing">
+    <value>82, 12</value>
+  </data>
+  <data name="labelChannelName.Size" type="System.Drawing.Size, System.Drawing">
+    <value>370, 22</value>
+  </data>
+  <data name="labelChannelName.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="labelChannelName.Text" xml:space="preserve">
+    <value>(Channel name)</value>
+  </data>
+  <data name="labelChannelName.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="&gt;&gt;labelChannelName.Name" xml:space="preserve">
+    <value>labelChannelName</value>
+  </data>
+  <data name="&gt;&gt;labelChannelName.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;labelChannelName.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;labelChannelName.ZOrder" xml:space="preserve">
+    <value>2</value>
   </data>
   <data name="pictureChannelLogo.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -1427,7 +1436,7 @@
     <value>CenterImage</value>
   </data>
   <data name="pictureChannelLogo.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
+    <value>8</value>
   </data>
   <data name="&gt;&gt;pictureChannelLogo.Name" xml:space="preserve">
     <value>pictureChannelLogo</value>
@@ -1439,11 +1448,8 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;pictureChannelLogo.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>3</value>
   </data>
-  <metadata name="selectFolder.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>172, 17</value>
-  </metadata>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>

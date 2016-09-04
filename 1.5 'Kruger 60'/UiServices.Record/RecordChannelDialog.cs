@@ -19,7 +19,7 @@ namespace IpTviewr.UiServices.Record
 {
     public partial class RecordChannelDialog : CommonBaseForm
     {
-        public static readonly TimeSpan DefaultExpiryDateTimeSpan = new TimeSpan(1, 0, 0, 0);
+        public static readonly TimeSpan DefaultExpiryDateTimeSpan = new TimeSpan(23, 0, 0);
 
         private const string ListLocationsSelectedImageKey = "selected";
         private const string ListLocationsDefaultImageKey = "folder";
@@ -117,10 +117,15 @@ namespace IpTviewr.UiServices.Record
         private void InitGeneralData()
         {
             var serviceLogo = AppUiConfiguration.Current.ServiceLogoMappings.FromServiceKey(Task.Channel.ServiceKey);
-            pictureChannelLogo.Image = serviceLogo.GetImage(LogoSize.Size64, true);
-            labelChannelNumber.Text = Task.Channel.LogicalNumber;
-            labelChannelName.Text = Task.Channel.Name;
-            labelChannelDescription.Text = Task.Channel.Description;
+            pictureChannelLogo.Image = serviceLogo.GetImage(LogoSize.Size64);
+
+            labelChannelName.Text = string.Format("{0} {1}", Task.Channel.LogicalNumber, Task.Channel.Name);
+
+            labelChannelName.Top = pictureChannelLogo.Top;
+            labelChannelName.Height = pictureChannelLogo.Height;
+
+            labelProgramDescription.Visible = false;
+            labelProgramSchedule.Visible = false;
         } // InitGeneralData
 
         private void GetGeneralData()

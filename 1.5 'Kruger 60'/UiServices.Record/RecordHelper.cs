@@ -17,11 +17,29 @@ namespace IpTviewr.UiServices.Record
 {
     public class RecordHelper
     {
-        public static bool RecordService(CommonBaseForm ownerForm, UiBroadcastService service, EpgProgram program, DateTime localReferenceTime, bool allowRecordChannel = true)
+        public static bool RecordService(CommonBaseForm ownerForm, UiBroadcastService service)
+        {
+            if (service == null) throw new ArgumentNullException(nameof(service));
+            if (VerifyIsInactive(ownerForm, service)) return false;
+
+            var task = GetRecordTask(service, null, new DateTime());
+            using (var dlg = new RecordChannelDialog())
+            {
+                dlg.Task = task;
+                dlg.IsNewTask = true;
+                dlg.ShowDialog(ownerForm);
+                task = dlg.Task;
+                if (dlg.DialogResult != DialogResult.OK) return false;
+            } // using dlg
+
+            return ScheduleTask(ownerForm, task);
+        } // RecordService
+
+        public static bool RecordProgram(CommonBaseForm ownerForm, UiBroadcastService service, EpgProgram program, DateTime localReferenceTime, bool allowRecordChannel = true)
         {
             RecordProgramOptions.RecordOption option;
 
-            if (service == null) return false;
+            if (service == null) throw new ArgumentNullException(nameof(service));
             if (VerifyIsInactive(ownerForm, service)) return false;
 
             // select record options
@@ -38,7 +56,7 @@ namespace IpTviewr.UiServices.Record
             if (option == RecordProgramOptions.RecordOption.None) return false;
 
             // create record task and allow to edit it
-            var task = CreateRecordTask(service, program);
+            var task = GetRecordTask(service, program, localReferenceTime);
             if (option != RecordProgramOptions.RecordOption.Default)
             {
                 using (var dlg = new RecordChannelDialog())
@@ -51,18 +69,8 @@ namespace IpTviewr.UiServices.Record
                 } // using dlg
             } // if
 
-            // schedule task
-            var scheduler = new Scheduler(ownerForm.GetExceptionHandler(),
-                AppUiConfiguration.Current.Folders.RecordTasks, AppUiConfiguration.Current.User.Record.RecorderLauncherPath);
-
-            if (scheduler.CreateTask(task))
-            {
-                MessageBox.Show(ownerForm, Properties.Resources.SchedulerCreateTaskOk, ownerForm.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return true;
-            } // if
-
-            return false;
-        } // RecordService
+            return ScheduleTask(ownerForm, task);
+        } // RecordProgram
 
         public static bool CanRecord(EpgProgram program, bool allowRecordChannel = true)
         {
@@ -72,6 +80,102 @@ namespace IpTviewr.UiServices.Record
 
             return true;
         } // CanRecord
+
+        public static RecordTask GetRecordTask(UiBroadcastService service, EpgProgram program, DateTime localReferenceTime)
+        {
+            var channel = GetRecordChannel(service);
+
+            if ((program == null) || (program.IsBlank))
+            {
+                return RecordTask.CreateWithDefaultValues(channel);
+            } // if
+
+            var schedule = GetRecordSchedule(program, localReferenceTime);
+            var duration = GetRecordDuration(program);
+            var description = GetRecordDescription(program, channel);
+            var action = GetRecordAction(service, program);
+
+            var task = new RecordTask()
+            {
+                Channel = channel,
+                Schedule = schedule,
+                Duration = duration,
+                Description = description,
+                Action = action,
+                AdvancedSettings = RecordAdvancedSettings.CreateWithDefaultValues(),
+            };
+
+            return task;
+        } // GetRecordTask
+
+        public static RecordChannel GetRecordChannel(UiBroadcastService service)
+        {
+            var channel = new RecordChannel()
+            {
+                LogicalNumber = service.DisplayLogicalNumber,
+                Name = service.DisplayName,
+                Description = service.DisplayDescription,
+                ServiceKey = service.Key,
+                ServiceName = service.FullServiceName,
+                ChannelUrl = service.LocationUrl,
+            };
+
+            return channel;
+        } // GetRecordChannel
+
+        public static RecordSchedule GetRecordSchedule(EpgProgram program, DateTime localReferenceTime)
+        {
+            var isCurrent = program.IsCurrent(localReferenceTime);
+            var kind = isCurrent ? RecordScheduleKind.RightNow : RecordScheduleKind.OneTime;
+            var schedule = RecordSchedule.CreateWithDefaultValues(RecordScheduleKind.OneTime) as RecordScheduleTime;
+            if (!isCurrent) schedule.StartDate = program.LocalStartTime;
+            schedule.ExpiryDate = program.LocalEndTime + program.Duration + RecordChannelDialog.DefaultExpiryDateTimeSpan;
+
+            return schedule;
+        } // GetRecordSchedule
+
+        private static RecordDuration GetRecordDuration(EpgProgram program)
+        {
+            var duration = RecordDuration.CreateWithDefaultValues();
+            duration.Length = program.Duration;
+
+            return duration;
+        } // GetRecordDuration
+
+        private static RecordDescription GetRecordDescription(EpgProgram program, RecordChannel channel)
+        {
+            var description = RecordDescription.CreateWithDefaultValues();
+            description.Name = RecordDescription.CreateTaskName(channel, program.LocalStartTime);
+
+            /* var extended = program as EpgProgramExtended;
+            if (extended != null)
+            {
+
+            }
+            else */
+            {
+                var buffer = new StringBuilder();
+                buffer.AppendLine(program.Title);
+                buffer.Append(program.ParentalRating.Description);
+                description.Description = buffer.ToString();
+            } // if-else
+
+            return description;
+        } // GetRecordDescription
+
+        private static RecordAction GetRecordAction(UiBroadcastService service, EpgProgram program)
+        {
+            var action = RecordAction.CreateWithDefaultValues();
+            var defaultLocation = RecordSaveLocation.GetDefaultSaveLocation(AppUiConfiguration.Current.User.Record.SaveLocations);
+
+            action.Filename = string.Format("{0} - {1}", service.DisplayName, program.Title);
+            action.FileExtension = RecordChannelDialog.GetFilenameExtensions()[0];
+            action.SaveLocationName = defaultLocation.Name;
+            action.SaveLocationPath = defaultLocation.Path;
+
+            return action;
+        } // GetRecordAction
+
 
         private static bool VerifyIsInactive(CommonBaseForm ownerForm, UiBroadcastService service)
         {
@@ -93,66 +197,19 @@ namespace IpTviewr.UiServices.Record
             return false;
         } // VerifyIsInactive
 
-        private static RecordTask CreateRecordTask(UiBroadcastService service, EpgProgram program)
+        private static bool ScheduleTask(CommonBaseForm ownerForm, RecordTask task)
         {
-            RecordChannel channel;
+            // schedule task
+            var scheduler = new Scheduler(ownerForm.GetExceptionHandler(),
+                AppUiConfiguration.Current.Folders.RecordTasks, AppUiConfiguration.Current.User.Record.RecorderLauncherPath);
 
-            channel = new RecordChannel()
+            if (scheduler.CreateTask(task))
             {
-                LogicalNumber = service.DisplayLogicalNumber,
-                Name = service.DisplayName,
-                Description = service.DisplayDescription,
-                ServiceKey = service.Key,
-                ServiceName = service.FullServiceName,
-                ChannelUrl = service.LocationUrl,
-            };
+                MessageBox.Show(ownerForm, Properties.Resources.SchedulerCreateTaskOk, ownerForm.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return true;
+            } // if
 
-            if ((program == null) || (program.IsBlank))
-            {
-                return RecordTask.CreateWithDefaultValues(channel);
-            }
-            else
-            {
-                var schedule = RecordSchedule.CreateWithDefaultValues(RecordScheduleKind.OneTime) as RecordScheduleTime;
-                schedule.StartDate = program.LocalStartTime;
-                schedule.ExpiryDate = program.LocalEndTime + program.Duration + RecordChannelDialog.DefaultExpiryDateTimeSpan;
-
-                var duration = RecordDuration.CreateWithDefaultValues();
-                duration.Length = program.Duration;
-
-                var description = RecordDescription.CreateWithDefaultValues();
-                description.Name = RecordDescription.CreateTaskName(channel, schedule.StartDate);
-                description.Description = program.ParentalRating.Description;
-
-                /* var extended = program as EpgProgramExtended;
-                if (extended != null)
-                {
-
-                }
-                else */
-                {
-                    description.Description = program.ParentalRating.Description;
-                }
-
-                var defaultLocation = RecordSaveLocation.GetDefaultSaveLocation(AppUiConfiguration.Current.User.Record.SaveLocations);
-                var action = RecordAction.CreateWithDefaultValues();
-                action.Filename = string.Format("{0} - {1}", service.DisplayName, program.Title);
-                action.FileExtension = RecordChannelDialog.GetFilenameExtensions()[0];
-                action.SaveLocationName = defaultLocation.Name;
-                action.SaveLocationPath = defaultLocation.Path;
-
-                var task = new RecordTask()
-                {
-                    Channel = channel,
-                    Schedule = schedule,
-                    Duration = duration,
-                    Description = description,
-                    Action = RecordAction.CreateWithDefaultValues(),
-                    AdvancedSettings = RecordAdvancedSettings.CreateWithDefaultValues(),
-                };
-
-                return task;
-            } // if-else
-        } // CreateRecordTask
+            return false;
+        } // ScheduleTask
     } // class RecordHelper
 } // namespace

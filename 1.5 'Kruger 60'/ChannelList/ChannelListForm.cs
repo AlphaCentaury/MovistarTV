@@ -368,16 +368,6 @@ namespace IpTviewr.ChannelList
             SafeCall(ShowTvChannel, true);
         } // listViewChannelsList_DoubleClick
 
-        private void buttonRecordChannel_Click(object sender, EventArgs e)
-        {
-            SafeCall(buttonRecordChannel_Click_Implementation, sender, e);
-        } // buttonRecordChannel_Click
-
-        private void buttonDisplayChannel_Click(object sender, EventArgs e)
-        {
-            SafeCall(ShowTvChannel, true);
-        } // buttonDisplayChannel_Click
-
         #endregion
 
         #region Service-related event handlers implementation
@@ -516,49 +506,7 @@ namespace IpTviewr.ChannelList
 
         private void buttonRecordChannel_Click_Implementation(object sender, EventArgs e)
         {
-            RecordTask task;
-
-            if (ListManager.SelectedService == null) return;
-
-            if (ListManager.SelectedService.IsInactive)
-            {
-                var box = new ExceptionMessageBox()
-                {
-                    Caption = this.Text,
-                    Text = string.Format(Properties.Texts.RecordDeadTvChannel, ListManager.SelectedService.DisplayName),
-                    Beep = true,
-                    Symbol = ExceptionMessageBoxSymbol.Question,
-                    Buttons = ExceptionMessageBoxButtons.YesNo,
-                    DefaultButton = ExceptionMessageBoxDefaultButton.Button2,
-                };
-                if (box.Show(this) != System.Windows.Forms.DialogResult.Yes) return;
-            } // if
-
-            using (var dlg = new RecordChannelDialog())
-            {
-                dlg.Task = RecordTask.CreateWithDefaultValues(new RecordChannel()
-                {
-                    LogicalNumber = ListManager.SelectedService.DisplayLogicalNumber,
-                    Name = ListManager.SelectedService.DisplayName,
-                    Description = ListManager.SelectedService.DisplayDescription,
-                    ServiceKey = ListManager.SelectedService.Key,
-                    ServiceName = ListManager.SelectedService.FullServiceName,
-                    ChannelUrl = ListManager.SelectedService.LocationUrl,
-                });
-                dlg.IsNewTask = true;
-                dlg.ShowDialog(this);
-                task = dlg.Task;
-                if (dlg.DialogResult != DialogResult.OK) return;
-            } // using dlg
-
-            var scheduler = new Scheduler(GetExceptionHandler(),
-                AppUiConfiguration.Current.Folders.RecordTasks,
-                MyApplication.RecorderLauncherPath);
-
-            if (scheduler.CreateTask(task))
-            {
-                MessageBox.Show(this, Texts.SchedulerCreateTaskOk, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
-            } // if
+            RecordHelper.RecordService(this, ListManager.SelectedService);
         } // buttonRecordChannel_Click_Implementation
 
         private void menuItemRecordingsManage_Click_Implementation(object sender, EventArgs e)

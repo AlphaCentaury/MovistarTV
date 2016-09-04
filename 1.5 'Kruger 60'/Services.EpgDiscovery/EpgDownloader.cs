@@ -92,7 +92,7 @@ namespace IpTviewr.Services.EpgDiscovery
                 StreamClient = new DvbStpStreamClient(MulticastIpAddress, MulticastPort);
                 StreamClient.NoDataTimeout = -1; // not implemented by DvbStpStreamClient
                 StreamClient.ReceiveDatagramTimeout = 60 * 1000; // 60 seconds
-                StreamClient.OperationTimeout = (30 * 60) * 1000; // 30 minutes
+                StreamClient.OperationTimeout = -1; // forever
                 StreamClient.SegmentPayloadReceived += SegmentPayloadReceived;
 
                 while (retryTime <= maxRetryTime)

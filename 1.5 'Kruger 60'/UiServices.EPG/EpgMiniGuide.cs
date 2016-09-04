@@ -268,7 +268,7 @@ namespace IpTviewr.UiServices.EPG
             ButtonClicked?.Invoke(this, new EpgMiniBarButtonClickedEventArgs(Button.Record));
             if (ManualActions) return;
 
-            RecordHelper.RecordService(ParentForm as CommonBaseForm, SelectedService, SelectedProgram, LocalReferenceTime, true);
+            RecordHelper.RecordProgram(ParentForm as CommonBaseForm, SelectedService, SelectedProgram, LocalReferenceTime, true);
         } // buttonRecordChannel_Click
 
         #endregion
