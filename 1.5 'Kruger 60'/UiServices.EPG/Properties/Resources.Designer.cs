@@ -93,9 +93,29 @@ namespace IpTviewr.UiServices.EPG.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap EpgLoadingProgramImageVertical {
+            get {
+                object obj = ResourceManager.GetObject("EpgLoadingProgramImageVertical", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap EpgNoProgramImage {
             get {
                 object obj = ResourceManager.GetObject("EpgNoProgramImage", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap EpgNoProgramImageVertical {
+            get {
+                object obj = ResourceManager.GetObject("EpgNoProgramImageVertical", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

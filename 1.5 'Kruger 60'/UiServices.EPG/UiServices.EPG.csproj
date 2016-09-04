@@ -79,6 +79,9 @@
       <DependentUpon>EpgMiniGuide.cs</DependentUpon>
     </Compile>
     <Compile Include="EpgMiniGuideEventArgs.cs" />
+    <Compile Include="EpgProgramPictureBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="EpgProgressBarFixed.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -180,7 +183,9 @@
     <Content Include="Resources\Action_Epg_16x16.png" />
     <Content Include="Resources\Epg.ico" />
     <Content Include="Resources\EpgLoadingProgramImage.png" />
+    <Content Include="Resources\EpgLoadingProgramImageVertical.png" />
     <Content Include="Resources\EpgNoProgramImage.png" />
+    <Content Include="Resources\EpgNoProgramImageVertical.png" />
     <Content Include="Resources\ProgressBarBase.png" />
     <Content Include="Resources\ProgressBarFilled.png" />
   </ItemGroup>
