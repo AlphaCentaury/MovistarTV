@@ -1,6 +1,7 @@
 ﻿// Copyright (C) 2014-2016, Codeplex/GitHub user AlphaCentaury
 // All rights reserved, except those granted by the governing license of this software. See 'license.txt' file in the project root for complete license information.
 
+using IpTviewr.Common;
 using IpTviewr.Common.Telemetry;
 using IpTviewr.Services.Record.Serialization;
 using IpTviewr.UiServices.Common.Forms;
@@ -41,6 +42,12 @@ namespace IpTviewr.UiServices.Record
             set;
         } // IsNewTask
 
+        public DateTime LocalReferenceTime
+        {
+            get;
+            set;
+        } // LocalReferenceTime
+
         public static string[] GetFilenameExtensions()
         {
             var separators = new string[] { "\r\n" };
@@ -52,6 +59,8 @@ namespace IpTviewr.UiServices.Record
         public RecordChannelDialog()
         {
             InitializeComponent();
+            Icon = Properties.Resources.Icon_Recorder;
+            LocalReferenceTime = DateTime.Now;
         } // constructor
 
         #region Form events
@@ -116,16 +125,28 @@ namespace IpTviewr.UiServices.Record
 
         private void InitGeneralData()
         {
+            // service logo
             var serviceLogo = AppUiConfiguration.Current.ServiceLogoMappings.FromServiceKey(Task.Channel.ServiceKey);
             pictureChannelLogo.Image = serviceLogo.GetImage(LogoSize.Size64);
 
+            // service name
             labelChannelName.Text = string.Format("{0} {1}", Task.Channel.LogicalNumber, Task.Channel.Name);
 
-            labelChannelName.Top = pictureChannelLogo.Top;
-            labelChannelName.Height = pictureChannelLogo.Height;
+            // program name
+            if (Task.Program != null)
+            {
+                labelProgramDescription.Text = Task.Program.Title;
+                labelProgramSchedule.Text = string.Format("{0} ({1})", FormatString.DateTimeFromToMinutes(Task.Program.LocalStartTime, Task.Program.LocalEndTime, LocalReferenceTime),
+                    FormatString.TimeSpanTotalMinutes(Task.Program.Duration, FormatString.Format.Extended));
+            }
+            else
+            {
+                labelChannelName.Top = pictureChannelLogo.Top;
+                labelChannelName.Height = pictureChannelLogo.Height;
 
-            labelProgramDescription.Visible = false;
-            labelProgramSchedule.Visible = false;
+                labelProgramDescription.Visible = false;
+                labelProgramSchedule.Visible = false;
+            } // if-else
         } // InitGeneralData
 
         private void GetGeneralData()

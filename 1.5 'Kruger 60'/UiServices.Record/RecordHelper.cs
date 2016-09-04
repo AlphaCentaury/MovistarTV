@@ -63,6 +63,7 @@ namespace IpTviewr.UiServices.Record
                 {
                     dlg.Task = task;
                     dlg.IsNewTask = true;
+                    dlg.LocalReferenceTime = localReferenceTime;
                     dlg.ShowDialog(ownerForm);
                     task = dlg.Task;
                     if (dlg.DialogResult != DialogResult.OK) return false;
@@ -81,23 +82,25 @@ namespace IpTviewr.UiServices.Record
             return true;
         } // CanRecord
 
-        public static RecordTask GetRecordTask(UiBroadcastService service, EpgProgram program, DateTime localReferenceTime)
+        public static RecordTask GetRecordTask(UiBroadcastService service, EpgProgram epgProgram, DateTime localReferenceTime)
         {
             var channel = GetRecordChannel(service);
 
-            if ((program == null) || (program.IsBlank))
+            if (epgProgram == null)
             {
                 return RecordTask.CreateWithDefaultValues(channel);
             } // if
 
-            var schedule = GetRecordSchedule(program, localReferenceTime);
-            var duration = GetRecordDuration(program);
-            var description = GetRecordDescription(program, channel);
-            var action = GetRecordAction(service, program);
+            RecordProgram program = GetRecordProgram(epgProgram);
+            var schedule = GetRecordSchedule(epgProgram, localReferenceTime);
+            var duration = GetRecordDuration(epgProgram);
+            var description = GetRecordDescription(epgProgram, channel);
+            var action = GetRecordAction(service, epgProgram);
 
             var task = new RecordTask()
             {
                 Channel = channel,
+                Program = program,
                 Schedule = schedule,
                 Duration = duration,
                 Description = description,
@@ -122,6 +125,18 @@ namespace IpTviewr.UiServices.Record
 
             return channel;
         } // GetRecordChannel
+
+        private static RecordProgram GetRecordProgram(EpgProgram epgProgram)
+        {
+            var program = new RecordProgram()
+            {
+                Title = epgProgram.Title,
+                UtcStartTime = epgProgram.UtcStartTime,
+                UtcEndTime = epgProgram.UtcEndTime,
+            };
+
+            return program;
+        } // GetRecordProgram
 
         public static RecordSchedule GetRecordSchedule(EpgProgram program, DateTime localReferenceTime)
         {

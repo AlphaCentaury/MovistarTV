@@ -82,7 +82,12 @@ namespace IpTviewr.UiServices.Record
                 {
                     pictureIconInfo.Image = Properties.Resources.Status_Info_16x16;
                     labelInfo.Text = Properties.RecordChannel.SelectedProgramIsRightNow;
-                } // if-else if
+                }
+                else
+                {
+                    pictureIconInfo.Visible = false;
+                    labelInfo.Visible = false;
+                }
             } // if-else
 
             // radio buttons
