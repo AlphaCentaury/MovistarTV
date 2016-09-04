@@ -172,7 +172,7 @@
     <value>100, 25</value>
   </data>
   <data name="buttonOk.TabIndex" type="System.Int32, mscorlib">
-    <value>34</value>
+    <value>2</value>
   </data>
   <data name="buttonOk.Text" xml:space="preserve">
     <value>&amp;Close</value>
@@ -193,7 +193,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;buttonOk.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>0</value>
   </data>
   <data name="pictureProgramThumbnail.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Left</value>
@@ -217,34 +217,37 @@
     <value>pictureProgramThumbnail</value>
   </data>
   <data name="&gt;&gt;pictureProgramThumbnail.Type" xml:space="preserve">
-    <value>IpTviewr.UiServices.Common.Controls.PictureBoxEx, UiServices.Common, Version=1.5.1010.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>IpTviewr.UiServices.EPG.EpgProgramPictureBox, UiServices.EPG, Version=1.5.1010.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;pictureProgramThumbnail.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
   <data name="&gt;&gt;pictureProgramThumbnail.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
+  </data>
+  <data name="epgMiniGuide.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left, Right</value>
   </data>
   <data name="epgMiniGuide.Location" type="System.Drawing.Point, System.Drawing">
     <value>138, 312</value>
   </data>
   <data name="epgMiniGuide.Size" type="System.Drawing.Size, System.Drawing">
-    <value>484, 57</value>
+    <value>484, 88</value>
   </data>
   <data name="epgMiniGuide.TabIndex" type="System.Int32, mscorlib">
-    <value>35</value>
+    <value>1</value>
   </data>
   <data name="&gt;&gt;epgMiniGuide.Name" xml:space="preserve">
     <value>epgMiniGuide</value>
   </data>
   <data name="&gt;&gt;epgMiniGuide.Type" xml:space="preserve">
-    <value>IpTviewr.UiServices.EPG.EpgMiniGuide, UiServices.EPG, Version=1.5.1010.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>IpTviewr.UiServices.EPG.EpgMiniGuideButtons, UiServices.EPG, Version=1.5.1010.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;epgMiniGuide.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
   <data name="&gt;&gt;epgMiniGuide.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>

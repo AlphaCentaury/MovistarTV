@@ -40,13 +40,13 @@ namespace IpTviewr.UiServices.EPG
             this.timerAutoRefresh = new System.Windows.Forms.Timer(this.components);
             this.timerLoadingData = new System.Windows.Forms.Timer(this.components);
             this.toolTipControl = new System.Windows.Forms.ToolTip(this.components);
+            this.buttonRecordChannel = new System.Windows.Forms.Button();
+            this.buttonDisplayChannel = new System.Windows.Forms.Button();
+            this.buttonFullView = new System.Windows.Forms.Button();
             this.buttonDetails = new System.Windows.Forms.Button();
             this.buttonEpgGrid = new System.Windows.Forms.Button();
             this.buttonForward = new System.Windows.Forms.Button();
             this.buttonBack = new System.Windows.Forms.Button();
-            this.buttonFullView = new System.Windows.Forms.Button();
-            this.buttonRecordChannel = new System.Windows.Forms.Button();
-            this.buttonDisplayChannel = new System.Windows.Forms.Button();
             this.labelFromTo = new System.Windows.Forms.Label();
             this.pictureChannelLogo = new IpTviewr.UiServices.Common.Controls.PictureBoxEx();
             this.epgProgressBar = new IpTviewr.UiServices.EPG.EpgProgressBarFixed();
@@ -90,6 +90,36 @@ namespace IpTviewr.UiServices.EPG
             this.toolTipControl.InitialDelay = 750;
             this.toolTipControl.ReshowDelay = 100;
             // 
+            // buttonRecordChannel
+            // 
+            resources.ApplyResources(this.buttonRecordChannel, "buttonRecordChannel");
+            this.buttonRecordChannel.FlatAppearance.BorderSize = 0;
+            this.buttonRecordChannel.Image = global::IpTviewr.UiServices.EPG.Properties.Resources.Action_Epg_Record_16x16;
+            this.buttonRecordChannel.Name = "buttonRecordChannel";
+            this.toolTipControl.SetToolTip(this.buttonRecordChannel, resources.GetString("buttonRecordChannel.ToolTip"));
+            this.buttonRecordChannel.UseVisualStyleBackColor = false;
+            this.buttonRecordChannel.Click += new System.EventHandler(this.buttonRecordChannel_Click);
+            // 
+            // buttonDisplayChannel
+            // 
+            resources.ApplyResources(this.buttonDisplayChannel, "buttonDisplayChannel");
+            this.buttonDisplayChannel.FlatAppearance.BorderSize = 0;
+            this.buttonDisplayChannel.Image = global::IpTviewr.UiServices.EPG.Properties.Resources.Action_Epg_Play_16x16;
+            this.buttonDisplayChannel.Name = "buttonDisplayChannel";
+            this.toolTipControl.SetToolTip(this.buttonDisplayChannel, resources.GetString("buttonDisplayChannel.ToolTip"));
+            this.buttonDisplayChannel.UseVisualStyleBackColor = false;
+            this.buttonDisplayChannel.Click += new System.EventHandler(this.buttonDisplayChannel_Click);
+            // 
+            // buttonFullView
+            // 
+            resources.ApplyResources(this.buttonFullView, "buttonFullView");
+            this.buttonFullView.FlatAppearance.BorderSize = 0;
+            this.buttonFullView.Image = global::IpTviewr.UiServices.EPG.Properties.CommonUiResources.Action_FullView_16x16;
+            this.buttonFullView.Name = "buttonFullView";
+            this.toolTipControl.SetToolTip(this.buttonFullView, resources.GetString("buttonFullView.ToolTip"));
+            this.buttonFullView.UseVisualStyleBackColor = true;
+            this.buttonFullView.Click += new System.EventHandler(this.buttonFullView_Click);
+            // 
             // buttonDetails
             // 
             resources.ApplyResources(this.buttonDetails, "buttonDetails");
@@ -130,36 +160,6 @@ namespace IpTviewr.UiServices.EPG
             this.toolTipControl.SetToolTip(this.buttonBack, resources.GetString("buttonBack.ToolTip"));
             this.buttonBack.UseVisualStyleBackColor = true;
             this.buttonBack.Click += new System.EventHandler(this.buttonBack_Click);
-            // 
-            // buttonFullView
-            // 
-            resources.ApplyResources(this.buttonFullView, "buttonFullView");
-            this.buttonFullView.FlatAppearance.BorderSize = 0;
-            this.buttonFullView.Image = global::IpTviewr.UiServices.EPG.Properties.CommonUiResources.Action_FullView_16x16;
-            this.buttonFullView.Name = "buttonFullView";
-            this.toolTipControl.SetToolTip(this.buttonFullView, resources.GetString("buttonFullView.ToolTip"));
-            this.buttonFullView.UseVisualStyleBackColor = true;
-            this.buttonFullView.Click += new System.EventHandler(this.buttonFullView_Click);
-            // 
-            // buttonRecordChannel
-            // 
-            resources.ApplyResources(this.buttonRecordChannel, "buttonRecordChannel");
-            this.buttonRecordChannel.FlatAppearance.BorderSize = 0;
-            this.buttonRecordChannel.Image = global::IpTviewr.UiServices.EPG.Properties.CommonUiResources.Action_Record_16x16;
-            this.buttonRecordChannel.Name = "buttonRecordChannel";
-            this.toolTipControl.SetToolTip(this.buttonRecordChannel, resources.GetString("buttonRecordChannel.ToolTip"));
-            this.buttonRecordChannel.UseVisualStyleBackColor = false;
-            this.buttonRecordChannel.Click += new System.EventHandler(this.buttonRecordChannel_Click);
-            // 
-            // buttonDisplayChannel
-            // 
-            resources.ApplyResources(this.buttonDisplayChannel, "buttonDisplayChannel");
-            this.buttonDisplayChannel.FlatAppearance.BorderSize = 0;
-            this.buttonDisplayChannel.Image = global::IpTviewr.UiServices.EPG.Properties.CommonUiResources.Action_Play_LG_16x16;
-            this.buttonDisplayChannel.Name = "buttonDisplayChannel";
-            this.toolTipControl.SetToolTip(this.buttonDisplayChannel, resources.GetString("buttonDisplayChannel.ToolTip"));
-            this.buttonDisplayChannel.UseVisualStyleBackColor = false;
-            this.buttonDisplayChannel.Click += new System.EventHandler(this.buttonDisplayChannel_Click);
             // 
             // labelFromTo
             // 
@@ -205,21 +205,21 @@ namespace IpTviewr.UiServices.EPG
         #endregion
 
         private IpTviewr.UiServices.Common.Controls.PictureBoxEx pictureChannelLogo;
-        private System.Windows.Forms.Button buttonBack;
-        private System.Windows.Forms.Label labelProgramTitle;
-        private System.Windows.Forms.Button buttonForward;
         private System.Windows.Forms.Label labelStartTime;
         private System.Windows.Forms.Label labelEndTime;
         private System.Windows.Forms.Label labelEllapsed;
         private EpgProgressBarFixed epgProgressBar;
-        private System.Windows.Forms.Button buttonEpgGrid;
-        private System.Windows.Forms.Button buttonDetails;
         private System.Windows.Forms.Timer timerAutoRefresh;
         private System.Windows.Forms.Timer timerLoadingData;
         private System.Windows.Forms.ToolTip toolTipControl;
         private System.Windows.Forms.Label labelFromTo;
-        private System.Windows.Forms.Button buttonFullView;
-        private System.Windows.Forms.Button buttonRecordChannel;
-        private System.Windows.Forms.Button buttonDisplayChannel;
+        protected System.Windows.Forms.Button buttonRecordChannel;
+        protected System.Windows.Forms.Button buttonDisplayChannel;
+        protected System.Windows.Forms.Button buttonEpgGrid;
+        protected System.Windows.Forms.Button buttonDetails;
+        protected System.Windows.Forms.Button buttonFullView;
+        protected System.Windows.Forms.Button buttonBack;
+        protected System.Windows.Forms.Label labelProgramTitle;
+        protected System.Windows.Forms.Button buttonForward;
     } // class EpgMiniBar
 } // namespace

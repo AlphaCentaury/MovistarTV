@@ -159,8 +159,8 @@ namespace IpTviewr.UiServices.EPG
             epgProgressBar.Visible = false;
 
             EnableBackForward(false, false);
-            buttonEpgGrid.Enabled = BasicGridEnabled;
-            buttonFullView.Enabled = false;
+            buttonEpgGrid.Visible = BasicGridEnabled;
+            buttonFullView.Visible = false;
             buttonDetails.Enabled = false;
 
             var enableButtons = (SelectedService != null) && (!SelectedService.IsHidden);
