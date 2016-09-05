@@ -54,11 +54,6 @@ namespace IpTviewr.UiServices.Common.Forms
             SafeCall(BackgroundWorkerDialog_Load_Implementation, sender, e);
         } // BackgroundWorkerDialog_Load
 
-        private void BackgroundWorkerDialog_Shown(object sender, EventArgs e)
-        {
-            SafeCall(BackgroundWorkerDialog_Shown_Implementation, sender, e);
-        } // BackgroundWorkerDialog_Shown
-
         private void BackgroundWorkerDialog_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (!formCanClose)
@@ -91,14 +86,20 @@ namespace IpTviewr.UiServices.Common.Forms
             labelProgressText.Text = null;
             progressBar.Style = ProgressBarStyle.Marquee;
             progressBar.Enabled = Options.AllowProgressBar;
-
             buttonRequestCancel.Enabled = Options.AllowCancelButton;
 
-            Options.BeforeTask?.Invoke(Options, this);
-        } // BackgroundWorkerDialog_Load_Implementation
+            // maintain the dialog 'hidden' for short-lived background tasks?
+            // fact: Windows doesn't allow to hide a modal dialog. Our trick: set the opacity to 0%
+            // and then back to 100% when the dialog must be shown
+            var milliseconds = (int)Options.ShowAfter.TotalMilliseconds;
+            if (milliseconds > 0)
+            {
+                timerShow.Interval = milliseconds;
+                timerShow.Start();
+            } // if
 
-        private void BackgroundWorkerDialog_Shown_Implementation(object sender, EventArgs e)
-        {
+            Options.BeforeTask?.Invoke(Options, this);
+
             worker = new BackgroundWorker();
             worker.WorkerReportsProgress = false;
             worker.WorkerSupportsCancellation = true;
@@ -107,7 +108,13 @@ namespace IpTviewr.UiServices.Common.Forms
             worker.RunWorkerCompleted += Worker_RunWorkerCompleted;
 
             worker.RunWorkerAsync(Thread.CurrentThread);
-        }  // BackgroundWorkerDialog_Shown_Implementation
+        } // BackgroundWorkerDialog_Load_Implementation
+
+        private void timerShow_Tick(object sender, EventArgs e)
+        {
+            timerShow.Stop();
+            Opacity = 1;
+        } // timerShow_Tick
 
         void Worker_DoWork(object sender, DoWorkEventArgs e)
         {
@@ -285,5 +292,10 @@ namespace IpTviewr.UiServices.Common.Forms
         } // SetProgressUndefined
 
         #endregion
+
+        private void BackgroundWorkerDialog_Shown(object sender, EventArgs e)
+        {
+            if (!timerShow.Enabled) Opacity = 1;
+        } // BackgroundWorkerDialog_Shown
     } // class BackgroundWorkerDialog
 } // namespace

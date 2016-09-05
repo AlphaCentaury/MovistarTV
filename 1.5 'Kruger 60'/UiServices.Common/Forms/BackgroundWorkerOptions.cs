@@ -10,6 +10,17 @@ namespace IpTviewr.UiServices.Common.Forms
 {
     public class BackgroundWorkerOptions
     {
+        public BackgroundWorkerOptions()
+        {
+            ShowAfter = new TimeSpan(0, 0, 0, 0, 300);
+        } // BackgroundWorkerOptions
+
+        public TimeSpan ShowAfter
+        {
+            get;
+            set;
+        } // ShowAfter
+
         public string Caption
         {
             get;

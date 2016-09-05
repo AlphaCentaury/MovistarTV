@@ -33,6 +33,7 @@ namespace IpTviewr.UiServices.Common.Forms
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BackgroundWorkerDialog));
             this.pictureWaitIcon = new System.Windows.Forms.PictureBox();
             this.labelTaskDescription = new System.Windows.Forms.Label();
@@ -40,6 +41,7 @@ namespace IpTviewr.UiServices.Common.Forms
             this.labelProgressText = new System.Windows.Forms.Label();
             this.buttonClose = new System.Windows.Forms.Button();
             this.buttonRequestCancel = new System.Windows.Forms.Button();
+            this.timerShow = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pictureWaitIcon)).BeginInit();
             this.SuspendLayout();
             // 
@@ -81,6 +83,10 @@ namespace IpTviewr.UiServices.Common.Forms
             this.buttonRequestCancel.UseVisualStyleBackColor = true;
             this.buttonRequestCancel.Click += new System.EventHandler(this.buttonRequestCancel_Click);
             // 
+            // timerShow
+            // 
+            this.timerShow.Tick += new System.EventHandler(this.timerShow_Tick);
+            // 
             // BackgroundWorkerDialog
             // 
             this.AcceptButton = this.buttonClose;
@@ -97,6 +103,7 @@ namespace IpTviewr.UiServices.Common.Forms
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "BackgroundWorkerDialog";
+            this.Opacity = 0D;
             this.ShowInTaskbar = false;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.BackgroundWorkerDialog_FormClosing);
             this.Load += new System.EventHandler(this.BackgroundWorkerDialog_Load);
@@ -115,5 +122,6 @@ namespace IpTviewr.UiServices.Common.Forms
         private System.Windows.Forms.Label labelProgressText;
         private System.Windows.Forms.Button buttonClose;
         private System.Windows.Forms.Button buttonRequestCancel;
+        private System.Windows.Forms.Timer timerShow;
     }
 }
