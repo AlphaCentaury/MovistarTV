@@ -61,7 +61,7 @@ namespace IpTviewr.ChannelList.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to UA-66146192-3.
+        ///   Looks up a localized string similar to UA-66146192-4.
         /// </summary>
         internal static string AnalyticsGoogleTrackingId {
             get {
