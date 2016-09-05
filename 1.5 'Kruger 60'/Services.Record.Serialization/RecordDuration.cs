@@ -42,6 +42,34 @@ namespace IpTviewr.Services.Record.Serialization
             set { Length = string.IsNullOrEmpty(value) ? new TimeSpan() : SoapDuration.Parse(value); }
         } // XmlTimeSpan
 
+        [XmlIgnore]
+        public DateTime? EndDateTime
+        {
+            get;
+            set;
+        } // EndDateTime
+
+        [XmlElement("EndDateTime")]
+        [Browsable(false), EditorBrowsable(EditorBrowsableState.Never)]
+        public string XmlEndDateTime
+        {
+            get
+            {
+                return (EndDateTime == null) ? null : XmlConvert.ToString(EndDateTime.Value, XmlDateTimeSerializationMode.RoundtripKind);
+            } // get
+            set
+            {
+                if (string.IsNullOrEmpty(value))
+                {
+                    EndDateTime = null;
+                }
+                else
+                {
+                    EndDateTime = XmlConvert.ToDateTime(value, XmlDateTimeSerializationMode.RoundtripKind);
+                } // if-else
+            } // set
+        } // EndDateTime
+
         /// <summary>
         /// Safety margin, in minutes, or null if there is no margin
         /// </summary>
@@ -71,6 +99,13 @@ namespace IpTviewr.Services.Record.Serialization
                 return (SafetyMargin.HasValue) ? new TimeSpan(0, SafetyMargin.Value, 0) : TimeSpan.Zero;
             } // get
         } // SafetyMarginTimeSpan
+
+        public TimeSpan GetDuration(RecordSchedule schedule)
+        {
+            if (EndDateTime == null) return Length;
+
+            return (EndDateTime.Value - schedule.GetStartDateTime());
+        } // GetDuration
 
         /// <summary>
         /// Creates a RecordDuration instance with default values

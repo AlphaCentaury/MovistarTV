@@ -11,7 +11,7 @@ namespace IpTviewr.Services.Record.Serialization
 {
     [Serializable]
     [XmlType(Namespace = RecordTask.XmlNamespace)]
-    public sealed class RecordDaily : RecordScheduleTime
+    public sealed class RecordDaily : RecordSchedule
     {
         public RecordDaily()
         {

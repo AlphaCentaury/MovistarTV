@@ -32,10 +32,5 @@ namespace IpTviewr.Services.Record.Serialization
         {
             return DateTime.Now;
         } // GetStartDateTime
-
-        public override TimeSpan GetSafetyMargin()
-        {
-            return TimeSpan.Zero;
-        } // GetSafetyMargin
     } // class RecordRightNow
 } // namespace

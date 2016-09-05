@@ -71,7 +71,6 @@
     <Compile Include="RecordRightNow.cs" />
     <Compile Include="RecordSchedule.cs" />
     <Compile Include="RecordScheduleKind.cs" />
-    <Compile Include="RecordScheduleTime.cs" />
     <Compile Include="RecordTask.cs" />
     <Compile Include="RecordTaskSerialization.cs" />
     <Compile Include="RecordWeekDays.cs" />

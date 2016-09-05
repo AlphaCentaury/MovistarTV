@@ -139,8 +139,7 @@ namespace IpTviewr.Services.Record.Serialization
             if (withDuration)
             {
                 buffer.AppendLine(Properties.Texts.BuildDescriptionDurationHeader);
-                var scheduleTime = Schedule as RecordScheduleTime;
-                var startSafetyMargin = (scheduleTime != null) ? scheduleTime.SafetyMarginTimeSpan : TimeSpan.Zero;
+                var startSafetyMargin = Schedule.SafetyMarginTimeSpan;
                 var endSafetyMargin = Duration.SafetyMarginTimeSpan;
                 var recordDuration = Duration.Length;
                 var totalRecordTime = startSafetyMargin + recordDuration + endSafetyMargin;
@@ -152,11 +151,10 @@ namespace IpTviewr.Services.Record.Serialization
                     totalRecordTime);
                 buffer.AppendLine();
 
-                if (scheduleTime != null)
+                if (Schedule.Kind != RecordScheduleKind.RightNow)
                 {
                     string format;
-                    var schedule = (RecordScheduleTime)Schedule;
-                    var startDate = schedule.StartDate - schedule.SafetyMarginTimeSpan;
+                    var startDate = Schedule.StartDate - Schedule.SafetyMarginTimeSpan;
                     var endDate = startDate + totalRecordTime;
                     if (startDate.Day == endDate.Day)
                     {
@@ -167,8 +165,12 @@ namespace IpTviewr.Services.Record.Serialization
                         format = pastTime ? Properties.Texts.BuildDescriptionDurationEndsNextDay : Properties.Texts.BuildDescriptionDurationEndsTomorrow;
                     } // if-else
                     buffer.AppendFormat(format, endDate);
-                    buffer.AppendLine();
-                } // if
+                }
+                else
+                {
+
+                } // if-else
+                buffer.AppendLine();
             } // if withDuration
 
             // remove last CRLF

@@ -11,7 +11,7 @@ namespace IpTviewr.Services.Record.Serialization
 {
     [Serializable]
     [XmlType(Namespace = RecordTask.XmlNamespace)]
-    public sealed class RecordOneTime : RecordScheduleTime
+    public sealed class RecordOneTime : RecordSchedule
     {
         public override RecordScheduleKind Kind
         {
