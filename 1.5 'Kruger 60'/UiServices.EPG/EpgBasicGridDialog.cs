@@ -31,6 +31,7 @@ namespace IpTviewr.UiServices.EPG
         private EpgDatastore Datastore;
         private int SelectedRowIndex;
         private DateTime LocalReferenceTime;
+        private bool IsGridReady;
 
         public static DialogResult ShowGrid(CommonBaseForm parentForm, IList<UiBroadcastService> list, UiBroadcastService currentService, EpgDatastore datastore)
         {
@@ -89,6 +90,8 @@ namespace IpTviewr.UiServices.EPG
 
         private void dataGridPrograms_SelectionChanged(object sender, EventArgs e)
         {
+            if (!IsGridReady) return;
+
             var cell = (dataGridPrograms.SelectedCells.Count > 0) ? dataGridPrograms.SelectedCells[0] : null;
             if (cell == null)
             {
@@ -118,10 +121,9 @@ namespace IpTviewr.UiServices.EPG
         private void FillGrid(BackgroundWorkerOptions options, IBackgroundWorkerDialog dialog)
         {
             if (dialog.QueryCancel()) return;
-
             dialog.SetProgressText("Filling the list...");
 
-            var currentRowIndex = -1;
+            var serviceRowIndex = -1;
             foreach (var service in ServicesList)
             {
                 var name = UiBroadcastListManager.GetColumnData(service, UiBroadcastListColumn.NumberAndName);
@@ -129,7 +131,7 @@ namespace IpTviewr.UiServices.EPG
 
                 if (service.Key == InitialService?.Key)
                 {
-                    currentRowIndex = rowIndex;
+                    serviceRowIndex = rowIndex;
                 } // if
 
                 // TODO: use ListManager view options for hidden and inactive programs (to show or no to show)
@@ -166,9 +168,11 @@ namespace IpTviewr.UiServices.EPG
             } // for index
 
             SelectedService = null;
-            if (currentRowIndex >= 0)
+            IsGridReady = true;
+
+            if (serviceRowIndex >= 0)
             {
-                dataGridPrograms.CurrentCell = dataGridPrograms.Rows[currentRowIndex].Cells[1];
+                dataGridPrograms.CurrentCell = dataGridPrograms.Rows[serviceRowIndex].Cells[1];
             }
             else
             {
