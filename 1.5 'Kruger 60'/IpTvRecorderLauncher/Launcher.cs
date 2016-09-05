@@ -171,7 +171,7 @@ namespace IpTviewr.RecorderLauncher
         private Program.Result LaunchRecorderProgram(RecordTask task)
         {
             var scheduledStartTime = task.Schedule.GetStartDateTime();
-            var scheduledTotalTime = task.Schedule.GetSafetyMargin() + task.Duration.Length + task.Duration.SafetyMarginTimeSpan;
+            var scheduledTotalTime = task.Schedule.SafetyMarginTimeSpan + task.Duration.GetDuration(task.Schedule) + task.Duration.SafetyMarginTimeSpan;
             var now = DateTime.Now;
             // var scheduledDateTime = new DateTime(scheduledStartTime.Year, scheduledStartTime.Month, scheduledStartTime.Day, scheduledStartTime.Hour, scheduledStartTime.Minute, scheduledStartTime.Second);
             // TODO: determine most probable launch date; we need to account for HUGE delays between scheduled run time and real run time
@@ -192,16 +192,20 @@ namespace IpTviewr.RecorderLauncher
             } // if
 
             if (gap.TotalSeconds < 30) gap = TimeSpan.Zero;
-            if (gap.TotalSeconds > task.Schedule.GetSafetyMargin().TotalSeconds)
+
+            if (task.Schedule.Kind != RecordScheduleKind.RightNow)
             {
-                RecordingLate = true;
-                Logger.Log(Logger.Level.Warning, Properties.Texts.LogWarningRecordingLate, (int)task.Schedule.GetSafetyMargin().TotalMinutes);
-                Console.WriteLine(Properties.Texts.DisplayWarningRecordingLate, (int)task.Schedule.GetSafetyMargin().TotalMinutes);
-            }
-            else if (gap.TotalSeconds > 0)
-            {
-                Logger.Log(Logger.Level.Warning, Properties.Texts.LogWarningBehindSchedule, gap);
-                Console.WriteLine(Properties.Texts.DisplayWarningBehindSchedule, gap);
+                if (gap.TotalSeconds > task.Schedule.SafetyMarginTimeSpan.TotalSeconds)
+                {
+                    RecordingLate = true;
+                    Logger.Log(Logger.Level.Warning, Properties.Texts.LogWarningRecordingLate, (int)task.Schedule.SafetyMarginTimeSpan.TotalMinutes);
+                    Console.WriteLine(Properties.Texts.DisplayWarningRecordingLate, (int)task.Schedule.SafetyMarginTimeSpan.TotalMinutes);
+                }
+                else if (gap.TotalSeconds > 0)
+                {
+                    Logger.Log(Logger.Level.Warning, Properties.Texts.LogWarningBehindSchedule, gap);
+                    Console.WriteLine(Properties.Texts.DisplayWarningBehindSchedule, gap);
+                } // if-else
             } // if-else
 
             var date = string.Format(Properties.Texts.FormatRecordFileDate,

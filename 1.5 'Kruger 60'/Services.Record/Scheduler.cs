@@ -199,16 +199,14 @@ namespace IpTviewr.Services.Record
 
         private void GetDuration(RecordTask task)
         {
-            // extract start details
-            var scheduleTime = task.Schedule as RecordScheduleTime;
-            if (scheduleTime != null)
+            // set duration if EndDateTime
+            if (task.Duration.EndDateTime != null)
             {
-                StartSafetyMargin = scheduleTime.SafetyMarginTimeSpan;
-            }
-            else
-            {
-                StartSafetyMargin = new TimeSpan(0, 0, 0);
+                task.Duration.Length = task.Duration.GetDuration(task.Schedule);
             } // if-else
+
+            // extract start details
+            StartSafetyMargin = task.Schedule.SafetyMarginTimeSpan;
 
             // extract duration details
             EndSafetyMargin = task.Duration.SafetyMarginTimeSpan;
