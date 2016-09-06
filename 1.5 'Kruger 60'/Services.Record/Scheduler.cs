@@ -224,7 +224,7 @@ namespace IpTviewr.Services.Record
                 case RecordScheduleKind.RightNow:
                     {
                         var rightNow = new TimeTrigger();
-                        rightNow.EndBoundary = DateTime.Now + TotalRecordTime;
+                        rightNow.EndBoundary = DateTime.Now.TruncateToSeconds() + TotalRecordTime + new TimeSpan(0,1,0);
 
                         definition.Triggers.Add(rightNow);
                         break;
