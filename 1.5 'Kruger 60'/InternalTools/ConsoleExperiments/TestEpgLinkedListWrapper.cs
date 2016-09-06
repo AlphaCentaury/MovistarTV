@@ -1,4 +1,5 @@
-﻿using IpTviewr.Services.EpgDiscovery;
+﻿using IpTviewr.Common;
+using IpTviewr.Services.EpgDiscovery;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,7 @@ namespace IpTviewr.Internal.Tools.ConsoleExperiments
     {
         protected override int Run(string[] args)
         {
-            var startTime = TruncateToMinutes(DateTime.UtcNow);
+            var startTime = DateTime.UtcNow.TruncateToMinutes();
 
             // create initial programs list
 
@@ -121,10 +122,5 @@ namespace IpTviewr.Internal.Tools.ConsoleExperiments
         {
             Console.WriteLine("{3} {0:dd/MM HH:mm}  {2:hh\\:mm}  {1} ", epgProgram.LocalStartTime, epgProgram.Title, epgProgram.Duration, current? "==>" : "   ");
         } // DisplayProgram
-
-        internal static DateTime TruncateToMinutes(DateTime time)
-        {
-            return new DateTime(time.Year, time.Month, time.Day, time.Hour, time.Minute, 0, time.Kind); // set seconds to 0
-        } // TruncateToMinutes
     } // class TestEpgLinkedListWrapper
 } // namespace

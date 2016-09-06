@@ -1,4 +1,5 @@
-﻿using System;
+﻿using IpTviewr.Common;
+using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
@@ -89,7 +90,7 @@ namespace IpTviewr.Services.EpgDiscovery
 
             if (localTime == null) localTime = DateTime.Now;
             var utcTime = localTime.Value.ToUniversalTime();
-            var truncatedUtcTime = Common.TruncateToMinutes(utcTime);
+            var truncatedUtcTime = utcTime.TruncateToMinutes();
 
             program = service.Programs.First.Value;
             if (utcTime < program.UtcStartTime)
