@@ -147,6 +147,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Properties\Splash.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Splash.resx</DependentUpon>
+    </Compile>
     <Compile Include="Start\ISplashScreenAwareForm.cs" />
     <Compile Include="Start\SplashApplicationContext.cs" />
     <Compile Include="Start\SplashScreen.cs">
@@ -239,6 +244,11 @@
     <EmbeddedResource Include="Properties\TimeSpanUpDown.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>TimeSpanUpDown.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Splash.es.resx" />
+    <EmbeddedResource Include="Properties\Splash.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Splash.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Start\SplashScreen.resx">
       <DependentUpon>SplashScreen.cs</DependentUpon>
