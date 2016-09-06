@@ -18,9 +18,10 @@ namespace IpTviewr.Common
             return new DateTime(time.Year, time.Month, time.Day, time.Hour, time.Minute, 0, time.Kind); // set seconds to 0
         } // TruncateToMinutes
 
-        public static DateTime TruncateToSeconds(this DateTime time, int modulo)
+        public static DateTime TruncateToSeconds(this DateTime time, int rounding = 1)
         {
-            var seconds = (time.Second / modulo) * modulo;
+            if (rounding < 1) throw new ArgumentOutOfRangeException(nameof(rounding));
+            var seconds = (time.Second / rounding) * rounding;
             return new DateTime(time.Year, time.Month, time.Day, time.Hour, time.Minute, seconds, time.Kind);
         } // TruncateToSeconds
     } // static class DateTimeExtensions
