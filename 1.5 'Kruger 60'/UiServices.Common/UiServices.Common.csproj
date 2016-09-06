@@ -155,6 +155,7 @@
     <Compile Include="Start\SplashScreen.Designer.cs">
       <DependentUpon>SplashScreen.cs</DependentUpon>
     </Compile>
+    <Compile Include="WinFormsControlsExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="..\Common.UI\Resources\Action_Copy_Clip_16x16.png">
