@@ -122,13 +122,13 @@
     <value>251, 17</value>
   </data>
   <data name="radioRecordChannel.Text" xml:space="preserve">
-    <value>Grabar el canal actual con opciones avanzadas</value>
+    <value>Grabar el canal actual con configuración a medida</value>
   </data>
   <data name="radioRecordProgramEdit.Size" type="System.Drawing.Size, System.Drawing">
     <value>305, 17</value>
   </data>
   <data name="radioRecordProgramEdit.Text" xml:space="preserve">
-    <value>Grabar el programa seleccionado (permite editar los ajustes)</value>
+    <value>Usar una configuración personalizada para grabar el programa seleccionado</value>
   </data>
   <data name="radioRecordProgramDefault.Size" type="System.Drawing.Size, System.Drawing">
     <value>311, 17</value>

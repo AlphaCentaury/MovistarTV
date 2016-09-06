@@ -1,5 +1,6 @@
 ﻿using IpTviewr.Common;
 using IpTviewr.Services.EpgDiscovery;
+using IpTviewr.UiServices.Common;
 using IpTviewr.UiServices.Discovery;
 using System;
 using System.Collections.Generic;
@@ -26,7 +27,6 @@ namespace IpTviewr.UiServices.Record
         public RecordProgramOptions()
         {
             InitializeComponent();
-            this.Icon = Properties.Resources.Icon_Recorder;
         } // constructor
 
         public UiBroadcastService SelectedService
@@ -138,7 +138,8 @@ namespace IpTviewr.UiServices.Record
 
         private void ChangeOkButtonText(bool withOptions)
         {
-            buttonOk.Text = withOptions ? Properties.RecordChannel.RecordButtonSettings : Properties.RecordChannel.RecordButtonDefault;
+            buttonOk.ChangeImage(withOptions? Properties.Resources.Action_Ok_16x16 : Properties.Resources.Action_RecordButton_16x16);
+            buttonOk.Text = withOptions ? Properties.RecordChannel.RecordButtonWithSettings : Properties.RecordChannel.RecordButtonRecord;
         } // ChangeOkButtonText
 
         private void SetChannelDetails()

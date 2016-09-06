@@ -258,48 +258,6 @@
   <data name="groupBox1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
   </data>
-  <data name="pictureIconRec.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 19</value>
-  </data>
-  <data name="pictureIconRec.Size" type="System.Drawing.Size, System.Drawing">
-    <value>40, 40</value>
-  </data>
-  <data name="pictureIconRec.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms">
-    <value>Zoom</value>
-  </data>
-  <data name="pictureIconRec.TabIndex" type="System.Int32, mscorlib">
-    <value>11</value>
-  </data>
-  <data name="&gt;&gt;pictureIconRec.Name" xml:space="preserve">
-    <value>pictureIconRec</value>
-  </data>
-  <data name="&gt;&gt;pictureIconRec.Type" xml:space="preserve">
-    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;pictureIconRec.Parent" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="&gt;&gt;pictureIconRec.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="labelInfo.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Left, Right</value>
-  </data>
-  <data name="labelInfo.Location" type="System.Drawing.Point, System.Drawing">
-    <value>49, 65</value>
-  </data>
-  <data name="labelInfo.Size" type="System.Drawing.Size, System.Drawing">
-    <value>360, 16</value>
-  </data>
-  <data name="labelInfo.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="labelInfo.Text" xml:space="preserve">
-    <value>(Information)</value>
-  </data>
-  <data name="labelInfo.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleLeft</value>
-  </data>
   <data name="&gt;&gt;labelInfo.Name" xml:space="preserve">
     <value>labelInfo</value>
   </data>
@@ -310,19 +268,7 @@
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;labelInfo.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="pictureIconInfo.Location" type="System.Drawing.Point, System.Drawing">
-    <value>30, 65</value>
-  </data>
-  <data name="pictureIconInfo.Size" type="System.Drawing.Size, System.Drawing">
-    <value>16, 16</value>
-  </data>
-  <data name="pictureIconInfo.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms">
-    <value>CenterImage</value>
-  </data>
-  <data name="pictureIconInfo.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
+    <value>0</value>
   </data>
   <data name="&gt;&gt;pictureIconInfo.Name" xml:space="preserve">
     <value>pictureIconInfo</value>
@@ -334,22 +280,7 @@
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;pictureIconInfo.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="radioRecordChannel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="radioRecordChannel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>52, 88</value>
-  </data>
-  <data name="radioRecordChannel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>247, 17</value>
-  </data>
-  <data name="radioRecordChannel.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="radioRecordChannel.Text" xml:space="preserve">
-    <value>Record current channel with advanced options</value>
+    <value>1</value>
   </data>
   <data name="&gt;&gt;radioRecordChannel.Name" xml:space="preserve">
     <value>radioRecordChannel</value>
@@ -361,22 +292,7 @@
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;radioRecordChannel.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="radioRecordProgramEdit.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="radioRecordProgramEdit.Location" type="System.Drawing.Point, System.Drawing">
-    <value>52, 42</value>
-  </data>
-  <data name="radioRecordProgramEdit.Size" type="System.Drawing.Size, System.Drawing">
-    <value>272, 17</value>
-  </data>
-  <data name="radioRecordProgramEdit.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="radioRecordProgramEdit.Text" xml:space="preserve">
-    <value>Record selected program (allows to change settings)</value>
+    <value>2</value>
   </data>
   <data name="&gt;&gt;radioRecordProgramEdit.Name" xml:space="preserve">
     <value>radioRecordProgramEdit</value>
@@ -388,22 +304,7 @@
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;radioRecordProgramEdit.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="radioRecordProgramDefault.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="radioRecordProgramDefault.Location" type="System.Drawing.Point, System.Drawing">
-    <value>52, 19</value>
-  </data>
-  <data name="radioRecordProgramDefault.Size" type="System.Drawing.Size, System.Drawing">
-    <value>240, 17</value>
-  </data>
-  <data name="radioRecordProgramDefault.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="radioRecordProgramDefault.Text" xml:space="preserve">
-    <value>Record selected program with default settings</value>
+    <value>3</value>
   </data>
   <data name="&gt;&gt;radioRecordProgramDefault.Name" xml:space="preserve">
     <value>radioRecordProgramDefault</value>
@@ -415,7 +316,7 @@
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;radioRecordProgramDefault.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>4</value>
   </data>
   <data name="groupBox1.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 91</value>
@@ -440,6 +341,141 @@
   </data>
   <data name="&gt;&gt;groupBox1.ZOrder" xml:space="preserve">
     <value>2</value>
+  </data>
+  <data name="labelInfo.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="labelInfo.Location" type="System.Drawing.Point, System.Drawing">
+    <value>28, 65</value>
+  </data>
+  <data name="labelInfo.Size" type="System.Drawing.Size, System.Drawing">
+    <value>360, 16</value>
+  </data>
+  <data name="labelInfo.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="labelInfo.Text" xml:space="preserve">
+    <value>(Information)</value>
+  </data>
+  <data name="labelInfo.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="&gt;&gt;labelInfo.Name" xml:space="preserve">
+    <value>labelInfo</value>
+  </data>
+  <data name="&gt;&gt;labelInfo.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;labelInfo.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;labelInfo.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="pictureIconInfo.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 65</value>
+  </data>
+  <data name="pictureIconInfo.Size" type="System.Drawing.Size, System.Drawing">
+    <value>16, 16</value>
+  </data>
+  <data name="pictureIconInfo.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms">
+    <value>CenterImage</value>
+  </data>
+  <data name="pictureIconInfo.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;pictureIconInfo.Name" xml:space="preserve">
+    <value>pictureIconInfo</value>
+  </data>
+  <data name="&gt;&gt;pictureIconInfo.Type" xml:space="preserve">
+    <value>IpTviewr.UiServices.Common.Controls.PictureBoxEx, UiServices.Common, Version=1.5.1010.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;pictureIconInfo.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;pictureIconInfo.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="radioRecordChannel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="radioRecordChannel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 92</value>
+  </data>
+  <data name="radioRecordChannel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>235, 17</value>
+  </data>
+  <data name="radioRecordChannel.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="radioRecordChannel.Text" xml:space="preserve">
+    <value>Record current channel with custom settings</value>
+  </data>
+  <data name="&gt;&gt;radioRecordChannel.Name" xml:space="preserve">
+    <value>radioRecordChannel</value>
+  </data>
+  <data name="&gt;&gt;radioRecordChannel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;radioRecordChannel.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;radioRecordChannel.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="radioRecordProgramEdit.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="radioRecordProgramEdit.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 42</value>
+  </data>
+  <data name="radioRecordProgramEdit.Size" type="System.Drawing.Size, System.Drawing">
+    <value>267, 17</value>
+  </data>
+  <data name="radioRecordProgramEdit.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="radioRecordProgramEdit.Text" xml:space="preserve">
+    <value>Use custom settings to record the selected program</value>
+  </data>
+  <data name="&gt;&gt;radioRecordProgramEdit.Name" xml:space="preserve">
+    <value>radioRecordProgramEdit</value>
+  </data>
+  <data name="&gt;&gt;radioRecordProgramEdit.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;radioRecordProgramEdit.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;radioRecordProgramEdit.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="radioRecordProgramDefault.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="radioRecordProgramDefault.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 19</value>
+  </data>
+  <data name="radioRecordProgramDefault.Size" type="System.Drawing.Size, System.Drawing">
+    <value>240, 17</value>
+  </data>
+  <data name="radioRecordProgramDefault.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="radioRecordProgramDefault.Text" xml:space="preserve">
+    <value>Record selected program with default settings</value>
+  </data>
+  <data name="&gt;&gt;radioRecordProgramDefault.Name" xml:space="preserve">
+    <value>radioRecordProgramDefault</value>
+  </data>
+  <data name="&gt;&gt;radioRecordProgramDefault.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;radioRecordProgramDefault.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;radioRecordProgramDefault.ZOrder" xml:space="preserve">
+    <value>4</value>
   </data>
   <data name="buttonCancel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>

@@ -34,7 +34,6 @@
             this.pictureChannelLogo = new IpTviewr.UiServices.Common.Controls.PictureBoxEx();
             this.labelProgramSchedule = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.pictureIconRec = new System.Windows.Forms.PictureBox();
             this.labelInfo = new System.Windows.Forms.Label();
             this.pictureIconInfo = new IpTviewr.UiServices.Common.Controls.PictureBoxEx();
             this.radioRecordChannel = new System.Windows.Forms.RadioButton();
@@ -44,7 +43,6 @@
             this.buttonOk = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureChannelLogo)).BeginInit();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureIconRec)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureIconInfo)).BeginInit();
             this.SuspendLayout();
             // 
@@ -79,7 +77,6 @@
             // groupBox1
             // 
             resources.ApplyResources(this.groupBox1, "groupBox1");
-            this.groupBox1.Controls.Add(this.pictureIconRec);
             this.groupBox1.Controls.Add(this.labelInfo);
             this.groupBox1.Controls.Add(this.pictureIconInfo);
             this.groupBox1.Controls.Add(this.radioRecordChannel);
@@ -87,13 +84,6 @@
             this.groupBox1.Controls.Add(this.radioRecordProgramDefault);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.TabStop = false;
-            // 
-            // pictureIconRec
-            // 
-            this.pictureIconRec.Image = global::IpTviewr.UiServices.Record.Properties.Resources.Icon_Record_48x48;
-            resources.ApplyResources(this.pictureIconRec, "pictureIconRec");
-            this.pictureIconRec.Name = "pictureIconRec";
-            this.pictureIconRec.TabStop = false;
             // 
             // labelInfo
             // 
@@ -143,7 +133,6 @@
             // 
             resources.ApplyResources(this.buttonOk, "buttonOk");
             this.buttonOk.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.buttonOk.Image = global::IpTviewr.UiServices.Record.Properties.Resources.Action_Record_16x16;
             this.buttonOk.Name = "buttonOk";
             this.buttonOk.UseVisualStyleBackColor = true;
             // 
@@ -161,13 +150,13 @@
             this.Controls.Add(this.labelChannelName);
             this.Controls.Add(this.pictureChannelLogo);
             this.Name = "RecordProgramOptions";
+            this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.RecordProgramOptions_FormClosed);
             this.Load += new System.EventHandler(this.RecordProgramOptions_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureChannelLogo)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureIconRec)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureIconInfo)).EndInit();
             this.ResumeLayout(false);
 
@@ -186,6 +175,5 @@
         private Common.Controls.PictureBoxEx pictureIconInfo;
         private System.Windows.Forms.Button buttonCancel;
         private System.Windows.Forms.Button buttonOk;
-        private System.Windows.Forms.PictureBox pictureIconRec;
     }
 }
