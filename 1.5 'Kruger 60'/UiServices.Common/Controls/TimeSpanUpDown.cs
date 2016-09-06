@@ -16,6 +16,7 @@ namespace IpTviewr.UiServices.Common.Controls
     public partial class TimeSpanUpDown : UserControl
     {
         private int SupressValueChangedEvent;
+        private TimeSpan fieldValue;
 
         public event EventHandler ValueChanged;
 
@@ -94,10 +95,7 @@ namespace IpTviewr.UiServices.Common.Controls
         {
             get
             {
-                return new TimeSpan(numericTimeSpanDays.Visible? (int)numericTimeSpanDays.Value : 0,
-                    (int)numericTimeSpanHours.Value,
-                    (int)numericTimeSpanMinutes.Value,
-                    SecondsAllowed? (int)numericTimeSpanSeconds.Value : 0);
+                return fieldValue;
             } // get
             set
             {
@@ -109,6 +107,7 @@ namespace IpTviewr.UiServices.Common.Controls
                 numericTimeSpanMinutes.Value = value.Minutes;
                 numericTimeSpanSeconds.Value = value.Seconds;
                 SupressValueChangedEvent--;
+                fieldValue = value;
                 FireValueChanged();
             } // set
         } // Value
@@ -125,6 +124,7 @@ namespace IpTviewr.UiServices.Common.Controls
 
         private void numericTimeSpanDays_ValueChanged(object sender, EventArgs e)
         {
+            UpdateValue();
             FireValueChanged();
         } // numericTimeSpanDays_ValueChanged
 
@@ -141,6 +141,8 @@ namespace IpTviewr.UiServices.Common.Controls
                 numericTimeSpanDays.Value = Math.Min(numericTimeSpanDays.Maximum, days);
                 SupressValueChangedEvent--;
             } // if
+
+            UpdateValue();
             FireValueChanged();
         } // numericTimeSpanHours_ValueChanged
 
@@ -154,8 +156,10 @@ namespace IpTviewr.UiServices.Common.Controls
                 numericTimeSpanHours.Value += value / 60;
                 SupressValueChangedEvent--;
             } // if
+
+            UpdateValue();
             FireValueChanged();
-        }
+        } // numericTimeSpanMinutes_ValueChanged
 
         private void numericTimeSpanSeconds_ValueChanged(object sender, EventArgs e)
         {
@@ -167,8 +171,10 @@ namespace IpTviewr.UiServices.Common.Controls
                 numericTimeSpanMinutes.Value += value / 60;
                 SupressValueChangedEvent--;
             } // if
+
+            UpdateValue();
             FireValueChanged();
-        }
+        } // numericTimeSpanSeconds_ValueChanged
 
         private void RefreshLayout()
         {
@@ -201,5 +207,13 @@ namespace IpTviewr.UiServices.Common.Controls
             if ((SupressValueChangedEvent > 0) || (ValueChanged == null)) return;
             ValueChanged(this, EventArgs.Empty);
         } // FireValueChanged
+
+        private void UpdateValue()
+        {
+            fieldValue = new TimeSpan(numericTimeSpanDays.Visible ? (int)numericTimeSpanDays.Value : 0,
+                (int)numericTimeSpanHours.Value,
+                (int)numericTimeSpanMinutes.Value,
+                SecondsAllowed ? (int)numericTimeSpanSeconds.Value : 0);
+        } // UpdateValue
     } // class TimeSpanUpDown
 } // namespace
