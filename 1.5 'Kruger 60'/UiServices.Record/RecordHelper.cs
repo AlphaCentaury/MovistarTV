@@ -54,6 +54,7 @@ namespace IpTviewr.UiServices.Record
             } // using
 
             if (option == RecordProgramOptions.RecordOption.None) return false;
+            if (option == RecordProgramOptions.RecordOption.Channel) program = null;
 
             // create record task and allow to edit it
             var task = GetRecordTask(service, program, localReferenceTime);
@@ -91,11 +92,13 @@ namespace IpTviewr.UiServices.Record
                 return RecordTask.CreateWithDefaultValues(channel);
             } // if
 
-            RecordProgram program = GetRecordProgram(epgProgram);
-            var schedule = GetRecordSchedule(epgProgram, localReferenceTime);
-            var duration = GetRecordDuration(epgProgram);
+            var isCurrent = epgProgram.IsCurrent(localReferenceTime);
+            var program = GetRecordProgram(epgProgram);
+            var schedule = GetRecordSchedule(epgProgram, isCurrent);
+            var duration = GetRecordDuration(epgProgram, isCurrent);
             var description = GetRecordDescription(epgProgram, channel);
             var action = GetRecordAction(service, epgProgram);
+            var advanced = GetRecordAdvancedSettings();
 
             var task = new RecordTask()
             {
@@ -105,7 +108,7 @@ namespace IpTviewr.UiServices.Record
                 Duration = duration,
                 Description = description,
                 Action = action,
-                AdvancedSettings = RecordAdvancedSettings.CreateWithDefaultValues(),
+                AdvancedSettings = advanced,
             };
 
             return task;
@@ -128,6 +131,8 @@ namespace IpTviewr.UiServices.Record
 
         private static RecordProgram GetRecordProgram(EpgProgram epgProgram)
         {
+            if (epgProgram == null) throw new ArgumentNullException(nameof(epgProgram));
+
             var program = new RecordProgram()
             {
                 Title = epgProgram.Title,
@@ -138,29 +143,42 @@ namespace IpTviewr.UiServices.Record
             return program;
         } // GetRecordProgram
 
-        public static RecordSchedule GetRecordSchedule(EpgProgram program, DateTime localReferenceTime)
+        public static RecordSchedule GetRecordSchedule(EpgProgram epgProgram, bool isCurrent)
         {
-            var isCurrent = program.IsCurrent(localReferenceTime);
-            var kind = isCurrent ? RecordScheduleKind.RightNow : RecordScheduleKind.OneTime;
-            var schedule = RecordSchedule.CreateWithDefaultValues(RecordScheduleKind.OneTime) as RecordScheduleTime;
-            if (!isCurrent) schedule.StartDate = program.LocalStartTime;
-            schedule.ExpiryDate = program.LocalEndTime + program.Duration + RecordChannelDialog.DefaultExpiryDateTimeSpan;
+            RecordSchedule schedule;
+
+            if (epgProgram == null) throw new ArgumentNullException(nameof(epgProgram));
+
+            if (isCurrent)
+            {
+                schedule = RecordSchedule.CreateWithDefaultValues(RecordScheduleKind.RightNow);
+            }
+            else
+            {
+                schedule = RecordSchedule.CreateWithDefaultValues(RecordScheduleKind.OneTime);
+                schedule.ExpiryDate = epgProgram.LocalEndTime + epgProgram.Duration + RecordChannelDialog.DefaultExpiryDateTimeSpan;
+            } // if-else
+            schedule.StartDate = epgProgram.LocalStartTime;
 
             return schedule;
         } // GetRecordSchedule
 
-        private static RecordDuration GetRecordDuration(EpgProgram program)
+        public static RecordDuration GetRecordDuration(EpgProgram epgProgram, bool isCurrent)
         {
+            if (epgProgram == null) throw new ArgumentNullException(nameof(epgProgram));
+
             var duration = RecordDuration.CreateWithDefaultValues();
-            duration.Length = program.Duration;
+            duration.EndDateTime = epgProgram.LocalEndTime;
 
             return duration;
         } // GetRecordDuration
 
-        private static RecordDescription GetRecordDescription(EpgProgram program, RecordChannel channel)
+        public static RecordDescription GetRecordDescription(EpgProgram epgProgram, RecordChannel channel)
         {
+            if (epgProgram == null) throw new ArgumentNullException(nameof(epgProgram));
+
             var description = RecordDescription.CreateWithDefaultValues();
-            description.Name = RecordDescription.CreateTaskName(channel, program.LocalStartTime);
+            description.Name = RecordDescription.CreateTaskName(channel, epgProgram.LocalStartTime);
 
             /* var extended = program as EpgProgramExtended;
             if (extended != null)
@@ -170,20 +188,22 @@ namespace IpTviewr.UiServices.Record
             else */
             {
                 var buffer = new StringBuilder();
-                buffer.AppendLine(program.Title);
-                buffer.Append(program.ParentalRating.Description);
+                buffer.AppendLine(epgProgram.Title);
+                buffer.Append(epgProgram.ParentalRating.Description);
                 description.Description = buffer.ToString();
             } // if-else
 
             return description;
         } // GetRecordDescription
 
-        private static RecordAction GetRecordAction(UiBroadcastService service, EpgProgram program)
+        public static RecordAction GetRecordAction(UiBroadcastService service, EpgProgram epgProgram)
         {
+            if (epgProgram == null) throw new ArgumentNullException(nameof(epgProgram));
+
             var action = RecordAction.CreateWithDefaultValues();
             var defaultLocation = RecordSaveLocation.GetDefaultSaveLocation(AppUiConfiguration.Current.User.Record.SaveLocations);
 
-            action.Filename = string.Format("{0} - {1}", service.DisplayName, program.Title);
+            action.Filename = string.Format("{0} - {1}", service.DisplayName, epgProgram.Title);
             action.FileExtension = RecordChannelDialog.GetFilenameExtensions()[0];
             action.SaveLocationName = defaultLocation.Name;
             action.SaveLocationPath = defaultLocation.Path;
@@ -191,6 +211,33 @@ namespace IpTviewr.UiServices.Record
             return action;
         } // GetRecordAction
 
+        private static RecordAdvancedSettings GetRecordAdvancedSettings()
+        {
+            var advanced = RecordAdvancedSettings.CreateWithDefaultValues();
+
+            var folders = AppUiConfiguration.Current.User.Record.TaskSchedulerFolders;
+            if (folders != null)
+            {
+                advanced.TaskSchedulerFolder = folders[0].Path;
+            } // if
+
+            return advanced;
+        } // GetRecordAdvancedSettings
+
+        public static bool ScheduleTask(CommonBaseForm ownerForm, RecordTask task)
+        {
+            // schedule task
+            var scheduler = new Scheduler(ownerForm.GetExceptionHandler(),
+                AppUiConfiguration.Current.Folders.RecordTasks, AppUiConfiguration.Current.User.Record.RecorderLauncherPath);
+
+            if (scheduler.CreateTask(task))
+            {
+                MessageBox.Show(ownerForm, Properties.Resources.SchedulerCreateTaskOk, ownerForm.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return true;
+            } // if
+
+            return false;
+        } // ScheduleTask
 
         private static bool VerifyIsInactive(CommonBaseForm ownerForm, UiBroadcastService service)
         {
@@ -211,20 +258,5 @@ namespace IpTviewr.UiServices.Record
 
             return false;
         } // VerifyIsInactive
-
-        private static bool ScheduleTask(CommonBaseForm ownerForm, RecordTask task)
-        {
-            // schedule task
-            var scheduler = new Scheduler(ownerForm.GetExceptionHandler(),
-                AppUiConfiguration.Current.Folders.RecordTasks, AppUiConfiguration.Current.User.Record.RecorderLauncherPath);
-
-            if (scheduler.CreateTask(task))
-            {
-                MessageBox.Show(ownerForm, Properties.Resources.SchedulerCreateTaskOk, ownerForm.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return true;
-            } // if
-
-            return false;
-        } // ScheduleTask
     } // class RecordHelper
 } // namespace
