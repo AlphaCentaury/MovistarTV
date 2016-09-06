@@ -142,11 +142,14 @@ Please specify a name.</value>
     <value>A save location has not been selected.
 Please select one or browse for a folder.</value>
   </data>
-  <data name="RecordButtonDefault" xml:space="preserve">
+  <data name="RecordButtonRecord" xml:space="preserve">
     <value>Record</value>
   </data>
-  <data name="RecordButtonSettings" xml:space="preserve">
-    <value>Record...</value>
+  <data name="RecordButtonSchedule" xml:space="preserve">
+    <value>Set schedule</value>
+  </data>
+  <data name="RecordButtonWithSettings" xml:space="preserve">
+    <value>Schedule...</value>
   </data>
   <data name="SaveCustomLocation" xml:space="preserve">
     <value>&lt;Custom location&gt;</value>

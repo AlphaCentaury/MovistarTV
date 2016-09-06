@@ -133,6 +133,15 @@ Por favor indique un nombre para la tarea.</value>
     <value>No se ha seleccionado una ubicación de grabación.
 Por favor seleccione una ubicación o seleccione una carpeta.</value>
   </data>
+  <data name="RecordButtonRecord" xml:space="preserve">
+    <value>Grabar</value>
+  </data>
+  <data name="RecordButtonSchedule" xml:space="preserve">
+    <value>Programar</value>
+  </data>
+  <data name="RecordButtonWithSettings" xml:space="preserve">
+    <value>Programar...</value>
+  </data>
   <data name="RecordTaskNameSuggestedNameFormat" xml:space="preserve">
     <value>{0} [{1:yyyy\-MM\-dd} {2:HH\-mm\-ss}]</value>
   </data>

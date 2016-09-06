@@ -117,18 +117,27 @@ namespace IpTviewr.UiServices.Record.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Record.
         /// </summary>
-        internal static string RecordButtonDefault {
+        internal static string RecordButtonRecord {
             get {
-                return ResourceManager.GetString("RecordButtonDefault", resourceCulture);
+                return ResourceManager.GetString("RecordButtonRecord", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Record....
+        ///   Looks up a localized string similar to Set schedule.
         /// </summary>
-        internal static string RecordButtonSettings {
+        internal static string RecordButtonSchedule {
             get {
-                return ResourceManager.GetString("RecordButtonSettings", resourceCulture);
+                return ResourceManager.GetString("RecordButtonSchedule", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Schedule....
+        /// </summary>
+        internal static string RecordButtonWithSettings {
+            get {
+                return ResourceManager.GetString("RecordButtonWithSettings", resourceCulture);
             }
         }
         

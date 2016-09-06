@@ -112,10 +112,10 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="RecordingTimeDateTimeSpanMaxValue" xml:space="preserve">
     <value>Total recording time can not exceed {0:N0} days.
@@ -148,5 +148,8 @@ Select an earlier date/time to limit the total recording time to less than {0:N0
   </data>
   <data name="WeeklyScheduleNoDays" xml:space="preserve">
     <value>At least a day must be selected for a weekly schedule.</value>
+  </data>
+  <data name="RecordingInvalidStartDateTime" xml:space="preserve">
+    <value>The start date/time can not be earlier than the current time.</value>
   </data>
 </root>

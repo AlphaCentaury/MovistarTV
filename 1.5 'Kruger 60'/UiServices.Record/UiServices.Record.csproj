@@ -269,6 +269,7 @@
       <Link>Resources\Action_Play_LG_16x16.png</Link>
     </Content>
     <Content Include="License.txt" />
+    <Content Include="Resources\Action_RecordButton_16x16.png" />
     <Content Include="Resources\Action_Record_16x16.png" />
     <Content Include="Resources\Icon_Record_48x48.png" />
     <Content Include="Resources\Icon_Recorder.ico" />

@@ -61,6 +61,15 @@ namespace IpTviewr.UiServices.Record.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The start date/time can not be earlier than the current time..
+        /// </summary>
+        internal static string RecordingInvalidStartDateTime {
+            get {
+                return ResourceManager.GetString("RecordingInvalidStartDateTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Schedule: a value is not valid or allowed.
         /// </summary>
         internal static string RecordingScheduleValidationCaption {
