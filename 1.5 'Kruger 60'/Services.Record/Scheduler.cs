@@ -177,6 +177,7 @@ namespace IpTviewr.Services.Record
         {
             if (string.IsNullOrEmpty(settings.TaskSchedulerFolder))
             {
+                settings.TaskSchedulerFolder = "";
                 return taskScheduler.RootFolder;
             } // if
 

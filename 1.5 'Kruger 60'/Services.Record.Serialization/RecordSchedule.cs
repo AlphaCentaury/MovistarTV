@@ -147,7 +147,7 @@ namespace IpTviewr.Services.Record.Serialization
         public virtual void SetDefaultValues()
         {
             var now = DateTime.Now;
-            StartDate = new DateTime(now.Year, now.Month, now.Day, now.Hour, now.Minute, 0) + new TimeSpan(0, 1, 0);
+            StartDate = new DateTime(now.Year, now.Month, now.Day, now.Hour, now.Minute, 0) + new TimeSpan(0, 5, 0);
             SafetyMargin = DefaultSafetyMargin;
         } // SetDefaultValues
 

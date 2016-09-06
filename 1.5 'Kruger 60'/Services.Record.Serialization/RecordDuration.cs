@@ -21,7 +21,7 @@ namespace IpTviewr.Services.Record.Serialization
         /// </summary>
         public static int DefaultSafetyMargin
         {
-            get { return 5; }
+            get { return 10; }
         } // DefaultSafetyMargin
 
         /// <summary>
@@ -100,11 +100,16 @@ namespace IpTviewr.Services.Record.Serialization
             } // get
         } // SafetyMarginTimeSpan
 
-        public TimeSpan GetDuration(RecordSchedule schedule)
+        public TimeSpan GetDuration(DateTime startDateTime)
         {
             if (EndDateTime == null) return Length;
 
-            return (EndDateTime.Value - schedule.GetStartDateTime());
+            return (EndDateTime.Value - startDateTime);
+        } // GetDuration
+
+        public TimeSpan GetDuration(RecordSchedule schedule)
+        {
+            return GetDuration(schedule.GetStartDateTime());
         } // GetDuration
 
         /// <summary>
