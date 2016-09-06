@@ -44,12 +44,7 @@ namespace IpTviewr.UiServices.Record
             this.labelStartMarginSufix = new System.Windows.Forms.Label();
             this.numericStartMargin = new System.Windows.Forms.NumericUpDown();
             this.checkBoxStartMargin = new System.Windows.Forms.CheckBox();
-            this.recordingSchedule = new IpTviewr.UiServices.Record.Controls.RecordingSchedule();
             this.tabPageLength = new System.Windows.Forms.TabPage();
-            this.recordingTime = new IpTviewr.UiServices.Record.Controls.RecordingDuration();
-            this.labelEndMarginSufix = new System.Windows.Forms.Label();
-            this.numericEndMargin = new System.Windows.Forms.NumericUpDown();
-            this.checkBoxEndMargin = new System.Windows.Forms.CheckBox();
             this.tabPageSave = new System.Windows.Forms.TabPage();
             this.listViewLocations = new IpTviewr.UiServices.Common.Controls.ListViewSortable();
             this.imageListLocations = new System.Windows.Forms.ImageList(this.components);
@@ -82,13 +77,14 @@ namespace IpTviewr.UiServices.Record
             this.labelProgramDescription = new System.Windows.Forms.Label();
             this.labelChannelName = new System.Windows.Forms.Label();
             this.pictureChannelLogo = new IpTviewr.UiServices.Common.Controls.PictureBoxEx();
+            this.recordingSchedule = new IpTviewr.UiServices.Record.Controls.RecordingSchedule();
+            this.recordingTime = new IpTviewr.UiServices.Record.Controls.RecordingDuration();
             ColumnName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             ColumnLocation = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabProperties.SuspendLayout();
             this.tabPageSchedule.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericStartMargin)).BeginInit();
             this.tabPageLength.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericEndMargin)).BeginInit();
             this.tabPageSave.SuspendLayout();
             this.tabPageDescription.SuspendLayout();
             this.tabPageAdvanced.SuspendLayout();
@@ -179,51 +175,12 @@ namespace IpTviewr.UiServices.Record
             this.checkBoxStartMargin.UseVisualStyleBackColor = true;
             this.checkBoxStartMargin.CheckedChanged += new System.EventHandler(this.checkBoxStartMargin_CheckedChanged);
             // 
-            // recordingSchedule
-            // 
-            resources.ApplyResources(this.recordingSchedule, "recordingSchedule");
-            this.recordingSchedule.Name = "recordingSchedule";
-            this.recordingSchedule.ScheduleKindChanged += new System.EventHandler<IpTviewr.UiServices.Record.Controls.RecordingSchedule.KindChangedEventArgs>(this.recordingSchedule_ScheduleKindChanged);
-            this.recordingSchedule.DateTimeChanged += new System.EventHandler<IpTviewr.UiServices.Record.Controls.RecordingSchedule.DateTimeChangedEventArgs>(this.recordingSchedule_DateTimeChanged);
-            // 
             // tabPageLength
             // 
             this.tabPageLength.Controls.Add(this.recordingTime);
-            this.tabPageLength.Controls.Add(this.labelEndMarginSufix);
-            this.tabPageLength.Controls.Add(this.numericEndMargin);
-            this.tabPageLength.Controls.Add(this.checkBoxEndMargin);
             resources.ApplyResources(this.tabPageLength, "tabPageLength");
             this.tabPageLength.Name = "tabPageLength";
             this.tabPageLength.UseVisualStyleBackColor = true;
-            // 
-            // recordingTime
-            // 
-            this.recordingTime.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
-            this.recordingTime.CausesValidation = false;
-            resources.ApplyResources(this.recordingTime, "recordingTime");
-            this.recordingTime.Name = "recordingTime";
-            // 
-            // labelEndMarginSufix
-            // 
-            resources.ApplyResources(this.labelEndMarginSufix, "labelEndMarginSufix");
-            this.labelEndMarginSufix.Name = "labelEndMarginSufix";
-            // 
-            // numericEndMargin
-            // 
-            resources.ApplyResources(this.numericEndMargin, "numericEndMargin");
-            this.numericEndMargin.Maximum = new decimal(new int[] {
-            60,
-            0,
-            0,
-            0});
-            this.numericEndMargin.Name = "numericEndMargin";
-            // 
-            // checkBoxEndMargin
-            // 
-            resources.ApplyResources(this.checkBoxEndMargin, "checkBoxEndMargin");
-            this.checkBoxEndMargin.Name = "checkBoxEndMargin";
-            this.checkBoxEndMargin.UseVisualStyleBackColor = true;
-            this.checkBoxEndMargin.CheckedChanged += new System.EventHandler(this.checkBoxEndMargin_CheckedChanged);
             // 
             // tabPageSave
             // 
@@ -478,6 +435,20 @@ namespace IpTviewr.UiServices.Record
             this.pictureChannelLogo.Name = "pictureChannelLogo";
             this.pictureChannelLogo.TabStop = false;
             // 
+            // recordingSchedule
+            // 
+            resources.ApplyResources(this.recordingSchedule, "recordingSchedule");
+            this.recordingSchedule.Name = "recordingSchedule";
+            this.recordingSchedule.ScheduleKindChanged += new System.EventHandler<IpTviewr.UiServices.Record.Controls.RecordingSchedule.KindChangedEventArgs>(this.recordingSchedule_ScheduleKindChanged);
+            this.recordingSchedule.DateTimeChanged += new System.EventHandler<IpTviewr.UiServices.Record.Controls.RecordingSchedule.DateTimeChangedEventArgs>(this.recordingSchedule_DateTimeChanged);
+            // 
+            // recordingTime
+            // 
+            this.recordingTime.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
+            this.recordingTime.CausesValidation = false;
+            resources.ApplyResources(this.recordingTime, "recordingTime");
+            this.recordingTime.Name = "recordingTime";
+            // 
             // RecordChannelDialog
             // 
             this.AcceptButton = this.buttonOk;
@@ -496,7 +467,6 @@ namespace IpTviewr.UiServices.Record
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "RecordChannelDialog";
-            this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.Load += new System.EventHandler(this.DialogRecordChannel_Load);
             this.Shown += new System.EventHandler(this.DialogRecordChannel_Shown);
@@ -505,8 +475,6 @@ namespace IpTviewr.UiServices.Record
             this.tabPageSchedule.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericStartMargin)).EndInit();
             this.tabPageLength.ResumeLayout(false);
-            this.tabPageLength.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericEndMargin)).EndInit();
             this.tabPageSave.ResumeLayout(false);
             this.tabPageSave.PerformLayout();
             this.tabPageDescription.ResumeLayout(false);
@@ -529,9 +497,6 @@ namespace IpTviewr.UiServices.Record
         private System.Windows.Forms.CheckBox checkBoxStartMargin;
         private IpTviewr.UiServices.Record.Controls.RecordingSchedule recordingSchedule;
         private System.Windows.Forms.TabPage tabPageLength;
-        private System.Windows.Forms.Label labelEndMarginSufix;
-        private System.Windows.Forms.NumericUpDown numericEndMargin;
-        private System.Windows.Forms.CheckBox checkBoxEndMargin;
         private IpTviewr.UiServices.Record.Controls.RecordingDuration recordingTime;
         private System.Windows.Forms.TabPage tabPageDescription;
         private System.Windows.Forms.TabPage tabPageAdvanced;

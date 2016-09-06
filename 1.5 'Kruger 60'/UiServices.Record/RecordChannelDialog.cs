@@ -4,6 +4,7 @@
 using IpTviewr.Common;
 using IpTviewr.Common.Telemetry;
 using IpTviewr.Services.Record.Serialization;
+using IpTviewr.UiServices.Common;
 using IpTviewr.UiServices.Common.Forms;
 using IpTviewr.UiServices.Configuration;
 using IpTviewr.UiServices.Configuration.Logos;
@@ -89,7 +90,7 @@ namespace IpTviewr.UiServices.Record
                 if (this.DesignMode)
                 {
                     Task = RecordTask.CreateWithDefaultValues(null);
-                    IsNewTask = false;
+                    IsNewTask = true;
                 }
                 else
                 {
@@ -122,6 +123,40 @@ namespace IpTviewr.UiServices.Record
                 listViewLocations.Items[CurrentSelectedLocationIndex].Selected = true;
             } // if
         } // DialogRecordChannel_Shown_Implementation
+
+        #endregion
+
+        #region Form control events
+
+        private void buttonOk_Click(object sender, EventArgs e)
+        {
+            SafeCall(buttonOk_Click_Implementation, sender, e);
+        } // buttonOk_Click
+
+        private void buttonOk_Click_Implementation(object sender, EventArgs e)
+        {
+            var isValid = this.ValidateChildren(ValidationConstraints.Enabled);
+            if (!isValid) return;
+
+            // General
+            GetGeneralData();
+            // Schedule tab
+            GetScheduleData();
+            // Duration tab
+            GetDurationData();
+            // Description tab
+            GetDescriptionData();
+            // Save tab
+            GetSaveData();
+            // Advanced tab
+            GetAdvancedData();
+
+            this.DialogResult = System.Windows.Forms.DialogResult.OK;
+        } // buttonOk_Click_Implementation
+
+        #endregion
+
+        #region 'General' form setup & get data
 
         private void InitGeneralData()
         {
@@ -156,34 +191,6 @@ namespace IpTviewr.UiServices.Record
 
         #endregion
 
-        #region General control events
-
-        private void buttonOk_Click(object sender, EventArgs e)
-        {
-            SafeCall(buttonOk_Click_Implementation, sender, e);
-        } // buttonOk_Click
-
-        private void buttonOk_Click_Implementation(object sender, EventArgs e)
-        {
-            var isValid = this.ValidateChildren(ValidationConstraints.Enabled);
-            if (!isValid) return;
-
-            // Schedule tab
-            GetScheduleData();
-            // Duration tab
-            GetDurationData();
-            // Description tab
-            GetDescriptionData();
-            // Save tab
-            GetSaveData();
-            // Advanced tab
-            GetAdvancedData();
-
-            this.DialogResult = System.Windows.Forms.DialogResult.OK;
-        } // buttonOk_Click_Implementation
-
-        #endregion
-
         #region "Schedule" tab events / setup & get data
 
         private void InitScheduleData()
@@ -194,60 +201,37 @@ namespace IpTviewr.UiServices.Record
             recordingSchedule.SetSchedule(Task.Schedule, IsNewTask);
 
             // Expiry date
-            var scheduleTime = Task.Schedule as RecordScheduleTime;
-            if ((scheduleTime != null) && (scheduleTime.ExpiryDate.HasValue))
-            {
-                checkBoxExpiryDate.Checked = true;
-                dateTimeExpiryDate.Value = scheduleTime.ExpiryDate.Value;
-            }
-            else
-            {
-                checkBoxExpiryDate.Checked = false;
-                dateTimeExpiryDate.Value = CurrentStartDateTime + DefaultExpiryDateTimeSpan;
-            } // if-else
+            var schedule = Task.Schedule;
+            checkBoxExpiryDate.Checked = schedule.ExpiryDate.HasValue;
+            dateTimeExpiryDate.Value = (schedule.ExpiryDate.HasValue) ? schedule.ExpiryDate.Value : CurrentStartDateTime + DefaultExpiryDateTimeSpan;
 
             // Safety margin
-            if (scheduleTime == null)
-            {
-                checkBoxStartMargin.Checked = false;
-                numericStartMargin.Value = RecordScheduleTime.DefaultSafetyMargin;
-            }
-            else
-            {
-                checkBoxStartMargin.Checked = scheduleTime.SafetyMargin.HasValue;
-                numericStartMargin.Value = Task.Duration.SafetyMargin.HasValue ? scheduleTime.SafetyMargin.Value : RecordScheduleTime.DefaultSafetyMargin;
-            } // if
-
+            checkBoxStartMargin.Checked = schedule.SafetyMargin.HasValue;
+            numericStartMargin.Value = schedule.SafetyMargin ?? RecordSchedule.DefaultSafetyMargin;
             UpdateStartMarginStatus(true);
         } // InitScheduleData
 
         private void GetScheduleData()
         {
-            Task.Schedule = recordingSchedule.GetSchedule();
-            var scheduleTime = Task.Schedule as RecordScheduleTime;
+            var schedule = recordingSchedule.GetSchedule();
+            Task.Schedule = schedule;
 
-            if (scheduleTime == null) return;
+            schedule.ExpiryDate = null;
+            schedule.SafetyMargin = null;
 
+            if (schedule.Kind == RecordScheduleKind.OneTime) return;
 
             if ((checkBoxExpiryDate.Checked) && (checkBoxExpiryDate.Enabled))
             {
                 var date = dateTimeExpiryDate.Value;
                 var expiryDate = new DateTime(date.Year, date.Month, date.Day, 0, 0, 0);
-                scheduleTime.ExpiryDate = expiryDate;
-            }
-            else
-            {
-                scheduleTime.ExpiryDate = null;
-            } // if-else
+                schedule.ExpiryDate = expiryDate;
+            } // if
 
             if ((checkBoxStartMargin.Checked) && (checkBoxStartMargin.Enabled) && (numericStartMargin.Value > 0))
             {
-                scheduleTime.SafetyMargin = (int)numericStartMargin.Value;
-            }
-            else
-            {
-                scheduleTime.SafetyMargin = null;
-            } // if-else
+                schedule.SafetyMargin = (int)numericStartMargin.Value;
+            } // if
         } // GetScheduleData
 
         private void recordingSchedule_ScheduleKindChanged(object sender, RecordingSchedule.KindChangedEventArgs e)
@@ -256,15 +240,16 @@ namespace IpTviewr.UiServices.Record
 
             var enabled = (e.Kind != RecordScheduleKind.RightNow);
             UpdateStartMarginStatus(enabled);
-            UpdateEndMarginStatus(enabled);
             EnableExpiryDate();
-            recordingTime.ShowEndDateOption(e.Kind != RecordScheduleKind.RightNow);
+            recordingTime.SetScheduleKind(e.Kind);
+
+            ChangeOkButtonText(enabled);
         } // recordingSchedule_ScheduleKindChanged
 
         private void recordingSchedule_DateTimeChanged(object sender, RecordingSchedule.DateTimeChangedEventArgs e)
         {
             CurrentStartDateTime = e.DateTime;
-            recordingTime.UpdateStartTime(CurrentStartDateTime);
+            recordingTime.SetStartTime(CurrentStartDateTime);
             UpdateTaskName();
         } // schedulePattern_DateTimeChanged
 
@@ -278,8 +263,11 @@ namespace IpTviewr.UiServices.Record
             var expiryDisallowed = (CurrentScheduleKind == RecordScheduleKind.RightNow) ||
                 (CurrentScheduleKind == RecordScheduleKind.OneTime);
 
+            checkBoxExpiryDate.Visible = !expiryDisallowed;
             checkBoxExpiryDate.Enabled = !expiryDisallowed;
-            dateTimeExpiryDate.Enabled = checkBoxExpiryDate.Checked & !expiryDisallowed;
+
+            dateTimeExpiryDate.Visible = !expiryDisallowed;
+            dateTimeExpiryDate.Enabled = checkBoxExpiryDate.Checked;
 
             EnableSchedulerDeleteTask(expiryDisallowed | (checkBoxExpiryDate.Enabled & checkBoxExpiryDate.Checked));
         } // EnableExpiryDate
@@ -291,10 +279,21 @@ namespace IpTviewr.UiServices.Record
 
         private void UpdateStartMarginStatus(bool enabled)
         {
+            checkBoxStartMargin.Visible = enabled;
             checkBoxStartMargin.Enabled = enabled;
-            numericStartMargin.Enabled = checkBoxStartMargin.Checked & enabled;
-            labelStartMarginSufix.Enabled = checkBoxStartMargin.Checked & enabled;
+
+            numericStartMargin.Visible = enabled;
+            numericStartMargin.Enabled = checkBoxStartMargin.Checked;
+
+            labelStartMarginSufix.Visible = enabled;
+            labelStartMarginSufix.Enabled = checkBoxStartMargin.Checked;
         } // UpdateStartMarginStatus
+
+        private void ChangeOkButtonText(bool schedule)
+        {
+            buttonOk.ChangeImage(schedule ? Properties.Resources.Action_Ok_16x16 : Properties.Resources.Action_RecordButton_16x16);
+            buttonOk.Text = schedule ? Properties.RecordChannel.RecordButtonWithSettings : Properties.RecordChannel.RecordButtonRecord;
+        } // ChangeOkButtonText
 
         #endregion
 
@@ -302,107 +301,13 @@ namespace IpTviewr.UiServices.Record
 
         private void InitDurationData()
         {
-            recordingTime.Init(CurrentStartDateTime, Task.Duration, true);
-            checkBoxEndMargin.Checked = Task.Duration.SafetyMargin.HasValue;
-            numericEndMargin.Value = Task.Duration.SafetyMargin.HasValue ? Task.Duration.SafetyMargin.Value : RecordDuration.DefaultSafetyMargin;
-            UpdateEndMarginStatus(true);
+            recordingTime.SetDuration(CurrentStartDateTime, Task.Schedule.Kind, Task.Duration);
         } // InitDurationData()
 
         private void GetDurationData()
         {
             Task.Duration = recordingTime.GetDuration();
-
-            if ((checkBoxEndMargin.Checked) && (checkBoxEndMargin.Enabled) && (numericEndMargin.Value > 0))
-            {
-                Task.Duration.SafetyMargin = (int)numericEndMargin.Value;
-            }
-            else
-            {
-                Task.Duration.SafetyMargin = null;
-            } // if-else
         } // GetDurationData
-
-        private void checkBoxEndMargin_CheckedChanged(object sender, EventArgs e)
-        {
-            UpdateEndMarginStatus(true);
-        } // checkBoxEndMargin_CheckedChanged
-
-        private void UpdateEndMarginStatus(bool enabled)
-        {
-            checkBoxEndMargin.Enabled = enabled;
-            numericEndMargin.Enabled = checkBoxEndMargin.Checked & enabled;
-            labelEndMarginSufix.Enabled = checkBoxEndMargin.Checked & enabled;
-        } // UpdateEndMarginStatus
-
-        #endregion
-
-        #region "Description" tab events / setup & get data
-
-        private void InitDescriptionData()
-        {
-            if (IsNewTask)
-            {
-                // When the SetSchedule method of the RecordingSchedule is called, it will fire a DateTime changed event.
-                // As we capture this event to adjust the task name, there's no need to call UpdateTaskName() again
-                // UpdateTaskName(schedulePattern.Pattern.StartDateTime);
-            }
-            else
-            {
-                IsTaskNameUserProvided = true;
-                textTaskName.Text = Task.Description.TaskSchedulerName;
-                textTaskName.Enabled = false;
-                checkAddTaskPrefix.Enabled = false;
-            } // if-else
-
-            checkAddTaskPrefix.Checked = Task.Description.AddPrefix;
-            textTaskDescription.Text = Task.Description.Description;
-            checkAppendRecordingDetails.Checked = Task.Description.AddDetails;
-        } // InitDescriptionData
-
-        private void GetDescriptionData()
-        {
-            if (Task.Schedule.Kind == RecordScheduleKind.RightNow)
-            {
-                CurrentStartDateTime = DateTime.Now;
-                UpdateTaskName();
-            } // if
-            Task.Description.Name = textTaskName.Text.Trim();
-            Task.Description.AddPrefix = checkAddTaskPrefix.Checked;
-            Task.Description.Description = textTaskDescription.Text.Trim();
-            Task.Description.AddDetails = checkAppendRecordingDetails.Checked;
-        } // GetDescriptionData
-
-        private void textTaskName_TextChanged(object sender, EventArgs e)
-        {
-            IsTaskNameUserProvided = true;
-        } // textTaskName_TextChanged
-
-        private void textTaskName_Validating(object sender, CancelEventArgs e)
-        {
-            var text = textTaskName.Text.Trim();
-            
-            e.Cancel = (text.Length == 0);
-            if (e.Cancel)
-            {
-                ControlValidationFailed(Properties.RecordChannel.EmptyTaskName, sender as Control);
-                return;
-            } // if
-
-            e.Cancel = (text.Length > RecordTaskSerialization.MaxTaskNameLength);
-            if (e.Cancel)
-            {
-                ControlValidationFailed(string.Format(Properties.RecordChannel.TooLongTaskName, RecordTaskSerialization.MaxTaskNameLength), sender as Control);
-                return;
-            } // if
-        } // textTaskName_Validating
-
-        private void UpdateTaskName()
-        {
-            if (IsTaskNameUserProvided) return;
-
-            var taskName = RecordDescription.CreateTaskName(Task.Channel, CurrentStartDateTime);
-            textTaskName.SetText(taskName, false);
-        } // UpdateTaskName
 
         #endregion
 
@@ -414,24 +319,10 @@ namespace IpTviewr.UiServices.Record
             comboFileExtension.Items.AddRange(GetFilenameExtensions());
 
             // Name (filename)
-            if (IsNewTask)
-            {
-                textFilename.SetText(Task.Channel.Name, false);
-            }
-            else
-            {
-                textFilename.SetText(Task.Action.Filename, false);
-            } // if-else
+            textFilename.SetText(string.IsNullOrEmpty(Task.Action.Filename)? Task.Channel.Name : Task.Action.Filename, false);
 
             // Extension
-            if (IsNewTask)
-            {
-                comboFileExtension.Text = comboFileExtension.Items[0] as string;
-            }
-            else
-            {
-                comboFileExtension.Text = Task.Action.FileExtension;
-            } // if-else
+            comboFileExtension.Text = string.IsNullOrEmpty(Task.Action.FileExtension) ? comboFileExtension.Items[0] as string : Task.Action.FileExtension;
 
             // Save locations
             var defaultItem = SetListLocations(AppUiConfiguration.Current.User.Record.SaveLocations);
@@ -526,10 +417,7 @@ namespace IpTviewr.UiServices.Record
         {
             ListViewItem defaultItem;
 
-            if (locations == null)
-            {
-                throw new ArgumentNullException();
-            } // if
+            if (locations == null) throw new ArgumentNullException();
 
             defaultItem = null;
             listViewLocations.BeginUpdate();
@@ -538,20 +426,20 @@ namespace IpTviewr.UiServices.Record
             CurrentSelectedLocationIndex = (locations.Count == 0) ? -1 : 0;
             for (int index = 0; index < locations.Count; index++)
             {
-                var name = locations[index].Item1;
+                var name = locations[index].Name;
                 if (string.IsNullOrEmpty(name)) name = Properties.RecordChannel.SaveDefaultLocation;
 
                 var item = listViewLocations.Items.Add(name);
                 item.ImageKey = ListLocationsDefaultImageKey;
-                item.SubItems.Add(locations[index].Item2.Trim());
+                item.SubItems.Add(locations[index].Path.Trim());
 
-                if (string.IsNullOrEmpty(locations[index].Item1)) defaultItem = item;
+                if (string.IsNullOrEmpty(locations[index].Name)) defaultItem = item;
             } // for
 
-            int sortColumn = (listViewLocations.CurrentSortColumn < 0)? 0 : listViewLocations.CurrentSortColumn;
+            int sortColumn = (listViewLocations.CurrentSortColumn < 0) ? 0 : listViewLocations.CurrentSortColumn;
             listViewLocations.Sort(sortColumn, !listViewLocations.CurrentSortIsDescending);
-
             listViewLocations.EndUpdate();
+
             return defaultItem;
         } // SetListLocations
 
@@ -559,18 +447,19 @@ namespace IpTviewr.UiServices.Record
         {
             ListViewItem item;
 
-            item = null;
-            if (locationName != null)
+            if ((locationName == null) && (!string.IsNullOrEmpty(path)))
             {
-                var find = from ListViewItem listItem in listViewLocations.Items
-                           where string.Compare(listItem.Text, locationName, StringComparison.InvariantCultureIgnoreCase) == 0
-                           select listItem;
-                item = find.FirstOrDefault();
+                locationName = Properties.RecordChannel.SaveDefaultLocation;
             } // if
+
+            var find = from ListViewItem listItem in listViewLocations.Items
+                        where string.Compare(listItem.Text, locationName, StringComparison.InvariantCultureIgnoreCase) == 0
+                        select listItem;
+            item = find.FirstOrDefault();
 
             if (item == null)
             {
-                if (path == null)
+                if (string.IsNullOrEmpty(path))
                 {
                     if (listViewLocations.Items.Count > 0)
                     {
@@ -617,18 +506,90 @@ namespace IpTviewr.UiServices.Record
 
         #endregion
 
+        #region "Description" tab events / setup & get data
+
+        private void InitDescriptionData()
+        {
+            textTaskDescription.Text = Task.Description.Description;
+            checkAppendRecordingDetails.Checked = Task.Description.AddDetails;
+        } // InitDescriptionData
+
+        private void GetDescriptionData()
+        {
+            if (Task.Schedule.Kind == RecordScheduleKind.RightNow)
+            {
+                CurrentStartDateTime = DateTime.Now;
+                UpdateTaskName();
+            } // if
+            Task.Description.Description = textTaskDescription.Text.Trim();
+            Task.Description.AddDetails = checkAppendRecordingDetails.Checked;
+        } // GetDescriptionData
+
+        private void textTaskName_TextChanged(object sender, EventArgs e)
+        {
+            IsTaskNameUserProvided = true;
+        } // textTaskName_TextChanged
+
+        private void textTaskName_Validating(object sender, CancelEventArgs e)
+        {
+            var text = textTaskName.Text.Trim();
+            
+            e.Cancel = (text.Length == 0);
+            if (e.Cancel)
+            {
+                ControlValidationFailed(Properties.RecordChannel.EmptyTaskName, sender as Control);
+                return;
+            } // if
+
+            e.Cancel = (text.Length > RecordTaskSerialization.MaxTaskNameLength);
+            if (e.Cancel)
+            {
+                ControlValidationFailed(string.Format(Properties.RecordChannel.TooLongTaskName, RecordTaskSerialization.MaxTaskNameLength), sender as Control);
+                return;
+            } // if
+        } // textTaskName_Validating
+
+        private void UpdateTaskName()
+        {
+            if (IsTaskNameUserProvided) return;
+
+            var taskName = RecordDescription.CreateTaskName(Task.Channel, CurrentStartDateTime);
+            textTaskName.SetText(taskName, false);
+        } // UpdateTaskName
+
+        #endregion
+
         #region "Advanced" tab events / setup & get data
 
         private void InitAdvancedData()
         {
+            // task name
+            if (string.IsNullOrEmpty(Task.Description.TaskSchedulerName))
+            {
+                // When the SetSchedule method of the RecordingSchedule is called, it will fire a DateTime changed event.
+                // As we capture this event to adjust the task name, there's no need to call UpdateTaskName() again
+                // UpdateTaskName(schedulePattern.Pattern.StartDateTime);
+            }
+            else
+            {
+                IsTaskNameUserProvided = true;
+                textTaskName.Text = Task.Description.TaskSchedulerName;
+            } // if-else
+            textTaskName.Enabled = IsNewTask;
+            checkAddTaskPrefix.Enabled = IsNewTask;
+            checkAddTaskPrefix.Checked = Task.Description.AddPrefix;
+
+            // task folder
             comboSchedulerFolder.DisplayMember = "Name";
             comboSchedulerFolder.ValueMember = "Path";
-            if (AppUiConfiguration.Current.User.Record.TaskSchedulerFolders != null)
+            var folders = AppUiConfiguration.Current.User.Record.TaskSchedulerFolders;
+            if (folders != null)
             {
-                comboSchedulerFolder.Items.AddRange(AppUiConfiguration.Current.User.Record.TaskSchedulerFolders);
+                comboSchedulerFolder.Items.AddRange(folders);
             } // if
             comboSchedulerFolder.Items.Add(new RecordTaskSchedulerFolder(Properties.RecordChannel.TaskSchedulerRootFolder, ""));
             comboSchedulerFolder.SelectedIndex = 0;
+            comboSchedulerFolder.Enabled = IsNewTask;
 
             checkSchedulerASAP.Checked = Task.AdvancedSettings.AsSoonAsPossible;
 
@@ -652,6 +613,9 @@ namespace IpTviewr.UiServices.Record
 
         private void GetAdvancedData()
         {
+            Task.Description.Name = textTaskName.Text.Trim();
+            Task.Description.AddPrefix = checkAddTaskPrefix.Checked;
+
             // Task scheduler folder
             if (comboSchedulerFolder.SelectedIndex < 0)
             {
@@ -659,7 +623,7 @@ namespace IpTviewr.UiServices.Record
             }
             else
             {
-                Task.AdvancedSettings.TaskSchedulerFolder = (comboSchedulerFolder.SelectedItem as StringPair).Item2;
+                Task.AdvancedSettings.TaskSchedulerFolder = (comboSchedulerFolder.SelectedItem as RecordTaskSchedulerFolder).Path;
             } // if-else
 
             // ASAP
