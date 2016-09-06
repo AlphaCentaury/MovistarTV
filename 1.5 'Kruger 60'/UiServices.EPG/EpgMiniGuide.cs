@@ -112,15 +112,6 @@ namespace IpTviewr.UiServices.EPG
 
         #endregion Properties
 
-        #region Public static methods
-
-        internal static DateTime TruncateToMinutes(DateTime time)
-        {
-            return new DateTime(time.Year, time.Month, time.Day, time.Hour, time.Minute, 0, time.Kind); // set seconds to 0
-        } // TruncateToMinutes
-
-        #endregion
-
         public EpgMiniGuide()
         {
             InitializeComponent();
@@ -132,7 +123,7 @@ namespace IpTviewr.UiServices.EPG
         public void LoadEpgPrograms(UiBroadcastService service, DateTime localReferenceTime, EpgDatastore datastore, bool async = true)
         {
             SelectedService = service;
-            LocalReferenceTime = TruncateToMinutes(localReferenceTime);
+            LocalReferenceTime = localReferenceTime.TruncateToMinutes();
             Datastore = datastore;
 
             // clean-up UI
@@ -170,7 +161,7 @@ namespace IpTviewr.UiServices.EPG
 
         public void RefreshEpgPrograms(DateTime localReferenceTime)
         {
-            LocalReferenceTime = TruncateToMinutes(localReferenceTime);
+            LocalReferenceTime = localReferenceTime.TruncateToMinutes();
             BeginLoadEpgPrograms(true);
         } // RefreshEpgPrograms
 
