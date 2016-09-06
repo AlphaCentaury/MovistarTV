@@ -16,20 +16,13 @@ namespace IpTviewr.UiServices.Record.Controls
 {
     public partial class RecordingDuration : UserControl
     {
-        private bool ManualUpdateOfValue;
-        private RecordDuration Duration;
-
-        public DateTime StartDateTime
-        {
-            get;
-            private set;
-        } // StartDateTime
-
-        public TimeSpan RecordTimeSpan
-        {
-            get;
-            private set;
-        } // RecordTimeSpan
+        private int ManualUpdate;
+        private bool AvoidRecursion;
+        private RecordScheduleKind ScheduleKind;
+        private DateTime StartDateTime;
+        private TimeSpan fieldRecordTimeSpan;
+        private DateTime fieldEndDateTime;
+        private bool IsScheduledProgram;
 
         public RecordingDuration()
         {
@@ -37,61 +30,110 @@ namespace IpTviewr.UiServices.Record.Controls
             InitComboQuickSettings(comboQuickSetting);
         } // constructor
 
-        #region Public methods
+        #region Internal properties
 
-        public void Init(DateTime startDateTime, RecordDuration duration, bool useQuickSettings)
+        private TimeSpan RecordTimeSpan
         {
-            Duration = duration;
-            UpdateUpDownTimeSpan(duration.Length);
-            UpdateStartTime(startDateTime);
-            UpdateCombo(duration.Length);
-
-            if ((comboQuickSetting.SelectedIndex >= 0) && (useQuickSettings))
+            get
             {
-                radioQuickSettings.Checked = true;
-            }
-            else
+                return fieldRecordTimeSpan;
+            } // get
+            set
             {
-                radioEndDateTime.Checked = true;
-            } // if-else
-        } // Init
+                fieldRecordTimeSpan = value;
+                if (AvoidRecursion) return;
 
-        public void UpdateStartTime(DateTime startDateTime)
+                AvoidRecursion = true;
+                OnTimeSpanChanged();
+                OnEndDateTimeChanged();
+                AvoidRecursion = false;
+            } // set
+        } // RecordTimeSpan
+
+        private DateTime EndDateTime
         {
-            ManualUpdateOfValue = true;
-            StartDateTime = startDateTime;
-            dateTimeEndDate.Value = startDateTime + RecordTimeSpan;
-            dateTimeEndTime.Value = dateTimeEndDate.Value;
-            ManualUpdateOfValue = false;
-        } // UpdateStartTime
-
-        public void ShowEndDateOption(bool show)
-        {
-            radioEndDateTime.Visible = show;
-            dateTimeEndDate.Visible = show;
-            dateTimeEndTime.Visible = show;
-
-            if ((radioEndDateTime.Checked) && (!show))
+            get
             {
-                radioTimeSpan.Checked = true;
-            } // if
-        } // ShowEndDateOption
+                return fieldEndDateTime;
+            } // get
 
-        public RecordDuration GetDuration()
-        {
-            Duration.Length = timeSpanLength.Value;
+            set
+            {
+                fieldEndDateTime = value;
+                if (AvoidRecursion) return;
 
-            return Duration;
-        } // GetDuration
+                AvoidRecursion = true;
+                OnEndDateTimeChanged();
+                OnTimeSpanChanged();
+                AvoidRecursion = false;
+            } // set
+        } // EndDateTime
 
         #endregion
 
-        #region Form events
+        #region Public methods
 
-        private void RecordingTime_Load(object sender, EventArgs e)
+        public void SetDuration(DateTime startDateTime, RecordScheduleKind kind, RecordDuration duration)
         {
-            // no op
-        } // RecordingTime_Load
+            if (duration.EndDateTime == null)
+            {
+                radioTimeSpan.Checked = true;
+                RecordTimeSpan = duration.Length;
+            }
+            else
+            {
+                IsScheduledProgram = (kind == RecordScheduleKind.RightNow);
+                radioEndDateTime.Checked = true;
+                EndDateTime = duration.EndDateTime.Value;
+            } // if-else
+
+            checkBoxEndMargin.Checked = duration.SafetyMargin.HasValue;
+            numericEndMargin.Value = duration.SafetyMargin.HasValue ? duration.SafetyMargin.Value : RecordDuration.DefaultSafetyMargin;
+            SetScheduleKind(kind);
+        } // SetDuration
+
+        public RecordDuration GetDuration()
+        {
+            var duration = new RecordDuration()
+            {
+                Length = RecordTimeSpan,
+                EndDateTime = radioEndDateTime.Checked ? EndDateTime : (DateTime?)null,
+            }; // duration
+
+            if ((checkBoxEndMargin.Checked) && (checkBoxEndMargin.Enabled) && (numericEndMargin.Value > 0))
+            {
+                duration.SafetyMargin = (int)numericEndMargin.Value;
+            }
+            else
+            {
+                duration.SafetyMargin = null;
+            } // if-else
+
+            return duration;
+        } // GetDuration
+
+        public void SetStartTime(DateTime startDateTime)
+        {
+            ManualUpdate++;
+
+            StartDateTime = startDateTime;
+            if (!radioEndDateTime.Checked)
+            {
+                EndDateTime = StartDateTime + RecordTimeSpan;
+            }
+            else
+            {
+                RecordTimeSpan = EndDateTime - StartDateTime;
+            } // if-else
+
+            ManualUpdate--;
+        } // UpdateStartTime
+
+        public void SetScheduleKind(RecordScheduleKind kind)
+        {
+            ScheduleKind = kind;
+            OnScheduleKindChanged();
+        } // SetScheduleKind
 
         #endregion
 
@@ -99,27 +141,23 @@ namespace IpTviewr.UiServices.Record.Controls
 
         private void radio_CheckedChanged(object sender, EventArgs e)
         {
-            bool enabled;
-
-            enabled = radioQuickSettings.Checked;
-            comboQuickSetting.Enabled = enabled;
-
-            enabled = radioTimeSpan.Checked;
-            timeSpanLength.Enabled = enabled;
-
-            enabled = radioEndDateTime.Checked;
-            dateTimeEndDate.Enabled = enabled;
-            dateTimeEndTime.Enabled = enabled;
+            OnScheduleKindChanged();
         } // radio_CheckedChanged
 
         private void comboQuickSetting_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (ManualUpdateOfValue) return;
+            if (ManualUpdate > 0) return;
             if (comboQuickSetting.SelectedItem == null) return;
 
-            var span = ((KeyValuePair<string, TimeSpan>)comboQuickSetting.SelectedItem).Value;
-            UpdateTimeSpan(span);
+            RecordTimeSpan = ((KeyValuePair<string, TimeSpan>)comboQuickSetting.SelectedItem).Value;
         } // comboQuickSetting_SelectedIndexChanged
+
+        private void timeSpanLength_ValueChanged(object sender, EventArgs e)
+        {
+            if (ManualUpdate > 0) return;
+
+            RecordTimeSpan = timeSpanLength.Value;
+        } // timeSpanLength_ValueChanged
 
         private void timeSpanLength_Validating(object sender, CancelEventArgs e)
         {
@@ -134,16 +172,11 @@ namespace IpTviewr.UiServices.Record.Controls
             RecordTimeSpan = span;
         } // timeSpanLength_Validating
 
-        private void timeSpanLength_ValueChanged(object sender, EventArgs e)
-        {
-            if (ManualUpdateOfValue) return;
-            UpdateTimeSpan(timeSpanLength.Value);
-        } // timeSpanLength_ValueChanged
-
         private void dateTimeEndDate_ValueChanged(object sender, EventArgs e)
         {
-            if (ManualUpdateOfValue) return;
-            UpdateTimeSpan(GetEndDateTime() - StartDateTime);
+            if (ManualUpdate > 0) return;
+
+            RecordTimeSpan = (GetEndDateTime() - StartDateTime);
         } // dateTimeEndDate_ValueChanged
 
         private void dateTimeEndDate_Validating(object sender, CancelEventArgs e)
@@ -153,8 +186,9 @@ namespace IpTviewr.UiServices.Record.Controls
 
         private void dateTimeEndTime_ValueChanged(object sender, EventArgs e)
         {
-            if (ManualUpdateOfValue) return;
-            UpdateTimeSpan(GetEndDateTime() - StartDateTime);
+            if (ManualUpdate > 0) return;
+
+            RecordTimeSpan = (GetEndDateTime() - StartDateTime);
         } // dateTimeEndTime_ValueChanged
 
         private void dateTimeEndTime_Validating(object sender, CancelEventArgs e)
@@ -162,9 +196,42 @@ namespace IpTviewr.UiServices.Record.Controls
             ValidateEndDateTime(sender as DateTimePicker, e);
         } // dateTimeEndTime_Validating
 
+        private void checkBoxEndMargin_CheckedChanged(object sender, EventArgs e)
+        {
+            OnEndMarginCheckedChanged();
+        } // checkBoxEndMargin_CheckedChanged
+
         #endregion
 
         #region Private methods
+
+        public void OnScheduleKindChanged()
+        {
+            bool showEndMargin;
+
+            if (ScheduleKind == RecordScheduleKind.RightNow)
+            {
+                radioTimeSpan.Enabled = !IsScheduledProgram;
+                showEndMargin = radioEndDateTime.Checked;
+            }
+            else
+            {
+                radioTimeSpan.Enabled = true;
+                showEndMargin = true;
+            } // if-else
+
+            checkBoxEndMargin.Visible = showEndMargin;
+            checkBoxEndMargin.Enabled = showEndMargin;
+            numericEndMargin.Visible = showEndMargin;
+            labelEndMarginSufix.Visible = showEndMargin;
+
+            timeSpanLength.Enabled = radioTimeSpan.Checked;
+            comboQuickSetting.Enabled = radioTimeSpan.Checked;
+            dateTimeEndDate.Enabled = radioEndDateTime.Checked;
+            dateTimeEndTime.Enabled = radioEndDateTime.Checked;
+
+            if (!radioTimeSpan.Enabled) radioEndDateTime.Checked = true;
+        } // OncheduleKindChanged
 
         private void InitComboQuickSettings(ComboBox combo)
         {
@@ -187,50 +254,62 @@ namespace IpTviewr.UiServices.Record.Controls
             } // foreach line
         } // InitComboQuickSettings
 
-        private void UpdateTimeSpan(TimeSpan span)
+        private void UpdateComboQuickSettingsSelection(TimeSpan span)
         {
-            ManualUpdateOfValue = true;
-            RecordTimeSpan = span;
-            dateTimeEndDate.Value = StartDateTime + span;
-            dateTimeEndTime.Value = dateTimeEndDate.Value;
-            ManualUpdateOfValue = false;
-            UpdateUpDownTimeSpan(span);
-            UpdateCombo(span);
-        } // UpdateTimeSpan
+            var q = from index in Enumerable.Range(0, comboQuickSetting.Items.Count)
+                    let item = (KeyValuePair<string, TimeSpan>)comboQuickSetting.Items[index]
+                    where (TimeSpan)item.Value == span
+                    select index + 1;
+            var indexToSelect = (q.FirstOrDefault()) - 1;
 
-        private void UpdateCombo(TimeSpan span)
-        {
-            int indexToSelect;
-
-            indexToSelect = -1;
-            for (int index = 0; index < comboQuickSetting.Items.Count; index++)
-            {
-                var item = (KeyValuePair<string, TimeSpan>)comboQuickSetting.Items[index];
-                if ((TimeSpan)item.Value == span)
-                {
-                    indexToSelect = index;
-                    break;
-                } // if
-            } // for
-
-            ManualUpdateOfValue = true;
             if (indexToSelect != comboQuickSetting.SelectedIndex)
             {
+                ManualUpdate++;
                 comboQuickSetting.SelectedIndex = indexToSelect;
+                ManualUpdate--;
             } // if
-            ManualUpdateOfValue = false;
-        } // UpdateCombo
+        } // UpdateComboQuickSettingsSelection
 
         private void UpdateUpDownTimeSpan(TimeSpan span)
         {
-            if (span.TotalSeconds <= 0) span = new TimeSpan();
+            if (span.TotalSeconds <= 0) span = TimeSpan.Zero;
             if (span.Days > timeSpanLength.MaxDays) span = new TimeSpan(timeSpanLength.MaxDays, 23, 59, 59);
 
-            ManualUpdateOfValue = true;
+            ManualUpdate++;
+
             timeSpanLength.Value = span;
             RecordTimeSpan = span;
-            ManualUpdateOfValue = false;
+
+            ManualUpdate--;
         } // UpdateUpDownTimeSpan
+
+        private void OnTimeSpanChanged()
+        {
+            ManualUpdate++;
+
+            UpdateComboQuickSettingsSelection(RecordTimeSpan);
+            UpdateUpDownTimeSpan(RecordTimeSpan);
+
+            ManualUpdate--;
+
+            if (!radioEndDateTime.Checked)
+            {
+                EndDateTime = StartDateTime + RecordTimeSpan;
+            } // if
+
+        } // OnTimeSpanChanged
+
+        private void OnEndDateTimeChanged()
+        {
+            ManualUpdate++;
+
+            dateTimeEndDate.Value = EndDateTime;
+            dateTimeEndTime.Value = EndDateTime;
+
+            ManualUpdate--;
+
+            RecordTimeSpan = EndDateTime - StartDateTime;
+        } // OnEndDateTimeChanged
 
         private DateTime GetEndDateTime()
         {
@@ -249,7 +328,7 @@ namespace IpTviewr.UiServices.Record.Controls
             if (span.TotalSeconds < 0)
             {
                 e.Cancel = true;
-                MessageBox.Show(this, ControlTexts.RecordingTimeInvalidDateTime, ControlTexts.RecordingTimeValidationCaption, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(Parent, ControlTexts.RecordingTimeInvalidDateTime, ControlTexts.RecordingTimeValidationCaption, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 this.Parent.Focus();
                 this.Focus();
                 return;
@@ -257,7 +336,7 @@ namespace IpTviewr.UiServices.Record.Controls
             if (span.TotalSeconds < 60)
             {
                 e.Cancel = true;
-                MessageBox.Show(this, ControlTexts.RecordingTimeInvalidTimeSpan, ControlTexts.RecordingTimeValidationCaption, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(Parent, ControlTexts.RecordingTimeInvalidTimeSpan, ControlTexts.RecordingTimeValidationCaption, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 this.Parent.Focus();
                 this.Focus();
                 return;
@@ -265,12 +344,19 @@ namespace IpTviewr.UiServices.Record.Controls
             if (span.TotalDays > timeSpanLength.MaxDays)
             {
                 e.Cancel = true;
-                MessageBox.Show(this, string.Format(ControlTexts.RecordingTimeDateTimeSpanMaxValue, timeSpanLength.MaxDays),
+                MessageBox.Show(Parent, string.Format(ControlTexts.RecordingTimeDateTimeSpanMaxValue, timeSpanLength.MaxDays),
                     ControlTexts.RecordingTimeValidationCaption, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 this.Parent.Focus();
                 this.Focus();
             } // if
         } // ValidateEndDateTime
+
+        private void OnEndMarginCheckedChanged()
+        {
+            var enabled = checkBoxEndMargin.Checked;
+            numericEndMargin.Enabled = enabled;
+            labelEndMarginSufix.Enabled = enabled;
+        } // OnEndMarginCheckedChanged
 
         #endregion
     } // class RecordingTime

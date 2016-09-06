@@ -33,29 +33,25 @@ namespace IpTviewr.UiServices.Record.Controls
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RecordingDuration));
             this.comboQuickSetting = new System.Windows.Forms.ComboBox();
-            this.radioQuickSettings = new System.Windows.Forms.RadioButton();
             this.dateTimeEndTime = new System.Windows.Forms.DateTimePicker();
             this.dateTimeEndDate = new System.Windows.Forms.DateTimePicker();
             this.radioEndDateTime = new System.Windows.Forms.RadioButton();
             this.radioTimeSpan = new System.Windows.Forms.RadioButton();
             this.timeSpanLength = new IpTviewr.UiServices.Common.Controls.TimeSpanUpDown();
+            this.labelEndMarginSufix = new System.Windows.Forms.Label();
+            this.numericEndMargin = new System.Windows.Forms.NumericUpDown();
+            this.checkBoxEndMargin = new System.Windows.Forms.CheckBox();
+            ((System.ComponentModel.ISupportInitialize)(this.numericEndMargin)).BeginInit();
             this.SuspendLayout();
             // 
             // comboQuickSetting
             // 
+            this.comboQuickSetting.BackColor = System.Drawing.SystemColors.Window;
             this.comboQuickSetting.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboQuickSetting.FormattingEnabled = true;
             resources.ApplyResources(this.comboQuickSetting, "comboQuickSetting");
             this.comboQuickSetting.Name = "comboQuickSetting";
             this.comboQuickSetting.SelectedIndexChanged += new System.EventHandler(this.comboQuickSetting_SelectedIndexChanged);
-            // 
-            // radioQuickSettings
-            // 
-            resources.ApplyResources(this.radioQuickSettings, "radioQuickSettings");
-            this.radioQuickSettings.Name = "radioQuickSettings";
-            this.radioQuickSettings.TabStop = true;
-            this.radioQuickSettings.UseVisualStyleBackColor = true;
-            this.radioQuickSettings.CheckedChanged += new System.EventHandler(this.radio_CheckedChanged);
             // 
             // dateTimeEndTime
             // 
@@ -102,20 +98,44 @@ namespace IpTviewr.UiServices.Record.Controls
             this.timeSpanLength.ValueChanged += new System.EventHandler(this.timeSpanLength_ValueChanged);
             this.timeSpanLength.Validating += new System.ComponentModel.CancelEventHandler(this.timeSpanLength_Validating);
             // 
+            // labelEndMarginSufix
+            // 
+            resources.ApplyResources(this.labelEndMarginSufix, "labelEndMarginSufix");
+            this.labelEndMarginSufix.Name = "labelEndMarginSufix";
+            // 
+            // numericEndMargin
+            // 
+            resources.ApplyResources(this.numericEndMargin, "numericEndMargin");
+            this.numericEndMargin.Maximum = new decimal(new int[] {
+            60,
+            0,
+            0,
+            0});
+            this.numericEndMargin.Name = "numericEndMargin";
+            // 
+            // checkBoxEndMargin
+            // 
+            resources.ApplyResources(this.checkBoxEndMargin, "checkBoxEndMargin");
+            this.checkBoxEndMargin.Name = "checkBoxEndMargin";
+            this.checkBoxEndMargin.UseVisualStyleBackColor = true;
+            this.checkBoxEndMargin.CheckedChanged += new System.EventHandler(this.checkBoxEndMargin_CheckedChanged);
+            // 
             // RecordingDuration
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
+            this.Controls.Add(this.labelEndMarginSufix);
+            this.Controls.Add(this.numericEndMargin);
+            this.Controls.Add(this.checkBoxEndMargin);
             this.Controls.Add(this.timeSpanLength);
             this.Controls.Add(this.comboQuickSetting);
-            this.Controls.Add(this.radioQuickSettings);
             this.Controls.Add(this.dateTimeEndTime);
             this.Controls.Add(this.dateTimeEndDate);
             this.Controls.Add(this.radioEndDateTime);
             this.Controls.Add(this.radioTimeSpan);
             this.Name = "RecordingDuration";
-            this.Load += new System.EventHandler(this.RecordingTime_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.numericEndMargin)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -124,11 +144,13 @@ namespace IpTviewr.UiServices.Record.Controls
         #endregion
 
         private System.Windows.Forms.ComboBox comboQuickSetting;
-        private System.Windows.Forms.RadioButton radioQuickSettings;
         private System.Windows.Forms.DateTimePicker dateTimeEndTime;
         private System.Windows.Forms.DateTimePicker dateTimeEndDate;
         private System.Windows.Forms.RadioButton radioEndDateTime;
         private System.Windows.Forms.RadioButton radioTimeSpan;
         private IpTviewr.UiServices.Common.Controls.TimeSpanUpDown timeSpanLength;
+        private System.Windows.Forms.Label labelEndMarginSufix;
+        private System.Windows.Forms.NumericUpDown numericEndMargin;
+        private System.Windows.Forms.CheckBox checkBoxEndMargin;
     }
 }

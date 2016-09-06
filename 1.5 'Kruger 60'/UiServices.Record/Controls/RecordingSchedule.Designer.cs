@@ -31,6 +31,7 @@ namespace IpTviewr.UiServices.Record.Controls
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RecordingSchedule));
             this.dateTimeStartTime = new System.Windows.Forms.DateTimePicker();
             this.dateTimeStartDate = new System.Windows.Forms.DateTimePicker();
@@ -45,6 +46,7 @@ namespace IpTviewr.UiServices.Record.Controls
             this.fragmentMonthly = new IpTviewr.UiServices.Record.Controls.RecordingMonthlyScheduleFragment();
             this.fragmentRightNow = new IpTviewr.UiServices.Record.Controls.RecordingRightNowScheduleFragment();
             this.fragmentWeekly = new IpTviewr.UiServices.Record.Controls.RecordingWeeklyScheduleFragment();
+            this.timerUpdateRightNow = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // dateTimeStartTime
@@ -60,6 +62,7 @@ namespace IpTviewr.UiServices.Record.Controls
             resources.ApplyResources(this.dateTimeStartDate, "dateTimeStartDate");
             this.dateTimeStartDate.Name = "dateTimeStartDate";
             this.dateTimeStartDate.ValueChanged += new System.EventHandler(this.dateTimeStart_ValueChanged);
+            this.dateTimeStartDate.Validating += new System.ComponentModel.CancelEventHandler(this.dateTimeStartDate_Validating);
             // 
             // radioMonthly
             // 
@@ -132,6 +135,11 @@ namespace IpTviewr.UiServices.Record.Controls
             resources.ApplyResources(this.fragmentWeekly, "fragmentWeekly");
             this.fragmentWeekly.Name = "fragmentWeekly";
             // 
+            // timerUpdateRightNow
+            // 
+            this.timerUpdateRightNow.Interval = 5000;
+            this.timerUpdateRightNow.Tick += new System.EventHandler(this.timerUpdateRightNow_Tick);
+            // 
             // RecordingSchedule
             // 
             resources.ApplyResources(this, "$this");
@@ -171,5 +179,6 @@ namespace IpTviewr.UiServices.Record.Controls
         private RecordingDailyScheduleFragment fragmentDaily;
         private RecordingWeeklyScheduleFragment fragmentWeekly;
         private RecordingMonthlyScheduleFragment fragmentMonthly;
+        private System.Windows.Forms.Timer timerUpdateRightNow;
     }
 }
