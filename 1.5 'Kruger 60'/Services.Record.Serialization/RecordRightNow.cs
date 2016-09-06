@@ -1,6 +1,7 @@
 ﻿// Copyright (C) 2014-2016, Codeplex/GitHub user AlphaCentaury
 // All rights reserved, except those granted by the governing license of this software. See 'license.txt' file in the project root for complete license information.
 
+using IpTviewr.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,7 +31,7 @@ namespace IpTviewr.Services.Record.Serialization
 
         public override DateTime GetStartDateTime()
         {
-            return DateTime.Now;
+            return DateTime.Now.TruncateToSeconds(1);
         } // GetStartDateTime
     } // class RecordRightNow
 } // namespace
