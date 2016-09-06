@@ -23,7 +23,7 @@ All rights reserved, except those granted by the governing license of this softw
       <FeatureRef Id="Feature.Tools" />
       <Feature Id="Features" Display="expand" Title="Aditional features">
         <FeatureRef Id="Feature.Record" />
-        <!-- <FeatureRef Id="Feature.EPG" /> -->
+        <FeatureRef Id="Feature.EPG" />
       </Feature>
       <Feature Id="Base" Title="Common files" Absent="disallow">
         <ComponentGroupRef Id="RegistryConfiguration" />

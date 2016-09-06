@@ -22,9 +22,7 @@ All rights reserved, except those granted by the governing license of this softw
   <?define Guid.Component.Record.Assemblies.PDB = "{E42ECDFF-ED55-49C5-B359-F83EBE295BFD}" ?>
   <?define Guid.Component.Record.Assemblies.Localization.es = "{BC4CE92C-AE48-4F59-8FDA-850C400B3E09}" ?>
 
-  <!--
-    <?define Guid.Component.EPG.Assemblies = "{6E7AED45-3CF7-407A-A409-36B56B4DD566}" ?>
-    <?define Guid.Component.EPG.PDB = "{66E87B10-9474-4C5D-850A-FE5CFCCE563E}" ?>
-    <?define Guid.Component.EPG.Assemblies.Localization.es = "{B717DBB8-2473-47FC-B0E7-80C470F3072A}" ?>
-  -->
+  <?define Guid.Component.EPG.Assemblies = "{6E7AED45-3CF7-407A-A409-36B56B4DD566}" ?>
+  <?define Guid.Component.EPG.PDB = "{66E87B10-9474-4C5D-850A-FE5CFCCE563E}" ?>
+  <?define Guid.Component.EPG.Assemblies.Localization.es = "{B717DBB8-2473-47FC-B0E7-80C470F3072A}" ?>
 </Include>
