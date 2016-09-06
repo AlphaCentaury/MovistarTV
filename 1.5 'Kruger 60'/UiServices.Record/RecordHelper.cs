@@ -207,11 +207,12 @@ namespace IpTviewr.UiServices.Record
             action.FileExtension = RecordChannelDialog.GetFilenameExtensions()[0];
             action.SaveLocationName = defaultLocation.Name;
             action.SaveLocationPath = defaultLocation.Path;
+            action.Recorder = GetDefaultRecorder();
 
             return action;
         } // GetRecordAction
 
-        private static RecordAdvancedSettings GetRecordAdvancedSettings()
+        public static RecordAdvancedSettings GetRecordAdvancedSettings()
         {
             var advanced = RecordAdvancedSettings.CreateWithDefaultValues();
 
@@ -238,6 +239,19 @@ namespace IpTviewr.UiServices.Record
 
             return false;
         } // ScheduleTask
+
+        public static RecordRecorder GetDefaultRecorder()
+        {
+            // TODO: Should be user selectable
+            var recorder = new RecordRecorder()
+            {
+                Name = AppUiConfiguration.Current.User.Record.Recorders[0].Name,
+                Path = AppUiConfiguration.Current.User.Record.Recorders[0].Path,
+                Arguments = AppUiConfiguration.Current.User.Record.Recorders[0].Arguments
+            };
+
+            return recorder;
+        } // GetDefaultRecorder
 
         private static bool VerifyIsInactive(CommonBaseForm ownerForm, UiBroadcastService service)
         {
