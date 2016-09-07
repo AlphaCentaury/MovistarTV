@@ -44,7 +44,9 @@ namespace IpTviewr.UiServices.Record
             this.labelStartMarginSufix = new System.Windows.Forms.Label();
             this.numericStartMargin = new System.Windows.Forms.NumericUpDown();
             this.checkBoxStartMargin = new System.Windows.Forms.CheckBox();
+            this.recordingSchedule = new IpTviewr.UiServices.Record.Controls.RecordingSchedule();
             this.tabPageLength = new System.Windows.Forms.TabPage();
+            this.recordingTime = new IpTviewr.UiServices.Record.Controls.RecordingDuration();
             this.tabPageSave = new System.Windows.Forms.TabPage();
             this.listViewLocations = new IpTviewr.UiServices.Common.Controls.ListViewSortable();
             this.imageListLocations = new System.Windows.Forms.ImageList(this.components);
@@ -77,8 +79,6 @@ namespace IpTviewr.UiServices.Record
             this.labelProgramDescription = new System.Windows.Forms.Label();
             this.labelChannelName = new System.Windows.Forms.Label();
             this.pictureChannelLogo = new IpTviewr.UiServices.Common.Controls.PictureBoxEx();
-            this.recordingSchedule = new IpTviewr.UiServices.Record.Controls.RecordingSchedule();
-            this.recordingTime = new IpTviewr.UiServices.Record.Controls.RecordingDuration();
             ColumnName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             ColumnLocation = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabProperties.SuspendLayout();
@@ -175,12 +175,26 @@ namespace IpTviewr.UiServices.Record
             this.checkBoxStartMargin.UseVisualStyleBackColor = true;
             this.checkBoxStartMargin.CheckedChanged += new System.EventHandler(this.checkBoxStartMargin_CheckedChanged);
             // 
+            // recordingSchedule
+            // 
+            resources.ApplyResources(this.recordingSchedule, "recordingSchedule");
+            this.recordingSchedule.Name = "recordingSchedule";
+            this.recordingSchedule.ScheduleKindChanged += new System.EventHandler<IpTviewr.UiServices.Record.Controls.RecordingSchedule.KindChangedEventArgs>(this.recordingSchedule_ScheduleKindChanged);
+            this.recordingSchedule.DateTimeChanged += new System.EventHandler<IpTviewr.UiServices.Record.Controls.RecordingSchedule.DateTimeChangedEventArgs>(this.recordingSchedule_DateTimeChanged);
+            // 
             // tabPageLength
             // 
             this.tabPageLength.Controls.Add(this.recordingTime);
             resources.ApplyResources(this.tabPageLength, "tabPageLength");
             this.tabPageLength.Name = "tabPageLength";
             this.tabPageLength.UseVisualStyleBackColor = true;
+            // 
+            // recordingTime
+            // 
+            this.recordingTime.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
+            this.recordingTime.CausesValidation = false;
+            resources.ApplyResources(this.recordingTime, "recordingTime");
+            this.recordingTime.Name = "recordingTime";
             // 
             // tabPageSave
             // 
@@ -434,20 +448,6 @@ namespace IpTviewr.UiServices.Record
             resources.ApplyResources(this.pictureChannelLogo, "pictureChannelLogo");
             this.pictureChannelLogo.Name = "pictureChannelLogo";
             this.pictureChannelLogo.TabStop = false;
-            // 
-            // recordingSchedule
-            // 
-            resources.ApplyResources(this.recordingSchedule, "recordingSchedule");
-            this.recordingSchedule.Name = "recordingSchedule";
-            this.recordingSchedule.ScheduleKindChanged += new System.EventHandler<IpTviewr.UiServices.Record.Controls.RecordingSchedule.KindChangedEventArgs>(this.recordingSchedule_ScheduleKindChanged);
-            this.recordingSchedule.DateTimeChanged += new System.EventHandler<IpTviewr.UiServices.Record.Controls.RecordingSchedule.DateTimeChangedEventArgs>(this.recordingSchedule_DateTimeChanged);
-            // 
-            // recordingTime
-            // 
-            this.recordingTime.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
-            this.recordingTime.CausesValidation = false;
-            resources.ApplyResources(this.recordingTime, "recordingTime");
-            this.recordingTime.Name = "recordingTime";
             // 
             // RecordChannelDialog
             // 

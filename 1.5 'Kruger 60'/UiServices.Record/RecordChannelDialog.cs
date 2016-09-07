@@ -208,7 +208,6 @@ namespace IpTviewr.UiServices.Record
             // Safety margin
             checkBoxStartMargin.Checked = schedule.SafetyMargin.HasValue;
             numericStartMargin.Value = schedule.SafetyMargin ?? RecordSchedule.DefaultSafetyMargin;
-            UpdateStartMarginStatus(true);
         } // InitScheduleData
 
         private void GetScheduleData()
@@ -292,7 +291,7 @@ namespace IpTviewr.UiServices.Record
         private void ChangeOkButtonText(bool schedule)
         {
             buttonOk.ChangeImage(schedule ? Properties.Resources.Action_Ok_16x16 : Properties.Resources.Action_RecordButton_16x16);
-            buttonOk.Text = schedule ? Properties.RecordChannel.RecordButtonWithSettings : Properties.RecordChannel.RecordButtonRecord;
+            buttonOk.Text = schedule ? Properties.RecordChannel.RecordButtonSchedule : Properties.RecordChannel.RecordButtonRecord;
         } // ChangeOkButtonText
 
         #endregion
@@ -339,13 +338,7 @@ namespace IpTviewr.UiServices.Record
             Task.Action.FileExtension = comboFileExtension.Text.Trim();
             Task.Action.SaveLocationName = locationName;
             Task.Action.SaveLocationPath = locationPath;
-            // TODO: Should be user selectable
-            Task.Action.Recorder = new RecordRecorder()
-            {
-                Name = AppUiConfiguration.Current.User.Record.Recorders[0].Name,
-                Path = AppUiConfiguration.Current.User.Record.Recorders[0].Path,
-                Arguments = AppUiConfiguration.Current.User.Record.Recorders[0].Arguments
-            }; // Task.Action.Recorder
+            Task.Action.Recorder = RecordHelper.GetDefaultRecorder();
         } // GetSaveData
 
         private void textFilename_Validating(object sender, CancelEventArgs e)
@@ -640,9 +633,10 @@ namespace IpTviewr.UiServices.Record
 
             // Max execution time
             // TODO: no UI yet!
+            // Remember: 
             //Task.AdvancedSettings.ExecutionTimeLimit.Enabled = checkSchedulerExecutionLimit.Checked;
             //Task.AdvancedSettings.ExecutionTimeLimit.Time = timeSpanSchedulerExecutionLimit.Value;
-            Task.AdvancedSettings.ExecutionTimeLimit.Enabled = true; // use default time limit
+            Task.AdvancedSettings.ExecutionTimeLimit.Enabled = true; // (Task.Schedule.Kind != RecordScheduleKind.RightNow); // use default time limit
 
             // Wake up computer
             // TODO: no UI yet!
