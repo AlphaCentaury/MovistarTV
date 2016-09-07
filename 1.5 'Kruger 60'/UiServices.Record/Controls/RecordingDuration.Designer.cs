@@ -60,8 +60,8 @@ namespace IpTviewr.UiServices.Record.Controls
             resources.ApplyResources(this.dateTimeEndTime, "dateTimeEndTime");
             this.dateTimeEndTime.Name = "dateTimeEndTime";
             this.dateTimeEndTime.ShowUpDown = true;
-            this.dateTimeEndTime.ValueChanged += new System.EventHandler(this.dateTimeEndTime_ValueChanged);
-            this.dateTimeEndTime.Validating += new System.ComponentModel.CancelEventHandler(this.dateTimeEndTime_Validating);
+            this.dateTimeEndTime.ValueChanged += new System.EventHandler(this.dateTimeEndDate_ValueChanged);
+            this.dateTimeEndTime.Validating += new System.ComponentModel.CancelEventHandler(this.dateTimeEndDate_Validating);
             // 
             // dateTimeEndDate
             // 

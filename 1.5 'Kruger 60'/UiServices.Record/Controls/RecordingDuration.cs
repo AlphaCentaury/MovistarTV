@@ -11,6 +11,7 @@ using System.Text;
 using System.Windows.Forms;
 using IpTviewr.Services.Record.Serialization;
 using IpTviewr.UiServices.Record.Properties;
+using IpTviewr.Common;
 
 namespace IpTviewr.UiServices.Record.Controls
 {
@@ -59,7 +60,7 @@ namespace IpTviewr.UiServices.Record.Controls
 
             set
             {
-                fieldEndDateTime = value;
+                fieldEndDateTime = value.TruncateToSeconds(1);
                 if (AvoidRecursion) return;
 
                 AvoidRecursion = true;
@@ -176,25 +177,13 @@ namespace IpTviewr.UiServices.Record.Controls
         {
             if (ManualUpdate > 0) return;
 
-            RecordTimeSpan = (GetEndDateTime() - StartDateTime);
+            EndDateTime = GetEndDateTime();
         } // dateTimeEndDate_ValueChanged
 
         private void dateTimeEndDate_Validating(object sender, CancelEventArgs e)
         {
             ValidateEndDateTime(sender as DateTimePicker, e);
         } // dateTimeEndDate_Validating
-
-        private void dateTimeEndTime_ValueChanged(object sender, EventArgs e)
-        {
-            if (ManualUpdate > 0) return;
-
-            RecordTimeSpan = (GetEndDateTime() - StartDateTime);
-        } // dateTimeEndTime_ValueChanged
-
-        private void dateTimeEndTime_Validating(object sender, CancelEventArgs e)
-        {
-            ValidateEndDateTime(sender as DateTimePicker, e);
-        } // dateTimeEndTime_Validating
 
         private void checkBoxEndMargin_CheckedChanged(object sender, EventArgs e)
         {
