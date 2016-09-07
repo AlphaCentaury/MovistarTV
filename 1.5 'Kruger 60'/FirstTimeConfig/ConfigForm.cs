@@ -522,7 +522,7 @@ namespace IpTviewr.Tools.FirstTimeConfig
             var success = Configuration.Create(textBoxVlc.Text,
                 rootFolder,
                 new TelemetryConfiguration(checkEnableAnalytics.Checked, checkAnalyticsUsage.Checked, checkAnalyticsExceptions.Checked),
-                new EpgConfig(checkEpg.Checked, checkEpgAutoUpdate.Checked ? 24 : -1, 7),
+                new EpgConfig(checkEpg.Checked, -1, 7),
                 radioChannelSDPriority.Checked,
                 xmlConfigPath, out message);
             if (success)

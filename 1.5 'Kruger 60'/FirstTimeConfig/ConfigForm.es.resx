@@ -112,10 +112,10 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="buttonPreviousPage.Text" xml:space="preserve">
     <value>&amp;Atrás</value>
@@ -126,7 +126,7 @@
   <data name="buttonCancel.Text" xml:space="preserve">
     <value>&amp;Cancelar</value>
   </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="checkReadmeAck.Size" type="System.Drawing.Size, System.Drawing">
     <value>318, 17</value>
   </data>
@@ -196,7 +196,7 @@
   <data name="linkLabelPrerequisiteSqlCe.Text" xml:space="preserve">
     <value>Descargar de microsoft.com</value>
   </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="buttonVerifyEmb.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
@@ -311,7 +311,7 @@
     <value>445, 13</value>
   </data>
   <data name="labelEpgWarning.Text" xml:space="preserve">
-    <value>¡Aviso! Sólo disponible funcionalidad básica de EPG y puede causar fallos de vez en cuando</value>
+    <value>¡AVISO! La funcionalidad EPG está todavía en desarrollo y no ha sido probada a fondo. Algunas funciones pueden fallar o no funcionar como se espera.</value>
   </data>
   <data name="checkEpg.Size" type="System.Drawing.Size, System.Drawing">
     <value>153, 17</value>
@@ -361,7 +361,7 @@
   <data name="wizardPageRecordings.ToolTipText" xml:space="preserve">
     <value>Paso 4: Configuración de la funcionalidad de grabación</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>Inherit</value>
   </data>

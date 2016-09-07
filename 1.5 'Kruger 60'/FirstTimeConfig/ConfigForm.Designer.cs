@@ -32,13 +32,13 @@ namespace IpTviewr.Tools.FirstTimeConfig
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ConfigForm));
-            this.selectFolder = new IpTviewr.UiServices.Common.Controls.SelectFolderDialog();
             this.openFile = new System.Windows.Forms.OpenFileDialog();
             this.labelStepTitle = new System.Windows.Forms.Label();
             this.panelButtons = new System.Windows.Forms.Panel();
             this.buttonPreviousPage = new System.Windows.Forms.Button();
             this.buttonNextPage = new System.Windows.Forms.Button();
             this.buttonCancel = new System.Windows.Forms.Button();
+            this.selectFolder = new IpTviewr.UiServices.Common.Controls.SelectFolderDialog();
             this.wizardControl = new IpTviewr.Tools.FirstTimeConfig.WizardTabControl();
             this.wizardPageReadme = new System.Windows.Forms.TabPage();
             this.checkReadmeAck = new System.Windows.Forms.CheckBox();
@@ -85,7 +85,7 @@ namespace IpTviewr.Tools.FirstTimeConfig
             this.radioChannelHDPriority = new System.Windows.Forms.RadioButton();
             this.labelChannelAssignmentExplanation = new System.Windows.Forms.Label();
             this.groupEPG = new System.Windows.Forms.GroupBox();
-            this.checkEpgAutoUpdate = new System.Windows.Forms.CheckBox();
+            this.pictureBoxEpgWarning = new System.Windows.Forms.PictureBox();
             this.labelEpgWarning = new System.Windows.Forms.Label();
             this.checkEpg = new System.Windows.Forms.CheckBox();
             this.wizardPageRecordings = new System.Windows.Forms.TabPage();
@@ -114,21 +114,10 @@ namespace IpTviewr.Tools.FirstTimeConfig
             this.wizardPageBasic.SuspendLayout();
             this.groupBoxChannelNumbers.SuspendLayout();
             this.groupEPG.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxEpgWarning)).BeginInit();
             this.wizardPageRecordings.SuspendLayout();
             this.groupRecordConfig.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // selectFolder
-            // 
-            this.selectFolder.Description = "";
-            this.selectFolder.DontIncludeNetworkFoldersBelowDomainLevel = false;
-            this.selectFolder.NewStyle = true;
-            this.selectFolder.RootFolder = System.Environment.SpecialFolder.MyComputer;
-            this.selectFolder.SelectedPath = "";
-            this.selectFolder.ShowBothFilesAndFolders = false;
-            this.selectFolder.ShowEditBox = true;
-            this.selectFolder.ShowFullPathInEditBox = true;
-            this.selectFolder.ShowNewFolderButton = true;
             // 
             // openFile
             // 
@@ -176,6 +165,18 @@ namespace IpTviewr.Tools.FirstTimeConfig
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.UseVisualStyleBackColor = true;
             this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
+            // 
+            // selectFolder
+            // 
+            this.selectFolder.Description = "";
+            this.selectFolder.DontIncludeNetworkFoldersBelowDomainLevel = false;
+            this.selectFolder.NewStyle = true;
+            this.selectFolder.RootFolder = System.Environment.SpecialFolder.MyComputer;
+            this.selectFolder.SelectedPath = "";
+            this.selectFolder.ShowBothFilesAndFolders = false;
+            this.selectFolder.ShowEditBox = true;
+            this.selectFolder.ShowFullPathInEditBox = true;
+            this.selectFolder.ShowNewFolderButton = true;
             // 
             // wizardControl
             // 
@@ -530,18 +531,19 @@ namespace IpTviewr.Tools.FirstTimeConfig
             // 
             // groupEPG
             // 
-            this.groupEPG.Controls.Add(this.checkEpgAutoUpdate);
+            this.groupEPG.Controls.Add(this.pictureBoxEpgWarning);
             this.groupEPG.Controls.Add(this.labelEpgWarning);
             this.groupEPG.Controls.Add(this.checkEpg);
             resources.ApplyResources(this.groupEPG, "groupEPG");
             this.groupEPG.Name = "groupEPG";
             this.groupEPG.TabStop = false;
             // 
-            // checkEpgAutoUpdate
+            // pictureBoxEpgWarning
             // 
-            resources.ApplyResources(this.checkEpgAutoUpdate, "checkEpgAutoUpdate");
-            this.checkEpgAutoUpdate.Name = "checkEpgAutoUpdate";
-            this.checkEpgAutoUpdate.UseVisualStyleBackColor = true;
+            this.pictureBoxEpgWarning.Image = global::IpTviewr.Tools.FirstTimeConfig.Properties.Resources.Warning_48x48;
+            resources.ApplyResources(this.pictureBoxEpgWarning, "pictureBoxEpgWarning");
+            this.pictureBoxEpgWarning.Name = "pictureBoxEpgWarning";
+            this.pictureBoxEpgWarning.TabStop = false;
             // 
             // labelEpgWarning
             // 
@@ -665,6 +667,7 @@ namespace IpTviewr.Tools.FirstTimeConfig
             this.groupBoxChannelNumbers.PerformLayout();
             this.groupEPG.ResumeLayout(false);
             this.groupEPG.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxEpgWarning)).EndInit();
             this.wizardPageRecordings.ResumeLayout(false);
             this.groupRecordConfig.ResumeLayout(false);
             this.groupRecordConfig.PerformLayout();
@@ -715,7 +718,6 @@ namespace IpTviewr.Tools.FirstTimeConfig
         private System.Windows.Forms.CheckBox checkAnalyticsUsage;
         private System.Windows.Forms.CheckBox checkEnableAnalytics;
         private System.Windows.Forms.GroupBox groupEPG;
-        private System.Windows.Forms.CheckBox checkEpgAutoUpdate;
         private System.Windows.Forms.Label labelEpgWarning;
         private System.Windows.Forms.CheckBox checkEpg;
         private System.Windows.Forms.TabPage wizardPageReadme;
@@ -740,5 +742,6 @@ namespace IpTviewr.Tools.FirstTimeConfig
         private System.Windows.Forms.Label labelReadmeWarning;
         private System.Windows.Forms.PictureBox pictureIconReadme;
         private System.Windows.Forms.CheckBox checkReadmeAck;
+        private System.Windows.Forms.PictureBox pictureBoxEpgWarning;
     }
 }

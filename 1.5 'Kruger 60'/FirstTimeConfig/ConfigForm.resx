@@ -117,9 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="selectFolder.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
   <metadata name="openFile.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>134, 17</value>
   </metadata>
@@ -285,6 +282,9 @@
   <data name="&gt;&gt;panelButtons.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <metadata name="selectFolder.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
   <data name="wizardControl.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
   </data>
@@ -1571,56 +1571,47 @@ Which channels should appear first?</value>
   <data name="&gt;&gt;groupBoxChannelNumbers.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="checkEpgAutoUpdate.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="checkEpgAutoUpdate.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+  <data name="pictureBoxEpgWarning.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="checkEpgAutoUpdate.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 65</value>
+  <data name="pictureBoxEpgWarning.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 39</value>
   </data>
-  <data name="checkEpgAutoUpdate.Size" type="System.Drawing.Size, System.Drawing">
-    <value>364, 17</value>
+  <data name="pictureBoxEpgWarning.Size" type="System.Drawing.Size, System.Drawing">
+    <value>16, 16</value>
   </data>
-  <data name="checkEpgAutoUpdate.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
+  <data name="pictureBoxEpgWarning.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms">
+    <value>Zoom</value>
   </data>
-  <data name="checkEpgAutoUpdate.Text" xml:space="preserve">
-    <value>Auto-update EPG data if older than 24 hours (at the next app execution)</value>
+  <data name="pictureBoxEpgWarning.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
   </data>
-  <data name="checkEpgAutoUpdate.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
+  <data name="&gt;&gt;pictureBoxEpgWarning.Name" xml:space="preserve">
+    <value>pictureBoxEpgWarning</value>
   </data>
-  <data name="&gt;&gt;checkEpgAutoUpdate.Name" xml:space="preserve">
-    <value>checkEpgAutoUpdate</value>
+  <data name="&gt;&gt;pictureBoxEpgWarning.Type" xml:space="preserve">
+    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;checkEpgAutoUpdate.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;checkEpgAutoUpdate.Parent" xml:space="preserve">
+  <data name="&gt;&gt;pictureBoxEpgWarning.Parent" xml:space="preserve">
     <value>groupEPG</value>
   </data>
-  <data name="&gt;&gt;checkEpgAutoUpdate.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;pictureBoxEpgWarning.ZOrder" xml:space="preserve">
     <value>0</value>
-  </data>
-  <data name="labelEpgWarning.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
   </data>
   <data name="labelEpgWarning.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="labelEpgWarning.Location" type="System.Drawing.Point, System.Drawing">
-    <value>24, 39</value>
+    <value>25, 39</value>
   </data>
   <data name="labelEpgWarning.Size" type="System.Drawing.Size, System.Drawing">
-    <value>404, 13</value>
+    <value>443, 43</value>
   </data>
   <data name="labelEpgWarning.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
   <data name="labelEpgWarning.Text" xml:space="preserve">
-    <value>Warning! Ony bare EPG functions are implemented and might crash from time to time</value>
+    <value>WARNING: The EPG functionality is still under development and has not been thoroughly tested. Some functions may fail or not work as expected.</value>
   </data>
   <data name="&gt;&gt;labelEpgWarning.Name" xml:space="preserve">
     <value>labelEpgWarning</value>
@@ -2030,23 +2021,26 @@ Which channels should appear first?</value>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
     <value>493, 359</value>
   </data>
+  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
     <value>CenterScreen</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>First-time configuration assistant</value>
   </data>
-  <data name="&gt;&gt;selectFolder.Name" xml:space="preserve">
-    <value>selectFolder</value>
-  </data>
-  <data name="&gt;&gt;selectFolder.Type" xml:space="preserve">
-    <value>IpTviewr.UiServices.Common.Controls.SelectFolderDialog, UiServices.Common, Version=1.5.1010.0, Culture=neutral, PublicKeyToken=null</value>
-  </data>
   <data name="&gt;&gt;openFile.Name" xml:space="preserve">
     <value>openFile</value>
   </data>
   <data name="&gt;&gt;openFile.Type" xml:space="preserve">
     <value>System.Windows.Forms.OpenFileDialog, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;selectFolder.Name" xml:space="preserve">
+    <value>selectFolder</value>
+  </data>
+  <data name="&gt;&gt;selectFolder.Type" xml:space="preserve">
+    <value>IpTviewr.UiServices.Common.Controls.SelectFolderDialog, UiServices.Common, Version=1.5.1010.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>ConfigForm</value>
