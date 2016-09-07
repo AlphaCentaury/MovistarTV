@@ -1,7 +1,7 @@
 ﻿// Copyright (C) 2014-2016, Codeplex/GitHub user AlphaCentaury
 // All rights reserved, except those granted by the governing license of this software. See 'license.txt' file in the project root for complete license information.
 
-namespace Project.IpTv.UiServices.Configuration.Settings.Network.Editors
+namespace IpTviewr.UiServices.Configuration.Settings.Network.Editors
 {
     partial class NetworkSettingsEditor
     {
@@ -35,7 +35,7 @@ namespace Project.IpTv.UiServices.Configuration.Settings.Network.Editors
             this.groupBoxMulticastProxy = new System.Windows.Forms.GroupBox();
             this.labelWarning = new System.Windows.Forms.Label();
             this.checkBoxEnableMulticastProxy = new System.Windows.Forms.CheckBox();
-            this.parametersEditorMulticastProxy = new Project.IpTv.UiServices.Configuration.Editors.ArgumentEditor();
+            this.parametersEditorMulticastProxy = new IpTviewr.UiServices.Configuration.Editors.ArgumentEditor();
             this.pictureIconWarning = new System.Windows.Forms.PictureBox();
             this.groupBoxMulticastProxy.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureIconWarning)).BeginInit();
@@ -76,7 +76,7 @@ namespace Project.IpTv.UiServices.Configuration.Settings.Network.Editors
             // pictureIconWarning
             // 
             resources.ApplyResources(this.pictureIconWarning, "pictureIconWarning");
-            this.pictureIconWarning.Image = global::Project.IpTv.UiServices.Configuration.CommonUiResources.Status_Warning_16x16;
+            this.pictureIconWarning.Image = global::IpTviewr.UiServices.Configuration.CommonUiResources.Status_Warning_16x16;
             this.pictureIconWarning.Name = "pictureIconWarning";
             this.pictureIconWarning.TabStop = false;
             // 

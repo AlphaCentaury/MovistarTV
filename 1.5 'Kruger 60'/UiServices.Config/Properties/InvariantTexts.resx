@@ -112,10 +112,10 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="DefaultDomainNameProviderLogo" xml:space="preserve">
     <value>DBV-IPTV</value>
@@ -150,8 +150,11 @@
   <data name="FormatServiceLogoKey" xml:space="preserve">
     <value>{0}::{1}</value>
   </data>
+  <data name="RecorderLauncher" xml:space="preserve">
+    <value>IpTvRecorderLauncher.exe</value>
+  </data>
   <data name="RegistryKey_Root" xml:space="preserve">
-    <value>Software\movistartv.codeplex.com\IPTViewr\movistar+\v1.5.40.0</value>
+    <value>Software\movistartv.codeplex.com\IPTViewr\movistar+\v1.5.1010.0</value>
   </data>
   <data name="RegistryValue_Analytics_ClientId" xml:space="preserve">
     <value>Analytics.ClientId</value>

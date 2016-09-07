@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Project.IpTv.Internal.Tools.ChannelLogos.Properties {
+namespace IpTviewr.Internal.Tools.ChannelLogos.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]

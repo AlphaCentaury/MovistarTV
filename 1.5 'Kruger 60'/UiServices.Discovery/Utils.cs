@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using Property = System.Collections.Generic.KeyValuePair<string, string>;
 
-namespace Project.IpTv.UiServices.Discovery
+namespace IpTviewr.UiServices.Discovery
 {
     internal class Utils
     {

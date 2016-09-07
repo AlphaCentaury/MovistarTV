@@ -1,11 +1,11 @@
 ﻿using Etsi.Ts102034.v010501.XmlSerialization;
 using Etsi.Ts102034.v010501.XmlSerialization.BroadcastDiscovery;
 using Etsi.Ts102034.v010501.XmlSerialization.PackageDiscovery;
-using Project.IpTv.UiServices.Configuration;
-using Project.IpTv.UiServices.Configuration.Logos;
-using Project.IpTv.UiServices.Discovery;
-using Project.IpTv.UiServices.DvbStpClient;
-using Project.IpTv.UiServices.Forms;
+using IpTviewr.UiServices.Configuration;
+using IpTviewr.UiServices.Configuration.Logos;
+using IpTviewr.UiServices.Discovery;
+using IpTviewr.UiServices.DvbStpClient;
+using IpTviewr.UiServices.Forms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,7 +17,7 @@ using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 
-namespace Project.IpTv.Internal.Tools.ChannelLogos
+namespace IpTviewr.Internal.Tools.ChannelLogos
 {
     public partial class FormLogos : Form
     {

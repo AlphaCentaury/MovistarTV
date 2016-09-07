@@ -1,7 +1,7 @@
 ﻿// Copyright (C) 2014-2016, Codeplex/GitHub user AlphaCentaury
 // All rights reserved, except those granted by the governing license of this software. See 'license.txt' file in the project root for complete license information.
 
-namespace Project.IpTv.UiServices.Common.Forms
+namespace IpTviewr.UiServices.Common.Forms
 {
     partial class NotImplementedBox
     {
@@ -53,7 +53,7 @@ namespace Project.IpTv.UiServices.Common.Forms
             // 
             this.buttonOk.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonOk.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.buttonOk.Image = global::Project.IpTv.UiServices.Common.Properties.Resources.Action_Ok_16x16;
+            this.buttonOk.Image = global::IpTviewr.UiServices.Common.Properties.Resources.Action_Ok_16x16;
             this.buttonOk.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.buttonOk.Location = new System.Drawing.Point(372, 187);
             this.buttonOk.Name = "buttonOk";
@@ -65,7 +65,7 @@ namespace Project.IpTv.UiServices.Common.Forms
             // 
             // pictureIconNotImplemented
             // 
-            this.pictureIconNotImplemented.Image = global::Project.IpTv.UiServices.Common.Properties.Resources.NotImplemented_200x200;
+            this.pictureIconNotImplemented.Image = global::IpTviewr.UiServices.Common.Properties.Resources.NotImplemented_200x200;
             this.pictureIconNotImplemented.Location = new System.Drawing.Point(12, 12);
             this.pictureIconNotImplemented.Name = "pictureIconNotImplemented";
             this.pictureIconNotImplemented.Size = new System.Drawing.Size(200, 200);

@@ -3,11 +3,12 @@
 
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Xml.Serialization;
 
-namespace Project.IpTv.UiServices.Configuration.Schema2014.Config
+namespace IpTviewr.UiServices.Configuration.Schema2014.Config
 {
     [Serializable]
     [XmlType(TypeName="RecordConfig", Namespace=ConfigCommon.ConfigXmlNamespace)]
@@ -36,6 +37,12 @@ namespace Project.IpTv.UiServices.Configuration.Schema2014.Config
             get;
             set;
         } // Recorders
+
+        [XmlIgnore]
+        public string RecorderLauncherPath
+        {
+            get { return Path.Combine(AppUiConfiguration.Current.Folders.Install, Properties.InvariantTexts.RecorderLauncher); }
+        } // RecorderLauncherPath
 
         public string Validate(string ownerTag)
         {

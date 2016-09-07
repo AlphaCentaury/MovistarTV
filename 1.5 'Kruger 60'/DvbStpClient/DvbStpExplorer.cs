@@ -7,17 +7,18 @@ using System.Linq;
 using System.Net;
 using System.Text;
 
-namespace Project.IpTv.DvbStp.Client
+namespace IpTviewr.DvbStp.Client
 {
     public partial class DvbStpExplorer : DvbStpBaseClient
     {
-        public event EventHandler<DvbStpExplorerSectionReceivedEventArgs> SectionReceived;
-        public event EventHandler<DvbStpExplorerUnexpectedHeaderVersionReceivedEventArgs> UnexpectedHeaderVersionReceived;
-        public event EventHandler<DvbStpExplorerRunEndedEventArgs> RunEnded;
+        public event EventHandler<SectionReceivedEventArgs> SectionReceived;
+        public event EventHandler<UnexpectedHeaderVersionReceivedEventArgs> UnexpectedHeaderVersionReceived;
+        public event EventHandler<RunEndedEventArgs> RunEnded;
 
         private short StartSectionNumber;
         private int ReceivedPayloadBytes;
         private DvbStpHeader LastHeader;
+        private IList<DvbStpHeader> ReceivedHeaders;
 
         protected bool EndLoop
         {
@@ -42,7 +43,6 @@ namespace Project.IpTv.DvbStp.Client
                 StartSectionNumber = -1;
                 while (!(CancelRequested || EndLoop))
                 {
-                    if (Header != null) LastHeader = Header.Clone();
                     Receive(true);
 
                     if (StartSectionNumber == -1)
@@ -61,8 +61,6 @@ namespace Project.IpTv.DvbStp.Client
                         OnSectionReceived();
                     } // if-else
 
-                    ReceivedPayloadBytes += Header.PayloadSize;
-
                     if ((Header.PayloadId != LastHeader.PayloadId) ||
                         (Header.SegmentId != LastHeader.SegmentId) ||
                         (Header.SegmentVersion != LastHeader.SegmentVersion) ||
@@ -71,6 +69,10 @@ namespace Project.IpTv.DvbStp.Client
                         OnRunEnded();
                         InitRun();
                     } // if
+
+                    ReceivedPayloadBytes += Header.PayloadSize;
+                    ReceivedHeaders.Add(Header.Clone());
+                    LastHeader = Header.Clone();
                 } // while
 
                 if (!CancelRequested)
@@ -93,14 +95,16 @@ namespace Project.IpTv.DvbStp.Client
         private void InitRun()
         {
             StartSectionNumber = Header.SectionNumber;
+            ReceivedHeaders = new List<DvbStpHeader>(Header.LastSectionNumber + 1);
             ReceivedPayloadBytes = 0;
         } // InitRun
 
         private void OnSectionReceived()
         {
-            if (SectionReceived == null) return;
+            var sectionReceived = SectionReceived;
+            if (sectionReceived == null) return;
 
-            var args = new DvbStpExplorerSectionReceivedEventArgs();
+            var args = new SectionReceivedEventArgs();
 
             args.Header = Header.Clone();
             args.BytesReceived = ReceivedBytes;
@@ -124,7 +128,7 @@ namespace Project.IpTv.DvbStp.Client
         {
             if (UnexpectedHeaderVersionReceived == null) return;
 
-            var args = new DvbStpExplorerUnexpectedHeaderVersionReceivedEventArgs();
+            var args = new UnexpectedHeaderVersionReceivedEventArgs();
 
             args.HeaderVersion = Header.Version;
             args.DatagramData = new byte[ReceivedBytes];
@@ -142,7 +146,7 @@ namespace Project.IpTv.DvbStp.Client
         {
             if (RunEnded == null) return;
 
-            var args = new DvbStpExplorerRunEndedEventArgs()
+            var args = new RunEndedEventArgs()
             {
                 PayloadId = LastHeader.PayloadId,
                 ReceivedPayloadBytes = ReceivedPayloadBytes,

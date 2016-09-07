@@ -1,7 +1,7 @@
 ﻿// Copyright (C) 2014-2016, Codeplex/GitHub user AlphaCentaury
 // All rights reserved, except those granted by the governing license of this software. See 'license.txt' file in the project root for complete license information.
 
-namespace Project.IpTv.UiServices.Discovery.BroadcastList.Editors
+namespace IpTviewr.UiServices.Discovery.BroadcastList.Editors
 {
     partial class SettingsEditorModeMultiColumn
     {
@@ -60,7 +60,7 @@ namespace Project.IpTv.UiServices.Discovery.BroadcastList.Editors
             // 
             this.buttonMoveDown.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlDark;
             resources.ApplyResources(this.buttonMoveDown, "buttonMoveDown");
-            this.buttonMoveDown.Image = global::Project.IpTv.UiServices.Discovery.Properties.Resources.Action_GoNextDown_16x16;
+            this.buttonMoveDown.Image = global::IpTviewr.UiServices.Discovery.Properties.Resources.Action_GoNextDown_16x16;
             this.buttonMoveDown.Name = "buttonMoveDown";
             this.toolTip.SetToolTip(this.buttonMoveDown, resources.GetString("buttonMoveDown.ToolTip"));
             this.buttonMoveDown.UseVisualStyleBackColor = true;
@@ -70,7 +70,7 @@ namespace Project.IpTv.UiServices.Discovery.BroadcastList.Editors
             // 
             this.buttonMoveUp.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlDark;
             resources.ApplyResources(this.buttonMoveUp, "buttonMoveUp");
-            this.buttonMoveUp.Image = global::Project.IpTv.UiServices.Discovery.Properties.Resources.Action_GoPreviousUp_16x16;
+            this.buttonMoveUp.Image = global::IpTviewr.UiServices.Discovery.Properties.Resources.Action_GoPreviousUp_16x16;
             this.buttonMoveUp.Name = "buttonMoveUp";
             this.toolTip.SetToolTip(this.buttonMoveUp, resources.GetString("buttonMoveUp.ToolTip"));
             this.buttonMoveUp.UseVisualStyleBackColor = true;
@@ -80,7 +80,7 @@ namespace Project.IpTv.UiServices.Discovery.BroadcastList.Editors
             // 
             this.buttonRemove.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlDark;
             resources.ApplyResources(this.buttonRemove, "buttonRemove");
-            this.buttonRemove.Image = global::Project.IpTv.UiServices.Discovery.Properties.Resources.Action_Delete_16x16;
+            this.buttonRemove.Image = global::IpTviewr.UiServices.Discovery.Properties.Resources.Action_Delete_16x16;
             this.buttonRemove.Name = "buttonRemove";
             this.toolTip.SetToolTip(this.buttonRemove, resources.GetString("buttonRemove.ToolTip"));
             this.buttonRemove.UseVisualStyleBackColor = true;
@@ -96,7 +96,7 @@ namespace Project.IpTv.UiServices.Discovery.BroadcastList.Editors
             // 
             this.buttonAddColumn.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlDark;
             resources.ApplyResources(this.buttonAddColumn, "buttonAddColumn");
-            this.buttonAddColumn.Image = global::Project.IpTv.UiServices.Discovery.Properties.Resources.Action_Add_16xM;
+            this.buttonAddColumn.Image = global::IpTviewr.UiServices.Discovery.Properties.Resources.Action_Add_16xM;
             this.buttonAddColumn.Name = "buttonAddColumn";
             this.toolTip.SetToolTip(this.buttonAddColumn, resources.GetString("buttonAddColumn.ToolTip"));
             this.buttonAddColumn.UseVisualStyleBackColor = true;

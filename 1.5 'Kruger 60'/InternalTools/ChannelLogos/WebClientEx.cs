@@ -4,7 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 
-namespace Project.IpTv.Internal.Tools.ChannelLogos
+namespace IpTviewr.Internal.Tools.ChannelLogos
 {
     public class WebClientEx : WebClient
     {

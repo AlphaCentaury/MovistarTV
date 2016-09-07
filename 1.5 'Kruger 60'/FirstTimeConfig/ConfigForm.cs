@@ -1,11 +1,11 @@
 ﻿// Copyright (C) 2014-2016, Codeplex/GitHub user AlphaCentaury
 // All rights reserved, except those granted by the governing license of this software. See 'license.txt' file in the project root for complete license information.
 
-using Project.IpTv.Common.Telemetry;
-using Project.IpTv.Tools.FirstTimeConfig.Properties;
-using Project.IpTv.UiServices.Common.Forms;
-using Project.IpTv.UiServices.Configuration;
-using Project.IpTv.UiServices.Configuration.Schema2014.Config;
+using IpTviewr.Common.Telemetry;
+using IpTviewr.Tools.FirstTimeConfig.Properties;
+using IpTviewr.UiServices.Common.Forms;
+using IpTviewr.UiServices.Configuration;
+using IpTviewr.UiServices.Configuration.Schema2014.Config;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,7 +17,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace Project.IpTv.Tools.FirstTimeConfig
+namespace IpTviewr.Tools.FirstTimeConfig
 {
     public partial class ConfigForm : Form
     {
@@ -522,7 +522,7 @@ namespace Project.IpTv.Tools.FirstTimeConfig
             var success = Configuration.Create(textBoxVlc.Text,
                 rootFolder,
                 new TelemetryConfiguration(checkEnableAnalytics.Checked, checkAnalyticsUsage.Checked, checkAnalyticsExceptions.Checked),
-                //new EpgConfig(checkEpg.Checked, checkEpgAutoUpdate.Checked ? 24 : -1, 7),
+                new EpgConfig(checkEpg.Checked, -1, 7),
                 radioChannelSDPriority.Checked,
                 xmlConfigPath, out message);
             if (success)

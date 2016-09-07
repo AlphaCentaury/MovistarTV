@@ -1,7 +1,7 @@
 ﻿// Copyright (C) 2014-2016, Codeplex/GitHub user AlphaCentaury
 // All rights reserved, except those granted by the governing license of this software. See 'license.txt' file in the project root for complete license information.
 
-namespace Project.IpTv.Tools.FirstTimeConfig
+namespace IpTviewr.Tools.FirstTimeConfig
 {
     partial class ConfigForm
     {
@@ -32,14 +32,14 @@ namespace Project.IpTv.Tools.FirstTimeConfig
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ConfigForm));
-            this.selectFolder = new Project.IpTv.UiServices.Common.Controls.SelectFolderDialog();
             this.openFile = new System.Windows.Forms.OpenFileDialog();
             this.labelStepTitle = new System.Windows.Forms.Label();
             this.panelButtons = new System.Windows.Forms.Panel();
             this.buttonPreviousPage = new System.Windows.Forms.Button();
             this.buttonNextPage = new System.Windows.Forms.Button();
             this.buttonCancel = new System.Windows.Forms.Button();
-            this.wizardControl = new Project.IpTv.Tools.FirstTimeConfig.WizardTabControl();
+            this.selectFolder = new IpTviewr.UiServices.Common.Controls.SelectFolderDialog();
+            this.wizardControl = new IpTviewr.Tools.FirstTimeConfig.WizardTabControl();
             this.wizardPageReadme = new System.Windows.Forms.TabPage();
             this.checkReadmeAck = new System.Windows.Forms.CheckBox();
             this.richTextReadme = new System.Windows.Forms.RichTextBox();
@@ -85,7 +85,7 @@ namespace Project.IpTv.Tools.FirstTimeConfig
             this.radioChannelHDPriority = new System.Windows.Forms.RadioButton();
             this.labelChannelAssignmentExplanation = new System.Windows.Forms.Label();
             this.groupEPG = new System.Windows.Forms.GroupBox();
-            this.checkEpgAutoUpdate = new System.Windows.Forms.CheckBox();
+            this.pictureBoxEpgWarning = new System.Windows.Forms.PictureBox();
             this.labelEpgWarning = new System.Windows.Forms.Label();
             this.checkEpg = new System.Windows.Forms.CheckBox();
             this.wizardPageRecordings = new System.Windows.Forms.TabPage();
@@ -114,21 +114,10 @@ namespace Project.IpTv.Tools.FirstTimeConfig
             this.wizardPageBasic.SuspendLayout();
             this.groupBoxChannelNumbers.SuspendLayout();
             this.groupEPG.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxEpgWarning)).BeginInit();
             this.wizardPageRecordings.SuspendLayout();
             this.groupRecordConfig.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // selectFolder
-            // 
-            this.selectFolder.Description = "";
-            this.selectFolder.DontIncludeNetworkFoldersBelowDomainLevel = false;
-            this.selectFolder.NewStyle = true;
-            this.selectFolder.RootFolder = System.Environment.SpecialFolder.MyComputer;
-            this.selectFolder.SelectedPath = "";
-            this.selectFolder.ShowBothFilesAndFolders = false;
-            this.selectFolder.ShowEditBox = true;
-            this.selectFolder.ShowFullPathInEditBox = true;
-            this.selectFolder.ShowNewFolderButton = true;
             // 
             // openFile
             // 
@@ -141,7 +130,7 @@ namespace Project.IpTv.Tools.FirstTimeConfig
             this.labelStepTitle.AutoEllipsis = true;
             this.labelStepTitle.BackColor = System.Drawing.Color.Transparent;
             resources.ApplyResources(this.labelStepTitle, "labelStepTitle");
-            this.labelStepTitle.Image = global::Project.IpTv.Tools.FirstTimeConfig.Properties.Resources.WizardTop;
+            this.labelStepTitle.Image = global::IpTviewr.Tools.FirstTimeConfig.Properties.Resources.WizardTop;
             this.labelStepTitle.Name = "labelStepTitle";
             // 
             // panelButtons
@@ -156,14 +145,14 @@ namespace Project.IpTv.Tools.FirstTimeConfig
             // 
             // buttonPreviousPage
             // 
-            this.buttonPreviousPage.Image = global::Project.IpTv.Tools.FirstTimeConfig.Properties.Resources.ActionBack_Medium_16;
+            this.buttonPreviousPage.Image = global::IpTviewr.Tools.FirstTimeConfig.Properties.Resources.ActionBack_Medium_16;
             resources.ApplyResources(this.buttonPreviousPage, "buttonPreviousPage");
             this.buttonPreviousPage.Name = "buttonPreviousPage";
             this.buttonPreviousPage.UseVisualStyleBackColor = true;
             // 
             // buttonNextPage
             // 
-            this.buttonNextPage.Image = global::Project.IpTv.Tools.FirstTimeConfig.Properties.Resources.ActionForward_Medium_16;
+            this.buttonNextPage.Image = global::IpTviewr.Tools.FirstTimeConfig.Properties.Resources.ActionForward_Medium_16;
             resources.ApplyResources(this.buttonNextPage, "buttonNextPage");
             this.buttonNextPage.Name = "buttonNextPage";
             this.buttonNextPage.UseVisualStyleBackColor = true;
@@ -171,11 +160,23 @@ namespace Project.IpTv.Tools.FirstTimeConfig
             // buttonCancel
             // 
             this.buttonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.buttonCancel.Image = global::Project.IpTv.Tools.FirstTimeConfig.Properties.Resources.ActionCancel_16x16;
+            this.buttonCancel.Image = global::IpTviewr.Tools.FirstTimeConfig.Properties.Resources.ActionCancel_16x16;
             resources.ApplyResources(this.buttonCancel, "buttonCancel");
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.UseVisualStyleBackColor = true;
             this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
+            // 
+            // selectFolder
+            // 
+            this.selectFolder.Description = "";
+            this.selectFolder.DontIncludeNetworkFoldersBelowDomainLevel = false;
+            this.selectFolder.NewStyle = true;
+            this.selectFolder.RootFolder = System.Environment.SpecialFolder.MyComputer;
+            this.selectFolder.SelectedPath = "";
+            this.selectFolder.ShowBothFilesAndFolders = false;
+            this.selectFolder.ShowEditBox = true;
+            this.selectFolder.ShowFullPathInEditBox = true;
+            this.selectFolder.ShowNewFolderButton = true;
             // 
             // wizardControl
             // 
@@ -220,7 +221,7 @@ namespace Project.IpTv.Tools.FirstTimeConfig
             // 
             // pictureIconReadme
             // 
-            this.pictureIconReadme.Image = global::Project.IpTv.Tools.FirstTimeConfig.Properties.Resources.Warning_48x48;
+            this.pictureIconReadme.Image = global::IpTviewr.Tools.FirstTimeConfig.Properties.Resources.Warning_48x48;
             resources.ApplyResources(this.pictureIconReadme, "pictureIconReadme");
             this.pictureIconReadme.Name = "pictureIconReadme";
             this.pictureIconReadme.TabStop = false;
@@ -255,7 +256,7 @@ namespace Project.IpTv.Tools.FirstTimeConfig
             // 
             // buttonTestVlc
             // 
-            this.buttonTestVlc.Image = global::Project.IpTv.Tools.FirstTimeConfig.Properties.Resources.ActionRun_16x16;
+            this.buttonTestVlc.Image = global::IpTviewr.Tools.FirstTimeConfig.Properties.Resources.ActionRun_16x16;
             resources.ApplyResources(this.buttonTestVlc, "buttonTestVlc");
             this.buttonTestVlc.Name = "buttonTestVlc";
             this.buttonTestVlc.UseVisualStyleBackColor = true;
@@ -268,7 +269,7 @@ namespace Project.IpTv.Tools.FirstTimeConfig
             // 
             // buttonFindVlc
             // 
-            this.buttonFindVlc.Image = global::Project.IpTv.Tools.FirstTimeConfig.Properties.Resources.AttachFileHS;
+            this.buttonFindVlc.Image = global::IpTviewr.Tools.FirstTimeConfig.Properties.Resources.AttachFileHS;
             resources.ApplyResources(this.buttonFindVlc, "buttonFindVlc");
             this.buttonFindVlc.Name = "buttonFindVlc";
             this.buttonFindVlc.UseVisualStyleBackColor = true;
@@ -288,14 +289,14 @@ namespace Project.IpTv.Tools.FirstTimeConfig
             // 
             // pictureBoxVlcOk
             // 
-            this.pictureBoxVlcOk.Image = global::Project.IpTv.Tools.FirstTimeConfig.Properties.Resources.Error_16x16;
+            this.pictureBoxVlcOk.Image = global::IpTviewr.Tools.FirstTimeConfig.Properties.Resources.Error_16x16;
             resources.ApplyResources(this.pictureBoxVlcOk, "pictureBoxVlcOk");
             this.pictureBoxVlcOk.Name = "pictureBoxVlcOk";
             this.pictureBoxVlcOk.TabStop = false;
             // 
             // buttonVerifyVlc
             // 
-            this.buttonVerifyVlc.Image = global::Project.IpTv.Tools.FirstTimeConfig.Properties.Resources.ApproveReject_16x16;
+            this.buttonVerifyVlc.Image = global::IpTviewr.Tools.FirstTimeConfig.Properties.Resources.ApproveReject_16x16;
             resources.ApplyResources(this.buttonVerifyVlc, "buttonVerifyVlc");
             this.buttonVerifyVlc.Name = "buttonVerifyVlc";
             this.buttonVerifyVlc.UseVisualStyleBackColor = true;
@@ -345,14 +346,14 @@ namespace Project.IpTv.Tools.FirstTimeConfig
             // 
             // pictureBoxSqlCeOk
             // 
-            this.pictureBoxSqlCeOk.Image = global::Project.IpTv.Tools.FirstTimeConfig.Properties.Resources.Error_16x16;
+            this.pictureBoxSqlCeOk.Image = global::IpTviewr.Tools.FirstTimeConfig.Properties.Resources.Error_16x16;
             resources.ApplyResources(this.pictureBoxSqlCeOk, "pictureBoxSqlCeOk");
             this.pictureBoxSqlCeOk.Name = "pictureBoxSqlCeOk";
             this.pictureBoxSqlCeOk.TabStop = false;
             // 
             // buttonVerifySqlCe
             // 
-            this.buttonVerifySqlCe.Image = global::Project.IpTv.Tools.FirstTimeConfig.Properties.Resources.ApproveReject_16x16;
+            this.buttonVerifySqlCe.Image = global::IpTviewr.Tools.FirstTimeConfig.Properties.Resources.ApproveReject_16x16;
             resources.ApplyResources(this.buttonVerifySqlCe, "buttonVerifySqlCe");
             this.buttonVerifySqlCe.Name = "buttonVerifySqlCe";
             this.buttonVerifySqlCe.UseVisualStyleBackColor = true;
@@ -372,14 +373,14 @@ namespace Project.IpTv.Tools.FirstTimeConfig
             // 
             // pictureBoxEmbOk
             // 
-            this.pictureBoxEmbOk.Image = global::Project.IpTv.Tools.FirstTimeConfig.Properties.Resources.Error_16x16;
+            this.pictureBoxEmbOk.Image = global::IpTviewr.Tools.FirstTimeConfig.Properties.Resources.Error_16x16;
             resources.ApplyResources(this.pictureBoxEmbOk, "pictureBoxEmbOk");
             this.pictureBoxEmbOk.Name = "pictureBoxEmbOk";
             this.pictureBoxEmbOk.TabStop = false;
             // 
             // buttonVerifyEmb
             // 
-            this.buttonVerifyEmb.Image = global::Project.IpTv.Tools.FirstTimeConfig.Properties.Resources.ApproveReject_16x16;
+            this.buttonVerifyEmb.Image = global::IpTviewr.Tools.FirstTimeConfig.Properties.Resources.ApproveReject_16x16;
             resources.ApplyResources(this.buttonVerifyEmb, "buttonVerifyEmb");
             this.buttonVerifyEmb.Name = "buttonVerifyEmb";
             this.buttonVerifyEmb.UseVisualStyleBackColor = true;
@@ -467,7 +468,7 @@ namespace Project.IpTv.Tools.FirstTimeConfig
             // 
             // buttonFirewall
             // 
-            this.buttonFirewall.Image = global::Project.IpTv.Tools.FirstTimeConfig.Properties.Resources.Shield_16x16;
+            this.buttonFirewall.Image = global::IpTviewr.Tools.FirstTimeConfig.Properties.Resources.Shield_16x16;
             resources.ApplyResources(this.buttonFirewall, "buttonFirewall");
             this.buttonFirewall.Name = "buttonFirewall";
             this.buttonFirewall.UseVisualStyleBackColor = true;
@@ -530,18 +531,19 @@ namespace Project.IpTv.Tools.FirstTimeConfig
             // 
             // groupEPG
             // 
-            this.groupEPG.Controls.Add(this.checkEpgAutoUpdate);
+            this.groupEPG.Controls.Add(this.pictureBoxEpgWarning);
             this.groupEPG.Controls.Add(this.labelEpgWarning);
             this.groupEPG.Controls.Add(this.checkEpg);
             resources.ApplyResources(this.groupEPG, "groupEPG");
             this.groupEPG.Name = "groupEPG";
             this.groupEPG.TabStop = false;
             // 
-            // checkEpgAutoUpdate
+            // pictureBoxEpgWarning
             // 
-            resources.ApplyResources(this.checkEpgAutoUpdate, "checkEpgAutoUpdate");
-            this.checkEpgAutoUpdate.Name = "checkEpgAutoUpdate";
-            this.checkEpgAutoUpdate.UseVisualStyleBackColor = true;
+            this.pictureBoxEpgWarning.Image = global::IpTviewr.Tools.FirstTimeConfig.Properties.Resources.Warning_48x48;
+            resources.ApplyResources(this.pictureBoxEpgWarning, "pictureBoxEpgWarning");
+            this.pictureBoxEpgWarning.Name = "pictureBoxEpgWarning";
+            this.pictureBoxEpgWarning.TabStop = false;
             // 
             // labelEpgWarning
             // 
@@ -551,6 +553,8 @@ namespace Project.IpTv.Tools.FirstTimeConfig
             // checkEpg
             // 
             resources.ApplyResources(this.checkEpg, "checkEpg");
+            this.checkEpg.Checked = true;
+            this.checkEpg.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkEpg.Name = "checkEpg";
             this.checkEpg.UseVisualStyleBackColor = true;
             // 
@@ -570,7 +574,7 @@ namespace Project.IpTv.Tools.FirstTimeConfig
             // 
             // buttonConfig
             // 
-            this.buttonConfig.Image = global::Project.IpTv.Tools.FirstTimeConfig.Properties.Resources.ActionRun_16x16;
+            this.buttonConfig.Image = global::IpTviewr.Tools.FirstTimeConfig.Properties.Resources.ActionRun_16x16;
             resources.ApplyResources(this.buttonConfig, "buttonConfig");
             this.buttonConfig.Name = "buttonConfig";
             this.buttonConfig.UseVisualStyleBackColor = true;
@@ -609,7 +613,7 @@ namespace Project.IpTv.Tools.FirstTimeConfig
             // 
             // buttonBrowseSave
             // 
-            this.buttonBrowseSave.Image = global::Project.IpTv.Tools.FirstTimeConfig.Properties.Resources.openfolderHS;
+            this.buttonBrowseSave.Image = global::IpTviewr.Tools.FirstTimeConfig.Properties.Resources.openfolderHS;
             resources.ApplyResources(this.buttonBrowseSave, "buttonBrowseSave");
             this.buttonBrowseSave.Name = "buttonBrowseSave";
             this.buttonBrowseSave.UseVisualStyleBackColor = true;
@@ -663,6 +667,7 @@ namespace Project.IpTv.Tools.FirstTimeConfig
             this.groupBoxChannelNumbers.PerformLayout();
             this.groupEPG.ResumeLayout(false);
             this.groupEPG.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxEpgWarning)).EndInit();
             this.wizardPageRecordings.ResumeLayout(false);
             this.groupRecordConfig.ResumeLayout(false);
             this.groupRecordConfig.PerformLayout();
@@ -672,7 +677,7 @@ namespace Project.IpTv.Tools.FirstTimeConfig
 
         #endregion
 
-        private Project.IpTv.UiServices.Common.Controls.SelectFolderDialog selectFolder;
+        private IpTviewr.UiServices.Common.Controls.SelectFolderDialog selectFolder;
         private System.Windows.Forms.OpenFileDialog openFile;
         private WizardTabControl wizardControl;
         private System.Windows.Forms.TabPage wizardPagePrerequisites;
@@ -713,7 +718,6 @@ namespace Project.IpTv.Tools.FirstTimeConfig
         private System.Windows.Forms.CheckBox checkAnalyticsUsage;
         private System.Windows.Forms.CheckBox checkEnableAnalytics;
         private System.Windows.Forms.GroupBox groupEPG;
-        private System.Windows.Forms.CheckBox checkEpgAutoUpdate;
         private System.Windows.Forms.Label labelEpgWarning;
         private System.Windows.Forms.CheckBox checkEpg;
         private System.Windows.Forms.TabPage wizardPageReadme;
@@ -738,5 +742,6 @@ namespace Project.IpTv.Tools.FirstTimeConfig
         private System.Windows.Forms.Label labelReadmeWarning;
         private System.Windows.Forms.PictureBox pictureIconReadme;
         private System.Windows.Forms.CheckBox checkReadmeAck;
+        private System.Windows.Forms.PictureBox pictureBoxEpgWarning;
     }
 }

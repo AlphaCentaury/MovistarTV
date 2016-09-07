@@ -2,8 +2,8 @@
 // All rights reserved, except those granted by the governing license of this software. See 'license.txt' file in the project root for complete license information.
 
 using Microsoft.Win32.SafeHandles;
-using Project.IpTv.Common;
-using Project.IpTv.Services.Record.Serialization;
+using IpTviewr.Common;
+using IpTviewr.Services.Record.Serialization;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,7 +16,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Xml.Serialization;
 
-namespace Project.IpTv.RecorderLauncher
+namespace IpTviewr.RecorderLauncher
 {
     internal class Launcher
     {
@@ -171,7 +171,7 @@ namespace Project.IpTv.RecorderLauncher
         private Program.Result LaunchRecorderProgram(RecordTask task)
         {
             var scheduledStartTime = task.Schedule.GetStartDateTime();
-            var scheduledTotalTime = task.Schedule.GetSafetyMargin() + task.Duration.Length + task.Duration.SafetyMarginTimeSpan;
+            var scheduledTotalTime = task.Schedule.SafetyMarginTimeSpan + task.Duration.GetDuration(task.Schedule) + task.Duration.SafetyMarginTimeSpan;
             var now = DateTime.Now;
             // var scheduledDateTime = new DateTime(scheduledStartTime.Year, scheduledStartTime.Month, scheduledStartTime.Day, scheduledStartTime.Hour, scheduledStartTime.Minute, scheduledStartTime.Second);
             // TODO: determine most probable launch date; we need to account for HUGE delays between scheduled run time and real run time
@@ -192,16 +192,20 @@ namespace Project.IpTv.RecorderLauncher
             } // if
 
             if (gap.TotalSeconds < 30) gap = TimeSpan.Zero;
-            if (gap.TotalSeconds > task.Schedule.GetSafetyMargin().TotalSeconds)
+
+            if (task.Schedule.Kind != RecordScheduleKind.RightNow)
             {
-                RecordingLate = true;
-                Logger.Log(Logger.Level.Warning, Properties.Texts.LogWarningRecordingLate, (int)task.Schedule.GetSafetyMargin().TotalMinutes);
-                Console.WriteLine(Properties.Texts.DisplayWarningRecordingLate, (int)task.Schedule.GetSafetyMargin().TotalMinutes);
-            }
-            else if (gap.TotalSeconds > 0)
-            {
-                Logger.Log(Logger.Level.Warning, Properties.Texts.LogWarningBehindSchedule, gap);
-                Console.WriteLine(Properties.Texts.DisplayWarningBehindSchedule, gap);
+                if (gap.TotalSeconds > task.Schedule.SafetyMarginTimeSpan.TotalSeconds)
+                {
+                    RecordingLate = true;
+                    Logger.Log(Logger.Level.Warning, Properties.Texts.LogWarningRecordingLate, (int)task.Schedule.SafetyMarginTimeSpan.TotalMinutes);
+                    Console.WriteLine(Properties.Texts.DisplayWarningRecordingLate, (int)task.Schedule.SafetyMarginTimeSpan.TotalMinutes);
+                }
+                else if (gap.TotalSeconds > 0)
+                {
+                    Logger.Log(Logger.Level.Warning, Properties.Texts.LogWarningBehindSchedule, gap);
+                    Console.WriteLine(Properties.Texts.DisplayWarningBehindSchedule, gap);
+                } // if-else
             } // if-else
 
             var date = string.Format(Properties.Texts.FormatRecordFileDate,

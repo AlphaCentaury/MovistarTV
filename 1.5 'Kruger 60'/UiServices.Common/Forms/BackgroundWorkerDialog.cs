@@ -9,10 +9,10 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using Project.IpTv.UiServices.Common.Properties;
+using IpTviewr.UiServices.Common.Properties;
 using System.Threading;
 
-namespace Project.IpTv.UiServices.Common.Forms
+namespace IpTviewr.UiServices.Common.Forms
 {
     public partial class BackgroundWorkerDialog : CommonBaseForm, IBackgroundWorkerDialog
     {
@@ -41,32 +41,18 @@ namespace Project.IpTv.UiServices.Common.Forms
             set;
         } // Options
 
-        protected override void OnExceptionThrown(object sender, CommonBaseFormExceptionThrownEventArgs e)
-        {
-            if (Options != null)
-            {
-                Options.OutputException = e.Exception;
-            } // if
-
-            dialogResult = DialogResult.Abort;
-            formCanClose = true;
-            this.Close();
-        } // OnExceptionThrown
-
         private void BackgroundWorkerDialog_Load(object sender, EventArgs e)
         {
             if (Options == null)
             {
-                HandleException(new ArgumentNullException());
+                dialogResult = DialogResult.Abort;
+                formCanClose = true;
+                this.Close();
+
                 return;
             } // if
             SafeCall(BackgroundWorkerDialog_Load_Implementation, sender, e);
         } // BackgroundWorkerDialog_Load
-
-        private void BackgroundWorkerDialog_Shown(object sender, EventArgs e)
-        {
-            SafeCall(BackgroundWorkerDialog_Shown_Implementation, sender, e);
-        } // BackgroundWorkerDialog_Shown
 
         private void BackgroundWorkerDialog_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -100,17 +86,20 @@ namespace Project.IpTv.UiServices.Common.Forms
             labelProgressText.Text = null;
             progressBar.Style = ProgressBarStyle.Marquee;
             progressBar.Enabled = Options.AllowProgressBar;
-
             buttonRequestCancel.Enabled = Options.AllowCancelButton;
 
-            if (Options.BeforeTask != null)
+            // maintain the dialog 'hidden' for short-lived background tasks?
+            // fact: Windows doesn't allow to hide a modal dialog. Our trick: set the opacity to 0%
+            // and then back to 100% when the dialog must be shown
+            var milliseconds = (int)Options.ShowAfter.TotalMilliseconds;
+            if (milliseconds > 0)
             {
-                Options.BeforeTask(Options, this);
+                timerShow.Interval = milliseconds;
+                timerShow.Start();
             } // if
-        } // BackgroundWorkerDialog_Load_Implementation
 
-        private void BackgroundWorkerDialog_Shown_Implementation(object sender, EventArgs e)
-        {
+            Options.BeforeTask?.Invoke(Options, this);
+
             worker = new BackgroundWorker();
             worker.WorkerReportsProgress = false;
             worker.WorkerSupportsCancellation = true;
@@ -119,7 +108,13 @@ namespace Project.IpTv.UiServices.Common.Forms
             worker.RunWorkerCompleted += Worker_RunWorkerCompleted;
 
             worker.RunWorkerAsync(Thread.CurrentThread);
-        }  // BackgroundWorkerDialog_Shown_Implementation
+        } // BackgroundWorkerDialog_Load_Implementation
+
+        private void timerShow_Tick(object sender, EventArgs e)
+        {
+            timerShow.Stop();
+            Opacity = 1;
+        } // timerShow_Tick
 
         void Worker_DoWork(object sender, DoWorkEventArgs e)
         {
@@ -135,9 +130,9 @@ namespace Project.IpTv.UiServices.Common.Forms
                 currentThread.CurrentUICulture = parentThread.CurrentUICulture; // UICulture not inherited from spwawning thread
             } // if
 
-            if (Options.BackgroundBeforeTask != null) Options.BackgroundBeforeTask(Options, this);
-            if (Options.BackgroundTask != null) Options.BackgroundTask(Options, this);
-            if (Options.BackgroundAfterTask != null) Options.BackgroundAfterTask(Options, this);
+            Options.BackgroundBeforeTask?.Invoke(Options, this);
+            Options.BackgroundTask?.Invoke(Options, this);
+            Options.BackgroundAfterTask?.Invoke(Options, this);
         } // Worker_DoWork
 
         void Worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -267,6 +262,7 @@ namespace Project.IpTv.UiServices.Common.Forms
         private void SetProgressText(string text)
         {
             labelProgressText.Text = text;
+            labelProgressText.Refresh();
         } // SetProgressText
 
         private void SetProgressMinMax(int min, int max)
@@ -296,5 +292,10 @@ namespace Project.IpTv.UiServices.Common.Forms
         } // SetProgressUndefined
 
         #endregion
+
+        private void BackgroundWorkerDialog_Shown(object sender, EventArgs e)
+        {
+            if (!timerShow.Enabled) Opacity = 1;
+        } // BackgroundWorkerDialog_Shown
     } // class BackgroundWorkerDialog
 } // namespace

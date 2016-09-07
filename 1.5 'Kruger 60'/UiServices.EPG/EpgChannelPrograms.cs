@@ -1,12 +1,11 @@
-﻿// Copyright (C) 2014-2016, Codeplex user AlphaCentaury
+﻿// Copyright (C) 2014-2016, Codeplex/GitHub user AlphaCentaury
 // All rights reserved, except those granted by the governing license of this software. See 'license.txt' file in the project root for complete license information.
 
-using Project.IpTv.Common;
-using Project.IpTv.Common.Telemetry;
-using Project.IpTv.Services.EPG;
-using Project.IpTv.Services.EPG.Serialization;
-using Project.IpTv.UiServices.Configuration.Logos;
-using Project.IpTv.UiServices.Discovery;
+using IpTviewr.Common;
+using IpTviewr.Common.Telemetry;
+using IpTviewr.Services.EpgDiscovery;
+using IpTviewr.UiServices.Configuration.Logos;
+using IpTviewr.UiServices.Discovery;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,10 +15,10 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
-using Project.IpTv.UiServices.Common.Forms;
-using Project.IpTv.Core.IpTvProvider;
+using IpTviewr.UiServices.Common.Forms;
+using IpTviewr.Core.IpTvProvider;
 
-namespace Project.IpTv.UiServices.EPG
+namespace IpTviewr.UiServices.EPG
 {
     public partial class EpgChannelPrograms : Form
     {
@@ -92,12 +91,12 @@ namespace Project.IpTv.UiServices.EPG
 
         private void listPrograms_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var epgEvent = (listPrograms.SelectedItems.Count != 0) ? (EpgEvent)listPrograms.SelectedItems[0].Tag : null;
-            epgEventDetails.Visible = (epgEvent != null);
-            epgEventDetails.DisplayData(Service, epgEvent, ReferenceTime, "Programa");
+            var epgProgram = (listPrograms.SelectedItems.Count != 0) ? (EpgProgram)listPrograms.SelectedItems[0].Tag : null;
+            EpgProgramDetails.Visible = (epgProgram != null);
+            EpgProgramDetails.DisplayData(Service, epgProgram, ReferenceTime, "Programa");
 
-            buttonDisplayChannel.Enabled = (epgEvent != null) && (epgEvent.LocalStartTime <= ReferenceTime) && (epgEvent.LocalEndTime > ReferenceTime);
-            buttonRecordChannel.Enabled = (epgEvent != null) && (epgEvent.LocalEndTime >= ReferenceTime);
+            buttonDisplayChannel.Enabled = (epgProgram != null) && (epgProgram.LocalStartTime <= ReferenceTime) && (epgProgram.LocalEndTime > ReferenceTime);
+            buttonRecordChannel.Enabled = (epgProgram != null) && (epgProgram.LocalEndTime >= ReferenceTime);
         } // listPrograms_SelectedIndexChanged
 
         private void buttonDisplayChannel_Click(object sender, EventArgs e)
@@ -120,7 +119,7 @@ namespace Project.IpTv.UiServices.EPG
             } // if
 
             comboBoxDate.Enabled = false;
-            epgEventDetails.Visible = false;
+            EpgProgramDetails.Visible = false;
 
             ThreadPool.QueueUserWorkItem(LoadEpg);
         } // StartLoadEpg
@@ -130,13 +129,14 @@ namespace Project.IpTv.UiServices.EPG
             ReferenceTime = DateTime.Now;
             var start = new DateTime(ReferenceTime.Year, ReferenceTime.Month, ReferenceTime.Day).AddDays(DaysDelta);
             var end = start.AddDays(1);
-            var epgEvents = EpgDbSerialization.GetServiceEvents(EpgDatabase, FullServiceName, FullAlternateServiceName, start, end);
-            this.BeginInvoke(new Action<IList<EpgEvent>>(ShowEpg), epgEvents);
+            // TODO: EPG
+            //var epgPrograms = EpgDbSerialization.GetServiceEvents(EpgDatabase, FullServiceName, FullAlternateServiceName, start, end);
+            //this.BeginInvoke(new Action<IList<EpgProgram>>(ShowEpg), epgPrograms);
         } // LoadEpg
 
-        private void ShowEpg(IList<EpgEvent> epgEvents)
+        private void ShowEpg(IList<EpgProgram> epgPrograms)
         {
-            EpgEvent last;
+            EpgProgram last;
             ListViewItem item, select;
 
             last = null;
@@ -145,9 +145,9 @@ namespace Project.IpTv.UiServices.EPG
             listPrograms.BeginUpdate();
             listPrograms.Items.Clear();
 
-            foreach (var epgEvent in epgEvents)
+            foreach (var epgProgram in epgPrograms)
             {
-                if ((last != null) && (last.LocalEndTime != epgEvent.LocalStartTime))
+                if ((last != null) && (last.LocalEndTime != epgProgram.LocalStartTime))
                 {
                     item = new ListViewItem(last.LocalEndTime.ToShortTimeString());
                     item.UseItemStyleForSubItems = false;
@@ -156,23 +156,23 @@ namespace Project.IpTv.UiServices.EPG
                 }
                 else
                 {
-                    item = new ListViewItem(epgEvent.LocalStartTime.ToShortTimeString());
+                    item = new ListViewItem(epgProgram.LocalStartTime.ToShortTimeString());
                     item.UseItemStyleForSubItems = false;
                     item.Font = BoldListFont;
-                    item.Tag = epgEvent;
-                    item.SubItems.Add(epgEvent.Title);
-                    item.ToolTipText = epgEvent.Title;
+                    item.Tag = epgProgram;
+                    item.SubItems.Add(epgProgram.Title);
+                    item.ToolTipText = epgProgram.Title;
                 } // if-else
                 listPrograms.Items.Add(item);
-                last = epgEvent;
+                last = epgProgram;
 
-                if ((select == null) && (epgEvent.LocalStartTime <= ReferenceTime) && (epgEvent.LocalEndTime > ReferenceTime))
+                if ((select == null) && (epgProgram.LocalStartTime <= ReferenceTime) && (epgProgram.LocalEndTime > ReferenceTime))
                 {
                     select = item;
                 } // if
             } // foreach
 
-            if (epgEvents.Count == 0)
+            if (epgPrograms.Count == 0)
             {
                 item = new ListViewItem("--:--");
                 item.SubItems.Add("Información de programas no disponible para este canal");

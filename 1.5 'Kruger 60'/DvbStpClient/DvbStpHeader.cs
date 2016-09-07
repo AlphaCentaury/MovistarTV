@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Project.IpTv.DvbStp.Client
+namespace IpTviewr.DvbStp.Client
 {
     public class DvbStpHeader
     {
@@ -47,5 +47,10 @@ namespace Project.IpTv.DvbStp.Client
         {
             return MemberwiseClone() as DvbStpHeader;
         } // Clone
+
+        public override string ToString()
+        {
+            return string.Format("p{0:X2}s{1:X4}v{2:X2}-{3}", PayloadId, SegmentId, SegmentVersion, SectionNumber);
+        } // ToString
     } // class DvbStpHeader
 } // namespace

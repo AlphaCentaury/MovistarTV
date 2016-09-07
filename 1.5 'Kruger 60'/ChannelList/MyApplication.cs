@@ -2,8 +2,8 @@
 // All rights reserved, except those granted by the governing license of this software. See 'license.txt' file in the project root for complete license information.
 
 using Microsoft.SqlServer.MessageBox;
-using Project.IpTv.Common.Telemetry;
-using Project.IpTv.UiServices.Configuration;
+using IpTviewr.Common.Telemetry;
+using IpTviewr.UiServices.Configuration;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -12,9 +12,9 @@ using System.Reflection;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
-using Project.IpTv.Common;
+using IpTviewr.Common;
 
-namespace Project.IpTv.ChannelList
+namespace IpTviewr.ChannelList
 {
     public static class MyApplication
     {
@@ -24,7 +24,9 @@ namespace Project.IpTv.ChannelList
             set;
         } // RecorderLauncherPath
 
-        public static void HandleException(IWin32Window owner, Exception ex)
+        #region HandleException methods
+
+        public static void HandleException(Form owner, Exception ex)
         {
             BasicGoogleTelemetry.SendExtendedExceptionHit(ex);
             AddExceptionAdvancedInformation(ex);
@@ -39,7 +41,7 @@ namespace Project.IpTv.ChannelList
             box.Show(owner);
         } // HandleException
 
-        public static void HandleException(IWin32Window owner, string message, Exception ex)
+        public static void HandleException(Form owner, string message, Exception ex)
         {
             HandleException(owner,
                 null,
@@ -48,7 +50,7 @@ namespace Project.IpTv.ChannelList
                 ex);
         } // HandleException
 
-        public static void HandleException(IWin32Window owner, string caption, string message, Exception ex)
+        public static void HandleException(Form owner, string caption, string message, Exception ex)
         {
             HandleException(owner,
                 caption,
@@ -57,7 +59,7 @@ namespace Project.IpTv.ChannelList
                 ex);
         } // HandleException
 
-        public static void HandleException(IWin32Window owner, string caption, string message, MessageBoxIcon icon, Exception ex)
+        public static void HandleException(Form owner, string caption, string message, MessageBoxIcon icon, Exception ex)
         {
             BasicGoogleTelemetry.SendExtendedExceptionHit(ex, true, message, null);
             AddExceptionAdvancedInformation(ex);
@@ -73,15 +75,17 @@ namespace Project.IpTv.ChannelList
             box.Show(owner);
         } // HandleException
 
-        internal static void HandleException(HandleExceptionEventArgs e)
+        internal static void HandleException(Form form, ExceptionEventData ex)
         {
-            MyApplication.HandleException(e.OwnerWindow, e.Caption, e.Message, e.Exception);
+            MyApplication.HandleException(form, ex.Caption, ex.Message, ex.Exception);
         } // HandleException
 
         internal static void HandleException(object sender, HandleExceptionEventArgs e)
         {
-            MyApplication.HandleException(e.OwnerWindow, e.Caption, e.Message, e.Exception);
+            MyApplication.HandleException(e.OwnerForm, e.Caption, e.Message, e.Exception);
         } // HandleException
+
+        #endregion
 
         private static ExceptionMessageBoxSymbol TranslateIconToSymbol(MessageBoxIcon icon)
         {

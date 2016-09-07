@@ -9,9 +9,9 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using Project.IpTv.UiServices.Common.Controls;
+using IpTviewr.UiServices.Common.Controls;
 
-namespace Project.IpTv.UiServices.Discovery.BroadcastList.Editors
+namespace IpTviewr.UiServices.Discovery.BroadcastList.Editors
 {
     internal partial class SettingsEditorModeMultiColumn : SettingsEditorModeBaseColumn
     {

@@ -121,13 +121,13 @@
     <value>&amp;Cerrar</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="epgEventBefore.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="EpgProgramBefore.Size" type="System.Drawing.Size, System.Drawing">
     <value>510, 90</value>
   </data>
-  <data name="epgEventNow.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="EpgProgramNow.Size" type="System.Drawing.Size, System.Drawing">
     <value>510, 90</value>
   </data>
-  <data name="epgEventThen.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="EpgProgramThen.Size" type="System.Drawing.Size, System.Drawing">
     <value>510, 90</value>
   </data>
   <data name="$this.Text" xml:space="preserve">

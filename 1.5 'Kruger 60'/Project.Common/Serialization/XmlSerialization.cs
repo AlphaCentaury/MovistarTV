@@ -9,7 +9,7 @@ using System.Text;
 using System.Xml;
 using System.Xml.Serialization;
 
-namespace Project.IpTv.Common.Serialization
+namespace IpTviewr.Common.Serialization
 {
     public static class XmlSerialization
     {
@@ -86,11 +86,11 @@ namespace Project.IpTv.Common.Serialization
         {
             using (var reader = CreateXmlReader(input, trimExtraWhitespace, namespaceReplacer))
             {
-                return Deserialize(reader, type, trimExtraWhitespace, namespaceReplacer);
+                return Deserialize(reader, type);
             } // using reader
         } // Deserialize
 
-        public static object Deserialize(XmlReader reader, Type type, bool trimExtraWhitespace = false, Func<string, string> namespaceReplacer = null)
+        public static object Deserialize(XmlReader reader, Type type)
         {
             var serializer = new XmlSerializer(type);
             return serializer.Deserialize(reader);

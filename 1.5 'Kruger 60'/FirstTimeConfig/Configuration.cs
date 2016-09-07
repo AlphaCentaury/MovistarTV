@@ -1,11 +1,11 @@
 ﻿// Copyright (C) 2014-2016, Codeplex/GitHub user AlphaCentaury
 // All rights reserved, except those granted by the governing license of this software. See 'license.txt' file in the project root for complete license information.
 
-using Project.IpTv.UiServices.Configuration;
-using Project.IpTv.UiServices.Configuration.Schema2014.Config;
-using Project.IpTv.UiServices.Configuration.Settings.Network;
-using Project.IpTv.UiServices.Configuration.Settings.TvPlayers;
-using Project.IpTv.UiServices.Discovery.BroadcastList;
+using IpTviewr.UiServices.Configuration;
+using IpTviewr.UiServices.Configuration.Schema2014.Config;
+using IpTviewr.UiServices.Configuration.Settings.Network;
+using IpTviewr.UiServices.Configuration.Settings.TvPlayers;
+using IpTviewr.UiServices.Discovery.BroadcastList;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -14,14 +14,14 @@ using System.Text;
 using System.Windows.Forms;
 using System.Xml;
 using System.Xml.Linq;
-using Project.IpTv.Core.IpTvProvider;
-using Project.IpTv.MovistarPlus;
+using IpTviewr.Core.IpTvProvider;
+using IpTviewr.MovistarPlus;
 
-namespace Project.IpTv.Tools.FirstTimeConfig
+namespace IpTviewr.Tools.FirstTimeConfig
 {
     internal class Configuration
     {
-        public static bool Create(string vlcPath, string rootSaveLocation, TelemetryConfiguration analytics, /*EpgConfig epg, */ bool sdPriority, string xmlConfigPath, out string message)
+        public static bool Create(string vlcPath, string rootSaveLocation, TelemetryConfiguration analytics, EpgConfig epg, bool sdPriority, string xmlConfigPath, out string message)
         {
             UserConfig user;
 
@@ -78,7 +78,7 @@ namespace Project.IpTv.Tools.FirstTimeConfig
                             } // RecorderConfig
                         } // Recorders
                     }, // Record
-                    //Epg = epg,
+                    Epg = epg,
                     ChannelNumberStandardDefinitionPriority = sdPriority,
                 }; // user
 

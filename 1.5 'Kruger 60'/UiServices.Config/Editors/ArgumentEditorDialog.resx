@@ -232,7 +232,7 @@
     <value>(Caption)</value>
   </data>
   <data name="&gt;&gt;parameterEditor.Type" xml:space="preserve">
-    <value>Project.IpTv.UiServices.Configuration.Editors.ArgumentEditor, UiServices.Configuration, Version=1.5.35.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>IpTviewr.UiServices.Configuration.Editors.ArgumentEditor, UiServices.Configuration, Version=1.5.35.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>

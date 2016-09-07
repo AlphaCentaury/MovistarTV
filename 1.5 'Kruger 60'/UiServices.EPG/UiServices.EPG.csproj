@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -7,14 +7,15 @@
     <ProjectGuid>{004C3829-FED4-4084-B23B-871193AFA8C7}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Project.IpTv.UiServices.EPG</RootNamespace>
+    <RootNamespace>IpTviewr.UiServices.EPG</RootNamespace>
     <AssemblyName>UiServices.EPG</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SccProjectName>SAK</SccProjectName>
     <SccLocalPath>SAK</SccLocalPath>
     <SccAuxPath>SAK</SccAuxPath>
     <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -24,6 +25,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -32,6 +34,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -51,11 +54,6 @@
     <Compile Include="..\AssemblySolutionInfo.cs">
       <Link>Properties\AssemblySolutionInfo.cs</Link>
     </Compile>
-    <Compile Include="CommonUiResources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CommonUiResources.resx</DependentUpon>
-    </Compile>
     <Compile Include="EpgBasicGridDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -74,15 +72,29 @@
     <Compile Include="EpgEventMiniBar.Designer.cs">
       <DependentUpon>EpgEventMiniBar.cs</DependentUpon>
     </Compile>
-    <Compile Include="EpgMiniBar.cs">
+    <Compile Include="EpgMiniGuide.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="EpgMiniBar.Designer.cs">
-      <DependentUpon>EpgMiniBar.cs</DependentUpon>
+    <Compile Include="EpgMiniGuide.Designer.cs">
+      <DependentUpon>EpgMiniGuide.cs</DependentUpon>
     </Compile>
-    <Compile Include="EpgMiniBarEventArgs.cs" />
+    <Compile Include="EpgMiniGuideButtons.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="EpgMiniGuideButtons.Designer.cs">
+      <DependentUpon>EpgMiniGuideButtons.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EpgMiniGuideEventArgs.cs" />
+    <Compile Include="EpgProgramPictureBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="EpgProgressBarFixed.cs">
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Properties\CommonUiResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CommonUiResources.resx</DependentUpon>
     </Compile>
     <Compile Include="Properties\EpgRtf.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -114,7 +126,13 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="CommonUiResources.resx">
+    <EmbeddedResource Include="EpgMiniGuideButtons.es.resx">
+      <DependentUpon>EpgMiniGuideButtons.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EpgMiniGuideButtons.resx">
+      <DependentUpon>EpgMiniGuideButtons.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\CommonUiResources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
       <LastGenOutput>CommonUiResources.Designer.cs</LastGenOutput>
@@ -134,11 +152,12 @@
     <EmbeddedResource Include="EpgExtendedInfoDialog.es.resx">
       <DependentUpon>EpgExtendedInfoDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="EpgMiniBar.es.resx">
-      <DependentUpon>EpgMiniBar.cs</DependentUpon>
+    <EmbeddedResource Include="EpgMiniGuide.es.resx">
+      <DependentUpon>EpgMiniGuide.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="EpgMiniBar.resx">
-      <DependentUpon>EpgMiniBar.cs</DependentUpon>
+    <EmbeddedResource Include="EpgMiniGuide.resx">
+      <DependentUpon>EpgMiniGuide.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="EpgNowThenDialog.es.resx">
       <DependentUpon>EpgNowThenDialog.cs</DependentUpon>
@@ -151,6 +170,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="EpgNowThenDialog.resx">
       <DependentUpon>EpgNowThenDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="EpgExtendedInfoDialog.resx">
       <DependentUpon>EpgExtendedInfoDialog.cs</DependentUpon>
@@ -166,6 +186,25 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="..\Common.UI\Resources\Action_Copy_Clip_16x16.png">
+      <Link>Resources\Action_Copy_Clip_16x16.png</Link>
+    </Content>
+    <Content Include="..\Common.UI\Resources\Action_Properties_16x16.png">
+      <Link>Resources\Action_Properties_16x16.png</Link>
+    </Content>
+    <Content Include="License.txt" />
+    <Content Include="Resources\Action_Epg_16x16.png" />
+    <Content Include="Resources\Action_Epg_Play_16x16.png" />
+    <Content Include="Resources\Action_Epg_Record_16x16.png" />
+    <Content Include="Resources\Epg.ico" />
+    <Content Include="Resources\EpgLoadingProgramImage.png" />
+    <Content Include="Resources\EpgLoadingProgramImageVertical.png" />
+    <Content Include="Resources\EpgNoProgramImage.png" />
+    <Content Include="Resources\EpgNoProgramImageVertical.png" />
+    <Content Include="Resources\ProgressBarBase.png" />
+    <Content Include="Resources\ProgressBarFilled.png" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\Core.IpTvProvider\Core.IpTvProvider.csproj">
       <Project>{36b8e0a1-f1b1-498d-8fe7-a39bb7fd68ca}</Project>
       <Name>Core.IpTvProvider</Name>
@@ -178,9 +217,9 @@
       <Project>{8da15060-5a78-4f89-a9f1-7aa56b0d622c}</Project>
       <Name>Project.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Services.EPG\Services.EPG.csproj">
-      <Project>{ed5c1cf5-0975-4995-8933-9a7df39fd739}</Project>
-      <Name>Services.EPG</Name>
+    <ProjectReference Include="..\Services.EpgDiscovery\Services.EpgDiscovery.csproj">
+      <Project>{5a171dbb-855c-452b-93c6-229c7aa6c7a6}</Project>
+      <Name>Services.EPG.Serialization</Name>
     </ProjectReference>
     <ProjectReference Include="..\Services.SqlServerCE\Services.SqlServerCE.csproj">
       <Project>{3a053f34-4edf-4071-b966-923255a0ae14}</Project>
@@ -198,21 +237,10 @@
       <Project>{7e5e21b9-4bd6-4fb3-9055-9b09cc479c6c}</Project>
       <Name>UiServices.Discovery</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="..\Common.UI\Resources\Action_Copy_Clip_16x16.png">
-      <Link>Resources\Action_Copy_Clip_16x16.png</Link>
-    </Content>
-    <Content Include="..\Common.UI\Resources\Action_Properties_16x16.png">
-      <Link>Resources\Action_Properties_16x16.png</Link>
-    </Content>
-    <Content Include="License.txt" />
-    <Content Include="Resources\Action_Epg_16x16.png" />
-    <Content Include="Resources\Epg.ico" />
-    <Content Include="Resources\EpgLoadingProgramImage.png" />
-    <Content Include="Resources\EpgNoProgramImage.png" />
-    <Content Include="Resources\ProgressBarBase.png" />
-    <Content Include="Resources\ProgressBarFilled.png" />
+    <ProjectReference Include="..\UiServices.Record\UiServices.Record.csproj">
+      <Project>{971b720e-2ae8-4ea4-b5ce-7a1af11c3743}</Project>
+      <Name>UiServices.Record</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

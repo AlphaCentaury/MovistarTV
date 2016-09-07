@@ -1,12 +1,12 @@
-﻿using Project.IpTv.UiServices.Configuration;
-using Project.IpTv.UiServices.Configuration.Schema2014.Logos;
+﻿using IpTviewr.UiServices.Configuration;
+using IpTviewr.UiServices.Configuration.Schema2014.Logos;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
 
-namespace Project.IpTv.Internal.Tools.ChannelLogos
+namespace IpTviewr.Internal.Tools.ChannelLogos
 {
     sealed class ConsistencyCheckMissingLogoFiles : ConsistencyCheck
     {

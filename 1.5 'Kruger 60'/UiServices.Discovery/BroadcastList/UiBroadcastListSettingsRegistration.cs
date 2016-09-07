@@ -1,11 +1,11 @@
-﻿using Project.IpTv.UiServices.Configuration;
+﻿using IpTviewr.UiServices.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 
-namespace Project.IpTv.UiServices.Discovery.BroadcastList
+namespace IpTviewr.UiServices.Discovery.BroadcastList
 {
     public class UiBroadcastListSettingsRegistration: IConfigurationItemRegistration
     {

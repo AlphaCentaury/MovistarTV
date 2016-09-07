@@ -1,7 +1,7 @@
 ﻿// Copyright (C) 2014-2016, Codeplex/GitHub user AlphaCentaury
 // All rights reserved, except those granted by the governing license of this software. See 'license.txt' file in the project root for complete license information.
 
-namespace Project.IpTv.Internal.Tools.GuiTools
+namespace IpTviewr.Internal.Tools.GuiTools
 {
     partial class LaunchForm
     {
@@ -32,15 +32,17 @@ namespace Project.IpTv.Internal.Tools.GuiTools
         private void InitializeComponent()
         {
             this.groupBoxTools = new System.Windows.Forms.GroupBox();
+            this.radioDvbStpExplorer = new System.Windows.Forms.RadioButton();
+            this.radioOpchExplorer = new System.Windows.Forms.RadioButton();
             this.radioMulticastExplorer = new System.Windows.Forms.RadioButton();
             this.radioSimpleDownload = new System.Windows.Forms.RadioButton();
             this.buttonExecute = new System.Windows.Forms.Button();
-            this.radioOpchExplorer = new System.Windows.Forms.RadioButton();
             this.groupBoxTools.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBoxTools
             // 
+            this.groupBoxTools.Controls.Add(this.radioDvbStpExplorer);
             this.groupBoxTools.Controls.Add(this.radioOpchExplorer);
             this.groupBoxTools.Controls.Add(this.radioMulticastExplorer);
             this.groupBoxTools.Controls.Add(this.radioSimpleDownload);
@@ -51,13 +53,35 @@ namespace Project.IpTv.Internal.Tools.GuiTools
             this.groupBoxTools.TabStop = false;
             this.groupBoxTools.Text = "Select tool";
             // 
+            // radioDvbStpExplorer
+            // 
+            this.radioDvbStpExplorer.AutoSize = true;
+            this.radioDvbStpExplorer.Location = new System.Drawing.Point(6, 43);
+            this.radioDvbStpExplorer.Name = "radioDvbStpExplorer";
+            this.radioDvbStpExplorer.Size = new System.Drawing.Size(148, 17);
+            this.radioDvbStpExplorer.TabIndex = 1;
+            this.radioDvbStpExplorer.TabStop = true;
+            this.radioDvbStpExplorer.Text = "DVB-STP Stream Explorer";
+            this.radioDvbStpExplorer.UseVisualStyleBackColor = true;
+            // 
+            // radioOpchExplorer
+            // 
+            this.radioOpchExplorer.AutoSize = true;
+            this.radioOpchExplorer.Location = new System.Drawing.Point(6, 89);
+            this.radioOpchExplorer.Name = "radioOpchExplorer";
+            this.radioOpchExplorer.Size = new System.Drawing.Size(132, 17);
+            this.radioOpchExplorer.TabIndex = 3;
+            this.radioOpchExplorer.TabStop = true;
+            this.radioOpchExplorer.Text = "OPCH Stream Explorer";
+            this.radioOpchExplorer.UseVisualStyleBackColor = true;
+            // 
             // radioMulticastExplorer
             // 
             this.radioMulticastExplorer.AutoSize = true;
-            this.radioMulticastExplorer.Location = new System.Drawing.Point(6, 42);
+            this.radioMulticastExplorer.Location = new System.Drawing.Point(6, 66);
             this.radioMulticastExplorer.Name = "radioMulticastExplorer";
             this.radioMulticastExplorer.Size = new System.Drawing.Size(144, 17);
-            this.radioMulticastExplorer.TabIndex = 1;
+            this.radioMulticastExplorer.TabIndex = 2;
             this.radioMulticastExplorer.TabStop = true;
             this.radioMulticastExplorer.Text = "Multicast Stream Explorer";
             this.radioMulticastExplorer.UseVisualStyleBackColor = true;
@@ -83,17 +107,6 @@ namespace Project.IpTv.Internal.Tools.GuiTools
             this.buttonExecute.UseVisualStyleBackColor = true;
             this.buttonExecute.Click += new System.EventHandler(this.buttonExecute_Click);
             // 
-            // radioOpchExplorer
-            // 
-            this.radioOpchExplorer.AutoSize = true;
-            this.radioOpchExplorer.Location = new System.Drawing.Point(6, 65);
-            this.radioOpchExplorer.Name = "radioOpchExplorer";
-            this.radioOpchExplorer.Size = new System.Drawing.Size(132, 17);
-            this.radioOpchExplorer.TabIndex = 2;
-            this.radioOpchExplorer.TabStop = true;
-            this.radioOpchExplorer.Text = "OPCH Stream Explorer";
-            this.radioOpchExplorer.UseVisualStyleBackColor = true;
-            // 
             // LaunchForm
             // 
             this.AcceptButton = this.buttonExecute;
@@ -104,7 +117,7 @@ namespace Project.IpTv.Internal.Tools.GuiTools
             this.Controls.Add(this.groupBoxTools);
             this.Name = "LaunchForm";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;
-            this.Text = "LaunchForm";
+            this.Text = "Select tool - GuiTools";
             this.groupBoxTools.ResumeLayout(false);
             this.groupBoxTools.PerformLayout();
             this.ResumeLayout(false);
@@ -118,5 +131,6 @@ namespace Project.IpTv.Internal.Tools.GuiTools
         private System.Windows.Forms.RadioButton radioSimpleDownload;
         private System.Windows.Forms.RadioButton radioMulticastExplorer;
         private System.Windows.Forms.RadioButton radioOpchExplorer;
+        private System.Windows.Forms.RadioButton radioDvbStpExplorer;
     }
 }

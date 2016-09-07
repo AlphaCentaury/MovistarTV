@@ -1,4 +1,4 @@
-﻿using Project.IpTv.UiServices.Configuration;
+﻿using IpTviewr.UiServices.Configuration;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace Project.IpTv.Internal.Tools.ChannelLogos
+namespace IpTviewr.Internal.Tools.ChannelLogos
 {
     public partial class FormStart : Form
     {

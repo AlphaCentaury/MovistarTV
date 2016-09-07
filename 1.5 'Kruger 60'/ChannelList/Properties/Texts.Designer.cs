@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Project.IpTv.ChannelList.Properties {
+namespace IpTviewr.ChannelList.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace Project.IpTv.ChannelList.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Project.IpTv.ChannelList.Properties.Texts", typeof(Texts).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("IpTviewr.ChannelList.Properties.Texts", typeof(Texts).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,7 +61,7 @@ namespace Project.IpTv.ChannelList.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to movistar+ channels - IPTViewr (1.5“Kruger 60” Alpha 4).
+        ///   Looks up a localized string similar to movistar+ channels - IPTViewr (1.5“Kruger 60” Beta 1).
         /// </summary>
         internal static string AppCaption {
             get {
@@ -88,7 +88,7 @@ namespace Project.IpTv.ChannelList.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 1.5 “Kruger 60” Alpha 4.
+        ///   Looks up a localized string similar to 1.5 “Kruger 60” Beta 1.
         /// </summary>
         internal static string AppVersion {
             get {
@@ -368,13 +368,13 @@ namespace Project.IpTv.ChannelList.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to *****************************************************************************
-        ///IPTViewr: IPTV Decoder for movistar+ version 1.5 “Kruger 60” Alpha 4
+        ///IPTViewr: Virtual Decoder for movistar+ version 1.5 “Kruger 60” Beta 1
         ///*****************************************************************************
         ///
         ///Copyright (C) 2014-2016, Codeplex user AlphaCentaury and its contributors
         ///=========================================================================
         ///
-        ///THIS SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, express or implied, including but not limited to the warranties o [rest of string was truncated]&quot;;.
+        ///THIS SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, express or implied, including but not limited to the warranties [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string SolutionLicense {
             get {
@@ -386,9 +386,9 @@ namespace Project.IpTv.ChannelList.Properties {
         ///   Looks up a localized string similar to {\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang3082{\fonttbl{\f0\fnil\fcharset0 Segoe UI;}{\f1\fnil\fcharset2 Symbol;}}
         ///{\colortbl ;\red0\green0\blue255;}
         ///{\*\generator Riched20 10.0.10586}\viewkind4\uc1 
-        ///\pard\nowidctlpar\sa200\sl276\slmult1\qj\b\f0\fs22\lang10 IPTViewr: IPTV Decoder for movistar+ version 1.5 \ldblquote Kruger 60\rdblquote  Alpha 4\ul\fs18\par
+        ///\pard\nowidctlpar\sa200\sl276\slmult1\qj\b\f0\fs22\lang10 IPTViewr: Virtual Decoder for movistar+ version 1.5 \ldblquote Kruger 60\rdblquote  Beta 1\ul\fs18\par
         ///\fs20 Copyright (C) 2014-2016, Codeplex user AlphaCentaury and its contributors.\ulnone\i\fs18\par
-        ///THIS SOFTWARE IS \ul PROVIDED \ldblquote AS [rest of string was truncated]&quot;;.
+        ///THIS SOFTWARE IS \ul PROVIDED \ldblquote  [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string SolutionLicenseRtf {
             get {

@@ -1,7 +1,7 @@
-﻿// Copyright (C) 2014-2016, Codeplex user AlphaCentaury
+﻿// Copyright (C) 2014-2016, Codeplex/GitHub user AlphaCentaury
 // All rights reserved, except those granted by the governing license of this software. See 'license.txt' file in the project root for complete license information.
 
-namespace Project.IpTv.UiServices.EPG
+namespace IpTviewr.UiServices.EPG
 {
     partial class EpgChannelPrograms
     {
@@ -43,7 +43,7 @@ namespace Project.IpTv.UiServices.EPG
             this.buttonRecordChannel = new System.Windows.Forms.Button();
             this.buttonOk = new System.Windows.Forms.Button();
             this.pictureChannelLogo = new System.Windows.Forms.PictureBox();
-            this.epgEventDetails = new Project.IpTv.UiServices.EPG.EpgEventMiniBar();
+            this.EpgProgramDetails = new IpTviewr.UiServices.EPG.EpgProgramMiniBar();
             ((System.ComponentModel.ISupportInitialize)(this.pictureChannelLogo)).BeginInit();
             this.SuspendLayout();
             // 
@@ -117,7 +117,7 @@ namespace Project.IpTv.UiServices.EPG
             // 
             this.buttonDisplayChannel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonDisplayChannel.Enabled = false;
-            this.buttonDisplayChannel.Image = global::Project.IpTv.UiServices.EPG.CommonUiResources.Action_Play_LG_16x16;
+            this.buttonDisplayChannel.Image = global::IpTviewr.UiServices.EPG.Properties.CommonUiResources.Action_Play_LG_16x16;
             this.buttonDisplayChannel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.buttonDisplayChannel.Location = new System.Drawing.Point(141, 325);
             this.buttonDisplayChannel.Name = "buttonDisplayChannel";
@@ -133,7 +133,7 @@ namespace Project.IpTv.UiServices.EPG
             // 
             this.buttonRecordChannel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonRecordChannel.Enabled = false;
-            this.buttonRecordChannel.Image = global::Project.IpTv.UiServices.EPG.CommonUiResources.Action_Record_16x16;
+            this.buttonRecordChannel.Image = global::IpTviewr.UiServices.EPG.Properties.CommonUiResources.Action_Record_16x16;
             this.buttonRecordChannel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.buttonRecordChannel.Location = new System.Drawing.Point(247, 325);
             this.buttonRecordChannel.Name = "buttonRecordChannel";
@@ -149,7 +149,7 @@ namespace Project.IpTv.UiServices.EPG
             // 
             this.buttonOk.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonOk.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.buttonOk.Image = global::Project.IpTv.UiServices.EPG.CommonUiResources.Action_Ok_16x16;
+            this.buttonOk.Image = global::IpTviewr.UiServices.EPG.Properties.CommonUiResources.Action_Ok_16x16;
             this.buttonOk.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.buttonOk.Location = new System.Drawing.Point(372, 325);
             this.buttonOk.Name = "buttonOk";
@@ -170,19 +170,19 @@ namespace Project.IpTv.UiServices.EPG
             this.pictureChannelLogo.TabIndex = 18;
             this.pictureChannelLogo.TabStop = false;
             // 
-            // epgEventDetails
+            // EpgProgramDetails
             // 
-            this.epgEventDetails.Location = new System.Drawing.Point(12, 229);
-            this.epgEventDetails.Name = "epgEventDetails";
-            this.epgEventDetails.Size = new System.Drawing.Size(460, 90);
-            this.epgEventDetails.TabIndex = 30;
+            this.EpgProgramDetails.Location = new System.Drawing.Point(12, 229);
+            this.EpgProgramDetails.Name = "EpgProgramDetails";
+            this.EpgProgramDetails.Size = new System.Drawing.Size(460, 90);
+            this.EpgProgramDetails.TabIndex = 30;
             // 
             // EpgChannelPrograms
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(484, 362);
-            this.Controls.Add(this.epgEventDetails);
+            this.Controls.Add(this.EpgProgramDetails);
             this.Controls.Add(this.buttonRecordChannel);
             this.Controls.Add(this.buttonDisplayChannel);
             this.Controls.Add(this.buttonOk);
@@ -213,6 +213,6 @@ namespace Project.IpTv.UiServices.EPG
         private System.Windows.Forms.Button buttonOk;
         private System.Windows.Forms.Button buttonRecordChannel;
         private System.Windows.Forms.Button buttonDisplayChannel;
-        private EpgEventMiniBar epgEventDetails;
+        private EpgProgramMiniBar EpgProgramDetails;
     } // class EpgChannelPrograms
 } // namespace

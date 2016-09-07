@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Project.IpTv.UiServices.Configuration.Logos
+namespace IpTviewr.UiServices.Configuration.Logos
 {
     public class ServiceLogo : BaseLogo
     {

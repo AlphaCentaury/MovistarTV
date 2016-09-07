@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Xml.Serialization;
 
-namespace Project.IpTv.Services.Record.Serialization
+namespace IpTviewr.Services.Record.Serialization
 {
     [Serializable]
     [XmlType(Namespace = RecordTask.XmlNamespace)]
@@ -45,13 +45,13 @@ namespace Project.IpTv.Services.Record.Serialization
 
         public static RecordAction CreateWithDefaultValues()
         {
-            RecordAction retry;
+            RecordAction action;
 
-            retry = new RecordAction()
+            action = new RecordAction()
             {
             };
 
-            return retry;
+            return action;
         } // CreateWithDefaultValues
     } // class RecordAction
 } // namespace

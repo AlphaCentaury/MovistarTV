@@ -1,4 +1,4 @@
-﻿// Copyright (C) 2014-2016, Codeplex user AlphaCentaury
+﻿// Copyright (C) 2014-2016, Codeplex/GitHub user AlphaCentaury
 // All rights reserved, except those granted by the governing license of this software. See 'license.txt' file in the project root for complete license information.
 
 using System.Reflection;
@@ -9,7 +9,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute parameters to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("UI Services: EPG")]
-[assembly: AssemblyDescription("Project.IpTv.UiServices.EPG")]
+[assembly: AssemblyDescription("IpTviewr.UiServices.EPG")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCopyright(SolutionVersion.DefaultCopyright)]
 [assembly: AssemblyCulture("")]

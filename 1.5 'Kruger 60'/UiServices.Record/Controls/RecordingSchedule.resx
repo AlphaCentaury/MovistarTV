@@ -112,19 +112,19 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="dateTimeStartTime.Location" type="System.Drawing.Point, System.Drawing">
     <value>350, 0</value>
   </data>
   <data name="dateTimeStartTime.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 20</value>
   </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="dateTimeStartTime.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
   </data>
@@ -132,7 +132,7 @@
     <value>dateTimeStartTime</value>
   </data>
   <data name="&gt;&gt;dateTimeStartTime.Type" xml:space="preserve">
-    <value>System.Windows.Forms.DateTimePicker, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.DateTimePicker, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;dateTimeStartTime.Parent" xml:space="preserve">
     <value>$this</value>
@@ -153,7 +153,7 @@
     <value>dateTimeStartDate</value>
   </data>
   <data name="&gt;&gt;dateTimeStartDate.Type" xml:space="preserve">
-    <value>System.Windows.Forms.DateTimePicker, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.DateTimePicker, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;dateTimeStartDate.Parent" xml:space="preserve">
     <value>$this</value>
@@ -167,7 +167,7 @@
   <data name="radioMonthly.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="radioMonthly.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
@@ -183,11 +183,14 @@
   <data name="radioMonthly.Text" xml:space="preserve">
     <value>Monthly</value>
   </data>
+  <data name="radioMonthly.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
   <data name="&gt;&gt;radioMonthly.Name" xml:space="preserve">
     <value>radioMonthly</value>
   </data>
   <data name="&gt;&gt;radioMonthly.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;radioMonthly.Parent" xml:space="preserve">
     <value>$this</value>
@@ -217,7 +220,7 @@
     <value>radioWeekly</value>
   </data>
   <data name="&gt;&gt;radioWeekly.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;radioWeekly.Parent" xml:space="preserve">
     <value>$this</value>
@@ -247,7 +250,7 @@
     <value>radioDaily</value>
   </data>
   <data name="&gt;&gt;radioDaily.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;radioDaily.Parent" xml:space="preserve">
     <value>$this</value>
@@ -277,7 +280,7 @@
     <value>radioOneTime</value>
   </data>
   <data name="&gt;&gt;radioOneTime.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;radioOneTime.Parent" xml:space="preserve">
     <value>$this</value>
@@ -307,7 +310,7 @@
     <value>radioRightNow</value>
   </data>
   <data name="&gt;&gt;radioRightNow.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;radioRightNow.Parent" xml:space="preserve">
     <value>$this</value>
@@ -328,7 +331,7 @@
     <value>panelPlaceholder</value>
   </data>
   <data name="&gt;&gt;panelPlaceholder.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;panelPlaceholder.Parent" xml:space="preserve">
     <value>$this</value>
@@ -349,7 +352,7 @@
     <value>fragmentDaily</value>
   </data>
   <data name="&gt;&gt;fragmentDaily.Type" xml:space="preserve">
-    <value>Project.IpTv.UiServices.Controls.RecordingDailyScheduleFragment, DvbIpTv.UiServices.Controls, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>IpTviewr.UiServices.Record.Controls.RecordingDailyScheduleFragment, UiServices.Record, Version=1.5.1010.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;fragmentDaily.Parent" xml:space="preserve">
     <value>$this</value>
@@ -370,7 +373,7 @@
     <value>fragmentOneTime</value>
   </data>
   <data name="&gt;&gt;fragmentOneTime.Type" xml:space="preserve">
-    <value>Project.IpTv.UiServices.Controls.RecordingOneTimeScheduleFragment, DvbIpTv.UiServices.Controls, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>IpTviewr.UiServices.Record.Controls.RecordingOneTimeScheduleFragment, UiServices.Record, Version=1.5.1010.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;fragmentOneTime.Parent" xml:space="preserve">
     <value>$this</value>
@@ -394,7 +397,7 @@
     <value>fragmentMonthly</value>
   </data>
   <data name="&gt;&gt;fragmentMonthly.Type" xml:space="preserve">
-    <value>Project.IpTv.UiServices.Controls.RecordingMonthlyScheduleFragment, DvbIpTv.UiServices.Controls, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>IpTviewr.UiServices.Record.Controls.RecordingMonthlyScheduleFragment, UiServices.Record, Version=1.5.1010.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;fragmentMonthly.Parent" xml:space="preserve">
     <value>$this</value>
@@ -415,7 +418,7 @@
     <value>fragmentRightNow</value>
   </data>
   <data name="&gt;&gt;fragmentRightNow.Type" xml:space="preserve">
-    <value>Project.IpTv.UiServices.Controls.RecordingRightNowScheduleFragment, DvbIpTv.UiServices.Controls, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>IpTviewr.UiServices.Record.Controls.RecordingRightNowScheduleFragment, UiServices.Record, Version=1.5.1010.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;fragmentRightNow.Parent" xml:space="preserve">
     <value>$this</value>
@@ -436,7 +439,7 @@
     <value>fragmentWeekly</value>
   </data>
   <data name="&gt;&gt;fragmentWeekly.Type" xml:space="preserve">
-    <value>Project.IpTv.UiServices.Controls.RecordingWeeklyScheduleFragment, DvbIpTv.UiServices.Controls, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>IpTviewr.UiServices.Record.Controls.RecordingWeeklyScheduleFragment, UiServices.Record, Version=1.5.1010.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;fragmentWeekly.Parent" xml:space="preserve">
     <value>$this</value>
@@ -444,7 +447,10 @@
   <data name="&gt;&gt;fragmentWeekly.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <metadata name="timerUpdateRightNow.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
@@ -453,10 +459,16 @@
   <data name="$this.Size" type="System.Drawing.Size, System.Drawing">
     <value>425, 175</value>
   </data>
+  <data name="&gt;&gt;timerUpdateRightNow.Name" xml:space="preserve">
+    <value>timerUpdateRightNow</value>
+  </data>
+  <data name="&gt;&gt;timerUpdateRightNow.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Timer, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>RecordingSchedule</value>
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>System.Windows.Forms.UserControl, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.UserControl, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>

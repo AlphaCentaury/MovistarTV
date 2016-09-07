@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Project.IpTv.Internal.Tools.GuiTools.Properties {
+namespace IpTviewr.Internal.Tools.GuiTools.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace Project.IpTv.Internal.Tools.GuiTools.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Project.IpTv.Internal.Tools.GuiTools.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("IpTviewr.Internal.Tools.GuiTools.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -77,6 +77,15 @@ namespace Project.IpTv.Internal.Tools.GuiTools.Properties {
             get {
                 object obj = ResourceManager.GetObject("Action_Play_LG_16x16", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to IPTViewr\{0} {1}\Data.
+        /// </summary>
+        internal static string DefaultDumpFolder {
+            get {
+                return ResourceManager.GetString("DefaultDumpFolder", resourceCulture);
             }
         }
         

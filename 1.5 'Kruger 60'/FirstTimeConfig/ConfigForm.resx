@@ -112,25 +112,22 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="selectFolder.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
-  <metadata name="openFile.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <metadata name="openFile.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>134, 17</value>
   </metadata>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="labelStepTitle.Font" type="System.Drawing.Font, System.Drawing">
     <value>Segoe UI Semibold, 10pt, style=Bold</value>
   </data>
   <data name="labelStepTitle.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>TopLeft</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="labelStepTitle.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
@@ -143,7 +140,7 @@
   <data name="labelStepTitle.Size" type="System.Drawing.Size, System.Drawing">
     <value>493, 60</value>
   </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="labelStepTitle.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
   </data>
@@ -157,7 +154,7 @@
     <value>labelStepTitle</value>
   </data>
   <data name="&gt;&gt;labelStepTitle.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;labelStepTitle.Parent" xml:space="preserve">
     <value>$this</value>
@@ -190,7 +187,7 @@
     <value>buttonPreviousPage</value>
   </data>
   <data name="&gt;&gt;buttonPreviousPage.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;buttonPreviousPage.Parent" xml:space="preserve">
     <value>panelButtons</value>
@@ -223,7 +220,7 @@
     <value>buttonNextPage</value>
   </data>
   <data name="&gt;&gt;buttonNextPage.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;buttonNextPage.Parent" xml:space="preserve">
     <value>panelButtons</value>
@@ -256,7 +253,7 @@
     <value>buttonCancel</value>
   </data>
   <data name="&gt;&gt;buttonCancel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;buttonCancel.Parent" xml:space="preserve">
     <value>panelButtons</value>
@@ -277,7 +274,7 @@
     <value>panelButtons</value>
   </data>
   <data name="&gt;&gt;panelButtons.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;panelButtons.Parent" xml:space="preserve">
     <value>$this</value>
@@ -285,6 +282,9 @@
   <data name="&gt;&gt;panelButtons.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <metadata name="selectFolder.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
   <data name="wizardControl.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
   </data>
@@ -313,7 +313,7 @@
     <value>checkReadmeAck</value>
   </data>
   <data name="&gt;&gt;checkReadmeAck.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;checkReadmeAck.Parent" xml:space="preserve">
     <value>wizardPageReadme</value>
@@ -343,7 +343,7 @@
     <value>richTextReadme</value>
   </data>
   <data name="&gt;&gt;richTextReadme.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RichTextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.RichTextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;richTextReadme.Parent" xml:space="preserve">
     <value>wizardPageReadme</value>
@@ -370,7 +370,7 @@
     <value>pictureIconReadme</value>
   </data>
   <data name="&gt;&gt;pictureIconReadme.Type" xml:space="preserve">
-    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;pictureIconReadme.Parent" xml:space="preserve">
     <value>wizardPageReadme</value>
@@ -403,7 +403,7 @@
     <value>labelReadmeWarning</value>
   </data>
   <data name="&gt;&gt;labelReadmeWarning.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;labelReadmeWarning.Parent" xml:space="preserve">
     <value>wizardPageReadme</value>
@@ -433,7 +433,7 @@
     <value>wizardPageReadme</value>
   </data>
   <data name="&gt;&gt;wizardPageReadme.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;wizardPageReadme.Parent" xml:space="preserve">
     <value>wizardControl</value>
@@ -466,7 +466,7 @@
     <value>buttonTestVlc</value>
   </data>
   <data name="&gt;&gt;buttonTestVlc.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;buttonTestVlc.Parent" xml:space="preserve">
     <value>groupVlc</value>
@@ -490,7 +490,7 @@
     <value>labelVlcInstallCheckResult</value>
   </data>
   <data name="&gt;&gt;labelVlcInstallCheckResult.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;labelVlcInstallCheckResult.Parent" xml:space="preserve">
     <value>groupVlc</value>
@@ -523,7 +523,7 @@
     <value>buttonFindVlc</value>
   </data>
   <data name="&gt;&gt;buttonFindVlc.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;buttonFindVlc.Parent" xml:space="preserve">
     <value>groupVlc</value>
@@ -544,7 +544,7 @@
     <value>textBoxVlc</value>
   </data>
   <data name="&gt;&gt;textBoxVlc.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;textBoxVlc.Parent" xml:space="preserve">
     <value>groupVlc</value>
@@ -574,7 +574,7 @@
     <value>labelVlcPath</value>
   </data>
   <data name="&gt;&gt;labelVlcPath.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;labelVlcPath.Parent" xml:space="preserve">
     <value>groupVlc</value>
@@ -601,7 +601,7 @@
     <value>pictureBoxVlcOk</value>
   </data>
   <data name="&gt;&gt;pictureBoxVlcOk.Type" xml:space="preserve">
-    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;pictureBoxVlcOk.Parent" xml:space="preserve">
     <value>groupVlc</value>
@@ -634,7 +634,7 @@
     <value>buttonVerifyVlc</value>
   </data>
   <data name="&gt;&gt;buttonVerifyVlc.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;buttonVerifyVlc.Parent" xml:space="preserve">
     <value>groupVlc</value>
@@ -667,7 +667,7 @@
     <value>linkLabelPrerequisiteVlc</value>
   </data>
   <data name="&gt;&gt;linkLabelPrerequisiteVlc.Type" xml:space="preserve">
-    <value>System.Windows.Forms.LinkLabel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.LinkLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;linkLabelPrerequisiteVlc.Parent" xml:space="preserve">
     <value>groupVlc</value>
@@ -703,7 +703,7 @@
     <value>labelVlc</value>
   </data>
   <data name="&gt;&gt;labelVlc.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;labelVlc.Parent" xml:space="preserve">
     <value>groupVlc</value>
@@ -727,7 +727,7 @@
     <value>groupVlc</value>
   </data>
   <data name="&gt;&gt;groupVlc.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;groupVlc.Parent" xml:space="preserve">
     <value>wizardPagePrerequisites</value>
@@ -757,7 +757,7 @@
     <value>linkLabelSetupSqlCe</value>
   </data>
   <data name="&gt;&gt;linkLabelSetupSqlCe.Type" xml:space="preserve">
-    <value>System.Windows.Forms.LinkLabel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.LinkLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;linkLabelSetupSqlCe.Parent" xml:space="preserve">
     <value>groupPrerequisites</value>
@@ -787,7 +787,7 @@
     <value>linkLabelSetupEmb</value>
   </data>
   <data name="&gt;&gt;linkLabelSetupEmb.Type" xml:space="preserve">
-    <value>System.Windows.Forms.LinkLabel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.LinkLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;linkLabelSetupEmb.Parent" xml:space="preserve">
     <value>groupPrerequisites</value>
@@ -814,7 +814,7 @@
     <value>pictureBoxSqlCeOk</value>
   </data>
   <data name="&gt;&gt;pictureBoxSqlCeOk.Type" xml:space="preserve">
-    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;pictureBoxSqlCeOk.Parent" xml:space="preserve">
     <value>groupPrerequisites</value>
@@ -847,7 +847,7 @@
     <value>buttonVerifySqlCe</value>
   </data>
   <data name="&gt;&gt;buttonVerifySqlCe.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;buttonVerifySqlCe.Parent" xml:space="preserve">
     <value>groupPrerequisites</value>
@@ -880,7 +880,7 @@
     <value>linkLabelPrerequisiteSqlCe</value>
   </data>
   <data name="&gt;&gt;linkLabelPrerequisiteSqlCe.Type" xml:space="preserve">
-    <value>System.Windows.Forms.LinkLabel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.LinkLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;linkLabelPrerequisiteSqlCe.Parent" xml:space="preserve">
     <value>groupPrerequisites</value>
@@ -916,7 +916,7 @@
     <value>labelSqlCe</value>
   </data>
   <data name="&gt;&gt;labelSqlCe.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;labelSqlCe.Parent" xml:space="preserve">
     <value>groupPrerequisites</value>
@@ -943,7 +943,7 @@
     <value>pictureBoxEmbOk</value>
   </data>
   <data name="&gt;&gt;pictureBoxEmbOk.Type" xml:space="preserve">
-    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;pictureBoxEmbOk.Parent" xml:space="preserve">
     <value>groupPrerequisites</value>
@@ -976,7 +976,7 @@
     <value>buttonVerifyEmb</value>
   </data>
   <data name="&gt;&gt;buttonVerifyEmb.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;buttonVerifyEmb.Parent" xml:space="preserve">
     <value>groupPrerequisites</value>
@@ -1009,7 +1009,7 @@
     <value>linkLabelPrerequisiteEmb</value>
   </data>
   <data name="&gt;&gt;linkLabelPrerequisiteEmb.Type" xml:space="preserve">
-    <value>System.Windows.Forms.LinkLabel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.LinkLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;linkLabelPrerequisiteEmb.Parent" xml:space="preserve">
     <value>groupPrerequisites</value>
@@ -1045,7 +1045,7 @@
     <value>labelEmb</value>
   </data>
   <data name="&gt;&gt;labelEmb.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;labelEmb.Parent" xml:space="preserve">
     <value>groupPrerequisites</value>
@@ -1069,7 +1069,7 @@
     <value>groupPrerequisites</value>
   </data>
   <data name="&gt;&gt;groupPrerequisites.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;groupPrerequisites.Parent" xml:space="preserve">
     <value>wizardPagePrerequisites</value>
@@ -1099,7 +1099,7 @@
     <value>wizardPagePrerequisites</value>
   </data>
   <data name="&gt;&gt;wizardPagePrerequisites.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;wizardPagePrerequisites.Parent" xml:space="preserve">
     <value>wizardControl</value>
@@ -1129,7 +1129,7 @@
     <value>checkAnalyticsExceptions</value>
   </data>
   <data name="&gt;&gt;checkAnalyticsExceptions.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;checkAnalyticsExceptions.Parent" xml:space="preserve">
     <value>groupAnalytics</value>
@@ -1162,7 +1162,7 @@
     <value>linkAnalyticsHelp</value>
   </data>
   <data name="&gt;&gt;linkAnalyticsHelp.Type" xml:space="preserve">
-    <value>System.Windows.Forms.LinkLabel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.LinkLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;linkAnalyticsHelp.Parent" xml:space="preserve">
     <value>groupAnalytics</value>
@@ -1192,7 +1192,7 @@
     <value>checkAnalyticsUsage</value>
   </data>
   <data name="&gt;&gt;checkAnalyticsUsage.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;checkAnalyticsUsage.Parent" xml:space="preserve">
     <value>groupAnalytics</value>
@@ -1222,7 +1222,7 @@
     <value>checkEnableAnalytics</value>
   </data>
   <data name="&gt;&gt;checkEnableAnalytics.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;checkEnableAnalytics.Parent" xml:space="preserve">
     <value>groupAnalytics</value>
@@ -1246,7 +1246,7 @@
     <value>groupAnalytics</value>
   </data>
   <data name="&gt;&gt;groupAnalytics.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;groupAnalytics.Parent" xml:space="preserve">
     <value>wizardPageFirewall</value>
@@ -1276,7 +1276,7 @@
     <value>checkFirewallManual</value>
   </data>
   <data name="&gt;&gt;checkFirewallManual.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;checkFirewallManual.Parent" xml:space="preserve">
     <value>groupFirewall</value>
@@ -1309,7 +1309,7 @@
     <value>buttonFirewall</value>
   </data>
   <data name="&gt;&gt;buttonFirewall.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;buttonFirewall.Parent" xml:space="preserve">
     <value>groupFirewall</value>
@@ -1336,7 +1336,7 @@
     <value>labelFirewallWarning</value>
   </data>
   <data name="&gt;&gt;labelFirewallWarning.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;labelFirewallWarning.Parent" xml:space="preserve">
     <value>groupFirewall</value>
@@ -1366,7 +1366,7 @@
     <value>checkBoxFirewallVlc</value>
   </data>
   <data name="&gt;&gt;checkBoxFirewallVlc.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;checkBoxFirewallVlc.Parent" xml:space="preserve">
     <value>groupFirewall</value>
@@ -1396,7 +1396,7 @@
     <value>checkBoxFirewallDecoder</value>
   </data>
   <data name="&gt;&gt;checkBoxFirewallDecoder.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;checkBoxFirewallDecoder.Parent" xml:space="preserve">
     <value>groupFirewall</value>
@@ -1420,7 +1420,7 @@
     <value>groupFirewall</value>
   </data>
   <data name="&gt;&gt;groupFirewall.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;groupFirewall.Parent" xml:space="preserve">
     <value>wizardPageFirewall</value>
@@ -1450,7 +1450,7 @@
     <value>wizardPageFirewall</value>
   </data>
   <data name="&gt;&gt;wizardPageFirewall.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;wizardPageFirewall.Parent" xml:space="preserve">
     <value>wizardControl</value>
@@ -1480,7 +1480,7 @@
     <value>radioChannelSDPriority</value>
   </data>
   <data name="&gt;&gt;radioChannelSDPriority.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;radioChannelSDPriority.Parent" xml:space="preserve">
     <value>groupBoxChannelNumbers</value>
@@ -1510,7 +1510,7 @@
     <value>radioChannelHDPriority</value>
   </data>
   <data name="&gt;&gt;radioChannelHDPriority.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;radioChannelHDPriority.Parent" xml:space="preserve">
     <value>groupBoxChannelNumbers</value>
@@ -1539,7 +1539,7 @@ Which channels should appear first?</value>
     <value>labelChannelAssignmentExplanation</value>
   </data>
   <data name="&gt;&gt;labelChannelAssignmentExplanation.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;labelChannelAssignmentExplanation.Parent" xml:space="preserve">
     <value>groupBoxChannelNumbers</value>
@@ -1563,7 +1563,7 @@ Which channels should appear first?</value>
     <value>groupBoxChannelNumbers</value>
   </data>
   <data name="&gt;&gt;groupBoxChannelNumbers.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;groupBoxChannelNumbers.Parent" xml:space="preserve">
     <value>wizardPageBasic</value>
@@ -1571,59 +1571,53 @@ Which channels should appear first?</value>
   <data name="&gt;&gt;groupBoxChannelNumbers.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="checkEpgAutoUpdate.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="checkEpgAutoUpdate.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+  <data name="pictureBoxEpgWarning.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="checkEpgAutoUpdate.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 65</value>
+  <data name="pictureBoxEpgWarning.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 39</value>
   </data>
-  <data name="checkEpgAutoUpdate.Size" type="System.Drawing.Size, System.Drawing">
-    <value>364, 17</value>
+  <data name="pictureBoxEpgWarning.Size" type="System.Drawing.Size, System.Drawing">
+    <value>16, 16</value>
   </data>
-  <data name="checkEpgAutoUpdate.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
+  <data name="pictureBoxEpgWarning.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms">
+    <value>Zoom</value>
   </data>
-  <data name="checkEpgAutoUpdate.Text" xml:space="preserve">
-    <value>Auto-update EPG data if older than 24 hours (at the next app execution)</value>
+  <data name="pictureBoxEpgWarning.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
   </data>
-  <data name="&gt;&gt;checkEpgAutoUpdate.Name" xml:space="preserve">
-    <value>checkEpgAutoUpdate</value>
+  <data name="&gt;&gt;pictureBoxEpgWarning.Name" xml:space="preserve">
+    <value>pictureBoxEpgWarning</value>
   </data>
-  <data name="&gt;&gt;checkEpgAutoUpdate.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;pictureBoxEpgWarning.Type" xml:space="preserve">
+    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;checkEpgAutoUpdate.Parent" xml:space="preserve">
+  <data name="&gt;&gt;pictureBoxEpgWarning.Parent" xml:space="preserve">
     <value>groupEPG</value>
   </data>
-  <data name="&gt;&gt;checkEpgAutoUpdate.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;pictureBoxEpgWarning.ZOrder" xml:space="preserve">
     <value>0</value>
-  </data>
-  <data name="labelEpgWarning.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
   </data>
   <data name="labelEpgWarning.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="labelEpgWarning.Location" type="System.Drawing.Point, System.Drawing">
-    <value>24, 39</value>
+    <value>25, 39</value>
   </data>
   <data name="labelEpgWarning.Size" type="System.Drawing.Size, System.Drawing">
-    <value>404, 13</value>
+    <value>443, 43</value>
   </data>
   <data name="labelEpgWarning.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
   <data name="labelEpgWarning.Text" xml:space="preserve">
-    <value>Warning! Ony bare EPG functions are implemented and might crash from time to time</value>
+    <value>WARNING: The EPG functionality is still under development and has not been thoroughly tested. Some functions may fail or not work as expected.</value>
   </data>
   <data name="&gt;&gt;labelEpgWarning.Name" xml:space="preserve">
     <value>labelEpgWarning</value>
   </data>
   <data name="&gt;&gt;labelEpgWarning.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;labelEpgWarning.Parent" xml:space="preserve">
     <value>groupEPG</value>
@@ -1653,16 +1647,13 @@ Which channels should appear first?</value>
     <value>checkEpg</value>
   </data>
   <data name="&gt;&gt;checkEpg.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;checkEpg.Parent" xml:space="preserve">
     <value>groupEPG</value>
   </data>
   <data name="&gt;&gt;checkEpg.ZOrder" xml:space="preserve">
     <value>2</value>
-  </data>
-  <data name="groupEPG.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
   </data>
   <data name="groupEPG.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 6</value>
@@ -1680,7 +1671,7 @@ Which channels should appear first?</value>
     <value>groupEPG</value>
   </data>
   <data name="&gt;&gt;groupEPG.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;groupEPG.Parent" xml:space="preserve">
     <value>wizardPageBasic</value>
@@ -1710,7 +1701,7 @@ Which channels should appear first?</value>
     <value>wizardPageBasic</value>
   </data>
   <data name="&gt;&gt;wizardPageBasic.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;wizardPageBasic.Parent" xml:space="preserve">
     <value>wizardControl</value>
@@ -1743,7 +1734,7 @@ Which channels should appear first?</value>
     <value>labelCreatingConfig</value>
   </data>
   <data name="&gt;&gt;labelCreatingConfig.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;labelCreatingConfig.Parent" xml:space="preserve">
     <value>wizardPageRecordings</value>
@@ -1776,7 +1767,7 @@ Which channels should appear first?</value>
     <value>buttonConfig</value>
   </data>
   <data name="&gt;&gt;buttonConfig.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;buttonConfig.Parent" xml:space="preserve">
     <value>wizardPageRecordings</value>
@@ -1806,7 +1797,7 @@ Which channels should appear first?</value>
     <value>checkSaveSubfolder</value>
   </data>
   <data name="&gt;&gt;checkSaveSubfolder.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;checkSaveSubfolder.Parent" xml:space="preserve">
     <value>groupRecordConfig</value>
@@ -1830,7 +1821,7 @@ Which channels should appear first?</value>
     <value>textSaveSubFolder</value>
   </data>
   <data name="&gt;&gt;textSaveSubFolder.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;textSaveSubFolder.Parent" xml:space="preserve">
     <value>groupRecordConfig</value>
@@ -1860,7 +1851,7 @@ Which channels should appear first?</value>
     <value>labelSaveSubFolder</value>
   </data>
   <data name="&gt;&gt;labelSaveSubFolder.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;labelSaveSubFolder.Parent" xml:space="preserve">
     <value>groupRecordConfig</value>
@@ -1890,7 +1881,7 @@ Which channels should appear first?</value>
     <value>buttonBrowseSave</value>
   </data>
   <data name="&gt;&gt;buttonBrowseSave.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;buttonBrowseSave.Parent" xml:space="preserve">
     <value>groupRecordConfig</value>
@@ -1911,7 +1902,7 @@ Which channels should appear first?</value>
     <value>textBoxSave</value>
   </data>
   <data name="&gt;&gt;textBoxSave.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;textBoxSave.Parent" xml:space="preserve">
     <value>groupRecordConfig</value>
@@ -1941,7 +1932,7 @@ Which channels should appear first?</value>
     <value>labelSaveFolder</value>
   </data>
   <data name="&gt;&gt;labelSaveFolder.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;labelSaveFolder.Parent" xml:space="preserve">
     <value>groupRecordConfig</value>
@@ -1965,7 +1956,7 @@ Which channels should appear first?</value>
     <value>groupRecordConfig</value>
   </data>
   <data name="&gt;&gt;groupRecordConfig.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;groupRecordConfig.Parent" xml:space="preserve">
     <value>wizardPageRecordings</value>
@@ -1992,7 +1983,7 @@ Which channels should appear first?</value>
     <value>wizardPageRecordings</value>
   </data>
   <data name="&gt;&gt;wizardPageRecordings.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;wizardPageRecordings.Parent" xml:space="preserve">
     <value>wizardControl</value>
@@ -2013,7 +2004,7 @@ Which channels should appear first?</value>
     <value>wizardControl</value>
   </data>
   <data name="&gt;&gt;wizardControl.Type" xml:space="preserve">
-    <value>Project.IpTv.Tools.FirstTimeConfig.WizardTabControl, FirstTimeConfig, Version=1.5.40.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>IpTviewr.Tools.FirstTimeConfig.WizardTabControl, FirstTimeConfig, Version=1.5.1010.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;wizardControl.Parent" xml:space="preserve">
     <value>$this</value>
@@ -2021,7 +2012,7 @@ Which channels should appear first?</value>
   <data name="&gt;&gt;wizardControl.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
@@ -2030,28 +2021,31 @@ Which channels should appear first?</value>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
     <value>493, 359</value>
   </data>
+  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
     <value>CenterScreen</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>First-time configuration assistant</value>
   </data>
-  <data name="&gt;&gt;selectFolder.Name" xml:space="preserve">
-    <value>selectFolder</value>
-  </data>
-  <data name="&gt;&gt;selectFolder.Type" xml:space="preserve">
-    <value>Project.IpTv.UiServices.Common.Controls.SelectFolderDialog, UiServices.Common, Version=1.5.40.0, Culture=neutral, PublicKeyToken=null</value>
-  </data>
   <data name="&gt;&gt;openFile.Name" xml:space="preserve">
     <value>openFile</value>
   </data>
   <data name="&gt;&gt;openFile.Type" xml:space="preserve">
-    <value>System.Windows.Forms.OpenFileDialog, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.OpenFileDialog, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;selectFolder.Name" xml:space="preserve">
+    <value>selectFolder</value>
+  </data>
+  <data name="&gt;&gt;selectFolder.Type" xml:space="preserve">
+    <value>IpTviewr.UiServices.Common.Controls.SelectFolderDialog, UiServices.Common, Version=1.5.1010.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>ConfigForm</value>
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>

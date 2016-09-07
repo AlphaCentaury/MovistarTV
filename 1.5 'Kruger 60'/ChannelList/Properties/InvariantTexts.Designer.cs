@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Project.IpTv.ChannelList.Properties {
+namespace IpTviewr.ChannelList.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace Project.IpTv.ChannelList.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Project.IpTv.ChannelList.Properties.InvariantTexts", typeof(InvariantTexts).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("IpTviewr.ChannelList.Properties.InvariantTexts", typeof(InvariantTexts).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,7 +61,7 @@ namespace Project.IpTv.ChannelList.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to UA-66146192-3.
+        ///   Looks up a localized string similar to UA-66146192-4.
         /// </summary>
         internal static string AnalyticsGoogleTrackingId {
             get {
@@ -121,7 +121,7 @@ namespace Project.IpTv.ChannelList.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://movistartv.codeplex.com/wikipage?title=Update-v1.5.40.0.
+        ///   Looks up a localized string similar to http://movistartv.codeplex.com/wikipage?title=Update-v1.5.1010.0.
         /// </summary>
         internal static string UrlCheckForUpdatesManual {
             get {

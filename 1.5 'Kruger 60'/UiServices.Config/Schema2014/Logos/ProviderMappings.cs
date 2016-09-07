@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Xml.Serialization;
 
-namespace Project.IpTv.UiServices.Configuration.Schema2014.Logos
+namespace IpTviewr.UiServices.Configuration.Schema2014.Logos
 {
     [Serializable]
     [XmlRoot(ElementName = "Logos-Providers", Namespace = LogosCommon.LogoMappingsXmlNamespace)]

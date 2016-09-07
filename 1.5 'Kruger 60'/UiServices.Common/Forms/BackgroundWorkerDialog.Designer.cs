@@ -1,7 +1,7 @@
 ﻿// Copyright (C) 2014-2016, Codeplex/GitHub user AlphaCentaury
 // All rights reserved, except those granted by the governing license of this software. See 'license.txt' file in the project root for complete license information.
 
-namespace Project.IpTv.UiServices.Common.Forms
+namespace IpTviewr.UiServices.Common.Forms
 {
     partial class BackgroundWorkerDialog
     {
@@ -33,6 +33,7 @@ namespace Project.IpTv.UiServices.Common.Forms
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BackgroundWorkerDialog));
             this.pictureWaitIcon = new System.Windows.Forms.PictureBox();
             this.labelTaskDescription = new System.Windows.Forms.Label();
@@ -40,12 +41,13 @@ namespace Project.IpTv.UiServices.Common.Forms
             this.labelProgressText = new System.Windows.Forms.Label();
             this.buttonClose = new System.Windows.Forms.Button();
             this.buttonRequestCancel = new System.Windows.Forms.Button();
+            this.timerShow = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pictureWaitIcon)).BeginInit();
             this.SuspendLayout();
             // 
             // pictureWaitIcon
             // 
-            this.pictureWaitIcon.Image = global::Project.IpTv.UiServices.Common.Properties.Resources.WaitClock_64x64;
+            this.pictureWaitIcon.Image = global::IpTviewr.UiServices.Common.Properties.Resources.WaitClock_64x64;
             resources.ApplyResources(this.pictureWaitIcon, "pictureWaitIcon");
             this.pictureWaitIcon.Name = "pictureWaitIcon";
             this.pictureWaitIcon.TabStop = false;
@@ -81,6 +83,10 @@ namespace Project.IpTv.UiServices.Common.Forms
             this.buttonRequestCancel.UseVisualStyleBackColor = true;
             this.buttonRequestCancel.Click += new System.EventHandler(this.buttonRequestCancel_Click);
             // 
+            // timerShow
+            // 
+            this.timerShow.Tick += new System.EventHandler(this.timerShow_Tick);
+            // 
             // BackgroundWorkerDialog
             // 
             this.AcceptButton = this.buttonClose;
@@ -97,8 +103,8 @@ namespace Project.IpTv.UiServices.Common.Forms
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "BackgroundWorkerDialog";
+            this.Opacity = 0D;
             this.ShowInTaskbar = false;
-            this.TopMost = true;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.BackgroundWorkerDialog_FormClosing);
             this.Load += new System.EventHandler(this.BackgroundWorkerDialog_Load);
             this.Shown += new System.EventHandler(this.BackgroundWorkerDialog_Shown);
@@ -116,5 +122,6 @@ namespace Project.IpTv.UiServices.Common.Forms
         private System.Windows.Forms.Label labelProgressText;
         private System.Windows.Forms.Button buttonClose;
         private System.Windows.Forms.Button buttonRequestCancel;
+        private System.Windows.Forms.Timer timerShow;
     }
 }

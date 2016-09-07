@@ -6,10 +6,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Project.IpTv.UiServices.Discovery
+namespace IpTviewr.UiServices.Discovery
 {
     internal class SerializationCommon
     {
-        public const string XmlNamespace = "urn:Project-DvbIpTV:2014:UiServices.Discovery";
+        public const string XmlNamespace = "urn:AlphaCentaury:IpTViewr:2014:UiServices.Discovery";
     } // class SerializationCommon
 } // namespace

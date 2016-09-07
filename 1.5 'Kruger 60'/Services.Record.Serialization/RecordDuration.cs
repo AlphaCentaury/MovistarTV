@@ -10,7 +10,7 @@ using System.Text;
 using System.Xml;
 using System.Xml.Serialization;
 
-namespace Project.IpTv.Services.Record.Serialization
+namespace IpTviewr.Services.Record.Serialization
 {
     [Serializable]
     [XmlType(Namespace = RecordTask.XmlNamespace)]
@@ -21,7 +21,7 @@ namespace Project.IpTv.Services.Record.Serialization
         /// </summary>
         public static int DefaultSafetyMargin
         {
-            get { return 5; }
+            get { return 10; }
         } // DefaultSafetyMargin
 
         /// <summary>
@@ -41,6 +41,34 @@ namespace Project.IpTv.Services.Record.Serialization
             get { return SoapDuration.ToString(Length); }
             set { Length = string.IsNullOrEmpty(value) ? new TimeSpan() : SoapDuration.Parse(value); }
         } // XmlTimeSpan
+
+        [XmlIgnore]
+        public DateTime? EndDateTime
+        {
+            get;
+            set;
+        } // EndDateTime
+
+        [XmlElement("EndDateTime")]
+        [Browsable(false), EditorBrowsable(EditorBrowsableState.Never)]
+        public string XmlEndDateTime
+        {
+            get
+            {
+                return (EndDateTime == null) ? null : XmlConvert.ToString(EndDateTime.Value, XmlDateTimeSerializationMode.RoundtripKind);
+            } // get
+            set
+            {
+                if (string.IsNullOrEmpty(value))
+                {
+                    EndDateTime = null;
+                }
+                else
+                {
+                    EndDateTime = XmlConvert.ToDateTime(value, XmlDateTimeSerializationMode.RoundtripKind);
+                } // if-else
+            } // set
+        } // EndDateTime
 
         /// <summary>
         /// Safety margin, in minutes, or null if there is no margin
@@ -71,6 +99,18 @@ namespace Project.IpTv.Services.Record.Serialization
                 return (SafetyMargin.HasValue) ? new TimeSpan(0, SafetyMargin.Value, 0) : TimeSpan.Zero;
             } // get
         } // SafetyMarginTimeSpan
+
+        public TimeSpan GetDuration(DateTime startDateTime)
+        {
+            if (EndDateTime == null) return Length;
+
+            return (EndDateTime.Value - startDateTime);
+        } // GetDuration
+
+        public TimeSpan GetDuration(RecordSchedule schedule)
+        {
+            return GetDuration(schedule.GetStartDateTime());
+        } // GetDuration
 
         /// <summary>
         /// Creates a RecordDuration instance with default values

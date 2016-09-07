@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Project.IpTv.UiServices.Configuration.Properties {
+namespace IpTviewr.UiServices.Configuration.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace Project.IpTv.UiServices.Configuration.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Project.IpTv.UiServices.Configuration.Properties.InvariantTexts", typeof(InvariantTexts).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("IpTviewr.UiServices.Configuration.Properties.InvariantTexts", typeof(InvariantTexts).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -160,7 +160,16 @@ namespace Project.IpTv.UiServices.Configuration.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Software\movistartv.codeplex.com\IPTViewr\movistar+\v1.5.40.0.
+        ///   Looks up a localized string similar to IpTvRecorderLauncher.exe.
+        /// </summary>
+        internal static string RecorderLauncher {
+            get {
+                return ResourceManager.GetString("RecorderLauncher", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Software\movistartv.codeplex.com\IPTViewr\movistar+\v1.5.1010.0.
         /// </summary>
         internal static string RegistryKey_Root {
             get {

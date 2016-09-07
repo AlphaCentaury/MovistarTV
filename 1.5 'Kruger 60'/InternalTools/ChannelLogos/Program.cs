@@ -1,11 +1,11 @@
 ﻿using Microsoft.SqlServer.MessageBox;
-using Project.IpTv.Common;
+using IpTviewr.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 
-namespace Project.IpTv.Internal.Tools.ChannelLogos
+namespace IpTviewr.Internal.Tools.ChannelLogos
 {
     static class Program
     {
@@ -55,7 +55,7 @@ namespace Project.IpTv.Internal.Tools.ChannelLogos
 
         internal static void HandleException(object sender, HandleExceptionEventArgs e)
         {
-            HandleException(e.OwnerWindow, e.Caption, e.Message, e.Exception);
+            HandleException(e.OwnerForm, e.Caption, e.Message, e.Exception);
         } // HandleException
 
         private static ExceptionMessageBoxSymbol TranslateIconToSymbol(MessageBoxIcon icon)

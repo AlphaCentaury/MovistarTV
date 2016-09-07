@@ -1,7 +1,7 @@
 ﻿// Copyright (C) 2014-2016, Codeplex/GitHub user AlphaCentaury
 // All rights reserved, except those granted by the governing license of this software. See 'license.txt' file in the project root for complete license information.
 
-namespace Project.IpTv.UiServices.Record
+namespace IpTviewr.UiServices.Record
 {
     partial class RecordChannelDialog
     {
@@ -35,8 +35,6 @@ namespace Project.IpTv.UiServices.Record
             System.Windows.Forms.ColumnHeader ColumnName;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RecordChannelDialog));
             System.Windows.Forms.ColumnHeader ColumnLocation;
-            this.labelChannelName = new System.Windows.Forms.Label();
-            this.labelChannelDescription = new System.Windows.Forms.Label();
             this.buttonOk = new System.Windows.Forms.Button();
             this.buttonCancel = new System.Windows.Forms.Button();
             this.tabProperties = new System.Windows.Forms.TabControl();
@@ -46,30 +44,27 @@ namespace Project.IpTv.UiServices.Record
             this.labelStartMarginSufix = new System.Windows.Forms.Label();
             this.numericStartMargin = new System.Windows.Forms.NumericUpDown();
             this.checkBoxStartMargin = new System.Windows.Forms.CheckBox();
-            this.recordingSchedule = new Project.IpTv.UiServices.Record.Controls.RecordingSchedule();
+            this.recordingSchedule = new IpTviewr.UiServices.Record.Controls.RecordingSchedule();
             this.tabPageLength = new System.Windows.Forms.TabPage();
-            this.recordingTime = new Project.IpTv.UiServices.Record.Controls.RecordingDuration();
-            this.labelEndMarginSufix = new System.Windows.Forms.Label();
-            this.numericEndMargin = new System.Windows.Forms.NumericUpDown();
-            this.checkBoxEndMargin = new System.Windows.Forms.CheckBox();
+            this.recordingTime = new IpTviewr.UiServices.Record.Controls.RecordingDuration();
+            this.tabPageSave = new System.Windows.Forms.TabPage();
+            this.listViewLocations = new IpTviewr.UiServices.Common.Controls.ListViewSortable();
+            this.imageListLocations = new System.Windows.Forms.ImageList(this.components);
+            this.buttonSelectFolder = new System.Windows.Forms.Button();
+            this.comboFileExtension = new System.Windows.Forms.ComboBox();
+            this.textFilename = new IpTviewr.UiServices.Common.Controls.FilenameTextBox();
+            this.labelFilename = new System.Windows.Forms.Label();
+            this.labelSaveLocation = new System.Windows.Forms.Label();
             this.tabPageDescription = new System.Windows.Forms.TabPage();
             this.checkAppendRecordingDetails = new System.Windows.Forms.CheckBox();
             this.textTaskDescription = new System.Windows.Forms.TextBox();
             this.labelTaskDescription = new System.Windows.Forms.Label();
+            this.tabPageAdvanced = new System.Windows.Forms.TabPage();
             this.checkAddTaskPrefix = new System.Windows.Forms.CheckBox();
             this.labelTaskName = new System.Windows.Forms.Label();
-            this.textTaskName = new Project.IpTv.UiServices.Common.Controls.FilenameTextBox();
-            this.tabPageSave = new System.Windows.Forms.TabPage();
-            this.listViewLocations = new Project.IpTv.UiServices.Common.Controls.ListViewSortable();
-            this.imageListLocations = new System.Windows.Forms.ImageList(this.components);
-            this.buttonSelectFolder = new System.Windows.Forms.Button();
-            this.comboFileExtension = new System.Windows.Forms.ComboBox();
-            this.textFilename = new Project.IpTv.UiServices.Common.Controls.FilenameTextBox();
-            this.labelFilename = new System.Windows.Forms.Label();
-            this.labelSaveLocation = new System.Windows.Forms.Label();
-            this.tabPageAdvanced = new System.Windows.Forms.TabPage();
-            this.timeSpanSchedulerDeleteTaskAfter = new Project.IpTv.UiServices.Common.Controls.TimeSpanUpDown();
-            this.timeSpanSchedulerRetry = new Project.IpTv.UiServices.Common.Controls.TimeSpanUpDown();
+            this.textTaskName = new IpTviewr.UiServices.Common.Controls.FilenameTextBox();
+            this.timeSpanSchedulerDeleteTaskAfter = new IpTviewr.UiServices.Common.Controls.TimeSpanUpDown();
+            this.timeSpanSchedulerRetry = new IpTviewr.UiServices.Common.Controls.TimeSpanUpDown();
             this.comboSchedulerAlreadyRunning = new System.Windows.Forms.ComboBox();
             this.labelSchedulerConcurrent = new System.Windows.Forms.Label();
             this.checkSchedulerDeleteTask = new System.Windows.Forms.CheckBox();
@@ -79,18 +74,19 @@ namespace Project.IpTv.UiServices.Record
             this.checkSchedulerASAP = new System.Windows.Forms.CheckBox();
             this.comboSchedulerFolder = new System.Windows.Forms.ComboBox();
             this.labelSchedulerFolder = new System.Windows.Forms.Label();
-            this.labelChannelNumber = new System.Windows.Forms.Label();
-            this.pictureChannelLogo = new Project.IpTv.UiServices.Common.Controls.PictureBoxEx();
-            this.selectFolder = new Project.IpTv.UiServices.Common.Controls.SelectFolderDialog();
+            this.selectFolder = new IpTviewr.UiServices.Common.Controls.SelectFolderDialog();
+            this.labelProgramSchedule = new System.Windows.Forms.Label();
+            this.labelProgramDescription = new System.Windows.Forms.Label();
+            this.labelChannelName = new System.Windows.Forms.Label();
+            this.pictureChannelLogo = new IpTviewr.UiServices.Common.Controls.PictureBoxEx();
             ColumnName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             ColumnLocation = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabProperties.SuspendLayout();
             this.tabPageSchedule.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericStartMargin)).BeginInit();
             this.tabPageLength.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericEndMargin)).BeginInit();
-            this.tabPageDescription.SuspendLayout();
             this.tabPageSave.SuspendLayout();
+            this.tabPageDescription.SuspendLayout();
             this.tabPageAdvanced.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericSchedulerMaxRetries)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureChannelLogo)).BeginInit();
@@ -104,24 +100,10 @@ namespace Project.IpTv.UiServices.Record
             // 
             resources.ApplyResources(ColumnLocation, "ColumnLocation");
             // 
-            // labelChannelName
-            // 
-            resources.ApplyResources(this.labelChannelName, "labelChannelName");
-            this.labelChannelName.AutoEllipsis = true;
-            this.labelChannelName.Name = "labelChannelName";
-            this.labelChannelName.UseMnemonic = false;
-            // 
-            // labelChannelDescription
-            // 
-            resources.ApplyResources(this.labelChannelDescription, "labelChannelDescription");
-            this.labelChannelDescription.AutoEllipsis = true;
-            this.labelChannelDescription.Name = "labelChannelDescription";
-            this.labelChannelDescription.UseMnemonic = false;
-            // 
             // buttonOk
             // 
             resources.ApplyResources(this.buttonOk, "buttonOk");
-            this.buttonOk.Image = global::Project.IpTv.UiServices.Record.Properties.Resources.Action_Ok_16x16;
+            this.buttonOk.Image = global::IpTviewr.UiServices.Record.Properties.Resources.Action_Ok_16x16;
             this.buttonOk.Name = "buttonOk";
             this.buttonOk.UseVisualStyleBackColor = true;
             this.buttonOk.Click += new System.EventHandler(this.buttonOk_Click);
@@ -131,7 +113,7 @@ namespace Project.IpTv.UiServices.Record
             resources.ApplyResources(this.buttonCancel, "buttonCancel");
             this.buttonCancel.CausesValidation = false;
             this.buttonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.buttonCancel.Image = global::Project.IpTv.UiServices.Record.Properties.Resources.Action_Cancel_16x16;
+            this.buttonCancel.Image = global::IpTviewr.UiServices.Record.Properties.Resources.Action_Cancel_16x16;
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.UseVisualStyleBackColor = true;
             // 
@@ -140,8 +122,8 @@ namespace Project.IpTv.UiServices.Record
             resources.ApplyResources(this.tabProperties, "tabProperties");
             this.tabProperties.Controls.Add(this.tabPageSchedule);
             this.tabProperties.Controls.Add(this.tabPageLength);
-            this.tabProperties.Controls.Add(this.tabPageDescription);
             this.tabProperties.Controls.Add(this.tabPageSave);
+            this.tabProperties.Controls.Add(this.tabPageDescription);
             this.tabProperties.Controls.Add(this.tabPageAdvanced);
             this.tabProperties.Name = "tabProperties";
             this.tabProperties.SelectedIndex = 0;
@@ -197,15 +179,12 @@ namespace Project.IpTv.UiServices.Record
             // 
             resources.ApplyResources(this.recordingSchedule, "recordingSchedule");
             this.recordingSchedule.Name = "recordingSchedule";
-            this.recordingSchedule.ScheduleKindChanged += new System.EventHandler<Project.IpTv.UiServices.Record.Controls.RecordingSchedule.KindChangedEventArgs>(this.recordingSchedule_ScheduleKindChanged);
-            this.recordingSchedule.DateTimeChanged += new System.EventHandler<Project.IpTv.UiServices.Record.Controls.RecordingSchedule.DateTimeChangedEventArgs>(this.recordingSchedule_DateTimeChanged);
+            this.recordingSchedule.ScheduleKindChanged += new System.EventHandler<IpTviewr.UiServices.Record.Controls.RecordingSchedule.KindChangedEventArgs>(this.recordingSchedule_ScheduleKindChanged);
+            this.recordingSchedule.DateTimeChanged += new System.EventHandler<IpTviewr.UiServices.Record.Controls.RecordingSchedule.DateTimeChangedEventArgs>(this.recordingSchedule_DateTimeChanged);
             // 
             // tabPageLength
             // 
             this.tabPageLength.Controls.Add(this.recordingTime);
-            this.tabPageLength.Controls.Add(this.labelEndMarginSufix);
-            this.tabPageLength.Controls.Add(this.numericEndMargin);
-            this.tabPageLength.Controls.Add(this.checkBoxEndMargin);
             resources.ApplyResources(this.tabPageLength, "tabPageLength");
             this.tabPageLength.Name = "tabPageLength";
             this.tabPageLength.UseVisualStyleBackColor = true;
@@ -216,83 +195,6 @@ namespace Project.IpTv.UiServices.Record
             this.recordingTime.CausesValidation = false;
             resources.ApplyResources(this.recordingTime, "recordingTime");
             this.recordingTime.Name = "recordingTime";
-            // 
-            // labelEndMarginSufix
-            // 
-            resources.ApplyResources(this.labelEndMarginSufix, "labelEndMarginSufix");
-            this.labelEndMarginSufix.Name = "labelEndMarginSufix";
-            // 
-            // numericEndMargin
-            // 
-            resources.ApplyResources(this.numericEndMargin, "numericEndMargin");
-            this.numericEndMargin.Maximum = new decimal(new int[] {
-            60,
-            0,
-            0,
-            0});
-            this.numericEndMargin.Name = "numericEndMargin";
-            this.numericEndMargin.Value = new decimal(new int[] {
-            5,
-            0,
-            0,
-            0});
-            // 
-            // checkBoxEndMargin
-            // 
-            resources.ApplyResources(this.checkBoxEndMargin, "checkBoxEndMargin");
-            this.checkBoxEndMargin.Name = "checkBoxEndMargin";
-            this.checkBoxEndMargin.UseVisualStyleBackColor = true;
-            this.checkBoxEndMargin.CheckedChanged += new System.EventHandler(this.checkBoxEndMargin_CheckedChanged);
-            // 
-            // tabPageDescription
-            // 
-            this.tabPageDescription.Controls.Add(this.checkAppendRecordingDetails);
-            this.tabPageDescription.Controls.Add(this.textTaskDescription);
-            this.tabPageDescription.Controls.Add(this.labelTaskDescription);
-            this.tabPageDescription.Controls.Add(this.checkAddTaskPrefix);
-            this.tabPageDescription.Controls.Add(this.labelTaskName);
-            this.tabPageDescription.Controls.Add(this.textTaskName);
-            resources.ApplyResources(this.tabPageDescription, "tabPageDescription");
-            this.tabPageDescription.Name = "tabPageDescription";
-            this.tabPageDescription.UseVisualStyleBackColor = true;
-            // 
-            // checkAppendRecordingDetails
-            // 
-            resources.ApplyResources(this.checkAppendRecordingDetails, "checkAppendRecordingDetails");
-            this.checkAppendRecordingDetails.Checked = true;
-            this.checkAppendRecordingDetails.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkAppendRecordingDetails.Name = "checkAppendRecordingDetails";
-            this.checkAppendRecordingDetails.UseVisualStyleBackColor = true;
-            // 
-            // textTaskDescription
-            // 
-            resources.ApplyResources(this.textTaskDescription, "textTaskDescription");
-            this.textTaskDescription.Name = "textTaskDescription";
-            // 
-            // labelTaskDescription
-            // 
-            resources.ApplyResources(this.labelTaskDescription, "labelTaskDescription");
-            this.labelTaskDescription.Name = "labelTaskDescription";
-            // 
-            // checkAddTaskPrefix
-            // 
-            resources.ApplyResources(this.checkAddTaskPrefix, "checkAddTaskPrefix");
-            this.checkAddTaskPrefix.Checked = true;
-            this.checkAddTaskPrefix.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkAddTaskPrefix.Name = "checkAddTaskPrefix";
-            this.checkAddTaskPrefix.UseVisualStyleBackColor = true;
-            // 
-            // labelTaskName
-            // 
-            resources.ApplyResources(this.labelTaskName, "labelTaskName");
-            this.labelTaskName.Name = "labelTaskName";
-            // 
-            // textTaskName
-            // 
-            resources.ApplyResources(this.textTaskName, "textTaskName");
-            this.textTaskName.Name = "textTaskName";
-            this.textTaskName.TextChanged += new System.EventHandler(this.textTaskName_TextChanged);
-            this.textTaskName.Validating += new System.ComponentModel.CancelEventHandler(this.textTaskName_Validating);
             // 
             // tabPageSave
             // 
@@ -345,13 +247,6 @@ namespace Project.IpTv.UiServices.Record
             // 
             resources.ApplyResources(this.comboFileExtension, "comboFileExtension");
             this.comboFileExtension.FormattingEnabled = true;
-            this.comboFileExtension.Items.AddRange(new object[] {
-            resources.GetString("comboFileExtension.Items"),
-            resources.GetString("comboFileExtension.Items1"),
-            resources.GetString("comboFileExtension.Items2"),
-            resources.GetString("comboFileExtension.Items3"),
-            resources.GetString("comboFileExtension.Items4"),
-            resources.GetString("comboFileExtension.Items5")});
             this.comboFileExtension.Name = "comboFileExtension";
             this.comboFileExtension.Validating += new System.ComponentModel.CancelEventHandler(this.comboFileExtension_Validating);
             // 
@@ -371,8 +266,38 @@ namespace Project.IpTv.UiServices.Record
             resources.ApplyResources(this.labelSaveLocation, "labelSaveLocation");
             this.labelSaveLocation.Name = "labelSaveLocation";
             // 
+            // tabPageDescription
+            // 
+            this.tabPageDescription.Controls.Add(this.checkAppendRecordingDetails);
+            this.tabPageDescription.Controls.Add(this.textTaskDescription);
+            this.tabPageDescription.Controls.Add(this.labelTaskDescription);
+            resources.ApplyResources(this.tabPageDescription, "tabPageDescription");
+            this.tabPageDescription.Name = "tabPageDescription";
+            this.tabPageDescription.UseVisualStyleBackColor = true;
+            // 
+            // checkAppendRecordingDetails
+            // 
+            resources.ApplyResources(this.checkAppendRecordingDetails, "checkAppendRecordingDetails");
+            this.checkAppendRecordingDetails.Checked = true;
+            this.checkAppendRecordingDetails.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkAppendRecordingDetails.Name = "checkAppendRecordingDetails";
+            this.checkAppendRecordingDetails.UseVisualStyleBackColor = true;
+            // 
+            // textTaskDescription
+            // 
+            resources.ApplyResources(this.textTaskDescription, "textTaskDescription");
+            this.textTaskDescription.Name = "textTaskDescription";
+            // 
+            // labelTaskDescription
+            // 
+            resources.ApplyResources(this.labelTaskDescription, "labelTaskDescription");
+            this.labelTaskDescription.Name = "labelTaskDescription";
+            // 
             // tabPageAdvanced
             // 
+            this.tabPageAdvanced.Controls.Add(this.checkAddTaskPrefix);
+            this.tabPageAdvanced.Controls.Add(this.labelTaskName);
+            this.tabPageAdvanced.Controls.Add(this.textTaskName);
             this.tabPageAdvanced.Controls.Add(this.timeSpanSchedulerDeleteTaskAfter);
             this.tabPageAdvanced.Controls.Add(this.timeSpanSchedulerRetry);
             this.tabPageAdvanced.Controls.Add(this.comboSchedulerAlreadyRunning);
@@ -387,6 +312,24 @@ namespace Project.IpTv.UiServices.Record
             resources.ApplyResources(this.tabPageAdvanced, "tabPageAdvanced");
             this.tabPageAdvanced.Name = "tabPageAdvanced";
             this.tabPageAdvanced.UseVisualStyleBackColor = true;
+            // 
+            // checkAddTaskPrefix
+            // 
+            resources.ApplyResources(this.checkAddTaskPrefix, "checkAddTaskPrefix");
+            this.checkAddTaskPrefix.Checked = true;
+            this.checkAddTaskPrefix.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkAddTaskPrefix.Name = "checkAddTaskPrefix";
+            this.checkAddTaskPrefix.UseVisualStyleBackColor = true;
+            // 
+            // labelTaskName
+            // 
+            resources.ApplyResources(this.labelTaskName, "labelTaskName");
+            this.labelTaskName.Name = "labelTaskName";
+            // 
+            // textTaskName
+            // 
+            resources.ApplyResources(this.textTaskName, "textTaskName");
+            this.textTaskName.Name = "textTaskName";
             // 
             // timeSpanSchedulerDeleteTaskAfter
             // 
@@ -466,19 +409,6 @@ namespace Project.IpTv.UiServices.Record
             resources.ApplyResources(this.labelSchedulerFolder, "labelSchedulerFolder");
             this.labelSchedulerFolder.Name = "labelSchedulerFolder";
             // 
-            // labelChannelNumber
-            // 
-            resources.ApplyResources(this.labelChannelNumber, "labelChannelNumber");
-            this.labelChannelNumber.Name = "labelChannelNumber";
-            this.labelChannelNumber.UseMnemonic = false;
-            // 
-            // pictureChannelLogo
-            // 
-            this.pictureChannelLogo.BackColor = System.Drawing.SystemColors.Control;
-            resources.ApplyResources(this.pictureChannelLogo, "pictureChannelLogo");
-            this.pictureChannelLogo.Name = "pictureChannelLogo";
-            this.pictureChannelLogo.TabStop = false;
-            // 
             // selectFolder
             // 
             this.selectFolder.Description = "";
@@ -491,6 +421,34 @@ namespace Project.IpTv.UiServices.Record
             this.selectFolder.ShowFullPathInEditBox = true;
             this.selectFolder.ShowNewFolderButton = true;
             // 
+            // labelProgramSchedule
+            // 
+            resources.ApplyResources(this.labelProgramSchedule, "labelProgramSchedule");
+            this.labelProgramSchedule.AutoEllipsis = true;
+            this.labelProgramSchedule.Name = "labelProgramSchedule";
+            this.labelProgramSchedule.UseMnemonic = false;
+            // 
+            // labelProgramDescription
+            // 
+            resources.ApplyResources(this.labelProgramDescription, "labelProgramDescription");
+            this.labelProgramDescription.AutoEllipsis = true;
+            this.labelProgramDescription.Name = "labelProgramDescription";
+            this.labelProgramDescription.UseMnemonic = false;
+            // 
+            // labelChannelName
+            // 
+            resources.ApplyResources(this.labelChannelName, "labelChannelName");
+            this.labelChannelName.AutoEllipsis = true;
+            this.labelChannelName.Name = "labelChannelName";
+            this.labelChannelName.UseMnemonic = false;
+            // 
+            // pictureChannelLogo
+            // 
+            this.pictureChannelLogo.BackColor = System.Drawing.SystemColors.Control;
+            resources.ApplyResources(this.pictureChannelLogo, "pictureChannelLogo");
+            this.pictureChannelLogo.Name = "pictureChannelLogo";
+            this.pictureChannelLogo.TabStop = false;
+            // 
             // RecordChannelDialog
             // 
             this.AcceptButton = this.buttonOk;
@@ -499,17 +457,16 @@ namespace Project.IpTv.UiServices.Record
             this.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
             this.CancelButton = this.buttonCancel;
             this.CausesValidation = false;
-            this.Controls.Add(this.labelChannelNumber);
+            this.Controls.Add(this.labelProgramSchedule);
+            this.Controls.Add(this.labelProgramDescription);
+            this.Controls.Add(this.labelChannelName);
+            this.Controls.Add(this.pictureChannelLogo);
             this.Controls.Add(this.tabProperties);
             this.Controls.Add(this.buttonCancel);
             this.Controls.Add(this.buttonOk);
-            this.Controls.Add(this.labelChannelDescription);
-            this.Controls.Add(this.labelChannelName);
-            this.Controls.Add(this.pictureChannelLogo);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "RecordChannelDialog";
-            this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.Load += new System.EventHandler(this.DialogRecordChannel_Load);
             this.Shown += new System.EventHandler(this.DialogRecordChannel_Shown);
@@ -518,12 +475,10 @@ namespace Project.IpTv.UiServices.Record
             this.tabPageSchedule.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericStartMargin)).EndInit();
             this.tabPageLength.ResumeLayout(false);
-            this.tabPageLength.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericEndMargin)).EndInit();
-            this.tabPageDescription.ResumeLayout(false);
-            this.tabPageDescription.PerformLayout();
             this.tabPageSave.ResumeLayout(false);
             this.tabPageSave.PerformLayout();
+            this.tabPageDescription.ResumeLayout(false);
+            this.tabPageDescription.PerformLayout();
             this.tabPageAdvanced.ResumeLayout(false);
             this.tabPageAdvanced.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericSchedulerMaxRetries)).EndInit();
@@ -533,10 +488,6 @@ namespace Project.IpTv.UiServices.Record
         }
 
         #endregion
-
-        private Project.IpTv.UiServices.Common.Controls.PictureBoxEx pictureChannelLogo;
-        private System.Windows.Forms.Label labelChannelName;
-        private System.Windows.Forms.Label labelChannelDescription;
         private System.Windows.Forms.Button buttonOk;
         private System.Windows.Forms.Button buttonCancel;
         private System.Windows.Forms.TabControl tabProperties;
@@ -544,28 +495,21 @@ namespace Project.IpTv.UiServices.Record
         private System.Windows.Forms.Label labelStartMarginSufix;
         private System.Windows.Forms.NumericUpDown numericStartMargin;
         private System.Windows.Forms.CheckBox checkBoxStartMargin;
-        private Project.IpTv.UiServices.Record.Controls.RecordingSchedule recordingSchedule;
+        private IpTviewr.UiServices.Record.Controls.RecordingSchedule recordingSchedule;
         private System.Windows.Forms.TabPage tabPageLength;
-        private System.Windows.Forms.Label labelEndMarginSufix;
-        private System.Windows.Forms.NumericUpDown numericEndMargin;
-        private System.Windows.Forms.CheckBox checkBoxEndMargin;
-        private Project.IpTv.UiServices.Record.Controls.RecordingDuration recordingTime;
-        private System.Windows.Forms.Label labelChannelNumber;
+        private IpTviewr.UiServices.Record.Controls.RecordingDuration recordingTime;
         private System.Windows.Forms.TabPage tabPageDescription;
         private System.Windows.Forms.TabPage tabPageAdvanced;
         private System.Windows.Forms.CheckBox checkAppendRecordingDetails;
         private System.Windows.Forms.TextBox textTaskDescription;
         private System.Windows.Forms.Label labelTaskDescription;
-        private System.Windows.Forms.CheckBox checkAddTaskPrefix;
-        private Project.IpTv.UiServices.Common.Controls.FilenameTextBox textTaskName;
-        private System.Windows.Forms.Label labelTaskName;
         private System.Windows.Forms.TabPage tabPageSave;
         private System.Windows.Forms.Label labelFilename;
         private System.Windows.Forms.Label labelSaveLocation;
         private System.Windows.Forms.ComboBox comboFileExtension;
-        private Project.IpTv.UiServices.Common.Controls.FilenameTextBox textFilename;
+        private IpTviewr.UiServices.Common.Controls.FilenameTextBox textFilename;
         private System.Windows.Forms.Button buttonSelectFolder;
-        private Project.IpTv.UiServices.Common.Controls.ListViewSortable listViewLocations;
+        private IpTviewr.UiServices.Common.Controls.ListViewSortable listViewLocations;
         private System.Windows.Forms.ComboBox comboSchedulerFolder;
         private System.Windows.Forms.Label labelSchedulerFolder;
         private System.Windows.Forms.ComboBox comboSchedulerAlreadyRunning;
@@ -578,8 +522,15 @@ namespace Project.IpTv.UiServices.Record
         private System.Windows.Forms.ImageList imageListLocations;
         private System.Windows.Forms.DateTimePicker dateTimeExpiryDate;
         private System.Windows.Forms.CheckBox checkBoxExpiryDate;
-        private Project.IpTv.UiServices.Common.Controls.TimeSpanUpDown timeSpanSchedulerRetry;
-        private Project.IpTv.UiServices.Common.Controls.TimeSpanUpDown timeSpanSchedulerDeleteTaskAfter;
-        private Project.IpTv.UiServices.Common.Controls.SelectFolderDialog selectFolder;
+        private IpTviewr.UiServices.Common.Controls.TimeSpanUpDown timeSpanSchedulerRetry;
+        private IpTviewr.UiServices.Common.Controls.TimeSpanUpDown timeSpanSchedulerDeleteTaskAfter;
+        private IpTviewr.UiServices.Common.Controls.SelectFolderDialog selectFolder;
+        private System.Windows.Forms.CheckBox checkAddTaskPrefix;
+        private System.Windows.Forms.Label labelTaskName;
+        private Common.Controls.FilenameTextBox textTaskName;
+        private System.Windows.Forms.Label labelProgramSchedule;
+        private System.Windows.Forms.Label labelProgramDescription;
+        private System.Windows.Forms.Label labelChannelName;
+        private Common.Controls.PictureBoxEx pictureChannelLogo;
     }
 }

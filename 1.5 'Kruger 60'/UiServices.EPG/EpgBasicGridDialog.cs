@@ -1,4 +1,4 @@
-﻿// Copyright (C) 2014-2016, Codeplex user AlphaCentaury
+﻿// Copyright (C) 2014-2016, Codeplex/GitHub user AlphaCentaury
 // All rights reserved, except those granted by the governing license of this software. See 'license.txt' file in the project root for complete license information.
 
 using System;
@@ -9,26 +9,40 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using Project.IpTv.Common.Telemetry;
-using Project.IpTv.Core.IpTvProvider;
-using Project.IpTv.Services.EPG;
-using Project.IpTv.Services.EPG.Serialization;
-using Project.IpTv.Services.SqlServerCE;
-using Project.IpTv.UiServices.Common.Forms;
-using Project.IpTv.UiServices.Configuration;
-using Project.IpTv.UiServices.Discovery;
-using Project.IpTv.UiServices.Discovery.BroadcastList;
+using IpTviewr.Common.Telemetry;
+using IpTviewr.Core.IpTvProvider;
+using IpTviewr.Services.EpgDiscovery;
+using IpTviewr.Services.SqlServerCE;
+using IpTviewr.UiServices.Common.Forms;
+using IpTviewr.UiServices.Configuration;
+using IpTviewr.UiServices.Discovery;
+using IpTviewr.UiServices.Discovery.BroadcastList;
+using IpTviewr.Common;
+using System.Threading;
 
-namespace Project.IpTv.UiServices.EPG
+namespace IpTviewr.UiServices.EPG
 {
-    public partial class EpgBasicGridDialog : Form
+    public partial class EpgBasicGridDialog : CommonBaseForm
     {
         private IList<UiBroadcastService> ServicesList;
-        private UiBroadcastService CurrentService;
+        private UiBroadcastService InitialService;
         private UiBroadcastService SelectedService;
-        private EpgEvent[,] EpgEvents;
-        private int CurrentRowIndex, SelectedRowIndex;
-        private DateTime ReferenceTime;
+        private IEpgLinkedList[] EpgPrograms;
+        private EpgDatastore Datastore;
+        private int SelectedRowIndex;
+        private DateTime LocalReferenceTime;
+        private bool IsGridReady;
+
+        public static DialogResult ShowGrid(CommonBaseForm parentForm, IList<UiBroadcastService> list, UiBroadcastService currentService, EpgDatastore datastore)
+        {
+            using (var dialog = new EpgBasicGridDialog())
+            {
+                dialog.ServicesList = list;
+                dialog.InitialService = currentService;
+                dialog.Datastore = datastore;
+                return dialog.ShowDialog(parentForm);
+            } // using
+        }  // ShowGrid
 
         public EpgBasicGridDialog()
         {
@@ -36,233 +50,206 @@ namespace Project.IpTv.UiServices.EPG
             this.Icon = Properties.Resources.Epg;
         } // constructor
 
-        public static DialogResult ShowGrid(IWin32Window owner, IList<UiBroadcastService> list, UiBroadcastService currentService)
-        {
-            using (var dialog = new EpgBasicGridDialog())
-            {
-                dialog.ServicesList = list;
-                dialog.CurrentService = currentService;
-                return dialog.ShowDialog(owner);
-            } // using
-        }  // ShowGrid
+        #region Event handlers
 
         private void EpgBasicGridDialog_Load(object sender, EventArgs e)
         {
             BasicGoogleTelemetry.SendScreenHit(this);
 
-            CurrentRowIndex = -1;
+            EpgPrograms = new IEpgLinkedList[ServicesList.Count];
+            ChangeSelectedRow(-1);
+
+            var workerOptions = new BackgroundWorkerOptions()
+            {
+                OutputData = EpgPrograms,
+                BackgroundTask = AsyncGetEpgPrograms,
+                AfterTask = FillGrid,
+                AllowAutoClose = true,
+                TaskDescription = Properties.Texts.EpgDataLoadingList,
+                AllowCancelButton = true,
+            };
+
+            var result = BackgroundWorkerDialog.RunWorkerAsync(this, workerOptions);
+            var close = false;
+            if (workerOptions.OutputException != null)
+            {
+                HandleException(new ExceptionEventData(Properties.Texts.ObtainingListException, workerOptions.OutputException));
+                close = true;
+            } // if
+            if (result != DialogResult.OK)
+            {
+                close = true;
+            } // if
+
+            if (close)
+            {
+                Visible = false;
+                Close();
+            } // if
+        } // EpgBasicGridDialog_Load
+
+        private void dataGridPrograms_SelectionChanged(object sender, EventArgs e)
+        {
+            if (!IsGridReady) return;
+
+            var cell = (dataGridPrograms.SelectedCells.Count > 0) ? dataGridPrograms.SelectedCells[0] : null;
+            if (cell == null)
+            {
+                ChangeSelectedRow(-1);
+            }
+            else
+            {
+                ChangeSelectedRow(cell.RowIndex);
+
+                // don't allow to select the service
+                if (cell.ColumnIndex == 0)
+                {
+                    var row = dataGridPrograms.Rows[SelectedRowIndex];
+                    row.Cells[1].Selected = true;
+
+                    // changing the selected cell will cause SelectionChanged to be fired
+                    // thus making unnecesary to call DisplayProgramData()
+                    return;
+                } // if
+
+                DisplayProgramData(cell.ColumnIndex);
+            } // if-else
+        } // dataGridPrograms_SelectionChanged
+
+        #endregion
+
+        private void FillGrid(BackgroundWorkerOptions options, IBackgroundWorkerDialog dialog)
+        {
+            if (dialog.QueryCancel()) return;
+            dialog.SetProgressText("Filling the list...");
+
+            var serviceRowIndex = -1;
             foreach (var service in ServicesList)
             {
                 var name = UiBroadcastListManager.GetColumnData(service, UiBroadcastListColumn.NumberAndName);
                 var rowIndex = dataGridPrograms.Rows.Add(name);
 
-                if ((CurrentService != null) && (service.Key == CurrentService.Key))
+                if (service.Key == InitialService?.Key)
                 {
-                    CurrentRowIndex = rowIndex;
+                    serviceRowIndex = rowIndex;
                 } // if
 
+                // TODO: use ListManager view options for hidden and inactive programs (to show or no to show)
                 if ((service.IsHidden) || (service.IsInactive))
                 {
                     dataGridPrograms.Rows[rowIndex].DefaultCellStyle.ForeColor = SystemColors.GrayText;
                 } // if
             } // foreach
 
-            EpgEvents = new EpgEvent[ServicesList.Count, 3];
-
-            epgEventDisplay.Visible = false;
-            buttonDisplayChannel.Enabled = false;
-            buttonRecordChannel.Enabled = false;
-        } // EpgBasicGridDialog_Load
-
-        private void EpgBasicGridDialog_Shown(object sender, EventArgs e)
-        {
-            var workerOptions = new BackgroundWorkerOptions()
+            for (int index = 0; index < EpgPrograms.Length; index++)
             {
-                OutputData = EpgEvents,
-                BackgroundTask = AsyncBuildList,
-                AllowAutoClose = true,
-                TaskDescription = Properties.Texts.EpgDataLoadingList,
-                AllowCancelButton = true,
-            };
-            if (BackgroundWorkerDialog.RunWorkerAsync(this, workerOptions) != DialogResult.OK)
-            {
-                return;
-            } // if
-
-            // TODO: implement HandleException
-            /*
-            if (workerOptions.OutputException != null)
-            {
-                HandleException(TasksTexts.ObtainingListException, workerOptions.OutputException);
-                return;
-            } // if
-            */
-
-            for (int index = 0; index < EpgEvents.GetLength(0); index++)
-            {
+                int cellIndex;
                 var row = dataGridPrograms.Rows[index];
-                for (int cellIndex = 0; cellIndex < 3; cellIndex++)
+
+                var node = EpgPrograms[index]?.Requested;
+                cellIndex = 1;
+                while ((node != null) && (cellIndex < 4))
                 {
-                    var epgEvent = EpgEvents[index, cellIndex];
-                    var cell = row.Cells[cellIndex + 1];
-                    if (epgEvent != null)
-                    {
-                        cell.Value = epgEvent.Title;
-                    }
-                    else
-                    {
-                        cell.Style.BackColor = SystemColors.Control;
-                        cell.Value = Properties.Texts.EpgNoInformation;
-                        cell.ErrorText = Properties.Texts.EpgNoData;
-                    } // if-else
+                    var cell = row.Cells[cellIndex];
+                    cell.Style.Alignment = DataGridViewContentAlignment.MiddleLeft;
+                    cell.Value = node.Program.Title;
+                    node = node.Next;
+                    cellIndex++;
+                } // while
+
+                // mark remaining cells as empty
+                for (; cellIndex < 4; cellIndex++)
+                {
+                    var cell = row.Cells[cellIndex];
+                    cell.Style.ForeColor = SystemColors.GrayText;
+                    cell.Value = Properties.Texts.EpgNoInformationShort;
+                    cell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
                 } // for cellIndex
             } // for index
 
             SelectedService = null;
-            if (CurrentRowIndex >= 0)
+            IsGridReady = true;
+
+            if (serviceRowIndex >= 0)
             {
-                dataGridPrograms.CurrentCell = dataGridPrograms.Rows[CurrentRowIndex].Cells[1];
-            } // if
-        } // EpgBasicGridDialog_Shown
-
-        private void AsyncBuildList(BackgroundWorkerOptions options, IBackgroundWorkerDialog dialog)
-        {
-            var result = options.OutputData as EpgEvent[,];
-
-            using (var cn = DbServices.GetConnection(AppUiConfiguration.Current.EpgDatabaseFile))
-            {
-                var serviceEvents = new Dictionary<string, EpgEvent[]>(ServicesList.Count, StringComparer.InvariantCultureIgnoreCase);
-                foreach (var service in ServicesList)
-                {
-                    // TODO: do not assume imagenio.es
-                    serviceEvents[service.ServiceName + ".imagenio.es"] = null;
-                } // foreach
-
-                var now = DateTime.Now;
-                ReferenceTime = new DateTime(now.Year, now.Month, now.Day, now.Hour, now.Minute, 0);
-                var events = EpgDbQuery.GetAllServicesNowEvent(cn, ReferenceTime);
-
-                foreach (var epgServiceEvent in events)
-                {
-                    var epgEvents = new EpgEvent[3];
-                    epgEvents[0] = epgServiceEvent.EpgEvent;
-                    serviceEvents[epgServiceEvent.FullServiceName] = epgEvents;
-                } // foreach
-
-                foreach (var serviceName in serviceEvents.Keys.ToList())
-                {
-                    EpgEvent[] epgEvents;
-                    DateTime start;
-
-                    if (dialog.QueryCancel()) return;
-
-                    var serviceDbId = EpgDbQuery.GetDatabaseIdForServiceId(serviceName, cn);
-                    if (serviceDbId <= 0) continue;
-
-                    epgEvents = serviceEvents[serviceName];
-                    start = (epgEvents != null) ? start = epgEvents[0].LocalEndTime : ReferenceTime;
-
-                    var afterEvents = EpgDbQuery.GetDateRange(cn, serviceDbId, start, null, 2);
-                    if (afterEvents.Count > 0)
-                    {
-                        if (epgEvents == null)
-                        {
-                            epgEvents = new EpgEvent[3];
-                            serviceEvents[serviceName] = epgEvents;
-                        } // if
-                        for (int epgIndex = 0; epgIndex < afterEvents.Count; epgIndex++)
-                        {
-                            epgEvents[epgIndex + 1] = afterEvents[epgIndex];
-                        } // for epgIndex
-                    } // if
-                } // foreach
-
-                for (int index = 0; index < ServicesList.Count; index++)
-                {
-                    EpgEvent[] epgEvents;
-
-                    if (dialog.QueryCancel()) return;
-
-                    // TODO: do not assume imagenio.es
-                    var service = ServicesList[index];
-                    epgEvents = serviceEvents[service.ServiceName + ".imagenio.es"];
-                    if (epgEvents == null)
-                    {
-                        if (service.Data.ServiceInformation.ReplacementService != null)
-                        {
-                            foreach (var replacement in service.Data.ServiceInformation.ReplacementService)
-                            {
-                                if (replacement.Kind != "5") continue;
-                                if (replacement.TextualIdentifier == null) continue;
-                                if (serviceEvents.TryGetValue(replacement.TextualIdentifier.ServiceName + ".imagenio.es", out epgEvents))
-                                {
-                                    if (epgEvents != null)
-                                    {
-                                        break;
-                                    } // if
-                                } // if
-                            } // foreach
-                        } // if
-                    } // if
-
-                    if (epgEvents == null) continue;
-
-                    for (int epgIndex = 0; epgIndex < epgEvents.Length; epgIndex++)
-                    {
-                        EpgEvents[index, epgIndex] = epgEvents[epgIndex];
-                    } // if
-                } // for index
-            } // using cn
-        }  // AsyncBuildList
-
-        private void dataGridPrograms_SelectionChanged(object sender, EventArgs e)
-        {
-            EpgEvent epgEvent;
-            int columnIndex;
-            string caption;
-
-            var cell = (dataGridPrograms.SelectedCells.Count > 0) ? dataGridPrograms.SelectedCells[0] : null;
-            if (cell == null)
-            {
-                SelectedService = null;
-                SelectedRowIndex = -1;
-                columnIndex = -1;
-                epgEvent = null;
+                dataGridPrograms.CurrentCell = dataGridPrograms.Rows[serviceRowIndex].Cells[1];
             }
             else
             {
-                SelectedRowIndex = cell.RowIndex;
-                SelectedService = ServicesList[SelectedRowIndex];
-
-                columnIndex = cell.ColumnIndex;
-                epgEvent = (columnIndex > 0)? EpgEvents[cell.RowIndex, columnIndex - 1] : null;
-
-                switch (columnIndex)
-                {
-                    case 1: caption = Properties.Texts.EpgProgramNowCaption; break;
-                    case 2: caption = Properties.Texts.EpgProgramThenCaption; break;
-                    case 3: caption = Properties.Texts.EpgProgramAfterCaption; break;
-                    default:
-                        caption = null;
-                        break;
-                } // switch
-
-                epgEventDisplay.DisplayData(ServicesList[SelectedRowIndex], epgEvent, ReferenceTime, caption);
+                SelectedRowIndex = -1;
             } // if-else
+        } // FillGrid
 
-            epgEventDisplay.Visible = (columnIndex > 0);
-            buttonDisplayChannel.Enabled = (columnIndex == 1);
-            buttonRecordChannel.Enabled = (columnIndex >= 1) && (epgEvent != null);
-        } // dataGridPrograms_SelectionChanged
-
-        private void buttonDisplayChannel_Click(object sender, EventArgs e)
+        private void AsyncGetEpgPrograms(BackgroundWorkerOptions options, IBackgroundWorkerDialog dialog)
         {
-            ExternalTvPlayer.ShowTvChannel(this, SelectedService);
-        } // buttonDisplayChannel_Click
+            IEpgLinkedList servicePrograms;
 
-        private void buttonRecordChannel_Click(object sender, EventArgs e)
+            dialog.SetProgressText("Requesting data for channels...");
+
+            LocalReferenceTime = DateTime.Now;
+            var programs = Datastore.GetAllPrograms(LocalReferenceTime, 0, 2);
+
+            dialog.SetProgressText("Sorting information...");
+
+            var index = -1;
+            foreach (var service in ServicesList)
+            {
+                index++;
+
+                // TODO: do NOT assume .imagenio.es
+                var fullServiceName = service.ServiceName + ".imagenio.es";
+                var fullAlternateServiceName = service.ReplacementService?.ServiceName + ".imagenio.es";
+
+                if (!programs.TryGetValue(fullServiceName, out servicePrograms))
+                {
+                    if (!programs.TryGetValue(fullAlternateServiceName, out servicePrograms))
+                    {
+                        continue;
+                    } // if
+                } // if
+
+                EpgPrograms[index] = servicePrograms;
+            } // foreach
+        }  // AsyncGetEpgPrograms
+
+        private void DisplayProgramData(int cellIndex)
         {
-            NotImplementedBox.ShowBox(this, "buttonRecordChannel");
-        } // buttonRecordChannel_Click
+            if (cellIndex < 1)
+            {
+                pictureProgramThumbnail.Visible = false;
+                epgMiniGuide.Visible = false;
+            }
+            else
+            {
+                //pictureProgramThumbnail.SetImage(Properties.Resources.EpgLoadingProgramImage);
+                pictureProgramThumbnail.Visible = true;
+
+                // TODO: load program image (async)
+                pictureProgramThumbnail.SetImage(Properties.Resources.EpgNoProgramImage);
+
+                epgMiniGuide.Visible = true;
+                epgMiniGuide.GoTo(cellIndex);
+            } // if-else
+        } // DisplayProgramData
+
+        private void ChangeSelectedRow(int rowIndex)
+        {
+            if (rowIndex == SelectedRowIndex) return;
+            SelectedRowIndex = rowIndex;
+            SelectedService = (rowIndex >= 0)? ServicesList[rowIndex] : null;
+
+            if (rowIndex == -1)
+            {
+                pictureProgramThumbnail.Visible = false;
+                epgMiniGuide.Visible = false;
+                return;
+            } // if
+
+            var epgPrograms = EpgPrograms[rowIndex];
+            var singleServiceDatastore = new EpgSingleServiceDatastore(SelectedService.FullServiceName, EpgPrograms[SelectedRowIndex]);
+
+            epgMiniGuide.LoadEpgPrograms(SelectedService, LocalReferenceTime, singleServiceDatastore, false);
+            epgMiniGuide.Visible = true;
+        } // ChangeSelectedRow
     } // class EpgBasicGridDialog
 } // namespace

@@ -1,6 +1,6 @@
-﻿using Project.IpTv.UiServices.Configuration;
-using Project.IpTv.UiServices.Discovery;
-using Project.IpTv.UiServices.Forms;
+﻿using IpTviewr.UiServices.Configuration;
+using IpTviewr.UiServices.Discovery;
+using IpTviewr.UiServices.Forms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -10,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace Project.IpTv.Internal.Tools.ChannelLogos
+namespace IpTviewr.Internal.Tools.ChannelLogos
 {
     public partial class FormConsistency : Form
     {

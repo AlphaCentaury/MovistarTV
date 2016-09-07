@@ -6,14 +6,14 @@ All rights reserved, except those granted by the governing license of this softw
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi" xmlns:netfx="http://schemas.microsoft.com/wix/NetFxExtension">
   <?include Strings.wxi ?>
   <Product Id="$(var.ProductId)" Name="!(loc.ProductName)" Language="!(loc.LANGUAGE)" Codepage="Windows-1252" Version="$(var.Version)" Manufacturer="$(var.Manufacturer)"  UpgradeCode="$(var.UpgradeCode)">
-    <Package Id="*" InstallerVersion="300" Compressed="yes" InstallScope="perUser"
+    <Package Id="*" InstallerVersion="405" Compressed="yes" InstallScope="perUser"
       Description="!(loc.PackageDescription)" Languages="!(loc.LANGUAGE)" Manufacturer="http://movistartv.codeplex.com" />
 
-    <!-- Ensure .NET Framework 3.5 SP1 is installed -->
-    <PropertyRef Id="NETFRAMEWORK35"/>
+    <!-- Ensure .NET Framework 4.5.2 is installed -->
+    <PropertyRef Id="WIX_IS_NETFRAMEWORK_452_OR_LATER_INSTALLED"/>
     <PropertyRef Id="NETFRAMEWORK35_SP_LEVEL"/>
     <Condition Message="!(loc.NetFrameworkNotPresent)">
-      <![CDATA[Installed OR (NETFRAMEWORK35_SP_LEVEL and NOT NETFRAMEWORK35_SP_LEVEL = "#0")]]>
+      <![CDATA[Installed OR WIX_IS_NETFRAMEWORK_452_OR_LATER_INSTALLED]]>
     </Condition>
 
     <MajorUpgrade DowngradeErrorMessage="!(loc.DowngradeErrorMessage)" />
@@ -23,7 +23,7 @@ All rights reserved, except those granted by the governing license of this softw
       <FeatureRef Id="Feature.Tools" />
       <Feature Id="Features" Display="expand" Title="Aditional features">
         <FeatureRef Id="Feature.Record" />
-        <!-- <FeatureRef Id="Feature.EPG" /> -->
+        <FeatureRef Id="Feature.EPG" />
       </Feature>
       <Feature Id="Base" Title="Common files" Absent="disallow">
         <ComponentGroupRef Id="RegistryConfiguration" />

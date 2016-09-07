@@ -7,18 +7,18 @@ using System.Linq;
 using System.Text;
 using Microsoft.Win32.TaskScheduler;
 using System.Globalization;
-using Project.IpTv.Services.Record.Serialization;
+using IpTviewr.Services.Record.Serialization;
 using System.Reflection;
 using System.IO;
-using Project.IpTv.Services.Record.Properties;
+using IpTviewr.Services.Record.Properties;
 using System.Text.RegularExpressions;
-using Project.IpTv.Common;
+using IpTviewr.Common;
 
-namespace Project.IpTv.Services.Record
+namespace IpTviewr.Services.Record
 {
     public class Scheduler
     {
-        private Action<string, Exception> ExceptionHandler;
+        private Action<ExceptionEventData> ExceptionHandler;
         private string RecordTasksFolder;
         private string RecorderLauncherPath;
         private string DbFile;
@@ -31,7 +31,7 @@ namespace Project.IpTv.Services.Record
         private TaskFolder TaskFolder;
         private string TaskName;
 
-        public Scheduler(Action<string, Exception> exceptionHandler, string recordTasksFolder, string recorderLauncherPath)
+        public Scheduler(Action<ExceptionEventData> exceptionHandler, string recordTasksFolder, string recorderLauncherPath)
         {
             if ((exceptionHandler == null) || string.IsNullOrEmpty(recordTasksFolder) || string.IsNullOrEmpty(recorderLauncherPath))
             {
@@ -54,11 +54,7 @@ namespace Project.IpTv.Services.Record
 
             if (!schedulerTask.Definition.RegistrationInfo.Documentation.StartsWith(Resources.DefinitionRegistrationInfo_Documentation_Begins, StringComparison.InvariantCultureIgnoreCase))
             {
-                // try v1 documentation format
-                if (!schedulerTask.Definition.RegistrationInfo.Documentation.StartsWith(Resources.DefinitionRegistrationInfo_DocumentationV1_Begins, StringComparison.InvariantCultureIgnoreCase))
-                {
-                    return false;
-                } // if
+                return false;
             } // if
 
             try
@@ -69,7 +65,7 @@ namespace Project.IpTv.Services.Record
             catch
             {
                 // ignore, but return a null RecordTask
-                return true;
+                return false;
             } // try-catch
         } // IsRecordSchedulerTask
 
@@ -135,7 +131,7 @@ namespace Project.IpTv.Services.Record
                     }
                     catch (Exception ex)
                     {
-                        ExceptionHandler(Texts.TaskRunException, ex);
+                        ExceptionHandler(new ExceptionEventData(Texts.TaskRunException, ex));
                         return false;
                     } // try-catch
                 } // if
@@ -144,7 +140,7 @@ namespace Project.IpTv.Services.Record
             }
             catch (Exception ex)
             {
-                ExceptionHandler(Texts.TaskCreationException, ex);
+                ExceptionHandler(new ExceptionEventData(Texts.TaskCreationException, ex));
                 return false;
             }
             finally
@@ -181,6 +177,7 @@ namespace Project.IpTv.Services.Record
         {
             if (string.IsNullOrEmpty(settings.TaskSchedulerFolder))
             {
+                settings.TaskSchedulerFolder = "";
                 return taskScheduler.RootFolder;
             } // if
 
@@ -203,16 +200,14 @@ namespace Project.IpTv.Services.Record
 
         private void GetDuration(RecordTask task)
         {
-            // extract start details
-            var scheduleTime = task.Schedule as RecordScheduleTime;
-            if (scheduleTime != null)
+            // set duration if EndDateTime
+            if (task.Duration.EndDateTime != null)
             {
-                StartSafetyMargin = scheduleTime.SafetyMarginTimeSpan;
-            }
-            else
-            {
-                StartSafetyMargin = new TimeSpan(0, 0, 0);
+                task.Duration.Length = task.Duration.GetDuration(task.Schedule);
             } // if-else
+
+            // extract start details
+            StartSafetyMargin = task.Schedule.SafetyMarginTimeSpan;
 
             // extract duration details
             EndSafetyMargin = task.Duration.SafetyMarginTimeSpan;
@@ -229,7 +224,7 @@ namespace Project.IpTv.Services.Record
                 case RecordScheduleKind.RightNow:
                     {
                         var rightNow = new TimeTrigger();
-                        rightNow.EndBoundary = DateTime.Now + TotalRecordTime;
+                        rightNow.EndBoundary = DateTime.Now.TruncateToSeconds() + TotalRecordTime + new TimeSpan(0,1,0);
 
                         definition.Triggers.Add(rightNow);
                         break;
@@ -299,7 +294,7 @@ namespace Project.IpTv.Services.Record
         {
             string userDescription;
 
-            TaskName = GetUniqueTaskName(task, "IPTV");
+            TaskName = GetUniqueTaskName(task, "IPTViewr");
             task.Description.TaskSchedulerName = TaskName;
 
             userDescription = task.Description.Description;

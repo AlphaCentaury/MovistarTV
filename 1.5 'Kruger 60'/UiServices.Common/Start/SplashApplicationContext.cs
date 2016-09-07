@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 
-namespace Project.IpTv.UiServices.Common.Start
+namespace IpTviewr.UiServices.Common.Start
 {
     public abstract class SplashApplicationContext : ApplicationContext
     {
@@ -127,8 +127,8 @@ namespace Project.IpTv.UiServices.Common.Start
 
         protected abstract object DoBackgroundWork();
         protected abstract bool BackgroundWorkCompleted(RunWorkerCompletedEventArgs result);
-        protected abstract void DoDisplayMessage(IWin32Window splashScreen, string caption, string message, MessageBoxIcon icon);
-        protected abstract void DoDisplayException(IWin32Window splashScreen, string caption, string message, MessageBoxIcon icon, Exception exception);
+        protected abstract void DoDisplayMessage(Form splashScreen, string caption, string message, MessageBoxIcon icon);
+        protected abstract void DoDisplayException(Form splashScreen, string caption, string message, MessageBoxIcon icon, Exception exception);
         protected abstract Form GetMainForm();
 
         #endregion
@@ -295,15 +295,42 @@ namespace Project.IpTv.UiServices.Common.Start
             worker.Dispose();
             worker = null;
 
-            if ((!isOk) || (e.Cancelled) || (e.Error != null) || ((mainForm = GetMainForm()) == null))
+            var close = (!isOk) || (e.Cancelled) || (e.Error != null);
+            if (!close)
+            {
+                close = true;
+                try
+                {
+                    mainForm = GetMainForm();
+                    close = (mainForm == null);
+                }
+                catch (Exception ex)
+                {
+                    DisplayException(Properties.Splash.ExceptionGetMainForm, false, true, ex);
+                } // try-catch
+            } // if
+
+            if (!close)
+            {
+                close = true;
+                try
+                {
+                    StartMainForm(mainForm);
+                    close = false;
+                }
+                catch (Exception ex)
+                {
+                    DisplayException(Properties.Splash.ExceptionStartMainForm, false, true, ex);
+                    close = true;
+                } // try-catch
+            } // if
+
+            if (close)
             {
                 splashScreen.Close();
                 ExitThread();
-
                 return;
             } // if
-
-            StartMainForm(mainForm);
         } // Worker_RunWorkerCompleted
 
         #endregion

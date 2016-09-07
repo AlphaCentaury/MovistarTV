@@ -1,7 +1,7 @@
 ﻿// Copyright (C) 2014-2016, Codeplex/GitHub user AlphaCentaury
 // All rights reserved, except those granted by the governing license of this software. See 'license.txt' file in the project root for complete license information.
 
-namespace Project.IpTv.Internal.Tools.GuiTools
+namespace IpTviewr.Internal.Tools.GuiTools
 {
     partial class SimpleDvbStpDownloadForm
     {
@@ -42,6 +42,8 @@ namespace Project.IpTv.Internal.Tools.GuiTools
             this.labelPort = new System.Windows.Forms.Label();
             this.textIpAddress = new System.Windows.Forms.TextBox();
             this.labelIpAddress = new System.Windows.Forms.Label();
+            this.radioFormatXml = new System.Windows.Forms.RadioButton();
+            this.radioFormatBinary = new System.Windows.Forms.RadioButton();
             this.SuspendLayout();
             // 
             // textSegmentId
@@ -86,11 +88,11 @@ namespace Project.IpTv.Internal.Tools.GuiTools
             this.textBoxResult.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxResult.Location = new System.Drawing.Point(13, 43);
+            this.textBoxResult.Font = new System.Drawing.Font("Lucida Console", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxResult.Location = new System.Drawing.Point(13, 64);
             this.textBoxResult.Multiline = true;
             this.textBoxResult.Name = "textBoxResult";
-            this.textBoxResult.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBoxResult.Size = new System.Drawing.Size(659, 357);
+            this.textBoxResult.Size = new System.Drawing.Size(659, 336);
             this.textBoxResult.TabIndex = 23;
             // 
             // buttonDownload
@@ -141,11 +143,35 @@ namespace Project.IpTv.Internal.Tools.GuiTools
             this.labelIpAddress.TabIndex = 12;
             this.labelIpAddress.Text = "IP address";
             // 
+            // radioFormatXml
+            // 
+            this.radioFormatXml.AutoSize = true;
+            this.radioFormatXml.Checked = true;
+            this.radioFormatXml.Location = new System.Drawing.Point(310, 41);
+            this.radioFormatXml.Name = "radioFormatXml";
+            this.radioFormatXml.Size = new System.Drawing.Size(149, 17);
+            this.radioFormatXml.TabIndex = 24;
+            this.radioFormatXml.TabStop = true;
+            this.radioFormatXml.Text = "Format as UTF-8 XML text";
+            this.radioFormatXml.UseVisualStyleBackColor = true;
+            // 
+            // radioFormatBinary
+            // 
+            this.radioFormatBinary.AutoSize = true;
+            this.radioFormatBinary.Location = new System.Drawing.Point(491, 41);
+            this.radioFormatBinary.Name = "radioFormatBinary";
+            this.radioFormatBinary.Size = new System.Drawing.Size(126, 17);
+            this.radioFormatBinary.TabIndex = 25;
+            this.radioFormatBinary.Text = "Format as binary data";
+            this.radioFormatBinary.UseVisualStyleBackColor = true;
+            // 
             // SimpleDvbStpDownloadForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(684, 412);
+            this.Controls.Add(this.radioFormatBinary);
+            this.Controls.Add(this.radioFormatXml);
             this.Controls.Add(this.textSegmentId);
             this.Controls.Add(this.labelSegmentID);
             this.Controls.Add(this.textPayloadId);
@@ -158,7 +184,7 @@ namespace Project.IpTv.Internal.Tools.GuiTools
             this.Controls.Add(this.labelIpAddress);
             this.Name = "SimpleDvbStpDownloadForm";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;
-            this.Text = "Simple DVB-STP Payload downloader";
+            this.Text = "Simple DVB-STP Payload downloader - GuiTools";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -176,6 +202,7 @@ namespace Project.IpTv.Internal.Tools.GuiTools
         private System.Windows.Forms.Label labelPort;
         private System.Windows.Forms.TextBox textIpAddress;
         private System.Windows.Forms.Label labelIpAddress;
-
+        private System.Windows.Forms.RadioButton radioFormatXml;
+        private System.Windows.Forms.RadioButton radioFormatBinary;
     }
 }

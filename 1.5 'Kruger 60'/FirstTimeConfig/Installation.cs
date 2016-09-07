@@ -2,9 +2,9 @@
 // All rights reserved, except those granted by the governing license of this software. See 'license.txt' file in the project root for complete license information.
 
 using Microsoft.Win32;
-using Project.IpTv.Common.Telemetry;
-using Project.IpTv.Tools.FirstTimeConfig.Properties;
-using Project.IpTv.UiServices.Configuration;
+using IpTviewr.Common.Telemetry;
+using IpTviewr.Tools.FirstTimeConfig.Properties;
+using IpTviewr.UiServices.Configuration;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,7 +16,7 @@ using System.Reflection;
 using System.Text;
 using System.Windows.Forms;
 
-namespace Project.IpTv.Tools.FirstTimeConfig
+namespace IpTviewr.Tools.FirstTimeConfig
 {
     internal class Installation
     {

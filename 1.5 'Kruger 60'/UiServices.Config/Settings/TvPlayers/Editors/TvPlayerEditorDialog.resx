@@ -322,7 +322,7 @@
     <value>argumentsEditor</value>
   </data>
   <data name="&gt;&gt;argumentsEditor.Type" xml:space="preserve">
-    <value>Project.IpTv.UiServices.Configuration.Editors.ArgumentsEditor, UiServices.Configuration, Version=1.5.30.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>IpTviewr.UiServices.Configuration.Editors.ArgumentsEditor, UiServices.Configuration, Version=1.5.30.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;argumentsEditor.Parent" xml:space="preserve">
     <value>$this</value>

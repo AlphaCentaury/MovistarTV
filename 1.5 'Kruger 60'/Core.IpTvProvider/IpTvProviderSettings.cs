@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Xml.Serialization;
-using Project.IpTv.UiServices.Configuration;
-using Project.IpTv.UiServices.Configuration.Schema2014.Config;
+using IpTviewr.UiServices.Configuration;
+using IpTviewr.UiServices.Configuration.Schema2014.Config;
 
-namespace Project.IpTv.Core.IpTvProvider
+namespace IpTviewr.Core.IpTvProvider
 {
     [Serializable]
     [XmlRoot("IpTvProvider", Namespace = ConfigCommon.ConfigXmlNamespace)]

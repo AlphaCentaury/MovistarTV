@@ -1,9 +1,9 @@
-﻿// Copyright (C) 2014-2016, Codeplex user AlphaCentaury
+﻿// Copyright (C) 2014-2016, Codeplex/GitHub user AlphaCentaury
 // All rights reserved, except those granted by the governing license of this software. See 'license.txt' file in the project root for complete license information.
 
-namespace Project.IpTv.UiServices.EPG
+namespace IpTviewr.UiServices.EPG
 {
-    partial class EpgEventMiniBar
+    partial class EpgProgramMiniBar
     {
         /// <summary> 
         /// Required designer variable.
@@ -31,9 +31,9 @@ namespace Project.IpTv.UiServices.EPG
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EpgEventMiniBar));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EpgProgramMiniBar));
             this.buttonProgramProperties = new System.Windows.Forms.Button();
-            this.pictureProgramThumbnail = new Project.IpTv.UiServices.Common.Controls.PictureBoxEx();
+            this.pictureProgramThumbnail = new IpTviewr.UiServices.Common.Controls.PictureBoxEx();
             this.labelProgramDetails = new System.Windows.Forms.Label();
             this.labelProgramTitle = new System.Windows.Forms.Label();
             this.labelProgramTime = new System.Windows.Forms.Label();
@@ -123,7 +123,7 @@ namespace Project.IpTv.UiServices.EPG
             this.labelProgramCaption.TabIndex = 36;
             this.labelProgramCaption.Text = "(Program)";
             // 
-            // EpgEventMiniBar
+            // EpgProgramMiniBar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -133,7 +133,7 @@ namespace Project.IpTv.UiServices.EPG
             this.Controls.Add(this.labelProgramTitle);
             this.Controls.Add(this.labelProgramTime);
             this.Controls.Add(this.labelProgramCaption);
-            this.Name = "EpgEventMiniBar";
+            this.Name = "EpgProgramMiniBar";
             this.Size = new System.Drawing.Size(400, 90);
             ((System.ComponentModel.ISupportInitialize)(this.pictureProgramThumbnail)).EndInit();
             this.ResumeLayout(false);
@@ -149,5 +149,5 @@ namespace Project.IpTv.UiServices.EPG
         private System.Windows.Forms.Label labelProgramTitle;
         private System.Windows.Forms.Label labelProgramTime;
         private System.Windows.Forms.Label labelProgramCaption;
-    } // class EpgEventMiniBar
+    } // class EpgProgramMiniBar
 } // namespace

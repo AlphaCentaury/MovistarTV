@@ -3,13 +3,14 @@
 
 using Etsi.Ts102034.v010501.XmlSerialization;
 using Etsi.Ts102034.v010501.XmlSerialization.ProviderDiscovery;
-using Project.IpTv.Common.Telemetry;
-using Project.IpTv.UiServices.Common.Forms;
-using Project.IpTv.UiServices.Configuration;
-using Project.IpTv.UiServices.Configuration.Logos;
-using Project.IpTv.UiServices.Discovery;
-using Project.IpTv.UiServices.DvbStpClient;
-using Project.IpTv.UiServices.Forms;
+using IpTviewr.Common;
+using IpTviewr.Common.Telemetry;
+using IpTviewr.UiServices.Common.Forms;
+using IpTviewr.UiServices.Configuration;
+using IpTviewr.UiServices.Configuration.Logos;
+using IpTviewr.UiServices.Discovery;
+using IpTviewr.UiServices.DvbStpClient;
+using IpTviewr.UiServices.Forms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -20,7 +21,7 @@ using System.Net;
 using System.Text;
 using System.Windows.Forms;
 
-namespace Project.IpTv.UiServices.Forms
+namespace IpTviewr.UiServices.Forms
 {
     public partial class SelectProviderDialog : CommonBaseForm
     {
@@ -30,15 +31,6 @@ namespace Project.IpTv.UiServices.Forms
         {
             InitializeComponent();
         } // constructor
-
-        #region CommonBaseForm implementation
-
-        protected override void OnExceptionThrown(object sender, CommonBaseFormExceptionThrownEventArgs e)
-        {
-            HandleException(e.Message, e.Exception);
-        } // OnExceptionThrown
-
-        #endregion
 
         public UiServiceProvider SelectedServiceProvider
         {
@@ -178,7 +170,7 @@ namespace Project.IpTv.UiServices.Forms
             }
             catch (Exception ex)
             {
-                HandleException(Properties.DiscoveryTexts.SPListUnableRefresh, ex);
+                HandleException(new ExceptionEventData(Properties.DiscoveryTexts.SPListUnableRefresh, ex));
                 return false;
             } // try-catch
         } // LoadServiceProviderList

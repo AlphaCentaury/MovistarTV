@@ -9,13 +9,13 @@ using System.Text;
 using System.Xml;
 using System.Xml.Serialization;
 
-namespace Project.IpTv.Services.Record.Serialization
+namespace IpTviewr.Services.Record.Serialization
 {
     [Serializable]
     [XmlRoot(ElementName = "RecordTask", Namespace = RecordTask.XmlNamespace)]
     public class RecordTask
     {
-        public const string XmlNamespace = "urn:Project-DvbIpTV:2014:RecordTask";
+        public const string XmlNamespace = "urn:AlphaCentaury:IpTViewr:2014:RecordTask";
 
         public RecordTask()
         {
@@ -34,6 +34,12 @@ namespace Project.IpTv.Services.Record.Serialization
             get;
             set;
         } // Channel
+
+        public RecordProgram Program
+        {
+            get;
+            set;
+        } // Program
 
         [XmlElement("RightNow", typeof(RecordRightNow))]
         [XmlElement("OneTimeSchedule", typeof(RecordOneTime))]
@@ -133,8 +139,7 @@ namespace Project.IpTv.Services.Record.Serialization
             if (withDuration)
             {
                 buffer.AppendLine(Properties.Texts.BuildDescriptionDurationHeader);
-                var scheduleTime = Schedule as RecordScheduleTime;
-                var startSafetyMargin = (scheduleTime != null) ? scheduleTime.SafetyMarginTimeSpan : TimeSpan.Zero;
+                var startSafetyMargin = Schedule.SafetyMarginTimeSpan;
                 var endSafetyMargin = Duration.SafetyMarginTimeSpan;
                 var recordDuration = Duration.Length;
                 var totalRecordTime = startSafetyMargin + recordDuration + endSafetyMargin;
@@ -146,11 +151,10 @@ namespace Project.IpTv.Services.Record.Serialization
                     totalRecordTime);
                 buffer.AppendLine();
 
-                if (scheduleTime != null)
+                if (Schedule.Kind != RecordScheduleKind.RightNow)
                 {
                     string format;
-                    var schedule = (RecordScheduleTime)Schedule;
-                    var startDate = schedule.StartDate - schedule.SafetyMarginTimeSpan;
+                    var startDate = Schedule.StartDate - Schedule.SafetyMarginTimeSpan;
                     var endDate = startDate + totalRecordTime;
                     if (startDate.Day == endDate.Day)
                     {
@@ -161,8 +165,12 @@ namespace Project.IpTv.Services.Record.Serialization
                         format = pastTime ? Properties.Texts.BuildDescriptionDurationEndsNextDay : Properties.Texts.BuildDescriptionDurationEndsTomorrow;
                     } // if-else
                     buffer.AppendFormat(format, endDate);
-                    buffer.AppendLine();
-                } // if
+                }
+                else
+                {
+
+                } // if-else
+                buffer.AppendLine();
             } // if withDuration
 
             // remove last CRLF

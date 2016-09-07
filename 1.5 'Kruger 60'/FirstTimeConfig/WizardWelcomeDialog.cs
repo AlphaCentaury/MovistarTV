@@ -1,8 +1,8 @@
-﻿// Copyright (C) 2015, Codeplex/GitHub user AlphaCentaury
+﻿// Copyright (C) 2014-2016, Codeplex/GitHub user AlphaCentaury
 // All rights reserved, except those granted by the governing license of this software. See 'license.txt' file in the project root for complete license information.
 
-using Project.IpTv.Common.Telemetry;
-using Project.IpTv.UiServices.Common.Forms;
+using IpTviewr.Common.Telemetry;
+using IpTviewr.UiServices.Common.Forms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,7 +11,7 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 
-namespace Project.IpTv.Tools.FirstTimeConfig
+namespace IpTviewr.Tools.FirstTimeConfig
 {
     public partial class WizardWelcomeDialog : Form
     {

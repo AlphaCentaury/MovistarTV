@@ -112,10 +112,10 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="EmptyFileExtension" xml:space="preserve">
     <value>The extension of the file of the recording can not be empty.
@@ -129,12 +129,27 @@ Please specify a name.</value>
     <value>The name of the task can not be empty.
 Please specify a name.</value>
   </data>
+  <data name="FileExtensions" xml:space="preserve">
+    <value>.ts
+.raw
+.mpg
+.mp2
+.mp4
+.m2ts</value>
+    <comment>One extension per line, starting with the dot [.]</comment>
+  </data>
   <data name="NoSaveLocation" xml:space="preserve">
     <value>A save location has not been selected.
 Please select one or browse for a folder.</value>
   </data>
-  <data name="RecordTaskNameSuggestedNameFormat" xml:space="preserve">
-    <value>{0} [{1:yyyy\-MM\-dd} {2:HH\-mm\-ss}]</value>
+  <data name="RecordButtonRecord" xml:space="preserve">
+    <value>Record</value>
+  </data>
+  <data name="RecordButtonSchedule" xml:space="preserve">
+    <value>Set schedule</value>
+  </data>
+  <data name="RecordButtonWithSettings" xml:space="preserve">
+    <value>Schedule...</value>
   </data>
   <data name="SaveCustomLocation" xml:space="preserve">
     <value>&lt;Custom location&gt;</value>
@@ -144,6 +159,15 @@ Please select one or browse for a folder.</value>
   </data>
   <data name="SaveMissingLocation" xml:space="preserve">
     <value>&lt;Missing location&gt;</value>
+  </data>
+  <data name="SelectedProgramIsNullOrBlank" xml:space="preserve">
+    <value>No program has been selected or there is insufficient information.</value>
+  </data>
+  <data name="SelectedProgramIsOld" xml:space="preserve">
+    <value>The selected program has ended and can't be recorded.</value>
+  </data>
+  <data name="SelectedProgramIsRightNow" xml:space="preserve">
+    <value>The program has already begun. It will be recorded as soon as possible.</value>
   </data>
   <data name="TaskSchedulerRootFolder" xml:space="preserve">
     <value>&lt;No folder&gt;</value>

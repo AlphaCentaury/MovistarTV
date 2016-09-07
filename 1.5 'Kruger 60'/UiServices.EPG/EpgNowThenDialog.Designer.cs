@@ -1,7 +1,7 @@
-﻿// Copyright (C) 2014-2016, Codeplex user AlphaCentaury
+﻿// Copyright (C) 2014-2016, Codeplex/GitHub user AlphaCentaury
 // All rights reserved, except those granted by the governing license of this software. See 'license.txt' file in the project root for complete license information.
 
-namespace Project.IpTv.UiServices.EPG
+namespace IpTviewr.UiServices.EPG
 {
     partial class EpgNowThenDialog
     {
@@ -35,9 +35,9 @@ namespace Project.IpTv.UiServices.EPG
             this.labelChannelName = new System.Windows.Forms.Label();
             this.pictureChannelLogo = new System.Windows.Forms.PictureBox();
             this.buttonOk = new System.Windows.Forms.Button();
-            this.epgEventBefore = new Project.IpTv.UiServices.EPG.EpgEventMiniBar();
-            this.epgEventNow = new Project.IpTv.UiServices.EPG.EpgEventMiniBar();
-            this.epgEventThen = new Project.IpTv.UiServices.EPG.EpgEventMiniBar();
+            this.EpgProgramBefore = new IpTviewr.UiServices.EPG.EpgProgramMiniBar();
+            this.EpgProgramNow = new IpTviewr.UiServices.EPG.EpgProgramMiniBar();
+            this.EpgProgramThen = new IpTviewr.UiServices.EPG.EpgProgramMiniBar();
             ((System.ComponentModel.ISupportInitialize)(this.pictureChannelLogo)).BeginInit();
             this.SuspendLayout();
             // 
@@ -58,32 +58,32 @@ namespace Project.IpTv.UiServices.EPG
             // 
             resources.ApplyResources(this.buttonOk, "buttonOk");
             this.buttonOk.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.buttonOk.Image = global::Project.IpTv.UiServices.EPG.CommonUiResources.Action_Ok_16x16;
+            this.buttonOk.Image = global::IpTviewr.UiServices.EPG.Properties.CommonUiResources.Action_Ok_16x16;
             this.buttonOk.Name = "buttonOk";
             this.buttonOk.UseVisualStyleBackColor = true;
             // 
-            // epgEventBefore
+            // EpgProgramBefore
             // 
-            resources.ApplyResources(this.epgEventBefore, "epgEventBefore");
-            this.epgEventBefore.Name = "epgEventBefore";
+            resources.ApplyResources(this.EpgProgramBefore, "EpgProgramBefore");
+            this.EpgProgramBefore.Name = "EpgProgramBefore";
             // 
-            // epgEventNow
+            // EpgProgramNow
             // 
-            resources.ApplyResources(this.epgEventNow, "epgEventNow");
-            this.epgEventNow.Name = "epgEventNow";
+            resources.ApplyResources(this.EpgProgramNow, "EpgProgramNow");
+            this.EpgProgramNow.Name = "EpgProgramNow";
             // 
-            // epgEventThen
+            // EpgProgramThen
             // 
-            resources.ApplyResources(this.epgEventThen, "epgEventThen");
-            this.epgEventThen.Name = "epgEventThen";
+            resources.ApplyResources(this.EpgProgramThen, "EpgProgramThen");
+            this.EpgProgramThen.Name = "EpgProgramThen";
             // 
             // FormEpgNowThen
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.epgEventThen);
-            this.Controls.Add(this.epgEventNow);
-            this.Controls.Add(this.epgEventBefore);
+            this.Controls.Add(this.EpgProgramThen);
+            this.Controls.Add(this.EpgProgramNow);
+            this.Controls.Add(this.EpgProgramBefore);
             this.Controls.Add(this.labelChannelName);
             this.Controls.Add(this.pictureChannelLogo);
             this.Controls.Add(this.buttonOk);
@@ -104,8 +104,8 @@ namespace Project.IpTv.UiServices.EPG
         private System.Windows.Forms.Button buttonOk;
         private System.Windows.Forms.PictureBox pictureChannelLogo;
         private System.Windows.Forms.Label labelChannelName;
-        private EpgEventMiniBar epgEventBefore;
-        private EpgEventMiniBar epgEventNow;
-        private EpgEventMiniBar epgEventThen;
+        private EpgProgramMiniBar EpgProgramBefore;
+        private EpgProgramMiniBar EpgProgramNow;
+        private EpgProgramMiniBar EpgProgramThen;
     } // class EpgNowThenDialog
 } // namespace

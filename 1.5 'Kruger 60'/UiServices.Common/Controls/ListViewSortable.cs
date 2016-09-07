@@ -10,7 +10,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
 
-namespace Project.IpTv.UiServices.Common.Controls
+namespace IpTviewr.UiServices.Common.Controls
 {
     [ToolboxBitmap(typeof(ListView))]
     public class ListViewSortable : ListView
@@ -158,10 +158,7 @@ namespace Project.IpTv.UiServices.Common.Controls
             // force redraw to update the "arrow" on the header
             RedrawHeader();
 
-            if (AfterSorting != null)
-            {
-                AfterSorting(this, EventArgs.Empty);
-            } // if
+            AfterSorting?.Invoke(this, EventArgs.Empty);
         } // Sort
 
         protected override void OnColumnClick(ColumnClickEventArgs e)

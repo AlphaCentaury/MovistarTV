@@ -112,16 +112,16 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="EpgDataLoading" xml:space="preserve">
-    <value>Loading EPG data...</value>
+    <value>Loading program information...</value>
   </data>
   <data name="EpgDataLoadingList" xml:space="preserve">
-    <value>Loading EPG information...</value>
+    <value>Loading EPG data...</value>
   </data>
   <data name="EpgNoData" xml:space="preserve">
     <value>No data</value>
@@ -130,7 +130,10 @@
     <value>Genre not available</value>
   </data>
   <data name="EpgNoInformation" xml:space="preserve">
-    <value>(EPG information is not available)</value>
+    <value>Program information is not available</value>
+  </data>
+  <data name="EpgNoInformationShort" xml:space="preserve">
+    <value>Not available</value>
   </data>
   <data name="EpgNoParentalRating" xml:space="preserve">
     <value>Parental rating not available</value>
@@ -146,6 +149,9 @@
   </data>
   <data name="EpgProgramThenCaption" xml:space="preserve">
     <value>Then</value>
+  </data>
+  <data name="ObtainingListException" xml:space="preserve">
+    <value>There was an error retrieving the list of programs</value>
   </data>
   <data name="ProgramEnded" xml:space="preserve">
     <value>Ended {0} ago</value>

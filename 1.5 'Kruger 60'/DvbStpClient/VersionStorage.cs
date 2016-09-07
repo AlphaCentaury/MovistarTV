@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Project.IpTv.DvbStp.Client
+namespace IpTviewr.DvbStp.Client
 {
     public class VersionStorage
     {
@@ -82,6 +82,9 @@ namespace Project.IpTv.DvbStp.Client
                 if (assembler.IsSegmentComplete)
                 {
                     OnSegmentReceived(assembler);
+                    // discard data
+                    assembler = null;
+                    Versions.Remove(header.SegmentVersion);
                 } // if
             } // if
 
@@ -117,9 +120,6 @@ namespace Project.IpTv.DvbStp.Client
                 var args = new PayloadStorage.SegmentPayloadReceivedEventArgs(assembler);
                 SegmentPayloadReceived(this, args);
             } // if
-
-            // discard data
-            assembler.Reset();
         } // OnSegmentReceived
     } // VersionStorage
 } // namespace

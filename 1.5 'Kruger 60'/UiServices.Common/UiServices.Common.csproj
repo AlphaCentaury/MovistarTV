@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -7,14 +7,15 @@
     <ProjectGuid>{76346905-AC2F-4F01-BA99-BBFFBB2A6FE9}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Project.IpTv.UiServices.Common</RootNamespace>
+    <RootNamespace>IpTviewr.UiServices.Common</RootNamespace>
     <AssemblyName>UiServices.Common</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SccProjectName>SAK</SccProjectName>
     <SccLocalPath>SAK</SccLocalPath>
     <SccAuxPath>SAK</SccAuxPath>
     <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -24,6 +25,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -32,6 +34,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.ExceptionMessageBox, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
@@ -50,6 +53,9 @@
   <ItemGroup>
     <Compile Include="..\AssemblySolutionInfo.cs">
       <Link>Properties\AssemblySolutionInfo.cs</Link>
+    </Compile>
+    <Compile Include="Controls\CommonBaseUserControl.cs">
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Properties\BackgroundWorkerDialog.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -124,7 +130,6 @@
     <Compile Include="Forms\CommonBaseForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\CommonBaseFormExceptionThrownEventArgs.cs" />
     <Compile Include="Forms\IBackgroundWorkerDialog.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -142,6 +147,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Properties\Splash.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Splash.resx</DependentUpon>
+    </Compile>
     <Compile Include="Start\ISplashScreenAwareForm.cs" />
     <Compile Include="Start\SplashApplicationContext.cs" />
     <Compile Include="Start\SplashScreen.cs">
@@ -150,6 +160,7 @@
     <Compile Include="Start\SplashScreen.Designer.cs">
       <DependentUpon>SplashScreen.cs</DependentUpon>
     </Compile>
+    <Compile Include="WinFormsControlsExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="..\Common.UI\Resources\Action_Copy_Clip_16x16.png">
@@ -233,6 +244,11 @@
     <EmbeddedResource Include="Properties\TimeSpanUpDown.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>TimeSpanUpDown.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Splash.es.resx" />
+    <EmbeddedResource Include="Properties\Splash.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Splash.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Start\SplashScreen.resx">
       <DependentUpon>SplashScreen.cs</DependentUpon>

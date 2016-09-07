@@ -112,10 +112,10 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="EmptyFileExtension" xml:space="preserve">
     <value>La extensión del archivo de la grabación no puede estar en blanco.
@@ -133,6 +133,15 @@ Por favor indique un nombre para la tarea.</value>
     <value>No se ha seleccionado una ubicación de grabación.
 Por favor seleccione una ubicación o seleccione una carpeta.</value>
   </data>
+  <data name="RecordButtonRecord" xml:space="preserve">
+    <value>Grabar</value>
+  </data>
+  <data name="RecordButtonSchedule" xml:space="preserve">
+    <value>Programar</value>
+  </data>
+  <data name="RecordButtonWithSettings" xml:space="preserve">
+    <value>Programar...</value>
+  </data>
   <data name="RecordTaskNameSuggestedNameFormat" xml:space="preserve">
     <value>{0} [{1:yyyy\-MM\-dd} {2:HH\-mm\-ss}]</value>
   </data>
@@ -144,6 +153,15 @@ Por favor seleccione una ubicación o seleccione una carpeta.</value>
   </data>
   <data name="SaveMissingLocation" xml:space="preserve">
     <value>&lt;No localizada&gt;</value>
+  </data>
+  <data name="SelectedProgramIsNullOrBlank" xml:space="preserve">
+    <value>No se seleccionado ningún programa o la información es insuficiente.</value>
+  </data>
+  <data name="SelectedProgramIsOld" xml:space="preserve">
+    <value>El programa seleccionado ya ha finalizado y no puede ser grabado.</value>
+  </data>
+  <data name="SelectedProgramIsRightNow" xml:space="preserve">
+    <value>El programa ya ha comenzado. Se grabará a partir de ahora.</value>
   </data>
   <data name="TaskSchedulerRootFolder" xml:space="preserve">
     <value>&lt;En ninguna carpeta&gt;</value>

@@ -10,7 +10,7 @@ using System.Security;
 using System.Threading;
 using System.Drawing;
 
-namespace Project.IpTv.UiServices.Common.Controls
+namespace IpTviewr.UiServices.Common.Controls
 {
     /*
     The following code has been copied verbatim from the http://dotnetzip.codeplex.com project

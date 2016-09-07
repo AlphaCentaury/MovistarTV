@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Project.IpTv.UiServices.EPG.Properties {
+namespace IpTviewr.UiServices.EPG.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace Project.IpTv.UiServices.EPG.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Project.IpTv.UiServices.EPG.Properties.Texts", typeof(Texts).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("IpTviewr.UiServices.EPG.Properties.Texts", typeof(Texts).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,7 +61,7 @@ namespace Project.IpTv.UiServices.EPG.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Loading EPG data....
+        ///   Looks up a localized string similar to Loading program information....
         /// </summary>
         internal static string EpgDataLoading {
             get {
@@ -70,7 +70,7 @@ namespace Project.IpTv.UiServices.EPG.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Loading EPG information....
+        ///   Looks up a localized string similar to Loading EPG data....
         /// </summary>
         internal static string EpgDataLoadingList {
             get {
@@ -97,11 +97,20 @@ namespace Project.IpTv.UiServices.EPG.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to (EPG information is not available).
+        ///   Looks up a localized string similar to Program information is not available.
         /// </summary>
         internal static string EpgNoInformation {
             get {
                 return ResourceManager.GetString("EpgNoInformation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Not available.
+        /// </summary>
+        internal static string EpgNoInformationShort {
+            get {
+                return ResourceManager.GetString("EpgNoInformationShort", resourceCulture);
             }
         }
         
@@ -147,6 +156,15 @@ namespace Project.IpTv.UiServices.EPG.Properties {
         internal static string EpgProgramThenCaption {
             get {
                 return ResourceManager.GetString("EpgProgramThenCaption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There was an error retrieving the list of programs.
+        /// </summary>
+        internal static string ObtainingListException {
+            get {
+                return ResourceManager.GetString("ObtainingListException", resourceCulture);
             }
         }
         

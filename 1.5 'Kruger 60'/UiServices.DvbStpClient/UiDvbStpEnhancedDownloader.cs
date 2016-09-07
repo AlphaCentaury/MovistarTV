@@ -2,14 +2,14 @@
 // All rights reserved, except those granted by the governing license of this software. See 'license.txt' file in the project root for complete license information.
 
 using Microsoft.SqlServer.MessageBox;
-using Project.IpTv.UiServices.DvbStpClient.Properties;
+using IpTviewr.UiServices.DvbStpClient.Properties;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace Project.IpTv.UiServices.DvbStpClient
+namespace IpTviewr.UiServices.DvbStpClient
 {
     public sealed class UiDvbStpEnhancedDownloader : UiDvbStpBaseDownloader
     {

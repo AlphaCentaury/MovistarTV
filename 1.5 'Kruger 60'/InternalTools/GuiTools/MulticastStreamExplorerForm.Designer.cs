@@ -1,7 +1,7 @@
 ﻿// Copyright (C) 2014-2016, Codeplex/GitHub user AlphaCentaury
 // All rights reserved, except those granted by the governing license of this software. See 'license.txt' file in the project root for complete license information.
 
-namespace Project.IpTv.Internal.Tools.GuiTools
+namespace IpTviewr.Internal.Tools.GuiTools
 {
     partial class MulticastStreamExplorerForm
     {
@@ -31,6 +31,8 @@ namespace Project.IpTv.Internal.Tools.GuiTools
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.ColumnHeader columnHeaderSize;
+            System.Windows.Forms.ColumnHeader columnHeaderTime;
             this.buttonStart = new System.Windows.Forms.Button();
             this.buttonStop = new System.Windows.Forms.Button();
             this.textPort = new System.Windows.Forms.TextBox();
@@ -40,16 +42,33 @@ namespace Project.IpTv.Internal.Tools.GuiTools
             this.textBaseDumpFolder = new System.Windows.Forms.TextBox();
             this.labelBaseDumpFolder = new System.Windows.Forms.Label();
             this.checkDumpDatagrams = new System.Windows.Forms.CheckBox();
-            this.labelDataReception = new System.Windows.Forms.Label();
-            this.labelReceiving = new System.Windows.Forms.Label();
-            this.labelDatagramCount = new System.Windows.Forms.Label();
-            this.labelByteCount = new System.Windows.Forms.Label();
+            this.listViewDatagrams = new IpTviewr.UiServices.Common.Controls.ListViewSortable();
+            this.columnHeaderFirstBytes = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.statusStripMain = new System.Windows.Forms.StatusStrip();
+            this.statusLabelReceiving = new System.Windows.Forms.ToolStripStatusLabel();
+            this.statusLabelDataReception = new System.Windows.Forms.ToolStripStatusLabel();
+            this.statusLabelDatagramCount = new System.Windows.Forms.ToolStripStatusLabel();
+            this.statusLabelByteCount = new System.Windows.Forms.ToolStripStatusLabel();
+            columnHeaderSize = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            columnHeaderTime = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.statusStripMain.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // columnHeaderSize
+            // 
+            columnHeaderSize.Text = "Size";
+            columnHeaderSize.Width = 75;
+            // 
+            // columnHeaderTime
+            // 
+            columnHeaderTime.Text = "Time";
+            columnHeaderTime.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            columnHeaderTime.Width = 125;
             // 
             // buttonStart
             // 
             this.buttonStart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonStart.Image = global::Project.IpTv.Internal.Tools.GuiTools.Properties.Resources.Action_Play_LG_16x16;
+            this.buttonStart.Image = global::IpTviewr.Internal.Tools.GuiTools.Properties.Resources.Action_Play_LG_16x16;
             this.buttonStart.Location = new System.Drawing.Point(466, 12);
             this.buttonStart.Name = "buttonStart";
             this.buttonStart.Size = new System.Drawing.Size(100, 25);
@@ -63,7 +82,7 @@ namespace Project.IpTv.Internal.Tools.GuiTools
             // buttonStop
             // 
             this.buttonStop.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonStop.Image = global::Project.IpTv.Internal.Tools.GuiTools.Properties.Resources.Action_Cancel_Red_16x16;
+            this.buttonStop.Image = global::IpTviewr.Internal.Tools.GuiTools.Properties.Resources.Action_Cancel_Red_16x16;
             this.buttonStop.Location = new System.Drawing.Point(572, 12);
             this.buttonStop.Name = "buttonStop";
             this.buttonStop.Size = new System.Drawing.Size(100, 25);
@@ -137,57 +156,87 @@ namespace Project.IpTv.Internal.Tools.GuiTools
             this.checkDumpDatagrams.UseVisualStyleBackColor = true;
             this.checkDumpDatagrams.CheckedChanged += new System.EventHandler(this.checkDumpPayloads_CheckedChanged);
             // 
-            // labelDataReception
+            // listViewDatagrams
             // 
-            this.labelDataReception.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.labelDataReception.Font = new System.Drawing.Font("Wingdings", 9F);
-            this.labelDataReception.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.labelDataReception.Location = new System.Drawing.Point(12, 390);
-            this.labelDataReception.Name = "labelDataReception";
-            this.labelDataReception.Size = new System.Drawing.Size(100, 13);
-            this.labelDataReception.TabIndex = 24;
-            this.labelDataReception.Text = "l";
-            this.labelDataReception.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.listViewDatagrams.AllowColumnReorder = true;
+            this.listViewDatagrams.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.listViewDatagrams.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            columnHeaderSize,
+            columnHeaderTime,
+            this.columnHeaderFirstBytes});
+            this.listViewDatagrams.Font = new System.Drawing.Font("Lucida Console", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listViewDatagrams.FullRowSelect = true;
+            this.listViewDatagrams.GridLines = true;
+            this.listViewDatagrams.HeaderCustomFont = null;
+            this.listViewDatagrams.HeaderCustomForeColor = System.Drawing.Color.Empty;
+            this.listViewDatagrams.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.listViewDatagrams.IsDoubleBuffered = true;
+            this.listViewDatagrams.Location = new System.Drawing.Point(12, 69);
+            this.listViewDatagrams.MultiSelect = false;
+            this.listViewDatagrams.Name = "listViewDatagrams";
+            this.listViewDatagrams.Size = new System.Drawing.Size(660, 318);
+            this.listViewDatagrams.TabIndex = 34;
+            this.listViewDatagrams.UseCompatibleStateImageBehavior = false;
+            this.listViewDatagrams.View = System.Windows.Forms.View.Details;
             // 
-            // labelReceiving
+            // columnHeaderFirstBytes
             // 
-            this.labelReceiving.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.labelReceiving.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.labelReceiving.Location = new System.Drawing.Point(118, 390);
-            this.labelReceiving.Name = "labelReceiving";
-            this.labelReceiving.Size = new System.Drawing.Size(175, 13);
-            this.labelReceiving.TabIndex = 23;
-            this.labelReceiving.Text = "Data reception is in progress";
+            this.columnHeaderFirstBytes.Text = "First 64 bytes of data";
+            this.columnHeaderFirstBytes.Width = 425;
             // 
-            // labelDatagramCount
+            // statusStripMain
             // 
-            this.labelDatagramCount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.labelDatagramCount.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.labelDatagramCount.Location = new System.Drawing.Point(299, 390);
-            this.labelDatagramCount.Name = "labelDatagramCount";
-            this.labelDatagramCount.Size = new System.Drawing.Size(175, 13);
-            this.labelDatagramCount.TabIndex = 25;
-            this.labelDatagramCount.Text = "(Count)";
+            this.statusStripMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.statusLabelReceiving,
+            this.statusLabelDataReception,
+            this.statusLabelDatagramCount,
+            this.statusLabelByteCount});
+            this.statusStripMain.Location = new System.Drawing.Point(0, 390);
+            this.statusStripMain.Name = "statusStripMain";
+            this.statusStripMain.Size = new System.Drawing.Size(684, 22);
+            this.statusStripMain.TabIndex = 35;
+            this.statusStripMain.Text = "statusStrip1";
             // 
-            // labelByteCount
+            // statusLabelReceiving
             // 
-            this.labelByteCount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.labelByteCount.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.labelByteCount.Location = new System.Drawing.Point(480, 390);
-            this.labelByteCount.Name = "labelByteCount";
-            this.labelByteCount.Size = new System.Drawing.Size(175, 13);
-            this.labelByteCount.TabIndex = 26;
-            this.labelByteCount.Text = "(Byte count)";
+            this.statusLabelReceiving.AutoSize = false;
+            this.statusLabelReceiving.Name = "statusLabelReceiving";
+            this.statusLabelReceiving.Size = new System.Drawing.Size(175, 17);
+            this.statusLabelReceiving.Text = "Data reception is in progress";
+            // 
+            // statusLabelDataReception
+            // 
+            this.statusLabelDataReception.AutoSize = false;
+            this.statusLabelDataReception.Font = new System.Drawing.Font("Wingdings", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(2)));
+            this.statusLabelDataReception.Name = "statusLabelDataReception";
+            this.statusLabelDataReception.Size = new System.Drawing.Size(125, 17);
+            this.statusLabelDataReception.Text = "lll";
+            // 
+            // statusLabelDatagramCount
+            // 
+            this.statusLabelDatagramCount.AutoSize = false;
+            this.statusLabelDatagramCount.Name = "statusLabelDatagramCount";
+            this.statusLabelDatagramCount.Size = new System.Drawing.Size(175, 17);
+            this.statusLabelDatagramCount.Text = "Datagram count";
+            this.statusLabelDatagramCount.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // statusLabelByteCount
+            // 
+            this.statusLabelByteCount.AutoSize = false;
+            this.statusLabelByteCount.Name = "statusLabelByteCount";
+            this.statusLabelByteCount.Size = new System.Drawing.Size(175, 17);
+            this.statusLabelByteCount.Text = "Total received bytes";
+            this.statusLabelByteCount.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // MulticastStreamExplorerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(684, 412);
-            this.Controls.Add(this.labelByteCount);
-            this.Controls.Add(this.labelDatagramCount);
-            this.Controls.Add(this.labelDataReception);
-            this.Controls.Add(this.labelReceiving);
+            this.Controls.Add(this.statusStripMain);
+            this.Controls.Add(this.listViewDatagrams);
             this.Controls.Add(this.textBaseDumpFolder);
             this.Controls.Add(this.labelBaseDumpFolder);
             this.Controls.Add(this.checkDumpDatagrams);
@@ -199,8 +248,10 @@ namespace Project.IpTv.Internal.Tools.GuiTools
             this.Controls.Add(this.buttonStart);
             this.Name = "MulticastStreamExplorerForm";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;
-            this.Text = "Multicast Stream Explorer";
+            this.Text = "Multicast Stream Explorer - GuiTools";
             this.Load += new System.EventHandler(this.MulticastStreamExplorerForm_Load);
+            this.statusStripMain.ResumeLayout(false);
+            this.statusStripMain.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -217,9 +268,12 @@ namespace Project.IpTv.Internal.Tools.GuiTools
         private System.Windows.Forms.TextBox textBaseDumpFolder;
         private System.Windows.Forms.Label labelBaseDumpFolder;
         private System.Windows.Forms.CheckBox checkDumpDatagrams;
-        private System.Windows.Forms.Label labelDataReception;
-        private System.Windows.Forms.Label labelReceiving;
-        private System.Windows.Forms.Label labelDatagramCount;
-        private System.Windows.Forms.Label labelByteCount;
+        private global::IpTviewr.UiServices.Common.Controls.ListViewSortable listViewDatagrams;
+        private System.Windows.Forms.ColumnHeader columnHeaderFirstBytes;
+        private System.Windows.Forms.StatusStrip statusStripMain;
+        private System.Windows.Forms.ToolStripStatusLabel statusLabelReceiving;
+        private System.Windows.Forms.ToolStripStatusLabel statusLabelDataReception;
+        private System.Windows.Forms.ToolStripStatusLabel statusLabelDatagramCount;
+        private System.Windows.Forms.ToolStripStatusLabel statusLabelByteCount;
     }
 }

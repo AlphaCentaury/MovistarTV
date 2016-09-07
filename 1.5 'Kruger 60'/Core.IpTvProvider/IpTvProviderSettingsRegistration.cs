@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Text;
-using Project.IpTv.UiServices.Configuration;
+using IpTviewr.UiServices.Configuration;
 
-namespace Project.IpTv.Core.IpTvProvider
+namespace IpTviewr.Core.IpTvProvider
 {
     public class IpTvProviderSettingsRegistration : IConfigurationItemRegistration
     {

@@ -112,13 +112,13 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AnalyticsGoogleTrackingId" xml:space="preserve">
-    <value>UA-66146192-3</value>
+    <value>UA-66146192-4</value>
     <comment>Get new property for every new major version or new phase!</comment>
   </data>
   <data name="DebugLocationPath" xml:space="preserve">
@@ -143,7 +143,7 @@ Verifique el valor de  la propiedad 'ForceUICulture' del archivo '.config'</valu
     <value>http://movistartv.codeplex.com</value>
   </data>
   <data name="UrlCheckForUpdatesManual" xml:space="preserve">
-    <value>http://movistartv.codeplex.com/wikipage?title=Update-v1.5.40.0</value>
+    <value>http://movistartv.codeplex.com/wikipage?title=Update-v1.5.1010.0</value>
   </data>
   <data name="UrlDocumentation" xml:space="preserve">
     <value>http://movistartv.codeplex.com/documentation</value>

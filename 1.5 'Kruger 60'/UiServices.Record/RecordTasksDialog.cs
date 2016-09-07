@@ -10,13 +10,14 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using Project.IpTv.Services.Record;
-using Project.IpTv.Services.Record.Serialization;
-using Project.IpTv.UiServices.Record.Properties;
-using Project.IpTv.UiServices.Common.Forms;
-using Project.IpTv.Common.Telemetry;
+using IpTviewr.Services.Record;
+using IpTviewr.Services.Record.Serialization;
+using IpTviewr.UiServices.Record.Properties;
+using IpTviewr.UiServices.Common.Forms;
+using IpTviewr.Common.Telemetry;
+using IpTviewr.Common;
 
-namespace Project.IpTv.UiServices.Record
+namespace IpTviewr.UiServices.Record
 {
     public partial class RecordTasksDialog : CommonBaseForm
     {
@@ -81,7 +82,7 @@ namespace Project.IpTv.UiServices.Record
                 result = worker.Options.OutputData as AsyncResult;
                 if (worker.Options.OutputException != null)
                 {
-                    HandleException(TasksTexts.ObtainingListException, worker.Options.OutputException);
+                    HandleException(new ExceptionEventData(TasksTexts.ObtainingListException, worker.Options.OutputException));
                     return;
                 } // if
                 if ((worker.DialogResult != DialogResult.OK) || (worker.Options.OutputData == null)) return;
@@ -210,17 +211,17 @@ namespace Project.IpTv.UiServices.Record
 
         private void buttonEditTask_Click_Implementation(object sender, EventArgs e)
         {
-            Project.IpTv.UiServices.Common.Forms.NotImplementedBox.ShowBox(this, "buttonEditTask");
+            IpTviewr.UiServices.Common.Forms.NotImplementedBox.ShowBox(this, "buttonEditTask");
         } // buttonEditTask_Click_Implementation
 
         private void buttonDeleteTasks_Click_Implementation(object sender, EventArgs e)
         {
-            Project.IpTv.UiServices.Common.Forms.NotImplementedBox.ShowBox(this, "buttonDeleteTasks");
+            IpTviewr.UiServices.Common.Forms.NotImplementedBox.ShowBox(this, "buttonDeleteTasks");
         } // buttonDeleteTasks_Click_Implementation
 
         private void buttonViewRecordings_Click_Implementation(object sender, EventArgs e)
         {
-            Project.IpTv.UiServices.Common.Forms.NotImplementedBox.ShowBox(this, "buttonViewRecordings");
+            IpTviewr.UiServices.Common.Forms.NotImplementedBox.ShowBox(this, "buttonViewRecordings");
         } // buttonViewRecordings_Click_Implementation
 
         #endregion

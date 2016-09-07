@@ -5,14 +5,13 @@ using System.Linq;
 using System.Net;
 using System.Text;
 
-namespace Project.IpTv.UiServices.DvbStpClient
+namespace IpTviewr.UiServices.DvbStpClient
 {
     public abstract class UiDvbStpBaseDownloadRequest
     {
         public UiDvbStpBaseDownloadRequest()
         {
-            // TODO: get default values from app configuration
-            ReceiveDatagramTimeout = 7500;
+            ReceiveDatagramTimeout = 10000;
             NoDataTimeout = 45000;
             DialogCloseDelay = 500;
         } // constructor

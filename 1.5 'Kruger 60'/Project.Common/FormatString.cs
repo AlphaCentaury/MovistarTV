@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Project.IpTv.Common
+namespace IpTviewr.Common
 {
     public static class FormatString
     {

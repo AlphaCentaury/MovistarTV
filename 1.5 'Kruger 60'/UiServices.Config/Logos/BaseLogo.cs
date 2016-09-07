@@ -8,7 +8,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 
-namespace Project.IpTv.UiServices.Configuration.Logos
+namespace IpTviewr.UiServices.Configuration.Logos
 {
     public abstract class BaseLogo
     {
@@ -91,7 +91,7 @@ namespace Project.IpTv.UiServices.Configuration.Logos
             protected set;
         } // Key
 
-        public Image GetImage(LogoSize logoSize, bool noExceptions)
+        public Image GetImage(LogoSize logoSize, bool noExceptions = true)
         {
             if (!IsSizeAvailable(logoSize))
             {

@@ -1,4 +1,4 @@
-﻿// Copyright (C) 2015, Codeplex/GitHub user AlphaCentaury
+﻿// Copyright (C) 2014-2016, Codeplex/GitHub user AlphaCentaury
 // All rights reserved, except those granted by the governing license of this software. See 'license.txt' file in the project root for complete license information.
 
 using System;
@@ -6,10 +6,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using Project.IpTv.UiServices.Configuration;
-using Project.IpTv.UiServices.Discovery;
+using IpTviewr.UiServices.Configuration;
+using IpTviewr.UiServices.Discovery;
 
-namespace Project.IpTv.Core.IpTvProvider
+namespace IpTviewr.Core.IpTvProvider
 {
     public abstract class IpTvProvider
     {
@@ -25,13 +25,11 @@ namespace Project.IpTv.Core.IpTvProvider
 
         #region IpTvProvider Members
 
-        /*
         public EPG.IEpgInfoProvider EpgInfo
         {
             get;
             protected set;
         } // EpgInfo
-        */
 
         public abstract InitializationResult Initialize();
 

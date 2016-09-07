@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Project.IpTv.MovistarPlus
+namespace IpTviewr.MovistarPlus
 {
     public abstract class MovistarJsonResponse
     {

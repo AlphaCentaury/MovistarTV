@@ -10,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace Project.IpTv.UiServices.Discovery.BroadcastList.Editors
+namespace IpTviewr.UiServices.Discovery.BroadcastList.Editors
 {
     internal partial class SettingsEditorSorting : SettingsEditorBaseUserControl
     {
@@ -186,10 +186,7 @@ namespace Project.IpTv.UiServices.Discovery.BroadcastList.Editors
             EnableCombos();
             SetDataChanged();
 
-            if (UseGlobalSortChanged != null)
-            {
-                UseGlobalSortChanged(this, EventArgs.Empty);
-            } // if
+            UseGlobalSortChanged?.Invoke(this, EventArgs.Empty);
         } // checkGlobalSorting_CheckedChanged
 
         private void EnableCombos()

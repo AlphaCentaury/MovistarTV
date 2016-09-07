@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Xml.Serialization;
 
-namespace Project.IpTv.UiServices.Configuration.Schema2014.ContentProvider
+namespace IpTviewr.UiServices.Configuration.Schema2014.ContentProvider
 {
     [Serializable]
     [XmlType(TypeName="Bootstrap", Namespace=SerializationCommon.XmlNamespace)]

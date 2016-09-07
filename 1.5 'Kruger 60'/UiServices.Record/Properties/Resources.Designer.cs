@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Project.IpTv.UiServices.Record.Properties {
+namespace IpTviewr.UiServices.Record.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace Project.IpTv.UiServices.Record.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Project.IpTv.UiServices.Record.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("IpTviewr.UiServices.Record.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -106,6 +106,86 @@ namespace Project.IpTv.UiServices.Record.Properties {
         internal static System.Drawing.Bitmap Action_Play_LG_16x16 {
             get {
                 object obj = ResourceManager.GetObject("Action_Play_LG_16x16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Action_Record_16x16 {
+            get {
+                object obj = ResourceManager.GetObject("Action_Record_16x16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Action_RecordButton_16x16 {
+            get {
+                object obj = ResourceManager.GetObject("Action_RecordButton_16x16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Icon_Record_48x48 {
+            get {
+                object obj = ResourceManager.GetObject("Icon_Record_48x48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon Icon_Recorder {
+            get {
+                object obj = ResourceManager.GetObject("Icon_Recorder", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The selected TV channel has been marked as inactive and might not be available.
+        ///
+        ///Do you still want to schedule a recording of {0}?.
+        /// </summary>
+        internal static string RecordDeadTvChannel {
+            get {
+                return ResourceManager.GetString("RecordDeadTvChannel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The recording task has been sucessfully created..
+        /// </summary>
+        internal static string SchedulerCreateTaskOk {
+            get {
+                return ResourceManager.GetString("SchedulerCreateTaskOk", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Status_Info_16x16 {
+            get {
+                object obj = ResourceManager.GetObject("Status_Info_16x16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Status_Warning_16x16 {
+            get {
+                object obj = ResourceManager.GetObject("Status_Warning_16x16", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

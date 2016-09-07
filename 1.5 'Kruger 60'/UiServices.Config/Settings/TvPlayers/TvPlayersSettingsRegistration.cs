@@ -7,7 +7,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 
-namespace Project.IpTv.UiServices.Configuration.Settings.TvPlayers
+namespace IpTviewr.UiServices.Configuration.Settings.TvPlayers
 {
     public class TvPlayersSettingsRegistration : IConfigurationItemRegistration
     {

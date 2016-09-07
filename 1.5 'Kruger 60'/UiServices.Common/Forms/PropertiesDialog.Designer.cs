@@ -1,7 +1,7 @@
 ﻿// Copyright (C) 2014-2016, Codeplex/GitHub user AlphaCentaury
 // All rights reserved, except those granted by the governing license of this software. See 'license.txt' file in the project root for complete license information.
 
-namespace Project.IpTv.UiServices.Common.Forms
+namespace IpTviewr.UiServices.Common.Forms
 {
     partial class PropertiesDialog
     {
@@ -43,8 +43,8 @@ namespace Project.IpTv.UiServices.Common.Forms
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.contextMenuListCopyAll = new System.Windows.Forms.ToolStripMenuItem();
             this.buttonOk = new System.Windows.Forms.Button();
-            this.pictureBoxItemIcon = new Project.IpTv.UiServices.Common.Controls.PictureBoxEx();
-            this.listViewProperties = new Project.IpTv.UiServices.Common.Controls.ListViewSortable();
+            this.pictureBoxItemIcon = new IpTviewr.UiServices.Common.Controls.PictureBoxEx();
+            this.listViewProperties = new IpTviewr.UiServices.Common.Controls.ListViewSortable();
             Property = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             Value = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.contextMenuList.SuspendLayout();
@@ -80,7 +80,7 @@ namespace Project.IpTv.UiServices.Common.Forms
             // 
             // contextMenuListCopyValue
             // 
-            this.contextMenuListCopyValue.Image = global::Project.IpTv.UiServices.Common.Properties.Resources.Action_Copy_Clip_16x16;
+            this.contextMenuListCopyValue.Image = global::IpTviewr.UiServices.Common.Properties.Resources.Action_Copy_Clip_16x16;
             this.contextMenuListCopyValue.Name = "contextMenuListCopyValue";
             resources.ApplyResources(this.contextMenuListCopyValue, "contextMenuListCopyValue");
             this.contextMenuListCopyValue.Click += new System.EventHandler(this.contextMenuListCopyValue_Click);
@@ -104,7 +104,7 @@ namespace Project.IpTv.UiServices.Common.Forms
             // 
             // contextMenuListCopyAll
             // 
-            this.contextMenuListCopyAll.Image = global::Project.IpTv.UiServices.Common.Properties.Resources.Action_Copy_Table;
+            this.contextMenuListCopyAll.Image = global::IpTviewr.UiServices.Common.Properties.Resources.Action_Copy_Table;
             this.contextMenuListCopyAll.Name = "contextMenuListCopyAll";
             resources.ApplyResources(this.contextMenuListCopyAll, "contextMenuListCopyAll");
             this.contextMenuListCopyAll.Click += new System.EventHandler(this.contextMenuListCopyAll_Click);
@@ -113,7 +113,7 @@ namespace Project.IpTv.UiServices.Common.Forms
             // 
             resources.ApplyResources(this.buttonOk, "buttonOk");
             this.buttonOk.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.buttonOk.Image = global::Project.IpTv.UiServices.Common.Properties.Resources.Action_Ok_16x16;
+            this.buttonOk.Image = global::IpTviewr.UiServices.Common.Properties.Resources.Action_Ok_16x16;
             this.buttonOk.Name = "buttonOk";
             this.buttonOk.UseVisualStyleBackColor = true;
             // 
@@ -167,10 +167,10 @@ namespace Project.IpTv.UiServices.Common.Forms
 
         #endregion
 
-        private Project.IpTv.UiServices.Common.Controls.ListViewSortable listViewProperties;
+        private IpTviewr.UiServices.Common.Controls.ListViewSortable listViewProperties;
         private System.Windows.Forms.Label labelDescription;
         private System.Windows.Forms.Button buttonOk;
-        private Project.IpTv.UiServices.Common.Controls.PictureBoxEx pictureBoxItemIcon;
+        private IpTviewr.UiServices.Common.Controls.PictureBoxEx pictureBoxItemIcon;
         private System.Windows.Forms.ContextMenuStrip contextMenuList;
         private System.Windows.Forms.ToolStripMenuItem contextMenuListCopyValue;
         private System.Windows.Forms.ToolStripMenuItem contextMenuListCopyName;

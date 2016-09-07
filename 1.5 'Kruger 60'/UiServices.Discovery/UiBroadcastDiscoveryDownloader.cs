@@ -1,10 +1,10 @@
 ﻿using Etsi.Ts102034.v010501.XmlSerialization;
 using Etsi.Ts102034.v010501.XmlSerialization.BroadcastDiscovery;
 using Etsi.Ts102034.v010501.XmlSerialization.PackageDiscovery;
-using Project.IpTv.Common;
-using Project.IpTv.UiServices.Configuration;
-using Project.IpTv.UiServices.Configuration.Cache;
-using Project.IpTv.UiServices.DvbStpClient;
+using IpTviewr.Common;
+using IpTviewr.UiServices.Configuration;
+using IpTviewr.UiServices.Configuration.Cache;
+using IpTviewr.UiServices.DvbStpClient;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +12,7 @@ using System.Net;
 using System.Text;
 using System.Windows.Forms;
 
-namespace Project.IpTv.UiServices.Discovery
+namespace IpTviewr.UiServices.Discovery
 {
     public class UiBroadcastDiscoveryDownloader
     {
@@ -96,7 +96,7 @@ namespace Project.IpTv.UiServices.Discovery
         public event EventHandler<AssignNumbersArgs> AfterAssignNumbers;
         public event EventHandler<HandleExceptionEventArgs> Exception;
 
-        public UiBroadcastDiscovery Download(IWin32Window ownerWindow, UiServiceProvider serviceProvider, UiBroadcastDiscovery currentUiDiscovery, bool fromCache, bool? highDefinitionPriority = null)
+        public UiBroadcastDiscovery Download(Form ownerForm, UiServiceProvider serviceProvider, UiBroadcastDiscovery currentUiDiscovery, bool fromCache, bool? highDefinitionPriority = null)
         {
             UiBroadcastDiscovery uiDiscovery;
 
@@ -134,7 +134,7 @@ namespace Project.IpTv.UiServices.Discovery
                     };
                     downloader.Request.AddPayload(0x02, null, Properties.Texts.Payload02DisplayName, typeof(BroadcastDiscoveryRoot));
                     downloader.Request.AddPayload(0x05, null, Properties.Texts.Payload05DisplayName, typeof(PackageDiscoveryRoot));
-                    downloader.Download(ownerWindow);
+                    downloader.Download(ownerForm);
                     OnAfterDownload(this, new DownloadEventArgs(downloader));
                     if (!downloader.IsOk) return null;
 
@@ -142,7 +142,7 @@ namespace Project.IpTv.UiServices.Discovery
                     uiDiscovery = new UiBroadcastDiscovery(xmlDiscovery, serviceProvider.DomainName, downloader.Request.Payloads[0].SegmentVersion);
 
                     OnBeforeMerge(this, new MergeEventArgs(uiDiscovery, currentUiDiscovery));
-                    UiBroadcastDiscoveryMergeResultDialog.Merge(ownerWindow, currentUiDiscovery, uiDiscovery);
+                    UiBroadcastDiscoveryMergeResultDialog.Merge(ownerForm, currentUiDiscovery, uiDiscovery);
                     OnAfterMerge(this, new MergeEventArgs(uiDiscovery, currentUiDiscovery));
 
                     var packageDiscovery = downloader.Request.Payloads[1].XmlDeserializedData as PackageDiscoveryRoot;
@@ -160,7 +160,7 @@ namespace Project.IpTv.UiServices.Discovery
             }
             catch (Exception ex)
             {
-                OnHandleException(this, new HandleExceptionEventArgs(ownerWindow, null, Properties.Texts.BroadcastListUnableRefresh, ex));
+                OnHandleException(this, new HandleExceptionEventArgs(ownerForm, null, Properties.Texts.BroadcastListUnableRefresh, ex));
                 return null;
             } // try-catch
         } // Download

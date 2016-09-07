@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Project.IpTv.Internal.Tools.ChannelLogos.Properties {
+namespace IpTviewr.Internal.Tools.ChannelLogos.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace Project.IpTv.Internal.Tools.ChannelLogos.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Project.IpTv.Internal.Tools.ChannelLogos.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("IpTviewr.Internal.Tools.ChannelLogos.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

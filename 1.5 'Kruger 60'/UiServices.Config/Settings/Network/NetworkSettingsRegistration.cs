@@ -7,7 +7,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 
-namespace Project.IpTv.UiServices.Configuration.Settings.Network
+namespace IpTviewr.UiServices.Configuration.Settings.Network
 {
     public class NetworkSettingsRegistration : IConfigurationItemRegistration
     {

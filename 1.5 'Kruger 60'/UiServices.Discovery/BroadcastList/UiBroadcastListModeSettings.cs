@@ -1,8 +1,8 @@
 ﻿// Copyright (C) 2014-2016, Codeplex/GitHub user AlphaCentaury
 // All rights reserved, except those granted by the governing license of this software. See 'license.txt' file in the project root for complete license information.
 
-using Project.IpTv.Common.Serialization;
-using Project.IpTv.UiServices.Configuration.Logos;
+using IpTviewr.Common.Serialization;
+using IpTviewr.UiServices.Configuration.Logos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +10,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Xml.Serialization;
 
-namespace Project.IpTv.UiServices.Discovery.BroadcastList
+namespace IpTviewr.UiServices.Discovery.BroadcastList
 {
     [Serializable]
     public class UiBroadcastListModeSettings
