@@ -1559,7 +1559,7 @@
     <value>listViewChannelList</value>
   </data>
   <data name="&gt;&gt;listViewChannelList.Type" xml:space="preserve">
-    <value>IpTviewr.UiServices.Common.Controls.ListViewSortable, UiServices.Common, Version=1.5.1010.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>IpTviewr.UiServices.Common.Controls.ListViewSortable, UiServices.Common, Version=1.5.1000.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;listViewChannelList.Parent" xml:space="preserve">
     <value>$this</value>
@@ -1652,7 +1652,7 @@
     <value>epgMiniGuide</value>
   </data>
   <data name="&gt;&gt;epgMiniGuide.Type" xml:space="preserve">
-    <value>IpTviewr.UiServices.EPG.EpgMiniGuide, UiServices.EPG, Version=1.5.1010.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>IpTviewr.UiServices.EPG.EpgMiniGuide, UiServices.EPG, Version=1.5.1000.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;epgMiniGuide.Parent" xml:space="preserve">
     <value>$this</value>
@@ -2195,6 +2195,6 @@
     <value>ChannelListForm</value>
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>IpTviewr.UiServices.Common.Forms.CommonBaseForm, UiServices.Common, Version=1.5.1010.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>IpTviewr.UiServices.Common.Forms.CommonBaseForm, UiServices.Common, Version=1.5.1000.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
 </root>

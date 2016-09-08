@@ -361,7 +361,7 @@
     <value>recordingSchedule</value>
   </data>
   <data name="&gt;&gt;recordingSchedule.Type" xml:space="preserve">
-    <value>IpTviewr.UiServices.Record.Controls.RecordingSchedule, UiServices.Record, Version=1.5.1010.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>IpTviewr.UiServices.Record.Controls.RecordingSchedule, UiServices.Record, Version=1.5.1000.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;recordingSchedule.Parent" xml:space="preserve">
     <value>tabPageSchedule</value>
@@ -409,7 +409,7 @@
     <value>recordingTime</value>
   </data>
   <data name="&gt;&gt;recordingTime.Type" xml:space="preserve">
-    <value>IpTviewr.UiServices.Record.Controls.RecordingDuration, UiServices.Record, Version=1.5.1010.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>IpTviewr.UiServices.Record.Controls.RecordingDuration, UiServices.Record, Version=1.5.1000.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;recordingTime.Parent" xml:space="preserve">
     <value>tabPageLength</value>
@@ -518,7 +518,7 @@
     <value>listViewLocations</value>
   </data>
   <data name="&gt;&gt;listViewLocations.Type" xml:space="preserve">
-    <value>IpTviewr.UiServices.Common.Controls.ListViewSortable, UiServices.Common, Version=1.5.1010.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>IpTviewr.UiServices.Common.Controls.ListViewSortable, UiServices.Common, Version=1.5.1000.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;listViewLocations.Parent" xml:space="preserve">
     <value>tabPageSave</value>
@@ -596,7 +596,7 @@
     <value>textFilename</value>
   </data>
   <data name="&gt;&gt;textFilename.Type" xml:space="preserve">
-    <value>IpTviewr.UiServices.Common.Controls.FilenameTextBox, UiServices.Common, Version=1.5.1010.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>IpTviewr.UiServices.Common.Controls.FilenameTextBox, UiServices.Common, Version=1.5.1000.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;textFilename.Parent" xml:space="preserve">
     <value>tabPageSave</value>
@@ -878,7 +878,7 @@
     <value>textTaskName</value>
   </data>
   <data name="&gt;&gt;textTaskName.Type" xml:space="preserve">
-    <value>IpTviewr.UiServices.Common.Controls.FilenameTextBox, UiServices.Common, Version=1.5.1010.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>IpTviewr.UiServices.Common.Controls.FilenameTextBox, UiServices.Common, Version=1.5.1000.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;textTaskName.Parent" xml:space="preserve">
     <value>tabPageAdvanced</value>
@@ -899,7 +899,7 @@
     <value>timeSpanSchedulerDeleteTaskAfter</value>
   </data>
   <data name="&gt;&gt;timeSpanSchedulerDeleteTaskAfter.Type" xml:space="preserve">
-    <value>IpTviewr.UiServices.Common.Controls.TimeSpanUpDown, UiServices.Common, Version=1.5.1010.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>IpTviewr.UiServices.Common.Controls.TimeSpanUpDown, UiServices.Common, Version=1.5.1000.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;timeSpanSchedulerDeleteTaskAfter.Parent" xml:space="preserve">
     <value>tabPageAdvanced</value>
@@ -920,7 +920,7 @@
     <value>timeSpanSchedulerRetry</value>
   </data>
   <data name="&gt;&gt;timeSpanSchedulerRetry.Type" xml:space="preserve">
-    <value>IpTviewr.UiServices.Common.Controls.TimeSpanUpDown, UiServices.Common, Version=1.5.1010.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>IpTviewr.UiServices.Common.Controls.TimeSpanUpDown, UiServices.Common, Version=1.5.1000.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;timeSpanSchedulerRetry.Parent" xml:space="preserve">
     <value>tabPageAdvanced</value>
@@ -1361,7 +1361,7 @@
     <value>pictureChannelLogo</value>
   </data>
   <data name="&gt;&gt;pictureChannelLogo.Type" xml:space="preserve">
-    <value>IpTviewr.UiServices.Common.Controls.PictureBoxEx, UiServices.Common, Version=1.5.1010.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>IpTviewr.UiServices.Common.Controls.PictureBoxEx, UiServices.Common, Version=1.5.1000.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;pictureChannelLogo.Parent" xml:space="preserve">
     <value>$this</value>
@@ -1409,12 +1409,12 @@
     <value>selectFolder</value>
   </data>
   <data name="&gt;&gt;selectFolder.Type" xml:space="preserve">
-    <value>IpTviewr.UiServices.Common.Controls.SelectFolderDialog, UiServices.Common, Version=1.5.1010.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>IpTviewr.UiServices.Common.Controls.SelectFolderDialog, UiServices.Common, Version=1.5.1000.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>RecordChannelDialog</value>
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>IpTviewr.UiServices.Common.Forms.CommonBaseForm, UiServices.Common, Version=1.5.1010.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>IpTviewr.UiServices.Common.Forms.CommonBaseForm, UiServices.Common, Version=1.5.1000.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
 </root>

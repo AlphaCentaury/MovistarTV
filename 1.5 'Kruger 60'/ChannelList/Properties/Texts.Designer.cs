@@ -61,7 +61,7 @@ namespace IpTviewr.ChannelList.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to movistar+ channels - IPTViewr (1.5“Kruger 60” Beta 1).
+        ///   Looks up a localized string similar to movistar+ channels - IPTViewr (1.5“Kruger 60” Beta 0).
         /// </summary>
         internal static string AppCaption {
             get {
@@ -79,7 +79,7 @@ namespace IpTviewr.ChannelList.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Alpha (experimental).
+        ///   Looks up a localized string similar to Beta.
         /// </summary>
         internal static string AppStatus {
             get {
@@ -88,7 +88,7 @@ namespace IpTviewr.ChannelList.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 1.5 “Kruger 60” Beta 1.
+        ///   Looks up a localized string similar to 1.5 “Kruger 60” Beta 0.
         /// </summary>
         internal static string AppVersion {
             get {
@@ -368,7 +368,7 @@ namespace IpTviewr.ChannelList.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to *****************************************************************************
-        ///IPTViewr: Virtual Decoder for movistar+ version 1.5 “Kruger 60” Beta 1
+        ///IPTViewr: Virtual Decoder for movistar+ version 1.5 “Kruger 60” Beta 0
         ///*****************************************************************************
         ///
         ///Copyright (C) 2014-2016, Codeplex user AlphaCentaury and its contributors
@@ -386,7 +386,7 @@ namespace IpTviewr.ChannelList.Properties {
         ///   Looks up a localized string similar to {\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang3082{\fonttbl{\f0\fnil\fcharset0 Segoe UI;}{\f1\fnil\fcharset2 Symbol;}}
         ///{\colortbl ;\red0\green0\blue255;}
         ///{\*\generator Riched20 10.0.10586}\viewkind4\uc1 
-        ///\pard\nowidctlpar\sa200\sl276\slmult1\qj\b\f0\fs22\lang10 IPTViewr: Virtual Decoder for movistar+ version 1.5 \ldblquote Kruger 60\rdblquote  Beta 1\ul\fs18\par
+        ///\pard\nowidctlpar\sa200\sl276\slmult1\qj\b\f0\fs22\lang10 IPTViewr: Virtual Decoder for movistar+ version 1.5 \ldblquote Kruger 60\rdblquote  Beta 0\ul\fs18\par
         ///\fs20 Copyright (C) 2014-2016, Codeplex user AlphaCentaury and its contributors.\ulnone\i\fs18\par
         ///THIS SOFTWARE IS \ul PROVIDED \ldblquote  [rest of string was truncated]&quot;;.
         /// </summary>

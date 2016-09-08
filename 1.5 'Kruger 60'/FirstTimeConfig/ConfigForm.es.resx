@@ -307,9 +307,6 @@
   <data name="checkEpgAutoUpdate.Text" xml:space="preserve">
     <value>Actualizar automáticamente los datos EPG si tienen más de 24h en la siguiente ejecución</value>
   </data>
-  <data name="labelEpgWarning.Size" type="System.Drawing.Size, System.Drawing">
-    <value>445, 13</value>
-  </data>
   <data name="labelEpgWarning.Text" xml:space="preserve">
     <value>¡AVISO! La funcionalidad EPG está todavía en desarrollo y no ha sido probada a fondo. Algunas funciones pueden fallar o no funcionar como se espera.</value>
   </data>

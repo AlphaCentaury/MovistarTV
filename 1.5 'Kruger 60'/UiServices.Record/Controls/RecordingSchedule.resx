@@ -352,7 +352,7 @@
     <value>fragmentDaily</value>
   </data>
   <data name="&gt;&gt;fragmentDaily.Type" xml:space="preserve">
-    <value>IpTviewr.UiServices.Record.Controls.RecordingDailyScheduleFragment, UiServices.Record, Version=1.5.1010.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>IpTviewr.UiServices.Record.Controls.RecordingDailyScheduleFragment, UiServices.Record, Version=1.5.1000.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;fragmentDaily.Parent" xml:space="preserve">
     <value>$this</value>
@@ -373,7 +373,7 @@
     <value>fragmentOneTime</value>
   </data>
   <data name="&gt;&gt;fragmentOneTime.Type" xml:space="preserve">
-    <value>IpTviewr.UiServices.Record.Controls.RecordingOneTimeScheduleFragment, UiServices.Record, Version=1.5.1010.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>IpTviewr.UiServices.Record.Controls.RecordingOneTimeScheduleFragment, UiServices.Record, Version=1.5.1000.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;fragmentOneTime.Parent" xml:space="preserve">
     <value>$this</value>
@@ -397,7 +397,7 @@
     <value>fragmentMonthly</value>
   </data>
   <data name="&gt;&gt;fragmentMonthly.Type" xml:space="preserve">
-    <value>IpTviewr.UiServices.Record.Controls.RecordingMonthlyScheduleFragment, UiServices.Record, Version=1.5.1010.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>IpTviewr.UiServices.Record.Controls.RecordingMonthlyScheduleFragment, UiServices.Record, Version=1.5.1000.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;fragmentMonthly.Parent" xml:space="preserve">
     <value>$this</value>
@@ -418,7 +418,7 @@
     <value>fragmentRightNow</value>
   </data>
   <data name="&gt;&gt;fragmentRightNow.Type" xml:space="preserve">
-    <value>IpTviewr.UiServices.Record.Controls.RecordingRightNowScheduleFragment, UiServices.Record, Version=1.5.1010.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>IpTviewr.UiServices.Record.Controls.RecordingRightNowScheduleFragment, UiServices.Record, Version=1.5.1000.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;fragmentRightNow.Parent" xml:space="preserve">
     <value>$this</value>
@@ -439,7 +439,7 @@
     <value>fragmentWeekly</value>
   </data>
   <data name="&gt;&gt;fragmentWeekly.Type" xml:space="preserve">
-    <value>IpTviewr.UiServices.Record.Controls.RecordingWeeklyScheduleFragment, UiServices.Record, Version=1.5.1010.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>IpTviewr.UiServices.Record.Controls.RecordingWeeklyScheduleFragment, UiServices.Record, Version=1.5.1000.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;fragmentWeekly.Parent" xml:space="preserve">
     <value>$this</value>

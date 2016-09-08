@@ -8,9 +8,9 @@ All rights reserved, except those granted by the governing license of this softw
   <?define ProductId = "{C900EB8D-131F-4FF2-97DD-6BCABC173C7F}" ?>
   <?define UpgradeCode = "{1E52C8AF-D281-4BFD-A714-54D29FB92E19}" ?>
   <?define Manufacturer = "http://movistartv.codeplex.com" ?>
-  <?define Version = "1.5.1010.0" ?>
-  <?define BaseRegistryKey = "Software\movistartv.codeplex.com\IPTViewr\movistar+\v1.5.1010.0" ?>
-  <?define BaseInstallFolder = "movistar+ (v1.5.1010.0 'Kruger 60')" ?>
+  <?define Version = "1.5.1000.0" ?>
+  <?define BaseRegistryKey = "Software\movistartv.codeplex.com\IPTViewr\movistar+\v1.5.1000.0" ?>
+  <?define BaseInstallFolder = "movistar+ (v1.5.1000.0 'Kruger 60')" ?>
 
   <?define Guid.Component.Folders = "{2AE1E383-64C8-4BC0-AC93-EFAE08686ED0}" ?>
 

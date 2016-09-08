@@ -8,12 +8,12 @@ All rights reserved, except those granted by the governing license of this softw
   <String Id="RedistLanguage">ENU</String>
   <String Id="DowngradeErrorMessage">A new version of [ProductName] is already installed.</String>
   <String Id="NetFrameworkNotPresent">This application requires .NET Framework 4.5.2 or later. Please install the .NET Framework then run this installer again</String>
-  <String Id="ProductName">IPTViewr for movistar+ 1.5 “Kruger 60” Beta 1</String>
-  <String Id="PackageDescription">IPTV Virtual Decoder for movistar+ v1.5 “Kruger 60” Beta 1</String>
+  <String Id="ProductName">IPTViewr for movistar+ 1.5 “Kruger 60” Beta 0</String>
+  <String Id="PackageDescription">IPTV Virtual Decoder for movistar+ v1.5 “Kruger 60” Beta 0</String>
   <String Id="WIXUI_EXITDIALOGOPTIONALCHECKBOXTEXT">Launch “First-time Configuration Wizard”</String>
   <String Id="SourceFileLicenseAgreement">solution-license</String>
   <String Id="FileLicenseAgreement">License agreement</String>
-  <String Id="ProgramStartMenuFolder">IPTViewr for movistar+ v1.5 “Kruger 60” Beta 1</String>
+  <String Id="ProgramStartMenuFolder">IPTViewr for movistar+ v1.5 “Kruger 60” Beta 0</String>
   <String Id="ChannelList.exe.lnk">movistar+ channels</String>
   <String Id="FirstTimeConfig.exe.lnk">First-time Configuration Wizard</String>
 </WixLocalization>

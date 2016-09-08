@@ -169,7 +169,7 @@ namespace IpTviewr.UiServices.Configuration.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Software\movistartv.codeplex.com\IPTViewr\movistar+\v1.5.1010.0.
+        ///   Looks up a localized string similar to Software\movistartv.codeplex.com\IPTViewr\movistar+\v1.5.1000.0.
         /// </summary>
         internal static string RegistryKey_Root {
             get {

@@ -294,6 +294,6 @@
     <value>EpgMiniGuideButtons</value>
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>IpTviewr.UiServices.EPG.EpgMiniGuide, UiServices.EPG, Version=1.5.1010.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>IpTviewr.UiServices.EPG.EpgMiniGuide, UiServices.EPG, Version=1.5.1000.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
 </root>

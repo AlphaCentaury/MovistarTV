@@ -211,7 +211,7 @@
     <value>pictureChannelLogo</value>
   </data>
   <data name="&gt;&gt;pictureChannelLogo.Type" xml:space="preserve">
-    <value>IpTviewr.UiServices.Common.Controls.PictureBoxEx, UiServices.Common, Version=1.5.1010.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>IpTviewr.UiServices.Common.Controls.PictureBoxEx, UiServices.Common, Version=1.5.1000.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;pictureChannelLogo.Parent" xml:space="preserve">
     <value>$this</value>
@@ -274,7 +274,7 @@
     <value>pictureIconInfo</value>
   </data>
   <data name="&gt;&gt;pictureIconInfo.Type" xml:space="preserve">
-    <value>IpTviewr.UiServices.Common.Controls.PictureBoxEx, UiServices.Common, Version=1.5.1010.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>IpTviewr.UiServices.Common.Controls.PictureBoxEx, UiServices.Common, Version=1.5.1000.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;pictureIconInfo.Parent" xml:space="preserve">
     <value>groupBox1</value>
@@ -388,7 +388,7 @@
     <value>pictureIconInfo</value>
   </data>
   <data name="&gt;&gt;pictureIconInfo.Type" xml:space="preserve">
-    <value>IpTviewr.UiServices.Common.Controls.PictureBoxEx, UiServices.Common, Version=1.5.1010.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>IpTviewr.UiServices.Common.Controls.PictureBoxEx, UiServices.Common, Version=1.5.1000.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;pictureIconInfo.Parent" xml:space="preserve">
     <value>groupBox1</value>
