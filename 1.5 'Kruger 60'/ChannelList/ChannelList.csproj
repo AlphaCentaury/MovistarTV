@@ -94,6 +94,21 @@
     <Compile Include="ChannelListForm.Designer.cs">
       <DependentUpon>ChannelListForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ChannelListForm.Epg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChannelListForm.Menu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChannelListForm.Record.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChannelListForm.Providers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChannelListForm.Services.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="CommonUiResources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -156,6 +171,9 @@
       <Link>Resources\solution-license_es.rtf</Link>
     </None>
     <None Include="app.config" />
+    <Compile Include="ChannelListForm.ListManager.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
