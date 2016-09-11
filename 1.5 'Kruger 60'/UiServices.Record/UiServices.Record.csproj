@@ -113,11 +113,29 @@
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
     </Compile>
+    <Compile Include="RecordChannelDialog.Advanced.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="RecordChannelDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RecordChannelDialog.Description.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="RecordChannelDialog.Designer.cs">
       <DependentUpon>RecordChannelDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RecordChannelDialog.Duration.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RecordChannelDialog.General.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RecordChannelDialog.Save.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RecordChannelDialog.Schedule.cs">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="RecordProgramOptions.cs">
       <SubType>Form</SubType>
