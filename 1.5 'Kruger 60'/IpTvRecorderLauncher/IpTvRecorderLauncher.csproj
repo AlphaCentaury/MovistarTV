@@ -107,11 +107,11 @@
     <Content Include="License.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Project.Common\Project.Common.csproj">
+    <ProjectReference Include="..\Assemblies\Project.Common\Project.Common.csproj">
       <Project>{8da15060-5a78-4f89-a9f1-7aa56b0d622c}</Project>
       <Name>Project.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Services.Record.Serialization\Services.Record.Serialization.csproj">
+    <ProjectReference Include="..\Assemblies\Services.Record.Serialization\Services.Record.Serialization.csproj">
       <Project>{074c14ed-c574-46d2-b9dc-c1b5f65d9a69}</Project>
       <Name>Services.Record.Serialization</Name>
     </ProjectReference>

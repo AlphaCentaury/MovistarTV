@@ -118,43 +118,43 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Core.IpTvProvider\Core.IpTvProvider.csproj">
+    <ProjectReference Include="..\..\Assemblies\Core.IpTvProvider\Core.IpTvProvider.csproj">
       <Project>{36b8e0a1-f1b1-498d-8fe7-a39bb7fd68ca}</Project>
       <Name>Core.IpTvProvider</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\DvbStpClient\DvbStpClient.csproj">
+    <ProjectReference Include="..\..\Assemblies\DvbStpClient\DvbStpClient.csproj">
       <Project>{8ad3c34b-a1d3-4385-a8a9-c429bd9a37d3}</Project>
       <Name>DvbStpClient</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Etsi.Ts102034\Etsi.Ts102034.csproj">
+    <ProjectReference Include="..\..\Assemblies\Etsi.Ts102034\Etsi.Ts102034.csproj">
       <Project>{b91c438d-0333-4d06-86cd-74ce82df6f40}</Project>
       <Name>Etsi.Ts102034</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\IpTv.MovistarPlus\IpTv.MovistarPlus.csproj">
+    <ProjectReference Include="..\..\Assemblies\IpTv.MovistarPlus\IpTv.MovistarPlus.csproj">
       <Project>{e1748f45-dd50-4479-96f6-f7eba6f3e28b}</Project>
       <Name>IpTv.MovistarPlus</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Project.Common\Project.Common.csproj">
+    <ProjectReference Include="..\..\Assemblies\Project.Common\Project.Common.csproj">
       <Project>{8da15060-5a78-4f89-a9f1-7aa56b0d622c}</Project>
       <Name>Project.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\UiServices.Common\UiServices.Common.csproj">
+    <ProjectReference Include="..\..\Assemblies\UiServices.Common\UiServices.Common.csproj">
       <Project>{76346905-ac2f-4f01-ba99-bbffbb2a6fe9}</Project>
       <Name>UiServices.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\UiServices.Config\UiServices.Config.csproj">
+    <ProjectReference Include="..\..\Assemblies\UiServices.Config\UiServices.Config.csproj">
       <Project>{a722de9d-ae51-479c-825f-a19f4c69bd75}</Project>
       <Name>UiServices.Config</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\UiServices.Discovery\UiServices.Discovery.csproj">
+    <ProjectReference Include="..\..\Assemblies\UiServices.Discovery\UiServices.Discovery.csproj">
       <Project>{7e5e21b9-4bd6-4fb3-9055-9b09cc479c6c}</Project>
       <Name>UiServices.Discovery</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\UiServices.DvbStpClient\UiServices.DvbStpClient.csproj">
+    <ProjectReference Include="..\..\Assemblies\UiServices.DvbStpClient\UiServices.DvbStpClient.csproj">
       <Project>{ba481e42-f570-4d2c-94d4-21c4cce27762}</Project>
       <Name>UiServices.DvbStpClient</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\UiServices.Forms\UiServices.Forms.csproj">
+    <ProjectReference Include="..\..\Assemblies\UiServices.Forms\UiServices.Forms.csproj">
       <Project>{90f750b3-64db-493f-96a6-e68de5ea60a1}</Project>
       <Name>UiServices.Forms</Name>
     </ProjectReference>

@@ -133,15 +133,15 @@
     <None Include="Resources\GuiTools.ico" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\DvbStpClient\DvbStpClient.csproj">
+    <ProjectReference Include="..\..\Assemblies\DvbStpClient\DvbStpClient.csproj">
       <Project>{8ad3c34b-a1d3-4385-a8a9-c429bd9a37d3}</Project>
       <Name>DvbStpClient</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\UiServices.Common\UiServices.Common.csproj">
+    <ProjectReference Include="..\..\Assemblies\UiServices.Common\UiServices.Common.csproj">
       <Project>{76346905-ac2f-4f01-ba99-bbffbb2a6fe9}</Project>
       <Name>UiServices.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\UiServices.DvbStpClient\UiServices.DvbStpClient.csproj">
+    <ProjectReference Include="..\..\Assemblies\UiServices.DvbStpClient\UiServices.DvbStpClient.csproj">
       <Project>{ba481e42-f570-4d2c-94d4-21c4cce27762}</Project>
       <Name>UiServices.DvbStpClient</Name>
     </ProjectReference>
