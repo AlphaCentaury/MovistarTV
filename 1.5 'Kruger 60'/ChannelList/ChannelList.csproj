@@ -63,9 +63,6 @@
     <Reference Include="Microsoft.ExceptionMessageBox, Version=9.0.242.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\..\..\..\..\..\..\Program Files (x86)\Microsoft SQL Server\90\SDK\Assemblies\Microsoft.ExceptionMessageBox.dll</HintPath>
     </Reference>
-    <Reference Include="Services.EpgDiscovery">
-      <HintPath>..\Assemblies\Services.EpgDiscovery\bin\Release\Services.EpgDiscovery.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.SqlServerCe, Version=4.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
@@ -252,6 +249,10 @@
     <ProjectReference Include="..\Assemblies\Project.Common\Project.Common.csproj">
       <Project>{8da15060-5a78-4f89-a9f1-7aa56b0d622c}</Project>
       <Name>Project.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Assemblies\Services.EpgDiscovery\Services.EpgDiscovery.csproj">
+      <Project>{5a171dbb-855c-452b-93c6-229c7aa6c7a6}</Project>
+      <Name>Services.EpgDiscovery</Name>
     </ProjectReference>
     <ProjectReference Include="..\Assemblies\Services.Record.Serialization\Services.Record.Serialization.csproj">
       <Project>{074c14ed-c574-46d2-b9dc-c1b5f65d9a69}</Project>
