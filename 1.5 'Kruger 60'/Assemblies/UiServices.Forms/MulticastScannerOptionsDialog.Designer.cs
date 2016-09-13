@@ -73,10 +73,10 @@ namespace IpTviewr.UiServices.Forms
             0,
             0});
             this.numericTimeout.Minimum = new decimal(new int[] {
-            250,
+            1,
             0,
             0,
-            196608});
+            0});
             this.numericTimeout.Name = "numericTimeout";
             this.numericTimeout.Value = new decimal(new int[] {
             3,
