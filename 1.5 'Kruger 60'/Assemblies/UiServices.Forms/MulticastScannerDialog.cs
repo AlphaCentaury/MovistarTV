@@ -36,13 +36,37 @@ namespace IpTviewr.UiServices.Forms
 
         #region Inner classes
 
+        public enum ScanResult
+        {
+            NotScanned = 0,
+            Active = 1,
+            Inactive = 2,
+            Skipped = 10,
+            Error = 20
+        } // ScanResult
+
         public class ScanResultEventArgs: EventArgs
         {
-            public bool IsInactive;
-            public bool WasInactive;
-            public bool IsSkipped;
+            public ScanResult ScanResult;
             public UiBroadcastService Service;
+            public bool WasInactive;
             public bool IsInList;
+
+            public bool IsOk
+            {
+                get
+                {
+                    return ((ScanResult == ScanResult.Active) || (ScanResult == ScanResult.Inactive));
+                } // get
+            } // IsOk
+
+            public bool IsInactive
+            {
+                get
+                {
+                    return (ScanResult == ScanResult.Inactive);
+                } // get
+            } // IsInactive
         } // class ScanResultEventArgs
 
         public class ScanCompletedEventArgs : EventArgs
@@ -50,19 +74,19 @@ namespace IpTviewr.UiServices.Forms
             public bool Cancelled
             {
                 get;
-                set;
+                internal set;
             } // Cancelled
 
             public Exception Error
             {
                 get;
-                set;
+                internal set;
             } // Error
 
             public bool IsListRefreshNeeded
             {
                 get;
-                set;
+                internal set;
             } // IsListRefreshNeeded
         } // ScanCompletedEventArgs
 
@@ -71,21 +95,20 @@ namespace IpTviewr.UiServices.Forms
             Started,
             Ended,
             Progress,
-            ChannelScanned,
-            SkippedChannel,
+            Scanned,
         } // ProgressReportKind
 
         private class Stats
         {
-            public int Active, Dead, Skipped, Error;
+            public int Active, Inactive, Skipped, Error;
             public int Count, Total;
         } // class Stats
 
         private class ProgressData : Stats
         {
+            public ScanResult ScanResult;
             public UiBroadcastService Service;
             public Image Logo;
-            public bool IsInactive;
             public bool WasInactive;
 
             public ProgressData ShallowClone()
@@ -205,7 +228,7 @@ namespace IpTviewr.UiServices.Forms
             else
             {
                 listViewStats.Items[0].SubItems[1].Text = stats.Active.ToString("N0");
-                listViewStats.Items[1].SubItems[1].Text = stats.Dead.ToString("N0");
+                listViewStats.Items[1].SubItems[1].Text = stats.Inactive.ToString("N0");
                 listViewStats.Items[2].SubItems[1].Text = stats.Error.ToString("N0");
                 listViewStats.Items[3].SubItems[1].Text = stats.Skipped.ToString("N0");
                 listViewStats.Items[4].SubItems[1].Text = stats.Count.ToString("N0");
@@ -321,34 +344,32 @@ namespace IpTviewr.UiServices.Forms
                     ReplaceLogo(progress.Logo);
                     DisplayStats(progress);
                     break;
-                case ProgressReportKind.ChannelScanned:
-                    NotifyScanResult(progress, false);
-                    break;
-                case ProgressReportKind.SkippedChannel:
-                    NotifyScanResult(progress, true);
+                case ProgressReportKind.Scanned:
+                    NotifyScanResult(progress);
                     break;
             } // switch
         } // Worker_ProgressChanged
 
-        private void NotifyScanResult(ProgressData progress, bool isSkipped)
+        private void NotifyScanResult(ProgressData progress)
         {
+            bool IsInactive = (progress.ScanResult == ScanResult.Inactive);
+
             if (ChannelScanResult == null)
             {
-                progress.Service.IsInactive = progress.IsInactive;
+                progress.Service.IsInactive = IsInactive;
                 return;
             } // if
 
             var e = new ScanResultEventArgs()
             {
-                IsInactive = progress.IsInactive,
-                WasInactive = progress.WasInactive,
-                IsSkipped = isSkipped,
+                ScanResult = progress.ScanResult,
                 Service = progress.Service,
+                WasInactive = progress.WasInactive,
             };
 
             ChannelScanResult(this, e);
 
-            if ((e.WasInactive != e.IsInactive) && (!e.IsInList))
+            if ((e.WasInactive != IsInactive) && (!e.IsInList))
             {
                 RefreshNeeded = true;
             } // if
@@ -368,88 +389,109 @@ namespace IpTviewr.UiServices.Forms
         void Worker_DoWork(object sender, DoWorkEventArgs e)
         {
             ProgressData progress;
-            Socket s;
             byte[] buffer;
-            IEnumerable<UiBroadcastService> services;
-
-            // set worker thread name (for debugging pourposes)
-            var currentThread = Thread.CurrentThread;
-            currentThread.Name = "MulticastScannerDialog BackgroundWorker";
 
             // inherit parent thead culture settings
             var parentThread = e.Argument as Thread;
             if (parentThread != null)
             {
+                var currentThread = Thread.CurrentThread;
                 currentThread.CurrentCulture = parentThread.CurrentCulture; // matches regular application Culture; set again just-in-case
                 currentThread.CurrentUICulture = parentThread.CurrentUICulture; // UICulture not inherited from spwawning thread
             } // if
-          
+
             Worker.ReportProgress((int)ProgressReportKind.Started);
 
             buffer = new byte[UdpMaxDatagramSize];
             progress = new ProgressData() { Total = BroadcastServicesCount };
-            services = BroadcastServices;
 
-            foreach (var service in services)
+            foreach (var service in BroadcastServices)
             {
                 if (Worker.CancellationPending) break;
 
+                // set progress for current service
+                progress.ScanResult = ScanResult.NotScanned;
                 progress.Service = service;
-                progress.Logo = SafeLoadLogo(service.Logo);
+                progress.Logo = service.Logo.GetImage(LogoSize.Size64);
+                progress.WasInactive = progress.Service.IsInactive;
+
                 Worker.ReportProgress((int)ProgressReportKind.Progress, progress.ShallowClone());
                 progress.Count++;
 
-                if ((service.Data.ServiceLocation == null) || (service.Data.ServiceLocation.IpMulticastAddress == null))
+                progress.ScanResult = ScanService(service, buffer);
+                switch (progress.ScanResult)
                 {
-                    progress.Skipped++;
-                    progress.WasInactive = progress.Service.IsInactive;
-                    progress.IsInactive = progress.Service.IsInactive;
-                    Worker.ReportProgress((int)ProgressReportKind.SkippedChannel, progress.ShallowClone());
-                    continue;
-                } // if
+                    case ScanResult.Active:
+                        progress.Active++;
+                        break;
+                    case ScanResult.Inactive:
+                        progress.Inactive++;
+                        break;
 
-                var multicastData = new MulticastOption(IPAddress.Parse(service.Data.ServiceLocation.IpMulticastAddress.Address), IPAddress.Any);
-                s = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
-                s.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true);
-                s.ReceiveTimeout = Timeout;
-                s.SetSocketOption(SocketOptionLevel.IP, SocketOptionName.AddMembership, multicastData);
-                s.Bind(new IPEndPoint(IPAddress.Any, service.Data.ServiceLocation.IpMulticastAddress.Port));
+                    case ScanResult.Skipped:
+                        progress.Skipped++;
+                        break;
 
-                if (Worker.CancellationPending) break;
-
-                try
-                {
-                    s.Receive(buffer);
-                    progress.Active++;
-                    progress.WasInactive = service.IsInactive;
-                    progress.IsInactive = false;
-                }
-                catch (SocketException ex)
-                {
-                    progress.WasInactive = service.IsInactive;
-                    progress.IsInactive = true;
-                    if (ex.SocketErrorCode == SocketError.TimedOut)
-                    {
-                        progress.Dead++;
-                    }
-                    else
-                    {
+                    case ScanResult.Error:
                         progress.Error++;
-                    } // if
-                } // try-catch
-                s.Close();
+                        break;
+                } // switch
 
-                Worker.ReportProgress((int)ProgressReportKind.ChannelScanned, progress.ShallowClone());
+                Worker.ReportProgress((int)ProgressReportKind.Scanned, progress.ShallowClone());
             } // foreach
 
             Worker.ReportProgress((int)ProgressReportKind.Ended, progress.ShallowClone());
             e.Cancel = Worker.CancellationPending;
         } // Worker_DoWork
 
-        private Image SafeLoadLogo(ServiceLogo logo)
+        private ScanResult ScanService(UiBroadcastService service, byte[] buffer)
         {
-            return logo.GetImage(LogoSize.Size64, true);
-        } // SafeLoadLogo
+            Socket s;
+
+            if ((service.Data.ServiceLocation == null) || (service.Data.ServiceLocation.IpMulticastAddress == null))
+            {
+                return ScanResult.Skipped;
+            } // if
+
+            s = null;
+            try
+            {
+                var multicastData = new MulticastOption(IPAddress.Parse(service.Data.ServiceLocation.IpMulticastAddress.Address), IPAddress.Any);
+                s = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
+                s.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true);
+                s.ReceiveTimeout = Timeout;
+                s.SetSocketOption(SocketOptionLevel.IP, SocketOptionName.AddMembership, multicastData);
+                s.Bind(new IPEndPoint(IPAddress.Any, service.Data.ServiceLocation.IpMulticastAddress.Port));
+            }
+            catch
+            {
+                if (s != null) s.Dispose();
+                s = null;
+            } // try-catch
+
+            if (s == null) return ScanResult.Error;
+
+            try
+            {
+                s.Receive(buffer);
+                return ScanResult.Active;
+            }
+            catch (SocketException ex)
+            {
+                if (ex.SocketErrorCode == SocketError.TimedOut)
+                {
+                    return ScanResult.Inactive;
+                }
+                else
+                {
+                    return ScanResult.Error;
+                } // if
+            }
+            finally
+            {
+                s.Close();
+            } // finally
+        } // ScanService
 
         #endregion
     } // class

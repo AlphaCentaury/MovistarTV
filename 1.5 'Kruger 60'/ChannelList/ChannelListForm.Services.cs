@@ -127,13 +127,14 @@ namespace IpTviewr.ChannelList
 
         private void MulticastScanner_ChannelScanResult(object sender, MulticastScannerDialog.ScanResultEventArgs e)
         {
-            if (e.IsSkipped) return;
+            if (!e.IsOk) return;
 
             // update status in list
-            if (e.WasInactive != e.IsInactive)
+            var isInactive = e.IsInactive;
+            if (e.WasInactive != isInactive)
             {
                 var service = e.Service;
-                e.IsInList = ListManager.EnableService(service, e.IsInactive, service.IsHidden);
+                e.IsInList = ListManager.EnableService(service, isInactive, service.IsHidden);
             } // if
         }  // MulticastScanner_ChannelScanResult
 
