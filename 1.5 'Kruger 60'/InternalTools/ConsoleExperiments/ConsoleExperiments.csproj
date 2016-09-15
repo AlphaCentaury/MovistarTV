@@ -82,6 +82,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestEpgDownloader.cs" />
     <Compile Include="TestEpgLinkedListWrapper.cs" />
+    <Compile Include="WindowsIcon.cs" />
+    <Compile Include="WindowsIcon.Structs.cs" />
+    <Compile Include="WindowsIconTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Assemblies\Etsi.Ts102034\Etsi.Ts102034.csproj">

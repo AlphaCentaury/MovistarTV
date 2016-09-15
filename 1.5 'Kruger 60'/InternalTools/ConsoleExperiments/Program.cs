@@ -35,7 +35,9 @@ namespace IpTviewr.Internal.Tools.ConsoleExperiments
             //experiment = new ProcessRawEpgData();
             //experiment = new TestEpgDownloader();
             //experiment = new TestEpgLinkedListWrapper();
-            experiment = new CachedLogos();
+            //experiment = new CachedLogos();
+            experiment = new WindowsIconTest();
+
             return experiment.Execute(args);
         } // Main
     } // class Program
