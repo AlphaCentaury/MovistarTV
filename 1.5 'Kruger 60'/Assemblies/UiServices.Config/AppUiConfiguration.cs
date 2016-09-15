@@ -261,15 +261,6 @@ namespace IpTviewr.UiServices.Configuration
             // Cultures
             Cultures = GetUiCultures();
 
-            // Record tasks
-            Folders.RecordTasks = Path.Combine(Folders.Base, Properties.InvariantTexts.FolderRecordTasks);
-
-            // Cache
-            Folders.Cache = Path.Combine(Folders.Base, Properties.InvariantTexts.FolderCache);
-
-            // Logos
-            Folders.Logos = new AppUiConfigurationFolders.FolderLogos(Path.Combine(Folders.Base, Properties.InvariantTexts.FolderLogosRoot));
-
             var descriptionServiceType = new Dictionary<string, string>();
             descriptionServiceType.Add("1", Properties.Texts.DvbServiceTypeDescription_01); // SD TV
             descriptionServiceType.Add("2", Properties.Texts.DvbServiceTypeDescription_02); // Radio (MPEG-1)
@@ -375,8 +366,22 @@ namespace IpTviewr.UiServices.Configuration
                 } // using root
             } // using hkcu
 
+            GetFolders();
+
             return null;
         } // LoadRegistrySettingsInternal
+
+        protected void GetFolders()
+        {
+            // Record tasks
+            Folders.RecordTasks = Path.Combine(Folders.Base, Properties.InvariantTexts.FolderRecordTasks);
+
+            // Cache
+            Folders.Cache = Path.Combine(Folders.Base, Properties.InvariantTexts.FolderCache);
+
+            // Logos
+            Folders.Logos = new AppUiConfigurationFolders.FolderLogos(Path.Combine(Folders.Base, Properties.InvariantTexts.FolderLogosRoot));
+        } // GetFolders
 
         #endregion
 
