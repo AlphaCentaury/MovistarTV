@@ -12,6 +12,7 @@ namespace IpTviewr.RecorderLauncher
 {
     class Program
     {
+        private static AssemblyName ToolName;
         private static bool PressAnyKey;
         private static bool NoLogo;
         private static Guid TaskId;
@@ -73,6 +74,7 @@ namespace IpTviewr.RecorderLauncher
             } // using icon
 
             // Initial setup
+            ToolName = Assembly.GetEntryAssembly().GetName();
             Console.Title = Properties.Texts.ProgramCaption;
             PressAnyKey = true;
 
@@ -116,7 +118,7 @@ namespace IpTviewr.RecorderLauncher
                 SpecialHelpArgument = true
             };
 
-            var arguments = parser.Parse(args);
+            parser.Parse(args);
             if (!parser.IsOk)
             {
                 DisplayLogo();
@@ -124,17 +126,25 @@ namespace IpTviewr.RecorderLauncher
                 return false;
             } // if
 
-            return ProcessArguments(arguments);
+            if (parser.Arguments.ContainsKey("nologo"))
+            {
+                NoLogo = true;
+            } // if
+
+            if (parser.Arguments.ContainsKey("help"))
+            {
+                Mode = ProgramMode.Help;
+                return true;
+            }
+            else
+            {
+                return ProcessArguments(parser.Arguments);
+            } // if-else
         } // ProcessArguments
 
         static bool ProcessArguments(IDictionary<string, string> arguments)
         {
             string value;
-
-            if (arguments.TryGetValue("nologo", out value))
-            {
-                NoLogo = true;
-            } // if
 
             if (arguments.TryGetValue("TaskId", out value))
             {
@@ -188,26 +198,21 @@ namespace IpTviewr.RecorderLauncher
             Console.WriteLine(Properties.Texts.DisplayExceptionFormat, null, ex.ToString(true, false));
         } // DisplayException
 
-        static void DisplayLogo()
+        private static void DisplayLogo()
         {
             string copyright;
 
             // get copyright text
             object[] attributes = Assembly.GetEntryAssembly().GetCustomAttributes(typeof(AssemblyCopyrightAttribute), false);
-            if (attributes.Length == 0)
-            {
-                copyright = "Copyright (C) http://movistartv.codeplex.com";
-            }
-            copyright = ((AssemblyCopyrightAttribute)attributes[0]).Copyright;
+            copyright = (attributes.Length > 0) ? ((AssemblyCopyrightAttribute)attributes[0]).Copyright : "Copyright (C) http://movistartv.codeplex.com";
 
-            Console.WriteLine(Properties.Texts.StartLogo, Assembly.GetEntryAssembly().GetName().Version, copyright);
+            Console.WriteLine(Properties.Texts.StartLogo, Properties.Texts.ProgramCaption, ToolName.Version, copyright);
             Console.WriteLine();
         } // DisplayLogo
 
-        static void DisplayHelp()
+        private static void DisplayHelp()
         {
-            PressAnyKey = false;
-            Console.WriteLine(Properties.Texts.ProgramHelp, Assembly.GetEntryAssembly().GetName().Name);
+            Console.WriteLine(Properties.Texts.ProgramHelp, ToolName.Name);
         } // DisplayHelp
     } // class Program
 } // namespace
