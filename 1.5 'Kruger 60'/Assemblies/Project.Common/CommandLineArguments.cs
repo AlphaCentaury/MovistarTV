@@ -18,8 +18,7 @@ namespace IpTviewr.Common
 
         public bool IsHelpRequested
         {
-            get;
-            private set;
+            get { return (Arguments != null) ? Arguments.ContainsKey("help") : false; }
         } // IsHelpRequested
 
         public bool IsOk
@@ -28,23 +27,28 @@ namespace IpTviewr.Common
             private set;
         } // IsOk
 
-        public IDictionary<string, string> Parse(string[] args)
+        public IDictionary<string, string> Arguments
+        {
+            get;
+            private set;
+        } // Arguments
+
+        public void Parse(string[] args, int startIndex = 0)
         {
             string argName;
             string argValue;
 
-            IsHelpRequested = false;
             IsOk = false;
             
             var arguments = new Dictionary<string, string>(args.Length, StringComparer.InvariantCultureIgnoreCase);
 
-            foreach (var arg in args)
+            foreach (var arg in args.Skip(startIndex))
             {
                 if ((arg[0] == '/') || (arg[0] == '-'))
                 {
                     if (arg.Length < 2) // argument name expected
                     {
-                        return arguments;
+                        return;
                     } // if
 
                     if (SpecialHelpArgument)
@@ -52,7 +56,7 @@ namespace IpTviewr.Common
                         var partialArg = arg.Substring(1, 1).ToLower();
                         if ((partialArg.StartsWith("h")) || (partialArg.StartsWith("?")))
                         {
-                            IsHelpRequested = true;
+                            arguments.Add("help", null);
                             break;
                         } // if
                     } // if
@@ -61,7 +65,7 @@ namespace IpTviewr.Common
                     var pos = arg.IndexOf(':');
                     if (pos == 0) // argument name expected
                     {
-                        return arguments;
+                        return;
                     }
                     else if (pos > 0)
                     {
@@ -77,12 +81,12 @@ namespace IpTviewr.Common
                 }
                 else
                 {
-                    return arguments;
+                    return;
                 } // if-else
             } // foreach arg
 
             IsOk = true;
-            return arguments;
+            Arguments = arguments;
         } // Parse
     } // class CommandLineArguments
 } // namespace
