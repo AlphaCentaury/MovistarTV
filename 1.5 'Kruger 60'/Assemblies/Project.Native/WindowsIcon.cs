@@ -1,16 +1,24 @@
-﻿using System;
+﻿// Copyright (C) 2014-2016, Codeplex/GitHub user AlphaCentaury
+// All rights reserved, except those granted by the governing license of this software. See 'license.txt' file in the project root for complete license information.
+
+using IpTviewr.Native.Properties;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace IpTviewr.Internal.Tools.ConsoleExperiments
+namespace IpTviewr.Native
 {
-    partial class WindowsIcon: IDisposable
+    /// <summary>
+    /// This class allows to create icons in Windows .ico file-format
+    /// </summary>
+    /// <remarks>
+    /// Only 32bpp ARGB images are supported
+    /// </remarks>
+    public partial class WindowsIcon: IDisposable
     {
         private Dictionary<IconKind, Bitmap> Images;
 
@@ -24,12 +32,20 @@ namespace IpTviewr.Internal.Tools.ConsoleExperiments
             Images = new Dictionary<IconKind, Bitmap>(imageCount);
         } // constructor
 
+        /// <summary>
+        /// Adds an image to the Icon
+        /// </summary>
+        /// <param name="image">The image to add</param>
+        /// <remarks>
+        /// Only 32bpp ARGB images are supported. Therefore, the supplied image wil be converted to PixelFormat.Format32bppArgb
+        /// This will cause ArgumentException to be thrown if two images of different bit depth are supplied for the same size
+        /// </remarks>
         public void AddImage(Bitmap image)
         {
             if (image == null) throw new ArgumentNullException(nameof(image));
-            if ((image.Width != image.Height)) throw new ArgumentOutOfRangeException(nameof(image), "Non-square icons are not supported");
-            if (image.Width > 256) throw new ArgumentOutOfRangeException(nameof(image), "Icons bigger than 256x256 are not supported in Windows");
-            if (image.Width < 16) throw new ArgumentOutOfRangeException(nameof(image), "Icons smaller than 16x16 are not supported in Windows");
+            if ((image.Width != image.Height)) throw new ArgumentOutOfRangeException(nameof(image), Texts.WindowsIcon_NonSquare);
+            if (image.Width > 256) throw new ArgumentOutOfRangeException(nameof(image), Texts.WindowsIcon_TooBig);
+            if (image.Width < 16) throw new ArgumentOutOfRangeException(nameof(image), Texts.WindowsIcon_TooSmall);
 
             // we only support 32bpp ARGB images; therefore, we need to convert the image to this format
             if (image.PixelFormat != PixelFormat.Format32bppArgb)
@@ -52,18 +68,28 @@ namespace IpTviewr.Internal.Tools.ConsoleExperiments
             Images.Add(new IconKind(image.Width, bitsPerPixel), image);
         } // AddImage
 
+        /// <summary>
+        /// Clears all added images and disposes of them
+        /// </summary>
         public void Clear()
         {
             foreach (var entry in Images) entry.Value.Dispose();
             Images.Clear();
         } // Clear
 
+        /// <summary>
+        /// Disposes the instance
+        /// </summary>
         public void Dispose()
         {
             Clear();
             Images = null;
         } // Dispose
 
+        /// <summary>
+        /// Creates an .ico file format file from the supplied images
+        /// </summary>
+        /// <param name="path">The path of the file</param>
         public void Save(string path)
         {
             using (var output = new FileStream(path, FileMode.Create, FileAccess.Write, FileShare.None, 4096))
@@ -72,6 +98,10 @@ namespace IpTviewr.Internal.Tools.ConsoleExperiments
             } // using output
         } // Save
 
+        /// <summary>
+        /// Saves the supplied images in .ico file format
+        /// </summary>
+        /// <param name="stream"></param>
         public void Save(Stream stream)
         {
             // although not strictly necessary, it's customary to
@@ -163,6 +193,7 @@ namespace IpTviewr.Internal.Tools.ConsoleExperiments
                 var pixelCount = paddedWidth * image.Height;
                 var maskWidth = paddedWidth / 8; // bitmask is 1-bit per pixel (1 byte per 8 pixels)
 
+                // create the BitmapInfoHeader of the given image
                 var bitmapInfoHeader = new BitmapInfoHeader()
                 {
                     Size = (uint)sizeOfHeader,
@@ -179,11 +210,13 @@ namespace IpTviewr.Internal.Tools.ConsoleExperiments
                 };
                 WriteStruct(output, bitmapInfoHeader);
 
+                // get the bytes of the image
                 var imageRectangle = new Rectangle(0, 0, image.Width, image.Height);
                 data = image.LockBits(imageRectangle, ImageLockMode.ReadOnly, image.PixelFormat);
                 var scanData = new byte[data.Stride];
 
-                // remember: bitmaps in icons are bottom-up DIBs an so is the bitmask
+                // write bitmap data
+                // remember: bitmaps in icons are bottom-up DIBs
                 for (int scanIndex = image.Height - 1; scanIndex >= 0; scanIndex--)
                 {
                     var scan = data.Scan0 + (data.Stride * scanIndex);
@@ -196,10 +229,10 @@ namespace IpTviewr.Internal.Tools.ConsoleExperiments
                 {
                     byte bits = 0;
                     int bitIndex = 0;
-                    var byteCount = 0;
                     var scan = data.Scan0 + (data.Stride * scanIndex);
                     Marshal.Copy(scan, scanData, 0, scanData.Length);
 
+                    // get alpha values for current scan line
                     for (var alphaIndex = 0; alphaIndex < scanData.Length; alphaIndex += 4)
                     {
                         var alpha = scanData[alphaIndex];
@@ -211,15 +244,14 @@ namespace IpTviewr.Internal.Tools.ConsoleExperiments
                             output.WriteByte(bits);
                             bits = 0;
                             bitIndex = 0;
-                            byteCount++;
                         } // if
                     } // for alphaIndex
 
+                    // add padding to 4 bytes if necessary
                     var width = image.Width;
                     for (int padding = 0; padding < ((width / 8) % 4); padding++)
                     {
                         output.WriteByte(0);
-                        byteCount++;
                     } // for
                 } // for scanIndex
             }
@@ -316,27 +348,9 @@ namespace IpTviewr.Internal.Tools.ConsoleExperiments
             } // try-catch-finally
         } // To32BitBitmap
 
-        private byte[] StructToBytes<T>(T structure) where T : struct
-        {
-            GCHandle gcHandle = new GCHandle();
-
-            byte[] bytes = new byte[Marshal.SizeOf(typeof(T))];
-            try
-            {
-                gcHandle = GCHandle.Alloc(structure, GCHandleType.Pinned);
-                Marshal.Copy(gcHandle.AddrOfPinnedObject(), bytes, 0, bytes.Length);
-
-                return bytes;
-            }
-            finally
-            {
-                if (gcHandle.IsAllocated) gcHandle.Free();
-            } // finally
-        } // StructToBytes
-
         private int WriteStruct<T>(Stream stream, T structure) where T : struct
         {
-            var bytes = StructToBytes(structure);
+            var bytes = NativeUtils.StructToBytes(structure);
             stream.Write(bytes, 0, bytes.Length);
 
             return bytes.Length;

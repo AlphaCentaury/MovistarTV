@@ -1,16 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
+﻿// Copyright (C) 2014-2016, Codeplex/GitHub user AlphaCentaury
+// All rights reserved, except those granted by the governing license of this software. See 'license.txt' file in the project root for complete license information.
 
-namespace IpTviewr.Internal.Tools.ConsoleExperiments
+using System.Runtime.InteropServices;
+
+namespace IpTviewr.Native
 {
     partial class WindowsIcon
     {
         [StructLayout(LayoutKind.Sequential, Pack = 1)]
-        private struct IconDirHeader
+        public struct IconDirHeader
         {
             /// <summary>
             /// Reserved (must be 0)
@@ -36,7 +34,7 @@ namespace IpTviewr.Internal.Tools.ConsoleExperiments
         } // struct IconDirHeader
 
         [StructLayout(LayoutKind.Sequential, Pack = 1)]
-        private struct IconDirEntry
+        public struct IconDirEntry
         {
             /// <summary>
             /// Width, in pixels, of the image
@@ -83,7 +81,7 @@ namespace IpTviewr.Internal.Tools.ConsoleExperiments
         } // struct IconDirEntry
 
         [StructLayout(LayoutKind.Sequential, Pack = 1)]
-        private struct BitmapInfoHeader
+        public struct BitmapInfoHeader
         {
             /// <summary>
             /// The number of bytes required by the structure

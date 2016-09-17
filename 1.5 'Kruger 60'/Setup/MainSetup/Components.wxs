@@ -77,8 +77,8 @@ All rights reserved, except those granted by the governing license of this softw
         <File Id="IpTv.MovistarPlus.es.dll" Source="$(var.IpTv.MovistarPlus.TargetDir)es\IpTv.MovistarPlus.resources.dll" />
         -->
         <File Id="Project.Common.es.dll" Source="$(var.Project.Common.TargetDir)es\Project.Common.resources.dll" />
-        <!--
         <File Id="Project.Native.es.dll" Source="$(var.Project.Native.TargetDir)es\Project.Native.resources.dll" />
+        <!--
         <File Id="Services.SqlServerCE.es.dll" Source="$(var.Services.SqlServerCE.TargetDir)es\Services.SqlServerCE.resources.dll" />
         -->
         <File Id="UiServices.Configuration.es.dll" Source="$(var.UiServices.Config.TargetDir)es\UiServices.Configuration.resources.dll" />

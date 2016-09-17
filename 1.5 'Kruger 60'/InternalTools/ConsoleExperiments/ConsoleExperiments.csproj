@@ -82,8 +82,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestEpgDownloader.cs" />
     <Compile Include="TestEpgLinkedListWrapper.cs" />
-    <Compile Include="WindowsIcon.cs" />
-    <Compile Include="WindowsIcon.Structs.cs" />
     <Compile Include="WindowsIconTest.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -98,6 +96,10 @@
     <ProjectReference Include="..\..\Assemblies\Project.Common\Project.Common.csproj">
       <Project>{8da15060-5a78-4f89-a9f1-7aa56b0d622c}</Project>
       <Name>Project.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Assemblies\Project.Native\Project.Native.csproj">
+      <Project>{8986cd52-0c65-42d6-9c47-20ff47cf87bb}</Project>
+      <Name>Project.Native</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Assemblies\Services.EpgDiscovery\Services.EpgDiscovery.csproj">
       <Project>{5a171dbb-855c-452b-93c6-229c7aa6c7a6}</Project>
