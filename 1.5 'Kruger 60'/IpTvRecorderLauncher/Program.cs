@@ -126,19 +126,19 @@ namespace IpTviewr.RecorderLauncher
                 return false;
             } // if
 
-            if (parser.Arguments.ContainsKey("nologo"))
+            if (parser.Switches.ContainsKey("nologo"))
             {
                 NoLogo = true;
             } // if
 
-            if (parser.Arguments.ContainsKey("help"))
+            if (parser.Switches.ContainsKey("help"))
             {
                 Mode = ProgramMode.Help;
                 return true;
             }
             else
             {
-                return ProcessArguments(parser.Arguments);
+                return ProcessArguments(parser.Switches);
             } // if-else
         } // ProcessArguments
 

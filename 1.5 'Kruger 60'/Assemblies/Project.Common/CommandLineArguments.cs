@@ -18,7 +18,7 @@ namespace IpTviewr.Common
 
         public bool IsHelpRequested
         {
-            get { return (Arguments != null) ? Arguments.ContainsKey("help") : false; }
+            get { return (Switches != null) ? Switches.ContainsKey("help") : false; }
         } // IsHelpRequested
 
         public bool IsOk
@@ -27,11 +27,17 @@ namespace IpTviewr.Common
             private set;
         } // IsOk
 
-        public IDictionary<string, string> Arguments
+        public ICollection<string> Arguments
         {
             get;
             private set;
         } // Arguments
+
+        public IDictionary<string, string> Switches
+        {
+            get;
+            private set;
+        } // Switches
 
         public void Parse(string[] args, int startIndex = 0)
         {
@@ -39,14 +45,15 @@ namespace IpTviewr.Common
             string argValue;
 
             IsOk = false;
-            
-            var arguments = new Dictionary<string, string>(args.Length, StringComparer.InvariantCultureIgnoreCase);
+
+            var arguments = new List<string>(args.Length);
+            var switches = new Dictionary<string, string>(args.Length, StringComparer.InvariantCultureIgnoreCase);
 
             foreach (var arg in args.Skip(startIndex))
             {
                 if ((arg[0] == '/') || (arg[0] == '-'))
                 {
-                    if (arg.Length < 2) // argument name expected
+                    if (arg.Length < 2) // switch name expected
                     {
                         return;
                     } // if
@@ -56,37 +63,36 @@ namespace IpTviewr.Common
                         var partialArg = arg.Substring(1, 1).ToLower();
                         if ((partialArg.StartsWith("h")) || (partialArg.StartsWith("?")))
                         {
-                            arguments.Add("help", null);
+                            switches.Add("help", null);
                             break;
                         } // if
                     } // if
 
-                    argValue = null;
                     var pos = arg.IndexOf(':');
-                    if (pos == 0) // argument name expected
+
+                    if (pos < 0)
                     {
-                        return;
-                    }
-                    else if (pos > 0)
-                    {
-                        argName = arg.Substring(1, pos - 1);
-                        argValue = arg.Substring(pos + 1);
+                        argName = arg.Substring(1);
+                        argValue = null;
                     }
                     else
                     {
-                        argName = arg;
-                    } // if-else
+                        if (pos == 0) return; // switch name expected
 
-                    arguments[argName] = argValue;
+                        argName = arg.Substring(1, pos - 1);
+                        argValue = arg.Substring(pos + 1);
+                    } // if-else
+                    switches[argName] = argValue;
                 }
                 else
                 {
-                    return;
+                    arguments.Add(arg);
                 } // if-else
             } // foreach arg
 
             IsOk = true;
             Arguments = arguments;
+            Switches = switches;
         } // Parse
     } // class CommandLineArguments
 } // namespace
