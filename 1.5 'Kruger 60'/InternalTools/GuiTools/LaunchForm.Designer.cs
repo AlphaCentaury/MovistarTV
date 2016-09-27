@@ -32,6 +32,7 @@ namespace IpTviewr.Internal.Tools.GuiTools
         private void InitializeComponent()
         {
             this.groupBoxTools = new System.Windows.Forms.GroupBox();
+            this.radioBinaryEditor = new System.Windows.Forms.RadioButton();
             this.radioDvbStpExplorer = new System.Windows.Forms.RadioButton();
             this.radioOpchExplorer = new System.Windows.Forms.RadioButton();
             this.radioMulticastExplorer = new System.Windows.Forms.RadioButton();
@@ -42,6 +43,7 @@ namespace IpTviewr.Internal.Tools.GuiTools
             // 
             // groupBoxTools
             // 
+            this.groupBoxTools.Controls.Add(this.radioBinaryEditor);
             this.groupBoxTools.Controls.Add(this.radioDvbStpExplorer);
             this.groupBoxTools.Controls.Add(this.radioOpchExplorer);
             this.groupBoxTools.Controls.Add(this.radioMulticastExplorer);
@@ -53,6 +55,18 @@ namespace IpTviewr.Internal.Tools.GuiTools
             this.groupBoxTools.TabStop = false;
             this.groupBoxTools.Text = "Select tool";
             // 
+            // radioBinaryEditor
+            // 
+            this.radioBinaryEditor.AutoSize = true;
+            this.radioBinaryEditor.Location = new System.Drawing.Point(6, 112);
+            this.radioBinaryEditor.Name = "radioBinaryEditor";
+            this.radioBinaryEditor.Size = new System.Drawing.Size(83, 17);
+            this.radioBinaryEditor.TabIndex = 4;
+            this.radioBinaryEditor.TabStop = true;
+            this.radioBinaryEditor.Text = "Binary editor";
+            this.radioBinaryEditor.UseVisualStyleBackColor = true;
+            this.radioBinaryEditor.CheckedChanged += new System.EventHandler(this.radioOption_CheckedChanged);
+            // 
             // radioDvbStpExplorer
             // 
             this.radioDvbStpExplorer.AutoSize = true;
@@ -63,6 +77,7 @@ namespace IpTviewr.Internal.Tools.GuiTools
             this.radioDvbStpExplorer.TabStop = true;
             this.radioDvbStpExplorer.Text = "DVB-STP Stream Explorer";
             this.radioDvbStpExplorer.UseVisualStyleBackColor = true;
+            this.radioDvbStpExplorer.CheckedChanged += new System.EventHandler(this.radioOption_CheckedChanged);
             // 
             // radioOpchExplorer
             // 
@@ -74,6 +89,7 @@ namespace IpTviewr.Internal.Tools.GuiTools
             this.radioOpchExplorer.TabStop = true;
             this.radioOpchExplorer.Text = "OPCH Stream Explorer";
             this.radioOpchExplorer.UseVisualStyleBackColor = true;
+            this.radioOpchExplorer.CheckedChanged += new System.EventHandler(this.radioOption_CheckedChanged);
             // 
             // radioMulticastExplorer
             // 
@@ -85,6 +101,7 @@ namespace IpTviewr.Internal.Tools.GuiTools
             this.radioMulticastExplorer.TabStop = true;
             this.radioMulticastExplorer.Text = "Multicast Stream Explorer";
             this.radioMulticastExplorer.UseVisualStyleBackColor = true;
+            this.radioMulticastExplorer.CheckedChanged += new System.EventHandler(this.radioOption_CheckedChanged);
             // 
             // radioSimpleDownload
             // 
@@ -96,6 +113,7 @@ namespace IpTviewr.Internal.Tools.GuiTools
             this.radioSimpleDownload.TabStop = true;
             this.radioSimpleDownload.Text = "Simple DVB-STP Payload downloader";
             this.radioSimpleDownload.UseVisualStyleBackColor = true;
+            this.radioSimpleDownload.CheckedChanged += new System.EventHandler(this.radioOption_CheckedChanged);
             // 
             // buttonExecute
             // 
@@ -132,5 +150,6 @@ namespace IpTviewr.Internal.Tools.GuiTools
         private System.Windows.Forms.RadioButton radioMulticastExplorer;
         private System.Windows.Forms.RadioButton radioOpchExplorer;
         private System.Windows.Forms.RadioButton radioDvbStpExplorer;
+        private System.Windows.Forms.RadioButton radioBinaryEditor;
     }
 }

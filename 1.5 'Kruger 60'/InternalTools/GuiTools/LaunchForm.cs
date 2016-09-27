@@ -14,6 +14,8 @@ namespace IpTviewr.Internal.Tools.GuiTools
 {
     public partial class LaunchForm : Form
     {
+        private Type SelectedForm;
+
         public LaunchForm()
         {
             InitializeComponent();
@@ -22,17 +24,27 @@ namespace IpTviewr.Internal.Tools.GuiTools
 
         private void buttonExecute_Click(object sender, EventArgs e)
         {
-            Form form = null;
-
-            if (radioSimpleDownload.Checked) form = new SimpleDvbStpDownloadForm();
-            else if (radioDvbStpExplorer.Checked) form = new DvbStpStreamExplorerForm();
-            else if (radioMulticastExplorer.Checked) form = new MulticastStreamExplorerForm();
-            else if (radioOpchExplorer.Checked) form = new OpchExplorerForm();
-
+            var form = Activator.CreateInstance(SelectedForm) as Form;
             if (form != null)
             {
                 form.Show();
             } // if
         } // buttonExecute_Click
+
+        private void radioOption_CheckedChanged(object sender, EventArgs e)
+        {
+            SelectedForm = GetSelectedForm();
+            buttonExecute.Enabled = SelectedForm != null;
+        } // radioOption_CheckedChanged
+
+        private Type GetSelectedForm()
+        {
+            if (radioSimpleDownload.Checked) return typeof(SimpleDvbStpDownloadForm);
+            else if (radioDvbStpExplorer.Checked) return typeof(DvbStpStreamExplorerForm);
+            else if (radioMulticastExplorer.Checked) return typeof(MulticastStreamExplorerForm);
+            else if (radioOpchExplorer.Checked) return typeof(OpchExplorerForm);
+            else if (radioBinaryEditor.Checked) return typeof(BinaryEditorForm);
+            else return null;
+        } // GetSelectedForm
     } // class LaunchForm
 } // namespace

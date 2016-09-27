@@ -60,6 +60,12 @@
     <Compile Include="..\..\AssemblySolutionInfo.cs">
       <Link>Properties\AssemblySolutionInfo.cs</Link>
     </Compile>
+    <Compile Include="BinaryEditorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BinaryEditorForm.Designer.cs">
+      <DependentUpon>BinaryEditorForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="DvbStpStreamExplorerForm .cs">
       <SubType>Form</SubType>
     </Compile>
@@ -93,6 +99,9 @@
     <Compile Include="SimpleDvbStpDownloadForm.Designer.cs">
       <DependentUpon>SimpleDvbStpDownloadForm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="BinaryEditorForm.resx">
+      <DependentUpon>BinaryEditorForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DvbStpStreamExplorerForm .resx">
       <DependentUpon>DvbStpStreamExplorerForm .cs</DependentUpon>
     </EmbeddedResource>
