@@ -75,7 +75,7 @@ namespace IpTviewr.Services.EpgDiscovery
                 var programs = new EpgProgram[Programs.Count];
 
                 var index = 0;
-                foreach (var program in programs)
+                foreach (var program in Programs)
                 {
                     programs[index++] = program;
                 } // foreach
