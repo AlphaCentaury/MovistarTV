@@ -27,7 +27,7 @@ namespace IpTviewr.Common
             private set;
         } // IsOk
 
-        public ICollection<string> Arguments
+        public IList<string> Arguments
         {
             get;
             private set;
