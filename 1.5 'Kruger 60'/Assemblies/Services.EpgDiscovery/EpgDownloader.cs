@@ -1,4 +1,7 @@
-﻿using IpTviewr.Common.Serialization;
+﻿// Copyright (C) 2014-2016, Codeplex/GitHub user AlphaCentaury
+// All rights reserved, except those granted by the governing license of this software. See 'license.txt' file in the project root for complete license information.
+
+using IpTviewr.Common.Serialization;
 using IpTviewr.DvbStp.Client;
 using IpTviewr.Services.EpgDiscovery.TvAnytime;
 using System;
@@ -88,15 +91,15 @@ namespace IpTviewr.Services.EpgDiscovery
             {
                 Processor = new SegmentsProcessor();
 
-                // initialize DVB-STP client
-                StreamClient = new DvbStpStreamClient(MulticastIpAddress, MulticastPort);
-                StreamClient.NoDataTimeout = -1; // not implemented by DvbStpStreamClient
-                StreamClient.ReceiveDatagramTimeout = 60 * 1000; // 60 seconds
-                StreamClient.OperationTimeout = -1; // forever
-                StreamClient.SegmentPayloadReceived += SegmentPayloadReceived;
-
                 while (retryTime <= maxRetryTime)
                 {
+                    // initialize DVB-STP client
+                    StreamClient = new DvbStpStreamClient(MulticastIpAddress, MulticastPort);
+                    StreamClient.NoDataTimeout = -1; // not implemented by DvbStpStreamClient
+                    StreamClient.ReceiveDatagramTimeout = 60 * 1000; // 60 seconds
+                    StreamClient.OperationTimeout = -1; // forever
+                    StreamClient.SegmentPayloadReceived += SegmentPayloadReceived;
+
                     var retry = false;
                     try
                     {
