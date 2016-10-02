@@ -67,6 +67,7 @@
     <Compile Include="TvAnytime\ExtendedPurchaseItem.cs" />
     <Compile Include="TvAnytime\Mpeg7Name.cs" />
     <Compile Include="TvAnytime\NamespaceUnification.cs" />
+    <Compile Include="TvAnytime\TvaNullableInt32.cs" />
     <Compile Include="TvAnytime\TvaBoolean.cs" />
     <Compile Include="TvAnytime\TvaInstanceDescription.cs" />
     <Compile Include="TvAnytime\TvaMain.cs" />
@@ -75,8 +76,11 @@
     <Compile Include="TvAnytime\TvaProgram.cs" />
     <Compile Include="TvAnytime\TvaProgramDescription.cs" />
     <Compile Include="TvAnytime\TvaProgramLocationTable.cs" />
+    <Compile Include="TvAnytime\TvaReleaseDate.cs" />
+    <Compile Include="TvAnytime\TvaReleaseInfo.cs" />
     <Compile Include="TvAnytime\TvaSchedule.cs" />
     <Compile Include="TvAnytime\TvaScheduleEvent.cs" />
+    <Compile Include="TvAnytime\TvaEpisodeOf.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="License.txt" />

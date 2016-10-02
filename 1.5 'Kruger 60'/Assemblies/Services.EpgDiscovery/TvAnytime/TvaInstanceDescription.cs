@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using System.Xml;
 using System.Xml.Serialization;
 
 namespace IpTviewr.Services.EpgDiscovery.TvAnytime
@@ -17,6 +18,7 @@ namespace IpTviewr.Services.EpgDiscovery.TvAnytime
     [XmlType(TypeName = "InstanceDescription", Namespace = Common.DefaultXmlNamespace)]
     public class TvaInstanceDescription
     {
+        [XmlElement("Title")]
         public string Title
         {
             get;
@@ -36,5 +38,14 @@ namespace IpTviewr.Services.EpgDiscovery.TvAnytime
             get;
             set;
         } // ParentalGuidance
+
+#if DEBUG
+        [XmlAnyElement]
+        public XmlElement[] OutOfSchemaItems
+        {
+            get;
+            set;
+        } // OutOfSchemaItems
+#endif
     } // class TVAInstanceDescription
 } // namespace

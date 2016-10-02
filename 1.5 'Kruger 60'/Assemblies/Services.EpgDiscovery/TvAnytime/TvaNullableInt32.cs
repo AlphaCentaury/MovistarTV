@@ -16,22 +16,22 @@ namespace IpTviewr.Services.EpgDiscovery.TvAnytime
     [DebuggerStepThrough()]
     [DesignerCategory("code")]
     [XmlType(AnonymousType = true, Namespace = Common.DefaultXmlNamespace)]
-    public class TvaBoolean
+    public class TvaNullableInt32
     {
         /// <remarks>XmlValue member is used for XML serialization</remarks>
         [XmlIgnore]
-        public bool? Value
+        public int? Value
         {
             get;
             set;
         } // Value
 
-        [XmlAttribute("value")]
+        [XmlText]
         [Browsable(false), EditorBrowsable(EditorBrowsableState.Never)]
         public string XmlValue
         {
             get { return (Value.HasValue) ? XmlConvert.ToString(Value.Value) : null; }
-            set { Value = (value != null) ? XmlConvert.ToBoolean(value) : (bool?)null; }
+            set { Value = (value != null) ? XmlConvert.ToInt32(value) : (int?)null; }
         } // XmlValue
-    } // class TvaBoolean
+    } // class TvaNullableInt32
 } // namespace

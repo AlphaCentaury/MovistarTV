@@ -41,49 +41,6 @@ namespace IpTviewr.Services.EpgDiscovery.TvAnytime
             set;
         } // PublishedStartTime
 
-        /// <remarks>XmlPublishedDuration member is used for XML serialization</remarks>
-        [XmlIgnore]
-        public TimeSpan PublishedDuration
-        {
-            get;
-            set;
-        } // PublishedDuration
-
-        public TvaBoolean ImmediateViewing
-        {
-            get;
-            set;
-        } // ImmediateViewing
-
-        public string NetworkRecordOperator
-        {
-            get;
-            set;
-        } // NetworkRecordOperator
-
-        [XmlElement("UserActionList")]
-        public Mpeg7Name[] UserActionList
-        {
-            get;
-            set;
-        } // UserActionList
-
-        /// <remarks>XmlEventStartTime member is used for XML serialization</remarks>
-        [XmlIgnore]
-        public DateTime? StartTime
-        {
-            get;
-            set;
-        } // EventStartTime
-
-        /// <remarks>XmlEventDuration member is used for XML serialization</remarks>
-        [XmlIgnore]
-        public TimeSpan Duration
-        {
-            get;
-            set;
-        } // EventDuration
-
         [XmlElement("PublishedStartTime")]
         [Browsable(false), EditorBrowsable(EditorBrowsableState.Never)]
         public string XmlPublishedStartTime
@@ -106,6 +63,14 @@ namespace IpTviewr.Services.EpgDiscovery.TvAnytime
             } // set
         } // XmlPublishedStartTime
 
+        /// <remarks>XmlPublishedDuration member is used for XML serialization</remarks>
+        [XmlIgnore]
+        public TimeSpan PublishedDuration
+        {
+            get;
+            set;
+        } // PublishedDuration
+
         [XmlElement("PublishedDuration")]
         [Browsable(false), EditorBrowsable(EditorBrowsableState.Never)]
         public string XmlPublishedDuration
@@ -113,6 +78,39 @@ namespace IpTviewr.Services.EpgDiscovery.TvAnytime
             get { return SoapDuration.ToString(PublishedDuration); }
             set { PublishedDuration = string.IsNullOrEmpty(value) ? new TimeSpan() : SoapDuration.Parse(value); }
         } // XmlPublishedDuration
+
+        public TvaBoolean ImmediateViewing
+        {
+            get;
+            set;
+        } // ImmediateViewing
+
+        public string NetworkRecordOperator
+        {
+            get;
+            set;
+        } // NetworkRecordOperator
+
+        [XmlElement("UserActionList", Namespace = Common.Mpeg7XmlNamespace)]
+        public Mpeg7Name[] UserActionList
+        {
+            get;
+            set;
+        } // UserActionList
+
+        public TvaEpisodeOf EpisodeOf
+        {
+            get;
+            set;
+        } // EpisodeOf
+
+        /// <remarks>XmlEventStartTime member is used for XML serialization</remarks>
+        [XmlIgnore]
+        public DateTime? StartTime
+        {
+            get;
+            set;
+        } // EventStartTime
 
         [XmlElement("EventStartTime")]
         [Browsable(false), EditorBrowsable(EditorBrowsableState.Never)]
@@ -130,11 +128,19 @@ namespace IpTviewr.Services.EpgDiscovery.TvAnytime
                 }
                 else
                 {
-                    var time =  XmlConvert.ToDateTime(value, XmlDateTimeSerializationMode.RoundtripKind);
+                    var time = XmlConvert.ToDateTime(value, XmlDateTimeSerializationMode.RoundtripKind);
                     StartTime = DateTime.SpecifyKind(time, DateTimeKind.Utc);
                 } // if-else
             } // set
         } // XmlPublishedStartTime
+
+        /// <remarks>XmlEventDuration member is used for XML serialization</remarks>
+        [XmlIgnore]
+        public TimeSpan Duration
+        {
+            get;
+            set;
+        } // EventDuration
 
         [XmlElement("EventDuration")]
         [Browsable(false), EditorBrowsable(EditorBrowsableState.Never)]
@@ -144,10 +150,13 @@ namespace IpTviewr.Services.EpgDiscovery.TvAnytime
             set { Duration = string.IsNullOrEmpty(value) ? new TimeSpan() : SoapDuration.Parse(value); }
         } // XmlPublishedDuration
 
-        public XmlNode[] OutOfSchemaItems
+#if DEBUG
+        [XmlAnyElement]
+        public XmlElement[] OutOfSchemaItems
         {
             get;
             set;
         } // OutOfSchemaItems
+#endif
     } // class TVAScheduleEvent
 } // namespace
