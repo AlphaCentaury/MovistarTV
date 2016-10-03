@@ -39,6 +39,13 @@ namespace IpTviewr.Services.EpgDiscovery.TvAnytime
             set;
         } // ParentalGuidance
 
+        [XmlElement("ReleaseInformation")]
+        public TvaReleaseInfo ReleaseInfo
+        {
+            get;
+            set;
+        } // ReleaseInfo
+
 #if DEBUG
         [XmlAnyElement]
         public XmlElement[] OutOfSchemaItems

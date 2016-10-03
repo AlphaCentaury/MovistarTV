@@ -20,18 +20,18 @@ namespace IpTviewr.Services.EpgDiscovery.TvAnytime
     {
         /// <remarks>XmlValue member is used for XML serialization</remarks>
         [XmlIgnore]
-        public int? Value
+        public int? Nullable
         {
             get;
             set;
-        } // Value
+        } // Nullable
 
         [XmlText]
         [Browsable(false), EditorBrowsable(EditorBrowsableState.Never)]
         public string XmlValue
         {
-            get { return (Value.HasValue) ? XmlConvert.ToString(Value.Value) : null; }
-            set { Value = (value != null) ? XmlConvert.ToInt32(value) : (int?)null; }
+            get { return (Nullable.HasValue) ? XmlConvert.ToString(Nullable.Value) : null; }
+            set { Nullable = (value != null) ? XmlConvert.ToInt32(value) : (int?)null; }
         } // XmlValue
     } // class TvaNullableInt32
 } // namespace

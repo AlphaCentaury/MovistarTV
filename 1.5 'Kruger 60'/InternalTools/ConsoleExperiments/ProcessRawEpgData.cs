@@ -106,7 +106,7 @@ namespace IpTviewr.Internal.Tools.ConsoleExperiments
                         outputEpg.Write("\";\"");
                         outputEpg.Write(program.Title?.Replace("\"", "\"\""));
                         outputEpg.Write("\";\"");
-                        outputEpg.WriteLine(program.CRID);
+                        outputEpg.WriteLine(program.Id);
                         outputEpg.Write("\";\"");
                         outputEpg.Write(service.ServiceIdReference);
                         outputEpg.WriteLine("\"");
@@ -134,7 +134,7 @@ namespace IpTviewr.Internal.Tools.ConsoleExperiments
                     outputEpg.Write("\";\"");
                     outputEpg.Write(program?.Title?.Replace("\"", "\"\""));
                     outputEpg.Write("\";\"");
-                    outputEpg.WriteLine(program?.CRID);
+                    outputEpg.WriteLine(program?.Id);
                     outputEpg.Write("\";\"");
                     outputEpg.Write(service.ServiceIdReference);
                     outputEpg.WriteLine("\"");

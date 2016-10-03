@@ -48,6 +48,7 @@
     <Compile Include="EpgLinkedListPhantomNode.cs" />
     <Compile Include="EpgLinkedListWrapper.cs" />
     <Compile Include="EpgMemoryDatastore.cs" />
+    <Compile Include="EpgProgramEpisode.cs" />
     <Compile Include="EpgSingleServiceDatastore.cs" />
     <Compile Include="EpgNullDatastore.cs" />
     <Compile Include="EpgProgram.cs" />

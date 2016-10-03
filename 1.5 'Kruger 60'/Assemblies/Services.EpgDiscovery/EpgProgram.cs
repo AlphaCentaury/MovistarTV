@@ -18,12 +18,12 @@ namespace IpTviewr.Services.EpgDiscovery
     [XmlType(TypeName = "Program", Namespace = Common.XmlNamespace)]
     public class EpgProgram
     {
-        [XmlAttribute("crid")]
-        public string CRID
+        [XmlAttribute("id")]
+        public string Id
         {
             get;
             set;
-        } // CRID
+        } // Id
 
         [XmlElement("Title")]
         public string Title
@@ -78,13 +78,6 @@ namespace IpTviewr.Services.EpgDiscovery
             set;
         } // Duration
 
-        [XmlAttribute("isBlank")]
-        public bool IsBlank
-        {
-            get;
-            set;
-        } // IsBlank
-
         [XmlElement("Duration")]
         [Browsable(false), EditorBrowsable(EditorBrowsableState.Never)]
         public string XmlDuration
@@ -92,6 +85,19 @@ namespace IpTviewr.Services.EpgDiscovery
             get { return SoapDuration.ToString(Duration); }
             set { Duration = string.IsNullOrEmpty(value) ? new TimeSpan() : SoapDuration.Parse(value); }
         } // XmlDuration
+
+        [XmlAttribute("isBlank")]
+        public bool IsBlank
+        {
+            get;
+            set;
+        } // IsBlank
+
+        public EpgProgramEpisode Episode
+        {
+            get;
+            set;
+        } // Episode
 
         public bool IsCurrent(DateTime referenceTime)
         {
@@ -132,7 +138,7 @@ namespace IpTviewr.Services.EpgDiscovery
 
             var result = new EpgProgram()
             {
-                CRID = item.Program.CRID,
+                Id = item.Program.CRID,
                 Duration = (item.Duration.TotalSeconds > 0) ? item.Duration : item.PublishedDuration,
                 UtcStartTime = utcStartTime.Value
             };
@@ -147,6 +153,23 @@ namespace IpTviewr.Services.EpgDiscovery
             result.Title = item.Description.Title;
             result.Genre = EpgCodedValue.ToCodedValue(item.Description.Genre);
             result.ParentalRating = (item.Description.ParentalGuidance != null)? EpgCodedValue.ToCodedValue(item.Description.ParentalGuidance.ParentalRating) : null;
+
+            if (item.Description.ReleaseInfo?.ReleaseDate != null)
+            {
+                result.Episode = new EpgProgramEpisode()
+                {
+                    Number = item.Description.ReleaseInfo.ReleaseDate.Episode.Nullable,
+                    Season = item.Description.ReleaseInfo.ReleaseDate.Season.Nullable,
+                    Year = item.Description.ReleaseInfo.ReleaseDate.Year.Nullable,
+                };
+            } // if
+            if (item.EpisodeOf != null)
+            {
+                var episode = (result.Episode == null) ? new EpgProgramEpisode() : result.Episode;
+                episode.SeriesId = item.EpisodeOf.CRID;
+                episode.SeriesName = item.EpisodeOf.Title;
+                result.Episode = episode;
+            } // if
 
             return result;
         } // FromScheduleEvent
