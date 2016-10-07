@@ -13,7 +13,7 @@ namespace IpTviewr.DvbStp.Client
             private set;
         } // PayloadId
 
-        public short Id
+        public int Id
         {
             get;
             private set;
@@ -25,7 +25,7 @@ namespace IpTviewr.DvbStp.Client
             private set;
         } // Version
 
-        public DvbStpSegmentIdentity(byte payloadId, short segmentId, byte segmentVersion)
+        public DvbStpSegmentIdentity(byte payloadId, int segmentId, byte segmentVersion)
             : this()
         {
             PayloadId = payloadId;

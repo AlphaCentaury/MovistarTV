@@ -23,10 +23,10 @@ namespace IpTviewr.DvbStp.Client
         public const byte HasCRC = 0x01; // 0000 0001
 
         // byte 8-9
-        public const short SectionNumberLSB = 0xF0; // 1111 0000
+        public const ushort SectionNumberLSB = 0xF0; // 1111 0000
 
         // byte 9-10
-        public const short LastSectionNumberMSB = 0x0F; // 0000 1111
+        public const ushort LastSectionNumberMSB = 0x0F; // 0000 1111
 
         // byte 11
         public const byte Compression = 0xE0; // 1110 0000

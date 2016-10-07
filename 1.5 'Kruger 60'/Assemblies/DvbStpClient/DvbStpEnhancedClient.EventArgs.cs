@@ -96,7 +96,7 @@ namespace IpTviewr.DvbStp.Client
             } // SegmentsPending
 
             public byte PayloadId;
-            public short SegmentId;
+            public int SegmentId;
             public byte SegmentVersion;
             public int SectionCount;
 

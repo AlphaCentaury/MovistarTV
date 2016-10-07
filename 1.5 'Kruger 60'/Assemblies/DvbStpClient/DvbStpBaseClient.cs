@@ -217,7 +217,7 @@ namespace IpTviewr.DvbStp.Client
 
         protected void DecodeHeader(bool fullDecode)
         {
-            short networkShort;
+            ushort networkShort;
             int networkInt;
             byte[] RawHeader;
 
@@ -247,7 +247,7 @@ namespace IpTviewr.DvbStp.Client
             // byte 5-6
             // Computed at reception: Header.SegmentIdNetworkLo = DatagramData[5];
             // Computed at reception: Header.SegmentIdNetworkHi = DatagramData[6];
-            networkShort = BitConverter.ToInt16(RawHeader, 5);
+            networkShort = BitConverter.ToUInt16(RawHeader, 5);
             Header.SegmentId = IPAddress.NetworkToHostOrder(networkShort);
 
             // byte 7
@@ -256,13 +256,13 @@ namespace IpTviewr.DvbStp.Client
             // byte 8-9
             TempBytesBuffer[0] = RawHeader[8];
             TempBytesBuffer[1] = (byte)(RawHeader[9] & DvbStpHeaderMasks.SectionNumberLSB);
-            networkShort = BitConverter.ToInt16(TempBytesBuffer, 0);
-            Header.SectionNumber = (short)((IPAddress.NetworkToHostOrder(networkShort) >> 4) & 0x00FFFF);
+            networkShort = BitConverter.ToUInt16(TempBytesBuffer, 0);
+            Header.SectionNumber = ((IPAddress.NetworkToHostOrder(networkShort) >> 4) & 0x00FFFF);
 
             // byte 9-10
             TempBytesBuffer[0] = (byte)(RawHeader[9] & DvbStpHeaderMasks.LastSectionNumberMSB);
             TempBytesBuffer[1] = RawHeader[10];
-            networkShort = BitConverter.ToInt16(TempBytesBuffer, 0);
+            networkShort = BitConverter.ToUInt16(TempBytesBuffer, 0);
             Header.LastSectionNumber = IPAddress.NetworkToHostOrder(networkShort);
 
             // byte 11

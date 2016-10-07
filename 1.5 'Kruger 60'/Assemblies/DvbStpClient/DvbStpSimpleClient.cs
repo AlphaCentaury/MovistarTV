@@ -55,7 +55,7 @@ namespace IpTviewr.DvbStp.Client
         public event EventHandler<PayloadSectionReceivedEventArgs> DownloadCompleted;
         public event EventHandler<DownloadRestartedEventArgs> DownloadRestarted;
 
-        public byte[] GetPayload(byte payloadId, short? segmentId)
+        public byte[] GetPayload(byte payloadId, int? segmentId)
         {
             try
             {

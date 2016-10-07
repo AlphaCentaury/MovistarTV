@@ -29,7 +29,7 @@ namespace IpTviewr.DvbStp.Client
             private set;
         } // PayloadId
 
-        public short SegmentId
+        public int SegmentId
         {
             get;
             private set;
@@ -37,10 +37,10 @@ namespace IpTviewr.DvbStp.Client
 
         public string HexId
         {
-            get { return string.Format("p{0:X2}s{1:X2}", PayloadId, SegmentId); }
+            get { return string.Format("p{0:X2}s{1:X4}", PayloadId, SegmentId); }
         } // HexId
 
-        public VersionStorage(byte payloadId, short segmentId, bool saveData)
+        public VersionStorage(byte payloadId, int segmentId, bool saveData)
         {
             PayloadId = payloadId;
             SegmentId = segmentId;

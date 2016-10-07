@@ -16,12 +16,12 @@ namespace IpTviewr.DvbStp.Client
         public bool HasCRC;
         public int TotalSegmentSize;
         public byte PayloadId;
-        public short SegmentId;
+        public int SegmentId;
         public byte SegmentIdNetworkLo;
         public byte SegmentIdNetworkHi;
         public byte SegmentVersion;
-        public short SectionNumber;
-        public short LastSectionNumber;
+        public int SectionNumber;
+        public int LastSectionNumber;
         public CompressionMethod Compression;
         public bool HasServiceProviderId;
         public byte PrivateHeaderLength;

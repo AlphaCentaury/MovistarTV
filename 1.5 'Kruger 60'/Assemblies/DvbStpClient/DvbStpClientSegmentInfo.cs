@@ -15,7 +15,7 @@ namespace IpTviewr.DvbStp.Client
             // no op
         } // constructor
 
-        public DvbStpClientSegmentInfo(byte payloadId, short? segmentId)
+        public DvbStpClientSegmentInfo(byte payloadId, int? segmentId)
         {
             PayloadId = payloadId;
             SegmentId = segmentId;
@@ -30,7 +30,7 @@ namespace IpTviewr.DvbStp.Client
 
         // Optional IN parameter. If not set, downloads the first segment found for the given PayloadId
         // Set with downloaded SegmentId on exit
-        public short? SegmentId
+        public int? SegmentId
         {
             get;
             set;

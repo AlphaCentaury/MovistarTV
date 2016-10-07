@@ -22,9 +22,9 @@ namespace IpTviewr.DvbStp.Client
         public class PayloadSectionReceivedEventArgs : EventArgs
         {
             public byte PayloadId;
-            public short SegmentId;
+            public int SegmentId;
             public byte SegmentVersion;
-            public short SectionNumber;
+            public int SectionNumber;
             public int SectionCount;
             public int SectionsReceived;
         } // class PayloadSectionReceivedEventArgs
@@ -32,7 +32,7 @@ namespace IpTviewr.DvbStp.Client
         public class DownloadRestartedEventArgs : EventArgs
         {
             public byte PayloadId;
-            public short SegmentId;
+            public int SegmentId;
             public int OldVersion;
             public int NewVersion;
             public int SectionCount;

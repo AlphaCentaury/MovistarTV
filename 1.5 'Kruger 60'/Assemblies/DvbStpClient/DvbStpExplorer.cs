@@ -15,7 +15,7 @@ namespace IpTviewr.DvbStp.Client
         public event EventHandler<UnexpectedHeaderVersionReceivedEventArgs> UnexpectedHeaderVersionReceived;
         public event EventHandler<RunEndedEventArgs> RunEnded;
 
-        private short StartSectionNumber;
+        private int StartSectionNumber;
         private int ReceivedPayloadBytes;
         private DvbStpHeader LastHeader;
         private IList<DvbStpHeader> ReceivedHeaders;

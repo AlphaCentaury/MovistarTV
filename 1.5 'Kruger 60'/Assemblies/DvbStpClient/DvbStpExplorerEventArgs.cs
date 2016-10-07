@@ -61,7 +61,7 @@ namespace IpTviewr.DvbStp.Client
                 internal set;
             } // PayloadId
 
-            public short SegmentId
+            public int SegmentId
             {
                 get;
                 internal set;
@@ -73,19 +73,19 @@ namespace IpTviewr.DvbStp.Client
                 internal set;
             } // SegmentVersion
 
-            public short LastSectionNumber
+            public int LastSectionNumber
             {
                 get;
                 internal set;
             } // LastSectionNumber
 
-            public short StartSectionNumber
+            public int StartSectionNumber
             {
                 get;
                 internal set;
             } // StartSectionNumber
 
-            public short EndSectionNumber
+            public int EndSectionNumber
             {
                 get;
                 internal set;

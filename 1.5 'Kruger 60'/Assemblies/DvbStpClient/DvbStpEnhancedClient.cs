@@ -21,7 +21,7 @@ namespace IpTviewr.DvbStp.Client
         protected class SegmentStatus
         {
             public byte PayloadId;
-            public short SegmentId;
+            public int SegmentId;
             public byte[] ExpectedSegmentId;
             public SegmentAssembler SegmentData;
             public int InfoIndex;
