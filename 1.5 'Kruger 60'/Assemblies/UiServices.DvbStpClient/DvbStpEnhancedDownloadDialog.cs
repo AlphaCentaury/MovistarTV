@@ -22,13 +22,24 @@ namespace IpTviewr.UiServices.DvbStpClient
         private string FormatProgressPercentage;
         private string FormatEllapsedTime;
         private char DataReceptionSymbol;
-        private int DataReceptionMarquee;
         private BackgroundWorker Worker;
         private bool AllowFormToClose;
         private Action CancelDownloadRequest;
         private DateTime StartTime;
         private double[] PayloadProgress;
         private double GlobalProgress;
+        private int UnusedDataCount;
+
+        private enum ProgressKind
+        {
+            SectionReceived = -1,
+            DownloadStarted = 0,
+            SegmentDownloadStarted = 10,
+            SegmentSectionReceived = 15,
+            SegmentDownloadRestarted = 18,
+            SegmentDownloadCompleted = 19,
+            Completed = 999,
+        } // enum ProgressKind
 
         private class SegmentProgressReport
         {
@@ -218,25 +229,23 @@ namespace IpTviewr.UiServices.DvbStpClient
 
         private void Worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
-            switch (e.ProgressPercentage)
+            switch ((ProgressKind)e.ProgressPercentage)
             {
-                case -1:
+                case ProgressKind.SectionReceived:
                     DisplayDataReception(e);
                     break;
-                case 0:
-                    {
+                case ProgressKind.DownloadStarted:
                         progressBar.Style = ProgressBarStyle.Continuous;
                         progressBar.Value = 0;
                         labelProgressPct.Text = string.Format(FormatProgressPercentage, 0);
-                    }
                     break;
-                case 10:
-                case 15:
-                case 18:
-                case 19:
+                case ProgressKind.SegmentDownloadStarted:
+                case ProgressKind.SegmentSectionReceived:
+                case ProgressKind.SegmentDownloadRestarted:
+                case ProgressKind.SegmentDownloadCompleted:
                     DisplaySegmentProgress(e);
                     break;
-                case 999:
+                case ProgressKind.Completed:
                     DisplayParsingData(e);
                     break;
             } // switch
@@ -244,10 +253,47 @@ namespace IpTviewr.UiServices.DvbStpClient
 
         private void DisplayDataReception(ProgressChangedEventArgs e)
         {
-            DataReceptionMarquee++;
-            DataReceptionMarquee %= 6;
+            bool isKnowPayloadId;
+            ListViewItem item;
+
+            var received = e.UserState as DvbStpSimpleClient.SectionReceivedEventArgs;
             labelReceiving.Visible = true;
-            labelDataReception.Text = new string(DataReceptionSymbol, DataReceptionMarquee);
+            labelDataReception.Text = new string(DataReceptionSymbol, (received.DatagramCount) % 6);
+
+            isKnowPayloadId = false;
+            for (int index=0; index<listViewPayloads.Items.Count;index++)
+            {
+                item = listViewPayloads.Items[index];
+                var segment = item.Tag as UiDvbStpClientSegmentInfo;
+                if ((segment != null) && (segment.PayloadId == received.PayloadId))
+                {
+                    if (item.ImageKey != "Completed") item.ImageKey = "Downloading";
+                    isKnowPayloadId = true;
+                }
+                else
+                {
+                    if (item.ImageKey == "Downloading") item.ImageKey = (segment != null) ? "Waiting" : null;
+                } // if-else
+            } // for int index
+
+            if (!isKnowPayloadId)
+            {
+                if (UnusedDataCount == 0)
+                {
+                    item = new ListViewItem(Properties.Texts.DownloadOtherData);
+                    item.SubItems.Add("-");
+                    item.SubItems.Add("-");
+                    item.ImageKey = "Waiting";
+                    listViewPayloads.Items.Add(item);
+                }
+                else
+                {
+                    item = listViewPayloads.Items[listViewPayloads.Items.Count - 1];
+                } // if-else
+
+                item.ImageKey = "Downloading";
+                item.SubItems[1].Text = (++UnusedDataCount).ToString("N0");
+            } // if
         }  // DisplayDataReception
 
         private void DisplaySegmentProgress(ProgressChangedEventArgs e)
@@ -256,15 +302,15 @@ namespace IpTviewr.UiServices.DvbStpClient
             var item = listViewPayloads.Items[report.Index];
             DisplaySegmentProgress(item, report);
 
-            switch (e.ProgressPercentage)
+            switch ((ProgressKind)e.ProgressPercentage)
             {
-                case 10:
+                case ProgressKind.SegmentDownloadStarted:
                     item.ImageKey = "Downloading";
                     break;
-                case 18:
+                case ProgressKind.SegmentDownloadRestarted:
                     item.ImageKey = "Restarted";
                     break;
-                case 19:
+                case ProgressKind.SegmentDownloadCompleted:
                     item.ImageKey = "Completed";
                     break;
             } // switch
@@ -301,17 +347,17 @@ namespace IpTviewr.UiServices.DvbStpClient
 
         void Worker_DoWork(object sender, DoWorkEventArgs e)
         {
-            DvbStpEnhancedClient stpClient;
+            DvbStpEnhancedClient dvbStpClient;
 
             InitWorker(e);
 
-            stpClient = null;
+            dvbStpClient = null;
             try
             {
-                stpClient = CreateStpClient();
-                stpClient.DownloadPayloads(GetDvbStpClientSegmentInfoList());
+                dvbStpClient = CreateDvbStpClient();
+                dvbStpClient.DownloadPayloads(GetDvbStpClientSegmentInfoList());
 
-                if (!stpClient.CancelRequested)
+                if (!dvbStpClient.CancelRequested)
                 {
 #if DEBUG
                     DumpPayloads();
@@ -322,20 +368,17 @@ namespace IpTviewr.UiServices.DvbStpClient
             finally
             {
                 e.Cancel = Worker.CancellationPending;
-                if (stpClient != null)
+                if (dvbStpClient != null)
                 {
-                    stpClient.Close();
+                    dvbStpClient.Close();
                 } // if
             } // finally
         } // Worker_DoWork
 
         private void InitWorker(DoWorkEventArgs e)
         {
-            // set worker thread name (for debugging purposes)
-            var currentThread = Thread.CurrentThread;
-            currentThread.Name = "DvbStpEnhancedDownloadDialog BackgroundWorker";
-
             // inherit parent thead culture settings
+            var currentThread = Thread.CurrentThread;
             var parentThread = e.Argument as Thread;
             if (parentThread != null)
             {
@@ -344,22 +387,22 @@ namespace IpTviewr.UiServices.DvbStpClient
             } // if
         } // InitWorker
 
-        private DvbStpEnhancedClient CreateStpClient()
+        private DvbStpEnhancedClient CreateDvbStpClient()
         {
-            var stpClient = new DvbStpEnhancedClient(Request.MulticastAddress, Request.MulticastPort);
-            CancelDownloadRequest = stpClient.CancelRequest;
+            var dvbStpClient = new DvbStpEnhancedClient(Request.MulticastAddress, Request.MulticastPort);
+            CancelDownloadRequest = dvbStpClient.CancelRequest;
 
-            stpClient.ReceiveDatagramTimeout = Request.ReceiveDatagramTimeout;
-            stpClient.NoDataTimeout = Request.NoDataTimeout;
-            stpClient.DownloadStarted += StpClient_DownloadStarted;
-            stpClient.SectionReceived += StpClient_SectionReceived;
-            stpClient.SegmentDownloadStarted += StpClient_SegmentDownloadStarted;
-            stpClient.SegmentSectionReceived += StpClient_SegmentSectionReceived;
-            stpClient.SegmentDownloadRestarted += StpClient_SegmentDownloadRestarted;
-            stpClient.SegmentDownloadCompleted += StpClient_SegmentDownloadCompleted;
+            dvbStpClient.ReceiveDatagramTimeout = Request.ReceiveDatagramTimeout;
+            dvbStpClient.NoDataTimeout = Request.NoDataTimeout;
+            dvbStpClient.DownloadStarted += DvbStpClient_DownloadStarted;
+            dvbStpClient.SectionReceived += DvbStpClient_SectionReceived;
+            dvbStpClient.SegmentDownloadStarted += DvbStpClient_SegmentDownloadStarted;
+            dvbStpClient.SegmentSectionReceived += DvbStpClient_SegmentSectionReceived;
+            dvbStpClient.SegmentDownloadRestarted += DvbStpClient_SegmentDownloadRestarted;
+            dvbStpClient.SegmentDownloadCompleted += DvbStpClient_SegmentDownloadCompleted;
 
-            return stpClient;
-        } // CreateStpClient
+            return dvbStpClient;
+        } // CreateDvbStpClient
 
         private IList<DvbStpClientSegmentInfo> GetDvbStpClientSegmentInfoList()
         {
@@ -375,7 +418,7 @@ namespace IpTviewr.UiServices.DvbStpClient
         private void Deserialize()
         {
             if (Request.AvoidDeserialization) return;
-            Worker.ReportProgress(999);
+            Worker.ReportProgress((int)ProgressKind.Completed);
 
             foreach (var payload in Request.Payloads)
             {
@@ -413,30 +456,19 @@ namespace IpTviewr.UiServices.DvbStpClient
 
         #endregion
 
-        #region StpClient event handlers
+        #region DvbStpClient event handlers
 
-        void StpClient_DownloadStarted(object sender, DvbStpEnhancedClient.DownloadStartedEventArgs e)
+        void DvbStpClient_DownloadStarted(object sender, DvbStpEnhancedClient.DownloadStartedEventArgs e)
         {
-            Worker.ReportProgress(0, e);
-        } // StpClient_DownloadStarted
+            Worker.ReportProgress((int)ProgressKind.DownloadStarted, e);
+        } // DvbStpClient_DownloadStarted
 
-        void StpClient_SectionReceived(object sender, DvbStpSimpleClient.SectionReceivedEventArgs e)
+        void DvbStpClient_SectionReceived(object sender, DvbStpSimpleClient.SectionReceivedEventArgs e)
         {
-            Worker.ReportProgress(-1, e);
-        } // StpClient_SectionReceived
+            Worker.ReportProgress((int)ProgressKind.SectionReceived, e);
+        } // DvbStpClient_SectionReceived
 
-        void StpClient_SegmentDownloadStarted(object sender, DvbStpEnhancedClient.SegmentSectionReceivedEventArgs e)
-        {
-            var data = new SegmentProgressReport()
-            {
-                Index = e.SegmentListIndex,
-                ReceivedSections = e.SectionsReceived,
-                SectionCount = e.SectionCount
-            };
-            Worker.ReportProgress(10, data);
-        } // StpClient_SegmentDownloadStarted
-
-        void StpClient_SegmentSectionReceived(object sender, DvbStpEnhancedClient.SegmentSectionReceivedEventArgs e)
+        void DvbStpClient_SegmentDownloadStarted(object sender, DvbStpEnhancedClient.SegmentSectionReceivedEventArgs e)
         {
             var data = new SegmentProgressReport()
             {
@@ -444,10 +476,21 @@ namespace IpTviewr.UiServices.DvbStpClient
                 ReceivedSections = e.SectionsReceived,
                 SectionCount = e.SectionCount
             };
-            Worker.ReportProgress(15, data);
+            Worker.ReportProgress((int)ProgressKind.SegmentDownloadStarted, data);
         } // StpClient_SegmentDownloadStarted
 
-        void StpClient_SegmentDownloadRestarted(object sender, DvbStpEnhancedClient.SegmentDownloadRestartedEventArgs e)
+        void DvbStpClient_SegmentSectionReceived(object sender, DvbStpEnhancedClient.SegmentSectionReceivedEventArgs e)
+        {
+            var data = new SegmentProgressReport()
+            {
+                Index = e.SegmentListIndex,
+                ReceivedSections = e.SectionsReceived,
+                SectionCount = e.SectionCount
+            };
+            Worker.ReportProgress((int)ProgressKind.SegmentSectionReceived, data);
+        } // DvbStpClient_SegmentDownloadStarted
+
+        void DvbStpClient_SegmentDownloadRestarted(object sender, DvbStpEnhancedClient.SegmentDownloadRestartedEventArgs e)
         {
             var data = new SegmentProgressReport()
             {
@@ -455,10 +498,10 @@ namespace IpTviewr.UiServices.DvbStpClient
                 ReceivedSections = 0,
                 SectionCount = e.SectionCount
             };
-            Worker.ReportProgress(18, data);
-        } // StpClient_SegmentDownloadRestarted
+            Worker.ReportProgress((int)ProgressKind.SegmentDownloadRestarted, data);
+        } // DvbStpClient_SegmentDownloadRestarted
 
-        void StpClient_SegmentDownloadCompleted(object sender, DvbStpEnhancedClient.SegmentDownloadCompletedEventArgs e)
+        void DvbStpClient_SegmentDownloadCompleted(object sender, DvbStpEnhancedClient.SegmentDownloadCompletedEventArgs e)
         {
             var data = new SegmentProgressReport()
             {
@@ -466,8 +509,8 @@ namespace IpTviewr.UiServices.DvbStpClient
                 ReceivedSections = e.SectionCount,
                 SectionCount = e.SectionCount
             };
-            Worker.ReportProgress(19, data);
-        } // StpClient_SegmentDownloadCompleted
+            Worker.ReportProgress((int)ProgressKind.SegmentDownloadCompleted, data);
+        } // DvbStpClient_SegmentDownloadCompleted
 
         #endregion
     } // class DvbStpDownloadMultiDialog

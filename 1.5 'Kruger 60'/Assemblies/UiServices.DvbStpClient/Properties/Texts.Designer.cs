@@ -88,6 +88,15 @@ namespace IpTviewr.UiServices.DvbStpClient.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Other, non related data.
+        /// </summary>
+        internal static string DownloadOtherData {
+            get {
+                return ResourceManager.GetString("DownloadOtherData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0:P1}.
         /// </summary>
         internal static string DownloadSegmentProgressFormat {
