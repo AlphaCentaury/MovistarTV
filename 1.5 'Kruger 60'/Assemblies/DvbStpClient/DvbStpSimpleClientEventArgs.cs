@@ -33,8 +33,8 @@ namespace IpTviewr.DvbStp.Client
         {
             public byte PayloadId;
             public int SegmentId;
-            public int OldVersion;
-            public int NewVersion;
+            public byte OldVersion;
+            public byte NewVersion;
             public int SectionCount;
         } // class DownloadRestartedEventArgs
     } // partial class DvbStpSimpleClient

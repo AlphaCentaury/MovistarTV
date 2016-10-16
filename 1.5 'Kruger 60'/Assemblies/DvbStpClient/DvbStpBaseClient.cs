@@ -16,7 +16,6 @@ namespace IpTviewr.DvbStp.Client
     {
         public const int UdpMaxDatagramSize = 65535;
         protected const int DefaultHeaderLength = 12;
-        protected const int MaxHeaderLength = DefaultHeaderLength + 4;
 
         private byte[] TempBytesBuffer;
 
@@ -130,14 +129,14 @@ namespace IpTviewr.DvbStp.Client
             {
                 CheckTimeouts();
 
-                Receive(false);
+                Receive();
                 if (Header.Version != 0) continue;
 
                 // filter received section
                 if (FilterSection()) continue;
 
                 // requested payloadId & segmentId found!
-                DecodeHeader(true);
+                DecodeHeader();
 
                 // process data
                 ProcessReceivedData();
@@ -184,137 +183,24 @@ namespace IpTviewr.DvbStp.Client
             StartNoDataTimeout();
         } // Connect
 
-        protected void Receive(bool decodeHeader)
+        protected void Receive(bool decodeHeader = false)
         {
             ReceivedBytes = Socket.Receive(DatagramData);
             DatagramCount = DatagramCount + 1;
 
-            if (ReceivedBytes < DefaultHeaderLength) throw new InvalidDataException("ReceivedBytes < DefaultHeaderLength");
+            if (ReceivedBytes < DvbStpHeader.MinHeaderLength) throw new InvalidDataException("ReceivedBytes < MinHeaderLength");
 
-            DecodeBasicHeader();
-
-            if ((decodeHeader) && (Header.Version == 0))
-            {
-                DecodeHeader(true);
-            } // if
+            Header = (decodeHeader)? DvbStpHeader.Decode(DatagramData, ReceivedBytes) : DvbStpHeader.PartialDecode(DatagramData);
         } // Receive
 
-        protected void DecodeBasicHeader()
+        protected void DecodeHeader()
         {
-            Header = new DvbStpHeader();
-            Header.Version = (byte)(DatagramData[0] & DvbStpHeaderMasks.Version);
-
-            // byte 4
-            Header.PayloadId = DatagramData[4];
-
-            // byte 5-6
-            Header.SegmentIdNetworkLo = DatagramData[5];
-            Header.SegmentIdNetworkHi = DatagramData[6];
-
-            // byte 7
-            Header.SegmentVersion = DatagramData[7];
-        } // DecodeBasicHeader
-
-        protected void DecodeHeader(bool fullDecode)
-        {
-            ushort networkShort;
-            int networkInt;
-            byte[] RawHeader;
-
-            RawHeader = DatagramData;
-            if (fullDecode)
-            {
-                PartialDecodeHeader();
-            } // if
-
-            // byte 0
-            // Header.Version computed at reception time
-            Header.Reserved = (byte)((RawHeader[0] & DvbStpHeaderMasks.Reserved) >> 3);
-            Header.Encription = (byte)((RawHeader[0] & DvbStpHeaderMasks.Encription) >> 1);
-            //Header.HasCRC computed in partial decode
-
-            // byte 1-3
-            TempBytesBuffer[0] = 0x00;
-            TempBytesBuffer[1] = RawHeader[1];
-            TempBytesBuffer[2] = RawHeader[2];
-            TempBytesBuffer[3] = RawHeader[3];
-            networkInt = BitConverter.ToInt32(TempBytesBuffer, 0);
-            Header.TotalSegmentSize = IPAddress.NetworkToHostOrder(networkInt);
-
-            // byte 4
-            // Computed at reception: Header.PayloadId = RawHeader[4];
-
-            // byte 5-6
-            // Computed at reception: Header.SegmentIdNetworkLo = DatagramData[5];
-            // Computed at reception: Header.SegmentIdNetworkHi = DatagramData[6];
-            networkShort = BitConverter.ToUInt16(RawHeader, 5);
-            Header.SegmentId = IPAddress.NetworkToHostOrder(networkShort);
-
-            // byte 7
-            // Computed at reception: Header.SegmentVersion = RawHeader[7];
-
-            // byte 8-9
-            TempBytesBuffer[0] = RawHeader[8];
-            TempBytesBuffer[1] = (byte)(RawHeader[9] & DvbStpHeaderMasks.SectionNumberLSB);
-            networkShort = BitConverter.ToUInt16(TempBytesBuffer, 0);
-            Header.SectionNumber = ((IPAddress.NetworkToHostOrder(networkShort) >> 4) & 0x00FFFF);
-
-            // byte 9-10
-            TempBytesBuffer[0] = (byte)(RawHeader[9] & DvbStpHeaderMasks.LastSectionNumberMSB);
-            TempBytesBuffer[1] = RawHeader[10];
-            networkShort = BitConverter.ToUInt16(TempBytesBuffer, 0);
-            Header.LastSectionNumber = IPAddress.NetworkToHostOrder(networkShort);
-
-            // byte 11
-            Header.Compression = (DvbStpHeader.CompressionMethod)(RawHeader[0] & DvbStpHeaderMasks.Compression);
-            // Header.HasServiceProviderId computed in PartialDecode
-            // Header.PrivateHeaderLength computed in PartialDecode
-            if (Header.PrivateHeaderLength > 0)
-            {
-                Header.PrivateHeaderOffset = DefaultHeaderLength + (Header.HasServiceProviderId ? 4 : 0);
-            }
-            else
-            {
-                Header.PrivateHeaderOffset = -1;
-            } // if-else
-            
-            // byte 12-15
-            if (Header.HasServiceProviderId)
-            {
-                networkInt = BitConverter.ToInt32(RawHeader, 12);
-                Header.ServiceProviderId = IPAddress.NetworkToHostOrder(networkInt);
-            } // if
-
-            // CRC
-            if (Header.HasCRC)
-            {
-                networkInt = BitConverter.ToInt32(RawHeader, Header.PayloadOffset + Header.PayloadSize);
-                Header.CRC = IPAddress.NetworkToHostOrder(networkInt);
-            } // if
-
-            // not-implemnted
-            if ((Header.Encription != 0) || (Header.Compression != 0))
+            Header.CompleteDecoding(DatagramData, ReceivedBytes);
+            if ((Header.Encription != 0) || (Header.Compression != DvbStpHeader.CompressionMethod.None))
             {
                 throw new NotImplementedException();
             } // if
         } // DecodeHeader
-
-        protected void PartialDecodeHeader()
-        {
-            byte[] RawHeader;
-
-            RawHeader = DatagramData;
-
-            // byte[0]
-            Header.HasCRC = (RawHeader[0] & DvbStpHeaderMasks.HasCRC) == 0 ? false : true;
-
-            // byte[11]
-            Header.HasServiceProviderId = (RawHeader[11] & DvbStpHeaderMasks.HasServiceProviderId) == 0 ? false : true;
-            Header.PrivateHeaderLength = (byte)(RawHeader[11] & DvbStpHeaderMasks.PrivateHeaderLength);
-
-            Header.PayloadOffset = DefaultHeaderLength + (Header.HasServiceProviderId ? 4 : 0) + Header.PrivateHeaderLength;
-            Header.PayloadSize = ReceivedBytes - Header.PayloadOffset - (Header.HasCRC ? 4 : 0);
-        } // PartialDecodeHeader
 
         #region Timeout handling
 

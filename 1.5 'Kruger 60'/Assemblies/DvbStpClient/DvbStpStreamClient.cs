@@ -9,12 +9,16 @@ using System.Text;
 
 namespace IpTviewr.DvbStp.Client
 {
-    public partial class DvbStpStreamClient : DvbStpBaseClient
+    public sealed partial class DvbStpStreamClient : DvbStpBaseClient
     {
         public event EventHandler DownloadStarted;
+        public event EventHandler DownloadEnded;
         public event EventHandler<PayloadStorage.SegmentPayloadReceivedEventArgs> SegmentPayloadReceived;
 
         private PayloadStorage Storage;
+        private System.Collections.BitArray ReceivedSegments;
+        int TotalSegments, LoadedSegments;
+        double Threshold;
 
         public bool IsDownloadStarted
         {
@@ -22,36 +26,35 @@ namespace IpTviewr.DvbStp.Client
             private set;
         } // IsDownloadStarted
 
-        protected bool EndLoop
-        {
-            get;
-            set;
-        } // EndLoop
-
-        public DvbStpStreamClient(IPAddress ip, int port)
-            : base(ip, port)
+        public DvbStpStreamClient(IPAddress ip, int port) : base(ip, port)
         {
             // no op
         } // constructor
 
-        public void DownloadStream()
+        public DvbStpStreamClient(IPEndPoint endpoint) : base(endpoint.Address, endpoint.Port)
+        {
+            // no op
+        } // constructor
+
+        public void DownloadStream(double threshold = 0)
         {
             try
             {
+                if (threshold >= 0.01)
+                {
+                    Threshold = threshold;
+                    ReceivedSegments = new System.Collections.BitArray(ushort.MaxValue + 1);
+                } // if
+
                 Storage = new PayloadStorage(true);
-                Storage.SegmentPayloadReceived += Storage_SegmentPayloadReceived;
+                Storage.SegmentPayloadReceived += PayloadReceived;
                 ReceiveData();
             }
             finally
             {
                 Close();
             } // try-finally
-        } // ExplorerMulticastStream
-
-        private void Storage_SegmentPayloadReceived(object sender, PayloadStorage.SegmentPayloadReceivedEventArgs e)
-        {
-            if (SegmentPayloadReceived  != null) SegmentPayloadReceived(this, e);
-        } // Storage_SegmentPayloadReceived
+        } // DownloadStream
 
         public override void Close()
         {
@@ -62,6 +65,7 @@ namespace IpTviewr.DvbStp.Client
         private void Clean()
         {
             if (Storage != null) Storage = null;
+            if (ReceivedSegments != null) ReceivedSegments = null;
         } // Clean
 
         protected override void ProcessReceivedData()
@@ -74,16 +78,35 @@ namespace IpTviewr.DvbStp.Client
             } // if
 
             Storage.AddSection(Header, DatagramData, true);
-        } // DvbStpStreamClient
+        } // ProcessReceivedData
 
-        protected virtual void FireDownloadStarted()
+        private void PayloadReceived(object sender, PayloadStorage.SegmentPayloadReceivedEventArgs e)
         {
-            OnDownloadStarted(this, EventArgs.Empty);
+            SegmentPayloadReceived?.Invoke(this, e);
+
+            if (ReceivedSegments != null)
+            {
+                if (!ReceivedSegments[e.SegmentIdentity.Id])
+                {
+                    TotalSegments++;
+                    ReceivedSegments[e.SegmentIdentity.Id] = true;
+                    SegmentPayloadReceived?.Invoke(this, e);
+                }
+                else
+                {
+                    LoadedSegments++;
+                    if (LoadedSegments >= (TotalSegments * Threshold))
+                    {
+                        EndReceptionLoop = true;
+                        DownloadEnded?.Invoke(this, EventArgs.Empty);
+                    } // if
+                } // if-else
+            } // if-else
+        } // PayloadReceived
+
+        private void FireDownloadStarted()
+        {
+            DownloadStarted?.Invoke(this, EventArgs.Empty);
         } // FireDownloadStarted
-
-        protected virtual void OnDownloadStarted(object sender, EventArgs e)
-        {
-            DownloadStarted?.Invoke(sender, e);
-        } // OnDownloadStarted
     } // class DvbStpStreamClient
 } // namespace

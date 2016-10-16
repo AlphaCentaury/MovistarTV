@@ -48,12 +48,15 @@
     <Compile Include="..\..\AssemblySolutionInfo.cs">
       <Link>Properties\AssemblySolutionInfo.cs</Link>
     </Compile>
+    <Compile Include="DvbStpDownloadClient.cs" />
+    <Compile Include="DvbStpDownloadClientSettings.cs" />
     <Compile Include="DvbStpEnhancedClient.cs" />
     <Compile Include="DvbStpEnhancedClient.EventArgs.cs" />
     <Compile Include="DvbStpClientSegmentInfo.cs" />
     <Compile Include="DvbStpStreamClient.cs" />
     <Compile Include="DvbStpExplorer.cs" />
     <Compile Include="DvbStpSegmentIdentity.cs" />
+    <Compile Include="DvbStpDownloadClient.SegmentsProcessor.cs" />
     <Compile Include="PayloadStorage.cs" />
     <Compile Include="VersionStorage.cs" />
     <Compile Include="DvbStpExplorerEventArgs.cs" />
