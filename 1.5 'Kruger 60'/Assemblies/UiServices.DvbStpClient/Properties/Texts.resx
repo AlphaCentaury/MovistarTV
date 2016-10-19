@@ -171,12 +171,4 @@ Power-cycle your router and try again in a few minutes.
 
 If the problem persists, please click “HELP!” for guidance on how to troubleshoot connectivity issues.</value>
   </data>
-  <data name="UnableCancelDownloadCaption" xml:space="preserve">
-    <value>Unable to cancel</value>
-  </data>
-  <data name="UnableCancelDownloadMessage" xml:space="preserve">
-    <value>Unable to cancel right now. Please try again in a few seconds.
-
-The operation has been scheduled and cannot be cancelled until it has started.</value>
-  </data>
 </root>

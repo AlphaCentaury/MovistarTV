@@ -24,7 +24,7 @@ namespace IpTviewr.UiServices.DvbStpClient
         private char DataReceptionSymbol;
         private BackgroundWorker Worker;
         private bool AllowFormToClose;
-        private Action CancelDownloadRequest;
+        private CancellationTokenSource CancellationTokenSource;
         private DateTime StartTime;
         private double[] PayloadProgress;
         private double GlobalProgress;
@@ -137,15 +137,6 @@ namespace IpTviewr.UiServices.DvbStpClient
 
         private void buttonRequestCancel_Click(object sender, EventArgs e)
         {
-            // race condition
-            if (CancelDownloadRequest == null)
-            {
-                MessageBox.Show(this, Properties.Texts.UnableCancelDownloadCaption,
-                    Properties.Texts.UnableCancelDownloadMessage,
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            } // if
-
             CancelDownload();
         } // buttonRequestCancel_Click
 
@@ -167,6 +158,7 @@ namespace IpTviewr.UiServices.DvbStpClient
             timerEllapsed.Enabled = true;
             DisplayEllapsedTime();
 
+            CancellationTokenSource = new CancellationTokenSource();
             Worker = new BackgroundWorker();
             Worker.WorkerReportsProgress = true;
             Worker.WorkerSupportsCancellation = true;
@@ -183,11 +175,12 @@ namespace IpTviewr.UiServices.DvbStpClient
 
             Response.UserCancelled = true;
             Worker.CancelAsync();
-            CancelDownloadRequest();
+            CancellationTokenSource.Cancel();
         } // CancelDownload
 
         private void StartClose()
         {
+            buttonRequestCancel.Enabled = false;
             if (Request.DialogCloseDelay <= 0) CloseForm();
 
             timerClose.Interval = Request.DialogCloseDelay;
@@ -214,8 +207,12 @@ namespace IpTviewr.UiServices.DvbStpClient
         void Worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             timerEllapsed.Enabled = false;
+
             Worker.Dispose();
             Worker = null;
+
+            CancellationTokenSource.Dispose();
+            CancellationTokenSource = null;
 
             Response.UserCancelled = e.Cancelled;
             Response.DownloadException = e.Error;
@@ -389,8 +386,7 @@ namespace IpTviewr.UiServices.DvbStpClient
 
         private DvbStpEnhancedClient CreateDvbStpClient()
         {
-            var dvbStpClient = new DvbStpEnhancedClient(Request.MulticastAddress, Request.MulticastPort);
-            CancelDownloadRequest = dvbStpClient.CancelRequest;
+            var dvbStpClient = new DvbStpEnhancedClient(Request.MulticastAddress, Request.MulticastPort, CancellationTokenSource.Token);
 
             dvbStpClient.ReceiveDatagramTimeout = Request.ReceiveDatagramTimeout;
             dvbStpClient.NoDataTimeout = Request.NoDataTimeout;

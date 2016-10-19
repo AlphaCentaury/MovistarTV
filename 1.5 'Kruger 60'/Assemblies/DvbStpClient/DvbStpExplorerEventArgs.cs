@@ -11,7 +11,7 @@ namespace IpTviewr.DvbStp.Client
 {
     public partial class DvbStpExplorer
     {
-        public class SectionReceivedEventArgs : CancelEventArgs
+        public class SectionReceivedEventArgs
         {
             public DvbStpHeader Header
             {
@@ -38,7 +38,7 @@ namespace IpTviewr.DvbStp.Client
             } // Payload
         } // class SectionReceivedEventArgs
 
-        public class UnexpectedHeaderVersionReceivedEventArgs : CancelEventArgs
+        public class UnexpectedHeaderVersionReceivedEventArgs
         {
             public byte HeaderVersion
             {
@@ -53,7 +53,7 @@ namespace IpTviewr.DvbStp.Client
             } // DatagramData
         } // class UnexpectedHeaderVersionReceivedEventArgs
 
-        public class RunEndedEventArgs : CancelEventArgs
+        public class RunEndedEventArgs
         {
             public byte PayloadId
             {

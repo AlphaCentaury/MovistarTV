@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Threading;
 
 namespace IpTviewr.DvbStp.Client
 {
@@ -29,8 +30,13 @@ namespace IpTviewr.DvbStp.Client
             public int DowloadRestartCount;
         } // SegmentStatus
 
-        public DvbStpEnhancedClient(IPAddress ip, int port)
-            : base(ip, port)
+        public DvbStpEnhancedClient(IPAddress ip, int port) : this(ip, port, CancellationToken.None)
+        {
+            // no-op
+        } // constructor
+
+        public DvbStpEnhancedClient(IPAddress ip, int port, CancellationToken cancellationToken)
+            : base(ip, port, cancellationToken)
         {
             NoDataTimeout = 30000; // milliseconds
             MaxDowloadRestartCount = 5;

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Threading;
 
 namespace IpTviewr.DvbStp.Client
 {
@@ -31,7 +32,17 @@ namespace IpTviewr.DvbStp.Client
             // no op
         } // constructor
 
+        public DvbStpStreamClient(IPAddress ip, int port, CancellationToken cancellationToken) : base(ip, port, cancellationToken)
+        {
+            // no op
+        } // constructor
+
         public DvbStpStreamClient(IPEndPoint endpoint) : base(endpoint.Address, endpoint.Port)
+        {
+            // no op
+        } // constructor
+
+        public DvbStpStreamClient(IPEndPoint endpoint, CancellationToken cancellationToken) : base(endpoint.Address, endpoint.Port, cancellationToken)
         {
             // no op
         } // constructor

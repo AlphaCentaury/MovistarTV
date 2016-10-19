@@ -201,25 +201,5 @@ namespace IpTviewr.UiServices.DvbStpClient.Properties {
                 return ResourceManager.GetString("TimeoutException", resourceCulture);
             }
         }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Unable to cancel.
-        /// </summary>
-        internal static string UnableCancelDownloadCaption {
-            get {
-                return ResourceManager.GetString("UnableCancelDownloadCaption", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Unable to cancel right now. Please try again in a few seconds.
-        ///
-        ///The operation has been scheduled and cannot be cancelled until it has started..
-        /// </summary>
-        internal static string UnableCancelDownloadMessage {
-            get {
-                return ResourceManager.GetString("UnableCancelDownloadMessage", resourceCulture);
-            }
-        }
     }
 }

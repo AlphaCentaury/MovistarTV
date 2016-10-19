@@ -12,6 +12,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace IpTviewr.Internal.Tools.GuiTools
@@ -28,6 +29,7 @@ namespace IpTviewr.Internal.Tools.GuiTools
         private string DumpFolderSections;
         private string DumpFolderSegments;
         private DateTime StartTime;
+        private CancellationTokenSource CancellationTokenSource;
 
         public DvbStpStreamExplorerForm()
         {
@@ -117,7 +119,8 @@ namespace IpTviewr.Internal.Tools.GuiTools
             listViewSections.Items.Clear();
             listViewRuns.Items.Clear();
 
-            Explorer = new DvbStpExplorer(MulticastIpAddress, MulticastPort);
+            CancellationTokenSource = new CancellationTokenSource();
+            Explorer = new DvbStpExplorer(MulticastIpAddress, MulticastPort, CancellationTokenSource.Token);
             statusLabelReceiving.Text = "Trying to connect...";
 
             Worker = new BackgroundWorker()
@@ -136,7 +139,7 @@ namespace IpTviewr.Internal.Tools.GuiTools
             buttonStop.Enabled = false;
             buttonStop.Text = "Cancelling";
             buttonStop.Image = Properties.Resources.Status_Wait_16x16;
-            Explorer.CancelRequest();
+            CancellationTokenSource.Cancel();
         } // buttonStop_Click
 
         #endregion
@@ -155,15 +158,18 @@ namespace IpTviewr.Internal.Tools.GuiTools
 
         void Worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
+            Worker.Dispose();
+            Worker = null;
+
+            CancellationTokenSource.Dispose();
+            CancellationTokenSource = null;
+
             buttonStart.Enabled = true;
             buttonStop.Text = "Stop";
             buttonStop.Image = Properties.Resources.Action_Cancel_Red_16x16;
             statusLabelDataReception.Text = null;
             statusLabelReceiving.Text = null;
             checkDumpSections.Enabled = true;
-
-            Worker.Dispose();
-            Worker = null;
         } // Worker_RunWorkerCompleted
 
         void Worker_ProgressChanged(object sender, ProgressChangedEventArgs e)

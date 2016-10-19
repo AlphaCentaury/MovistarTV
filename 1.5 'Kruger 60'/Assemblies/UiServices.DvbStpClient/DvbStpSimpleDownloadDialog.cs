@@ -26,7 +26,7 @@ namespace IpTviewr.UiServices.DvbStpClient
         private int DataReceptionCount;
         private BackgroundWorker Worker;
         private bool AllowFormToClose;
-        private Action CancelDownloadRequest;
+        private CancellationTokenSource CancellationTokenSource;
         private DateTime StartTime;
 
         public UiDvbStpSimpleDownloadRequest Request
@@ -107,15 +107,6 @@ namespace IpTviewr.UiServices.DvbStpClient
 
         private void buttonRequestCancel_Click(object sender, EventArgs e)
         {
-            // race condition
-            if (CancelDownloadRequest == null)
-            {
-                MessageBox.Show(this, Properties.Texts.UnableCancelDownloadCaption,
-                    Properties.Texts.UnableCancelDownloadMessage,
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            } // if
-
             CancelDownload();
         } // buttonRequestCancel_Click
 
@@ -137,6 +128,7 @@ namespace IpTviewr.UiServices.DvbStpClient
             timerEllapsed.Enabled = true;
             DisplayEllapsedTime();
 
+            CancellationTokenSource = new CancellationTokenSource();
             Worker = new BackgroundWorker();
             Worker.WorkerReportsProgress = true;
             Worker.WorkerSupportsCancellation = true;
@@ -153,11 +145,12 @@ namespace IpTviewr.UiServices.DvbStpClient
 
             Response.UserCancelled = true;
             Worker.CancelAsync();
-            CancelDownloadRequest();
+            CancellationTokenSource.Cancel();
         } // CancelDownload
 
         private void StartClose()
         {
+            buttonRequestCancel.Enabled = false;
             if (Request.DialogCloseDelay <= 0) CloseForm();
 
             timerClose.Interval = Request.DialogCloseDelay;
@@ -184,8 +177,12 @@ namespace IpTviewr.UiServices.DvbStpClient
         void Worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             timerEllapsed.Enabled = false;
+
             Worker.Dispose();
             Worker = null;
+
+            CancellationTokenSource.Dispose();
+            CancellationTokenSource = null;
 
             Response.UserCancelled = e.Cancelled;
             Response.DownloadException = e.Error;
@@ -245,22 +242,16 @@ namespace IpTviewr.UiServices.DvbStpClient
 
         void Worker_DoWork(object sender, DoWorkEventArgs e)
         {
-            DvbStpSimpleClient stpClient;
+            DvbStpSimpleClient dvbStpClient;
             byte[] payload;
 
             InitWorker(e);
 
-            stpClient = new DvbStpSimpleClient(Request.MulticastAddress, Request.MulticastPort);
-            CancelDownloadRequest = stpClient.CancelRequest;
+            dvbStpClient = new DvbStpSimpleClient(Request.MulticastAddress, Request.MulticastPort, CancellationTokenSource.Token);
             try
             {
-                stpClient.ReceiveDatagramTimeout = Request.ReceiveDatagramTimeout;
-                stpClient.NoDataTimeout = Request.NoDataTimeout;
-                stpClient.SectionReceived += StpClient_SectionReceived;
-                stpClient.PayloadSectionReceived += StpClient_PayloadSectionReceived;
-
-                payload = stpClient.GetPayload(Request.PayloadId, Request.SegmentId);
-                Response.Version = stpClient.SegmentVersion;
+                payload = dvbStpClient.GetPayload(Request.PayloadId, Request.SegmentId);
+                Response.Version = dvbStpClient.SegmentVersion;
                 e.Result = payload;
 #if DEBUG
                 if ((payload != null) && (Request.DumpToFile != null))
@@ -277,7 +268,7 @@ namespace IpTviewr.UiServices.DvbStpClient
             finally
             {
                 e.Cancel = Worker.CancellationPending;
-                stpClient.Close();
+                dvbStpClient.Close();
             } // finally
         } // Worker_DoWork
 
@@ -296,7 +287,20 @@ namespace IpTviewr.UiServices.DvbStpClient
             } // if
         } // InitWorker
 
-#endregion
+        private DvbStpSimpleClient CreateDvbStpClient()
+        {
+            var dvbStpClient = new DvbStpSimpleClient(Request.MulticastAddress, Request.MulticastPort, CancellationTokenSource.Token);
+
+            dvbStpClient.ReceiveDatagramTimeout = Request.ReceiveDatagramTimeout;
+            dvbStpClient.ReceiveDatagramTimeout = Request.ReceiveDatagramTimeout;
+            dvbStpClient.NoDataTimeout = Request.NoDataTimeout;
+            dvbStpClient.SectionReceived += StpClient_SectionReceived;
+            dvbStpClient.PayloadSectionReceived += StpClient_PayloadSectionReceived;
+
+            return dvbStpClient;
+        } // CreateDvbStpClient
+
+        #endregion
 
         #region StpClient event handlers
 

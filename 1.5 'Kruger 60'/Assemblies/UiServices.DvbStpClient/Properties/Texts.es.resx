@@ -171,12 +171,4 @@ Por favor, apague y encienda su router e inténtelo de nuevo pasados unos minuto
 
 Si el problema persiste, haga clic en el botón “¡AYUDA!” para obtener orientación sobre cómo solucionar problemas de conectividad.</value>
   </data>
-  <data name="UnableCancelDownloadCaption" xml:space="preserve">
-    <value>No es posible cancelar</value>
-  </data>
-  <data name="UnableCancelDownloadMessage" xml:space="preserve">
-    <value>No es posible cancelar en este preciso instante. Por favor, aguarde unos segundo y reintente de nuevo.
-
-La operación de descarga ha sido programada y no puede ser cancelada hasta que haya comenzado.</value>
-  </data>
 </root>

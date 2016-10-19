@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Threading;
 
 namespace IpTviewr.DvbStp.Client
 {
@@ -16,7 +17,12 @@ namespace IpTviewr.DvbStp.Client
         private SegmentAssembler SegmentData;
 
         public DvbStpSimpleClient(IPAddress ip, int port)
-            : base(ip, port)
+            : this(ip, port, CancellationToken.None)
+        {
+            // no-op
+        } // constructor
+
+        public DvbStpSimpleClient(IPAddress ip, int port, CancellationToken cancellationToken) : base(ip, port, cancellationToken)
         {
             NoDataTimeout = 30000; // milliseconds
             MaxDowloadRestartCount = 5;

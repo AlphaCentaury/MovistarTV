@@ -9,35 +9,47 @@ using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
+using System.Threading;
 
 namespace IpTviewr.DvbStp.Client
 {
     public abstract class DvbStpBaseClient
     {
-        public const int UdpMaxDatagramSize = 65535;
-        protected const int DefaultHeaderLength = 12;
+        public const int UdpMaxDatagramSize = 0xFFFF;
 
         private byte[] TempBytesBuffer;
 
-        public DvbStpBaseClient(IPAddress ip, int port)
+        public DvbStpBaseClient(IPAddress ip, int port) : this(ip, port, CancellationToken.None)
+        {
+            // no-op
+        } // constructor
+
+        public DvbStpBaseClient(IPAddress ip, int port, CancellationToken cancellationToken)
         {
             MulticastIpAddress = ip;
             MulticastPort = port;
             ReceiveDatagramTimeout = 7500; // 7.5 seconds (7.5 s * 1,000 ms)
             OperationTimeout = 600000; // 10 minutes (10 m * 60 s * 1,000 ms)
+            CancellationToken = cancellationToken;
         } // constructor
 
         public IPAddress MulticastIpAddress
         {
             get;
-            protected set;
+            private set;
         } // MulticastIpAddress
 
         public int MulticastPort
         {
             get;
-            protected set;
+            private set;
         } // MulticastPort
+
+        public CancellationToken CancellationToken
+        {
+            get;
+            private set;
+        } // CancellationToken
 
         public int ReceiveDatagramTimeout // in milliseconds
         {
@@ -53,8 +65,7 @@ namespace IpTviewr.DvbStp.Client
 
         public bool CancelRequested
         {
-            get;
-            protected set;
+            get { return CancellationToken.IsCancellationRequested; }
         } // CancelRequested
 
         public DateTime StartTime
@@ -115,14 +126,8 @@ namespace IpTviewr.DvbStp.Client
             Header = null;
         } // Close
 
-        public virtual void CancelRequest()
-        {
-            CancelRequested = true;
-        } // CancelRequest
-
         protected void ReceiveData()
         {
-            CancelRequested = false;
             Connect();
 
             while (!CancelRequested)

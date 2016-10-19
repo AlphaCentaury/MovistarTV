@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Threading;
 
 namespace IpTviewr.DvbStp.Client
 {
@@ -20,14 +21,12 @@ namespace IpTviewr.DvbStp.Client
         private DvbStpHeader LastHeader;
         private IList<DvbStpHeader> ReceivedHeaders;
 
-        protected bool EndLoop
+        public DvbStpExplorer(IPAddress ip, int port) : base(ip, port)
         {
-            get;
-            set;
-        } // EndLoop
+            // no op
+        } // constructor
 
-        public DvbStpExplorer(IPAddress ip, int port)
-            : base(ip, port)
+        public DvbStpExplorer(IPAddress ip, int port, CancellationToken cancellationToken) : base(ip, port, cancellationToken)
         {
             // no op
         } // constructor
@@ -38,10 +37,8 @@ namespace IpTviewr.DvbStp.Client
             {
                 Connect();
 
-                CancelRequested = false;
-                EndLoop = false;
                 StartSectionNumber = -1;
-                while (!(CancelRequested || EndLoop))
+                while (!CancelRequested)
                 {
                     Receive(true);
 
@@ -116,12 +113,7 @@ namespace IpTviewr.DvbStp.Client
                 Array.Copy(DatagramData, Header.PrivateHeaderOffset, args.PrivateHeader, 0, Header.PrivateHeaderLength);
             } // if
 
-            SectionReceived(this, args);
-
-            if (args.Cancel)
-            {
-                CancelRequest();
-            } // if
+            SectionReceived?.Invoke(this, args);
         } // OnSectionReceived
 
         private void OnUnexpectedHeaderVersionReceived()
@@ -134,12 +126,7 @@ namespace IpTviewr.DvbStp.Client
             args.DatagramData = new byte[ReceivedBytes];
             Array.Copy(DatagramData, args.DatagramData, ReceivedBytes);
 
-            UnexpectedHeaderVersionReceived(this, args);
-
-            if (args.Cancel)
-            {
-                CancelRequest();
-            } // if
+            UnexpectedHeaderVersionReceived?.Invoke(this, args);
         } // OnUnexpectedHeaderVersionReceived
 
         private void OnRunEnded()
@@ -158,12 +145,7 @@ namespace IpTviewr.DvbStp.Client
                 TotalSegmentSize = LastHeader.TotalSegmentSize,
             };
 
-            RunEnded(this, args);
-
-            if (args.Cancel)
-            {
-                CancelRequest();
-            } // if
+            RunEnded?.Invoke(this, args);
         } // OnRunEnded
     } // class DvbStpExplorer
 } // namespace
