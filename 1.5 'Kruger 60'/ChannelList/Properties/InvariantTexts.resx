@@ -140,7 +140,7 @@ Verifique el valor de  la propiedad 'ForceUICulture' del archivo '.config'</valu
     <value>IpTvRecorderLauncher.exe</value>
   </data>
   <data name="SplashScreenDefaultStatus" xml:space="preserve">
-    <value>http://movistartv.codeplex.com</value>
+    <value>http://movistartv.alphacentaury.org</value>
   </data>
   <data name="UrlCheckForUpdatesManual" xml:space="preserve">
     <value>http://movistartv.codeplex.com/wikipage?title=Update-v1.5.1010.0</value>
@@ -149,7 +149,7 @@ Verifique el valor de  la propiedad 'ForceUICulture' del archivo '.config'</valu
     <value>http://movistartv.codeplex.com/documentation</value>
   </data>
   <data name="UrlHomePage" xml:space="preserve">
-    <value>http://movistartv.codeplex.com</value>
+    <value>http://movistartv.alphacentaury.org</value>
   </data>
   <data name="UrlReportIssue" xml:space="preserve">
     <value>http://movistartv.codeplex.com/workitem/list/basic</value>

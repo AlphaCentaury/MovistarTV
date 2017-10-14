@@ -65,7 +65,7 @@ namespace IpTviewr.UiServices.Common.Forms
 
         private void linkLabelCodeplex_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            OpenUrl(this, "http://movistartv.codeplex.com");
+            OpenUrl(this, "http://movistartv.alphacentaury.org");
         } // linkLabelCodeplex_LinkClicked
 
         private void OpenUrl(Form parent, string url)

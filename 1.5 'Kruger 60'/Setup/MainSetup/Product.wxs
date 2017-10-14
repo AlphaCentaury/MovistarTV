@@ -7,7 +7,7 @@ All rights reserved, except those granted by the governing license of this softw
   <?include Strings.wxi ?>
   <Product Id="$(var.ProductId)" Name="!(loc.ProductName)" Language="!(loc.LANGUAGE)" Codepage="Windows-1252" Version="$(var.Version)" Manufacturer="$(var.Manufacturer)"  UpgradeCode="$(var.UpgradeCode)">
     <Package Id="*" InstallerVersion="405" Compressed="yes" InstallScope="perUser"
-      Description="!(loc.PackageDescription)" Languages="!(loc.LANGUAGE)" Manufacturer="http://movistartv.codeplex.com" />
+      Description="!(loc.PackageDescription)" Languages="!(loc.LANGUAGE)" Manufacturer="http://www.alphacentaury.org" />
 
     <!-- Ensure .NET Framework 4.5.2 is installed -->
     <PropertyRef Id="WIX_IS_NETFRAMEWORK_452_OR_LATER_INSTALLED"/>
@@ -49,7 +49,7 @@ All rights reserved, except those granted by the governing license of this softw
     <Icon Id="Icon.Product" SourceFile="iptviewr-for-movistarplus_alt.ico"/>
     <Property Id="ARPPRODUCTICON" Value="Icon.Product" />
     <Property Id='ARPHELPLINK'>http://movistartv.codeplex.com/documentation/</Property>
-    <Property Id='ARPURLINFOABOUT'>http://movistartv.codeplex.com/</Property>
+    <Property Id='ARPURLINFOABOUT'>http://movistartv.alphacentaury.org/</Property>
     <Property Id='ARPURLUPDATEINFO'>http://movistartv.codeplex.com/releases/</Property>
 
     <Property Id="WIXUI_EXITDIALOGOPTIONALCHECKBOXTEXT" Value="!(loc.WIXUI_EXITDIALOGOPTIONALCHECKBOXTEXT)" />

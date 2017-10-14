@@ -102,7 +102,7 @@ namespace IpTViewr.Internal.Logos
 
             // get copyright text
             object[] attributes = Assembly.GetEntryAssembly().GetCustomAttributes(typeof(AssemblyCopyrightAttribute), false);
-            copyright = (attributes.Length > 0)? ((AssemblyCopyrightAttribute)attributes[0]).Copyright : "Copyright (C) http://movistartv.codeplex.com";
+            copyright = (attributes.Length > 0)? ((AssemblyCopyrightAttribute)attributes[0]).Copyright : "Copyright (C) http://www.alphacentaury.org";
 
             Console.WriteLine(Properties.Texts.StartLogo, Properties.Texts.ProgramName, ToolName.Version, copyright);
             Console.WriteLine();

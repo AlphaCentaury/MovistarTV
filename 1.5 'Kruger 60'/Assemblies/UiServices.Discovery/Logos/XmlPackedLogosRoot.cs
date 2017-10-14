@@ -16,7 +16,7 @@ namespace IpTviewr.UiServices.Discovery.Logos
     [XmlRoot(ElementName ="PackedLogos", Namespace = XmlPackedLogosRoot.Namespace)]
     public class XmlPackedLogosRoot
     {
-        public const string Namespace = "http://movistartv.codeplex.com/schema/2016:PackedLogos";
+        public const string Namespace = "http://movistartv.alphacentaury.org/schema/2017:PackedLogos";
 
         [XmlElement("Logo")]
         public PackedLogo[] Logos

@@ -10,6 +10,6 @@ namespace IpTviewr.UiServices.Configuration.Schema2014.ContentProvider
 {
     public class SerializationCommon
     {
-        public const string XmlNamespace = "http://movistartv.codeplex.com/schema/2015:Configuration:ContentProvider";
+        public const string XmlNamespace = "http://movistartv.alphacentaury.org/schema/2017:Configuration:ContentProvider";
     } // class CommonSerialization
 } // namespace

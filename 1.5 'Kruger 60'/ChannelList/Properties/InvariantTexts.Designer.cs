@@ -112,7 +112,7 @@ namespace IpTviewr.ChannelList.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://movistartv.codeplex.com.
+        ///   Looks up a localized string similar to http://movistartv.alphacentaury.org.
         /// </summary>
         internal static string SplashScreenDefaultStatus {
             get {
@@ -139,7 +139,7 @@ namespace IpTviewr.ChannelList.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://movistartv.codeplex.com.
+        ///   Looks up a localized string similar to http://movistartv.alphacentaury.org.
         /// </summary>
         internal static string UrlHomePage {
             get {

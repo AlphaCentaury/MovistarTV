@@ -204,7 +204,7 @@ namespace IpTviewr.RecorderLauncher
 
             // get copyright text
             object[] attributes = Assembly.GetEntryAssembly().GetCustomAttributes(typeof(AssemblyCopyrightAttribute), false);
-            copyright = (attributes.Length > 0) ? ((AssemblyCopyrightAttribute)attributes[0]).Copyright : "Copyright (C) http://movistartv.codeplex.com";
+            copyright = (attributes.Length > 0) ? ((AssemblyCopyrightAttribute)attributes[0]).Copyright : "Copyright (C) http://movistartv.alphacentaury.org";
 
             Console.WriteLine(Properties.Texts.StartLogo, Properties.Texts.ProgramCaption, ToolName.Version, copyright);
             Console.WriteLine();

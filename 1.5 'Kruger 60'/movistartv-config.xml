@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<IpTvProvider xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://movistartv.codeplex.com/schema/2015:Configuration:ContentProvider">
+<IpTvProvider xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://movistartv.alphacentaury.org/schema/2017:Configuration:ContentProvider">
   <Identification id="MovistarTV">
     <Localized culture="es">
       <Name>movistar+</Name>

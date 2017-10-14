@@ -154,7 +154,7 @@
     <value>IpTvRecorderLauncher.exe</value>
   </data>
   <data name="RegistryKey_Root" xml:space="preserve">
-    <value>Software\movistartv.codeplex.com\IPTViewr\movistar+\v1.5.1010.0</value>
+    <value>Software\AlphaCentaury.org\IPTViewr\movistar+\v1.5.1010.0</value>
   </data>
   <data name="RegistryValue_Analytics_ClientId" xml:space="preserve">
     <value>Analytics.ClientId</value>
