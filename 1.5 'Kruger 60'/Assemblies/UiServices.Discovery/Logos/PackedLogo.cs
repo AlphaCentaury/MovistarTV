@@ -47,7 +47,7 @@ namespace IpTviewr.UiServices.Discovery.Logos
             {
                 var index = GetSizeIndex(size);
 
-                return (index > 0) ? Positions[index] : default(PackedLogoPos);
+                return (index >= 0) ? Positions[index] : default(PackedLogoPos);
             } // get
         } // this[]
 

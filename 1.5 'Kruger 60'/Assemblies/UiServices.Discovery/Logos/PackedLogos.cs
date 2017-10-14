@@ -1,4 +1,8 @@
-﻿using System;
+﻿// Copyright (C) 2014-2016, Codeplex/GitHub user AlphaCentaury
+// All rights reserved, except those granted by the governing license of this software. See 'license.txt' file in the project root for complete license information.
+
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,19 +10,20 @@ using System.Threading.Tasks;
 
 namespace IpTviewr.UiServices.Discovery.Logos
 {
-    public class PackedLogos
+    public class PackedLogos: IEnumerable<PackedLogo>
     {
         private Dictionary<string, PackedLogo> Logos;
         private bool IsReadOnly;
 
         #region Static methods
 
-        public static PackedLogos FromXml(XmlPackedLogosRoot logos)
+        public static PackedLogos FromXml(XmlPackedLogosRoot logos, string kind)
         {
             var result = new PackedLogos()
             {
                 Logos = new Dictionary<string, PackedLogo>(logos.Logos.Length),
-                IsReadOnly = true
+                IsReadOnly = true,
+                Kind = kind,
             };
 
             foreach (var logo in logos.Logos)
@@ -68,6 +73,17 @@ namespace IpTviewr.UiServices.Discovery.Logos
             // no-op
         } // constructor
 
+        public string Kind
+        {
+            get;
+            private set;
+        } // Kind
+
+        public int Count
+        {
+            get { return Logos.Count; }
+        } // Count
+
         public PackedLogo this[string key]
         {
             get
@@ -99,5 +115,15 @@ namespace IpTviewr.UiServices.Discovery.Logos
             packedLogo.Positions[index].X = posX;
             packedLogo.Positions[index].Y = posY;
         } // SetPosition
+
+        public IEnumerator<PackedLogo> GetEnumerator()
+        {
+            return Logos.Values.GetEnumerator();
+        } // GetEnumerator
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return Logos.Values.GetEnumerator();
+        } // GetEnumerator
     } // class PackedLogos
 } // namespace

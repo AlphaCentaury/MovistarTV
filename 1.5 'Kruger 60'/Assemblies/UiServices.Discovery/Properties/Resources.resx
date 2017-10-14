@@ -112,12 +112,12 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="Action_Add_16xM" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\..\..\common.ui\resources\action_add_16xm.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -159,6 +159,30 @@
   </data>
   <data name="ListView_Tiles_16x16" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\..\..\common.ui\resources\listview_tiles_16x16.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MissingLogo128" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\MissingLogo128.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MissingLogo16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\MissingLogo16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MissingLogo24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\MissingLogo24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MissingLogo256" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\MissingLogo256.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MissingLogo32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\MissingLogo32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MissingLogo48" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\MissingLogo48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MissingLogo64" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\MissingLogo64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MissingLogo96" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\MissingLogo96.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Status_Info_24x24" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\..\..\common.ui\resources\status_info_24x24.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>

@@ -13,7 +13,7 @@ namespace IpTviewr.UiServices.Discovery.Logos
 {
     [Serializable]
     [DebuggerStepThrough]
-    [XmlRoot(Namespace = XmlPackedLogosRoot.Namespace)]
+    [XmlRoot(ElementName ="PackedLogos", Namespace = XmlPackedLogosRoot.Namespace)]
     public class XmlPackedLogosRoot
     {
         public const string Namespace = "http://movistartv.codeplex.com/schema/2016:PackedLogos";

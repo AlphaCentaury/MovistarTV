@@ -20,19 +20,19 @@ All rights reserved, except those granted by the governing license of this softw
     <MediaTemplate EmbedCab="yes" />
 
     <Feature Id="ProductFeature" Title="!(loc.ProductName)" Level="1" Absent="disallow" Display="expand">
-      <FeatureRef Id="Feature.Tools" />
       <Feature Id="Features" Display="expand" Title="Aditional features">
         <FeatureRef Id="Feature.Record" />
         <FeatureRef Id="Feature.EPG" />
       </Feature>
       <Feature Id="Base" Title="Common files" Absent="disallow">
+        <FeatureRef Id="Feature.Logos" />
+        <FeatureRef Id="Feature.Tools" />
         <ComponentGroupRef Id="RegistryConfiguration" />
         <ComponentGroupRef Id="CommonComponents" />
         <ComponentGroupRef Id="CommonComponents.Localization" />
         <ComponentGroupRef Id="ProductComponents" />
         <ComponentGroupRef Id="ProductComponents.Localization" />
         <ComponentGroupRef Id="ContentProviderComponents" />
-        <ComponentGroupRef Id="Logos.Content" />
         <ComponentGroupRef Id="UninstallFolders" />
         <ComponentGroupRef Id="ThirdParty"/>
         <ComponentGroupRef Id="Redist"/>
@@ -65,7 +65,7 @@ All rights reserved, except those granted by the governing license of this softw
   <Fragment>
     <Directory Id="TARGETDIR" Name="SourceDir">
       <Directory Id="PersonalFolder">
-        <Directory Id="DvbFolder" Name="IPTViewr">
+        <Directory Id="Folder.IPTViewr" Name="IPTViewr">
           <Directory Id="BaseFolder" Name="$(var.BaseInstallFolder)">
             <Directory Id="INSTALLFOLDER" Name="bin">
               <Directory Id="RedistFolderBase" Name ="Redist">
@@ -77,11 +77,8 @@ All rights reserved, except those granted by the governing license of this softw
               <Directory Id="InstallFolder.es" Name="es" />
             </Directory>
             <Directory Id="CacheFolder" Name="Cache" />
-            <Directory Id="LogosFolder" Name="Logos" />
+            <Directory Id="Folder.Logos" Name="Logos" />
             <Directory Id="RecordTasksFolder" Name="RecordTasks" />
-            <Directory Id="ToolsFolder" Name="Tools">
-              <Directory Id="ToolsFolder.es" Name="es" />
-            </Directory>
           </Directory>
         </Directory>
       </Directory>
@@ -96,16 +93,24 @@ All rights reserved, except those granted by the governing license of this softw
         <RemoveFile Id="Purge_BaseFolder" Name="*.*" On="uninstall" />
         <RemoveFile Id="Purge_INSTALLFOLDER" Name="*.*" On="uninstall" Directory="INSTALLFOLDER" />
         <RemoveFile Id="Purge_InstallFolder.es" Name="*.*" On="uninstall" Directory="InstallFolder.es"/>
+        <RemoveFile Id="Purge_RedistFolderBase" Name="*.*" On="uninstall" Directory="RedistFolderBase"/>
+        <RemoveFile Id="Purge_RedistFolder" Name="*.*" On="uninstall" Directory="RedistFolder"/>
+        <RemoveFile Id="Purge_RedistFolderx86" Name="*.*" On="uninstall" Directory="x86RedistFolder"/>
+        <RemoveFile Id="Purge_RedistFolderx64" Name="*.*" On="uninstall" Directory="x64RedistFolder"/>
         <RemoveFile Id="Purge_CacheFolder" Name="*.*" On="uninstall" Directory="CacheFolder" />
-        <RemoveFile Id="Purge_LogosFolder" Name="*.*" On="uninstall" Directory="LogosFolder"/>
+        <RemoveFile Id="Purge_LogosFolder" Name="*.*" On="uninstall" Directory="Folder.Logos"/>
         <RemoveFile Id="Purge_RecordTasksFolder" Name="*.*" On="uninstall" Directory="RecordTasksFolder"/>
 
-        <RemoveFolder Id="Remove_DvbFolder" On="uninstall" Directory="DvbFolder" />
+        <RemoveFolder Id="Remove_DvbFolder" On="uninstall" Directory="Folder.IPTViewr" />
         <RemoveFolder Id="Remove_BaseFolder" On="uninstall" Directory="BaseFolder"/>
         <RemoveFolder Id="Remove_INSTALLFOLDER" On="uninstall" Directory="INSTALLFOLDER"/>
         <RemoveFolder Id="Remove_InstallFolder.es" On="uninstall" Directory="InstallFolder.es"/>
+        <RemoveFolder Id="Remove_RedistFolderBase" On="uninstall" Directory="RedistFolderBase"/>
+        <RemoveFolder Id="Remove_RedistFolder" On="uninstall" Directory="RedistFolder"/>
+        <RemoveFolder Id="Remove_RedistFolderx86" On="uninstall" Directory="x86RedistFolder"/>
+        <RemoveFolder Id="Remove_RedistFolderx64" On="uninstall" Directory="x64RedistFolder"/>
         <RemoveFolder Id="Remove_CacheFolder" On="uninstall" Directory="CacheFolder" />
-        <RemoveFolder Id="Remove_LogosFolder" On="uninstall" Directory="LogosFolder"/>
+        <RemoveFolder Id="Remove_LogosFolder" On="uninstall" Directory="Folder.Logos"/>
         <RemoveFolder Id="Remove_RecordTasksFolder" On="uninstall" Directory="RecordTasksFolder"/>
       
         <RemoveFile Id="Purge_ProgramStartMenuFolder" Name="*.*" On="uninstall" Directory="ProgramStartMenuFolder"/>
