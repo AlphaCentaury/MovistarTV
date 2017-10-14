@@ -50,6 +50,7 @@
     </Compile>
     <Compile Include="DvbStpDownloadClient.cs" />
     <Compile Include="DvbStpDownloadClientSettings.cs" />
+    <Compile Include="DvbStpDownloadProgress.cs" />
     <Compile Include="DvbStpEnhancedClient.cs" />
     <Compile Include="DvbStpEnhancedClient.EventArgs.cs" />
     <Compile Include="DvbStpClientSegmentInfo.cs" />
