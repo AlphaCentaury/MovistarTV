@@ -1,0 +1,325 @@
+// Copyright (C) 2014-2017, GitHub/Codeplex user AlphaCentaury.
+//
+// All rights reserved, except those granted by the governing license of this software.
+// See 'license.txt' file in the project root for complete license information.
+//
+// http://movistartv.alphacentaury.org/
+
+using IpTviewr.Common;
+using System;
+using System.Collections.Generic;
+using System.IO;
+
+namespace AlphaCentaury.IPTViewr.Internal.UpdateCopyrightHeaders
+{
+    class Program
+    {
+        public static readonly string CopyrightHeader =
+            "Copyright (C) 2014-2017, GitHub/Codeplex user AlphaCentaury\0" +
+            "\0" +
+            "All rights reserved, except those granted by the governing license of this software.\0" +
+            "See 'license.txt' file in the project root for complete license information.\0" +
+            "\0" +
+            "http://movistartv.alphacentaury.org/ https://github.com/AlphaCentaury";
+
+        private static string ReadLine;
+        private static string[] CopyrightHeaderLines;
+        private static string[] ExcludedPaths;
+        private static IList<string> FileHeaderLines;
+
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Update/add copyright headers to project code");
+            Console.WriteLine("Copyright (C) 2014-2017, GitHub user AlphaCentaury");
+            Console.WriteLine("https://github.com/AlphaCentaury");
+            Console.WriteLine();
+
+            if (args.Length == 0)
+            {
+                Console.Error.WriteLine("Error: arguments not specified");
+                return;
+            } // if
+
+            var arguments = new CommandLineArguments();
+            arguments.Parse(args);
+            if (!arguments.IsOk)
+            {
+                Console.Error.WriteLine("Error: unable to parse arguments");
+                return;
+            } // Console.WriteLine
+
+            if (arguments.Switches.ContainsKey("exclude"))
+            {
+                ExcludedPaths = arguments.Switches["exclude"].Split(Path.PathSeparator);
+            } // if
+
+            var searchOptions = arguments.Switches.ContainsKey("r") ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly;
+            CopyrightHeaderLines = CopyrightHeader.Split('\0');
+
+            foreach (var path in arguments.Arguments)
+            {
+                Func<TextReader, bool> locateCopyrightHeaderFunc;
+                Action<TextWriter> writeCopyrightHeaderAction;
+
+                if (!Directory.Exists(path))
+                {
+                    Console.Error.WriteLine("Path not found: {0}", path);
+                    continue;
+                } // if
+
+                if (IsPathExcluded(path)) continue;
+
+                var lastPath = (string)null;
+                foreach (var filename in Directory.EnumerateFiles(path, "*", searchOptions))
+                {
+                    var extension = Path.GetExtension(filename).ToLowerInvariant();
+                    switch (extension)
+                    {
+                        case ".cs":
+                            locateCopyrightHeaderFunc = LocateCsharpCopyrightHeader;
+                            writeCopyrightHeaderAction = WriteCsharpCopyrightHeader;
+                            continue;
+                            //break;
+
+                        case ".xml":
+                        case ".wsx":
+                            locateCopyrightHeaderFunc = LocateXmlCopyrightHeader;
+                            writeCopyrightHeaderAction = WriteXmlCopyrightHeader;
+                            break;
+
+                        default:
+                            continue;
+                    } // switch
+
+                    // Is path excluded?
+                    var currentPath = Path.GetDirectoryName(filename);
+                    if (IsPathExcluded(currentPath)) continue;
+
+                    // new path?
+                    if (currentPath != lastPath)
+                    {
+                        Console.WriteLine(currentPath);
+                        lastPath = currentPath;
+                    } // if
+
+                    // Process file
+                    ProcessFile(filename, locateCopyrightHeaderFunc, writeCopyrightHeaderAction);
+                } // foreach file
+            } // foreach
+        } // Main
+
+        private static bool IsPathExcluded(string path)
+        {
+            if (ExcludedPaths == null) return false;
+
+            foreach (var excluded in ExcludedPaths)
+            {
+                if (path.StartsWith(excluded))
+                {
+                    Console.Write("(Excluded) ");
+                    Console.WriteLine(path);
+
+                    return true;
+                } // if
+            } // foreach
+
+            return false;
+        } // IsPathExcluded
+
+        private static void ProcessFile(string filename, Func<TextReader, bool> locateCopyrightHeaderFunc, Action<TextWriter> writeCopyrightHeaderAction)
+        {
+            if (locateCopyrightHeaderFunc == null) throw new ArgumentNullException(nameof(locateCopyrightHeaderFunc));
+            if (writeCopyrightHeaderAction == null) throw new ArgumentNullException(nameof(writeCopyrightHeaderAction));
+
+            Console.Write("\t");
+            Console.Write(Path.GetFileName(filename));
+
+            try
+            {
+                var result = UpdateHeaders(filename, locateCopyrightHeaderFunc, writeCopyrightHeaderAction);
+                Console.WriteLine(result ? ": Ok" : ": not needed");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(": Err");
+                Console.Error.WriteLine("Exception: {0}", ex.GetType().Name);
+                Console.Error.WriteLine(">> {0}", ex.Message);
+                Console.Error.WriteLine(">> {0}", filename);
+            } // tryHeader
+        } // ProcessFile
+
+        private static bool UpdateHeaders(string filename, Func<TextReader, bool> locateCopyrightHeaderFunc, Action<TextWriter> writeCopyrightHeaderAction)
+        {
+            var tempFilename = (string)null;
+
+            using (var reader = new StreamReader(filename))
+            {
+                if (!locateCopyrightHeaderFunc(reader))
+                {
+                    tempFilename = filename + "~";
+                    using (var writer = new StreamWriter(tempFilename))
+                    {
+                        if (FileHeaderLines != null)
+                        {
+                            foreach (var line in FileHeaderLines)
+                            {
+                                writer.WriteLine(line);
+                            } // foreach
+                        } // if
+                        writeCopyrightHeaderAction(writer);
+                        CopyContents(reader, writer);
+                    } // using writer
+                } // if
+            } // using reader
+
+            if (tempFilename != null)
+            {
+                //CopyBack(tempFilename, filename);
+
+                return true;
+            } // if
+
+            return false;
+        } // UpdateHeaders
+
+        static void CopyContents(TextReader reader, TextWriter writer)
+        {
+            if (ReadLine != null) writer.WriteLine(ReadLine);
+
+            while ((ReadLine = reader.ReadLine()) != null)
+            {
+                writer.WriteLine(ReadLine);
+            } // while
+        } // CopyContents
+
+        private static void CopyBack(string tempFilename, string filename)
+        {
+            var buffer = new byte[4096 * 16];
+
+            using (var writer = new FileStream(filename, FileMode.Truncate, FileAccess.Write))
+            {
+                using (var reader = new FileStream(tempFilename, FileMode.Open, FileAccess.Read))
+                {
+                    var readBytes = 0;
+
+                    while ((readBytes = reader.Read(buffer, 0, buffer.Length)) != 0)
+                    {
+                        writer.Write(buffer, 0, readBytes);
+                    } // while
+                } // using
+            } // using
+
+            File.Delete(tempFilename);
+        } // CopyBack
+
+        #region C# files
+
+        private static bool LocateCsharpCopyrightHeader(TextReader reader)
+        {
+            var index = 0;
+            while ((ReadLine = reader.ReadLine()) != null)
+            {
+                if (index >= CopyrightHeaderLines.Length) return true;
+
+                if (!ReadLine.StartsWith("//")) break;
+
+                var line = ReadLine.Substring(0, ReadLine.Length - 2).Trim();
+                if (line != CopyrightHeaderLines[index]) break;
+
+                index++;
+            } // while
+
+            SkipWrongCsharpCopyrightHeader(reader);
+
+            return false;
+        } // LocateCsharpCopyrightHeader
+
+        private static void SkipWrongCsharpCopyrightHeader(TextReader reader)
+        {
+            while ((ReadLine = reader.ReadLine()) != null)
+            {
+                var line = ReadLine.Trim();
+                if (line.Length == 0) continue;
+                if (line.StartsWith("//")) continue;
+            } // while
+        } // SkipWrongCsharpCopyrightHeader
+
+        private static void WriteCsharpCopyrightHeader(TextWriter writer)
+        {
+            foreach (var line in CopyrightHeaderLines)
+            {
+                writer.Write("// ");
+                writer.WriteLine(line);
+            } // foreach line
+            writer.WriteLine();
+        } // WriteCsharpCopyrightHeader
+
+        #endregion
+
+        #region XML files
+
+        private static bool LocateXmlCopyrightHeader(TextReader reader)
+        {
+            var index = 0;
+            var isHeader = false;
+            while ((ReadLine = reader.ReadLine()) != null)
+            {
+                if (index >= CopyrightHeaderLines.Length) return true;
+
+                var line = ReadLine.TrimStart();
+                if (line.Length == 0) continue;
+
+                if (line.StartsWith("<?"))
+                {
+                    if (FileHeaderLines == null) FileHeaderLines = new List<string>();
+                    FileHeaderLines.Add(ReadLine);
+
+                    continue;
+                } // if
+
+                if (isHeader)
+                {
+                    if (line.EndsWith("-->"))
+                    {
+                        isHeader = false;
+                        continue;
+                    } // if
+                    if (line != CopyrightHeaderLines[index]) break;
+                    index++;
+                }
+                else
+                {
+                    if (!line.StartsWith("<!--")) return false;
+                    isHeader = true;
+                } // if-else
+            } // while
+
+            SkipWrongXmlCopyrightHeader(reader);
+
+            return false;
+        } // LocateXmlCopyrightHeader
+
+        private static void SkipWrongXmlCopyrightHeader(TextReader reader)
+        {
+            while ((ReadLine = reader.ReadLine()) != null)
+            {
+                var line = ReadLine.Trim();
+                if (line.Length == 0) continue;
+                if (line.StartsWith("<")) break;
+                if (line.EndsWith("-->")) break;
+            } // while
+        } // SkipWrongXmlCopyrightHeader
+
+        private static void WriteXmlCopyrightHeader(TextWriter writer)
+        {
+            writer.WriteLine("<!--");
+            foreach (var line in CopyrightHeaderLines)
+            {
+                writer.WriteLine(line);
+            } // foreach line
+            writer.WriteLine("-->");
+        } // WriteXmlCopyrightHeader
+
+        #endregion
+    } // Program
+} // namespace
