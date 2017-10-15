@@ -1,4 +1,42 @@
-﻿using System.Reflection;
+<?xml version="1.0"?>
+<?xml version="1.0"?>
+<?xml version="1.0"?>
+<?xml version="1.0"?>
+<?xml version="1.0"?>
+<?xml version="1.0"?>
+<?xml version="1.0"?>
+<?xml version="1.0"?>
+<?xml version="1.0"?>
+<?xml version="1.0"?>
+<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0"?>
+<?xml version="1.0"?>
+<?xml version="1.0"?>
+<?xml version="1.0"?>
+<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0"?>
+<?xml version="1.0"?>
+<?xml version="1.0"?>
+<?xml version="1.0"?>
+<?xml version="1.0"?>
+<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0"?>
+<?xml version="1.0"?>
+<?xml version="1.0"?>
+<?xml version="1.0"?>
+<?xml version="1.0"?>
+<?xml version="1.0"?>
+<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0"?>
+<?xml version="1.0"?>
+<?xml version="1.0"?>
+// Copyright (C) 2014-2017, GitHub/Codeplex user AlphaCentaury
+// 
+// All rights reserved, except those granted by the governing license of this software.
+// See 'license.txt' file in the project root for complete license information.
+// 
+// http://movistartv.alphacentaury.org/ https://github.com/AlphaCentaury
+
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
