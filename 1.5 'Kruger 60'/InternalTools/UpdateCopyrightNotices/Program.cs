@@ -1,9 +1,9 @@
-// Copyright (C) 2014-2017, GitHub/Codeplex user AlphaCentaury.
-//
+// Copyright (C) 2014-2017, GitHub/Codeplex user AlphaCentaury
+// 
 // All rights reserved, except those granted by the governing license of this software.
 // See 'license.txt' file in the project root for complete license information.
-//
-// http://movistartv.alphacentaury.org/
+// 
+// http://movistartv.alphacentaury.org/ https://github.com/AlphaCentaury
 
 using IpTviewr.Common;
 using System;
@@ -81,7 +81,7 @@ namespace AlphaCentaury.IPTViewr.Internal.UpdateCopyrightNotices
                             break;
 
                         case ".xml":
-                        case ".wsx":
+                        case ".wxs":
                             locateCopyrightHeaderFunc = LocateXmlCopyrightHeader;
                             writeCopyrightHeaderAction = WriteXmlCopyrightHeader;
                             break;
@@ -164,7 +164,10 @@ namespace AlphaCentaury.IPTViewr.Internal.UpdateCopyrightNotices
                             {
                                 writer.WriteLine(line);
                             } // foreach
+
+                            FileHeaderLines = null;
                         } // if
+
                         writeCopyrightHeaderAction(writer);
                         CopyContents(reader, writer);
                     } // using writer
@@ -173,7 +176,7 @@ namespace AlphaCentaury.IPTViewr.Internal.UpdateCopyrightNotices
 
             if (tempFilename != null)
             {
-                //CopyBack(tempFilename, filename);
+                CopyBack(tempFilename, filename);
 
                 return true;
             } // if
@@ -211,24 +214,37 @@ namespace AlphaCentaury.IPTViewr.Internal.UpdateCopyrightNotices
             File.Delete(tempFilename);
         } // CopyBack
 
+        private static void AddFileHeaderLine(string line)
+        {
+            if (FileHeaderLines == null) FileHeaderLines = new List<string>();
+
+            FileHeaderLines.Add(line);
+        } // AddFileHeaderLine
+
         #region C# files
 
         private static bool LocateCsharpCopyrightHeader(TextReader reader)
         {
             var index = 0;
+            var count = 0;
             while ((ReadLine = reader.ReadLine()) != null)
             {
+                count++;
+
                 if (index >= CopyrightHeaderLines.Length) return true;
 
                 if (!ReadLine.StartsWith("//")) break;
 
-                var line = ReadLine.Substring(0, ReadLine.Length - 2).Trim();
+                var line = ReadLine.Substring(2, ReadLine.Length - 2).Trim();
                 if (line != CopyrightHeaderLines[index]) break;
 
                 index++;
             } // while
 
-            SkipWrongCsharpCopyrightHeader(reader);
+            if (count > 1)
+            {
+                SkipWrongCsharpCopyrightHeader(reader);
+            } // if
 
             return false;
         } // LocateCsharpCopyrightHeader
@@ -240,6 +256,8 @@ namespace AlphaCentaury.IPTViewr.Internal.UpdateCopyrightNotices
                 var line = ReadLine.Trim();
                 if (line.Length == 0) continue;
                 if (line.StartsWith("//")) continue;
+
+                break;
             } // while
         } // SkipWrongCsharpCopyrightHeader
 
@@ -261,39 +279,49 @@ namespace AlphaCentaury.IPTViewr.Internal.UpdateCopyrightNotices
         {
             var index = 0;
             var isHeader = false;
+            var count = 0;
+
             while ((ReadLine = reader.ReadLine()) != null)
             {
+                count++;
+
                 if (index >= CopyrightHeaderLines.Length) return true;
 
-                var line = ReadLine.TrimStart();
+                var line = ReadLine.Trim();
                 if (line.Length == 0) continue;
 
                 if (line.StartsWith("<?"))
                 {
-                    if (FileHeaderLines == null) FileHeaderLines = new List<string>();
-                    FileHeaderLines.Add(ReadLine);
-
+                    AddFileHeaderLine(ReadLine);
                     continue;
                 } // if
 
                 if (isHeader)
                 {
-                    if (line.EndsWith("-->"))
+                    if (line != CopyrightHeaderLines[index])
                     {
-                        isHeader = false;
-                        continue;
+                        if (line.EndsWith("-->")) return false;
+                        break;
                     } // if
-                    if (line != CopyrightHeaderLines[index]) break;
                     index++;
                 }
                 else
                 {
                     if (!line.StartsWith("<!--")) return false;
+                    if (line.EndsWith("-->")) // one line comment
+                    {
+                        AddFileHeaderLine(ReadLine);
+                        return false;
+                    } // if
+
                     isHeader = true;
                 } // if-else
             } // while
 
-            SkipWrongXmlCopyrightHeader(reader);
+            if (count > 1)
+            {
+                SkipWrongXmlCopyrightHeader(reader);
+            } // if
 
             return false;
         } // LocateXmlCopyrightHeader
