@@ -9,6 +9,7 @@ using IpTviewr.Common;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Text;
 
 namespace AlphaCentaury.IPTViewr.Internal.UpdateCopyrightNotices
 {
@@ -82,6 +83,7 @@ namespace AlphaCentaury.IPTViewr.Internal.UpdateCopyrightNotices
 
                         case ".xml":
                         case ".wxs":
+                        case ".wxl":
                             locateCopyrightHeaderFunc = LocateXmlCopyrightHeader;
                             writeCopyrightHeaderAction = WriteXmlCopyrightHeader;
                             break;
@@ -151,12 +153,14 @@ namespace AlphaCentaury.IPTViewr.Internal.UpdateCopyrightNotices
         {
             var tempFilename = (string)null;
 
-            using (var reader = new StreamReader(filename))
+            using (var reader = new StreamReader(filename, Encoding.UTF8, true, short.MaxValue))
             {
+                FileHeaderLines = null;
+
                 if (!locateCopyrightHeaderFunc(reader))
                 {
                     tempFilename = filename + "~";
-                    using (var writer = new StreamWriter(tempFilename))
+                    using (var writer = new StreamWriter(tempFilename, false, new UTF8Encoding(false, true), short.MaxValue))
                     {
                         if (FileHeaderLines != null)
                         {
@@ -164,8 +168,6 @@ namespace AlphaCentaury.IPTViewr.Internal.UpdateCopyrightNotices
                             {
                                 writer.WriteLine(line);
                             } // foreach
-
-                            FileHeaderLines = null;
                         } // if
 
                         writeCopyrightHeaderAction(writer);
@@ -226,25 +228,18 @@ namespace AlphaCentaury.IPTViewr.Internal.UpdateCopyrightNotices
         private static bool LocateCsharpCopyrightHeader(TextReader reader)
         {
             var index = 0;
-            var count = 0;
+
             while ((ReadLine = reader.ReadLine()) != null)
             {
-                count++;
-
                 if (index >= CopyrightHeaderLines.Length) return true;
 
-                if (!ReadLine.StartsWith("//")) break;
+                if (!ReadLine.StartsWith("//")) return false;
 
                 var line = ReadLine.Substring(2, ReadLine.Length - 2).Trim();
-                if (line != CopyrightHeaderLines[index]) break;
-
-                index++;
+                if (line != CopyrightHeaderLines[index++]) break;
             } // while
 
-            if (count > 1)
-            {
-                SkipWrongCsharpCopyrightHeader(reader);
-            } // if
+            SkipWrongCsharpCopyrightHeader(reader);
 
             return false;
         } // LocateCsharpCopyrightHeader
@@ -279,12 +274,9 @@ namespace AlphaCentaury.IPTViewr.Internal.UpdateCopyrightNotices
         {
             var index = 0;
             var isHeader = false;
-            var count = 0;
 
             while ((ReadLine = reader.ReadLine()) != null)
             {
-                count++;
-
                 if (index >= CopyrightHeaderLines.Length) return true;
 
                 var line = ReadLine.Trim();
@@ -309,19 +301,15 @@ namespace AlphaCentaury.IPTViewr.Internal.UpdateCopyrightNotices
                 }
                 else
                 {
-                    if (line != CopyrightHeaderLines[index])
+                    if (line != CopyrightHeaderLines[index++])
                     {
                         if (line.EndsWith("-->")) return false;
                         break;
                     } // if
-                    index++;
                 } // if-else
             } // while
 
-            if (count > 1)
-            {
-                SkipWrongXmlCopyrightHeader(reader);
-            } // if
+            SkipWrongXmlCopyrightHeader(reader);
 
             return false;
         } // LocateXmlCopyrightHeader
