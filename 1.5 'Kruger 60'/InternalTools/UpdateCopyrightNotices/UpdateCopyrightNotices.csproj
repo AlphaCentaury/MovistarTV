@@ -7,8 +7,8 @@
     <ProjectGuid>{C8E42DFC-DCFE-4080-B99B-B09102FAD037}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>AlphaCentaury.IPTViewr.Internal.UpdateCopyrightHeaders</RootNamespace>
-    <AssemblyName>UpdateCopyrightHeaders</AssemblyName>
+    <RootNamespace>AlphaCentaury.IPTViewr.Internal.UpdateCopyrightNotices</RootNamespace>
+    <AssemblyName>UpdateCopyrightNotices</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>

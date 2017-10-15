@@ -38,7 +38,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services.EpgDiscovery", "As
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services.SqlServerCE", "Assemblies\Services.SqlServerCE\Services.SqlServerCE.csproj", "{3A053F34-4EDF-4071-B966-923255A0AE14}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UpdateCopyrightHeaders", "InternalTools\UpdateCopyrightHeaders\UpdateCopyrightHeaders.csproj", "{C8E42DFC-DCFE-4080-B99B-B09102FAD037}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UpdateCopyrightNotices", "InternalTools\UpdateCopyrightNotices\UpdateCopyrightNotices.csproj", "{C8E42DFC-DCFE-4080-B99B-B09102FAD037}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

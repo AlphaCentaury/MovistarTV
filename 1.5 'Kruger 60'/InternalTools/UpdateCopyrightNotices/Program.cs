@@ -10,7 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 
-namespace AlphaCentaury.IPTViewr.Internal.UpdateCopyrightHeaders
+namespace AlphaCentaury.IPTViewr.Internal.UpdateCopyrightNotices
 {
     class Program
     {
@@ -29,7 +29,7 @@ namespace AlphaCentaury.IPTViewr.Internal.UpdateCopyrightHeaders
 
         static void Main(string[] args)
         {
-            Console.WriteLine("Update/add copyright headers to project code");
+            Console.WriteLine("Update/add copyright notices to project code");
             Console.WriteLine("Copyright (C) 2014-2017, GitHub user AlphaCentaury");
             Console.WriteLine("https://github.com/AlphaCentaury");
             Console.WriteLine();
@@ -78,8 +78,7 @@ namespace AlphaCentaury.IPTViewr.Internal.UpdateCopyrightHeaders
                         case ".cs":
                             locateCopyrightHeaderFunc = LocateCsharpCopyrightHeader;
                             writeCopyrightHeaderAction = WriteCsharpCopyrightHeader;
-                            continue;
-                            //break;
+                            break;
 
                         case ".xml":
                         case ".wsx":
