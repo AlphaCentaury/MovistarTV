@@ -288,25 +288,16 @@ namespace AlphaCentaury.IPTViewr.Internal.UpdateCopyrightNotices
                 if (index >= CopyrightHeaderLines.Length) return true;
 
                 var line = ReadLine.Trim();
-                if (line.Length == 0) continue;
-
-                if (line.StartsWith("<?"))
+                if (!isHeader)
                 {
-                    AddFileHeaderLine(ReadLine);
-                    continue;
-                } // if
+                    if (line.Length == 0) continue;
 
-                if (isHeader)
-                {
-                    if (line != CopyrightHeaderLines[index])
+                    if (line.StartsWith("<?"))
                     {
-                        if (line.EndsWith("-->")) return false;
-                        break;
+                        AddFileHeaderLine(ReadLine);
+                        continue;
                     } // if
-                    index++;
-                }
-                else
-                {
+
                     if (!line.StartsWith("<!--")) return false;
                     if (line.EndsWith("-->")) // one line comment
                     {
@@ -315,6 +306,15 @@ namespace AlphaCentaury.IPTViewr.Internal.UpdateCopyrightNotices
                     } // if
 
                     isHeader = true;
+                }
+                else
+                {
+                    if (line != CopyrightHeaderLines[index])
+                    {
+                        if (line.EndsWith("-->")) return false;
+                        break;
+                    } // if
+                    index++;
                 } // if-else
             } // while
 
@@ -333,7 +333,11 @@ namespace AlphaCentaury.IPTViewr.Internal.UpdateCopyrightNotices
                 var line = ReadLine.Trim();
                 if (line.Length == 0) continue;
                 if (line.StartsWith("<")) break;
-                if (line.EndsWith("-->")) break;
+                if (line.EndsWith("-->"))
+                {
+                    ReadLine = null;
+                    break;
+                } // if
             } // while
         } // SkipWrongXmlCopyrightHeader
 
