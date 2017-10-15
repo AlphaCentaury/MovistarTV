@@ -1,9 +1,9 @@
-// Copyright (C) 2014-2017, GitHub/Codeplex user AlphaCentaury.
-//
+// Copyright (C) 2014-2017, GitHub/Codeplex user AlphaCentaury
+// 
 // All rights reserved, except those granted by the governing license of this software.
 // See 'license.txt' file in the project root for complete license information.
-//
-// http://movistartv.alphacentaury.org/
+// 
+// http://movistartv.alphacentaury.org/ https://github.com/AlphaCentaury
 
 using IpTviewr.Common;
 using System;
@@ -81,7 +81,7 @@ namespace AlphaCentaury.IPTViewr.Internal.UpdateCopyrightNotices
                             break;
 
                         case ".xml":
-                        case ".wsx":
+                        case ".wxs":
                             locateCopyrightHeaderFunc = LocateXmlCopyrightHeader;
                             writeCopyrightHeaderAction = WriteXmlCopyrightHeader;
                             break;
@@ -164,7 +164,10 @@ namespace AlphaCentaury.IPTViewr.Internal.UpdateCopyrightNotices
                             {
                                 writer.WriteLine(line);
                             } // foreach
+
+                            FileHeaderLines = null;
                         } // if
+
                         writeCopyrightHeaderAction(writer);
                         CopyContents(reader, writer);
                     } // using writer
@@ -173,7 +176,7 @@ namespace AlphaCentaury.IPTViewr.Internal.UpdateCopyrightNotices
 
             if (tempFilename != null)
             {
-                //CopyBack(tempFilename, filename);
+                CopyBack(tempFilename, filename);
 
                 return true;
             } // if
@@ -222,7 +225,7 @@ namespace AlphaCentaury.IPTViewr.Internal.UpdateCopyrightNotices
 
                 if (!ReadLine.StartsWith("//")) break;
 
-                var line = ReadLine.Substring(0, ReadLine.Length - 2).Trim();
+                var line = ReadLine.Substring(2, ReadLine.Length - 2).Trim();
                 if (line != CopyrightHeaderLines[index]) break;
 
                 index++;
@@ -240,6 +243,8 @@ namespace AlphaCentaury.IPTViewr.Internal.UpdateCopyrightNotices
                 var line = ReadLine.Trim();
                 if (line.Length == 0) continue;
                 if (line.StartsWith("//")) continue;
+
+                break;
             } // while
         } // SkipWrongCsharpCopyrightHeader
 
