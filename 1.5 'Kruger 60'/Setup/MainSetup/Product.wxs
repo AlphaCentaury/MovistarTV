@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-Copyright (C) 2014-2016, Codeplex/GitHub user AlphaCentaury
-All rights reserved, except those granted by the governing license of this software. See 'license.txt' file in the project root for complete license information.
+Copyright (C) 2014-2017, GitHub/Codeplex user AlphaCentaury
+
+All rights reserved, except those granted by the governing license of this software.
+See 'license.txt' file in the project root for complete license information.
+
+http://movistartv.alphacentaury.org/ https://github.com/AlphaCentaury
 -->
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi" xmlns:netfx="http://schemas.microsoft.com/wix/NetFxExtension">
   <?include Strings.wxi ?>

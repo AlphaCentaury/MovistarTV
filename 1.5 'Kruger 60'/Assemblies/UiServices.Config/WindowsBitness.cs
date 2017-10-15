@@ -1,9 +1,9 @@
-﻿// Copyright (C) 2014-2016, Codeplex/GitHub user AlphaCentaury
-// All rights reserved, except those granted by the governing license of this software. See 'license.txt' file in the project root for complete license information.
-
-// This file contains code (c) Microsoft Corporation, licensed under Microsoft Public License
-// See http://www.microsoft.com/opensource/licenses.mspx#Ms-PL.
-// Original source code: http://1code.codeplex.com/SourceControl/changeset/view/39074#842775
+﻿// Copyright (C) 2014-2017, GitHub/Codeplex user AlphaCentaury
+// 
+// All rights reserved, except those granted by the governing license of this software.
+// See 'license.txt' file in the project root for complete license information.
+// 
+// http://movistartv.alphacentaury.org/ https://github.com/AlphaCentaury
 
 using System;
 using System.Collections.Generic;
