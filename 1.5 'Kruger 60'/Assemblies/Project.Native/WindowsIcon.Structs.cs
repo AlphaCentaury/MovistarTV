@@ -166,17 +166,13 @@ namespace IpTviewr.Native
         {
             public short Size;
             public byte BitsPerPixel;
+            public SaveAs SaveAs;
 
-            public IconKind(short size, byte bitsPerPixel)
-            {
-                Size = size;
-                BitsPerPixel = bitsPerPixel;
-            } // constructor
-
-            public IconKind(int size, byte bitsPerPixel)
+            public IconKind(int size, byte bitsPerPixel, SaveAs saveAs)
             {
                 Size = (short)size;
                 BitsPerPixel = bitsPerPixel;
+                SaveAs = saveAs;
             } // constructor
 
             public override int GetHashCode()

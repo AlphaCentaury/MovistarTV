@@ -26,6 +26,13 @@ namespace IpTviewr.Native
     {
         private Dictionary<IconKind, Bitmap> Images;
 
+        public enum SaveAs
+        {
+            Auto = 0,
+            Bmp = 1,
+            Png = 2
+        } // SaveAs
+
         public WindowsIcon()
         {
             Images = new Dictionary<IconKind, Bitmap>();
@@ -44,7 +51,7 @@ namespace IpTviewr.Native
         /// Only 32bpp ARGB images are supported. Therefore, the supplied image wil be converted to PixelFormat.Format32bppArgb
         /// This will cause ArgumentException to be thrown if two images of different bit depth are supplied for the same size
         /// </remarks>
-        public void AddImage(Bitmap image)
+        public void AddImage(Bitmap image, SaveAs saveAs = SaveAs.Auto)
         {
             if (image == null) throw new ArgumentNullException(nameof(image));
             if ((image.Width != image.Height)) throw new ArgumentOutOfRangeException(nameof(image), Texts.WindowsIcon_NonSquare);
@@ -69,7 +76,7 @@ namespace IpTviewr.Native
             } // if
 
             // adding a duplicated image will throw ArgumentException
-            Images.Add(new IconKind(image.Width, bitsPerPixel), image);
+            Images.Add(new IconKind(image.Width, bitsPerPixel, saveAs), image);
         } // AddImage
 
         /// <summary>
@@ -110,10 +117,14 @@ namespace IpTviewr.Native
         {
             // although not strictly necessary, it's customary to
             // write the images sorted by size and bpp
-            var images = from entry in Images
-                         orderby entry.Key.Size ascending
-                         orderby entry.Key.BitsPerPixel ascending
-                         select entry.Value;
+            var icons = from entry in Images
+                        orderby entry.Key.Size ascending
+                        orderby entry.Key.BitsPerPixel ascending
+                        select new
+                        {
+                            Image = entry.Value,
+                            SaveAs = entry.Key.SaveAs
+                        };
 
             // create icon directory header
             var iconDirHeader = new IconDirHeader(Images.Count);
@@ -123,17 +134,17 @@ namespace IpTviewr.Native
             var imageData = new byte[Images.Count][];
 
             var index = 0;
-            foreach (var image in images)
+            foreach (var icon in icons)
             {
-                imageData[index] = GetIconImageData(image);
+                imageData[index] = GetIconImageData(icon.Image, icon.SaveAs);
                 var entry = new IconDirEntry()
                 {
-                    Width = (image.Width < 256) ? (byte)image.Width : (byte)0,
-                    Height = (image.Height < 256) ? (byte)image.Height : (byte)0,
+                    Width = (icon.Image.Width < 256) ? (byte)icon.Image.Width : (byte)0,
+                    Height = (icon.Image.Height < 256) ? (byte)icon.Image.Height : (byte)0,
                     ColorCount = 0, // more than 256 colors
                     Reserved = 0, // must be zero
                     Planes = 1,
-                    BitCount = GetBitsPerPixel(image.PixelFormat),
+                    BitCount = GetBitsPerPixel(icon.Image.PixelFormat),
                     BytesInRes = (uint)imageData[index].Length,
                     ImageOffset = 0 // to be set later
                 };
@@ -166,21 +177,27 @@ namespace IpTviewr.Native
             } // foreach
         } // Save
 
-        private byte[] GetIconImageData(Bitmap image)
+        private byte[] GetIconImageData(Bitmap image, SaveAs saveAs)
         {
             var estimatedCapacity = GetEstimatedIconImageSize(image);
             using (var output = new MemoryStream(estimatedCapacity))
             {
-                if (image.Width < 256)
+                if (saveAs == SaveAs.Auto)
                 {
-                    GetIconImageBitmapData(output, image);
-                }
-                else
-                {
-                    image.Save(output, ImageFormat.Png);
-                } // if-else
-                output.Close();
+                    saveAs = (image.Width < 256) ? SaveAs.Bmp : SaveAs.Png;
+                } // if
 
+                switch (saveAs)
+                {
+                    case SaveAs.Bmp:
+                        GetIconImageBitmapData(output, image);
+                        break;
+                    case SaveAs.Png:
+                        image.Save(output, ImageFormat.Png);
+                        break;
+                } // switch saveAs
+
+                output.Close();
                 return output.ToArray();
             } // using
         } // GetIconImageData
