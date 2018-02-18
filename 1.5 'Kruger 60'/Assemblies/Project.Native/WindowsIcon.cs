@@ -43,6 +43,12 @@ namespace IpTviewr.Native
             Images = new Dictionary<IconKind, Bitmap>(imageCount);
         } // constructor
 
+        public bool AllowNonSquareImages
+        {
+            get;
+            set;
+        } // AllowNowSquareImages
+
         /// <summary>
         /// Adds an image to the Icon
         /// </summary>
@@ -54,7 +60,10 @@ namespace IpTviewr.Native
         public void AddImage(Bitmap image, SaveAs saveAs = SaveAs.Auto)
         {
             if (image == null) throw new ArgumentNullException(nameof(image));
-            if ((image.Width != image.Height)) throw new ArgumentOutOfRangeException(nameof(image), Texts.WindowsIcon_NonSquare);
+            if (!AllowNonSquareImages)
+            {
+                if ((image.Width != image.Height)) throw new ArgumentOutOfRangeException(nameof(image), Texts.WindowsIcon_NonSquare);
+            } // if
             if (image.Width > 256) throw new ArgumentOutOfRangeException(nameof(image), Texts.WindowsIcon_TooBig);
             if (image.Width < 16) throw new ArgumentOutOfRangeException(nameof(image), Texts.WindowsIcon_TooSmall);
 
