@@ -45,11 +45,13 @@ Cualquiera puede tener acceso al código fuente, proponer mejoras y utilizar par
 No obstante, y de acuerdo con la licencia, el uso del código en otros programas requiere atribuación.
 Así mismo, cualquier cambio en el código por terceros conlleva la obligación de hacer público dicho código modificado.
 
-Este proyecto estaba alojado previamente en [movistartv.codeplex.com][codeplex].  
-De manera progresiva se va a proceder a migrar toda la documentación existente al formato Wiki de GitHub.  
-Se mantendrá activo el sitio web de codeplex para alojar los archivos de instalación de las diferentes versiones, asi como de portal de entrada al proyecto.
+Este proyecto estaba alojado previamente en el defunto [movistartv.codeplex.com][codeplex].
+El código fuente ya está migrado a GitHub. Y se ha creado un nuevo portal de entrada [alphacentaury.org/movistartv/][alphacentaury].
+De manera progresiva se va a proceder a migrar toda la documentación existente al nuevo portal.  
+Además, el nuevo portal alojará los archivos de instalación.
 
 [LICENSE]: LICENSE
 [LICENSE_ES]: LICENSE_ES
 [codeplex]: https://movistartv.codeplex.com
-[Kruger-60]: https://movistartv.codeplex.com/releases/view/625739
+[Kruger-60]: https://www.alphacentaury.org/movistartv/2018/iptviewr-v1-5-kruger-60-beta-0/
+[alphacentaury]: https://www.alphacentaury.org/movistartv/
