@@ -6,5 +6,5 @@ Alpha Centaury dispone de página web propia en [alphacentaury.org][alphacentaur
 
 [alphacentaury]: https://www.alphacentaury.org/
 [movistar+]: https://www.alphacentaury.org/movistartv/
-[downloads]: https://www.alphacentaury.org/movistartv/downloads/
+[downloads]: https://www.alphacentaury.org/temas/movistartv/downloads/
 [github]: https://github.com/AlphaCentaury/MovistarTV
