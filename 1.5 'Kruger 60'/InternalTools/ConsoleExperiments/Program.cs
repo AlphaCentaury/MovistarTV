@@ -36,12 +36,11 @@ namespace IpTviewr.Internal.Tools.ConsoleExperiments
 
             Experiment experiment;
 
-            //experiment = new ProcessRawEpgData();
-            //experiment = new TestEpgDownloader();
-            //experiment = new TestEpgLinkedListWrapper();
             //experiment = new CachedLogos();
             //experiment = new WindowsIconTest();
-            experiment = new Find();
+            //experiment = new Find();
+            //experiment = new ExceptionMsgBoxExperiment();
+            experiment = new PlayingWithLogos();
 
             return experiment.Execute(args);
         } // Main

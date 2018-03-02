@@ -37,7 +37,7 @@ namespace IpTviewr.Internal.Tools.ConsoleExperiments
 
             var pattern = Path.GetFileName(args.Arguments[1]);
             var path = Directory.GetCurrentDirectory();
-            foreach (var file in Directory.GetFiles(path, pattern, args.Switches.ContainsKey("s") ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly))
+            foreach (var file in Directory.EnumerateFiles(path, pattern, args.Switches.ContainsKey("s") ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly))
             {
                 FindInFile(args.Arguments[0], file);
             } // foreach
