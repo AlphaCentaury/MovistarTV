@@ -42,11 +42,13 @@ namespace IpTviewr.Internal.Tools.GuiTools
             this.radioMulticastExplorer = new System.Windows.Forms.RadioButton();
             this.radioSimpleDownload = new System.Windows.Forms.RadioButton();
             this.buttonExecute = new System.Windows.Forms.Button();
+            this.radioIconBuilder = new System.Windows.Forms.RadioButton();
             this.groupBoxTools.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBoxTools
             // 
+            this.groupBoxTools.Controls.Add(this.radioIconBuilder);
             this.groupBoxTools.Controls.Add(this.radioBinaryEditor);
             this.groupBoxTools.Controls.Add(this.radioDvbStpExplorer);
             this.groupBoxTools.Controls.Add(this.radioOpchExplorer);
@@ -129,6 +131,17 @@ namespace IpTviewr.Internal.Tools.GuiTools
             this.buttonExecute.UseVisualStyleBackColor = true;
             this.buttonExecute.Click += new System.EventHandler(this.buttonExecute_Click);
             // 
+            // radioIconBuilder
+            // 
+            this.radioIconBuilder.AutoSize = true;
+            this.radioIconBuilder.Location = new System.Drawing.Point(6, 135);
+            this.radioIconBuilder.Name = "radioIconBuilder";
+            this.radioIconBuilder.Size = new System.Drawing.Size(80, 17);
+            this.radioIconBuilder.TabIndex = 5;
+            this.radioIconBuilder.TabStop = true;
+            this.radioIconBuilder.Text = "Icon builder";
+            this.radioIconBuilder.UseVisualStyleBackColor = true;
+            // 
             // LaunchForm
             // 
             this.AcceptButton = this.buttonExecute;
@@ -155,5 +168,6 @@ namespace IpTviewr.Internal.Tools.GuiTools
         private System.Windows.Forms.RadioButton radioOpchExplorer;
         private System.Windows.Forms.RadioButton radioDvbStpExplorer;
         private System.Windows.Forms.RadioButton radioBinaryEditor;
+        private System.Windows.Forms.RadioButton radioIconBuilder;
     }
 }

@@ -48,6 +48,7 @@ namespace IpTviewr.Internal.Tools.GuiTools
             else if (radioMulticastExplorer.Checked) return typeof(MulticastStreamExplorerForm);
             else if (radioOpchExplorer.Checked) return typeof(OpchExplorerForm);
             else if (radioBinaryEditor.Checked) return typeof(BinaryEditorForm);
+            else if (radioIconBuilder.Checked) return typeof(IconBuilder);
             else return null;
         } // GetSelectedForm
     } // class LaunchForm

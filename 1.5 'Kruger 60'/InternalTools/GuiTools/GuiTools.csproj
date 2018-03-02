@@ -72,6 +72,12 @@
     <Compile Include="DvbStpStreamExplorerForm .Designer.cs">
       <DependentUpon>DvbStpStreamExplorerForm .cs</DependentUpon>
     </Compile>
+    <Compile Include="IconBuilder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="IconBuilder.Designer.cs">
+      <DependentUpon>IconBuilder.cs</DependentUpon>
+    </Compile>
     <Compile Include="OpchExplorerForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -104,6 +110,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DvbStpStreamExplorerForm .resx">
       <DependentUpon>DvbStpStreamExplorerForm .cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="IconBuilder.resx">
+      <DependentUpon>IconBuilder.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="OpchExplorerForm.resx">
       <DependentUpon>OpchExplorerForm.cs</DependentUpon>
@@ -145,6 +154,10 @@
     <ProjectReference Include="..\..\Assemblies\DvbStpClient\DvbStpClient.csproj">
       <Project>{8ad3c34b-a1d3-4385-a8a9-c429bd9a37d3}</Project>
       <Name>DvbStpClient</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Assemblies\Project.Native\Project.Native.csproj">
+      <Project>{8986CD52-0C65-42D6-9C47-20FF47CF87BB}</Project>
+      <Name>Project.Native</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Assemblies\UiServices.Common\UiServices.Common.csproj">
       <Project>{76346905-ac2f-4f01-ba99-bbffbb2a6fe9}</Project>
