@@ -19,5 +19,11 @@ namespace IpTviewr.Services.EpgDiscovery.TvAnytime
     [XmlInclude(typeof(ExtendedPurchaseItem))]
     public class TvaMain
     {
+        [XmlElement("ProgramDescription", Namespace = Common.DefaultXmlNamespace)]
+        public TvaProgramDescription ProgramDescription
+        {
+            get;
+            set;
+        } // ProgramDescription
     } // class TvaMain
 } // namespace

@@ -68,7 +68,7 @@ namespace IpTviewr.Services.EpgDiscovery
                 {
                     try
                     {
-                        var item = XmlSerialization.Deserialize<TvaMain>(payload, trimExtraWhitespace: true, namespaceReplacer: NamespaceUnification.Replacer) as ExtendedPurchaseItem;
+                        var item = XmlSerialization.Deserialize<TvaMain>(payload, trimExtraWhitespace: true, namespaceReplacer: NamespaceUnification.Replacer);
                         var schedule = item?.ProgramDescription?.LocationTable?.Schedule;
                         if (schedule == null)
                         {
@@ -82,7 +82,7 @@ namespace IpTviewr.Services.EpgDiscovery
                     {
                         // TODO: log
                         Console.WriteLine("Unable to parse: {0}", ex.Message);
-                        return;
+                        //return;
                     } // try-catch
                 } // while
 
