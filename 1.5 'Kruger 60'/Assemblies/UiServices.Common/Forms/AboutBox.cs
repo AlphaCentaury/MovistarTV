@@ -67,14 +67,23 @@ namespace IpTviewr.UiServices.Common.Forms
             labelCompanyName.Text = AssemblyCompany;
         } // AboutBox_Load
 
-        private void linkLabelCodeplex_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void linkLabelWebsite_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            OpenUrl(this, "http://movistartv.alphacentaury.org");
-        } // linkLabelCodeplex_LinkClicked
+            OpenUrl(this, sender as LinkLabel);
+        } // linkLabelWebsite_LinkClicked
 
-        private void OpenUrl(Form parent, string url)
+        private void LinkLabelSourceCode_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Launcher.OpenUrl(parent, url, HandleException, null);
+            OpenUrl(this, sender as LinkLabel);
+        } // LinkLabelSourceCode_LinkClicked
+
+        private void OpenUrl(Form parent, LinkLabel link)
+        {
+            if (link == null) return;
+
+            var uri = new UriBuilder(new Uri(link.Text));
+            if (uri.Scheme == "http") uri.Scheme = "https";
+            Launcher.OpenUrl(parent, uri.ToString(), HandleException, null);
         } // OpenUrl
 
         #region Assembly Attribute Accessors

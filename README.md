@@ -4,7 +4,7 @@
 
 IPTViewr emula, parcialmente, el funcionamiento del decodificador físico de movistar+. El propósito de este proyecto es llegar a cubrir el 95% de la funcionalidad del decodificador.
 
-La version actual, [v1.5 ‘Kruger 60’ alpha 4][Kruger-60], dispone de las siguientes funcionalidades:
+La version actual, [v1.5 ‘Kruger 60’ beta 1][Kruger-60], dispone de las siguientes funcionalidades:
 - Lista completa de canales
   - Se muestran todos los canales disponibles, con independencia de si forman parte o no del programa contratado.
   - Sólo pueden visualizarse los canales contratados.
@@ -52,4 +52,4 @@ Se mantendrá activo el sitio web de codeplex para alojar los archivos de instal
 [LICENSE]: LICENSE
 [LICENSE_ES]: LICENSE_ES
 [codeplex]: https://movistartv.codeplex.com
-[Kruger-60]: https://movistartv.codeplex.com/releases/view/625739
+[Kruger-60]: https://www.alphacentaury.org/temas/movistartv/downloads/

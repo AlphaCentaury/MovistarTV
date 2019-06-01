@@ -52,9 +52,9 @@ http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
 
     <Icon Id="Icon.Product" SourceFile="iptviewr-for-movistarplus_alt.ico"/>
     <Property Id="ARPPRODUCTICON" Value="Icon.Product" />
-    <Property Id='ARPHELPLINK'>http://movistartv.codeplex.com/documentation/</Property>
-    <Property Id='ARPURLINFOABOUT'>http://movistartv.alphacentaury.org/</Property>
-    <Property Id='ARPURLUPDATEINFO'>http://movistartv.codeplex.com/releases/</Property>
+    <Property Id='ARPHELPLINK'>https://www.alphacentaury.org/temas/movistartv/</Property>
+    <Property Id='ARPURLINFOABOUT'>https://www.alphacentaury.org/movistartv</Property>
+    <Property Id='ARPURLUPDATEINFO'>https://www.alphacentaury.org/movistartv/downloads</Property>
 
     <Property Id="WIXUI_EXITDIALOGOPTIONALCHECKBOXTEXT" Value="!(loc.WIXUI_EXITDIALOGOPTIONALCHECKBOXTEXT)" />
     <Property Id="WixShellExecTarget" Value="[#FirstTimeConfig.exe]" />

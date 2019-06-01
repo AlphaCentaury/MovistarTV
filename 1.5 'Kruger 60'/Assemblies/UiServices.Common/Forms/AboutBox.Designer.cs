@@ -42,10 +42,11 @@ namespace IpTviewr.UiServices.Common.Forms
             this.labelCopyright = new System.Windows.Forms.TextBox();
             this.labelCompanyName = new System.Windows.Forms.TextBox();
             this.textBoxDescription = new System.Windows.Forms.RichTextBox();
-            this.linkLabelCodeplex = new System.Windows.Forms.LinkLabel();
+            this.linkLabelWebsite = new System.Windows.Forms.LinkLabel();
             this.labelEULA = new System.Windows.Forms.Label();
             this.labelAppName = new System.Windows.Forms.Label();
             this.labelAppVersion = new System.Windows.Forms.Label();
+            this.linkLabelSourceCode = new System.Windows.Forms.LinkLabel();
             ((System.ComponentModel.ISupportInitialize)(this.logoPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -98,13 +99,13 @@ namespace IpTviewr.UiServices.Common.Forms
             this.textBoxDescription.Name = "textBoxDescription";
             this.textBoxDescription.ReadOnly = true;
             // 
-            // linkLabelCodeplex
+            // linkLabelWebsite
             // 
-            resources.ApplyResources(this.linkLabelCodeplex, "linkLabelCodeplex");
-            this.linkLabelCodeplex.LinkBehavior = System.Windows.Forms.LinkBehavior.AlwaysUnderline;
-            this.linkLabelCodeplex.Name = "linkLabelCodeplex";
-            this.linkLabelCodeplex.TabStop = true;
-            this.linkLabelCodeplex.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelCodeplex_LinkClicked);
+            resources.ApplyResources(this.linkLabelWebsite, "linkLabelWebsite");
+            this.linkLabelWebsite.LinkBehavior = System.Windows.Forms.LinkBehavior.AlwaysUnderline;
+            this.linkLabelWebsite.Name = "linkLabelWebsite";
+            this.linkLabelWebsite.TabStop = true;
+            this.linkLabelWebsite.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelWebsite_LinkClicked);
             // 
             // labelEULA
             // 
@@ -121,15 +122,24 @@ namespace IpTviewr.UiServices.Common.Forms
             resources.ApplyResources(this.labelAppVersion, "labelAppVersion");
             this.labelAppVersion.Name = "labelAppVersion";
             // 
+            // linkLabelSourceCode
+            // 
+            resources.ApplyResources(this.linkLabelSourceCode, "linkLabelSourceCode");
+            this.linkLabelSourceCode.LinkBehavior = System.Windows.Forms.LinkBehavior.AlwaysUnderline;
+            this.linkLabelSourceCode.Name = "linkLabelSourceCode";
+            this.linkLabelSourceCode.TabStop = true;
+            this.linkLabelSourceCode.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabelSourceCode_LinkClicked);
+            // 
             // AboutBox
             // 
             this.AcceptButton = this.okButton;
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.linkLabelSourceCode);
             this.Controls.Add(this.labelAppVersion);
             this.Controls.Add(this.labelAppName);
             this.Controls.Add(this.labelEULA);
-            this.Controls.Add(this.linkLabelCodeplex);
+            this.Controls.Add(this.linkLabelWebsite);
             this.Controls.Add(this.okButton);
             this.Controls.Add(this.labelProductName);
             this.Controls.Add(this.labelVersion);
@@ -158,10 +168,10 @@ namespace IpTviewr.UiServices.Common.Forms
         private System.Windows.Forms.TextBox labelCopyright;
         private System.Windows.Forms.TextBox labelCompanyName;
         private System.Windows.Forms.RichTextBox textBoxDescription;
-        private System.Windows.Forms.LinkLabel linkLabelCodeplex;
+        private System.Windows.Forms.LinkLabel linkLabelWebsite;
         private System.Windows.Forms.Label labelEULA;
         private System.Windows.Forms.Label labelAppName;
         private System.Windows.Forms.Label labelAppVersion;
-
+        private System.Windows.Forms.LinkLabel linkLabelSourceCode;
     }
 }

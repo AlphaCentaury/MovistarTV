@@ -1,6 +1,6 @@
 # IPTViewr: Virtual IPTV Decoder for movistar+ #
 
-### Copyright (C) 2014-2016, Codeplex user AlphaCentaury and its contributors
+### Copyright (C) 2014-2019, Codeplex user AlphaCentaury and its contributors
 
 _**THIS SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND**_, express or implied, including but not limited to the warranties of merchantability, fitness for a particular purpose and non-infringement.  
 In no event shall the authors or the copyright holders be liable for any claim, damages or other liability, whether in action of contract, tort or otherwise, arising from, out of or in connection with the software or the use or other dealings in the software.
