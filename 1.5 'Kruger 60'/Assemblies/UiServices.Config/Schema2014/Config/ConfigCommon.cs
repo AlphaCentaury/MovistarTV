@@ -14,7 +14,7 @@ namespace IpTviewr.UiServices.Configuration.Schema2014.Config
 {
     public class ConfigCommon
     {
-        public const string ConfigXmlNamespace = "http://movistartv.alphacentaury.org/schema/2017:Configuration";
+        public const string ConfigXmlNamespace = "http://movistartv.alphacentaury.org/schema/2019:Configuration";
 
         internal static string Normalize(string value)
         {

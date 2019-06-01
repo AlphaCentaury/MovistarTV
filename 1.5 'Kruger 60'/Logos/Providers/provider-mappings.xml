@@ -7,7 +7,7 @@ See 'license.txt' file in the project root for complete license information.
 
 http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
 -->
-<Logos-Providers xmlns="http://movistartv.alphacentaury.org/schema/2017:Configuration:Mappings">
+<Logos-Providers xmlns="http://movistartv.alphacentaury.org/schema/2019:Configuration:Mappings">
   <Package name="&lt;default&gt;">
     <Mapping domainName="DVB-IPTV" logo="DVB-IPTV" />
   </Package>

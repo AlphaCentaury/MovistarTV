@@ -368,7 +368,7 @@ namespace IpTviewr.ChannelList.Properties {
         ///IPTViewr: Virtual Decoder for movistar+ version 1.5 “Kruger 60” Beta 1
         ///*****************************************************************************
         ///
-        ///Copyright (C) 2014-2016, Codeplex user AlphaCentaury and its contributors
+        ///Copyright (C) 2014-2019, GitHub/Codeplex user AlphaCentaury and its contributors
         ///=========================================================================
         ///
         ///THIS SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, express or implied, including but not limited to the warranties [rest of string was truncated]&quot;;.
@@ -384,7 +384,7 @@ namespace IpTviewr.ChannelList.Properties {
         ///{\colortbl ;\red0\green0\blue255;}
         ///{\*\generator Riched20 10.0.10586}\viewkind4\uc1 
         ///\pard\nowidctlpar\sa200\sl276\slmult1\qj\b\f0\fs22\lang10 IPTViewr: Virtual Decoder for movistar+ version 1.5 \ldblquote Kruger 60\rdblquote  Beta 1\ul\fs18\par
-        ///\fs20 Copyright (C) 2014-2016, Codeplex user AlphaCentaury and its contributors.\ulnone\i\fs18\par
+        ///\fs20 Copyright (C) 2014-2019, GitHub/Codeplex user AlphaCentaury and its contributors.\ulnone\i\fs18\par
         ///THIS SOFTWARE IS \ul PROVIDED \ldblquote  [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string SolutionLicenseRtf {

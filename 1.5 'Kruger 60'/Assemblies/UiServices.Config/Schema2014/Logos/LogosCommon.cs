@@ -18,7 +18,7 @@ namespace IpTviewr.UiServices.Configuration.Schema2014.Logos
 {
     public class LogosCommon
     {
-        public const string LogoMappingsXmlNamespace = "http://movistartv.alphacentaury.org/schema/2017:Configuration:Mappings";
+        public const string LogoMappingsXmlNamespace = "http://movistartv.alphacentaury.org/schema/2019:Configuration:Mappings";
 
         public static ServiceMappingsXml ParseServiceMappingsXml(string filename)
         {

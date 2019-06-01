@@ -11,6 +11,6 @@ namespace IpTviewr.Services.EpgDiscovery
 {
     internal class Common
     {
-        public const string XmlNamespace = "urn:AlphaCentaury:IpTViewr:2016:EPG";
+        public const string XmlNamespace = "urn:AlphaCentaury:IpTViewr:2019:EPG";
     } // class Common
 } // namespace
