@@ -92,6 +92,11 @@ namespace AlphaCentaury.IPTViewr.Internal.UpdateCopyrightNotices
                             writeCopyrightHeaderAction = WriteXmlCopyrightHeader;
                             break;
 
+                        case ".wxi":
+                            locateCopyrightHeaderFunc = LocateXmlCopyrightHeader;
+                            writeCopyrightHeaderAction = WriteXmlCopyrightHeader;
+                            break;
+
                         default:
                             continue;
                     } // switch
@@ -298,11 +303,9 @@ namespace AlphaCentaury.IPTViewr.Internal.UpdateCopyrightNotices
                 }
                 else
                 {
-                    if (line != CopyrightHeaderLines[index++])
-                    {
-                        if (line.EndsWith("-->")) return false;
-                        break;
-                    } // if
+                    if (line == CopyrightHeaderLines[index++]) continue;
+                    if (line.EndsWith("-->")) return false;
+                    break;
                 } // if-else
             } // while
 
@@ -318,11 +321,9 @@ namespace AlphaCentaury.IPTViewr.Internal.UpdateCopyrightNotices
                 var line = ReadLine.Trim();
                 if (line.Length == 0) continue;
                 if (line.StartsWith("<")) break;
-                if (line.EndsWith("-->"))
-                {
-                    ReadLine = null;
-                    break;
-                } // if
+                if (!line.EndsWith("-->")) continue;
+                ReadLine = null;
+                break;
             } // while
         } // SkipWrongXmlCopyrightHeader
 
