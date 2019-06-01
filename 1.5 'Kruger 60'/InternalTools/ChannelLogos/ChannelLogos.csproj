@@ -56,6 +56,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\..\AssemblySolutionInfo.cs">
+      <Link>Properties\AssemblySolutionInfo.cs</Link>
+    </Compile>
     <Compile Include="ConsistencyCheck.cs" />
     <Compile Include="ConsistencyCheckAllServices.cs" />
     <Compile Include="ConsistencyCheckMissingLogoFiles.cs" />
@@ -161,6 +164,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\IPTViewr_Tool.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="License.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

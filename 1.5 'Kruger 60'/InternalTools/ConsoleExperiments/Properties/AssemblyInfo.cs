@@ -12,8 +12,8 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute parameters to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Console Experiments")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("IPTV project internal tools: Console Experiments")]
+[assembly: AssemblyDescription("IpTviewr.Internal.Tools.ConsoleExperiments")]
 [assembly: AssemblyCopyright(SolutionVersion.DefaultCopyright)]
 [assembly: AssemblyCulture("")]
 
