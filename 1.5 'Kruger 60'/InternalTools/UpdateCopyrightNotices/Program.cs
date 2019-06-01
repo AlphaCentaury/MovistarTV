@@ -1,9 +1,9 @@
-// Copyright (C) 2014-2017, GitHub/Codeplex user AlphaCentaury
+// Copyright (C) 2014-2019, GitHub/Codeplex user AlphaCentaury
 // 
 // All rights reserved, except those granted by the governing license of this software.
 // See 'license.txt' file in the project root for complete license information.
 // 
-// http://movistartv.alphacentaury.org/ https://github.com/AlphaCentaury
+// http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
 
 using IpTviewr.Common;
 using System;
@@ -16,12 +16,12 @@ namespace AlphaCentaury.IPTViewr.Internal.UpdateCopyrightNotices
     class Program
     {
         public static readonly string CopyrightHeader =
-            "Copyright (C) 2014-2017, GitHub/Codeplex user AlphaCentaury\0" +
+            "Copyright (C) 2014-2019, GitHub/Codeplex user AlphaCentaury\0" +
             "\0" +
             "All rights reserved, except those granted by the governing license of this software.\0" +
             "See 'license.txt' file in the project root for complete license information.\0" +
             "\0" +
-            "http://movistartv.alphacentaury.org/ https://github.com/AlphaCentaury";
+            "http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury";
 
         private static string ReadLine;
         private static string[] CopyrightHeaderLines;
@@ -31,7 +31,7 @@ namespace AlphaCentaury.IPTViewr.Internal.UpdateCopyrightNotices
         static void Main(string[] args)
         {
             Console.WriteLine("Update/add copyright notices to project code");
-            Console.WriteLine("Copyright (C) 2014-2017, GitHub user AlphaCentaury");
+            Console.WriteLine("Copyright (C) 2014-2019, GitHub user AlphaCentaury");
             Console.WriteLine("https://github.com/AlphaCentaury");
             Console.WriteLine();
 
@@ -73,6 +73,10 @@ namespace AlphaCentaury.IPTViewr.Internal.UpdateCopyrightNotices
                 var lastPath = (string)null;
                 foreach (var filename in Directory.EnumerateFiles(path, "*", searchOptions))
                 {
+                    // Is path excluded?
+                    var currentPath = Path.GetDirectoryName(filename);
+                    if (IsPathExcluded(currentPath)) continue;
+
                     var extension = Path.GetExtension(filename).ToLowerInvariant();
                     switch (extension)
                     {
@@ -91,10 +95,6 @@ namespace AlphaCentaury.IPTViewr.Internal.UpdateCopyrightNotices
                         default:
                             continue;
                     } // switch
-
-                    // Is path excluded?
-                    var currentPath = Path.GetDirectoryName(filename);
-                    if (IsPathExcluded(currentPath)) continue;
 
                     // new path?
                     if (currentPath != lastPath)
@@ -176,17 +176,14 @@ namespace AlphaCentaury.IPTViewr.Internal.UpdateCopyrightNotices
                 } // if
             } // using reader
 
-            if (tempFilename != null)
-            {
-                CopyBack(tempFilename, filename);
+            if (tempFilename == null) return false;
 
-                return true;
-            } // if
+            CopyBack(tempFilename, filename);
 
-            return false;
+            return true;
         } // UpdateHeaders
 
-        static void CopyContents(TextReader reader, TextWriter writer)
+        private static void CopyContents(TextReader reader, TextWriter writer)
         {
             if (ReadLine != null) writer.WriteLine(ReadLine);
 
