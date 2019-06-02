@@ -24,7 +24,7 @@ namespace IpTviewr.Native
     /// </remarks>
     public partial class WindowsIcon: IDisposable
     {
-        private Dictionary<IconKind, Bitmap> Images;
+        private Dictionary<IconKind, Bitmap> _images;
 
         public enum SaveAs
         {
@@ -35,12 +35,12 @@ namespace IpTviewr.Native
 
         public WindowsIcon()
         {
-            Images = new Dictionary<IconKind, Bitmap>();
+            _images = new Dictionary<IconKind, Bitmap>();
         } // constructor
 
         public WindowsIcon(int imageCount)
         {
-            Images = new Dictionary<IconKind, Bitmap>(imageCount);
+            _images = new Dictionary<IconKind, Bitmap>(imageCount);
         } // constructor
 
         public bool AllowNonSquareImages
@@ -53,6 +53,7 @@ namespace IpTviewr.Native
         /// Adds an image to the Icon
         /// </summary>
         /// <param name="image">The image to add</param>
+        /// <param name="saveAs">How the image will be stored within the icon file</param>
         /// <remarks>
         /// Only 32bpp ARGB images are supported. Therefore, the supplied image wil be converted to PixelFormat.Format32bppArgb
         /// This will cause ArgumentException to be thrown if two images of different bit depth are supplied for the same size
@@ -70,7 +71,7 @@ namespace IpTviewr.Native
             // we only support 32bpp ARGB images; therefore, we need to convert the image to this format
             if (image.PixelFormat != PixelFormat.Format32bppArgb)
             {
-                var newImage = To32bppArgbBitmap(image);
+                var newImage = To32BppArgbBitmap(image);
                 image.Dispose();
                 image = newImage;
             } // if
@@ -79,13 +80,13 @@ namespace IpTviewr.Native
             var bitsPerPixel = GetBitsPerPixel(image.PixelFormat);
             if (bitsPerPixel > 32)
             {
-                var newImage = To32bppArgbBitmap(image);
+                var newImage = To32BppArgbBitmap(image);
                 image.Dispose();
                 image = newImage;
             } // if
 
             // adding a duplicated image will throw ArgumentException
-            Images.Add(new IconKind(image.Width, bitsPerPixel, saveAs), image);
+            _images.Add(new IconKind(image.Width, bitsPerPixel, saveAs), image);
         } // AddImage
 
         /// <summary>
@@ -93,8 +94,8 @@ namespace IpTviewr.Native
         /// </summary>
         public void Clear()
         {
-            foreach (var entry in Images) entry.Value.Dispose();
-            Images.Clear();
+            foreach (var entry in _images) entry.Value.Dispose();
+            _images.Clear();
         } // Clear
 
         /// <summary>
@@ -103,7 +104,7 @@ namespace IpTviewr.Native
         public void Dispose()
         {
             Clear();
-            Images = null;
+            _images = null;
         } // Dispose
 
         /// <summary>
@@ -126,21 +127,20 @@ namespace IpTviewr.Native
         {
             // although not strictly necessary, it's customary to
             // write the images sorted by size and bpp
-            var icons = from entry in Images
-                        orderby entry.Key.Size ascending
-                        orderby entry.Key.BitsPerPixel ascending
+            var icons = from entry in _images
+                        orderby entry.Key.Size ascending, entry.Key.BitsPerPixel ascending
                         select new
                         {
                             Image = entry.Value,
-                            SaveAs = entry.Key.SaveAs
+                            entry.Key.SaveAs
                         };
 
             // create icon directory header
-            var iconDirHeader = new IconDirHeader(Images.Count);
+            var iconDirHeader = new IconDirHeader(_images.Count);
 
             // create icon directory entries
-            var entries = new IconDirEntry[Images.Count];
-            var imageData = new byte[Images.Count][];
+            var entries = new IconDirEntry[_images.Count];
+            var imageData = new byte[_images.Count][];
 
             var index = 0;
             foreach (var icon in icons)
@@ -162,7 +162,7 @@ namespace IpTviewr.Native
 
             // set offsets
             var sizeOfIconDirEntry = Marshal.SizeOf<IconDirEntry>();
-            var offset = Marshal.SizeOf<IconDirHeader>() + (sizeOfIconDirEntry * Images.Count);
+            var offset = Marshal.SizeOf<IconDirHeader>() + (sizeOfIconDirEntry * _images.Count);
             for (index=0;index<entries.Length;index++)
             {
                 entries[index].ImageOffset = (uint)offset;
@@ -247,7 +247,7 @@ namespace IpTviewr.Native
 
                 // write bitmap data
                 // remember: bitmaps in icons are bottom-up DIBs
-                for (int scanIndex = image.Height - 1; scanIndex >= 0; scanIndex--)
+                for (var scanIndex = image.Height - 1; scanIndex >= 0; scanIndex--)
                 {
                     var scan = data.Scan0 + (data.Stride * scanIndex);
                     Marshal.Copy(scan, scanData, 0, scanData.Length);
@@ -255,10 +255,10 @@ namespace IpTviewr.Native
                 } // for scanIndex
 
                 // create bottom-up bitmask
-                for (int scanIndex = image.Height - 1; scanIndex >= 0; scanIndex--)
+                for (var scanIndex = image.Height - 1; scanIndex >= 0; scanIndex--)
                 {
                     byte bits = 0;
-                    int bitIndex = 0;
+                    var bitIndex = 0;
                     var scan = data.Scan0 + (data.Stride * scanIndex);
                     Marshal.Copy(scan, scanData, 0, scanData.Length);
 
@@ -269,17 +269,16 @@ namespace IpTviewr.Native
                         if (alpha < 128) bits |= (byte)(1 << (7 - bitIndex));
 
                         bitIndex++;
-                        if (bitIndex >= 8)
-                        {
-                            output.WriteByte(bits);
-                            bits = 0;
-                            bitIndex = 0;
-                        } // if
+                        if (bitIndex < 8) continue;
+
+                        output.WriteByte(bits);
+                        bits = 0;
+                        bitIndex = 0;
                     } // for alphaIndex
 
                     // add padding to 4 bytes if necessary
                     var width = image.Width;
-                    for (int padding = 0; padding < ((width / 8) % 4); padding++)
+                    for (var padding = 0; padding < ((width / 8) % 4); padding++)
                     {
                         output.WriteByte(0);
                     } // for
@@ -353,11 +352,11 @@ namespace IpTviewr.Native
             } // switch format
         } // GetBitsPerPixel
 
-        private Bitmap To32bppArgbBitmap(Bitmap image)
+        private static Bitmap To32BppArgbBitmap(Bitmap image)
         {
             Bitmap result = null;
             Graphics g = null;
-            bool ok = false;
+            var ok = false;
 
             try
             {
@@ -373,12 +372,12 @@ namespace IpTviewr.Native
             }
             finally
             {
-                if (g != null) g.Dispose();
-                if ((!ok) && (result != null)) result.Dispose();
+                g?.Dispose();
+                if (!ok) result?.Dispose();
             } // try-catch-finally
         } // To32BitBitmap
 
-        private int WriteStruct<T>(Stream stream, T structure) where T : struct
+        private static int WriteStruct<T>(Stream stream, T structure) where T : struct
         {
             var bytes = NativeUtils.StructToBytes(structure);
             stream.Write(bytes, 0, bytes.Length);
