@@ -91,7 +91,7 @@ namespace IpTviewr.Internal.Tools.ConsoleExperiments
             } // foreach
 
             var iconName = isService
-                ? $"{Path.GetFileName(Path.GetFileName(folder))}.ico"
+                ? $"{Path.GetFileName(Path.GetDirectoryName(folder))}.ico"
                 : $"{Path.GetFileName(folder)}.ico";
             filename = Path.Combine(folder, iconName);
 
