@@ -8,89 +8,104 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO.Compression;
+using IpTviewr.Native;
+using SaveAs = IpTviewr.Native.WindowsIcon.SaveAs;
 
-namespace IpTViewr.Internal.Logos
+namespace IpTViewr.Setup.Logos
 {
-    /*
-    class PackLogos
+    internal sealed class PackLogos
     {
-        private string FromFolder;
-        private string ToFolder;
+        private string _fromFolder;
+        private string _toFolder;
 
         public bool ProcessArguments(IDictionary<string, string> arguments)
         {
-            string value;
-            string assemblyLocation;
+            _fromFolder = GetFromFolder(arguments);
+            if (_fromFolder == null) return false;
 
-            assemblyLocation = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
-
-            // FromFolder
-            if (arguments.TryGetValue("from", out value))
-            {
-                FromFolder = value;
-            }
-            else
-            {
-#if DEBUG
-                if (assemblyLocation.EndsWith("\\bin\\debug", StringComparison.InvariantCultureIgnoreCase))
-                {
-                    FromFolder = Path.GetFullPath(Path.Combine(assemblyLocation, "..\\..\\"));
-                }
-                else
-#endif
-                {
-                    Program.DisplayError("No 'from' folder has been specified");
-                    return false;
-                } // if-else
-            } // if-else
-
-            if (!Directory.Exists(FromFolder))
-            {
-                Program.DisplayError("The specified 'from' folder does not exists: " + FromFolder);
-                return false;
-            } // if
-
-            // ToFolder
-            if (arguments.TryGetValue("to", out value))
-            {
-                ToFolder = value;
-                Directory.CreateDirectory(ToFolder);
-            }
-            else
-            {
-                ToFolder = Directory.GetCurrentDirectory();
-            } // if-else
+            _toFolder = GetToFolder(arguments);
+            if (_toFolder == null) return false;
 
             return true;
         } // ProcessArguments
 
         public Program.Result Execute()
         {
-            string fromFolder, filenameFormat;
+            const CompressionLevel compression = CompressionLevel.Fastest;
 
-            var sizes = new short[] { 32, 48, 64, 96, 128, 256 };
+            var sizes = new short[] { 32, 48, 64, 128, 256 };
+            var saveAs = new [] { SaveAs.Bmp, SaveAs.Bmp, SaveAs.Bmp, SaveAs.Png, SaveAs.Png };
 
             // providers
-            fromFolder = Path.Combine(FromFolder, "Providers");
-            filenameFormat = "{{logos-providers}} {0}.png";
-            Packager.PackLogos(fromFolder, ToFolder, "logos-providers", null, sizes, false);
+            var fromFolder = Path.Combine(_fromFolder, "Providers");
+            foreach (var folder in Directory.EnumerateDirectories(fromFolder, "*", SearchOption.TopDirectoryOnly))
+            {
+                if (Program.Verbose) Console.WriteLine($"PROVIDER: {folder}");
+                var packager = new Packager(folder, sizes, saveAs, false);
+                var zipFile = Path.Combine(fromFolder, $"{Path.GetFileName(folder)}.zip");
+                packager.PackLogos(zipFile, compression);
+            } // foreach
 
             // services
-            fromFolder = Path.Combine(FromFolder, "Services");
-            var folders = Directory.EnumerateDirectories(fromFolder);
-            foreach (var folder in folders)
+            fromFolder = Path.Combine(_fromFolder, "Services");
+            foreach (var folder in Directory.EnumerateDirectories(fromFolder, "*", SearchOption.TopDirectoryOnly))
             {
-                var domainName = Path.GetFileName(folder);
-                filenameFormat = "{{logos-services}} " + domainName + "@{0}.png";
-                Packager.PackLogos(folder, ToFolder, "logos-services", domainName, sizes, true);
-            } // foreach folder
+                if (Program.Verbose) Console.WriteLine($"SERVICES: {folder}");
+                var packager = new Packager(folder, sizes, saveAs);
+                var zipFile = Path.Combine(fromFolder, $"{Path.GetFileName(folder)}.zip");
+                packager.PackLogos(zipFile, compression);
+            } // foreach
 
             return Program.Result.Ok;
         } // Execute
+
+        private static string GetFromFolder(IDictionary<string, string> arguments)
+        {
+            string fromFolder;
+            var assemblyLocation = Path.GetDirectoryName(Program.EntryAssembly.Location);
+
+            // FromFolder
+            if (arguments.TryGetValue("from", out var value))
+            {
+                fromFolder = value;
+            }
+            else
+            {
+#if DEBUG
+                if (assemblyLocation.EndsWith("\\bin\\debug", StringComparison.InvariantCultureIgnoreCase))
+                {
+                    fromFolder = Path.GetFullPath(Path.Combine(assemblyLocation, "..\\..\\"));
+                }
+                else
+#endif
+                {
+                    Program.DisplayError("No 'from' folder has been specified");
+                    return null;
+                } // if-else
+            } // if-else
+
+            if (Directory.Exists(fromFolder)) return fromFolder;
+
+            Program.DisplayError($"The specified 'from' folder does not exists: {fromFolder}");
+            return null;
+        } // GetFromFolder
+
+        private static string GetToFolder(IDictionary<string, string> arguments)
+        {
+            string toFolder;
+
+            if (arguments.TryGetValue("to", out var value))
+            {
+                toFolder = value;
+                Directory.CreateDirectory(toFolder);
+            }
+            else
+            {
+                toFolder = Directory.GetCurrentDirectory();
+            } // if-else
+
+            return toFolder;
+        } // GetToFolder
     } // class PackLogos
-    */
 } // namespace

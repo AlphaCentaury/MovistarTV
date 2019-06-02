@@ -13,7 +13,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("IPTViewr logos packager utility")]
-[assembly: AssemblyDescription("IpTViewr.Internal.Logos.PackLogos")]
+[assembly: AssemblyDescription("IpTViewr.Setup.PackLogos")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCopyright(SolutionVersion.DefaultCopyright)]
 [assembly: AssemblyCulture("")]
