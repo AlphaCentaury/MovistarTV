@@ -188,11 +188,11 @@
     <value>IPTViewr v1.5 'Kruger 60': {0}</value>
   </data>
   <data name="FirewallProgramList" xml:space="preserve">
-    <value>ChannelList.exe</value>
+    <value>IPTViewr.exe</value>
     <comment>One program per line</comment>
   </data>
   <data name="SuccessExecuteProgram" xml:space="preserve">
-    <value>ChannelList.exe</value>
+    <value>IPTViewr.exe</value>
   </data>
   <data name="EmbTargetFileVersion" xml:space="preserve">
     <value>9.0.1399.0</value>

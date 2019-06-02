@@ -133,19 +133,19 @@
     <value>service-mappings.xml</value>
   </data>
   <data name="FolderCache" xml:space="preserve">
-    <value>Cache</value>
+    <value>cache</value>
   </data>
   <data name="FolderLogosProviders" xml:space="preserve">
-    <value>Providers</value>
+    <value>providers</value>
   </data>
   <data name="FolderLogosRoot" xml:space="preserve">
-    <value>Logos</value>
+    <value>logos</value>
   </data>
   <data name="FolderLogosServices" xml:space="preserve">
-    <value>Services</value>
+    <value>services</value>
   </data>
   <data name="FolderRecordTasks" xml:space="preserve">
-    <value>RecordTasks</value>
+    <value>record-tasks</value>
   </data>
   <data name="FormatServiceLogoKey" xml:space="preserve">
     <value>{0}::{1}</value>
