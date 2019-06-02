@@ -9,73 +9,35 @@ http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
 -->
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
 	<Fragment>
-    <Feature Id="Feature.Logos"
-             Absent="disallow">
+    <Feature Id="Feature.Logos" Absent="disallow">
       <ComponentGroupRef Id="Logos.Providers"/>
-      <ComponentGroupRef Id="Logos.Services.Generic"/>
-      <ComponentGroupRef Id="Logos.Services.Imagenio"/>
+      <ComponentGroupRef Id="Logos.Services"/>
     </Feature>
 
-    <ComponentGroup Id="Logos.Providers" Directory="Folder.Logos">
+    <ComponentGroup Id="Logos.Providers" Directory="Folder.Logos.Providers">
       <Component>
-        <File Id="logos.providers.xml" Source="$(var.Logos.TargetDir)packed-logos\{logos-providers}.xml" KeyPath="yes" />
+        <File Id="logos.providers.mappings.xml" Source="$(var.Logos.ProjectDir)Providers\provider-mappings.xml" KeyPath="yes" />
       </Component>
       <Component>
-        <File Id="logos.providers.32" Source="$(var.Logos.TargetDir)packed-logos\{logos-providers} 32.png" KeyPath="yes" />
+        <File Id="logos.providers.default" Source="$(var.Logos.TargetDir)logos\Providers\(default).zip" KeyPath="yes" />
       </Component>
       <Component>
-        <File Id="logos.providers.48" Source="$(var.Logos.TargetDir)packed-logos\{logos-providers} 48.png" KeyPath="yes" />
-      </Component>
-      <Component>
-        <File Id="logos.providers.64" Source="$(var.Logos.TargetDir)packed-logos\{logos-providers} 64.png" KeyPath="yes" />
-      </Component>
-      <Component>
-        <File Id="logos.providers.96" Source="$(var.Logos.TargetDir)packed-logos\{logos-providers} 96.png" KeyPath="yes" />
-      </Component>
-      <Component>
-        <File Id="logos.providers.128" Source="$(var.Logos.TargetDir)packed-logos\{logos-providers} 128.png" KeyPath="yes" />
+        <File Id="logos.providers.movistar" Source="$(var.Logos.TargetDir)logos\Providers\movistar+.zip" KeyPath="yes" />
       </Component>
     </ComponentGroup>
 
-    <ComponentGroup Id="Logos.Services.Generic" Directory="Folder.Logos">
+    <ComponentGroup Id="Logos.Services" Directory="Folder.Logos.Services">
       <Component>
-        <File Id="logos.services.generic.xml" Source="$(var.Logos.TargetDir)packed-logos\{logos-services} generic.xml" KeyPath="yes" />
+        <File Id="logos.services.mappings.domain.xml" Source="$(var.Logos.ProjectDir)Services\domain-mappings.xml" KeyPath="yes" />
       </Component>
       <Component>
-        <File Id="logos.services.generic.32" Source="$(var.Logos.TargetDir)packed-logos\{logos-services} generic@32.png" KeyPath="yes" />
+        <File Id="logos.services.mappings.service.xml" Source="$(var.Logos.ProjectDir)Services\service-mappings.xml" KeyPath="yes" />
       </Component>
       <Component>
-        <File Id="logos.services.generic.48" Source="$(var.Logos.TargetDir)packed-logos\{logos-services} generic@48.png" KeyPath="yes" />
+        <File Id="logos.services.generic" Source="$(var.Logos.TargetDir)logos\Services\generic.zip" KeyPath="yes" />
       </Component>
       <Component>
-        <File Id="logos.services.generic.64" Source="$(var.Logos.TargetDir)packed-logos\{logos-services} generic@64.png" KeyPath="yes" />
-      </Component>
-      <Component>
-        <File Id="logos.services.generic.96" Source="$(var.Logos.TargetDir)packed-logos\{logos-services} generic@96.png" KeyPath="yes" />
-      </Component>
-      <Component>
-        <File Id="logos.services.generic.128" Source="$(var.Logos.TargetDir)packed-logos\{logos-services} generic@128.png" KeyPath="yes" />
-      </Component>
-    </ComponentGroup>
-
-    <ComponentGroup Id="Logos.Services.Imagenio" Directory="Folder.Logos">
-      <Component>
-        <File Id="logos.services.imagenio.xml" Source="$(var.Logos.TargetDir)packed-logos\{logos-services} imagenio.es.xml" KeyPath="yes" />
-      </Component>
-      <Component>
-        <File Id="logos.services.imagenio.32" Source="$(var.Logos.TargetDir)packed-logos\{logos-services} imagenio.es@32.png" KeyPath="yes" />
-      </Component>
-      <Component>
-        <File Id="logos.services.imagenio.48" Source="$(var.Logos.TargetDir)packed-logos\{logos-services} imagenio.es@48.png" KeyPath="yes" />
-      </Component>
-      <Component>
-        <File Id="logos.services.imagenio.64" Source="$(var.Logos.TargetDir)packed-logos\{logos-services} imagenio.es@64.png" KeyPath="yes" />
-      </Component>
-      <Component>
-        <File Id="logos.services.imagenio.96" Source="$(var.Logos.TargetDir)packed-logos\{logos-services} imagenio.es@96.png" KeyPath="yes" />
-      </Component>
-      <Component>
-        <File Id="logos.services.imagenio.128" Source="$(var.Logos.TargetDir)packed-logos\{logos-services} imagenio.es@128.png" KeyPath="yes" />
+        <File Id="logos.services.movistar" Source="$(var.Logos.TargetDir)logos\Services\movistar+.zip" KeyPath="yes" />
       </Component>
     </ComponentGroup>
   </Fragment>

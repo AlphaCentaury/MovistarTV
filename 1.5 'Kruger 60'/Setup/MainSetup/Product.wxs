@@ -80,9 +80,14 @@ http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
               </Directory>
               <Directory Id="InstallFolder.es" Name="es" />
             </Directory>
-            <Directory Id="CacheFolder" Name="Cache" />
-            <Directory Id="Folder.Logos" Name="Logos" />
-            <Directory Id="RecordTasksFolder" Name="RecordTasks" />
+            <Directory Id="Folder.Cache" Name="cache">
+              <Directory Id="Folder.Cache.Logos" Name="logos" />
+            </Directory>
+            <Directory Id="Folder.Logos" Name="Logos">
+              <Directory Id ="Folder.Logos.Providers" Name ="providers" />
+              <Directory Id ="Folder.Logos.Services" Name ="services" />
+            </Directory>
+            <Directory Id="RecordTasksFolder" Name="record-tasks" />
           </Directory>
         </Directory>
       </Directory>
@@ -101,8 +106,11 @@ http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
         <RemoveFile Id="Purge_RedistFolder" Name="*.*" On="uninstall" Directory="RedistFolder"/>
         <RemoveFile Id="Purge_RedistFolderx86" Name="*.*" On="uninstall" Directory="x86RedistFolder"/>
         <RemoveFile Id="Purge_RedistFolderx64" Name="*.*" On="uninstall" Directory="x64RedistFolder"/>
-        <RemoveFile Id="Purge_CacheFolder" Name="*.*" On="uninstall" Directory="CacheFolder" />
+        <RemoveFile Id="Purge_CacheLogosFolder" Name="*.*" On="uninstall" Directory="Folder.Cache.Logos" />
+        <RemoveFile Id="Purge_CacheFolder" Name="*.*" On="uninstall" Directory="Folder.Cache" />
         <RemoveFile Id="Purge_LogosFolder" Name="*.*" On="uninstall" Directory="Folder.Logos"/>
+        <RemoveFile Id="Purge_LogosProvidersFolder" Name="*.*" On="uninstall" Directory="Folder.Logos.Providers"/>
+        <RemoveFile Id="Purge_LogosServicesFolder" Name="*.*" On="uninstall" Directory="Folder.Logos.Services"/>
         <RemoveFile Id="Purge_RecordTasksFolder" Name="*.*" On="uninstall" Directory="RecordTasksFolder"/>
 
         <RemoveFolder Id="Remove_DvbFolder" On="uninstall" Directory="Folder.IPTViewr" />
@@ -113,10 +121,13 @@ http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
         <RemoveFolder Id="Remove_RedistFolder" On="uninstall" Directory="RedistFolder"/>
         <RemoveFolder Id="Remove_RedistFolderx86" On="uninstall" Directory="x86RedistFolder"/>
         <RemoveFolder Id="Remove_RedistFolderx64" On="uninstall" Directory="x64RedistFolder"/>
-        <RemoveFolder Id="Remove_CacheFolder" On="uninstall" Directory="CacheFolder" />
+        <RemoveFolder Id="Remove_CacheLogosFolder" On="uninstall" Directory="Folder.Cache.Logos" />
+        <RemoveFolder Id="Remove_CacheFolder" On="uninstall" Directory="Folder.Cache" />
         <RemoveFolder Id="Remove_LogosFolder" On="uninstall" Directory="Folder.Logos"/>
+        <RemoveFolder Id="Remove_LogosProvidersFolder" On="uninstall" Directory="Folder.Logos.Providers"/>
+        <RemoveFolder Id="Remove_LogosServicesFolder" On="uninstall" Directory="Folder.Logos.Services"/>
         <RemoveFolder Id="Remove_RecordTasksFolder" On="uninstall" Directory="RecordTasksFolder"/>
-      
+
         <RemoveFile Id="Purge_ProgramStartMenuFolder" Name="*.*" On="uninstall" Directory="ProgramStartMenuFolder"/>
 
         <RemoveFolder Id="Remove_ProgramStartMenuFolder" On="uninstall" Directory="ProgramStartMenuFolder"/>

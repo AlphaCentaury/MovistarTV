@@ -9,24 +9,24 @@ http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
 -->
 <Include>
   <!-- Allow side-by-side installation with other versions -->
-  <?define ProductId = "{C900EB8D-131F-4FF2-97DD-6BCABC173C7F}" ?>
-  <?define UpgradeCode = "{1E52C8AF-D281-4BFD-A714-54D29FB92E19}" ?>
+  <?define ProductId = "{D0875277-CC63-4AA4-A8E8-9DB2AA04269F}" ?>
+  <?define UpgradeCode = "{7BEC3F3A-937A-4400-A825-AD65F547D83E}" ?>
   <?define Manufacturer = "http://www.alphacentaury.org" ?>
   <?define Version = "1.5.1010.0" ?>
   <?define BaseRegistryKey = "Software\AlphaCentaury.org\IPTViewr\movistar+\v1.5.1010.0" ?>
   <?define BaseInstallFolder = "movistar+ (v1.5.1010.0 'Kruger 60')" ?>
 
-  <?define Guid.Component.Folders = "{2AE1E383-64C8-4BC0-AC93-EFAE08686ED0}" ?>
+  <?define Guid.Component.Folders = "{9FFE537B-71DC-4D5C-8442-067096DEA702}" ?>
 
-  <?define Guid.Component.CommonAssemblies = "{0477CBFF-B39A-487A-8D80-8984567E43D2}" ?>
-  <?define Guid.Component.CommonAssemblies.PDB = "{EBD56EA8-F7FA-4605-B520-C08ED4410A6D}" ?>
-  <?define Guid.Component.CommonAssemblies.Localization.es = "{7A6C8E56-8E93-4532-9E2E-A4B45CE59727}" ?>
+  <?define Guid.Component.CommonAssemblies = "{758E22E3-E788-45BD-A639-9D7AF0035FA4}" ?>
+  <?define Guid.Component.CommonAssemblies.PDB = "{33C0E01F-FF23-4053-8306-2A1DA011A408}" ?>
+  <?define Guid.Component.CommonAssemblies.Localization.es = "{71137D42-10AF-4945-AD08-B7E6D63382B7}" ?>
 
-  <?define Guid.Component.Record.Assemblies = "{487EC958-9A6D-4D27-BEDE-1A688A6D98C4}" ?>
-  <?define Guid.Component.Record.Assemblies.PDB = "{E42ECDFF-ED55-49C5-B359-F83EBE295BFD}" ?>
-  <?define Guid.Component.Record.Assemblies.Localization.es = "{BC4CE92C-AE48-4F59-8FDA-850C400B3E09}" ?>
+  <?define Guid.Component.Record.Assemblies = "{2ACDDE71-150B-426A-90F6-C8D6963BBFAF}" ?>
+  <?define Guid.Component.Record.Assemblies.PDB = "{F42A0B2C-6663-4549-8BBF-EC68AF39A7FC}" ?>
+  <?define Guid.Component.Record.Assemblies.Localization.es = "{0F926D7F-9232-469C-AD97-A3790A0C1BFF}" ?>
 
-  <?define Guid.Component.EPG.Assemblies = "{6E7AED45-3CF7-407A-A409-36B56B4DD566}" ?>
-  <?define Guid.Component.EPG.PDB = "{66E87B10-9474-4C5D-850A-FE5CFCCE563E}" ?>
-  <?define Guid.Component.EPG.Assemblies.Localization.es = "{B717DBB8-2473-47FC-B0E7-80C470F3072A}" ?>
+  <?define Guid.Component.EPG.Assemblies = "{32989458-EB10-4E96-93B0-C1BCC01FC345}" ?>
+  <?define Guid.Component.EPG.PDB = "{5428C4FA-1059-4F97-B6E3-D441A0BDD821}" ?>
+  <?define Guid.Component.EPG.Assemblies.Localization.es = "{F25E34E8-9CB4-420C-94BE-6DA298ED1B9D}" ?>
 </Include>

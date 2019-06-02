@@ -18,6 +18,6 @@ http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
   <String Id="SourceFileLicenseAgreement">solution-license</String>
   <String Id="FileLicenseAgreement">License agreement</String>
   <String Id="ProgramStartMenuFolder">IPTViewr for movistar+ v1.5 “Kruger 60” Beta 1</String>
-  <String Id="ChannelList.exe.lnk">movistar+ channels</String>
+  <String Id="IPTViewr.exe.lnk">IPTViewr for movistar+</String>
   <String Id="FirstTimeConfig.exe.lnk">First-time Configuration Wizard</String>
 </WixLocalization>
