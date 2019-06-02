@@ -9,7 +9,7 @@ http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
 -->
 <Logos-Services xmlns="http://movistartv.alphacentaury.org/schema/2019:Configuration:Mappings">
   <Package name="&lt;default&gt;">
-    <Domain name="generic">
+    <Domain name="generic" folder="generic">
       <Mapping serviceName="&lt;any&gt;" logo="dvb-iptv" />
       <Mapping serviceName="1" logo="tv" remarks="MPEG-2" />
       <Mapping serviceName="2" logo="radio" />
@@ -24,8 +24,8 @@ http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
       <Mapping serviceName="25" logo="hd_tv" remarks="AVC" />
     </Domain>
   </Package>
-  <Package name="movistarTV">
-    <Domain name="imagenio.es">
+  <Package name="movistar+">
+    <Domain name="imagenio.es" folder="movistar+">
       <Mapping serviceName="1" logo="tve_1" />
       <Mapping serviceName="2" logo="disney_channel" />
       <Mapping serviceName="3" logo="tve_2" />
