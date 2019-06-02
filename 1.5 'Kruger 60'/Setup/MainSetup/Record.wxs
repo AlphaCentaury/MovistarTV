@@ -48,7 +48,7 @@ http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
 
     <!-- Database -->
     <ComponentGroup Id="Record.DB">
-      <Component Id="Record.DB" Directory="RecordTasksFolder">
+      <Component Id="Record.DB" Directory="Folder.RecordTasks">
         <File Id="RecordTasks.sdf" Source="$(var.SolutionDir)DB\RecordTasks.sdf" />
       </Component>
     </ComponentGroup>
