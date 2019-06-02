@@ -39,21 +39,25 @@ namespace IpTViewr.Setup.Logos
 
             // providers
             var fromFolder = Path.Combine(_fromFolder, "Providers");
+            var toFolder = Path.Combine(_toFolder, "Providers");
+            Directory.CreateDirectory(toFolder);
             foreach (var folder in Directory.EnumerateDirectories(fromFolder, "*", SearchOption.TopDirectoryOnly))
             {
                 if (Program.Verbose) Console.WriteLine($"PROVIDER: {folder}");
                 var packager = new Packager(folder, sizes, saveAs, false);
-                var zipFile = Path.Combine(fromFolder, $"{Path.GetFileName(folder)}.zip");
+                var zipFile = Path.Combine(toFolder, $"{Path.GetFileName(folder)}.zip");
                 packager.PackLogos(zipFile, compression);
             } // foreach
 
             // services
             fromFolder = Path.Combine(_fromFolder, "Services");
+            toFolder = Path.Combine(_toFolder, "Services");
+            Directory.CreateDirectory(toFolder);
             foreach (var folder in Directory.EnumerateDirectories(fromFolder, "*", SearchOption.TopDirectoryOnly))
             {
                 if (Program.Verbose) Console.WriteLine($"SERVICES: {folder}");
                 var packager = new Packager(folder, sizes, saveAs);
-                var zipFile = Path.Combine(fromFolder, $"{Path.GetFileName(folder)}.zip");
+                var zipFile = Path.Combine(toFolder, $"{Path.GetFileName(folder)}.zip");
                 packager.PackLogos(zipFile, compression);
             } // foreach
 
