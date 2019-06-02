@@ -16,6 +16,7 @@ using System.Threading.Tasks;
 
 namespace IpTviewr.UiServices.Discovery.Logos
 {
+    /*
     public abstract class LogoImage
     {
         public LogoImage(PackedLogo logo)
@@ -120,4 +121,5 @@ namespace IpTviewr.UiServices.Discovery.Logos
             } // try-finally
         } // LoadLogo
     } // LogoImage
+    */
 } // namespace

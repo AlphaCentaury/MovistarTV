@@ -14,6 +14,7 @@ using System.Threading.Tasks;
 
 namespace IpTviewr.UiServices.Discovery.Logos
 {
+    /*
     public class PackedLogos: IEnumerable<PackedLogo>
     {
         private Dictionary<string, PackedLogo> Logos;
@@ -130,4 +131,5 @@ namespace IpTviewr.UiServices.Discovery.Logos
             return Logos.Values.GetEnumerator();
         } // GetEnumerator
     } // class PackedLogos
+    */
 } // namespace

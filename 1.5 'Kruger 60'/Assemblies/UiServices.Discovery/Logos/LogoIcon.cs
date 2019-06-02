@@ -16,6 +16,7 @@ using System.Threading.Tasks;
 
 namespace IpTviewr.UiServices.Discovery.Logos
 {
+    /*
     public class LogoIcon
     {
         public struct CreateProgress
@@ -87,4 +88,5 @@ namespace IpTviewr.UiServices.Discovery.Logos
             return Path.Combine(iconsFolder, logo.Key + ".ico");
         } // GetFile
     } // class LogoIcon
+    */
 } // namespace

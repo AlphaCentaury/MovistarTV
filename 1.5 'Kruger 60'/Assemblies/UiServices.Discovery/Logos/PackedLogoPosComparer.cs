@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 
 namespace IpTviewr.UiServices.Discovery.Logos
 {
+    /*
     class PackedLogoPosComparer : IComparer<PackedLogoPos>
     {
         public int Compare(PackedLogoPos x, PackedLogoPos y)
@@ -20,4 +21,5 @@ namespace IpTviewr.UiServices.Discovery.Logos
             return x.Size.CompareTo(y.Size);
         } // Compare
     } // class PackedLogoPosComparer
+    */
 } // namespace

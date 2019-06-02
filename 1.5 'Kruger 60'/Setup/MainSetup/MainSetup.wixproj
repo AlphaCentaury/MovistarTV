@@ -254,7 +254,7 @@
   </ItemGroup>
   <Import Project="$(WixTargetsPath)" />
   <PropertyGroup>
-    <PreBuildEvent>"$(SolutionDir)Logos\bin\$(ConfigurationName)\PackLogos" "-from:$(SolutionDir)Logos" "-to:$(SolutionDir)Logos\bin\$(ConfigurationName)\packed-logos" -nologo</PreBuildEvent>
+    <PreBuildEvent>REM "$(SolutionDir)Logos\bin\$(ConfigurationName)\PackLogos" "-from:$(SolutionDir)Logos" "-to:$(SolutionDir)Logos\bin\$(ConfigurationName)\packed-logos" -nologo</PreBuildEvent>
   </PropertyGroup>
   <!--
 	To modify your build process, add your task inside one of the targets below and uncomment it.

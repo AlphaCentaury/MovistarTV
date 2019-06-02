@@ -15,6 +15,7 @@ using System.Threading.Tasks;
 
 namespace IpTViewr.Internal.Logos
 {
+    /*
     class PackLogos
     {
         private string FromFolder;
@@ -91,4 +92,5 @@ namespace IpTViewr.Internal.Logos
             return Program.Result.Ok;
         } // Execute
     } // class PackLogos
+    */
 } // namespace

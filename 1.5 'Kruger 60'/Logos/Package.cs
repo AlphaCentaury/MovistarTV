@@ -14,6 +14,7 @@ using System.Threading.Tasks;
 
 namespace IpTViewr.Internal.Logos
 {
+    /*
     [Flags]
     public enum Quality
     {
@@ -34,4 +35,5 @@ namespace IpTViewr.Internal.Logos
         public long FileSizes;
 #endif
     } // class Package
+    */
 } // namespace

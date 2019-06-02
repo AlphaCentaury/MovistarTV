@@ -18,6 +18,7 @@ using System.Threading.Tasks;
 
 namespace IpTViewr.Internal.Logos
 {
+    /*
     static class Packager
     {
         public const int DefaultImageWidth = 4096;
@@ -168,4 +169,5 @@ namespace IpTViewr.Internal.Logos
             return power;
         } // CeilingPower2
     } // class Packager
+    */
 } // namespace

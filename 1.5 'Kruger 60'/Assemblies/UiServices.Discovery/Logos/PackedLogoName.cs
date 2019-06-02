@@ -15,6 +15,7 @@ using System.Xml.Serialization;
 
 namespace IpTviewr.UiServices.Discovery.Logos
 {
+    /*
     [Serializable]
     [DebuggerStepThrough]
     [XmlType(Namespace = XmlPackedLogosRoot.Namespace)]
@@ -71,4 +72,5 @@ namespace IpTviewr.UiServices.Discovery.Logos
             return (other.IsHD) ? -1 : 1;
         } // CompareTo
     } // class PackedLogoName
+    */
 } // namespace

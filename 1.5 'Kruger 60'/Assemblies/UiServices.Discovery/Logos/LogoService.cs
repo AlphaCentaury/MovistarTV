@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 
 namespace IpTviewr.UiServices.Discovery.Logos
 {
+    /*
     public sealed class LogoService: LogoImage
     {
         public LogoService(PackedLogo logo, string folder): base(logo)
@@ -20,4 +21,5 @@ namespace IpTviewr.UiServices.Discovery.Logos
             // no-op
         } // constructor
     } // sealed class LogoService
+    */
 } // namespace
