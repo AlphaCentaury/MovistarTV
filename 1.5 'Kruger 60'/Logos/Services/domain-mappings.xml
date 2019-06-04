@@ -8,10 +8,10 @@ See 'license.txt' file in the project root for complete license information.
 http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
 -->
 <Logos-Domains xmlns="http://movistartv.alphacentaury.org/schema/2019:Configuration:Mappings">
-  <Package name="&lt;default&gt;">
+  <Collection name="&lt;default&gt;">
     <Mapping domainName="IPTV" mandatory="true">generic</Mapping>
-  </Package>
-  <Package name="movistarTV">
+  </Collection>
+  <Collection name="movistarTV">
     <Mapping domainName="DEM_1.imagenio.es" mandatory="false">imagenio.es</Mapping>
     <Mapping domainName="DEM_4.imagenio.es" mandatory="false">imagenio.es</Mapping>
     <Mapping domainName="DEM_6.imagenio.es" mandatory="false">imagenio.es</Mapping>
@@ -29,5 +29,5 @@ http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
     <Mapping domainName="DEM_36.imagenio.es" mandatory="false">imagenio.es</Mapping>
     <Mapping domainName="DEM_37.imagenio.es" mandatory="false">imagenio.es</Mapping>
     <Mapping domainName="DEM_38.imagenio.es" mandatory="false">imagenio.es</Mapping>
-  </Package>
+  </Collection>
 </Logos-Domains>

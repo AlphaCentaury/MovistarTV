@@ -8,10 +8,10 @@ See 'license.txt' file in the project root for complete license information.
 http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
 -->
 <Logos-Providers xmlns="http://movistartv.alphacentaury.org/schema/2019:Configuration:Mappings">
-  <Package name="&lt;default&gt;" folder="(default)">
+  <Collection name="&lt;default&gt;" package="(default)">
     <Mapping domainName="DVB-IPTV" logo="DVB-IPTV" />
-  </Package>
-  <Package name="movistarTV" folder="movistar+">
+  </Collection>
+  <Collection name="movistarTV" package="movistar+">
     <Mapping domainName="DEM_1.imagenio.es" annotation="Cataluña" logo="cataluna" />
     <Mapping domainName="DEM_4.imagenio.es" annotation="Castilla y León" logo="castilla-leon" />
     <Mapping domainName="DEM_6.imagenio.es" annotation="Valencia" logo="valencia" />
@@ -29,6 +29,6 @@ http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
     <Mapping domainName="DEM_36.imagenio.es" annotation="País Vasco" logo="vasco" />
     <Mapping domainName="DEM_37.imagenio.es" annotation="Canarias" logo="canarias" />
     <Mapping domainName="DEM_38.imagenio.es" annotation="Castilla-La Mancha" logo="castilla-mancha" />
-    <Mapping domainName=".imagenio.es" annotation="NOT YET IMPLEMENTED!" logo="movistar+" />
-  </Package>
+    <Mapping domainName=".imagenio.es" annotation="generic logo for unknown demarcations" logo="movistar+" />
+  </Collection>
 </Logos-Providers>
