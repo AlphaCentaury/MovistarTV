@@ -133,7 +133,43 @@
   <metadata name="menuStripMain.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>353, 17</value>
   </metadata>
+  <data name="menuStripMain.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="menuStripMain.Size" type="System.Drawing.Size, System.Drawing">
+    <value>724, 24</value>
+  </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="menuStripMain.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;menuStripMain.Name" xml:space="preserve">
+    <value>menuStripMain</value>
+  </data>
+  <data name="&gt;&gt;menuStripMain.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;menuStripMain.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;menuStripMain.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="menuItemDvbIpTv.Size" type="System.Drawing.Size, System.Drawing">
+    <value>65, 20</value>
+  </data>
+  <data name="menuItemDvbIpTv.Text" xml:space="preserve">
+    <value>&amp;IPTViewr</value>
+  </data>
+  <data name="menuItemDvbRecent.Size" type="System.Drawing.Size, System.Drawing">
+    <value>160, 22</value>
+  </data>
+  <data name="menuItemDvbRecent.Text" xml:space="preserve">
+    <value>Recent channels</value>
+  </data>
+  <data name="menuItemDvbRecent.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
   <data name="menuItemDvbRecent0.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
@@ -605,20 +641,17 @@
   <data name="menuItemDvbRecent9.Text" xml:space="preserve">
     <value>Recent[9]</value>
   </data>
-  <data name="menuItemDvbRecent.Size" type="System.Drawing.Size, System.Drawing">
-    <value>160, 22</value>
-  </data>
-  <data name="menuItemDvbRecent.Text" xml:space="preserve">
-    <value>Recent channels</value>
-  </data>
-  <data name="menuItemDvbRecent.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
   <data name="separatorDvb1.Size" type="System.Drawing.Size, System.Drawing">
     <value>157, 6</value>
   </data>
   <data name="separatorDvb1.Visible" type="System.Boolean, mscorlib">
     <value>False</value>
+  </data>
+  <data name="menuItemDvbProvider.Size" type="System.Drawing.Size, System.Drawing">
+    <value>160, 22</value>
+  </data>
+  <data name="menuItemDvbProvider.Text" xml:space="preserve">
+    <value>&amp;Provider</value>
   </data>
   <data name="menuItemProviderSelect.Size" type="System.Drawing.Size, System.Drawing">
     <value>200, 22</value>
@@ -632,11 +665,14 @@
   <data name="menuItemProviderDetails.Text" xml:space="preserve">
     <value>Show technical details...</value>
   </data>
-  <data name="menuItemDvbProvider.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="menuItemDvbPackages.Size" type="System.Drawing.Size, System.Drawing">
     <value>160, 22</value>
   </data>
-  <data name="menuItemDvbProvider.Text" xml:space="preserve">
-    <value>&amp;Provider</value>
+  <data name="menuItemDvbPackages.Text" xml:space="preserve">
+    <value>P&amp;ackage</value>
+  </data>
+  <data name="menuItemDvbPackages.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="menuItemPackagesSelect.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -655,15 +691,6 @@
   </data>
   <data name="menuItemPackagesManage.Text" xml:space="preserve">
     <value>Manage packages...</value>
-  </data>
-  <data name="menuItemDvbPackages.Size" type="System.Drawing.Size, System.Drawing">
-    <value>160, 22</value>
-  </data>
-  <data name="menuItemDvbPackages.Text" xml:space="preserve">
-    <value>P&amp;ackage</value>
-  </data>
-  <data name="menuItemDvbPackages.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
   </data>
   <data name="separatorDvb2.Size" type="System.Drawing.Size, System.Drawing">
     <value>157, 6</value>
@@ -698,11 +725,20 @@
   <data name="menuItemDvbExit.Text" xml:space="preserve">
     <value>Exit</value>
   </data>
-  <data name="menuItemDvbIpTv.Size" type="System.Drawing.Size, System.Drawing">
-    <value>65, 20</value>
+  <data name="menuItemChannel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>63, 20</value>
   </data>
-  <data name="menuItemDvbIpTv.Text" xml:space="preserve">
-    <value>&amp;IPTViewr</value>
+  <data name="menuItemChannel.Text" xml:space="preserve">
+    <value>&amp;Channel</value>
+  </data>
+  <data name="menuItemChannelFavorites.Size" type="System.Drawing.Size, System.Drawing">
+    <value>225, 22</value>
+  </data>
+  <data name="menuItemChannelFavorites.Text" xml:space="preserve">
+    <value>&amp;Favorites</value>
+  </data>
+  <data name="menuItemChannelFavorites.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="menuItemChannelFavorites0.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -1113,15 +1149,6 @@
   <data name="menuItemChannelFavoritesEdit.Text" xml:space="preserve">
     <value>Edit list...</value>
   </data>
-  <data name="menuItemChannelFavorites.Size" type="System.Drawing.Size, System.Drawing">
-    <value>225, 22</value>
-  </data>
-  <data name="menuItemChannelFavorites.Text" xml:space="preserve">
-    <value>&amp;Favorites</value>
-  </data>
-  <data name="menuItemChannelFavorites.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
   <data name="separatorChannel1.Size" type="System.Drawing.Size, System.Drawing">
     <value>222, 6</value>
   </data>
@@ -1188,11 +1215,11 @@
   <data name="menuItemChannelDetails.Text" xml:space="preserve">
     <value>Show technical &amp;details...</value>
   </data>
-  <data name="menuItemChannel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>63, 20</value>
+  <data name="menuItemRecordings.Size" type="System.Drawing.Size, System.Drawing">
+    <value>78, 20</value>
   </data>
-  <data name="menuItemChannel.Text" xml:space="preserve">
-    <value>&amp;Channel</value>
+  <data name="menuItemRecordings.Text" xml:space="preserve">
+    <value>&amp;Recordings</value>
   </data>
   <data name="menuItemRecordingsRecord.Size" type="System.Drawing.Size, System.Drawing">
     <value>185, 22</value>
@@ -1230,11 +1257,11 @@
   <data name="menuItemRecordingsRepair.Visible" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
-  <data name="menuItemRecordings.Size" type="System.Drawing.Size, System.Drawing">
-    <value>78, 20</value>
+  <data name="menuItemEpg.Size" type="System.Drawing.Size, System.Drawing">
+    <value>40, 20</value>
   </data>
-  <data name="menuItemRecordings.Text" xml:space="preserve">
-    <value>&amp;Recordings</value>
+  <data name="menuItemEpg.Text" xml:space="preserve">
+    <value>&amp;EPG</value>
   </data>
   <data name="menuItemEpgBasicGrid.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>F6</value>
@@ -1305,11 +1332,11 @@
   <data name="menuItemEpgNext.Text" xml:space="preserve">
     <value>&amp;Next program</value>
   </data>
-  <data name="menuItemEpg.Size" type="System.Drawing.Size, System.Drawing">
-    <value>40, 20</value>
+  <data name="menuItemHelp.Size" type="System.Drawing.Size, System.Drawing">
+    <value>44, 20</value>
   </data>
-  <data name="menuItemEpg.Text" xml:space="preserve">
-    <value>&amp;EPG</value>
+  <data name="menuItemHelp.Text" xml:space="preserve">
+    <value>&amp;Help</value>
   </data>
   <data name="menuItemHelpDocumentation.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>F1</value>
@@ -1349,33 +1376,6 @@
   </data>
   <data name="menuItemHelpAbout.Text" xml:space="preserve">
     <value>&amp;About...</value>
-  </data>
-  <data name="menuItemHelp.Size" type="System.Drawing.Size, System.Drawing">
-    <value>44, 20</value>
-  </data>
-  <data name="menuItemHelp.Text" xml:space="preserve">
-    <value>&amp;Help</value>
-  </data>
-  <data name="menuStripMain.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="menuStripMain.Size" type="System.Drawing.Size, System.Drawing">
-    <value>724, 24</value>
-  </data>
-  <data name="menuStripMain.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;menuStripMain.Name" xml:space="preserve">
-    <value>menuStripMain</value>
-  </data>
-  <data name="&gt;&gt;menuStripMain.Type" xml:space="preserve">
-    <value>System.Windows.Forms.MenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;menuStripMain.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;menuStripMain.ZOrder" xml:space="preserve">
-    <value>7</value>
   </data>
   <data name="labelProviderName.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
@@ -1446,6 +1446,15 @@
   <metadata name="contextMenuList.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>673, 17</value>
   </metadata>
+  <data name="contextMenuList.Size" type="System.Drawing.Size, System.Drawing">
+    <value>219, 148</value>
+  </data>
+  <data name="&gt;&gt;contextMenuList.Name" xml:space="preserve">
+    <value>contextMenuList</value>
+  </data>
+  <data name="&gt;&gt;contextMenuList.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="contextMenuListShow.Size" type="System.Drawing.Size, System.Drawing">
     <value>218, 22</value>
   </data>
@@ -1475,6 +1484,12 @@
   </data>
   <data name="separatorContextList2.Size" type="System.Drawing.Size, System.Drawing">
     <value>215, 6</value>
+  </data>
+  <data name="contextMenuListCopy.Size" type="System.Drawing.Size, System.Drawing">
+    <value>218, 22</value>
+  </data>
+  <data name="contextMenuListCopy.Text" xml:space="preserve">
+    <value>&amp;Copy</value>
   </data>
   <data name="contextMenuListCopyURL.Size" type="System.Drawing.Size, System.Drawing">
     <value>188, 22</value>
@@ -1519,26 +1534,11 @@
   <data name="contextMenuListExportM3u.Text" xml:space="preserve">
     <value>Save list as .m3u file...</value>
   </data>
-  <data name="contextMenuListCopy.Size" type="System.Drawing.Size, System.Drawing">
-    <value>218, 22</value>
-  </data>
-  <data name="contextMenuListCopy.Text" xml:space="preserve">
-    <value>&amp;Copy</value>
-  </data>
   <data name="contextMenuListProperties.Size" type="System.Drawing.Size, System.Drawing">
     <value>218, 22</value>
   </data>
   <data name="contextMenuListProperties.Text" xml:space="preserve">
     <value>(Placeholder for properties)</value>
-  </data>
-  <data name="contextMenuList.Size" type="System.Drawing.Size, System.Drawing">
-    <value>219, 148</value>
-  </data>
-  <data name="&gt;&gt;contextMenuList.Name" xml:space="preserve">
-    <value>contextMenuList</value>
-  </data>
-  <data name="&gt;&gt;contextMenuList.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <metadata name="timerDismissNotification.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>488, 17</value>
@@ -1597,21 +1597,6 @@
   <metadata name="statusMainStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>815, 17</value>
   </metadata>
-  <data name="statusLabelMain.AutoSize" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="statusLabelMain.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleLeft</value>
-  </data>
-  <data name="statusLabelMain.Size" type="System.Drawing.Size, System.Drawing">
-    <value>709, 17</value>
-  </data>
-  <data name="statusLabelMain.Text" xml:space="preserve">
-    <value>statusLabelMain</value>
-  </data>
-  <data name="statusLabelMain.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleLeft</value>
-  </data>
   <data name="statusMainStrip.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 419</value>
   </data>
@@ -1635,6 +1620,21 @@
   </data>
   <data name="&gt;&gt;statusMainStrip.ZOrder" xml:space="preserve">
     <value>2</value>
+  </data>
+  <data name="statusLabelMain.AutoSize" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="statusLabelMain.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="statusLabelMain.Size" type="System.Drawing.Size, System.Drawing">
+    <value>709, 17</value>
+  </data>
+  <data name="statusLabelMain.Text" xml:space="preserve">
+    <value>statusLabelMain</value>
+  </data>
+  <data name="statusLabelMain.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
   </data>
   <data name="epgMiniGuide.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Left, Right</value>

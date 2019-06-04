@@ -77,7 +77,6 @@ namespace IpTviewr.ChannelList
 
         #region CommonBaseForm implementation
 
-
         protected override void ExceptionHandler(CommonBaseForm form, ExceptionEventData ex)
         {
             MyApplication.HandleException(form, ex);
@@ -118,7 +117,7 @@ namespace IpTviewr.ChannelList
         {
             BasicGoogleTelemetry.SendScreenHit(this, "Load");
 
-            this.Text = Properties.Texts.AppCaption;
+            Text = Properties.Texts.AppCaption;
 
             // disable functionality
             menuItemDvbRecent.Enabled = enable_menuItemDvbRecent;
@@ -136,16 +135,20 @@ namespace IpTviewr.ChannelList
             Notify(null, null, -1);
 
             // set-up EPG functionality
-            EpgDatastore = new EpgMemoryDatastore();
             enable_Epg = AppUiConfiguration.Current.User.Epg.Enabled;
+            epgMiniGuide.Visible = false;
             epgMiniGuide.IsDisabled = !enable_Epg;
-            if (epgMiniGuide.IsDisabled)
+            if (enable_Epg)
+            {
+                EpgDatastore = new EpgMemoryDatastore();
+            }
+            else
             {
                 foreach (ToolStripItem item in menuItemEpg.DropDownItems)
                 {
                     item.Enabled = false;
                 } // foreach
-            } // if
+            } // if-else
 
             // load from cache, if available
             SelectedServiceProvider = SelectProviderDialog.GetLastUserSelectedProvider(Properties.Settings.Default.LastSelectedServiceProvider);

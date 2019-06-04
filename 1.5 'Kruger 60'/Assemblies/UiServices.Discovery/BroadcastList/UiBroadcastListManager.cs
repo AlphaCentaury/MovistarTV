@@ -256,6 +256,7 @@ namespace IpTviewr.UiServices.Discovery.BroadcastList
                 fieldBroadcastServices = value;
                 SortedBroadcastServices = null;
                 fieldSelectedService = null;
+                ListView.Items.Clear();
                 ApplySorting();
                 FireStatusChanged();
                 FireSelectionChanged();

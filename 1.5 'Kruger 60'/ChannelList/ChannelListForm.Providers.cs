@@ -85,18 +85,15 @@ namespace IpTviewr.ChannelList
             Properties.Settings.Default.LastSelectedServiceProvider = (SelectedServiceProvider != null) ? SelectedServiceProvider.Key : null;
             Properties.Settings.Default.Save();
 
-            if (SelectedServiceProvider == null)
-            {
-                labelProviderName.Text = Properties.Texts.NotSelectedServiceProvider;
-                labelProviderDescription.Text = null;
-                pictureProviderLogo.Image = null;
-                menuItemProviderDetails.Enabled = false;
-                menuItemChannelRefreshList.Enabled = false;
-                menuItemChannelEditList.Enabled = false;
-                SetBroadcastDiscovery(null);
+            labelProviderName.Text = Properties.Texts.NotSelectedServiceProvider;
+            labelProviderDescription.Text = null;
+            pictureProviderLogo.Image = null;
+            menuItemProviderDetails.Enabled = false;
+            menuItemChannelRefreshList.Enabled = false;
+            menuItemChannelEditList.Enabled = false;
+            SetBroadcastDiscovery(null);
 
-                return;
-            } // if
+            if (SelectedServiceProvider == null) return;
 
             labelProviderName.Text = SelectedServiceProvider.DisplayName;
             labelProviderDescription.Text = SelectedServiceProvider.DisplayDescription;
@@ -107,9 +104,11 @@ namespace IpTviewr.ChannelList
             menuItemChannelEditList.Enabled = true;
 
             // TODO: clean-up
-            var downloader = new EpgDownloader("239.0.2.145:3937");
-            downloader.StartAsync(EpgDatastore);
-            // UpdateEpgData();
+            if (enable_Epg)
+            {
+                var downloader = new EpgDownloader("239.0.2.145:3937");
+                downloader.StartAsync(EpgDatastore);
+            } // if
 
             SetBroadcastDiscovery(null);
             LoadBroadcastDiscovery(true);
