@@ -8,8 +8,8 @@ See 'license.txt' file in the project root for complete license information.
 http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
 -->
 <Logos-Services xmlns="http://movistartv.alphacentaury.org/schema/2019:Configuration:Mappings">
-  <Collection name="&lt;default&gt;" package="movistar+">
-    <Domain name="generic">
+  <Collection name="&lt;default&gt;" package="generic">
+    <Domain name="DVB-IPTV">
       <Mapping serviceName="&lt;any&gt;" logo="dvb-iptv" />
       <Mapping serviceName="1" logo="tv" remarks="MPEG-2" />
       <Mapping serviceName="2" logo="radio" />

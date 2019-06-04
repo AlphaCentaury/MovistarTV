@@ -9,7 +9,7 @@ http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
 -->
 <Logos-Domains xmlns="http://movistartv.alphacentaury.org/schema/2019:Configuration:Mappings">
   <Collection name="&lt;default&gt;">
-    <Mapping domainName="IPTV" mandatory="true">generic</Mapping>
+    <Mapping domainName="IPTV" mandatory="true">DVB-IPTV</Mapping>
   </Collection>
   <Collection name="movistarTV">
     <Mapping domainName="DEM_1.imagenio.es" mandatory="false">imagenio.es</Mapping>
