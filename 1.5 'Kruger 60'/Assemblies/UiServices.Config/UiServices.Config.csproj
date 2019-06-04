@@ -42,6 +42,7 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.Compression" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
   </ItemGroup>
@@ -88,6 +89,8 @@
     <Compile Include="IConfigurationItem.cs" />
     <Compile Include="Logos\BaseLogo.cs" />
     <Compile Include="Cache\CacheManager.cs" />
+    <Compile Include="Logos\ILogoMapping.cs" />
+    <Compile Include="Logos\LogosCollection.cs" />
     <Compile Include="Logos\LogoSize.cs" />
     <Compile Include="Properties\InvariantTexts.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -125,9 +128,11 @@
     <Compile Include="ILocalizedObject.cs" />
     <Compile Include="LocalizedObject.cs" />
     <Compile Include="Schema2014\Logos\LogosCommon.cs" />
-    <Compile Include="Schema2014\Logos\DomainMappings.cs" />
-    <Compile Include="Schema2014\Logos\ProviderMappings.cs" />
-    <Compile Include="Schema2014\Logos\ServiceMappings.cs" />
+    <Compile Include="Schema2014\Logos\DomainMappingsXml.cs" />
+    <Compile Include="Schema2014\Logos\ProviderMapping.cs" />
+    <Compile Include="Schema2014\Logos\ProviderMappingsXml.cs" />
+    <Compile Include="Schema2014\Logos\ProviderCollection.cs" />
+    <Compile Include="Schema2014\Logos\ServiceMappingsXml.cs" />
     <Compile Include="Logos\ServiceLogoMappings.ServiceDomainMapping.cs" />
     <Compile Include="Properties\Texts.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -209,6 +214,7 @@
     <EmbeddedResource Include="Properties\InvariantTexts.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>InvariantTexts.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -220,6 +226,7 @@
     <EmbeddedResource Include="Properties\Texts.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Texts.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\SettingsTexts.es.resx" />
     <EmbeddedResource Include="Properties\SettingsTexts.resx">

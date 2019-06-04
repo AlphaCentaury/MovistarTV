@@ -7,6 +7,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.IO.Compression;
 using System.Linq;
 using System.Text;
 
@@ -14,22 +15,13 @@ namespace IpTviewr.UiServices.Configuration.Logos
 {
     public class ProviderLogo : BaseLogo
     {
-        public ProviderLogo(string basePath, string partialPath, string filePrefix, string key)
+        internal ProviderLogo(ILogoMapping mapping, string mappingKey, string entry, string uniqueKey) : base(mapping, mappingKey, entry, uniqueKey)
         {
-            BasePath = basePath;
-            PartialPath = partialPath;
-            FilePrefix = filePrefix;
-            Key = key;
+            // no-op
         } // constructor
 
-        protected override string ImageNotFoundExceptionText
-        {
-            get { return Properties.Texts.ExceptionLogosProviderImageNotFound; }
-        } // ImageNotFoundExceptionText
+        protected override string ImageNotFoundExceptionText => Properties.Texts.ExceptionLogosProviderImageNotFound;
 
-        protected override string ImageLoadExceptionText
-        {
-            get { return Properties.Texts.ExceptionLogosProviderImageLoadError; }
-        } // ImageLoadExceptionText
+        protected override string ImageLoadExceptionText => Properties.Texts.ExceptionLogosProviderImageLoadError;
     } // class ProviderLogo
 } // namespace

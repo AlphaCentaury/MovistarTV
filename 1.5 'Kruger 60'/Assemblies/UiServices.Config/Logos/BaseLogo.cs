@@ -6,24 +6,138 @@
 // http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
 
 using System;
+using System.Collections.Concurrent;
 using System.IO;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO.Compression;
 using System.Linq;
+using System.Runtime.InteropServices;
+using System.Security.Cryptography;
 using System.Text;
+using IpTviewr.UiServices.Configuration.Cache;
 
 namespace IpTviewr.UiServices.Configuration.Logos
 {
     public abstract class BaseLogo
     {
+        private static readonly ConcurrentDictionary<string, ZipArchive> Zips = new ConcurrentDictionary<string, ZipArchive>();
+
+        private BaseLogo()
+        {
+            // no-op
+        } // constructor
+
+        internal BaseLogo(ILogoMapping mapping, string mappingKey, string entry, string uniqueKey)
+        {
+            Mapping = mapping ?? throw new ArgumentNullException(nameof(mapping));
+            MappingKey = mappingKey ?? throw new ArgumentNullException(nameof(mappingKey));
+            MappingEntry = entry ?? throw new ArgumentNullException(nameof(entry));
+            Key = uniqueKey ?? throw new ArgumentNullException(nameof(uniqueKey));
+        } // constructor
+
+        internal ILogoMapping Mapping { get; }
+
+        internal string MappingKey { get; }
+
+        internal string MappingEntry { get; }
+
+        public string Key { get; }
+
+        public Image GetImage(LogoSize logoSize, bool noExceptions = true)
+        {
+            if (!IsSizeAvailable(logoSize))
+            {
+                throw new NotSupportedException();
+            } // if
+
+            var stream = (Stream)null;
+            try
+            {
+                stream = Mapping.GetImage(MappingKey, MappingEntry, logoSize);
+                if (stream != null) return Image.FromStream(stream);
+
+                if (noExceptions) return GetBrokenFile(logoSize);
+                throw new FileNotFoundException(ImageNotFoundExceptionText, $@"{MappingKey}: {MappingEntry}");
+            }
+            catch (FileNotFoundException ex) when (noExceptions == false)
+            {
+                throw new FileNotFoundException(ImageLoadExceptionText, $@"{MappingKey}: {MappingEntry}", ex);
+            }
+            catch (OutOfMemoryException ex) when (noExceptions == false)
+            {
+                throw new InvalidOperationException(string.Format(ImageLoadExceptionText, $@"{MappingKey}: {MappingEntry}"), ex);
+            }
+            catch (Exception) when (noExceptions)
+            {
+                return GetBrokenFile(logoSize);
+            }
+            finally
+            {
+                stream?.Dispose();
+            } // try-finally
+        } // GetImage
+
+        public string GetLogoIconPath()
+        {
+            Stream stream = null;
+
+            try
+            {
+                var iconPath = Path.Combine(AppUiConfiguration.Current.Folders.Logos.Cache,
+                    $"{Key.Replace('/', '~')}.ico");
+
+                var zipEntry = Mapping.GetIcon(MappingKey, MappingEntry, out var lastModifiedUtc);
+                if (zipEntry == null) return null;
+
+                if (File.Exists(iconPath))
+                {
+                    File.SetAttributes(iconPath, FileAttributes.Normal);
+                    var info = new FileInfo(iconPath);
+                    var last = info.CreationTimeUtc;
+                    if (info.LastWriteTimeUtc > last) last = info.LastWriteTimeUtc;
+
+                    if (lastModifiedUtc <= last) return iconPath;
+                } // if
+
+                Directory.CreateDirectory(AppUiConfiguration.Current.Folders.Logos.Cache);
+                using (var output = new FileStream(iconPath, FileMode.Create, FileAccess.Write, FileShare.None))
+                {
+                    var buffer = new byte[1024];
+                    int read;
+
+                    stream = zipEntry.Open();
+                    while ((read = stream.Read(buffer, 0, buffer.Length)) > 0)
+                    {
+                        output.Write(buffer, 0, read);
+                    } // while
+                } // using
+
+                var unused = new FileInfo(iconPath)
+                {
+                    CreationTimeUtc = lastModifiedUtc,
+                    LastWriteTimeUtc = lastModifiedUtc,
+                    LastAccessTimeUtc = lastModifiedUtc
+                };
+
+                return iconPath;
+            }
+            finally
+            {
+                stream?.Dispose();
+            } // try-finally
+        } // GetLogoIconPath
+
+        #region Static methods
+
         public static Size LogoSizeToSize(LogoSize logoSize)
         {
             switch (logoSize)
             {
                 case LogoSize.Size32: return new Size(32, 32);
                 case LogoSize.Size48: return new Size(48, 48);
-                case LogoSize.Size64: return new Size(64,64);
-                case LogoSize.Size96: return new Size(96,96);
+                case LogoSize.Size64: return new Size(64, 64);
+                case LogoSize.Size96: return new Size(96, 96);
                 case LogoSize.Size128: return new Size(128, 128);
                 case LogoSize.Size256: return new Size(256, 256);
                 default:
@@ -47,96 +161,26 @@ namespace IpTviewr.UiServices.Configuration.Logos
                     throw new IndexOutOfRangeException();
             } // switch
 
-            if (withSize)
-            {
-                var size = LogoSizeToSize(logoSize);
-                return string.Format(Properties.Texts.LogoSizeWithSizeFormat, text, size.Width, size.Height);
-            }
-            else
-            {
-                return text;
-            } // if-else
+            if (!withSize) return text;
+
+            var size = LogoSizeToSize(logoSize);
+            return string.Format(Properties.Texts.LogoSizeWithSizeFormat, text, size.Width, size.Height);
         } // LogoSizeToString
 
         public static List<KeyValuePair<LogoSize, string>> GetListLogoSizes(bool withSize)
         {
-            var result = new List<KeyValuePair<LogoSize, string>>(6);
-            result.Add(new KeyValuePair<LogoSize, string>(LogoSize.Size32, LogoSizeToString(LogoSize.Size32, withSize)));
-            result.Add(new KeyValuePair<LogoSize, string>(LogoSize.Size48, LogoSizeToString(LogoSize.Size48, withSize)));
-            result.Add(new KeyValuePair<LogoSize, string>(LogoSize.Size64, LogoSizeToString(LogoSize.Size64, withSize)));
-            result.Add(new KeyValuePair<LogoSize, string>(LogoSize.Size96, LogoSizeToString(LogoSize.Size96, withSize)));
-            result.Add(new KeyValuePair<LogoSize, string>(LogoSize.Size128, LogoSizeToString(LogoSize.Size128, withSize)));
-            result.Add(new KeyValuePair<LogoSize, string>(LogoSize.Size256, LogoSizeToString(LogoSize.Size256, withSize)));
+            var result = new List<KeyValuePair<LogoSize, string>>(6)
+            {
+                new KeyValuePair<LogoSize, string>(LogoSize.Size32, LogoSizeToString(LogoSize.Size32, withSize)),
+                new KeyValuePair<LogoSize, string>(LogoSize.Size48, LogoSizeToString(LogoSize.Size48, withSize)),
+                new KeyValuePair<LogoSize, string>(LogoSize.Size64, LogoSizeToString(LogoSize.Size64, withSize)),
+                new KeyValuePair<LogoSize, string>(LogoSize.Size96, LogoSizeToString(LogoSize.Size96, withSize)),
+                new KeyValuePair<LogoSize, string>(LogoSize.Size128, LogoSizeToString(LogoSize.Size128, withSize)),
+                new KeyValuePair<LogoSize, string>(LogoSize.Size256, LogoSizeToString(LogoSize.Size256, withSize))
+            };
 
             return result;
         } // GetListLogoSizes
-
-        public string FilePrefix
-        {
-            get;
-            protected set;
-        } // FilePrefix
-
-        public string PartialPath
-        {
-            get;
-            protected set;
-        } // PartialPath
-
-        public string BasePath
-        {
-            get;
-            protected set;
-        } // BasePath
-
-        public string Key
-        {
-            get;
-            protected set;
-        } // Key
-
-        public Image GetImage(LogoSize logoSize, bool noExceptions = true)
-        {
-            if (!IsSizeAvailable(logoSize))
-            {
-                throw new NotSupportedException();
-            } // if
-
-            var path = Path.Combine(BasePath, PartialPath);
-            var filename = Path.Combine(path, GetFilename(logoSize, ".png"));
-            try
-            {
-                return Image.FromFile(filename);
-            }
-            catch (FileNotFoundException ex)
-            {
-                if (noExceptions == false)
-                {
-                    throw new FileNotFoundException(ImageNotFoundExceptionText, ex);
-                } // if
-            }
-            catch (OutOfMemoryException ex)
-            {
-                if (noExceptions == false)
-                {
-                    throw new InvalidOperationException(string.Format(ImageLoadExceptionText, filename), ex);
-                }
-            } // try-catch
-            catch
-            {
-                if (noExceptions == false) throw;
-            } // catch
-
-            return GetBrokenFile(logoSize);
-        } // GetImage
-
-        public string GetLogoIconPath()
-        {
-            var path = Path.Combine(BasePath, PartialPath);
-            var filename = Path.Combine(path, FilePrefix + ".ico");
-
-            return File.Exists(filename) ? filename : null;
-        } // GetLogoIconPath
 
         public static Image GetBrokenFile(LogoSize logoSize)
         {
@@ -148,10 +192,32 @@ namespace IpTviewr.UiServices.Configuration.Logos
                 case LogoSize.Size96: return Properties.Resources.BrokenFile_96;
                 case LogoSize.Size128: return Properties.Resources.BrokenFile_128;
                 case LogoSize.Size256: return Properties.Resources.BrokenFile_256;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(logoSize), logoSize, null);
             } // switch
-
-            return null;
         } // GetBrokenFile
+
+        internal static ZipArchive GetZipArchive(string path)
+        {
+            return Zips.GetOrAdd(path, LoadZip);
+
+            ZipArchive LoadZip(string key)
+            {
+                var input = new FileStream(key, FileMode.Open, FileAccess.Read, FileShare.Read);
+                return new ZipArchive(input, ZipArchiveMode.Read, false);
+            } // LoadZip
+        } // GetZipArchive
+
+        internal static ZipArchiveEntry GetZipEntry(ZipArchive archive, string entryName)
+        {
+            var entry = archive.GetEntry(entryName);
+            if (entry != null) return entry;
+
+            entryName = entryName.Replace(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar);
+            return archive.GetEntry(entryName);
+        } // GetEntry
+
+        #endregion
 
         protected virtual bool IsSizeAvailable(LogoSize logoSize)
         {
@@ -169,38 +235,8 @@ namespace IpTviewr.UiServices.Configuration.Logos
             } // switch
         } // IsSizeAvailable
 
-        protected virtual string GetSizeSufix(LogoSize logoSize)
-        {
-            switch (logoSize)
-            {
-                case LogoSize.Size32: return "@32";
-                case LogoSize.Size48: return "@48";
-                case LogoSize.Size64: return "@64";
-                case LogoSize.Size96: return "@96";
-                case LogoSize.Size128: return "@128";
-                case LogoSize.Size256: return "@256";
-                default:
-                    throw new ArgumentOutOfRangeException("LogoSize logoSize");
-            } // switch
-        } // GetSizeSufix
+        protected abstract string ImageNotFoundExceptionText { get; }
 
-        protected string GetFilename(LogoSize size, string extension)
-        {
-            var buffer = new StringBuilder();
-            buffer.Append(FilePrefix);
-            buffer.Append(GetSizeSufix(size));
-            buffer.Append(extension);
-            return buffer.ToString();
-        } // GetFilename
-
-        protected abstract string ImageNotFoundExceptionText
-        {
-            get;
-        } // ImageNotFoundExceptionText
-
-        protected abstract string ImageLoadExceptionText
-        {
-            get;
-        } // ImageLoadExceptionText
+        protected abstract string ImageLoadExceptionText { get; }
     } // class BaseLogo
 } // namespace

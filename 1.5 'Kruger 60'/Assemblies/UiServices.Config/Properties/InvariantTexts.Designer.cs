@@ -61,7 +61,7 @@ namespace IpTviewr.UiServices.Configuration.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to DBV-IPTV.
+        ///   Looks up a localized string similar to DVB-IPTV.
         /// </summary>
         internal static string DefaultDomainNameProviderLogo {
             get {
@@ -111,6 +111,15 @@ namespace IpTviewr.UiServices.Configuration.Properties {
         internal static string FolderCache {
             get {
                 return ResourceManager.GetString("FolderCache", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to logos.
+        /// </summary>
+        internal static string FolderLogosCache {
+            get {
+                return ResourceManager.GetString("FolderLogosCache", resourceCulture);
             }
         }
         

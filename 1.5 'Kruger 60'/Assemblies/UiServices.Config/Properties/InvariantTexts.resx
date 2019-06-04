@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="DefaultDomainNameProviderLogo" xml:space="preserve">
-    <value>DBV-IPTV</value>
+    <value>DVB-IPTV</value>
   </data>
   <data name="DefaultDomainNameServiceLogo" xml:space="preserve">
     <value>IPTV</value>
@@ -139,6 +139,9 @@
     <value>providers</value>
   </data>
   <data name="FolderLogosRoot" xml:space="preserve">
+    <value>logos</value>
+  </data>
+  <data name="FolderLogosCache" xml:space="preserve">
     <value>logos</value>
   </data>
   <data name="FolderLogosServices" xml:space="preserve">

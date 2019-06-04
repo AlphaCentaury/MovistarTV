@@ -61,15 +61,6 @@
     </Compile>
     <Compile Include="BroadcastList\ListSelectionChangedEventArgs.cs" />
     <Compile Include="BroadcastList\ListStatusChangedEventArgs.cs" />
-    <Compile Include="Logos\LogoIcon.cs" />
-    <Compile Include="Logos\LogoImage.cs" />
-    <Compile Include="Logos\LogoService.cs" />
-    <Compile Include="Logos\PackedLogo.cs" />
-    <Compile Include="Logos\PackedLogoName.cs" />
-    <Compile Include="Logos\PackedLogoPos.cs" />
-    <Compile Include="Logos\PackedLogoPosComparer.cs" />
-    <Compile Include="Logos\XmlPackedLogosRoot.cs" />
-    <Compile Include="Logos\PackedLogos.cs" />
     <Compile Include="Properties\ListViewManager.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

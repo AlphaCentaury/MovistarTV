@@ -6,13 +6,6 @@
 // http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
 
 using IpTviewr.Common.Serialization;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Xml;
-using System.Xml.Serialization;
 
 namespace IpTviewr.UiServices.Configuration.Schema2014.Logos
 {
@@ -21,27 +14,12 @@ namespace IpTviewr.UiServices.Configuration.Schema2014.Logos
         public const string LogoMappingsXmlNamespace = "http://movistartv.alphacentaury.org/schema/2019:Configuration:Mappings";
 
         public static ServiceMappingsXml ParseServiceMappingsXml(string filename)
-        {
-            var xmlMappings = XmlSerialization.Deserialize<ServiceMappingsXml>(filename, true);
-            xmlMappings.BasePath = System.IO.Path.GetDirectoryName(filename);
-
-            return xmlMappings;
-        } // ParseServiceMappingsXml
+            => XmlSerialization.Deserialize<ServiceMappingsXml>(filename, true);
 
         public static DomainMappingsXml ParseDomainMappingsXml(string filename)
-        {
-            var xmlMappings = XmlSerialization.Deserialize<DomainMappingsXml>(filename, true);
-            xmlMappings.BasePath = System.IO.Path.GetDirectoryName(filename);
-
-            return xmlMappings;
-        } // ParseDomainMappingsXml
+            => XmlSerialization.Deserialize<DomainMappingsXml>(filename, true);
 
         public static ProviderMappingsXml ParseProviderMappingsXml(string filename)
-        {
-            var xmlMappings = XmlSerialization.Deserialize<ProviderMappingsXml>(filename, true);
-            xmlMappings.BasePath = System.IO.Path.GetDirectoryName(filename);
-
-            return xmlMappings;
-        } // ParseProviderMappingsXml
+            => XmlSerialization.Deserialize<ProviderMappingsXml>(filename, true);
     } // class Common
 } // namespace

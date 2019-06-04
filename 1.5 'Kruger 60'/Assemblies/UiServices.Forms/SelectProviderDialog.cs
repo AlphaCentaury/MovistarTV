@@ -243,22 +243,20 @@ namespace IpTviewr.UiServices.Forms
 
             listViewServiceProviders.EndUpdate();
 
-            if (selectedItem != null)
-            {
-                selectedItem.Selected = true;
-                selectedItem.EnsureVisible();
-            } // if
+            if (selectedItem == null) return;
+
+            selectedItem.Selected = true;
+            selectedItem.EnsureVisible();
         } // FillServiceProviderList
 
         private string GetProviderLogoKey(ProviderLogo logo)
         {
-            if (!imageListProvidersLarge.Images.ContainsKey(logo.Key))
+            if (imageListProvidersLarge.Images.ContainsKey(logo.Key)) return logo.Key;
+
+            using (var image = logo.GetImage(LogoSize.Size32, true))
             {
-                using (var image = logo.GetImage(LogoSize.Size32, true))
-                {
-                    imageListProvidersLarge.Images.Add(logo.Key, image);
-                } // using image
-            } // if
+                imageListProvidersLarge.Images.Add(logo.Key, image);
+            } // using image
 
             return logo.Key;
         } // GetProviderLogoKey

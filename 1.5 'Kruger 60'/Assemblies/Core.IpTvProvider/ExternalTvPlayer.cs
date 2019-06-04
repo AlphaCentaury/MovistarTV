@@ -93,7 +93,7 @@ namespace IpTviewr.Core.IpTvProvider
                 service.LocationUrl,
                 service.DisplayName,
                 service.DisplayDescription,
-                service.Logo.GetLogoIconPath(),
+                throughShortcut? service.Logo.GetLogoIconPath() : null,
             };
 
             var parameters = ArgumentsManager.CreateParameters(LaunchParamKeys, paramValues, false);
@@ -102,7 +102,7 @@ namespace IpTviewr.Core.IpTvProvider
 
             if (throughShortcut)
             {
-                LaunchShortcut(player, service, launchArguments);
+                LaunchShortcut(player, service, launchArguments, paramValues[3]);
             }
             else
             {
@@ -111,22 +111,24 @@ namespace IpTviewr.Core.IpTvProvider
         } // Launch
 
         [PermissionSet(SecurityAction.Demand, Name = "FullTrust")]
-        private static void LaunchShortcut(TvPlayer player, UiBroadcastService service, string arguments)
+        private static void LaunchShortcut(TvPlayer player, UiBroadcastService service, string arguments, string iconLocation)
         {
             var shortcutPath = Path.Combine(AppUiConfiguration.Current.Folders.Cache, service.FullServiceName) + ".lnk";
 
-            // delete exising shortcut
+            // delete existing shortcut
             if (File.Exists(shortcutPath))
             {
                 File.SetAttributes(shortcutPath, FileAttributes.Normal);
                 File.Delete(shortcutPath);
             } // if
 
-            var shortcut = new ShellLink();
-            shortcut.TargetPath = player.Path;
-            shortcut.Arguments = arguments;
-            shortcut.Description = string.Format(Properties.Texts.ExternalPlayerShortcutDescription, player.Name, service.DisplayName);
-            shortcut.IconLocation = service.Logo.GetLogoIconPath();
+            var shortcut = new ShellLink
+            {
+                TargetPath = player.Path,
+                Arguments = arguments,
+                Description = string.Format(Properties.Texts.ExternalPlayerShortcutDescription, player.Name, service.DisplayName),
+                IconLocation = iconLocation
+            };
             shortcutPath = shortcut.CreateShortcut(shortcutPath);
 
             var start = new ProcessStartInfo()

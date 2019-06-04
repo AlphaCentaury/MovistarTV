@@ -17,31 +17,24 @@ namespace IpTviewr.UiServices.Configuration
     {
         public class FolderLogos
         {
-            public string Root { get; internal protected set; }
-            public string Providers { get; internal protected set; }
-            public string Services { get; internal protected set; }
+            public string Root { get; }
+            public string Providers { get; }
+            public string Services { get; }
+            public string Cache { get; }
 
-            internal FolderLogos(string rootFolder)
+            internal FolderLogos(string rootFolder, string cacheFolder)
             {
                 Root = rootFolder;
                 Providers = Path.Combine(Root, Properties.InvariantTexts.FolderLogosProviders);
                 Services = Path.Combine(Root, Properties.InvariantTexts.FolderLogosServices);
+                Cache = Path.Combine(cacheFolder, Properties.InvariantTexts.FolderLogosCache);
             } // constructor
 
-            public string FileProviderMappings
-            {
-                get { return Path.Combine(Providers, Properties.InvariantTexts.FileLogoProviderMappings); }
-            } // FileProvidersMappings
+            public string FileProviderMappings => Path.Combine(Providers, Properties.InvariantTexts.FileLogoProviderMappings);
 
-            public string FileServiceDomainMappings
-            {
-                get { return Path.Combine(Services, Properties.InvariantTexts.FileLogoDomainMappings); }
-            } // FileServiceDomainMappings
+            public string FileServiceDomainMappings => Path.Combine(Services, Properties.InvariantTexts.FileLogoDomainMappings);
 
-            public string FileServiceMappings
-            {
-                get { return Path.Combine(Services, Properties.InvariantTexts.FileLogoServiceMappings); }
-            } // FileProvidersMappings
+            public string FileServiceMappings => Path.Combine(Services, Properties.InvariantTexts.FileLogoServiceMappings);
         } // FolderLogos
 
         public string Install { get; internal protected set; }

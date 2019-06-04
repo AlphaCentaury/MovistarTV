@@ -7,82 +7,108 @@
 
 using IpTviewr.UiServices.Configuration.Schema2014.Logos;
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.IO;
+using System.IO.Compression;
 using System.Linq;
 using System.Text;
+using System.Threading;
 
 namespace IpTviewr.UiServices.Configuration.Logos
 {
-    public class ProviderLogoMappings
+    public class ProviderLogoMappings: ILogoMapping
     {
-        private IDictionary<string, string> ProviderMappings;
+        private IDictionary<string, string> _logos;
+        private IDictionary<string, LogosCollection> _collections;
 
-        public string BasePathLogos
-        {
-            get;
-            private set;
-        } // BasePathLogos
+        public string LogosPath { get; private set; }
 
-        public ProviderLogoMappings(ProviderMappingsXml providerMappings)
+        public ProviderLogoMappings(ProviderMappingsXml providerMappings, string logosPath)
         {
-            Init(providerMappings);
+            Init(providerMappings, logosPath);
         } // constructor
 
-        public ProviderLogoMappings(string providerMappingsXmlFilename)
+        public ProviderLogoMappings(string providerMappingsXmlFilename, string logosPath)
         {
             var providerMappings = LogosCommon.ParseProviderMappingsXml(providerMappingsXmlFilename);
 
-            Init(providerMappings);
+            Init(providerMappings, logosPath);
         } // constructor
 
-        public static IDictionary<string, string> BuildMapping(ProviderMappingsXml providerMappings)
+        public ProviderLogo Get(string providerDomainName)
         {
-            Dictionary<string, string> mappings;
-            int count;
-
-            var q = from package in providerMappings.Packages
-                    from mp in package.Mappings
-                    select mp;
-            count = q.Count();
-
-            mappings = new Dictionary<string, string>(count);
-            foreach (var mp in q)
+            while (true)
             {
+                // avoid infinite loop
+                if (providerDomainName == null)
+                {
+                    providerDomainName = Properties.InvariantTexts.DefaultDomainNameProviderLogo;
+                } // if
+
+                if (_logos.TryGetValue(providerDomainName, out var logoFile))
+                {
+                    var collection = _collections[providerDomainName];
+                    return new ProviderLogo(this, providerDomainName, logoFile, $@"{collection.Key}/{logoFile}");
+                } // if
+
+                // try 'parent' domain
+                var index = providerDomainName.IndexOf('.');
+                providerDomainName = (index > 0) ? providerDomainName.Substring(index) : null;
+            } // while
+        } // Get
+
+        private void Init(ProviderMappingsXml providerMappings, string logosPath)
+        {
+            LogosPath = logosPath;
+
+            var q = from collection in providerMappings.Collections
+                    from mp in collection.Mappings
+                    select 0;
+            var count = q.Count();
+
+            _logos = new Dictionary<string, string>(count, StringComparer.OrdinalIgnoreCase);
+            _collections = new Dictionary<string, LogosCollection>(count, StringComparer.OrdinalIgnoreCase);
+
+            var entries = from collection in providerMappings.Collections
+                from mp in collection.Mappings
+                select new { Collection = collection, Mapping = mp };
+            foreach (var entry in entries)
+            {
+                var domain = entry.Mapping.DomainName;
                 try
                 {
-                    mappings.Add(mp.DomainName.ToLowerInvariant(), mp.LogoFile);
+                    _logos.Add(domain, entry.Mapping.LogoFile);
+                    _collections.Add(domain, new LogosCollection(name: entry.Collection.Name,
+                        package: entry.Collection.Package,
+                        archivePath: Path.Combine(logosPath, entry.Collection.Package) + ".zip",
+                        key: $@"/provider/{entry.Collection.Package}"));
                 }
                 catch (ArgumentException ex) // duplicated key (domain name)
                 {
                     throw new ApplicationException(
-                        string.Format(Properties.Texts.ExceptionLogosProviderMappingsDuplicatedDomain, mp.DomainName), ex);
+                        string.Format(Properties.Texts.ExceptionLogosProviderMappingsDuplicatedDomain, entry.Mapping.DomainName), ex);
                 } // try-catch
             } // foreach
-
-            return mappings;
-        } // BuildMapping
-
-        public ProviderLogo Get(string providerDomainName)
-        {
-            string logoFile;
-
-            if (providerDomainName == null) providerDomainName = Properties.InvariantTexts.DefaultDomainNameProviderLogo;
-            providerDomainName = providerDomainName.ToLowerInvariant();
-
-            if (ProviderMappings.TryGetValue(providerDomainName, out logoFile))
-            {
-                return new ProviderLogo(BasePathLogos, string.Empty, logoFile, providerDomainName);
-            } // if
-
-            // get default logo
-            return Get(null);
-        } // Get
-
-        private void Init(ProviderMappingsXml providerMappings)
-        {
-            ProviderMappings = BuildMapping(providerMappings);
-            BasePathLogos = providerMappings.BasePath;
         } // Init
+
+        #region ILogoMapping implementation
+
+        Stream ILogoMapping.GetImage(string key, string entry, LogoSize size)
+        {
+            if (!_collections.TryGetValue(key, out var collection)) return null;
+            var zip = BaseLogo.GetZipArchive(collection.ArchivePath);
+            var entryName = $@"{entry}{Path.DirectorySeparatorChar}{(int)size}.png";
+            var zipEntry = BaseLogo.GetZipEntry(zip, entryName);
+
+            return zipEntry?.Open();
+        } // ILogoMapping.GetImage
+
+        ZipArchiveEntry ILogoMapping.GetIcon(string key, string entry, out DateTime lastModifiedUtc)
+        {
+            throw new NotSupportedException();
+        } // ILogoMapping.GetImage
+
+        #endregion
     } // class ProviderLogoMappings
 } // namespace

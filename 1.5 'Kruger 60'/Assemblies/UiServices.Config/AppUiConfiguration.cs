@@ -294,8 +294,8 @@ namespace IpTviewr.UiServices.Configuration
 
             Cache = new CacheManager(Folders.Cache);
 
-            ProviderLogoMappings = new ProviderLogoMappings(Folders.Logos.FileProviderMappings);
-            ServiceLogoMappings = new ServiceLogoMappings(Folders.Logos.FileServiceDomainMappings, Folders.Logos.FileServiceMappings);
+            ProviderLogoMappings = new ProviderLogoMappings(Folders.Logos.FileProviderMappings, Folders.Logos.Providers);
+            ServiceLogoMappings = new ServiceLogoMappings(Folders.Logos.FileServiceDomainMappings, Folders.Logos.FileServiceMappings, Folders.Logos.Services);
 
             return InitializationResult.Ok;
         } // LoadBasicConfiguration
@@ -384,7 +384,7 @@ namespace IpTviewr.UiServices.Configuration
             Folders.Cache = Path.Combine(Folders.Base, Properties.InvariantTexts.FolderCache);
 
             // Logos
-            Folders.Logos = new AppUiConfigurationFolders.FolderLogos(Path.Combine(Folders.Base, Properties.InvariantTexts.FolderLogosRoot));
+            Folders.Logos = new AppUiConfigurationFolders.FolderLogos(Path.Combine(Folders.Base, Properties.InvariantTexts.FolderLogosRoot), Folders.Cache);
         } // GetFolders
 
         #endregion
