@@ -471,7 +471,7 @@ namespace IpTviewr.Tools.FirstTimeConfig
         {
             try
             {
-                return Installation.GetProgramFilesx86Folder();
+                return WindowsBitness.Is64BitWindows() ? GetProgramFilesx64Folder() : GetProgramFilesx86Folder();
             }
             catch
             {
@@ -484,6 +484,12 @@ namespace IpTviewr.Tools.FirstTimeConfig
             var folder = KnownFolders.GetKnownFolder(KnownFolders.System.ProgramFiles_x86, KnownFolders.Flags.None);
             return System.Environment.ExpandEnvironmentVariables(folder);
         } // GetProgramFilesx86Folder
+
+        public static string GetProgramFilesx64Folder()
+        {
+            var folder = KnownFolders.GetKnownFolder(KnownFolders.System.ProgramFiles_x64, KnownFolders.Flags.None);
+            return System.Environment.ExpandEnvironmentVariables(folder);
+        } // GetProgramFilesx64Folder
 
         public static string GetCurrentUserVideosFolder()
         {
