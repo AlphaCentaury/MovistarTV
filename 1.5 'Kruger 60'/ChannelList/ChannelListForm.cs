@@ -5,35 +5,22 @@
 // 
 // http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
 
-using Microsoft.SqlServer.MessageBox;
 using IpTviewr.ChannelList.Properties;
 using IpTviewr.Common;
 using IpTviewr.Common.Telemetry;
-using IpTviewr.Services.Record;
-using IpTviewr.Services.Record.Serialization;
 using IpTviewr.UiServices.Common.Forms;
 using IpTviewr.UiServices.Common.Start;
 using IpTviewr.UiServices.Configuration;
-using IpTviewr.UiServices.Configuration.Logos;
-using IpTviewr.UiServices.Configuration.Schema2014.Config;
 using IpTviewr.UiServices.Discovery;
 using IpTviewr.UiServices.Discovery.BroadcastList;
-//using IpTviewr.UiServices.EPG;
 using IpTviewr.UiServices.Forms;
-using IpTviewr.UiServices.Record;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Windows.Forms;
-using IpTviewr.Core.IpTvProvider;
 using IpTviewr.UiServices.EPG;
 using IpTviewr.Services.EpgDiscovery;
-//using IpTviewr.Core.IpTvProvider.EPG;
 
 namespace IpTviewr.ChannelList
 {
@@ -55,6 +42,7 @@ namespace IpTviewr.ChannelList
         private Stack<Notification> _notifications;
         private EpgDataStore _epgDataStore;
         private CancellationTokenSource _tokenSource;
+        private int _epgDataCount;
 
         // disabled functionality
         private const bool enable_menuItemDvbRecent = false;
@@ -140,13 +128,15 @@ namespace IpTviewr.ChannelList
             enable_Epg = AppUiConfiguration.Current.User.Epg.Enabled;
             epgMiniGuide.Visible = false;
             epgMiniGuide.IsDisabled = !enable_Epg;
+            statusLabelEpg.Text = enable_Epg ? Texts.EpgStatusNotStarted : Texts.EpgStatusDisabled;
+            _epgDataCount = 0;
             if (!enable_Epg)
-            { 
+            {
                 foreach (ToolStripItem item in menuItemEpg.DropDownItems)
                 {
                     item.Enabled = false;
                 } // foreach
-            } // if
+            } // if-else
 
             // load from cache, if available
             _selectedServiceProvider = SelectProviderDialog.GetLastUserSelectedProvider(Properties.Settings.Default.LastSelectedServiceProvider);
@@ -258,6 +248,11 @@ namespace IpTviewr.ChannelList
         {
             NotImplementedBox.ShowBox(this, "menuItemChannelFavorites");
         }  // menuItemChannelFavoritesEdit_Click
+
+        private void TimerRefreshEpgStatus_Tick(object sender, EventArgs e)
+        {
+            statusLabelEpg.Text = (_epgDataStore == null)? Texts.EpgStatusNotStarted : Texts.EpgStatusWait;
+        } // TimerRefreshEpgStatus_Tick
 
         #endregion
     } // class ChannelListForm

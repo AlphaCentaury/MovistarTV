@@ -19,7 +19,7 @@ namespace IpTviewr.Services.EpgDiscovery
 {
     partial class EpgDownloader
     {
-		private class SegmentsProcessor
+        private class SegmentsProcessor
         {
             ConcurrentQueue<byte[]> SegmentsQueue;
             AutoResetEvent EnqueuedSegments;
@@ -27,7 +27,10 @@ namespace IpTviewr.Services.EpgDiscovery
             bool NoMoreSegments;
             EpgDataStore Datastore;
 
-			public void Start(EpgDataStore datastore)
+            public event EventHandler ScheduleReceived;
+            public event EventHandler ParseError;
+
+            public void Start(EpgDataStore datastore)
             {
                 if (SegmentsQueue != null) throw new InvalidOperationException();
 
@@ -45,19 +48,21 @@ namespace IpTviewr.Services.EpgDiscovery
             {
                 if (SegmentsQueue == null) throw new ObjectDisposedException(nameof(SegmentsProcessor));
 
+#if DEBUG
                 Console.WriteLine("Enqueue");
+#endif
                 SegmentsQueue.Enqueue(segmentPayload);
                 EnqueuedSegments.Set();
             } // AddSegment
 
-			public void WaitCompletion()
+            public void WaitCompletion()
             {
                 NoMoreSegments = true;
                 EnqueuedSegments.Set();
                 ProcessSegmentsEnded.WaitOne();
             } // WaitCompletion
 
-			public void Dispose()
+            public void Dispose()
             {
                 if (SegmentsQueue == null) return;
 
@@ -83,12 +88,16 @@ namespace IpTviewr.Services.EpgDiscovery
                             continue;
                         } // if
                         var epgService = EpgService.FromSchedule(schedule);
+                        ScheduleReceived?.Invoke(this, EventArgs.Empty);
                         Datastore.Add(epgService);
                     }
                     catch (Exception ex)
                     {
+                        ParseError?.Invoke(this, EventArgs.Empty);
+#if DEBUG
                         // TODO: log
                         Console.WriteLine("Unable to parse: {0}", ex.Message);
+#endif
                         return;
                     } // try-catch
                 } // while
@@ -102,10 +111,14 @@ namespace IpTviewr.Services.EpgDiscovery
 
                 while (true)
                 {
+#if DEBUG
                     Console.WriteLine("Queue: {0} items", SegmentsQueue.Count);
+#endif
                     if (SegmentsQueue.TryDequeue(out payload))
                     {
+#if DEBUG
                         Console.WriteLine("Dequeue.Ok");
+#endif
                         return payload;
                     } // if
 

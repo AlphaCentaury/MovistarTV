@@ -113,13 +113,6 @@ namespace IpTviewr.ChannelList
             // EpgExtendedInfoDialog.ShowExtendedInfo(this, ListManager.SelectedService, epgMiniGuide.SelectedEvent);
         } // ShowEpgExtendedInfo
 
-        private void UpdateEpgData()
-        {
-            if (!enable_Epg) return;
-
-            // TODO: call EpgDownloader with appropriate EpgDataStore
-        } // UpdateEgpData
-
         private void ShowEpgList(int daysDelta)
         {
             if (_listManager.SelectedService == null) return;

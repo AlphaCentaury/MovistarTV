@@ -36,6 +36,10 @@ namespace IpTviewr.Services.EpgDiscovery
         private EpgDataStore DataStore { get; set; }
         private CancellationToken Token { get; set; }
 
+        public event EventHandler ProgramReceived;
+        public event EventHandler ParseError;
+        public event EventHandler FatalError;
+
         public EpgDownloader(string multicastIpEndPoint)
         {
             var parts = multicastIpEndPoint.Split(':');
@@ -83,6 +87,9 @@ namespace IpTviewr.Services.EpgDiscovery
             try
             {
                 Processor = new SegmentsProcessor();
+                Processor.ScheduleReceived += (sender, args) =>
+                    ProgramReceived?.BeginInvoke(this, EventArgs.Empty, null, null);
+                Processor.ParseError += (sender, args) => ParseError?.BeginInvoke(this, EventArgs.Empty, null, null);
 
                 while (retryTime <= maxRetryTime)
                 {
@@ -118,6 +125,7 @@ namespace IpTviewr.Services.EpgDiscovery
                     Thread.Sleep(retryTime);
                 } // while
 
+                FatalError?.BeginInvoke(this, EventArgs.Empty, null, null);
                 Processor.WaitCompletion();
             }
             finally
@@ -137,7 +145,7 @@ namespace IpTviewr.Services.EpgDiscovery
 
             // TODO: stop when EPG is complete
             // Notify the caller.
-            // Give teh caller the option to download in a continuous loop
+            // Give the caller the option to download in a continuous loop
             // or the restart the download after a given time
         } // SegmentPayloadReceived
     } // class EpgDownloader

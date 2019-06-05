@@ -19,6 +19,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using IpTviewr.ChannelList.Properties;
 using IpTviewr.Services.EpgDiscovery;
 
 namespace IpTviewr.ChannelList
@@ -228,12 +229,12 @@ namespace IpTviewr.ChannelList
                 if (discovery == null) return true;
 
                 var q = from offering in discovery.Offering
-                    where offering.ContentGuides != null
-                    from guide in offering.ContentGuides
-                    where (guide.Id != null) && (guide.Id == "p_f") && (guide.TransportMode?.Push != null) &&
-                          (guide.TransportMode.Push.Length > 0)
-                    from push in guide.TransportMode.Push
-                    select push;
+                        where offering.ContentGuides != null
+                        from guide in offering.ContentGuides
+                        where (guide.Id != null) && (guide.Id == "p_f") && (guide.TransportMode?.Push != null) &&
+                              (guide.TransportMode.Push.Length > 0)
+                        from push in guide.TransportMode.Push
+                        select push;
 
                 var stp = q.FirstOrDefault();
                 if (stp == null) return true;
@@ -241,6 +242,25 @@ namespace IpTviewr.ChannelList
                 _epgDataStore = new EpgMemoryDatastore();
                 _tokenSource = new CancellationTokenSource();
                 var epgDownloader = new EpgDownloader(stp.Address, stp.Port.ToString());
+                epgDownloader.FatalError += (sender, args)
+                    =>
+                {
+                    _epgDataCount = 0;
+                    statusLabelEpg.Text = Texts.EpgStatusError;
+                };
+                epgDownloader.ProgramReceived += (sender, args) =>
+                {
+                    ++_epgDataCount;
+                    if (_epgDataCount > 10) _epgDataCount = 0;
+                    statusLabelEpg.Text = string.Format(Texts.EpgStatusData, new string('•', _epgDataCount));
+                };
+                epgDownloader.ParseError += (sender, args) =>
+                {
+                    _epgDataCount = 0;
+                    statusLabelEpg.Text = Texts.EpgStatusInvalid;
+                };
+
+                statusLabelEpg.Text = Texts.EpgStatusWait;
                 epgDownloader.StartAsync(_epgDataStore, _tokenSource.Token);
             } // if
 
@@ -264,6 +284,7 @@ namespace IpTviewr.ChannelList
             _tokenSource?.Cancel();
             _tokenSource = null;
             _epgDataStore = null;
+            statusLabelEpg.Text = Texts.EpgStatusNotStarted;
             epgMiniGuide.ClearEpgPrograms();
         } // SetBroadcastDiscovery
 

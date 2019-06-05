@@ -136,6 +136,7 @@ namespace IpTviewr.ChannelList
             this.pictureProviderLogo = new System.Windows.Forms.PictureBox();
             this.statusMainStrip = new System.Windows.Forms.StatusStrip();
             this.statusLabelMain = new System.Windows.Forms.ToolStripStatusLabel();
+            this.statusLabelEpg = new System.Windows.Forms.ToolStripStatusLabel();
             this.epgMiniGuide = new IpTviewr.UiServices.EPG.EpgMiniGuide();
             this.menuStripMain.SuspendLayout();
             this.contextMenuList.SuspendLayout();
@@ -822,7 +823,8 @@ namespace IpTviewr.ChannelList
             // statusMainStrip
             // 
             this.statusMainStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.statusLabelMain});
+            this.statusLabelMain,
+            this.statusLabelEpg});
             resources.ApplyResources(this.statusMainStrip, "statusMainStrip");
             this.statusMainStrip.Name = "statusMainStrip";
             // 
@@ -833,6 +835,11 @@ namespace IpTviewr.ChannelList
             this.statusLabelMain.Name = "statusLabelMain";
             this.statusLabelMain.Padding = new System.Windows.Forms.Padding(50, 0, 0, 0);
             this.statusLabelMain.Spring = true;
+            // 
+            // statusLabelEpg
+            // 
+            resources.ApplyResources(this.statusLabelEpg, "statusLabelEpg");
+            this.statusLabelEpg.Name = "statusLabelEpg";
             // 
             // epgMiniGuide
             // 
@@ -969,5 +976,6 @@ namespace IpTviewr.ChannelList
         private System.Windows.Forms.StatusStrip statusMainStrip;
         private System.Windows.Forms.ToolStripStatusLabel statusLabelMain;
         private UiServices.EPG.EpgMiniGuide epgMiniGuide;
+        private System.Windows.Forms.ToolStripStatusLabel statusLabelEpg;
     }
 }
