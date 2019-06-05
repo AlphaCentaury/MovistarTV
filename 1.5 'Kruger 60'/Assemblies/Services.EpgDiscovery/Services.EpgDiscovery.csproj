@@ -41,7 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common.cs" />
-    <Compile Include="EpgDatastore.cs" />
+    <Compile Include="EpgDataStore.cs" />
     <Compile Include="EpgDownloader.cs" />
     <Compile Include="EpgEmptyLinkedList.cs" />
     <Compile Include="EpgLinkedListNodeWrapper.cs" />
@@ -65,7 +65,6 @@
       <DependentUpon>Texts.resx</DependentUpon>
     </Compile>
     <Compile Include="TvAnytime\Common.cs" />
-    <Compile Include="TvAnytime\ExtendedPurchaseItem.cs" />
     <Compile Include="TvAnytime\Mpeg7Name.cs" />
     <Compile Include="TvAnytime\NamespaceUnification.cs" />
     <Compile Include="TvAnytime\TvaNullableInt32.cs" />

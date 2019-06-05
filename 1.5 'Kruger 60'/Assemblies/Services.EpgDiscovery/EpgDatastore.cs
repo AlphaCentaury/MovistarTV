@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace IpTviewr.Services.EpgDiscovery
 {
-    public abstract class EpgDatastore
+    public abstract class EpgDataStore
     {
         public bool IsProgramDataUnsorted
         {
@@ -91,5 +91,5 @@ namespace IpTviewr.Services.EpgDiscovery
                 current = current.Next;
             } // while             
         } // Fill
-    } // abstract class EpgDatastore
+    } // abstract class EpgDataStore
 } // namespace

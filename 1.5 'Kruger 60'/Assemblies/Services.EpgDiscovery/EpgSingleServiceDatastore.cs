@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace IpTviewr.Services.EpgDiscovery
 {
-    public sealed class EpgSingleServiceDatastore: EpgDatastore
+    public sealed class EpgSingleServiceDatastore: EpgDataStore
     {
         string FullServiceName;
         IEpgLinkedList ServicePrograms;

@@ -17,7 +17,7 @@ using System.Xml.Serialization;
 namespace IpTviewr.Services.EpgDiscovery
 {
     [Serializable()]
-    [DebuggerStepThrough]
+    //[DebuggerStepThrough]
     [DesignerCategory("code")]
     [XmlType(TypeName = "Program", Namespace = Common.XmlNamespace)]
     public class EpgProgram
@@ -158,22 +158,23 @@ namespace IpTviewr.Services.EpgDiscovery
             result.Genre = EpgCodedValue.ToCodedValue(item.Description.Genre);
             result.ParentalRating = (item.Description.ParentalGuidance != null)? EpgCodedValue.ToCodedValue(item.Description.ParentalGuidance.ParentalRating) : null;
 
-            if (item.Description.ReleaseInfo?.ReleaseDate != null)
+            var releaseDate = item.Description.ReleaseInfo?.ReleaseDate;
+            if (releaseDate != null)
             {
                 result.Episode = new EpgProgramEpisode()
                 {
-                    Number = item.Description.ReleaseInfo.ReleaseDate.Episode.Nullable,
-                    Season = item.Description.ReleaseInfo.ReleaseDate.Season.Nullable,
-                    Year = item.Description.ReleaseInfo.ReleaseDate.Year.Nullable,
+                    Number = releaseDate.Episode?.Nullable,
+                    Season = releaseDate.Season?.Nullable,
+                    Year = releaseDate.Year?.Nullable,
                 };
             } // if
-            if (item.EpisodeOf != null)
-            {
-                var episode = (result.Episode == null) ? new EpgProgramEpisode() : result.Episode;
-                episode.SeriesId = item.EpisodeOf.CRID;
-                episode.SeriesName = item.EpisodeOf.Title;
-                result.Episode = episode;
-            } // if
+
+            if (item.EpisodeOf == null) return result;
+
+            var episode = result.Episode ?? new EpgProgramEpisode();
+            episode.SeriesId = item.EpisodeOf.CRID;
+            episode.SeriesName = item.EpisodeOf.Title;
+            result.Episode = episode;
 
             return result;
         } // FromScheduleEvent

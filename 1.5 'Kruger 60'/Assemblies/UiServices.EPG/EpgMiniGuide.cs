@@ -73,7 +73,7 @@ namespace IpTviewr.UiServices.EPG
             private set;
         } // ReferenceTime
 
-        public EpgDatastore Datastore
+        public EpgDataStore Datastore
         {
             get;
             private set;
@@ -124,18 +124,33 @@ namespace IpTviewr.UiServices.EPG
 
         #region Public methods
 
-        public void LoadEpgPrograms(UiBroadcastService service, DateTime localReferenceTime, EpgDatastore datastore, bool async = true)
+        public void LoadEpgPrograms(UiBroadcastService service, DateTime localReferenceTime, bool async = true)
         {
             SelectedService = service;
             LocalReferenceTime = localReferenceTime.TruncateToMinutes();
-            Datastore = datastore;
 
             // clean-up UI
             ClearEpgPrograms();
             pictureChannelLogo.SetImage(service?.Logo.GetImage(Configuration.Logos.LogoSize.Size48));
 
-            BeginLoadEpgPrograms(async);
+            if (Datastore != null)
+            {
+                BeginLoadEpgPrograms(async);
+            } // if
         } // LoadEpgPrograms
+
+        public void SetEpgDataStore(EpgDataStore dataStore, bool async = true)
+        {
+            Datastore = dataStore;
+            if (dataStore != null)
+            {
+                BeginLoadEpgPrograms(async);
+            }
+            else
+            {
+                ClearEpgPrograms();
+            } // if-else
+        } // SetEpgDataStore
 
         public void ClearEpgPrograms()
         {
@@ -305,12 +320,12 @@ namespace IpTviewr.UiServices.EPG
 
         private void LoadEpgPrograms(LoadEpgProgramsData data)
         {
-            var programs = Datastore.GetPrograms(data.FullServiceName, LocalReferenceTime, 1, 2);
+            var programs = Datastore?.GetPrograms(data.FullServiceName, LocalReferenceTime, 1, 2);
 
             // try alternate service if no EPG data
             if ((programs == null) && (data.FullAlternateServiceName != null))
             {
-                programs = Datastore.GetPrograms(data.FullAlternateServiceName, LocalReferenceTime, 1, 2);
+                programs = Datastore?.GetPrograms(data.FullAlternateServiceName, LocalReferenceTime, 1, 2);
             } // if
 
             // populate data

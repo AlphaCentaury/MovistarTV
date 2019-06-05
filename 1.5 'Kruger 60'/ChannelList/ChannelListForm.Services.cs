@@ -16,8 +16,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using IpTviewr.Services.EpgDiscovery;
 
 namespace IpTviewr.ChannelList
 {
@@ -66,7 +68,7 @@ namespace IpTviewr.ChannelList
 
         private void menuItemChannelListView_Click_Implementation(object sender, EventArgs e)
         {
-            ListManager.ShowSettingsEditor(this, true);
+            _listManager.ShowSettingsEditor(this, true);
         } // menuItemChannelListView_Click_Implementation
 
         private void menuItemChannelRefreshList_Click_Implementation(object sender, EventArgs e)
@@ -83,9 +85,9 @@ namespace IpTviewr.ChannelList
             MulticastScannerOptionsDialog.ScanWhatList list;
             IEnumerable<UiBroadcastService> whatList;
 
-            if ((MulticastScanner != null) && (!MulticastScanner.IsDisposed))
+            if ((_multicastScanner != null) && (!_multicastScanner.IsDisposed))
             {
-                MulticastScanner.Activate();
+                _multicastScanner.Activate();
                 return;
             } // if
 
@@ -102,34 +104,34 @@ namespace IpTviewr.ChannelList
             switch (list)
             {
                 case MulticastScannerOptionsDialog.ScanWhatList.ActiveServices:
-                    whatList = from service in BroadcastDiscovery.Services
+                    whatList = from service in _broadcastDiscovery.Services
                                where service.IsInactive == false
                                select service;
                     break;
                 case MulticastScannerOptionsDialog.ScanWhatList.DeadServices:
-                    whatList = from service in BroadcastDiscovery.Services
+                    whatList = from service in _broadcastDiscovery.Services
                                where service.IsInactive == true
                                select service;
                     break;
                 default:
-                    whatList = BroadcastDiscovery.Services;
+                    whatList = _broadcastDiscovery.Services;
                     break;
             } // switch
 
-            MulticastScanner = new MulticastScannerDialog()
+            _multicastScanner = new MulticastScannerDialog()
             {
                 Timeout = timeout,
                 BroadcastServices = whatList,
             };
-            MulticastScanner.ChannelScanResult += MulticastScanner_ChannelScanResult;
-            MulticastScanner.Disposed += MulticastScanner_Disposed;
-            MulticastScanner.ScanCompleted += MulticastScanner_ScanCompleted;
-            MulticastScanner.Show(this);
+            _multicastScanner.ChannelScanResult += MulticastScanner_ChannelScanResult;
+            _multicastScanner.Disposed += MulticastScanner_Disposed;
+            _multicastScanner.ScanCompleted += MulticastScanner_ScanCompleted;
+            _multicastScanner.Show(this);
         }  // menuItemChannelVerify_Click_Implementation
 
         private void MulticastScanner_Disposed(object sender, EventArgs e)
         {
-            MulticastScanner = null;
+            _multicastScanner = null;
         } // MulticastScanner_Disposed
 
         private void MulticastScanner_ChannelScanResult(object sender, MulticastScannerDialog.ScanResultEventArgs e)
@@ -141,33 +143,33 @@ namespace IpTviewr.ChannelList
             if (e.WasInactive != isInactive)
             {
                 var service = e.Service;
-                e.IsInList = ListManager.EnableService(service, isInactive, service.IsHidden);
+                e.IsInList = _listManager.EnableService(service, isInactive, service.IsHidden);
             } // if
         }  // MulticastScanner_ChannelScanResult
 
         private void MulticastScanner_ScanCompleted(object sender, MulticastScannerDialog.ScanCompletedEventArgs e)
         {
             // Save scan result in cache
-            AppUiConfiguration.Current.Cache.SaveXml("UiBroadcastDiscovery", SelectedServiceProvider.Key, BroadcastDiscovery.Version, BroadcastDiscovery);
+            AppUiConfiguration.Current.Cache.SaveXml("UiBroadcastDiscovery", _selectedServiceProvider.Key, _broadcastDiscovery.Version, _broadcastDiscovery);
 
             // Refresh list if needed
             if (e.IsListRefreshNeeded)
             {
                 MessageBox.Show(this, Properties.Texts.MulticastScannerScanCompleteRefresh, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
-                ListManager.Refesh();
+                _listManager.Refesh();
             } // if
         } // MulticastScanner_ScanCompleted
 
         private void menuItemChannelDetails_Click_Implementation(object sender, EventArgs e)
         {
-            if (ListManager.SelectedService == null) return;
+            if (_listManager.SelectedService == null) return;
 
             using (var dlg = new PropertiesDialog()
             {
                 Caption = Properties.Texts.BroadcastServiceProperties,
-                ItemProperties = ListManager.SelectedService.DumpProperties(),
-                Description = string.Format("{0}\r\n{1}", ListManager.SelectedService.DisplayLogicalNumber, ListManager.SelectedService.DisplayName),
-                ItemIcon = ListManager.SelectedService.Logo.GetImage(LogoSize.Size64, true),
+                ItemProperties = _listManager.SelectedService.DumpProperties(),
+                Description = string.Format("{0}\r\n{1}", _listManager.SelectedService.DisplayLogicalNumber, _listManager.SelectedService.DisplayName),
+                ItemIcon = _listManager.SelectedService.Logo.GetImage(LogoSize.Size64, true),
             })
             {
                 dlg.ShowDialog(this);
@@ -180,17 +182,17 @@ namespace IpTviewr.ChannelList
 
         private bool IsScanActive()
         {
-            var isActive = (MulticastScanner != null) && (!MulticastScanner.IsDisposed);
-            if ((isActive) && (MulticastScanner.ScanInProgress == false))
+            var isActive = (_multicastScanner != null) && (!_multicastScanner.IsDisposed);
+            if ((isActive) && (_multicastScanner.ScanInProgress == false))
             {
-                MulticastScanner.Close();
+                _multicastScanner.Close();
                 isActive = false;
             } // if
 
             if (isActive)
             {
                 MessageBox.Show(this, Properties.Texts.ChannelFormActiveScan, Properties.Texts.ChannelFormActiveScanCaption, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                MulticastScanner.Activate();
+                _multicastScanner.Activate();
 
                 return true;
             } // if
@@ -214,32 +216,60 @@ namespace IpTviewr.ChannelList
             };
             downloader.Exception += MyApplication.HandleException;
 
-            var uiDiscovery = downloader.Download(this, SelectedServiceProvider, BroadcastDiscovery, fromCache);
-            if (uiDiscovery == null) return false;
+            if (!downloader.Download(this, _selectedServiceProvider, _broadcastDiscovery, fromCache)) return false;
 
             ShowEpgMiniGuide(false);
-            SetBroadcastDiscovery(uiDiscovery);
+            SetBroadcastDiscovery(downloader.BroadcastDiscovery);
 
-            if (fromCache)
+            // TODO: clean-up
+            if (enable_Epg)
             {
-                if (BroadcastDiscovery.Services.Count <= 0)
-                {
-                    Notify(Properties.Resources.Info_24x24, Properties.Texts.ChannelListCacheEmpty, 30000);
-                } // if
-            } // if-else
+                var discovery = downloader.EpgDiscovery;
+                if (discovery == null) return true;
+
+                var q = from offering in discovery.Offering
+                    where offering.ContentGuides != null
+                    from guide in offering.ContentGuides
+                    where (guide.Id != null) && (guide.Id == "p_f") && (guide.TransportMode?.Push != null) &&
+                          (guide.TransportMode.Push.Length > 0)
+                    from push in guide.TransportMode.Push
+                    select push;
+
+                var stp = q.FirstOrDefault();
+                if (stp == null) return true;
+
+                _epgDataStore = new EpgMemoryDatastore();
+                _tokenSource = new CancellationTokenSource();
+                var epgDownloader = new EpgDownloader(stp.Address, stp.Port.ToString());
+                epgDownloader.StartAsync(_epgDataStore, _tokenSource.Token);
+            } // if
+
+            if (!fromCache) return true;
+
+            if (_broadcastDiscovery.Services.Count <= 0)
+            {
+                Notify(Properties.Resources.Info_24x24, Properties.Texts.ChannelListCacheEmpty, 30000);
+            } // if
 
             return true;
         } // LoadBroadcastDiscovery
 
         private void SetBroadcastDiscovery(UiBroadcastDiscovery broadcastDiscovery)
         {
-            BroadcastDiscovery = broadcastDiscovery;
-            ListManager.BroadcastServices = (BroadcastDiscovery != null) ? BroadcastDiscovery.Services : null;
+            _broadcastDiscovery = broadcastDiscovery;
+            _listManager.BroadcastServices = _broadcastDiscovery?.Services;
+
+            if (!enable_Epg) return;
+
+            _tokenSource?.Cancel();
+            _tokenSource = null;
+            _epgDataStore = null;
+            epgMiniGuide.ClearEpgPrograms();
         } // SetBroadcastDiscovery
 
         private void ShowTvChannel(bool defaultPlayer)
         {
-            ExternalTvPlayer.ShowTvChannel(this, ListManager.SelectedService, defaultPlayer);
+            ExternalTvPlayer.ShowTvChannel(this, _listManager.SelectedService, defaultPlayer);
         } // ShowTvChannel
 
         private void NotifyChannelListAge(int daysAge)

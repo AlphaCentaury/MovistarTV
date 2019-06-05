@@ -112,10 +112,10 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="BroadcastListRefreshEmpty" xml:space="preserve">
     <value>La lista se ha actualizado correctamente, pero no contiene canales o servicios.</value>
@@ -188,6 +188,9 @@
   </data>
   <data name="Payload05DisplayName" xml:space="preserve">
     <value>Paquetes y números de canal</value>
+  </data>
+  <data name="Payload06DisplayName" xml:space="preserve">
+    <value>Ubicaciones de fuentes de datos EPG</value>
   </data>
   <data name="ProviderUnknownDisplayDescription" xml:space="preserve">
     <value>No existe una descripción de este proveedor de servicios</value>

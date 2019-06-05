@@ -18,6 +18,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Windows.Forms;
+using Etsi.Ts102034.v010501.XmlSerialization.ContentGuideDiscovery;
 
 namespace IpTviewr.UiServices.Discovery
 {
@@ -103,72 +104,91 @@ namespace IpTviewr.UiServices.Discovery
         public event EventHandler<AssignNumbersArgs> AfterAssignNumbers;
         public event EventHandler<HandleExceptionEventArgs> Exception;
 
-        public UiBroadcastDiscovery Download(Form ownerForm, UiServiceProvider serviceProvider, UiBroadcastDiscovery currentUiDiscovery, bool fromCache, bool? highDefinitionPriority = null)
-        {
-            UiBroadcastDiscovery uiDiscovery;
+        public UiBroadcastDiscovery BroadcastDiscovery { get; private set; }
+        public PackageDiscoveryRoot PackageDiscovery { get; private set; }
+        public BroadcastContentGuideDiscoveryRoot EpgDiscovery { get; private set; }
 
+        public bool Download(Form ownerForm, UiServiceProvider serviceProvider, UiBroadcastDiscovery currentUiDiscovery, bool fromCache, bool? highDefinitionPriority = null)
+        {
             try
             {
-                uiDiscovery = null;
+                BroadcastDiscovery = null;
+                PackageDiscovery = null;
+                EpgDiscovery = null;
+
                 if (fromCache)
                 {
                     OnBeforeCacheLoad(this, EventArgs.Empty);
-                    var cachedDiscovery = AppUiConfiguration.Current.Cache.LoadXmlDocument<UiBroadcastDiscovery>("UiBroadcastDiscovery", serviceProvider.Key);
-                    OnAfterCacheLoad(this, new CacheEventArgs(cachedDiscovery));
+                    var cachedPackageDiscovery = AppUiConfiguration.Current.Cache.LoadXmlDocument<PackageDiscoveryRoot>("PackageDiscovery", serviceProvider.Key);
+                    var cachedEpgDiscovery = AppUiConfiguration.Current.Cache.LoadXmlDocument<BroadcastContentGuideDiscoveryRoot>("BroadcastContentGuideDiscovery", serviceProvider.Key);
+                    var cachedBroadcastDiscovery = AppUiConfiguration.Current.Cache.LoadXmlDocument<UiBroadcastDiscovery>("UiBroadcastDiscovery", serviceProvider.Key);
+                    OnAfterCacheLoad(this, new CacheEventArgs(cachedBroadcastDiscovery));
 
-                    if (cachedDiscovery != null) uiDiscovery = cachedDiscovery.Document;
+                    BroadcastDiscovery = cachedBroadcastDiscovery?.Document;
+                    PackageDiscovery = cachedPackageDiscovery?.Document;
+                    EpgDiscovery = cachedEpgDiscovery?.Document;
                 } // if
 
-                if (uiDiscovery == null)
+                if ((BroadcastDiscovery != null) && (PackageDiscovery != null) && (EpgDiscovery != null))
                 {
-                    OnBeforeDownload(this, EventArgs.Empty);
-                    var downloader = new UiDvbStpEnhancedDownloader()
-                    {
-                        Request = new UiDvbStpEnhancedDownloadRequest(2)
-                        {
-                            MulticastAddress = IPAddress.Parse(serviceProvider.Offering.Push[0].Address),
-                            MulticastPort = serviceProvider.Offering.Push[0].Port,
-                            Description = Properties.Texts.BroadcastObtainingList,
-                            DescriptionParsing = Properties.Texts.BroadcastParsingList,
-                            AllowXmlExtraWhitespace = false,
-                            XmlNamespaceReplacer = NamespaceUnification.Replacer,
-#if DEBUG
-                            DumpToFolder = AppUiConfiguration.Current.Folders.Cache
-#endif
-                        },
-                        TextUserCancelled = Properties.Texts.UserCancelListRefresh,
-                        TextDownloadException = Properties.Texts.BroadcastListUnableRefresh,
-                    };
-                    downloader.Request.AddPayload(0x02, null, Properties.Texts.Payload02DisplayName, typeof(BroadcastDiscoveryRoot));
-                    downloader.Request.AddPayload(0x05, null, Properties.Texts.Payload05DisplayName, typeof(PackageDiscoveryRoot));
-                    downloader.Download(ownerForm);
-                    OnAfterDownload(this, new DownloadEventArgs(downloader));
-                    if (!downloader.IsOk) return null;
-
-                    var xmlDiscovery = downloader.Request.Payloads[0].XmlDeserializedData as BroadcastDiscoveryRoot;
-                    uiDiscovery = new UiBroadcastDiscovery(xmlDiscovery, serviceProvider.DomainName, downloader.Request.Payloads[0].SegmentVersion);
-
-                    OnBeforeMerge(this, new MergeEventArgs(uiDiscovery, currentUiDiscovery));
-                    UiBroadcastDiscoveryMergeResultDialog.Merge(ownerForm, currentUiDiscovery, uiDiscovery);
-                    OnAfterMerge(this, new MergeEventArgs(uiDiscovery, currentUiDiscovery));
-
-                    var packageDiscovery = downloader.Request.Payloads[1].XmlDeserializedData as PackageDiscoveryRoot;
-                    highDefinitionPriority = highDefinitionPriority.HasValue ? highDefinitionPriority.Value : !AppUiConfiguration.Current.User.ChannelNumberStandardDefinitionPriority;
-
-                    OnBeforeAssignNumbers(this, new AssignNumbersArgs(uiDiscovery, packageDiscovery, serviceProvider, highDefinitionPriority.Value));
-                    UiServicesLogicalNumbers.AssignLogicalNumbers(uiDiscovery, packageDiscovery, serviceProvider.DomainName, highDefinitionPriority.Value);
-                    OnAfterAssignNumbers(this, new AssignNumbersArgs(uiDiscovery, packageDiscovery, serviceProvider, highDefinitionPriority.Value));
-
-                    AppUiConfiguration.Current.Cache.SaveXml("PackageDiscovery", serviceProvider.Key, 0, packageDiscovery);
-                    AppUiConfiguration.Current.Cache.SaveXml("UiBroadcastDiscovery", serviceProvider.Key, uiDiscovery.Version, uiDiscovery);
+                    return true;
                 } // if
 
-                return uiDiscovery;
+                BroadcastDiscovery = null;
+                PackageDiscovery = null;
+                EpgDiscovery = null;
+
+                OnBeforeDownload(this, EventArgs.Empty);
+                var downloader = new UiDvbStpEnhancedDownloader()
+                {
+                    Request = new UiDvbStpEnhancedDownloadRequest(3)
+                    {
+                        MulticastAddress = IPAddress.Parse(serviceProvider.Offering.Push[0].Address),
+                        MulticastPort = serviceProvider.Offering.Push[0].Port,
+                        Description = Properties.Texts.BroadcastObtainingList,
+                        DescriptionParsing = Properties.Texts.BroadcastParsingList,
+                        AllowXmlExtraWhitespace = false,
+                        XmlNamespaceReplacer = NamespaceUnification.Replacer,
+#if DEBUG
+                        DumpToFolder = AppUiConfiguration.Current.Folders.Cache
+#endif
+                    },
+                    TextUserCancelled = Properties.Texts.UserCancelListRefresh,
+                    TextDownloadException = Properties.Texts.BroadcastListUnableRefresh,
+                };
+                downloader.Request.AddPayload(0x02, null, Properties.Texts.Payload02DisplayName, typeof(BroadcastDiscoveryRoot));
+                downloader.Request.AddPayload(0x05, null, Properties.Texts.Payload05DisplayName, typeof(PackageDiscoveryRoot));
+                downloader.Request.AddPayload(0x06, null, Properties.Texts.Payload06DisplayName, typeof(BroadcastContentGuideDiscoveryRoot));
+                downloader.Download(ownerForm);
+                OnAfterDownload(this, new DownloadEventArgs(downloader));
+                if (!downloader.IsOk) return false;
+
+                var xmlDiscovery = downloader.Request.Payloads[0].XmlDeserializedData as BroadcastDiscoveryRoot;
+                BroadcastDiscovery = new UiBroadcastDiscovery(xmlDiscovery, serviceProvider.DomainName, downloader.Request.Payloads[0].SegmentVersion);
+
+                OnBeforeMerge(this, new MergeEventArgs(BroadcastDiscovery, currentUiDiscovery));
+                UiBroadcastDiscoveryMergeResultDialog.Merge(ownerForm, currentUiDiscovery, BroadcastDiscovery);
+                OnAfterMerge(this, new MergeEventArgs(BroadcastDiscovery, currentUiDiscovery));
+
+                PackageDiscovery = downloader.Request.Payloads[1].XmlDeserializedData as PackageDiscoveryRoot;
+                highDefinitionPriority = highDefinitionPriority ?? !AppUiConfiguration.Current.User.ChannelNumberStandardDefinitionPriority;
+
+                OnBeforeAssignNumbers(this, new AssignNumbersArgs(BroadcastDiscovery, PackageDiscovery, serviceProvider, highDefinitionPriority.Value));
+                UiServicesLogicalNumbers.AssignLogicalNumbers(BroadcastDiscovery, PackageDiscovery, serviceProvider.DomainName, highDefinitionPriority.Value);
+                OnAfterAssignNumbers(this, new AssignNumbersArgs(BroadcastDiscovery, PackageDiscovery, serviceProvider, highDefinitionPriority.Value));
+
+                EpgDiscovery = downloader.Request.Payloads[2].XmlDeserializedData as BroadcastContentGuideDiscoveryRoot;
+
+                AppUiConfiguration.Current.Cache.SaveXml("UiBroadcastDiscovery", serviceProvider.Key, BroadcastDiscovery.Version, BroadcastDiscovery);
+                AppUiConfiguration.Current.Cache.SaveXml("PackageDiscovery", serviceProvider.Key, 0, PackageDiscovery);
+                AppUiConfiguration.Current.Cache.SaveXml("BroadcastContentGuideDiscovery", serviceProvider.Key, 0, EpgDiscovery);
+
+                return true;
             }
             catch (Exception ex)
             {
                 OnHandleException(this, new HandleExceptionEventArgs(ownerForm, null, Properties.Texts.BroadcastListUnableRefresh, ex));
-                return null;
+                return false;
             } // try-catch
         } // Download
 

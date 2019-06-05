@@ -48,14 +48,14 @@ namespace IpTviewr.ChannelList
 
         private void Implementation_menuItemProviderDetails_Click(object sender, EventArgs e)
         {
-            if (SelectedServiceProvider == null) return;
+            if (_selectedServiceProvider == null) return;
 
             using (var dlg = new PropertiesDialog()
             {
                 Caption = Properties.Texts.SPProperties,
-                ItemProperties = SelectedServiceProvider.DumpProperties(),
-                Description = SelectedServiceProvider.DisplayName,
-                ItemIcon = SelectedServiceProvider.Logo.GetImage(LogoSize.Size64, true),
+                ItemProperties = _selectedServiceProvider.DumpProperties(),
+                Description = _selectedServiceProvider.DisplayName,
+                ItemIcon = _selectedServiceProvider.Logo.GetImage(LogoSize.Size64, true),
             })
             {
                 dlg.ShowDialog(this);
@@ -66,12 +66,12 @@ namespace IpTviewr.ChannelList
         {
             using (var dialog = new SelectProviderDialog())
             {
-                dialog.SelectedServiceProvider = SelectedServiceProvider;
+                dialog.SelectedServiceProvider = _selectedServiceProvider;
                 var result = dialog.ShowDialog(this);
                 BasicGoogleTelemetry.SendScreenHit(this);
                 if (result != DialogResult.OK) return;
 
-                SelectedServiceProvider = dialog.SelectedServiceProvider;
+                _selectedServiceProvider = dialog.SelectedServiceProvider;
                 ServiceProviderChanged();
             } // dialog
         } // SelectProvider
@@ -82,7 +82,7 @@ namespace IpTviewr.ChannelList
 
         private void ServiceProviderChanged()
         {
-            Properties.Settings.Default.LastSelectedServiceProvider = (SelectedServiceProvider != null) ? SelectedServiceProvider.Key : null;
+            Properties.Settings.Default.LastSelectedServiceProvider = (_selectedServiceProvider != null) ? _selectedServiceProvider.Key : null;
             Properties.Settings.Default.Save();
 
             labelProviderName.Text = Properties.Texts.NotSelectedServiceProvider;
@@ -93,22 +93,15 @@ namespace IpTviewr.ChannelList
             menuItemChannelEditList.Enabled = false;
             SetBroadcastDiscovery(null);
 
-            if (SelectedServiceProvider == null) return;
+            if (_selectedServiceProvider == null) return;
 
-            labelProviderName.Text = SelectedServiceProvider.DisplayName;
-            labelProviderDescription.Text = SelectedServiceProvider.DisplayDescription;
-            pictureProviderLogo.Image = SelectedServiceProvider.Logo.GetImage(LogoSize.Size32, true);
+            labelProviderName.Text = _selectedServiceProvider.DisplayName;
+            labelProviderDescription.Text = _selectedServiceProvider.DisplayDescription;
+            pictureProviderLogo.Image = _selectedServiceProvider.Logo.GetImage(LogoSize.Size32, true);
 
             menuItemProviderDetails.Enabled = true;
             menuItemChannelRefreshList.Enabled = true;
             menuItemChannelEditList.Enabled = true;
-
-            // TODO: clean-up
-            if (enable_Epg)
-            {
-                var downloader = new EpgDownloader("239.0.2.145:3937");
-                downloader.StartAsync(EpgDatastore);
-            } // if
 
             SetBroadcastDiscovery(null);
             LoadBroadcastDiscovery(true);

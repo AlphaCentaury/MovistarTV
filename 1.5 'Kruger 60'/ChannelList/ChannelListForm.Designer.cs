@@ -22,7 +22,7 @@ namespace IpTviewr.ChannelList
         {
             if (disposing)
             {
-                ListManager.Dispose();
+                _listManager.Dispose();
             } // if
 
             if (disposing && (components != null))

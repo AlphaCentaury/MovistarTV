@@ -20,8 +20,13 @@ namespace IpTviewr.Services.EpgDiscovery.TvAnytime
     [DesignerCategory("code")]
     [XmlType(TypeName = "TVAMain", Namespace = Common.DefaultXmlNamespace)]
     [XmlRoot(ElementName = "TVAMain", Namespace = Common.DefaultXmlNamespace, IsNullable = false)]
-    [XmlInclude(typeof(ExtendedPurchaseItem))]
     public class TvaMain
     {
+        [XmlElement("ProgramDescription", Namespace = Common.DefaultXmlNamespace)]
+        public TvaProgramDescription ProgramDescription
+        {
+            get;
+            set;
+        } // ProgramDescription
     } // class TvaMain
 } // namespace

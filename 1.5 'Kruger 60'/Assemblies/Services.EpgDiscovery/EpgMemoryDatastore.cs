@@ -21,7 +21,7 @@ namespace IpTviewr.Services.EpgDiscovery
         Merge
     } // EpgMemoryStorageMethod
 
-    public sealed class EpgMemoryDatastore: EpgDatastore
+    public sealed class EpgMemoryDatastore: EpgDataStore
     {
         private ConcurrentDictionary<string, EpgService> Data;
 

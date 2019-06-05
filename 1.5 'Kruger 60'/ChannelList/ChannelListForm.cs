@@ -28,6 +28,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Windows.Forms;
 using IpTviewr.Core.IpTvProvider;
 using IpTviewr.UiServices.EPG;
@@ -45,14 +46,15 @@ namespace IpTviewr.ChannelList
             public DateTime Displayed { get; set; }
         } // class Notification
 
-        const int ListObsoleteAge = 30;
-        const int ListOldAge = 15;
-        UiServiceProvider SelectedServiceProvider;
-        UiBroadcastDiscovery BroadcastDiscovery;
-        MulticastScannerDialog MulticastScanner;
-        UiBroadcastListManager ListManager;
-        Stack<Notification> Notifications;
-        EpgDatastore EpgDatastore;
+        private const int ListObsoleteAge = 30;
+        private const int ListOldAge = 15;
+        private UiServiceProvider _selectedServiceProvider;
+        private UiBroadcastDiscovery _broadcastDiscovery;
+        private MulticastScannerDialog _multicastScanner;
+        private UiBroadcastListManager _listManager;
+        private Stack<Notification> _notifications;
+        private EpgDataStore _epgDataStore;
+        private CancellationTokenSource _tokenSource;
 
         // disabled functionality
         private const bool enable_menuItemDvbRecent = false;
@@ -66,7 +68,7 @@ namespace IpTviewr.ChannelList
         {
             InitializeComponent();
             Icon = Properties.Resources.IPTV;
-            Notifications = new Stack<Notification>();
+            _notifications = new Stack<Notification>();
         } // constructor
 
         #region ISplashScreenAwareForm implementation
@@ -97,7 +99,7 @@ namespace IpTviewr.ChannelList
         private void ChannelListForm_Shown(object sender, EventArgs e)
         {
             BasicGoogleTelemetry.SendScreenHit(this, "Shown");
-            if (SelectedServiceProvider == null)
+            if (_selectedServiceProvider == null)
             {
                 SafeCall(SelectProvider);
             } // if
@@ -125,9 +127,9 @@ namespace IpTviewr.ChannelList
             menuItemDvbExport.Enabled = enable_menuItemDvbExport;
 
             var settings = UiBroadcastListSettingsRegistration.Settings;
-            ListManager = new UiBroadcastListManager(listViewChannelList, settings, imageListChannels, imageListChannelsLarge, true);
-            ListManager.SelectionChanged += ListManager_SelectionChanged;
-            ListManager.StatusChanged += ListManager_StatusChanged;
+            _listManager = new UiBroadcastListManager(listViewChannelList, settings, imageListChannels, imageListChannelsLarge, true);
+            _listManager.SelectionChanged += ListManager_SelectionChanged;
+            _listManager.StatusChanged += ListManager_StatusChanged;
 
             SetupContextMenuList();
 
@@ -138,20 +140,16 @@ namespace IpTviewr.ChannelList
             enable_Epg = AppUiConfiguration.Current.User.Epg.Enabled;
             epgMiniGuide.Visible = false;
             epgMiniGuide.IsDisabled = !enable_Epg;
-            if (enable_Epg)
-            {
-                EpgDatastore = new EpgMemoryDatastore();
-            }
-            else
-            {
+            if (!enable_Epg)
+            { 
                 foreach (ToolStripItem item in menuItemEpg.DropDownItems)
                 {
                     item.Enabled = false;
                 } // foreach
-            } // if-else
+            } // if
 
             // load from cache, if available
-            SelectedServiceProvider = SelectProviderDialog.GetLastUserSelectedProvider(Properties.Settings.Default.LastSelectedServiceProvider);
+            _selectedServiceProvider = SelectProviderDialog.GetLastUserSelectedProvider(Properties.Settings.Default.LastSelectedServiceProvider);
             ServiceProviderChanged();
 
             // notify Splash Screeen the form has finished loading and is about to be shown

@@ -25,9 +25,9 @@ namespace IpTviewr.Services.EpgDiscovery
             AutoResetEvent EnqueuedSegments;
             AutoResetEvent ProcessSegmentsEnded;
             bool NoMoreSegments;
-            EpgDatastore Datastore;
+            EpgDataStore Datastore;
 
-			public void Start(EpgDatastore datastore)
+			public void Start(EpgDataStore datastore)
             {
                 if (SegmentsQueue != null) throw new InvalidOperationException();
 
@@ -75,7 +75,7 @@ namespace IpTviewr.Services.EpgDiscovery
                 {
                     try
                     {
-                        var item = XmlSerialization.Deserialize<TvaMain>(payload, trimExtraWhitespace: true, namespaceReplacer: NamespaceUnification.Replacer) as ExtendedPurchaseItem;
+                        var item = XmlSerialization.Deserialize<TvaMain>(payload, trimExtraWhitespace: true, namespaceReplacer: NamespaceUnification.Replacer);
                         var schedule = item?.ProgramDescription?.LocationTable?.Schedule;
                         if (schedule == null)
                         {

@@ -32,12 +32,12 @@ namespace IpTviewr.UiServices.EPG
         private UiBroadcastService InitialService;
         private UiBroadcastService SelectedService;
         private IEpgLinkedList[] EpgPrograms;
-        private EpgDatastore Datastore;
+        private EpgDataStore Datastore;
         private int SelectedRowIndex;
         private DateTime LocalReferenceTime;
         private bool IsGridReady;
 
-        public static DialogResult ShowGrid(CommonBaseForm parentForm, IList<UiBroadcastService> list, UiBroadcastService currentService, EpgDatastore datastore)
+        public static DialogResult ShowGrid(CommonBaseForm parentForm, IList<UiBroadcastService> list, UiBroadcastService currentService, EpgDataStore datastore)
         {
             using (var dialog = new EpgBasicGridDialog())
             {
@@ -252,7 +252,8 @@ namespace IpTviewr.UiServices.EPG
             var epgPrograms = EpgPrograms[rowIndex];
             var singleServiceDatastore = new EpgSingleServiceDatastore(SelectedService.FullServiceName, EpgPrograms[SelectedRowIndex]);
 
-            epgMiniGuide.LoadEpgPrograms(SelectedService, LocalReferenceTime, singleServiceDatastore, false);
+            epgMiniGuide.LoadEpgPrograms(SelectedService, LocalReferenceTime, false);
+            epgMiniGuide.SetEpgDataStore(singleServiceDatastore, false);
             epgMiniGuide.Visible = true;
         } // ChangeSelectedRow
     } // class EpgBasicGridDialog

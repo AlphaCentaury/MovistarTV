@@ -55,7 +55,7 @@ namespace IpTviewr.ChannelList
             var applyChanges = new Dictionary<Guid, Action>(1);
             applyChanges.Add(UiBroadcastListSettingsRegistration.SettingsGuid, () =>
             {
-                ListManager.Settings = UiBroadcastListSettingsRegistration.Settings;
+                _listManager.Settings = UiBroadcastListSettingsRegistration.Settings;
             });
 
             ConfigurationForm.ShowConfigurationForm(this, true, applyChanges);

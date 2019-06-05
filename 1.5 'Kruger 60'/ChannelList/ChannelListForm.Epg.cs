@@ -81,7 +81,7 @@ namespace IpTviewr.ChannelList
             menuItemEpgTomorrow.Enabled = enable & enable_Epg;
             menuItemEpgPrevious.Enabled = false;
             menuItemEpgNext.Enabled = false;
-            menuItemEpgBasicGrid.Enabled = enable_Epg && (SelectedServiceProvider != null);
+            menuItemEpgBasicGrid.Enabled = enable_Epg && (_selectedServiceProvider != null);
         } // EnableEpgMenus
 
         private void ShowEpgMiniGuide(bool display)
@@ -92,7 +92,8 @@ namespace IpTviewr.ChannelList
             // display mini bar
             // TODO: epgMiniGuide.DetailsEnabled
             epgMiniGuide.DetailsEnabled = false; //(IpTvProvider.Current.EpgInfo.Capabilities & EpgInfoProviderCapabilities.ExtendedInfo) != 0;
-            epgMiniGuide.LoadEpgPrograms(ListManager.SelectedService, DateTime.Now, EpgDatastore);
+            epgMiniGuide.LoadEpgPrograms(_listManager.SelectedService, DateTime.Now);
+            epgMiniGuide.SetEpgDataStore(_epgDataStore);
         }  // ShowEpgMiniGuide
 
         private void ShowEpgNowThenForm()
@@ -103,7 +104,7 @@ namespace IpTviewr.ChannelList
 
         private void ShowEpgBasicGrid()
         {
-            EpgBasicGridDialog.ShowGrid(this, ListManager.GetDisplayedBroadcastList(), ListManager.SelectedService, EpgDatastore);
+            EpgBasicGridDialog.ShowGrid(this, _listManager.GetDisplayedBroadcastList(), _listManager.SelectedService, _epgDataStore);
         } // ShowEpgBasicGrid
 
         private void ShowEpgExtendedInfo()
@@ -116,12 +117,12 @@ namespace IpTviewr.ChannelList
         {
             if (!enable_Epg) return;
 
-            // TODO: call EpgDownloader with appropriate EpgDatastore
+            // TODO: call EpgDownloader with appropriate EpgDataStore
         } // UpdateEgpData
 
         private void ShowEpgList(int daysDelta)
         {
-            if (ListManager.SelectedService == null) return;
+            if (_listManager.SelectedService == null) return;
 
             // TODO: ShowEpgList
             /*

@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace IpTviewr.Services.EpgDiscovery
 {
-    public sealed class EpgNullDatastore: EpgDatastore
+    public sealed class EpgNullDatastore: EpgDataStore
     {
         protected override void AddEpgService(EpgService epgService)
         {

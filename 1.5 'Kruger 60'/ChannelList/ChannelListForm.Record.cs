@@ -42,7 +42,7 @@ namespace IpTviewr.ChannelList
 
         private void buttonRecordChannel_Click_Implementation(object sender, EventArgs e)
         {
-            RecordHelper.RecordService(this, ListManager.SelectedService);
+            RecordHelper.RecordService(this, _listManager.SelectedService);
         } // buttonRecordChannel_Click_Implementation
 
         private void menuItemRecordingsManage_Click_Implementation(object sender, EventArgs e)

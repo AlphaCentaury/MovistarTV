@@ -35,7 +35,7 @@ namespace IpTviewr.ChannelList
 
         private void ListManager_StatusChanged_Implementation(object sender, ListStatusChangedEventArgs e)
         {
-            ListManager.ListView.Enabled = e.HasItems;
+            _listManager.ListView.Enabled = e.HasItems;
             menuItemChannelFavorites.Enabled = e.HasItems && enable_menuItemChannelFavorites;
             menuItemChannelListView.Enabled = e.HasItems;
             menuItemChannelEditList.Enabled = e.HasItems && enable_menuItemChannelEditList;
@@ -102,18 +102,18 @@ namespace IpTviewr.ChannelList
 
         private void contextMenuListMode_Click(object sender, EventArgs e)
         {
-            ListManager.ShowSettingsEditor(this, true);
+            _listManager.ShowSettingsEditor(this, true);
         } // contextMenuListMode_Click
 
         private void contextMenuListCopy_DropDownOpening(object sender, EventArgs e)
         {
-            contextMenuListCopyRow.Enabled = ListManager.SelectedService != null;
-            contextMenuListCopyAll.Enabled = ListManager.HasItems;
+            contextMenuListCopyRow.Enabled = _listManager.SelectedService != null;
+            contextMenuListCopyAll.Enabled = _listManager.HasItems;
         } // contextMenuListCopy_DropDownOpening
 
         private void contextMenuListCopyURL_Click(object sender, EventArgs e)
         {
-            var service = ListManager.SelectedService;
+            var service = _listManager.SelectedService;
             if (service == null) return;
 
             Clipboard.SetText(service.LocationUrl, TextDataFormat.UnicodeText);
@@ -123,7 +123,7 @@ namespace IpTviewr.ChannelList
         {
             StringBuilder buffer;
 
-            var service = ListManager.SelectedService;
+            var service = _listManager.SelectedService;
             if (service == null) return;
 
             buffer = new StringBuilder();
@@ -140,7 +140,7 @@ namespace IpTviewr.ChannelList
             buffer = new StringBuilder();
 
             DumpHeader(buffer);
-            foreach (var service in ListManager.BroadcastServices)
+            foreach (var service in _listManager.BroadcastServices)
             {
                 DumpBroadcastService(service, buffer);
                 buffer.AppendLine();
@@ -230,7 +230,7 @@ namespace IpTviewr.ChannelList
 
             BasicGoogleTelemetry.SendEventHit("Feature", "contextMenuListExportM3u", "contextMenuListExportM3u.Text", this.GetType().Name);
 
-            var sortedServices = from service in ListManager.BroadcastServices
+            var sortedServices = from service in _listManager.BroadcastServices
                                  orderby service.DisplayLogicalNumber
                                  select service;
 

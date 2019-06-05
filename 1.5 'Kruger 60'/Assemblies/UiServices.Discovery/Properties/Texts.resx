@@ -112,10 +112,10 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="BroadcastListRefreshEmpty" xml:space="preserve">
     <value>The list has been successfully refreshed, but it is empty.</value>
@@ -188,6 +188,9 @@
   </data>
   <data name="Payload05DisplayName" xml:space="preserve">
     <value>Packages and channel numbers</value>
+  </data>
+  <data name="Payload06DisplayName" xml:space="preserve">
+    <value>EPG data source locations</value>
   </data>
   <data name="ProviderUnknownDisplayDescription" xml:space="preserve">
     <value>No description is available for this service provider</value>

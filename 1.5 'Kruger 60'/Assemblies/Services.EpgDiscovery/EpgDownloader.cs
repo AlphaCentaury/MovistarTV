@@ -31,23 +31,10 @@ namespace IpTviewr.Services.EpgDiscovery
         private DvbStpStreamClient StreamClient;
         private SegmentsProcessor Processor;
 
-        public IPAddress MulticastIpAddress
-        {
-            get;
-            private set;
-        } // MulticastIpAddress
-
-        public int MulticastPort
-        {
-            get;
-            private set;
-        } // MulticastPort
-
-        private EpgDatastore Datastore
-        {
-            get;
-            set;
-        } // Datastore
+        public IPAddress MulticastIpAddress { get; set; }
+        public int MulticastPort { get; set; }
+        private EpgDataStore DataStore { get; set; }
+        private CancellationToken Token { get; set; }
 
         public EpgDownloader(string multicastIpEndPoint)
         {
@@ -66,7 +53,7 @@ namespace IpTviewr.Services.EpgDiscovery
         {
             MulticastIpAddress = multicastIpAddress;
             MulticastPort = port;
-        } // EpgDownloader
+        } // constructor
 
         private void Init(string ipAddress, string port)
         {
@@ -79,10 +66,12 @@ namespace IpTviewr.Services.EpgDiscovery
             Endpoint = endpoint;
         } // constructor
 
-        public async Task StartAsync(EpgDatastore datastore)
+        public Task StartAsync(EpgDataStore datastore, CancellationToken token)
         {
-            Datastore = datastore;
-            await Task.Run((Action)Download);
+            Token = token;
+            DataStore = datastore;
+
+            return Task.Run((Action)Download, token);
         } // StartAsync
 
         private void Download()
@@ -98,7 +87,7 @@ namespace IpTviewr.Services.EpgDiscovery
                 while (retryTime <= maxRetryTime)
                 {
                     // initialize DVB-STP client
-                    StreamClient = new DvbStpStreamClient(MulticastIpAddress, MulticastPort);
+                    StreamClient = new DvbStpStreamClient(MulticastIpAddress, MulticastPort, Token);
                     StreamClient.NoDataTimeout = -1; // not implemented by DvbStpStreamClient
                     StreamClient.ReceiveDatagramTimeout = 60 * 1000; // 60 seconds
                     StreamClient.OperationTimeout = -1; // forever
@@ -107,7 +96,7 @@ namespace IpTviewr.Services.EpgDiscovery
                     var retry = false;
                     try
                     {
-                        Processor.Start(Datastore);
+                        Processor.Start(DataStore);
                         StreamClient.DownloadStream();
                         break;
                     }
@@ -115,52 +104,40 @@ namespace IpTviewr.Services.EpgDiscovery
                     {
                         retry = true;
                     }
-                    catch (TimeoutException) // reception timedout
+                    catch (TimeoutException) // reception timeout
                     {
                         // took too much time to process the stream
                     }// try-catch
 
                     // Safety check. If we asked to stop the download, but an exception is thrown in between,
                     // we can ignore it and end the reception;
-                    if (StreamClient.CancelRequested) break;
+                    if ((StreamClient.CancelRequested) || Token.IsCancellationRequested || (!retry)) break;
 
-                    if (retry)
-                    {
-                        // wait and then retry, increasing wait time
-                        retryTime += retryIncrement;
-                        Thread.Sleep(retryTime);
-                        continue;
-                    } // if
+                    // wait and then retry, increasing wait time
+                    retryTime += retryIncrement;
+                    Thread.Sleep(retryTime);
                 } // while
 
                 Processor.WaitCompletion();
             }
             finally
             {
-                if (StreamClient != null)
-                {
-                    StreamClient.Close();
-                    StreamClient = null;
-                } // if
-
-                if (Processor != null)
-                {
-                    Processor.Dispose();
-                    Processor = null;
-                } // if
-
-                Datastore = null;
+                StreamClient?.Close();
+                StreamClient = null;
+                Processor?.Dispose();
+                Processor = null;
+                DataStore = null;
             } // try-finally
         } // Download
 
         private void SegmentPayloadReceived(object sender, PayloadStorage.SegmentPayloadReceivedEventArgs e)
         {
-            Console.WriteLine("{0}:{1} ({2} received)", e.SegmentIdentity, e.Payload.Length, StreamClient.DatagramCount);
+            Console.WriteLine($@"{e.SegmentIdentity}:{e.Payload.Length} ({StreamClient.DatagramCount} received)");
             Processor.AddSegment(e.Payload);
 
             // TODO: stop when EPG is complete
             // Notify the caller.
-            // Give teh caller the option to download in a continuos loop
+            // Give teh caller the option to download in a continuous loop
             // or the restart the download after a given time
         } // SegmentPayloadReceived
     } // class EpgDownloader
