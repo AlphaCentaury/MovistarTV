@@ -1,4 +1,3 @@
-using System.IO;
 using System.Xml.Serialization;
 
 namespace IpTviewr.UiServices.Configuration.Schema2014.Logos

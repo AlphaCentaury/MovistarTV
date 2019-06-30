@@ -6,10 +6,6 @@
 // http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
 
 using Etsi.Ts102034.v010501.XmlSerialization.Common;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Property = System.Collections.Generic.KeyValuePair<string, string>;
 
 namespace IpTviewr.UiServices.Discovery

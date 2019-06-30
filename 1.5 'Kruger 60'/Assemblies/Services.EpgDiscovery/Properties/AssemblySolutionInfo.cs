@@ -6,7 +6,6 @@
 // http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
 
 using System.Reflection;
-using System.Runtime.CompilerServices;
 
 [assembly: AssemblyFileVersion(SolutionVersion.AssemblyFileVersion)]
 [assembly: AssemblyInformationalVersion(SolutionVersion.AssemblyInformationalVersion)]

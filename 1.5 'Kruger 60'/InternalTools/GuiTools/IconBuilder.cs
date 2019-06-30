@@ -7,14 +7,9 @@
 
 using IpTviewr.Native;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -129,7 +124,7 @@ namespace IpTviewr.Internal.Tools.GuiTools
         private void buttonLoadImages_Click(object sender, EventArgs e)
         {
             var infos = new FileInfo[listFiles.Items.Count];
-            for (int index = 0; index < infos.Length; index++)
+            for (var index = 0; index < infos.Length; index++)
             {
                 infos[index] = (FileInfo) listFiles.Items[index].Tag;
             } // for index
@@ -144,13 +139,13 @@ namespace IpTviewr.Internal.Tools.GuiTools
         private void buttonSave_Click(object sender, EventArgs e)
         {
             var infos = new FileInfo[listFiles.Items.Count];
-            for (int index = 0; index < infos.Length; index++)
+            for (var index = 0; index < infos.Length; index++)
             {
                 infos[index] = (FileInfo)listFiles.Items[index].Tag;
             } // for index
 
             var count = 0;
-            for (int index = 0; index < infos.Length; index++)
+            for (var index = 0; index < infos.Length; index++)
             {
                 if ((infos[index].Exception == null) && (infos[index].Image != null))
                 {
@@ -160,7 +155,7 @@ namespace IpTviewr.Internal.Tools.GuiTools
 
             var icon = new WindowsIcon(count);
             icon.AllowNonSquareImages = true;
-            for (int index = 0; index < infos.Length; index++)
+            for (var index = 0; index < infos.Length; index++)
             {
                 if ((infos[index].Exception == null) && (infos[index].Image != null))
                 {
@@ -182,7 +177,7 @@ namespace IpTviewr.Internal.Tools.GuiTools
 
         private async void LoadImages(FileInfo[] files)
         {
-            for (int index = 0; index < files.Length; index++)
+            for (var index = 0; index < files.Length; index++)
             {
                 var file = files[index];
                 if ((file.Image != null) || (file.Exception != null)) continue;

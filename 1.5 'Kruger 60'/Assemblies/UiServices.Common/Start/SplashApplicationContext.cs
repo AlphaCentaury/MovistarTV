@@ -6,11 +6,8 @@
 // http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
 
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -73,17 +70,17 @@ namespace IpTviewr.UiServices.Common.Start
             mainForm.Show();
         } // StartMainForm
 
-        void MainForm_FormLoadCompleted(object sender, EventArgs e)
+        private void MainForm_FormLoadCompleted(object sender, EventArgs e)
         {
             EndSplashScreen(sender as Form);
         } // MainForm_FormLoadCompleted
 
-        void MainForm_Shown(object sender, EventArgs e)
+        private void MainForm_Shown(object sender, EventArgs e)
         {
             EndSplashScreen(sender as Form);
         } // MainForm_Shown
 
-        void MainForm_FormClosed(object sender, FormClosedEventArgs e)
+        private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             // end application context
             ExitThread();

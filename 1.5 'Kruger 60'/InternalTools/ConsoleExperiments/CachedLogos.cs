@@ -7,19 +7,16 @@
 
 using IpTviewr.UiServices.Configuration;
 using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace IpTviewr.Internal.Tools.ConsoleExperiments
 {
-    class CachedLogos : Experiment
+    internal class CachedLogos : Experiment
     {
-        class SizeData
+        private class SizeData
         {
             public int Size;
             public Image Image;
@@ -33,10 +30,7 @@ namespace IpTviewr.Internal.Tools.ConsoleExperiments
 
         protected override int Run(string[] args)
         {
-            InitializationResult initializationResult;
-            int number;
-
-            var config = AppUiConfiguration.LoadRegistryAppConfiguration(out initializationResult);
+            var config = AppUiConfiguration.LoadRegistryAppConfiguration(out _);
             Console.WriteLine(config.Folders.Base);
 
             var imageWidth = 8192; // pixels
@@ -44,9 +38,9 @@ namespace IpTviewr.Internal.Tools.ConsoleExperiments
             var sizeData = new SizeData[sizes.Length];
             var domain = "imagenio.es";
             var sourcePath = Path.Combine(config.Folders.Logos.Services, domain);
-            var logoNames = GetLogosNames(sourcePath, out number);
+            var logoNames = GetLogosNames(sourcePath, out var number);
 
-            for (int index = 0; index < sizes.Length; index++)
+            for (var index = 0; index < sizes.Length; index++)
             {
                 var data = new SizeData();
                 var size = sizes[index];

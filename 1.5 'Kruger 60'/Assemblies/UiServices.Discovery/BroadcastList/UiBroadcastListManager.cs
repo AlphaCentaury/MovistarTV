@@ -8,9 +8,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
-using IpTviewr.UiServices.Common.Properties;
 using System.Drawing;
 using IpTviewr.UiServices.Common.Controls;
 using IpTviewr.UiServices.Configuration.Logos;
@@ -277,10 +275,10 @@ namespace IpTviewr.UiServices.Discovery.BroadcastList
             } // get
             set
             {
-                UiBroadcastService selected = value;
+                var selected = value;
 
                 // remove current selection
-                for (int index = 0; index < ListView.SelectedItems.Count; index++)
+                for (var index = 0; index < ListView.SelectedItems.Count; index++)
                 {
                     ListView.SelectedItems[0].Selected = false;
                 } // for
@@ -403,7 +401,7 @@ namespace IpTviewr.UiServices.Discovery.BroadcastList
         private void FireSelectionChanged()
         {
             var listItem = (ListView.SelectedItems.Count == 0) ? null : ListView.SelectedItems[0];
-            fieldSelectedService = (listItem == null) ? null : (UiBroadcastService)listItem.Tag;
+            fieldSelectedService = (UiBroadcastService) listItem?.Tag;
          
             OnSelectionChanged(this, new ListSelectionChangedEventArgs(fieldSelectedService));
         } // FireSelectionChanged
@@ -448,12 +446,12 @@ namespace IpTviewr.UiServices.Discovery.BroadcastList
             } // if-else
         }  // HookupEvents
 
-        void ListView_SelectedIndexChanged(object sender, EventArgs e)
+        private void ListView_SelectedIndexChanged(object sender, EventArgs e)
         {
             FireSelectionChanged();
         } // ListView_SelectedIndexChanged
 
-        void ListView_ColumnClick(object sender, ColumnClickEventArgs e)
+        private void ListView_ColumnClick(object sender, ColumnClickEventArgs e)
         {
             var sortColumn = new UiBroadcastListSortColumn();
             sortColumn.Column = Settings.CurrentColumns[e.Column];
@@ -695,7 +693,7 @@ namespace IpTviewr.UiServices.Discovery.BroadcastList
             if (oldColumns.Count != newColums.Count) return true;
 
             // columns changed
-            for (int index = 0; index < oldColumns.Count; index++)
+            for (var index = 0; index < oldColumns.Count; index++)
             {
                 if (oldColumns[index] != newColums[index])
                 {
@@ -732,7 +730,7 @@ namespace IpTviewr.UiServices.Discovery.BroadcastList
         {
             if (oldColumns.Count != newColumns.Count) return false;
 
-            for (int index = 0; index < oldColumns.Count; index++)
+            for (var index = 0; index < oldColumns.Count; index++)
             {
                 if (oldColumns[index] != newColumns[index]) return false;
             } // if
@@ -802,7 +800,7 @@ namespace IpTviewr.UiServices.Discovery.BroadcastList
             var disabledKey = "<Disabled> " + key;
 
             // load small logo and add it to small image list
-            using (var image = logo.GetImage(SmallLogoSize, true))
+            using (var image = logo.GetImage(SmallLogoSize))
             {
                 SmallImageList.Images.Add(logo.Key, image);
                 using (var disabledImage = PictureBoxEx.ToGrayscale(image))
@@ -812,7 +810,7 @@ namespace IpTviewr.UiServices.Discovery.BroadcastList
             } // using image
 
             // load large logo and add it to large image list
-            using (var image = logo.GetImage(LargeLogoSize, true))
+            using (var image = logo.GetImage(LargeLogoSize))
             {
                 LargeImageList.Images.Add(logo.Key, image);
                 using (var disabledImage = PictureBoxEx.ToGrayscale(image))

@@ -7,16 +7,12 @@
 
 using IpTviewr.Common;
 using IpTviewr.UiServices.Configuration;
-using IpTviewr.UiServices.Configuration.Schema2014.Config;
 using IpTviewr.UiServices.Configuration.Settings.TvPlayers;
 using IpTviewr.UiServices.Discovery;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
 using System.Security.Permissions;
-using System.Text;
 using System.Windows.Forms;
 using IpTviewr.Native;
 using Microsoft.SqlServer.MessageBox;

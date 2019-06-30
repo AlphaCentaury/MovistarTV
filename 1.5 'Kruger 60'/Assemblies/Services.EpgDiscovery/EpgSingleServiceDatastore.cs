@@ -7,16 +7,13 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace IpTviewr.Services.EpgDiscovery
 {
     public sealed class EpgSingleServiceDatastore: EpgDataStore
     {
-        string FullServiceName;
-        IEpgLinkedList ServicePrograms;
+        private string FullServiceName;
+        private IEpgLinkedList ServicePrograms;
 
         public EpgSingleServiceDatastore(string fullServiceName, IEpgLinkedList servicePrograms)
         {

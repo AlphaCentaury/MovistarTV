@@ -5,11 +5,7 @@
 // 
 // http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
 
-using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
 
 namespace IpTviewr.UiServices.Configuration
 {

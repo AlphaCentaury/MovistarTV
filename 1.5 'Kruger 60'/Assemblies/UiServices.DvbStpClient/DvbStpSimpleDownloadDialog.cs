@@ -8,14 +8,9 @@
 using IpTviewr.Common.Telemetry;
 using IpTviewr.DvbStp.Client;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Net;
-using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -170,15 +165,15 @@ namespace IpTviewr.UiServices.DvbStpClient
 
         private void DisplayEllapsedTime()
         {
-            TimeSpan ellapsed = DateTime.Now - StartTime;
-            TimeSpan ellapsedRounded = new TimeSpan(ellapsed.Days, ellapsed.Hours, ellapsed.Minutes, ellapsed.Seconds);
+            var ellapsed = DateTime.Now - StartTime;
+            var ellapsedRounded = new TimeSpan(ellapsed.Days, ellapsed.Hours, ellapsed.Minutes, ellapsed.Seconds);
 
             labelEllapsedTime.Text = string.Format(FormatEllapsedTime, ellapsedRounded);
         } // DisplayEllapsedTime
 
         #region Worker events
 
-        void Worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        private void Worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             timerEllapsed.Enabled = false;
 
@@ -244,7 +239,7 @@ namespace IpTviewr.UiServices.DvbStpClient
 
         #region BackgroundWorker DoWork
 
-        void Worker_DoWork(object sender, DoWorkEventArgs e)
+        private void Worker_DoWork(object sender, DoWorkEventArgs e)
         {
             DvbStpSimpleClient dvbStpClient;
             byte[] payload;
@@ -308,12 +303,12 @@ namespace IpTviewr.UiServices.DvbStpClient
 
         #region StpClient event handlers
 
-        void StpClient_SectionReceived(object sender, DvbStpSimpleClient.SectionReceivedEventArgs e)
+        private void StpClient_SectionReceived(object sender, DvbStpSimpleClient.SectionReceivedEventArgs e)
         {
             Worker.ReportProgress(-1, e);
         } // StpClient_SectionReceived
 
-        void StpClient_PayloadSectionReceived(object sender, DvbStpSimpleClient.PayloadSectionReceivedEventArgs e)
+        private void StpClient_PayloadSectionReceived(object sender, DvbStpSimpleClient.PayloadSectionReceivedEventArgs e)
         {
             Worker.ReportProgress((e.SectionsReceived * 1000) / e.SectionCount, e);
         } // StpClient_PayloadSectionReceived

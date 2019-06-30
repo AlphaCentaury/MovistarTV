@@ -7,12 +7,8 @@
 
 using System;
 using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 
 namespace IpTviewr.DvbStp.Client
 {
@@ -46,10 +42,10 @@ namespace IpTviewr.DvbStp.Client
 
         private class SegmentDataProcessor
         {
-            Thread WorkerThread;
-            ConcurrentQueue<SegmentData> Queue;
-            AutoResetEvent Enqueued;
-            AutoResetEvent ProcessSegmentsEnded;
+            private Thread WorkerThread;
+            private ConcurrentQueue<SegmentData> Queue;
+            private AutoResetEvent Enqueued;
+            private AutoResetEvent ProcessSegmentsEnded;
 
             public SegmentDataProcessor()
             {
@@ -116,12 +112,10 @@ namespace IpTviewr.DvbStp.Client
 
             private SegmentData Dequeue()
             {
-                SegmentData payload;
-
                 while (true)
                 {
                     Console.WriteLine("Queue: {0} items", Queue.Count);
-                    if (Queue.TryDequeue(out payload))
+                    if (Queue.TryDequeue(out var payload))
                     {
                         Console.WriteLine("Dequeue.Ok");
                         return payload;

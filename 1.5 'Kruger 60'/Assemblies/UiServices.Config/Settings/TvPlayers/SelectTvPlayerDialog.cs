@@ -8,11 +8,7 @@
 using IpTviewr.UiServices.Configuration.Settings.TvPlayers.Editors;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace IpTviewr.UiServices.Configuration.Settings.TvPlayers

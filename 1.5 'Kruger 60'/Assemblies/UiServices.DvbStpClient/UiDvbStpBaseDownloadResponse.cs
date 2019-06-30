@@ -7,10 +7,7 @@
 
 using IpTviewr.Common.Serialization;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
 
 namespace IpTviewr.UiServices.DvbStpClient
 {
@@ -32,7 +29,7 @@ namespace IpTviewr.UiServices.DvbStpClient
         {
             try
             {
-                using (MemoryStream input = new MemoryStream(payloadData, false))
+                using (var input = new MemoryStream(payloadData, false))
                 {
                     return XmlSerialization.Deserialize(input, payloadType, trimExtraWhitespace, namespaceReplacer);
                 } // using input

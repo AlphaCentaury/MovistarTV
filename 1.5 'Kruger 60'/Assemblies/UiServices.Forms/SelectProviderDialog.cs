@@ -14,22 +14,17 @@ using IpTviewr.UiServices.Configuration;
 using IpTviewr.UiServices.Configuration.Logos;
 using IpTviewr.UiServices.Discovery;
 using IpTviewr.UiServices.DvbStpClient;
-using IpTviewr.UiServices.Forms;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Net;
-using System.Text;
 using System.Windows.Forms;
 
 namespace IpTviewr.UiServices.Forms
 {
     public partial class SelectProviderDialog : CommonBaseForm
     {
-        UiProviderDiscovery ProvidersDiscovery;
+        private UiProviderDiscovery ProvidersDiscovery;
 
         public SelectProviderDialog()
         {
@@ -100,7 +95,7 @@ namespace IpTviewr.UiServices.Forms
                 Caption = Properties.DiscoveryTexts.SPProperties,
                 ItemProperties = SelectedServiceProvider.DumpProperties(),
                 Description = SelectedServiceProvider.DisplayName,
-                ItemIcon = SelectedServiceProvider.Logo.GetImage(LogoSize.Size64, true),
+                ItemIcon = SelectedServiceProvider.Logo.GetImage(LogoSize.Size64),
             })
             {
                 dlg.ShowDialog(this);
@@ -253,7 +248,7 @@ namespace IpTviewr.UiServices.Forms
         {
             if (imageListProvidersLarge.Images.ContainsKey(logo.Key)) return logo.Key;
 
-            using (var image = logo.GetImage(LogoSize.Size32, true))
+            using (var image = logo.GetImage(LogoSize.Size32))
             {
                 imageListProvidersLarge.Images.Add(logo.Key, image);
             } // using image

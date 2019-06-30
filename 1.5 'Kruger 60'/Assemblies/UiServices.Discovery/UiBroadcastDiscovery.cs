@@ -9,7 +9,6 @@ using Etsi.Ts102034.v010501.XmlSerialization.BroadcastDiscovery;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Xml.Serialization;
 
 namespace IpTviewr.UiServices.Discovery
@@ -39,7 +38,7 @@ namespace IpTviewr.UiServices.Discovery
             var removedServices = new List<UiBroadcastService>();
             var newServices = new List<UiBroadcastService>();
             var changedServices = new List<UiBroadcastService>();
-            int notChanged = 0;
+            var notChanged = 0;
 
             oldDiscovery.BuildServicesDictionary();
             newDiscovery.BuildServicesDictionary();
@@ -47,9 +46,7 @@ namespace IpTviewr.UiServices.Discovery
             // detect new services and changes
             foreach (var service in newDiscovery.Services)
             {
-                UiBroadcastService oldService;
-
-                if (oldDiscovery.ServicesDictionary.TryGetValue(service.Key, out oldService))
+                if (oldDiscovery.ServicesDictionary.TryGetValue(service.Key, out var oldService))
                 {
                     if (service.IsSameService(oldService))
                     {
@@ -136,10 +133,8 @@ namespace IpTviewr.UiServices.Discovery
 
         public UiBroadcastService TryGetService(string serviceKey)
         {
-            UiBroadcastService service;
-
             if (ServicesDictionary == null) BuildServicesDictionary();
-            return ServicesDictionary.TryGetValue(serviceKey, out service) ? service : null;
+            return ServicesDictionary.TryGetValue(serviceKey, out var service) ? service : null;
         } // TryGetService
 
         private void Create(BroadcastDiscoveryRoot discoveryXml, string providerDomainName, int version)

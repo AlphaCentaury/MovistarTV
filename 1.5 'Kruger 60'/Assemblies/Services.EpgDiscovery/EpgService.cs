@@ -10,7 +10,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
-using System.Text;
 using System.Xml.Serialization;
 
 namespace IpTviewr.Services.EpgDiscovery
@@ -138,9 +137,7 @@ namespace IpTviewr.Services.EpgDiscovery
 
         public static int TryParseInt(string s, int errValue)
         {
-            int result;
-
-            if (int.TryParse(s, out result)) return result;
+            if (int.TryParse(s, out var result)) return result;
 
             return errValue;
         } // TryParseInt

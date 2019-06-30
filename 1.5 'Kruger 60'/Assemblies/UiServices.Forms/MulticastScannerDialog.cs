@@ -223,7 +223,7 @@ namespace IpTviewr.UiServices.Forms
                 listViewStats.Items.Add(new ListViewItem(new string[] { MulticastScanner.Error, "-" }));
                 listViewStats.Items.Add(new ListViewItem(new string[] { MulticastScanner.Skipped, "-" }));
                 listViewStats.Items.Add(new ListViewItem(new string[] { MulticastScanner.Total, "-" }));
-                for (int index = 0; index < listViewStats.Items.Count; index++)
+                for (var index = 0; index < listViewStats.Items.Count; index++)
                 {
                     listViewStats.Items[index].UseItemStyleForSubItems = false;
                     listViewStats.Items[index].SubItems[1].Font = labelServiceName.Font;
@@ -246,8 +246,8 @@ namespace IpTviewr.UiServices.Forms
 
         private void DisplayEllapsedTime()
         {
-            TimeSpan ellapsed = DateTime.Now - StartTime;
-            TimeSpan ellapsedRounded = new TimeSpan(ellapsed.Days, ellapsed.Hours, ellapsed.Minutes, ellapsed.Seconds);
+            var ellapsed = DateTime.Now - StartTime;
+            var ellapsedRounded = new TimeSpan(ellapsed.Days, ellapsed.Hours, ellapsed.Minutes, ellapsed.Seconds);
 
             labelEllapsedTime.Text = string.Format(FormatEllapsedTime, ellapsedRounded);
         } // DisplayEllapsedTime
@@ -280,7 +280,7 @@ namespace IpTviewr.UiServices.Forms
 
         #region Worker events
 
-        void Worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        private void Worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             timerEllapsed.Enabled = false;
             Worker.Dispose();
@@ -356,7 +356,7 @@ namespace IpTviewr.UiServices.Forms
 
         private void NotifyScanResult(ProgressData progress)
         {
-            bool IsInactive = (progress.ScanResult == ScanResult.Inactive);
+            var IsInactive = (progress.ScanResult == ScanResult.Inactive);
 
             if (ChannelScanResult == null)
             {
@@ -390,7 +390,7 @@ namespace IpTviewr.UiServices.Forms
 
         #region BackgroundWorker DoWork
 
-        void Worker_DoWork(object sender, DoWorkEventArgs e)
+        private void Worker_DoWork(object sender, DoWorkEventArgs e)
         {
             ProgressData progress;
             byte[] buffer;

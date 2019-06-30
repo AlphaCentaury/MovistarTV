@@ -6,11 +6,8 @@
 // http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
 
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
 using System.Xml.Serialization;
 
 namespace IpTviewr.Services.EpgDiscovery

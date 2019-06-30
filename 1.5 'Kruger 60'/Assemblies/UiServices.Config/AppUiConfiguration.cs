@@ -16,7 +16,6 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
-using System.Linq;
 using System.Text;
 using System.Xml;
 
@@ -526,8 +525,7 @@ namespace IpTviewr.UiServices.Configuration
                     if ((xAttr == null) || (xAttr.Value == null)) continue;
                     var id = new Guid(xAttr.Value);
 
-                    IConfigurationItemRegistration registration;
-                    if (!ItemsRegistry.TryGetValue(id, out registration)) continue;
+                    if (!ItemsRegistry.TryGetValue(id, out var registration)) continue;
 
                     using (var reader = new XmlNodeReader(item))
                     {

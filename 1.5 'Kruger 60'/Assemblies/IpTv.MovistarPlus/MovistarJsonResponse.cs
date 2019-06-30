@@ -6,10 +6,6 @@
 // http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
 
 using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace IpTviewr.MovistarPlus
 {

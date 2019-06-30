@@ -6,10 +6,7 @@
 // http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
-using System.Text;
 using System.Threading;
 
 namespace IpTviewr.DvbStp.Client
@@ -34,17 +31,17 @@ namespace IpTviewr.DvbStp.Client
 
         public int ReceivedSections
         {
-            get { return (SegmentData != null) ? SegmentData.ReceivedSections : 0; }
+            get { return SegmentData?.ReceivedSections ?? 0; }
         } // ReceivedSections
 
         public int SectionCount
         {
-            get { return (SegmentData != null) ? SegmentData.LastSectionNumber + 1 : 0; }
+            get { return SegmentData?.LastSectionNumber + 1 ?? 0; }
         } // SectionCount
 
         public byte SegmentVersion
         {
-            get { return (SegmentData != null) ? SegmentData.SegmentIdentity.Version : (byte)0; }
+            get { return SegmentData?.SegmentIdentity.Version ?? (byte)0; }
         } // SegmentVersion
 
         public int DowloadRestartCount

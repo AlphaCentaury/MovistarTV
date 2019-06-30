@@ -8,14 +8,11 @@
 using IpTviewr.Common.Serialization;
 using IpTviewr.Services.SqlServerCE;
 using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlServerCe;
 using System.IO;
-using System.Linq;
 using System.Text;
 using System.Xml;
-using System.Xml.Serialization;
 
 namespace IpTviewr.Services.Record.Serialization
 {

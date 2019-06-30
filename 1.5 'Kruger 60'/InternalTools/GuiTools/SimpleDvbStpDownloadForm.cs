@@ -7,13 +7,7 @@
 
 using IpTviewr.UiServices.DvbStpClient;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Globalization;
 using System.IO;
-using System.Linq;
 using System.Net;
 using System.Text;
 using System.Windows.Forms;
@@ -91,7 +85,7 @@ namespace IpTviewr.Internal.Tools.GuiTools
             {
                 var count = data.Length;
                 var buffer = new StringBuilder(count);
-                for (int index = 0; index < count; index++)
+                for (var index = 0; index < count; index++)
                 {
                     var b = data[index];
                     buffer.Append((b < 32) ? '·' : (char)b);

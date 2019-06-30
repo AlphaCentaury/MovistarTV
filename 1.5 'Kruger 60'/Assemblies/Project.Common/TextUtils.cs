@@ -6,11 +6,8 @@
 // http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
 
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace IpTviewr.Common
 {
@@ -20,16 +17,12 @@ namespace IpTviewr.Common
 
         public static string RemoveInvalidChars(string text, char[] invalidChars)
         {
-            bool modified;
-
-            return RemoveInvalidChars(text, invalidChars, null, out modified);
+            return RemoveInvalidChars(text, invalidChars, null, out var modified);
         } // RemoveInvalidChars
 
         public static string RemoveInvalidChars(string text, char[] invalidChars, string replacementText)
         {
-            bool modified;
-
-            return RemoveInvalidChars(text, invalidChars, replacementText, out modified);
+            return RemoveInvalidChars(text, invalidChars, replacementText, out var modified);
         } // RemoveInvalidChars
 
         public static string RemoveInvalidChars(string text, char[] invalidChars, string replacementText, out bool modified)
@@ -94,16 +87,12 @@ namespace IpTviewr.Common
 
         public static string SanitizeFilename(string text)
         {
-            bool modified;
-
-            return InternalRemoveInvalidChars(text, GetFilenameInvalidChars(), null, out modified);
+            return InternalRemoveInvalidChars(text, GetFilenameInvalidChars(), null, out var modified);
         } // SanitizeFilename
 
         public static string SanitizeFilename(string text, string replacementText)
         {
-            bool modified;
-
-            return InternalRemoveInvalidChars(text, GetFilenameInvalidChars(), replacementText, out modified);
+            return InternalRemoveInvalidChars(text, GetFilenameInvalidChars(), replacementText, out var modified);
         } // SanitizeFilename
 
         public static string SanitizeFilename(string text, string replacementText, out bool modified)

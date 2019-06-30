@@ -13,7 +13,7 @@ using System.Text;
 
 namespace AlphaCentaury.IPTViewr.Internal.UpdateCopyrightNotices
 {
-    class Program
+    internal class Program
     {
         public static readonly string CopyrightHeader =
             "Copyright (C) 2014-2019, GitHub/Codeplex user AlphaCentaury\0" +
@@ -28,7 +28,7 @@ namespace AlphaCentaury.IPTViewr.Internal.UpdateCopyrightNotices
         private static string[] ExcludedPaths;
         private static IList<string> FileHeaderLines;
 
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             Console.WriteLine("Update/add copyright notices to project code");
             Console.WriteLine("Copyright (C) 2014-2019, GitHub user AlphaCentaury");

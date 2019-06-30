@@ -6,12 +6,8 @@
 // http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
 
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
-using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
@@ -116,7 +112,7 @@ namespace IpTviewr.Internal.Tools.GuiTools
             Worker.CancelAsync();
         } // buttonStop_Click
 
-        void Worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        private void Worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             buttonStart.Enabled = true;
             buttonStop.Text = "Stop";
@@ -128,7 +124,7 @@ namespace IpTviewr.Internal.Tools.GuiTools
             Worker = null;
         } // Worker_RunWorkerCompleted
 
-        void Worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        private void Worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
             var data = e.UserState as byte[];
 
@@ -153,14 +149,14 @@ namespace IpTviewr.Internal.Tools.GuiTools
             DatagramCount++;
             DatagramByteCount += data.Length;
 
-            int length = (DatagramCount % 10) + 1;
+            var length = (DatagramCount % 10) + 1;
             statusLabelDataReception.Text = new string('l', length);
 
             statusLabelDatagramCount.Text = string.Format("{0:N0} datagrams received", DatagramCount);
             statusLabelByteCount.Text = string.Format("{0:N0} bytes received", DatagramByteCount);
         } // Worker_ProgressChanged
 
-        void Worker_DoWork(object sender, DoWorkEventArgs e)
+        private void Worker_DoWork(object sender, DoWorkEventArgs e)
         {
             UdpClient client;
             IPEndPoint endPoint;
@@ -195,8 +191,8 @@ namespace IpTviewr.Internal.Tools.GuiTools
         {
             if (count > data.Length) count = data.Length;
 
-            StringBuilder buffer = new StringBuilder(count);
-            for (int index = 0; index < count; index++)
+            var buffer = new StringBuilder(count);
+            for (var index = 0; index < count; index++)
             {
                 var b = data[index];
                 buffer.Append((b <32 )? '·' : (char) b);

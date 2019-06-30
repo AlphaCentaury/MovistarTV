@@ -6,8 +6,6 @@
 // http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.InteropServices;
 using System.Security.Permissions;
 using System.Text;
@@ -90,9 +88,9 @@ namespace IpTviewr.Native
             public struct WIN32_FIND_DATAW
             {
                 public uint dwFileAttributes;
-                public Int64 ftCreationTime;
-                public Int64 ftLastAccessTime;
-                public Int64 ftLastWriteTime;
+                public long ftCreationTime;
+                public long ftLastAccessTime;
+                public long ftLastWriteTime;
                 public uint nFileSizeHigh;
                 public uint nFileSizeLow;
                 public uint dwReserved0;

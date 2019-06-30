@@ -10,13 +10,8 @@ using Etsi.Ts102034.v010501.XmlSerialization.Common;
 using Etsi.Ts102034.v010501.XmlSerialization.ProviderDiscovery;
 using IpTviewr.UiServices.Configuration;
 using IpTviewr.UiServices.Configuration.Logos;
-using IpTviewr.UiServices.Configuration.Schema2014;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.Text;
-using System.Xml.Serialization;
 using Property = System.Collections.Generic.KeyValuePair<string, string>;
 
 namespace IpTviewr.UiServices.Discovery
@@ -182,13 +177,12 @@ namespace IpTviewr.UiServices.Discovery
 
         private string GetDisplayName()
         {
-            string friendlyName;
             string result;
 
             result = Data.Name.SafeGetLanguageValue(AppUiConfiguration.Current.User.PreferredLanguagesList, AppUiConfiguration.Current.DisplayPreferredOrFirst, null);
             if (result != null) return result;
 
-            if (AppUiConfiguration.Current.ContentProvider.FriendlyNames.ServiceProvider.TryGetValue(Data.DomainName, out friendlyName))
+            if (AppUiConfiguration.Current.ContentProvider.FriendlyNames.ServiceProvider.TryGetValue(Data.DomainName, out var friendlyName))
             {
                 return string.Format(Properties.Texts.FormatProviderFriendlyDisplayName, friendlyName, Data.DomainName.ToLowerInvariant());
             }

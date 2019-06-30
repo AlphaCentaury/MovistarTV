@@ -6,11 +6,7 @@
 // http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
 
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using System.Text;
-using System.Xml;
 using System.Xml.Serialization;
 
 namespace IpTviewr.Services.Record.Serialization
@@ -86,7 +82,7 @@ namespace IpTviewr.Services.Record.Serialization
 
             task = new RecordTask()
             {
-                Channel = (channel != null) ? channel : new RecordChannel(),
+                Channel = channel ?? new RecordChannel(),
                 Schedule = RecordSchedule.CreateWithDefaultValues(RecordScheduleKind.OneTime),
                 Duration = RecordDuration.CreateWithDefaultValues(),
                 Description = RecordDescription.CreateWithDefaultValues(),

@@ -7,9 +7,7 @@
 
 using IpTviewr.Common;
 using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
@@ -83,10 +81,9 @@ namespace IpTviewr.UiServices.Common.Controls
 
         private bool RemoveInvalidChars(bool displayWarning)
         {
-            bool modified;
             int caretPos;
 
-            var newText = TextUtils.RemoveInvalidChars(this.Text, InvalidCharacters, null, out modified);
+            var newText = TextUtils.RemoveInvalidChars(this.Text, InvalidCharacters, null, out var modified);
             if (!modified) return false;
 
             if (displayWarning)

@@ -9,8 +9,8 @@ namespace IpTviewr.Internal.Tools.ConsoleExperiments
     internal sealed class ReorganizeLogos : Experiment
     {
         private const string BaseFolder = @"C:\Users\Developer\source\repos\AlphaCentaury\MovistarTV\1.5 'Kruger 60'\Logos";
-        private static readonly short[] _sizes = { 32, 48, 64, 128, 256 };
-        private static readonly SaveAs[] _saveAs = { SaveAs.Bmp, SaveAs.Bmp, SaveAs.Bmp, SaveAs.Png, SaveAs.Png };
+        private static readonly short[] Sizes = { 32, 48, 64, 128, 256 };
+        private static readonly SaveAs[] SaveAs = { WindowsIcon.SaveAs.Bmp, WindowsIcon.SaveAs.Bmp, WindowsIcon.SaveAs.Bmp, WindowsIcon.SaveAs.Png, WindowsIcon.SaveAs.Png };
 
         protected override int Run(string[] args)
         {
@@ -39,7 +39,7 @@ namespace IpTviewr.Internal.Tools.ConsoleExperiments
                 {
                     foreach (var subFolder in Directory.EnumerateDirectories(folder, "*", SearchOption.TopDirectoryOnly))
                     {
-                        if (Path.GetFileName(subFolder).ToLowerInvariant() == "sd")
+                        if (Path.GetFileName(subFolder)?.ToLowerInvariant() == "sd")
                         {
                             Directory.Move(subFolder, Path.Combine(Path.GetDirectoryName(subFolder), "(default)"));
                         } // if
@@ -71,17 +71,15 @@ namespace IpTviewr.Internal.Tools.ConsoleExperiments
 
         private static bool CreateIcon(string folder, bool isService)
         {
-            string filename;
-
             if (folder == null) throw new ArgumentNullException(nameof(folder));
 
             // folder has images?
-            if (!File.Exists(Path.Combine(folder, $"{_sizes[0]}.png"))) return false;
+            if (!File.Exists(Path.Combine(folder, $"{Sizes[0]}.png"))) return false;
 
-            var icon = new WindowsIcon(_sizes.Length);
-            for (var index = 0; index < _sizes.Length; index++)
+            var icon = new WindowsIcon(Sizes.Length);
+            for (var index = 0; index < Sizes.Length; index++)
             {
-                icon.AddImage((Bitmap)Image.FromFile(Path.Combine(folder, $"{_sizes[index]}.png")), _saveAs[index]);
+                icon.AddImage((Bitmap)Image.FromFile(Path.Combine(folder, $"{Sizes[index]}.png")), SaveAs[index]);
             } // for index
 
             // delete existing icon(s)
@@ -93,7 +91,7 @@ namespace IpTviewr.Internal.Tools.ConsoleExperiments
             var iconName = isService
                 ? $"{Path.GetFileName(Path.GetDirectoryName(folder))}.ico"
                 : $"{Path.GetFileName(folder)}.ico";
-            filename = Path.Combine(folder, iconName);
+            var filename = Path.Combine(folder, iconName);
 
             icon.Save(filename);
             icon.Dispose();

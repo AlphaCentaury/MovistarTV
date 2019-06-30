@@ -13,10 +13,7 @@ using IpTviewr.UiServices.Configuration;
 using IpTviewr.UiServices.Configuration.Cache;
 using IpTviewr.UiServices.DvbStpClient;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
-using System.Text;
 using System.Windows.Forms;
 using Etsi.Ts102034.v010501.XmlSerialization.ContentGuideDiscovery;
 

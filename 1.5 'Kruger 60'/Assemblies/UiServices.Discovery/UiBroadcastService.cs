@@ -8,10 +8,8 @@
 using Etsi.Ts102034.v010501.XmlSerialization;
 using Etsi.Ts102034.v010501.XmlSerialization.BroadcastDiscovery;
 using Etsi.Ts102034.v010501.XmlSerialization.Common;
-using IpTviewr.Common;
 using IpTviewr.UiServices.Configuration;
 using IpTviewr.UiServices.Configuration.Logos;
-using IpTviewr.UiServices.Configuration.Schema2014;
 using IpTviewr.UiServices.Configuration.Settings.Network;
 using System;
 using System.Collections.Generic;
@@ -188,7 +186,7 @@ namespace IpTviewr.UiServices.Discovery
             {
                 var locationUrl = LocationUrl;
 
-                return (locationUrl != null) ? locationUrl : Properties.Texts.NotProvidedValue;
+                return locationUrl ?? Properties.Texts.NotProvidedValue;
             } // get
         } // DisplayLocationUrl
 
@@ -384,7 +382,7 @@ namespace IpTviewr.UiServices.Discovery
         [XmlIgnore]
         public string ServiceType
         {
-            get { return (Data.ServiceInformation == null) ? null : Data.ServiceInformation.ServiceType; }
+            get { return Data.ServiceInformation?.ServiceType; }
         } // ServiceType
 
         [XmlIgnore]
@@ -666,11 +664,10 @@ namespace IpTviewr.UiServices.Discovery
         {
             if (Data.ServiceInformation != null)
             {
-                string serviceTypeDescription;
                 string serviceType;
 
                 serviceType = ServiceType;
-                if (!AppUiConfiguration.Current.DescriptionServiceTypes.TryGetValue(serviceType, out serviceTypeDescription))
+                if (!AppUiConfiguration.Current.DescriptionServiceTypes.TryGetValue(serviceType, out var serviceTypeDescription))
                 {
                     serviceTypeDescription = string.Format(Properties.Texts.FormatServiceTypeIdUnknown, serviceType);
                 } // if

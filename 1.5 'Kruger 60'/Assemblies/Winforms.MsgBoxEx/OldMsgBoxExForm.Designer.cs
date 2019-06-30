@@ -5,7 +5,7 @@
 // 
 // http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
 
-namespace AlphaCentaury.Winforms.MsgBoxEx
+namespace AlphaCentaury.WindowsForms.MsgBoxEx
 {
     partial class OldMsgBoxExForm
     {
@@ -465,7 +465,7 @@ namespace AlphaCentaury.Winforms.MsgBoxEx
             // 
             // iconAdditional1
             // 
-            this.iconAdditional1.Image = global::AlphaCentaury.Winforms.MsgBoxEx.Properties.Resources.ArrowDetails;
+            this.iconAdditional1.Image = global::AlphaCentaury.WindowsForms.MsgBoxEx.Properties.Resources.ArrowDetails;
             this.iconAdditional1.Location = new System.Drawing.Point(6, 4);
             this.iconAdditional1.Margin = new System.Windows.Forms.Padding(4, 2, 2, 0);
             this.iconAdditional1.MinimumSize = new System.Drawing.Size(20, 20);
@@ -477,7 +477,7 @@ namespace AlphaCentaury.Winforms.MsgBoxEx
             // 
             // iconAdditional2
             // 
-            this.iconAdditional2.Image = global::AlphaCentaury.Winforms.MsgBoxEx.Properties.Resources.ArrowDetails;
+            this.iconAdditional2.Image = global::AlphaCentaury.WindowsForms.MsgBoxEx.Properties.Resources.ArrowDetails;
             this.iconAdditional2.Location = new System.Drawing.Point(6, 4);
             this.iconAdditional2.Margin = new System.Windows.Forms.Padding(4, 2, 2, 0);
             this.iconAdditional2.MinimumSize = new System.Drawing.Size(20, 20);
@@ -489,7 +489,7 @@ namespace AlphaCentaury.Winforms.MsgBoxEx
             // 
             // iconAdditional3
             // 
-            this.iconAdditional3.Image = global::AlphaCentaury.Winforms.MsgBoxEx.Properties.Resources.ArrowDetails;
+            this.iconAdditional3.Image = global::AlphaCentaury.WindowsForms.MsgBoxEx.Properties.Resources.ArrowDetails;
             this.iconAdditional3.Location = new System.Drawing.Point(6, 4);
             this.iconAdditional3.Margin = new System.Windows.Forms.Padding(4, 2, 2, 0);
             this.iconAdditional3.MinimumSize = new System.Drawing.Size(20, 20);
@@ -501,7 +501,7 @@ namespace AlphaCentaury.Winforms.MsgBoxEx
             // 
             // iconAdditional4
             // 
-            this.iconAdditional4.Image = global::AlphaCentaury.Winforms.MsgBoxEx.Properties.Resources.ArrowDetails;
+            this.iconAdditional4.Image = global::AlphaCentaury.WindowsForms.MsgBoxEx.Properties.Resources.ArrowDetails;
             this.iconAdditional4.Location = new System.Drawing.Point(6, 4);
             this.iconAdditional4.Margin = new System.Windows.Forms.Padding(4, 2, 2, 0);
             this.iconAdditional4.MinimumSize = new System.Drawing.Size(20, 20);

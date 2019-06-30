@@ -8,7 +8,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace IpTviewr.UiServices.Common.Controls
@@ -83,7 +82,7 @@ namespace IpTviewr.UiServices.Common.Controls
         public void Add(IList<KeyValuePair<TValue, string>> items)
         {
             var add = new object[items.Count];
-            for (int index = 0; index < items.Count;index++ )
+            for (var index = 0; index < items.Count;index++ )
             {
                 add[index] = items[index];
             } // for
@@ -109,7 +108,7 @@ namespace IpTviewr.UiServices.Common.Controls
             if (Dictionary == null) throw new InvalidOperationException();
 
             var add = new object[values.Count];
-            for (int index = 0; index < values.Count; index++)
+            for (var index = 0; index < values.Count; index++)
             {
                 var value = values[index];
                 add[index] = new KeyValuePair<TValue, string>(value, Dictionary[value]);
@@ -122,7 +121,7 @@ namespace IpTviewr.UiServices.Common.Controls
             var count = ListBox.Items.Count;
             var result = new List<TValue>(count);
 
-            for (int index = 0; index < count; index++)
+            for (var index = 0; index < count; index++)
             {
                 var item = (KeyValuePair<TValue, string>)ListBox.Items[index];
                 result.Add(item.Key);
@@ -136,7 +135,7 @@ namespace IpTviewr.UiServices.Common.Controls
             var count = ListBox.Items.Count;
             var result = new List<KeyValuePair<TValue, string>>(count);
 
-            for (int index = 0; index < count; index++)
+            for (var index = 0; index < count; index++)
             {
                 var item = (KeyValuePair<TValue, string>)ListBox.Items[index];
                 result.Add(item);

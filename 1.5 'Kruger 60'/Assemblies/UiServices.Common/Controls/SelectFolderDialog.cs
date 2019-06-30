@@ -109,7 +109,7 @@ namespace IpTviewr.UiServices.Common.Controls
         // Factory Methods
         public static SelectFolderDialog PrinterBrowser()
         {
-            SelectFolderDialog x = new SelectFolderDialog();
+            var x = new SelectFolderDialog();
             // avoid MBRO comppiler warning when passing _rootFolderLocation as a ref:
             x.BecomePrinterBrowser();
             return x;
@@ -117,7 +117,7 @@ namespace IpTviewr.UiServices.Common.Controls
 
         public static SelectFolderDialog ComputerBrowser()
         {
-            SelectFolderDialog x = new SelectFolderDialog();
+            var x = new SelectFolderDialog();
             // avoid MBRO comppiler warning when passing _rootFolderLocation as a ref:
             x.BecomeComputerBrowser();
             return x;
@@ -204,7 +204,7 @@ namespace IpTviewr.UiServices.Common.Controls
                     break;
 
                 case BrowseForFolderMessages.BFFM_SELCHANGED:
-                    IntPtr pidl = lParam;
+                    var pidl = lParam;
                     if (pidl != IntPtr.Zero)
                     {
                         if (((_uiFlags & BrowseFlags.BIF_BROWSEFORPRINTER) == BrowseFlags.BIF_BROWSEFORPRINTER) ||
@@ -215,15 +215,15 @@ namespace IpTviewr.UiServices.Common.Controls
                         }
                         else
                         {
-                            IntPtr pszPath = Marshal.AllocHGlobal(MAX_PATH * Marshal.SystemDefaultCharSize);
-                            bool haveValidPath = UnsafeNativeMethods.Shell32.SHGetPathFromIDList(pidl, pszPath);
-                            String displayedPath = Marshal.PtrToStringAuto(pszPath);
+                            var pszPath = Marshal.AllocHGlobal(MAX_PATH * Marshal.SystemDefaultCharSize);
+                            var haveValidPath = UnsafeNativeMethods.Shell32.SHGetPathFromIDList(pidl, pszPath);
+                            var displayedPath = Marshal.PtrToStringAuto(pszPath);
                             Marshal.FreeHGlobal(pszPath);
                             // whether to enable the OK button or not. (if file is valid)
                             UnsafeNativeMethods.User32.SendMessage(new HandleRef(null, hwnd), BrowseForFolderMessages.BFFM_ENABLEOK, (IntPtr)0, (IntPtr)(haveValidPath ? 1 : 0));
 
                             // Maybe set the Edit Box text to the Full Folder path
-                            if (haveValidPath && !String.IsNullOrEmpty(displayedPath))
+                            if (haveValidPath && !string.IsNullOrEmpty(displayedPath))
                             {
                                 if (_showEditBox && _showFullPathInEditBox)
                                 {
@@ -243,7 +243,7 @@ namespace IpTviewr.UiServices.Common.Controls
 
         private static UnsafeNativeMethods.IMalloc GetSHMalloc()
         {
-            UnsafeNativeMethods.IMalloc[] ppMalloc = new UnsafeNativeMethods.IMalloc[1];
+            var ppMalloc = new UnsafeNativeMethods.IMalloc[1];
             UnsafeNativeMethods.Shell32.SHGetMalloc(ppMalloc);
             return ppMalloc[0];
         }
@@ -265,7 +265,7 @@ namespace IpTviewr.UiServices.Common.Controls
         [PermissionSet(SecurityAction.Demand, Name = "FullTrust")]
         protected override bool RunDialog(IntPtr hWndOwner)
         {
-            bool result = false;
+            var result = false;
             if (_rootFolderLocation == IntPtr.Zero)
             {
                 UnsafeNativeMethods.Shell32.SHGetSpecialFolderLocation(hWndOwner, (int)this._rootFolder, ref _rootFolderLocation);
@@ -296,12 +296,12 @@ namespace IpTviewr.UiServices.Common.Controls
             {
                 throw new ThreadStateException("DebuggingException: ThreadMustBeSTA");
             }
-            IntPtr pidl = IntPtr.Zero;
-            IntPtr hglobal = IntPtr.Zero;
-            IntPtr pszPath = IntPtr.Zero;
+            var pidl = IntPtr.Zero;
+            var hglobal = IntPtr.Zero;
+            var pszPath = IntPtr.Zero;
             try
             {
-                UnsafeNativeMethods.BROWSEINFO browseInfo = new UnsafeNativeMethods.BROWSEINFO();
+                var browseInfo = new UnsafeNativeMethods.BROWSEINFO();
                 hglobal = Marshal.AllocHGlobal(MAX_PATH * Marshal.SystemDefaultCharSize);
                 pszPath = Marshal.AllocHGlobal(MAX_PATH * Marshal.SystemDefaultCharSize);
                 this._callback = new UnsafeNativeMethods.BrowseFolderCallbackProc(this.FolderBrowserCallback);
@@ -333,7 +333,7 @@ namespace IpTviewr.UiServices.Common.Controls
             }
             finally
             {
-                UnsafeNativeMethods.IMalloc sHMalloc = GetSHMalloc();
+                var sHMalloc = GetSHMalloc();
                 sHMalloc.Free(_rootFolderLocation);
                 _rootFolderLocation = IntPtr.Zero;
                 if (pidl != IntPtr.Zero)
@@ -367,7 +367,7 @@ namespace IpTviewr.UiServices.Common.Controls
             }
             set
             {
-                this._descriptionText = (value == null) ? string.Empty : value;
+                this._descriptionText = value ?? string.Empty;
             }
         }
 
@@ -406,7 +406,7 @@ namespace IpTviewr.UiServices.Common.Controls
             }
             set
             {
-                this._selectedPath = (value == null) ? string.Empty : value;
+                this._selectedPath = value ?? string.Empty;
                 this._selectedPathNeedsCheck = true;
             }
         }
@@ -508,7 +508,7 @@ namespace IpTviewr.UiServices.Common.Controls
             public static extern IntPtr FindWindowExW(HandleRef hwndParent, IntPtr hwndChildAfter, string lpszClass, string lpszWindow);
 
             [DllImport("user32.dll", CharSet=CharSet.Unicode, SetLastError = true)]
-            public static extern Boolean SetWindowTextW(IntPtr hWnd, String text);
+            public static extern bool SetWindowTextW(IntPtr hWnd, string text);
         }
 
         [ComImport, Guid("00000002-0000-0000-c000-000000000046"), SuppressUnmanagedCodeSecurity, InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]

@@ -5,13 +5,7 @@
 // 
 // http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
 
-using IpTviewr.Common.Serialization;
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Xml;
 using System.Xml.Serialization;
 
 namespace IpTviewr.UiServices.Configuration.Schema2014.Config
@@ -80,7 +74,7 @@ namespace IpTviewr.UiServices.Configuration.Schema2014.Config
         internal string Validate()
         {
             string validationError;
-            string ownerTag = "UserConfiguration";
+            var ownerTag = "UserConfiguration";
 
             if (Record == null) return ConfigCommon.ErrorMissingTag("Record", ownerTag);
             validationError = Record.Validate("Record");

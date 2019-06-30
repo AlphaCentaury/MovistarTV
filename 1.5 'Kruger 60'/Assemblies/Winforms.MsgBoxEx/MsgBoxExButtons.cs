@@ -5,14 +5,9 @@
 // 
 // http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace AlphaCentaury.Winforms.MsgBoxEx
+namespace AlphaCentaury.WindowsForms.MsgBoxEx
 {
     /// <summary>
     ///     Specifies constants defining which buttons to display on a AlphaCentaury.Winforms.MsgBoxEx.

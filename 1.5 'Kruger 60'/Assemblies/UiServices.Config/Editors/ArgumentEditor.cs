@@ -6,12 +6,6 @@
 // http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
 
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace IpTviewr.UiServices.Configuration.Editors
@@ -51,7 +45,7 @@ namespace IpTviewr.UiServices.Configuration.Editors
 
         private void ParametersEditor_Load(object sender, EventArgs e)
         {
-            char[] dataSeparator = new char[] { '|' };
+            var dataSeparator = new char[] { '|' };
 
             if (!string.IsNullOrEmpty(ParametersList))
             {
@@ -72,7 +66,7 @@ namespace IpTviewr.UiServices.Configuration.Editors
                 } // foreach
                 listParameters.EndUpdate();
 
-                for (int index = 0; index < listParameters.Columns.Count; index++)
+                for (var index = 0; index < listParameters.Columns.Count; index++)
                 {
                     listParameters.Columns[index].AutoResize(ColumnHeaderAutoResizeStyle.ColumnContent);
                 } // for

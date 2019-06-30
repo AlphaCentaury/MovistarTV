@@ -6,15 +6,8 @@
 // http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
 
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using IpTviewr.UiServices.Common.Controls;
-using IpTviewr.UiServices.Configuration.Settings.TvPlayers;
 
 namespace IpTviewr.UiServices.Configuration.Editors
 {
@@ -50,7 +43,7 @@ namespace IpTviewr.UiServices.Configuration.Editors
             get
             {
                 var arguments = new string[listArguments.Items.Count];
-                for (int index = 0; index < arguments.Length; index++)
+                for (var index = 0; index < arguments.Length; index++)
                 {
                     arguments[index] = listArguments.Items[index].ToString();
                 } // for

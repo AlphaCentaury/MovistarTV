@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using IpTviewr.UiServices.Configuration.Schema2014.Logos;
 
 namespace IpTviewr.UiServices.Configuration.Logos
 {

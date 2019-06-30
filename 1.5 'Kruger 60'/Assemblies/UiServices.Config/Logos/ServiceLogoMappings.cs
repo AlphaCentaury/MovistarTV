@@ -8,18 +8,16 @@
 using IpTviewr.UiServices.Configuration.Schema2014.Logos;
 using System;
 using System.Collections.Generic;
-using System.Drawing.Drawing2D;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
-using System.Text;
 
 namespace IpTviewr.UiServices.Configuration.Logos
 {
     public partial class ServiceLogoMappings : ILogoMapping
     {
         private IDictionary<string, ReplacementDomain> _domainMappings;
-        private Dictionary<string, ServiceDomainMapping> _serviceMappings;
+        private IDictionary<string, ServiceDomainMapping> _serviceMappings;
         private IDictionary<string, LogosCollection> _collections;
 
         public string BasePathLogos
@@ -105,6 +103,18 @@ namespace IpTviewr.UiServices.Configuration.Logos
             } // while
         } // Get
 
+        public ServiceLogo FromServiceKey(string serviceKey)
+        {
+            var pos = serviceKey.IndexOf('@');
+            if (pos < 1) throw new ArgumentException();
+            if ((pos + 1) == serviceKey.Length) throw new ArgumentException();
+
+            var service = serviceKey.Substring(0, pos);
+            var domain = serviceKey.Substring(pos + 1);
+
+            return Get(null, domain, service, null);
+        } // FromServiceKey
+
         private ServiceLogo GetLogo(string domain, string logoFile)
         {
             if ((domain == null) || (logoFile == null))
@@ -121,18 +131,6 @@ namespace IpTviewr.UiServices.Configuration.Logos
             return new ServiceLogo(this, domain, logoFile, $@"/services/{collection.Name}/{domain}/{logoFile}");
         } // GetLogo
 
-        public ServiceLogo FromServiceKey(string serviceKey)
-        {
-            var pos = serviceKey.IndexOf('@');
-            if (pos < 1) throw new ArgumentException();
-            if ((pos + 1) == serviceKey.Length) throw new ArgumentException();
-
-            var service = serviceKey.Substring(0, pos);
-            var domain = serviceKey.Substring(pos + 1);
-
-            return Get(null, domain, service, null);
-        } // FromServiceKey
-
         private static string GetParentDomain(string domainName)
         {
             var parts = domainName.Split('.');
@@ -142,11 +140,11 @@ namespace IpTviewr.UiServices.Configuration.Logos
         private void Init(DomainMappingsXml domainMappings, ServiceMappingsXml serviceMappings, string logosPath)
         {
             BasePathLogos = logosPath;
-            BuildMapping(domainMappings);
+            _domainMappings = BuildMapping(domainMappings);
             BuildMapping(serviceMappings);
         } // Init
 
-        private void BuildMapping(DomainMappingsXml mapping)
+        public static Dictionary<string, ReplacementDomain> BuildMapping(DomainMappingsXml mapping)
         {
             var q = from package in mapping.Collections
                     from mp in package.Mappings
@@ -157,12 +155,12 @@ namespace IpTviewr.UiServices.Configuration.Logos
                           from mp in collection.Mappings
                           select new { Collection = collection, Mapping = mp };
 
-            _domainMappings = new Dictionary<string, ReplacementDomain>(count, StringComparer.OrdinalIgnoreCase);
+            var result = new Dictionary<string, ReplacementDomain>(count, StringComparer.OrdinalIgnoreCase);
             foreach (var entry in entries)
             {
                 try
                 {
-                    _domainMappings.Add(entry.Mapping.DomainName, new ReplacementDomain
+                    result.Add(entry.Mapping.DomainName, new ReplacementDomain
                     {
                         IsMandatory = entry.Mapping.Mandatory,
                         Replacement = entry.Mapping.ReplacementDomain,
@@ -174,9 +172,11 @@ namespace IpTviewr.UiServices.Configuration.Logos
                         string.Format(Properties.Texts.ExceptionLogosDomainMappingsDuplicatedDomain, entry.Mapping.DomainName), ex);
                 } // try-catch
             } // foreach
+
+            return result;
         } // BuildMapping
 
-        protected void BuildMapping(ServiceMappingsXml mapping)
+        private void BuildMapping(ServiceMappingsXml mapping)
         {
             var q = from collection in mapping.Collections
                     from domain in collection.Domains

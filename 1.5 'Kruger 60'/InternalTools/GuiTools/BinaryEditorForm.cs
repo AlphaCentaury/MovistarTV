@@ -8,27 +8,22 @@
 using IpTviewr.UiServices.Common.Forms;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace IpTviewr.Internal.Tools.GuiTools
 {
     public partial class BinaryEditorForm : CommonBaseForm
     {
-        int ChunkSize;
-        byte[] Data;
-        System.Collections.BitArray HasBreak;
-        List<int> LineStart;
-        List<int> LineTextStarts;
-        int DataStartOffset;
-        string HexData;
-        string TextData;
+        private int ChunkSize;
+        private byte[] Data;
+        private System.Collections.BitArray HasBreak;
+        private List<int> LineStart;
+        private List<int> LineTextStarts;
+        private int DataStartOffset;
+        private string HexData;
+        private string TextData;
 
         public BinaryEditorForm()
         {
@@ -82,8 +77,8 @@ namespace IpTviewr.Internal.Tools.GuiTools
             {
                 hexData.AppendFormat("{0:X2} ", b);
                 var c = (char)b;
-                if (Char.IsControl(c)) textData.Append('·');
-                else if (Char.IsWhiteSpace(c)) textData.Append(' ');
+                if (char.IsControl(c)) textData.Append('·');
+                else if (char.IsWhiteSpace(c)) textData.Append(' ');
                 else textData.Append(c);
             } // foreach
 
@@ -102,7 +97,7 @@ namespace IpTviewr.Internal.Tools.GuiTools
             var buffer = new StringBuilder(Data.Length * 5);
             DataStartOffset = 4 + 2 + (3 * ChunkSize) + (int)Math.Floor(((double)ChunkSize - 1) / 8) + 1;
 
-            for (int start = 0; start < Data.Length; )
+            for (var start = 0; start < Data.Length; )
             {
                 LineStart.Add(start);
 
@@ -120,7 +115,7 @@ namespace IpTviewr.Internal.Tools.GuiTools
                     buffer.Append(HexData.Substring(index * 3, 3));
                 } // for index
                 var padding = DataStartOffset - (buffer.Length - lineStart);
-                buffer.Append(new String(' ', padding));
+                buffer.Append(new string(' ', padding));
 
                 for (offset = 0; offset < ChunkSize; offset++)
                 {

@@ -6,19 +6,17 @@
 // http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
 
 using Etsi.Ts102034.v010501.XmlSerialization.PackageDiscovery;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace IpTviewr.UiServices.Discovery
 {
     public class UiServicesLogicalNumbers
     {
-        UiBroadcastDiscovery UiDiscovery;
-        PackageDiscoveryRoot PackageDiscovery;
-        string DefaultDomain;
-        bool HighDefinitionPriority;
+        private UiBroadcastDiscovery UiDiscovery;
+        private PackageDiscoveryRoot PackageDiscovery;
+        private string DefaultDomain;
+        private bool HighDefinitionPriority;
 
         private class LogicalNumberChannels
         {
@@ -46,9 +44,7 @@ namespace IpTviewr.UiServices.Discovery
 
             public void Add(UiBroadcastService uiService)
             {
-                int count;
-
-                if (Services.TryGetValue(uiService, out count))
+                if (Services.TryGetValue(uiService, out var count))
                 {
                     Services[uiService] = count + 1;
                 }
@@ -137,14 +133,12 @@ namespace IpTviewr.UiServices.Discovery
 
                     foreach (var textualIdentifier in service.TextualIdentifiers)
                     {
-                        IList<UiBroadcastService> listUiServices;
-
                         var uiServiceKey = UiBroadcastService.GetKey(textualIdentifier, DefaultDomain);
                         var uiService = UiDiscovery.TryGetService(uiServiceKey);
                         if (uiService == null) continue; // service not found in global list of services
 
                         // get list of services assigned to logical number, or create if not found
-                        if (!numbers.TryGetValue(service.LogicalChannelNumber, out listUiServices))
+                        if (!numbers.TryGetValue(service.LogicalChannelNumber, out var listUiServices))
                         {
                             listUiServices = new List<UiBroadcastService>();
                             numbers.Add(service.LogicalChannelNumber, listUiServices);
@@ -184,10 +178,9 @@ namespace IpTviewr.UiServices.Discovery
             foreach (var entry in cumulativeNumbers)
             {
                 string logicalNumber;
-                int number;
 
                 // format logical number
-                if (int.TryParse(entry.Key, out number))
+                if (int.TryParse(entry.Key, out var number))
                 {
                     logicalNumber = string.Format("{0:000}", number);
                 }
@@ -209,9 +202,8 @@ namespace IpTviewr.UiServices.Discovery
         private void AssignNumber(UiBroadcastService uiService, string logicalNumber, IDictionary<string, int> numbers)
         {
             string serviceLogicalNumber;
-            int count;
 
-            if (!numbers.TryGetValue(logicalNumber, out count))
+            if (!numbers.TryGetValue(logicalNumber, out var count))
             {
                 // number not assigned; assign direct logical number
                 serviceLogicalNumber = logicalNumber;

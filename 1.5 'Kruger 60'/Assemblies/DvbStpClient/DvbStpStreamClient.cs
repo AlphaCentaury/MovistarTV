@@ -6,10 +6,7 @@
 // http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
-using System.Text;
 using System.Threading;
 
 namespace IpTviewr.DvbStp.Client
@@ -22,8 +19,8 @@ namespace IpTviewr.DvbStp.Client
 
         private PayloadStorage Storage;
         private System.Collections.BitArray ReceivedSegments;
-        int TotalSegments, LoadedSegments;
-        double Threshold;
+        private int TotalSegments, LoadedSegments;
+        private double Threshold;
 
         public bool IsDownloadStarted
         {

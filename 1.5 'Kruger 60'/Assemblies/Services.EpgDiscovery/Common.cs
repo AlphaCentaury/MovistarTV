@@ -5,8 +5,6 @@
 // 
 // http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
 
-using System;
-
 namespace IpTviewr.Services.EpgDiscovery
 {
     internal class Common

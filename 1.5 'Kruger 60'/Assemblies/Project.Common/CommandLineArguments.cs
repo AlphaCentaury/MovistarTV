@@ -8,7 +8,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace IpTviewr.Common
 {
@@ -22,7 +21,7 @@ namespace IpTviewr.Common
 
         public bool IsHelpRequested
         {
-            get { return (Switches != null) ? Switches.ContainsKey("help") : false; }
+            get { return Switches?.ContainsKey("help") ?? false; }
         } // IsHelpRequested
 
         public bool IsOk

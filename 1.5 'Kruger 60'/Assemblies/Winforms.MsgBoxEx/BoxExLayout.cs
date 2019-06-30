@@ -6,16 +6,12 @@
 // http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
 
 using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace AlphaCentaury.Winforms.MsgBoxEx
+namespace AlphaCentaury.WindowsForms.MsgBoxEx
 {
-    partial class MsgBoxExForm
+    internal partial class MsgBoxExForm
     {
         private BoxExLayout BoxLayout;
 
@@ -141,11 +137,11 @@ namespace AlphaCentaury.Winforms.MsgBoxEx
                 p.Offset(Form.panelDetails5.Location);
                 panelLocation[5] = p;
 
-                int maxWidth = Math.Max(MaxDialogWidth, Form.panelBottom.Width);
+                var maxWidth = Math.Max(MaxDialogWidth, Form.panelBottom.Width);
                 maxWidth -= Form.panelTop.Margin.Right + Form.panelContents.Margin.Right;
                 maxWidth -= NonClientSize.Width;
 
-                for (int index = 0; index < panelLocation.Length; index++)
+                for (var index = 0; index < panelLocation.Length; index++)
                 {
                     p = panelLocation[index];
                     p.Offset(label[index].Location);

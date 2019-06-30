@@ -7,11 +7,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace IpTviewr.UiServices.Discovery.BroadcastList.Editors
@@ -57,7 +52,7 @@ namespace IpTviewr.UiServices.Discovery.BroadcastList.Editors
             get
             {
                 var result = new List<UiBroadcastListSortColumn>(SortColumns.Length);
-                for (int index = 0; index < SortColumns.Length; index++)
+                for (var index = 0; index < SortColumns.Length; index++)
                 {
                     var sortColumn = SortColumns[index];
                     result.Add(sortColumn);
@@ -77,11 +72,11 @@ namespace IpTviewr.UiServices.Discovery.BroadcastList.Editors
             } // if
 
             SortColumns = new UiBroadcastListSortColumn[3];
-            for (int index = 0; index < Math.Min(3, Sort.Count); index++)
+            for (var index = 0; index < Math.Min(3, Sort.Count); index++)
             {
                 SortColumns[index] = Sort[index];
             } // for
-            for (int index = Sort.Count; index < 3; index++)
+            for (var index = Sort.Count; index < 3; index++)
             {
                 SortColumns[index] = new UiBroadcastListSortColumn(UiBroadcastListColumn.None, false);
             } // for

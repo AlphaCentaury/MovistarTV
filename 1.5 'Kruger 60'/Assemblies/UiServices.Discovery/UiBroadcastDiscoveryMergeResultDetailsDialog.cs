@@ -7,9 +7,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
@@ -64,7 +61,7 @@ namespace IpTviewr.UiServices.Discovery
 
             output.AppendLine("Display name\tService Name\tStatus");
 
-            for (int index = 0; index < listViewDetails.Items.Count; index++)
+            for (var index = 0; index < listViewDetails.Items.Count; index++)
             {
                 var item = listViewDetails.Items[index];
                 output.Append(item.SubItems[0].Text);

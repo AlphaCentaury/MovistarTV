@@ -5,7 +5,7 @@
 // 
 // http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
 
-namespace AlphaCentaury.Winforms.MsgBoxEx
+namespace AlphaCentaury.WindowsForms.MsgBoxEx
 {
     partial class MsgBoxExForm
     {
@@ -264,7 +264,7 @@ namespace AlphaCentaury.Winforms.MsgBoxEx
             // 
             // iconArrow5
             // 
-            this.iconArrow5.Image = global::AlphaCentaury.Winforms.MsgBoxEx.Properties.Resources.ArrowDetails;
+            this.iconArrow5.Image = global::AlphaCentaury.WindowsForms.MsgBoxEx.Properties.Resources.ArrowDetails;
             this.iconArrow5.Location = new System.Drawing.Point(4, 2);
             this.iconArrow5.Margin = new System.Windows.Forms.Padding(4, 2, 2, 0);
             this.iconArrow5.MinimumSize = new System.Drawing.Size(20, 20);
@@ -287,7 +287,7 @@ namespace AlphaCentaury.Winforms.MsgBoxEx
             // 
             // iconArrow4
             // 
-            this.iconArrow4.Image = global::AlphaCentaury.Winforms.MsgBoxEx.Properties.Resources.ArrowDetails;
+            this.iconArrow4.Image = global::AlphaCentaury.WindowsForms.MsgBoxEx.Properties.Resources.ArrowDetails;
             this.iconArrow4.Location = new System.Drawing.Point(4, 2);
             this.iconArrow4.Margin = new System.Windows.Forms.Padding(4, 2, 2, 0);
             this.iconArrow4.MinimumSize = new System.Drawing.Size(20, 20);
@@ -310,7 +310,7 @@ namespace AlphaCentaury.Winforms.MsgBoxEx
             // 
             // iconArrow3
             // 
-            this.iconArrow3.Image = global::AlphaCentaury.Winforms.MsgBoxEx.Properties.Resources.ArrowDetails;
+            this.iconArrow3.Image = global::AlphaCentaury.WindowsForms.MsgBoxEx.Properties.Resources.ArrowDetails;
             this.iconArrow3.Location = new System.Drawing.Point(4, 2);
             this.iconArrow3.Margin = new System.Windows.Forms.Padding(4, 2, 2, 0);
             this.iconArrow3.MinimumSize = new System.Drawing.Size(20, 20);
@@ -333,7 +333,7 @@ namespace AlphaCentaury.Winforms.MsgBoxEx
             // 
             // iconArrow2
             // 
-            this.iconArrow2.Image = global::AlphaCentaury.Winforms.MsgBoxEx.Properties.Resources.ArrowDetails;
+            this.iconArrow2.Image = global::AlphaCentaury.WindowsForms.MsgBoxEx.Properties.Resources.ArrowDetails;
             this.iconArrow2.Location = new System.Drawing.Point(4, 2);
             this.iconArrow2.Margin = new System.Windows.Forms.Padding(4, 2, 2, 0);
             this.iconArrow2.MinimumSize = new System.Drawing.Size(20, 20);
@@ -356,7 +356,7 @@ namespace AlphaCentaury.Winforms.MsgBoxEx
             // 
             // iconArrow1
             // 
-            this.iconArrow1.Image = global::AlphaCentaury.Winforms.MsgBoxEx.Properties.Resources.ArrowDetails;
+            this.iconArrow1.Image = global::AlphaCentaury.WindowsForms.MsgBoxEx.Properties.Resources.ArrowDetails;
             this.iconArrow1.Location = new System.Drawing.Point(4, 2);
             this.iconArrow1.Margin = new System.Windows.Forms.Padding(4, 2, 2, 0);
             this.iconArrow1.MinimumSize = new System.Drawing.Size(20, 20);

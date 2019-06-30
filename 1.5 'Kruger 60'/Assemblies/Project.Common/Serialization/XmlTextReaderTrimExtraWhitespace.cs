@@ -6,9 +6,7 @@
 // http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
 
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Text;
 using System.Xml;
 
@@ -73,7 +71,7 @@ namespace IpTviewr.Common.Serialization
             if (string.IsNullOrEmpty(input)) return input;
 
             var startIndex = 0;
-            for (int i = 0; i < input.Length; i++)
+            for (var i = 0; i < input.Length; i++)
             {
                 if (!char.IsWhiteSpace(input[i]))
                 {
@@ -83,7 +81,7 @@ namespace IpTviewr.Common.Serialization
             } // for
 
             var endIndex = input.Length;
-            for (int i = input.Length - 1; i >= startIndex; i--)
+            for (var i = input.Length - 1; i >= startIndex; i--)
             {
                 if (!char.IsWhiteSpace(input[i]))
                 {
@@ -93,7 +91,7 @@ namespace IpTviewr.Common.Serialization
             } // for
 
             var buffer = new StringBuilder((endIndex - startIndex) + 1);
-            for (int i = startIndex; i < endIndex; i++)
+            for (var i = startIndex; i < endIndex; i++)
             {
                 var c = input[i];
                 var isWhitespace = char.IsWhiteSpace(c);

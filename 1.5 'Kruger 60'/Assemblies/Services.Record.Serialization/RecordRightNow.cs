@@ -7,8 +7,6 @@
 
 using IpTviewr.Common;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Xml.Serialization;
 
@@ -35,7 +33,7 @@ namespace IpTviewr.Services.Record.Serialization
 
         public override DateTime GetStartDateTime()
         {
-            return DateTime.Now.TruncateToSeconds(1);
+            return DateTime.Now.TruncateToSeconds();
         } // GetStartDateTime
     } // class RecordRightNow
 } // namespace

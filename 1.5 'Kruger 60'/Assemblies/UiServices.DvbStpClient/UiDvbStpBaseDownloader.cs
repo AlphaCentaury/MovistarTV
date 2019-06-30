@@ -9,10 +9,7 @@ using Microsoft.SqlServer.MessageBox;
 using IpTviewr.Common.Telemetry;
 using IpTviewr.UiServices.Common.Forms;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Sockets;
-using System.Text;
 using System.Windows.Forms;
 
 namespace IpTviewr.UiServices.DvbStpClient
@@ -108,7 +105,7 @@ namespace IpTviewr.UiServices.DvbStpClient
             if (box.CustomDialogResult == ExceptionMessageBoxDialogResult.Button2)
             {
                 BasicGoogleTelemetry.SendEventHit("ShowDialog", "UiServices.DvbStpClient.HelpDialog", TelemetryScreenName, TelemetryScreenName);
-                HelpDialog.ShowRtfHelp(owner, Properties.Texts.RtfTroubleshootingGuide, null);
+                HelpDialog.ShowRtfHelp(owner, Properties.Texts.RtfTroubleshootingGuide);
             } // if
         } // HandleException
     } // abstract class UiDvbStpBaseDownloader

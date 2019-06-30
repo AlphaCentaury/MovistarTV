@@ -7,11 +7,8 @@
 
 using IpTviewr.Common.Serialization;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Text;
-using System.Xml.Serialization;
 
 namespace IpTviewr.UiServices.Configuration.Cache
 {
@@ -51,7 +48,7 @@ namespace IpTviewr.UiServices.Configuration.Cache
                     return null;
                 } // if
 
-                return XmlSerialization.Deserialize<T>(path, false);
+                return XmlSerialization.Deserialize<T>(path);
             }
             catch
             {
@@ -70,7 +67,7 @@ namespace IpTviewr.UiServices.Configuration.Cache
                     return null;
                 } // if
 
-                var document =  XmlSerialization.Deserialize<T>(path, false);
+                var document =  XmlSerialization.Deserialize<T>(path);
                 if (document == null) return null;
 
                 var dateC = File.GetCreationTime(path);

@@ -6,10 +6,7 @@
 // http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
 
 namespace IpTviewr.UiServices.Configuration
 {
@@ -67,7 +64,7 @@ namespace IpTviewr.UiServices.Configuration
         /// </returns>
         private static bool DoesWin32MethodExist(string moduleName, string methodName)
         {
-            IntPtr moduleHandle = GetModuleHandle(moduleName);
+            var moduleHandle = GetModuleHandle(moduleName);
             if (moduleHandle == IntPtr.Zero)
             {
                 return false;
@@ -77,10 +74,8 @@ namespace IpTviewr.UiServices.Configuration
 
         private static bool SafeIsWow64Process()
         {
-            bool flag;
-
             if (!DoesWin32MethodExist("kernel32.dll", "IsWow64Process")) return false;
-            IsWow64Process(GetCurrentProcess(), out flag);
+            IsWow64Process(GetCurrentProcess(), out var flag);
 
             return flag;
         } // SafeIsWow64Process

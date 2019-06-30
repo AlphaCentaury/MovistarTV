@@ -7,16 +7,12 @@
 
 using IpTviewr.Native;
 using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace IpTviewr.Internal.Tools.ConsoleExperiments
 {
-    class WindowsIconTest : Experiment
+    internal class WindowsIconTest : Experiment
     {
         protected override int Run(string[] args)
         {
@@ -39,7 +35,7 @@ namespace IpTviewr.Internal.Tools.ConsoleExperiments
             for (int index=0,pos=0; index < 512;index++)
             {
                 var b = data[index];
-                Console.Write("{0,4:N0}", b);
+                Console.Write($"{b,4:N0}");
 
                 pos++;
                 if ((pos % 8) == 0) Console.Write("   ");

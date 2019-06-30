@@ -5,13 +5,9 @@
 // 
 // http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
 
-using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace IpTviewr.UiServices.Common.Controls
@@ -22,7 +18,7 @@ namespace IpTviewr.UiServices.Common.Controls
         public static Bitmap ToGrayscale(Image original)
         {
             // create the grayscale ColorMatrix
-            ColorMatrix colorMatrix = new ColorMatrix(new float[][] 
+            var colorMatrix = new ColorMatrix(new float[][] 
             {
                 new float[] {.3f, .3f, .3f, 0, 0},
                 new float[] {.59f, .59f, .59f, 0, 0},
@@ -32,13 +28,13 @@ namespace IpTviewr.UiServices.Common.Controls
             });
 
             // set the color matrix to an image attributes object
-            ImageAttributes attributes = new ImageAttributes();
+            var attributes = new ImageAttributes();
             attributes.SetColorMatrix(colorMatrix);
 
             // create a new bitmap with the same size as the original; then,
             // create a Graphics from it
-            Bitmap greyscaleBitmap = new Bitmap(original.Width, original.Height);
-            using (Graphics g = Graphics.FromImage(greyscaleBitmap))
+            var greyscaleBitmap = new Bitmap(original.Width, original.Height);
+            using (var g = Graphics.FromImage(greyscaleBitmap))
             {
                 // copy the original image to the new image (by means of the Graphics) using the color matrix
                 g.DrawImage(original,

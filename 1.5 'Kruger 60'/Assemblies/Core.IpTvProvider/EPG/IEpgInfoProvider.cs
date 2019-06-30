@@ -5,13 +5,6 @@
 // 
 // http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
 
-using IpTviewr.Services.EpgDiscovery;
-using IpTviewr.UiServices.Discovery;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
 namespace IpTviewr.Core.IpTvProvider.EPG
 {
     public interface IEpgInfoProvider

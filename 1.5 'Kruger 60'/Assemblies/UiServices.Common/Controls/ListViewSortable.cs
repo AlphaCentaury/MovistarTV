@@ -6,11 +6,8 @@
 // http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
 
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
 
@@ -236,7 +233,7 @@ namespace IpTviewr.UiServices.Common.Controls
             }
             else
             {
-                HorizontalAlignment textAlign = e.Header.TextAlign;
+                var textAlign = e.Header.TextAlign;
                 format = (textAlign == HorizontalAlignment.Left) ? TextFormatFlags.Left : ((textAlign == HorizontalAlignment.Center) ? TextFormatFlags.HorizontalCenter : TextFormatFlags.Right);
                 format |= TextFormatFlags.WordEllipsis;
                 format |= TextFormatFlags.VerticalCenter;

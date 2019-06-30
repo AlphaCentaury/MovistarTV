@@ -8,11 +8,8 @@
 using IpTviewr.Common.Telemetry;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace IpTviewr.UiServices.Configuration
@@ -76,13 +73,11 @@ namespace IpTviewr.UiServices.Configuration
             // apply changes
             if ((changed) && (applyChanges != null) && (applyChanges.Count > 0))
             {
-                Action applyChangesMethod;
-
                 foreach (var item in items)
                 {
                     if (item.NewData == null) continue;
 
-                    if (applyChanges.TryGetValue(item.Registration.Id, out applyChangesMethod))
+                    if (applyChanges.TryGetValue(item.Registration.Id, out var applyChangesMethod))
                     {
                         applyChangesMethod();
                     } // if
@@ -167,15 +162,13 @@ namespace IpTviewr.UiServices.Configuration
 
         private void ConfigurationForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            bool cancelClose;
-
             if (DialogResult == DialogResult.OK)
             {
                 foreach (var configItem in ConfigurationItems)
                 {
                     if (configItem.Editor == null) return;
 
-                    configItem.Editor.EditorClosing(out cancelClose);
+                    configItem.Editor.EditorClosing(out var cancelClose);
                     if (cancelClose)
                     {
                         e.Cancel = true;

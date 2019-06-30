@@ -11,11 +11,6 @@ using System.IO;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO.Compression;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Security.Cryptography;
-using System.Text;
-using IpTviewr.UiServices.Configuration.Cache;
 
 namespace IpTviewr.UiServices.Configuration.Logos
 {

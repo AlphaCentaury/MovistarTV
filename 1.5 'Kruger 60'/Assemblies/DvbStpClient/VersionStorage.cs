@@ -7,8 +7,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace IpTviewr.DvbStp.Client
 {
@@ -54,10 +52,9 @@ namespace IpTviewr.DvbStp.Client
 
         public bool AddSection(DvbStpHeader header, byte[] data, bool isRawData)
         {
-            SegmentAssembler assembler;
             bool newSection;
 
-            if (!Versions.TryGetValue(header.SegmentVersion, out assembler))
+            if (!Versions.TryGetValue(header.SegmentVersion, out var assembler))
             {
                 assembler = new SegmentAssembler(new DvbStpSegmentIdentity(header), header.LastSectionNumber);
                 Versions[header.SegmentVersion] = assembler;

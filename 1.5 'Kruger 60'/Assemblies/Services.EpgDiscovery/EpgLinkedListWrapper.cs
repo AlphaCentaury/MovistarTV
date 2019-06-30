@@ -5,18 +5,14 @@
 // 
 // http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
 
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace IpTviewr.Services.EpgDiscovery
 {
     public sealed class EpgLinkedListWrapper : IEpgLinkedList, IEnumerable<EpgProgram>
     {
-        LinkedListNode<EpgProgram> RequestedNode;
+        private LinkedListNode<EpgProgram> RequestedNode;
 
         public EpgLinkedListWrapper(string serviceIdRef, LinkedList<EpgProgram> linkedList, LinkedListNode<EpgProgram> requested = null)
         {

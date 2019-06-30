@@ -5,15 +5,10 @@
 // 
 // http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
 
-using IpTviewr.Common.Serialization;
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
 using System.Xml;
 using System.Xml.Serialization;
-using System.Xml.XPath;
 
 namespace IpTviewr.UiServices.Configuration
 {
@@ -22,11 +17,11 @@ namespace IpTviewr.UiServices.Configuration
     {
         public static XmlElement GetXmlElement(Guid id, IConfigurationItem item)
         {
-            XmlDocument xDoc = new XmlDocument();
-            XPathNavigator xNavigator = xDoc.CreateNavigator();
-            using (XmlWriter writer = xNavigator.AppendChild())
+            var xDoc = new XmlDocument();
+            var xNavigator = xDoc.CreateNavigator();
+            using (var writer = xNavigator.AppendChild())
             {
-                XmlSerializer ser = new XmlSerializer(item.GetType());
+                var ser = new XmlSerializer(item.GetType());
                 ser.Serialize(writer, (object)item);
             } // using
 

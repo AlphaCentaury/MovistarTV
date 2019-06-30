@@ -10,12 +10,8 @@ using IpTviewr.DvbStp.Client;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Net;
-using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -200,15 +196,15 @@ namespace IpTviewr.UiServices.DvbStpClient
 
         private void DisplayEllapsedTime()
         {
-            TimeSpan ellapsed = DateTime.Now - StartTime;
-            TimeSpan ellapsedRounded = new TimeSpan(ellapsed.Days, ellapsed.Hours, ellapsed.Minutes, ellapsed.Seconds);
+            var ellapsed = DateTime.Now - StartTime;
+            var ellapsedRounded = new TimeSpan(ellapsed.Days, ellapsed.Hours, ellapsed.Minutes, ellapsed.Seconds);
 
             labelEllapsedTime.Text = string.Format(FormatEllapsedTime, ellapsedRounded);
         } // DisplayEllapsedTime
 
         #region Worker events
 
-        void Worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        private void Worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             timerEllapsed.Enabled = false;
 
@@ -262,7 +258,7 @@ namespace IpTviewr.UiServices.DvbStpClient
             labelDataReception.Text = new string(DataReceptionSymbol, (received.DatagramCount) % 6);
 
             isKnowPayloadId = false;
-            for (int index=0; index<listViewPayloads.Items.Count;index++)
+            for (var index=0; index<listViewPayloads.Items.Count;index++)
             {
                 item = listViewPayloads.Items[index];
                 var segment = item.Tag as UiDvbStpClientSegmentInfo;
@@ -346,7 +342,7 @@ namespace IpTviewr.UiServices.DvbStpClient
 
         #region BackgroundWorker DoWork
 
-        void Worker_DoWork(object sender, DoWorkEventArgs e)
+        private void Worker_DoWork(object sender, DoWorkEventArgs e)
         {
             DvbStpEnhancedClient dvbStpClient;
 
@@ -458,17 +454,17 @@ namespace IpTviewr.UiServices.DvbStpClient
 
         #region DvbStpClient event handlers
 
-        void DvbStpClient_DownloadStarted(object sender, DvbStpEnhancedClient.DownloadStartedEventArgs e)
+        private void DvbStpClient_DownloadStarted(object sender, DvbStpEnhancedClient.DownloadStartedEventArgs e)
         {
             Worker.ReportProgress((int)ProgressKind.DownloadStarted, e);
         } // DvbStpClient_DownloadStarted
 
-        void DvbStpClient_SectionReceived(object sender, DvbStpSimpleClient.SectionReceivedEventArgs e)
+        private void DvbStpClient_SectionReceived(object sender, DvbStpSimpleClient.SectionReceivedEventArgs e)
         {
             Worker.ReportProgress((int)ProgressKind.SectionReceived, e);
         } // DvbStpClient_SectionReceived
 
-        void DvbStpClient_SegmentDownloadStarted(object sender, DvbStpEnhancedClient.SegmentSectionReceivedEventArgs e)
+        private void DvbStpClient_SegmentDownloadStarted(object sender, DvbStpEnhancedClient.SegmentSectionReceivedEventArgs e)
         {
             var data = new SegmentProgressReport()
             {
@@ -479,7 +475,7 @@ namespace IpTviewr.UiServices.DvbStpClient
             Worker.ReportProgress((int)ProgressKind.SegmentDownloadStarted, data);
         } // StpClient_SegmentDownloadStarted
 
-        void DvbStpClient_SegmentSectionReceived(object sender, DvbStpEnhancedClient.SegmentSectionReceivedEventArgs e)
+        private void DvbStpClient_SegmentSectionReceived(object sender, DvbStpEnhancedClient.SegmentSectionReceivedEventArgs e)
         {
             var data = new SegmentProgressReport()
             {
@@ -490,7 +486,7 @@ namespace IpTviewr.UiServices.DvbStpClient
             Worker.ReportProgress((int)ProgressKind.SegmentSectionReceived, data);
         } // DvbStpClient_SegmentDownloadStarted
 
-        void DvbStpClient_SegmentDownloadRestarted(object sender, DvbStpEnhancedClient.SegmentDownloadRestartedEventArgs e)
+        private void DvbStpClient_SegmentDownloadRestarted(object sender, DvbStpEnhancedClient.SegmentDownloadRestartedEventArgs e)
         {
             var data = new SegmentProgressReport()
             {
@@ -501,7 +497,7 @@ namespace IpTviewr.UiServices.DvbStpClient
             Worker.ReportProgress((int)ProgressKind.SegmentDownloadRestarted, data);
         } // DvbStpClient_SegmentDownloadRestarted
 
-        void DvbStpClient_SegmentDownloadCompleted(object sender, DvbStpEnhancedClient.SegmentDownloadCompletedEventArgs e)
+        private void DvbStpClient_SegmentDownloadCompleted(object sender, DvbStpEnhancedClient.SegmentDownloadCompletedEventArgs e)
         {
             var data = new SegmentProgressReport()
             {

@@ -5,18 +5,14 @@
 // 
 // http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
 
-using AlphaCentaury.Winforms.MsgBoxEx;
+using AlphaCentaury.WindowsForms.MsgBoxEx;
 using Microsoft.SqlServer.MessageBox;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace IpTviewr.Internal.Tools.ConsoleExperiments
 {
-    class ExceptionMsgBoxExperiment : Experiment
+    internal class ExceptionMsgBoxExperiment : Experiment
     {
         [System.Runtime.InteropServices.DllImport("user32.dll")]
         private static extern bool SetProcessDPIAware();
@@ -61,14 +57,8 @@ namespace IpTviewr.Internal.Tools.ConsoleExperiments
         } // Run
     } // class ExceptionMsgBoxExperiment
 
-    class NullHWnd : IWin32Window
+    internal class NullHWnd : IWin32Window
     {
-        public IntPtr Handle
-        {
-            get
-            {
-                return IntPtr.Zero;
-            } // get
-        } // Handle
+        public IntPtr Handle => IntPtr.Zero;
     } // class NullHWnd
 } // class

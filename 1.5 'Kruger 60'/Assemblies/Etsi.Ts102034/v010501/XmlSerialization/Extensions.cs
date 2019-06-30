@@ -6,10 +6,8 @@
 // http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
 
 using Etsi.Ts102034.v010501.XmlSerialization.Common;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Etsi.Ts102034.v010501.XmlSerialization
 {
@@ -80,7 +78,7 @@ namespace Etsi.Ts102034.v010501.XmlSerialization
             int order;
 
             order = 0;
-            foreach (string lang in preferredLanguages)
+            foreach (var lang in preferredLanguages)
             {
                 yield return new LanguageOrder()
                 {

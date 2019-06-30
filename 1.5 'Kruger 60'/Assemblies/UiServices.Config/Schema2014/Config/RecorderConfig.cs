@@ -7,8 +7,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Xml.Serialization;
 
 namespace IpTviewr.UiServices.Configuration.Schema2014.Config
@@ -56,7 +54,7 @@ namespace IpTviewr.UiServices.Configuration.Schema2014.Config
             var validationError = ConfigCommon.ValidateArray(Arguments, "Argument", "Arguments", ownerTag);
             if (validationError != null) return validationError;
 
-            for (int index = 0; index < Arguments.Length; index++)
+            for (var index = 0; index < Arguments.Length; index++)
             {
                 Arguments[index] = ConfigCommon.Normalize(Arguments[index]);
                 if (string.IsNullOrEmpty(Arguments[index]))

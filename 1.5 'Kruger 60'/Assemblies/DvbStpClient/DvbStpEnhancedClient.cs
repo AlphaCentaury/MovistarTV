@@ -6,11 +6,8 @@
 // http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
 
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net;
-using System.Text;
 using System.Threading;
 
 namespace IpTviewr.DvbStp.Client
@@ -144,7 +141,7 @@ namespace IpTviewr.DvbStp.Client
             SegmentsPending = payloads.Count;
             Status = new SegmentStatus[256];
 
-            for (int index = 0; index < payloads.Count; index++)
+            for (var index = 0; index < payloads.Count; index++)
             {
                 var info = payloads[index];
                 var status = new SegmentStatus()
@@ -238,7 +235,7 @@ namespace IpTviewr.DvbStp.Client
 
         private void ProcessSegments()
         {
-            for (int index = 0; index < Payloads.Count; index++)
+            for (var index = 0; index < Payloads.Count; index++)
             {
                 var segment = Payloads[index];
                 var status = Status[segment.PayloadId];

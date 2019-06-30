@@ -9,9 +9,6 @@ using IpTviewr.Common;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace IpTviewr.Services.EpgDiscovery
 {
@@ -43,9 +40,7 @@ namespace IpTviewr.Services.EpgDiscovery
 
         public override IEpgLinkedList GetPrograms(string serviceIdRef, DateTime? localTime, int nodesBefore, int nodesAfter)
         {
-            EpgService epgService;
-
-            if (!Data.TryGetValue(serviceIdRef, out epgService)) return null;
+            if (!Data.TryGetValue(serviceIdRef, out var epgService)) return null;
 
             return GetLinkedList(epgService, localTime);
         } // GetPrograms

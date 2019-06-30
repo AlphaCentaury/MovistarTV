@@ -5,12 +5,9 @@
 // 
 // http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
 
-using IpTviewr.UiServices.Configuration;
 using IpTviewr.UiServices.Configuration.Schema2014.ContentProvider;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace IpTviewr.UiServices.Configuration
 {
@@ -52,7 +49,7 @@ namespace IpTviewr.UiServices.Configuration
 
             // identification
             var matching = LocalizedObject.FindMatchingCultureObject(identification.Localized, uiCultures);
-            var localized = (matching != null) ? matching : identification.Localized[0];
+            var localized = matching ?? identification.Localized[0];
 
             result.DisplayName = localized.Name;
             result.DisplayDescription = localized.Description;

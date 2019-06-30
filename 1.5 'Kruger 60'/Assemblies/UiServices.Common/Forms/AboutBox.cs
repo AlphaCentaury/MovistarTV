@@ -8,11 +8,6 @@
 using IpTviewr.Common;
 using IpTviewr.Common.Telemetry;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Diagnostics;
-using System.Drawing;
-using System.Linq;
 using System.Reflection;
 using System.Windows.Forms;
 
@@ -34,7 +29,7 @@ namespace IpTviewr.UiServices.Common.Forms
         private void AboutBox_Load(object sender, EventArgs e)
         {
             BasicGoogleTelemetry.SendScreenHit(this, Assembly.GetEntryAssembly().GetName().Name);
-            this.Text = String.Format(this.Text, Assembly.GetEntryAssembly().GetName().Name);
+            this.Text = string.Format(this.Text, Assembly.GetEntryAssembly().GetName().Name);
             if (ApplicationData != null)
             {
                 if (ApplicationData.LargeIcon != null)
@@ -62,7 +57,7 @@ namespace IpTviewr.UiServices.Common.Forms
             } // if-else
 
             labelProductName.Text = AssemblyProduct;
-            labelVersion.Text = String.Format(labelVersion.Text, AssemblyVersion);
+            labelVersion.Text = string.Format(labelVersion.Text, AssemblyVersion);
             labelCopyright.Text = AssemblyCopyright;
             labelCompanyName.Text = AssemblyCompany;
         } // AboutBox_Load
@@ -92,10 +87,10 @@ namespace IpTviewr.UiServices.Common.Forms
         {
             get
             {
-                object[] attributes = Assembly.GetEntryAssembly().GetCustomAttributes(typeof(AssemblyTitleAttribute), false);
+                var attributes = Assembly.GetEntryAssembly().GetCustomAttributes(typeof(AssemblyTitleAttribute), false);
                 if (attributes.Length > 0)
                 {
-                    AssemblyTitleAttribute titleAttribute = (AssemblyTitleAttribute)attributes[0];
+                    var titleAttribute = (AssemblyTitleAttribute)attributes[0];
                     if (titleAttribute.Title != "")
                     {
                         return titleAttribute.Title;
@@ -117,7 +112,7 @@ namespace IpTviewr.UiServices.Common.Forms
         {
             get
             {
-                object[] attributes = Assembly.GetEntryAssembly().GetCustomAttributes(typeof(AssemblyDescriptionAttribute), false);
+                var attributes = Assembly.GetEntryAssembly().GetCustomAttributes(typeof(AssemblyDescriptionAttribute), false);
                 if (attributes.Length == 0)
                 {
                     return "";
@@ -130,7 +125,7 @@ namespace IpTviewr.UiServices.Common.Forms
         {
             get
             {
-                object[] attributes = Assembly.GetEntryAssembly().GetCustomAttributes(typeof(AssemblyProductAttribute), false);
+                var attributes = Assembly.GetEntryAssembly().GetCustomAttributes(typeof(AssemblyProductAttribute), false);
                 if (attributes.Length == 0)
                 {
                     return "";
@@ -143,7 +138,7 @@ namespace IpTviewr.UiServices.Common.Forms
         {
             get
             {
-                object[] attributes = Assembly.GetEntryAssembly().GetCustomAttributes(typeof(AssemblyCopyrightAttribute), false);
+                var attributes = Assembly.GetEntryAssembly().GetCustomAttributes(typeof(AssemblyCopyrightAttribute), false);
                 if (attributes.Length == 0)
                 {
                     return "";
@@ -156,7 +151,7 @@ namespace IpTviewr.UiServices.Common.Forms
         {
             get
             {
-                object[] attributes = Assembly.GetEntryAssembly().GetCustomAttributes(typeof(AssemblyCompanyAttribute), false);
+                var attributes = Assembly.GetEntryAssembly().GetCustomAttributes(typeof(AssemblyCompanyAttribute), false);
                 if (attributes.Length == 0)
                 {
                     return "";

@@ -5,12 +5,7 @@
 // 
 // http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace IpTviewr.Native
 {
@@ -18,9 +13,9 @@ namespace IpTviewr.Native
     {
         public static byte[] StructToBytes<T>(T structure) where T : struct
         {
-            GCHandle gcHandle = new GCHandle();
+            var gcHandle = new GCHandle();
 
-            byte[] bytes = new byte[Marshal.SizeOf(typeof(T))];
+            var bytes = new byte[Marshal.SizeOf(typeof(T))];
             try
             {
                 gcHandle = GCHandle.Alloc(structure, GCHandleType.Pinned);

@@ -8,8 +8,6 @@
 using IpTviewr.UiServices.Configuration.Schema2014.ContentProvider;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace IpTviewr.UiServices.Configuration
 {

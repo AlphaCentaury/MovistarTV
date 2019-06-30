@@ -7,9 +7,6 @@
 
 using System;
 using System.CodeDom.Compiler;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Diagnostics;
 using System.Xml.Serialization;
 
 namespace Etsi.Ts102034.v010501.XmlSerialization.TvAnytime.Metadata

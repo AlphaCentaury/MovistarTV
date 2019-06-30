@@ -7,8 +7,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace IpTviewr.DvbStp.Client
 {
@@ -37,13 +35,11 @@ namespace IpTviewr.DvbStp.Client
 
         public bool AddSection(DvbStpHeader header, byte[] data, bool isRawData)
         {
-            VersionStorage versions;
-
             var p = (int)header.PayloadId;
             var s = (int)header.SegmentId;
             var key = ((p << 16) | s);
 
-            if (!Sections.TryGetValue(key, out versions))
+            if (!Sections.TryGetValue(key, out var versions))
             {
                 versions = CreateNewVersions(header);
                 Sections[key] = versions;
@@ -77,7 +73,7 @@ namespace IpTviewr.DvbStp.Client
             return versions;
         } // CreateNewVersions
 
-        void Versions_SegmentStarted(object sender, SegmentStartedEventArgs e)
+        private void Versions_SegmentStarted(object sender, SegmentStartedEventArgs e)
         {
             if (SegmentStarted == null) return;
 

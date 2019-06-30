@@ -7,11 +7,7 @@
 
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using IpTviewr.UiServices.Configuration;
 using IpTviewr.UiServices.Configuration.Logos;
@@ -261,7 +257,7 @@ namespace IpTviewr.UiServices.Discovery.BroadcastList.Editors
             EditorModeSorting[3] = new SettingsEditorSorting();
             EditorModeSorting[4] = new SettingsEditorSorting();
 
-            for (int index = 0; index < EditorModeColumns.Length; index++)
+            for (var index = 0; index < EditorModeColumns.Length; index++)
             {
                 var editor = EditorModeColumns[index];
                 var view = IndexToView(index);
@@ -271,7 +267,7 @@ namespace IpTviewr.UiServices.Discovery.BroadcastList.Editors
                 editor.Columns = Settings[view].Columns;
             } // for
 
-            for (int index = 0; index < EditorModeSorting.Length; index++)
+            for (var index = 0; index < EditorModeSorting.Length; index++)
             {
                 var editor = EditorModeSorting[index];
                 var view = IndexToView(index);
@@ -296,7 +292,7 @@ namespace IpTviewr.UiServices.Discovery.BroadcastList.Editors
 
         private void SaveModeSettingsTab()
         {
-            for (int index = 0; index < EditorModeColumns.Length; index++)
+            for (var index = 0; index < EditorModeColumns.Length; index++)
             {
                 var editor = EditorModeColumns[index];
                 if (!editor.IsDataChanged) continue;
@@ -305,7 +301,7 @@ namespace IpTviewr.UiServices.Discovery.BroadcastList.Editors
                 Settings[view].Columns = editor.SelectedColumns;
             } // for
 
-            for (int index = 0; index < EditorModeSorting.Length; index++)
+            for (var index = 0; index < EditorModeSorting.Length; index++)
             {
                 var editor = EditorModeSorting[index];
                 if (!editor.IsDataChanged) continue;

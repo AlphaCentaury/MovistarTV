@@ -7,7 +7,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 
 namespace IpTviewr.Common
@@ -25,7 +24,7 @@ namespace IpTviewr.Common
 
             Validate(parameters, openBrace, closeBrace);
 
-            for (int index = 0; index < rawArguments.Length; index++)
+            for (var index = 0; index < rawArguments.Length; index++)
             {
                 result[index] = InternalExpandArgument(rawArguments[index], parameters, openBrace, closeBrace, braceComparisonType);
             } // for

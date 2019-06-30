@@ -9,11 +9,7 @@ using IpTviewr.Common.Serialization;
 using IpTviewr.Services.EpgDiscovery.TvAnytime;
 using System;
 using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 
 namespace IpTviewr.Services.EpgDiscovery
 {
@@ -21,11 +17,11 @@ namespace IpTviewr.Services.EpgDiscovery
     {
         private class SegmentsProcessor
         {
-            ConcurrentQueue<byte[]> SegmentsQueue;
-            AutoResetEvent EnqueuedSegments;
-            AutoResetEvent ProcessSegmentsEnded;
-            bool NoMoreSegments;
-            EpgDataStore Datastore;
+            private ConcurrentQueue<byte[]> SegmentsQueue;
+            private AutoResetEvent EnqueuedSegments;
+            private AutoResetEvent ProcessSegmentsEnded;
+            private bool NoMoreSegments;
+            private EpgDataStore Datastore;
 
             public event EventHandler ScheduleReceived;
             public event EventHandler ParseError;
@@ -107,14 +103,12 @@ namespace IpTviewr.Services.EpgDiscovery
 
             private byte[] GetNextSegment()
             {
-                byte[] payload;
-
                 while (true)
                 {
 #if DEBUG
                     Console.WriteLine("Queue: {0} items", SegmentsQueue.Count);
 #endif
-                    if (SegmentsQueue.TryDequeue(out payload))
+                    if (SegmentsQueue.TryDequeue(out var payload))
                     {
 #if DEBUG
                         Console.WriteLine("Dequeue.Ok");

@@ -8,15 +8,13 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.IO.Compression;
 using System.IO;
 using System.Drawing;
 
 namespace IpTviewr.Internal.Tools.ConsoleExperiments
 {
-    class PlayingWithLogos : Experiment
+    internal class PlayingWithLogos : Experiment
     {
         private string OldFolder = @"C:\Users\Developer\Source\Repos\MovistarTV\1.5 'Kruger 60'\Logos\Services\imagenio.es";
         private string Folder = @"C:\Users\Developer\Source\Repos\MovistarTV\1.5 'Kruger 60'\Logos\Services\new.imagenio.es";
@@ -101,7 +99,7 @@ namespace IpTviewr.Internal.Tools.ConsoleExperiments
 
             var start = DateTime.Now;
 
-            for (int i = 0; i < loops; i++)
+            for (var i = 0; i < loops; i++)
             {
                 Compress(zipFile, excludeIcons, compression);
             } // for int i
@@ -121,7 +119,7 @@ namespace IpTviewr.Internal.Tools.ConsoleExperiments
                     {
                         if (excludeIcons)
                         {
-                            if (Path.GetExtension(file).ToLowerInvariant() == ".ico")
+                            if (Path.GetExtension(file)?.ToLowerInvariant() == ".ico")
                             {
                                 continue;
                             } // if
@@ -145,14 +143,14 @@ namespace IpTviewr.Internal.Tools.ConsoleExperiments
         private void TestDecompress(string zipFile)
         {
             var loops = 100;
-            byte[] buffer = new byte[128 * 104 * 1024];
+            var buffer = new byte[128 * 104 * 1024];
 
             Console.WriteLine("==============================================");
             Console.WriteLine(zipFile);
 
             var start = DateTime.Now;
 
-            for (int i = 0; i < loops; i++)
+            for (var i = 0; i < loops; i++)
             {
                 Decompress(zipFile, buffer);
             } // for int i
@@ -182,7 +180,7 @@ namespace IpTviewr.Internal.Tools.ConsoleExperiments
         private void TestRealDeal(string folder)
         {
             var loops = 100;
-            byte[] buffer = new byte[128 * 104 * 1024];
+            var buffer = new byte[128 * 104 * 1024];
 
             Console.WriteLine("==============================================");
             Console.WriteLine(folder);
@@ -191,7 +189,7 @@ namespace IpTviewr.Internal.Tools.ConsoleExperiments
 
             var start = DateTime.Now;
 
-            for (int i = 0; i < loops; i++)
+            for (var i = 0; i < loops; i++)
             {
                 foreach (var entry in entries)
                 {
@@ -207,7 +205,7 @@ namespace IpTviewr.Internal.Tools.ConsoleExperiments
             Console.WriteLine(new TimeSpan(ellapsed.Ticks / loops));
         } // TestReadlDeal
 
-        void TestGetImage(string zipFile, string logo)
+        private void TestGetImage(string zipFile, string logo)
         {
             var loops = 1000;
 
@@ -218,7 +216,7 @@ namespace IpTviewr.Internal.Tools.ConsoleExperiments
 
             var start = DateTime.Now;
 
-            for (int i = 0; i < loops; i++)
+            for (var i = 0; i < loops; i++)
             {
                 GetImage(zipFile, logo);
             } // for int i
@@ -228,7 +226,7 @@ namespace IpTviewr.Internal.Tools.ConsoleExperiments
             Console.WriteLine(new TimeSpan(ellapsed.Ticks / loops));
         } // TestGetImage
 
-        void TestGetImage(string logoFile)
+        private void TestGetImage(string logoFile)
         {
             var loops = 1000;
 
@@ -237,7 +235,7 @@ namespace IpTviewr.Internal.Tools.ConsoleExperiments
 
             var start = DateTime.Now;
 
-            for (int i = 0; i < loops; i++)
+            for (var i = 0; i < loops; i++)
             {
                 GetImage(logoFile);
             } // for int i
@@ -247,7 +245,7 @@ namespace IpTviewr.Internal.Tools.ConsoleExperiments
             Console.WriteLine(new TimeSpan(ellapsed.Ticks / loops));
         } // TestGetImage
 
-        void TestGetImageCached(string zipFile, string logo)
+        private void TestGetImageCached(string zipFile, string logo)
         {
             using (var input = new FileStream(zipFile, FileMode.Open, FileAccess.Read))
             {
@@ -261,7 +259,7 @@ namespace IpTviewr.Internal.Tools.ConsoleExperiments
 
                     var start = DateTime.Now;
 
-                    for (int i = 0; i < loops; i++)
+                    for (var i = 0; i < loops; i++)
                     {
                         GetImage(zip, logo);
                     } // for int i
@@ -273,7 +271,7 @@ namespace IpTviewr.Internal.Tools.ConsoleExperiments
             }
         } // TestImageCached
 
-        void TestGetImageCached2(string zipFile, string logo)
+        private void TestGetImageCached2(string zipFile, string logo)
         {
             using (var input = new FileStream(zipFile, FileMode.Open, FileAccess.Read))
             {
@@ -293,7 +291,7 @@ namespace IpTviewr.Internal.Tools.ConsoleExperiments
 
                     var start = DateTime.Now;
 
-                    for (int i = 0; i < loops; i++)
+                    for (var i = 0; i < loops; i++)
                     {
                         GetImage(entries[logo]);
                     } // for int i
@@ -305,16 +303,18 @@ namespace IpTviewr.Internal.Tools.ConsoleExperiments
             }
         } // TestImageCached2
 
-        private void GetImage(string zipFile, string logo)
+        private static void GetImage(string zipFile, string logo)
         {
             using (var input = new FileStream(zipFile, FileMode.Open, FileAccess.Read))
             {
                 using (var zip = new ZipArchive(input, ZipArchiveMode.Read))
                 {
                     var entry = zip.GetEntry(logo);
+                    if (entry == null) throw new NullReferenceException();
+
                     using (var logoStream = entry.Open())
                     {
-                        using (var img = Image.FromStream(logoStream))
+                        using (Image.FromStream(logoStream))
                         {
                             // no op
                         } // using img
@@ -323,41 +323,41 @@ namespace IpTviewr.Internal.Tools.ConsoleExperiments
             } // using input
         } // GetImage
 
-        private void GetImage(ZipArchive zip, string logo)
+        private static void GetImage(ZipArchive zip, string logo)
         {
             var entry = zip.GetEntry(logo);
             using (var logoStream = entry.Open())
             {
-                using (var img = Image.FromStream(logoStream))
+                using (Image.FromStream(logoStream))
                 {
                     // no op
                 } // using img
             } // using logoStream
         } // GetImage
 
-        private void GetImage(ZipArchiveEntry entry)
+        private static void GetImage(ZipArchiveEntry entry)
         {
             using (var logoStream = entry.Open())
             {
-                using (var img = Image.FromStream(logoStream))
+                using (Image.FromStream(logoStream))
                 {
                     // no op
                 } // using img
             } // using logoStream
         } // GetImage
 
-        private void GetImage(string logoFile)
+        private static void GetImage(string logoFile)
         {
             using (var logoStream = new FileStream(logoFile, FileMode.Open, FileAccess.Read))
             {
-                using (var img = Image.FromStream(logoStream))
+                using (Image.FromStream(logoStream))
                 {
                     // no op
                 } // using img
             } // using logoStream
         } // GetImage
 
-        void ArrangeLogos(string currentFolder, string newFolder)
+        private void ArrangeLogos(string currentFolder, string newFolder)
         {
             var logos = new Dictionary<string, List<string>[]>(StringComparer.InvariantCultureIgnoreCase);
 
@@ -366,7 +366,7 @@ namespace IpTviewr.Internal.Tools.ConsoleExperiments
 
             foreach (var logo in logos.OrderBy(keySelector: item => item.Key, comparer: StringComparer.InvariantCultureIgnoreCase))
             {
-                for (int index=0;index<logo.Value.Length;index++)
+                for (var index=0;index<logo.Value.Length;index++)
                 {
                     CopyIconAndSizes(currentFolder, newFolder, logo.Key, index, logo.Value[index]);
                 } // for index
@@ -405,14 +405,12 @@ namespace IpTviewr.Internal.Tools.ConsoleExperiments
         {
             foreach (var file in Directory.EnumerateFiles(currentFolder))
             {
-                List<string>[] sizes;
-
                 var name = Path.GetFileNameWithoutExtension(file);
                 var index = name.LastIndexOf('@');
                 if (index < 0) continue; // ignore file
                 var logo = name.Substring(0, index);
 
-                if (!logos.TryGetValue(logo, out sizes))
+                if (!logos.TryGetValue(logo, out var sizes))
                 {
                     sizes = new List<string>[2];
                     sizes[0] = new List<string>();
@@ -424,7 +422,7 @@ namespace IpTviewr.Internal.Tools.ConsoleExperiments
             } // foreach
         } // GetLogosSizes
 
-        private void CopyFile(string source, string dest, string oldFolder, string newFolder)
+        private static void CopyFile(string source, string dest, string oldFolder, string newFolder)
         {
             var time = File.GetCreationTimeUtc(source);
 

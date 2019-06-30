@@ -6,7 +6,6 @@
 // http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
 
 using System;
-using System.Xml;
 using System.Xml.Serialization;
 
 namespace IpTviewr.Services.Record.Serialization

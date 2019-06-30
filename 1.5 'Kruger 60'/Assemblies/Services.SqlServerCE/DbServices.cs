@@ -7,12 +7,9 @@
 
 using IpTviewr.Common.Serialization;
 using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlServerCe;
 using System.IO;
-using System.Linq;
-using System.Text;
 
 namespace IpTviewr.Services.SqlServerCE
 {
@@ -40,7 +37,7 @@ namespace IpTviewr.Services.SqlServerCE
                 if (cn != null) loadCommand.Connection = cn;
                 using (var reader = cmd.ExecuteReader(CommandBehavior.SingleResult | CommandBehavior.SingleRow))
                 {
-                    int index = reader.GetOrdinal(xmlDataColumnName);
+                    var index = reader.GetOrdinal(xmlDataColumnName);
                     reader.Read();
                     var value = reader.GetValue(index);
                     data = (byte[])value;

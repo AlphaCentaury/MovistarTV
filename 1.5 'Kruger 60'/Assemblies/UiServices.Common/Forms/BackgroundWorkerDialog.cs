@@ -6,12 +6,7 @@
 // http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
 
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using IpTviewr.UiServices.Common.Properties;
 using System.Threading;
@@ -120,7 +115,7 @@ namespace IpTviewr.UiServices.Common.Forms
             Opacity = 1;
         } // timerShow_Tick
 
-        void Worker_DoWork(object sender, DoWorkEventArgs e)
+        private void Worker_DoWork(object sender, DoWorkEventArgs e)
         {
             // set worker thread name (for debugging pourposes)
             var currentThread = Thread.CurrentThread;
@@ -139,13 +134,13 @@ namespace IpTviewr.UiServices.Common.Forms
             Options.BackgroundAfterTask?.Invoke(Options, this);
         } // Worker_DoWork
 
-        void Worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        private void Worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             formCanClose = true;
 
             if (e.Cancelled)
             {
-                labelProgressText.Text = (Options.TaskCancelledText != null)? Options.TaskCancelledText : Properties.BackgroundWorkerDialog.TaskCancelled;
+                labelProgressText.Text = Options.TaskCancelledText ?? Properties.BackgroundWorkerDialog.TaskCancelled;
                 dialogResult = DialogResult.Cancel;
             } // if
 
@@ -169,7 +164,7 @@ namespace IpTviewr.UiServices.Common.Forms
             }
             else
             {
-                labelProgressText.Text = (Options.TaskCompletedText != null) ? Options.TaskCompletedText : Properties.BackgroundWorkerDialog.TaskCompleted;
+                labelProgressText.Text = Options.TaskCompletedText ?? Properties.BackgroundWorkerDialog.TaskCompleted;
                 buttonClose.Size = buttonRequestCancel.Size;
                 buttonClose.Location = buttonRequestCancel.Location;
                 buttonClose.Visible = true;
@@ -187,7 +182,7 @@ namespace IpTviewr.UiServices.Common.Forms
         {
             if (worker == null) return;
 
-            labelProgressText.Text = (Options.TaskCancellingText != null) ? Options.TaskCancellingText : Properties.BackgroundWorkerDialog.TaskCancelling;
+            labelProgressText.Text = Options.TaskCancellingText ?? Properties.BackgroundWorkerDialog.TaskCancelling;
             buttonRequestCancel.Enabled = false;
 
             worker.CancelAsync();

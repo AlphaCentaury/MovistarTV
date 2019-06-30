@@ -7,7 +7,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Xml.Serialization;
 
@@ -111,7 +110,7 @@ namespace IpTviewr.Services.Record.Serialization
             } // for
 
             buffer.Append(pastTime ? Properties.Texts.VerbalizeRecordWeeklyDaysPast : Properties.Texts.VerbalizeRecordWeeklyDays);
-            for (int index = 0; index < days.Count; index++)
+            for (var index = 0; index < days.Count; index++)
             {
                 if (index != 0)
                 {
