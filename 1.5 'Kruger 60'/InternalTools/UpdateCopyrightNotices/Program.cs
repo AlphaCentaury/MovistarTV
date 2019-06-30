@@ -15,16 +15,8 @@ namespace AlphaCentaury.IPTViewr.Internal.UpdateCopyrightNotices
 {
     internal class Program
     {
-        public static readonly string CopyrightHeader =
-            "Copyright (C) 2014-2019, GitHub/Codeplex user AlphaCentaury\0" +
-            "\0" +
-            "All rights reserved, except those granted by the governing license of this software.\0" +
-            "See 'license.txt' file in the project root for complete license information.\0" +
-            "\0" +
-            "http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury";
-
         private static string ReadLine;
-        private static string[] CopyrightHeaderLines;
+        private static readonly string[] CopyrightHeaderLines = SolutionVersion.CopyrightHeaderLines;
         private static string[] ExcludedPaths;
         private static IList<string> FileHeaderLines;
 
@@ -55,7 +47,6 @@ namespace AlphaCentaury.IPTViewr.Internal.UpdateCopyrightNotices
             } // if
 
             var searchOptions = arguments.Switches.ContainsKey("r") ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly;
-            CopyrightHeaderLines = CopyrightHeader.Split('\0');
 
             foreach (var path in arguments.Arguments)
             {

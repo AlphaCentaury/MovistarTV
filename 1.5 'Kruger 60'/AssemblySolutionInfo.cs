@@ -21,4 +21,14 @@ internal static class SolutionVersion
     public const string ProductVersion = "1.5 \"Kruger 60\" Beta 1";
     public const string DefaultCopyright = "Copyright (C) 2014-2019, AlphaCentaury and contributors";
     public const string AssemblyCompany = "www.alphacentaury.org";
+
+    public static string[] CopyrightHeaderLines =
+    {
+        "Copyright (C) 2014-2019, GitHub/Codeplex user AlphaCentaury",
+        "",
+        "All rights reserved, except those granted by the governing license of this software.",
+        "See 'license.txt' file in the project root for complete license information.",
+        "",
+        "http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury"
+    };
 } // class SolutionVersion
