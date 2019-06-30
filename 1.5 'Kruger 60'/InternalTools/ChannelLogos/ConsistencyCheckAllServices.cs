@@ -11,14 +11,12 @@ using IpTviewr.UiServices.Configuration.Logos;
 using IpTviewr.UiServices.Configuration.Schema2014.Logos;
 using IpTviewr.UiServices.Discovery;
 using IpTviewr.UiServices.Forms;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace IpTviewr.Internal.Tools.ChannelLogos
 {
-    abstract class ConsistencyCheckAllServices: ConsistencyCheck
+    internal abstract class ConsistencyCheckAllServices: ConsistencyCheck
     {
         protected class BroadcastList
         {
@@ -74,7 +72,8 @@ namespace IpTviewr.Internal.Tools.ChannelLogos
                 AddResult(Severity.Info, "Loading broadcast data", provider.DisplayName);
 
                 var downloader = new UiBroadcastDiscoveryDownloader();
-                var uiDiscovery = downloader.Download(Owner, provider, null, true, null);
+                downloader.Download(Owner, provider, null, true);
+                var uiDiscovery = downloader.BroadcastDiscovery;
 
                 if (uiDiscovery == null)
                 {
@@ -103,37 +102,27 @@ namespace IpTviewr.Internal.Tools.ChannelLogos
         {
             var serviceMappings = LogosCommon.ParseServiceMappingsXml(AppUiConfiguration.Current.Folders.Logos.FileServiceMappings);
 
-            var q = from package in serviceMappings.Packages
-                    where package.PackageName != "<default>"
-                    from domain in package.Domains
+            var q = from collection in serviceMappings.Collections
+                    where collection.Name != "<default>"
+                    from domain in collection.Domains
                     from mapping in domain.Mappings
                     select new MappedService() { Domain = domain.DomainName, Mapping = mapping };
 
-            var result = new Dictionary<string, MappedService>();
-            foreach (var item in q)
-            {
-                result.Add(item.GetKey(), item);
-            } // foreach
-
-            return result;
+            return q.ToDictionary(item => item.GetKey());
         } // GetMappedServices
 
         protected MappedService GetMappedService(BroadcastList item, UiBroadcastService service, IDictionary<string, MappedService> mappedServices, IDictionary<string, ServiceLogoMappings.ReplacementDomain> domainMappings)
         {
-            MappedService mappedService;
-
             var domain = item.Provider.DomainName;
             while (domain != null)
             {
-                ServiceLogoMappings.ReplacementDomain replacement;
-
                 var key = MappedService.GetKey(service.ServiceName, domain);
-                if (mappedServices.TryGetValue(key, out mappedService))
+                if (mappedServices.TryGetValue(key, out var mappedService))
                 {
                     return mappedService;
                 } // if
 
-                if (!domainMappings.TryGetValue(domain.ToLowerInvariant(), out replacement))
+                if (!domainMappings.TryGetValue(domain.ToLowerInvariant(), out var replacement))
                 {
                     return null;
                 } // if

@@ -42,8 +42,8 @@ namespace IpTviewr.Internal.Tools.ChannelLogos
             this.buttonRun = new System.Windows.Forms.Button();
             this.listViewResults = new System.Windows.Forms.ListView();
             this.contextMenuListView = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.menuItemListContextCopyActivity = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemListContextCopyFirstDetail = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuItemListContextCopyActivity = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemListContextCopyRow = new System.Windows.Forms.ToolStripMenuItem();
             this.imageListSeverity = new System.Windows.Forms.ImageList(this.components);
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
@@ -98,7 +98,7 @@ namespace IpTviewr.Internal.Tools.ChannelLogos
             this.listViewResults.LargeImageList = this.imageListSeverity;
             this.listViewResults.Location = new System.Drawing.Point(12, 42);
             this.listViewResults.Name = "listViewResults";
-            this.listViewResults.Size = new System.Drawing.Size(410, 294);
+            this.listViewResults.Size = new System.Drawing.Size(600, 294);
             this.listViewResults.SmallImageList = this.imageListSeverity;
             this.listViewResults.TabIndex = 2;
             this.listViewResults.UseCompatibleStateImageBehavior = false;
@@ -112,15 +112,8 @@ namespace IpTviewr.Internal.Tools.ChannelLogos
             this.menuItemListContextCopyActivity,
             this.menuItemListContextCopyRow});
             this.contextMenuListView.Name = "contextMenuListView";
-            this.contextMenuListView.Size = new System.Drawing.Size(158, 98);
+            this.contextMenuListView.Size = new System.Drawing.Size(158, 76);
             this.contextMenuListView.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuListView_Opening);
-            // 
-            // menuItemListContextCopyActivity
-            // 
-            this.menuItemListContextCopyActivity.Name = "menuItemListContextCopyActivity";
-            this.menuItemListContextCopyActivity.Size = new System.Drawing.Size(157, 22);
-            this.menuItemListContextCopyActivity.Text = "Copy activity";
-            this.menuItemListContextCopyActivity.Click += new System.EventHandler(this.menuItemListContextCopyActivity_Click);
             // 
             // menuItemListContextCopyFirstDetail
             // 
@@ -128,6 +121,13 @@ namespace IpTviewr.Internal.Tools.ChannelLogos
             this.menuItemListContextCopyFirstDetail.Size = new System.Drawing.Size(157, 22);
             this.menuItemListContextCopyFirstDetail.Text = "Copy first detail";
             this.menuItemListContextCopyFirstDetail.Click += new System.EventHandler(this.menuItemListContextCopyFirstDetail_Click);
+            // 
+            // menuItemListContextCopyActivity
+            // 
+            this.menuItemListContextCopyActivity.Name = "menuItemListContextCopyActivity";
+            this.menuItemListContextCopyActivity.Size = new System.Drawing.Size(157, 22);
+            this.menuItemListContextCopyActivity.Text = "Copy activity";
+            this.menuItemListContextCopyActivity.Click += new System.EventHandler(this.menuItemListContextCopyActivity_Click);
             // 
             // menuItemListContextCopyRow
             // 
@@ -152,7 +152,7 @@ namespace IpTviewr.Internal.Tools.ChannelLogos
             this.progressLocal});
             this.statusStrip1.Location = new System.Drawing.Point(0, 339);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(434, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(624, 22);
             this.statusStrip1.TabIndex = 10;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -162,7 +162,7 @@ namespace IpTviewr.Internal.Tools.ChannelLogos
             this.labelStatus.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.labelStatus.Name = "labelStatus";
             this.labelStatus.Overflow = System.Windows.Forms.ToolStripItemOverflow.Never;
-            this.labelStatus.Size = new System.Drawing.Size(342, 17);
+            this.labelStatus.Size = new System.Drawing.Size(532, 17);
             this.labelStatus.Spring = true;
             this.labelStatus.Text = "Ready";
             this.labelStatus.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -178,7 +178,7 @@ namespace IpTviewr.Internal.Tools.ChannelLogos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(434, 361);
+            this.ClientSize = new System.Drawing.Size(624, 361);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.listViewResults);
             this.Controls.Add(this.buttonRun);

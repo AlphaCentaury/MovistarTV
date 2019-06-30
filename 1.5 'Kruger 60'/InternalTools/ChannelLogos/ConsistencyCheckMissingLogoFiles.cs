@@ -5,48 +5,42 @@
 // 
 // http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
 
+using System;
 using IpTviewr.UiServices.Configuration;
 using IpTviewr.UiServices.Configuration.Schema2014.Logos;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
 
 namespace IpTviewr.Internal.Tools.ChannelLogos
 {
-    sealed class ConsistencyCheckMissingLogoFiles : ConsistencyCheck
+    internal sealed class ConsistencyCheckMissingLogoFiles : ConsistencyCheck
     {
         internal class Folder
         {
-            private List<string> Extra;
-            private IDictionary<string, FolderLogo> FolderLogos;
+            private readonly List<string> _extra;
+            private readonly IDictionary<string, FolderLogo> _folderLogos;
 
             public string FolderName { get; private set; }
             public string FullPath { get; private set; }
 
-            public IList<string> ExtraFiles
-            {
-                get { return Extra.AsReadOnly(); }
-            } // ExtraFiles
+            public IList<string> ExtraFiles => _extra.AsReadOnly();
 
-            public ICollection<FolderLogo> Logos
-            {
-                get { return FolderLogos.Values; }
-            } // Logo
+            public ICollection<FolderLogo> Logos => _folderLogos.Values;
 
             public Folder(string fullPath)
             {
                 FolderName = Path.GetFileName(fullPath);
                 FullPath = fullPath;
-                FolderLogos = new Dictionary<string, FolderLogo>();
-                Extra = new List<string>();
+                _folderLogos = new Dictionary<string, FolderLogo>();
+                _extra = new List<string>();
             } // constructor
 
             public bool Add(string file)
             {
                 bool isExtra;
-                FolderLogo logo;
+
+                if (file == null) throw new ArgumentNullException(nameof(file));
 
                 var ext = Path.GetExtension(file);
                 var filename = Path.GetFileNameWithoutExtension(file);
@@ -57,10 +51,10 @@ namespace IpTviewr.Internal.Tools.ChannelLogos
                     var logoFile = (partialIndex >= 0) ? filename.Substring(0, partialIndex) : filename;
                     var size = (partialIndex >= 0) ? filename.Substring(partialIndex) : null;
 
-                    if (!FolderLogos.TryGetValue(logoFile, out logo))
+                    if (!_folderLogos.TryGetValue(logoFile, out var logo))
                     {
                         logo = new FolderLogo(logoFile);
-                        FolderLogos[logoFile] = logo;
+                        _folderLogos[logoFile] = logo;
                     } // if
                     isExtra = !logo.Add(size, ext == ".ico");
                 }
@@ -69,25 +63,23 @@ namespace IpTviewr.Internal.Tools.ChannelLogos
                     isExtra = true;
                 }
 
-                if (isExtra)
-                {
-                    if (ext != ".png") Extra.Add(Path.GetFileName(file));
-                    else Extra.Add(filename);
-                } // if
+                if (!isExtra) return true;
 
-                return !isExtra;
+                _extra.Add(ext != ".png" ? Path.GetFileName(file) : filename);
+
+                return false;
             } // Add
         } // class Folder
 
         internal class FolderLogo
         {
-            private IDictionary<string, bool> Sizes;
+            private readonly IDictionary<string, bool> _sizes;
 
             public string Logo { get; private set; }
 
             public IEnumerable<string> MissingSizes()
             {
-                var q = from entry in Sizes
+                var q = from entry in _sizes
                         where entry.Value == false
                         where entry.Key != "@24" // optional (for now)
                         select entry.Key;
@@ -98,57 +90,52 @@ namespace IpTviewr.Internal.Tools.ChannelLogos
             public FolderLogo(string logo)
             {
                 Logo = logo;
-                Sizes = new Dictionary<string, bool>(7);
-                Sizes.Add(".ico", false);
-                Sizes.Add("@24", false);
-                Sizes.Add("@32", false);
-                Sizes.Add("@48", false);
-                Sizes.Add("@64", false);
-                Sizes.Add("@96", false);
-                Sizes.Add("@128", false);
-                Sizes.Add("@256", false);
+                _sizes = new Dictionary<string, bool>(7);
+                _sizes.Add(".ico", false);
+                _sizes.Add("@24", false);
+                _sizes.Add("@32", false);
+                _sizes.Add("@48", false);
+                _sizes.Add("@64", false);
+                _sizes.Add("@96", false);
+                _sizes.Add("@128", false);
+                _sizes.Add("@256", false);
             } // constructor
 
             public bool Add(string size, bool isIcon)
             {
                 if (isIcon)
                 {
-                    Sizes[".ico"] = true;
+                    _sizes[".ico"] = true;
                     return true;
                 } // if
 
-                if (!Sizes.ContainsKey(size)) return false;
+                if (!_sizes.ContainsKey(size)) return false;
 
-                Sizes[size] = true;
+                _sizes[size] = true;
                 return true;
             } // Add
         } // FolderLogo
 
         private class Domain
         {
-            private IDictionary<string, DomainFile> files;
+            private readonly IDictionary<string, DomainFile> _files;
 
             public string DomainName { get; private set; }
 
-            public ICollection<DomainFile> Files
-            {
-                get { return files.Values; }
-            } // Files
+            public ICollection<DomainFile> Files => _files.Values;
 
             public Domain(string domainName)
             {
                 DomainName = domainName;
-                files = new Dictionary<string, DomainFile>();
+                _files = new Dictionary<string, DomainFile>();
             } // constructor
 
             public void Add(ServiceMapping mapping)
             {
-                DomainFile domainFile;
-
-                if (!files.TryGetValue(mapping.Logo, out domainFile))
+                if (!_files.TryGetValue(mapping.Logo, out var domainFile))
                 {
                     domainFile = new DomainFile(mapping.Logo);
-                    files.Add(mapping.Logo, domainFile);
+                    _files.Add(mapping.Logo, domainFile);
                 } // if
                 domainFile.Add(mapping);
             } // Add
@@ -157,24 +144,21 @@ namespace IpTviewr.Internal.Tools.ChannelLogos
 
         private class DomainFile
         {
-            private List<ServiceMapping> services;
+            private readonly List<ServiceMapping> _services;
 
             public string File { get; private set; }
 
-            public IList<ServiceMapping> Services
-            {
-                get { return services.AsReadOnly(); }
-            } // Services
+            public IList<ServiceMapping> Services => _services.AsReadOnly();
 
             public DomainFile(string file)
             {
                 File = file;
-                services = new List<ServiceMapping>();
+                _services = new List<ServiceMapping>();
             } // constructor
 
             public void Add(ServiceMapping mapping)
             {
-                services.Add(mapping);
+                _services.Add(mapping);
             } // Add
         } // DomainFile
 
@@ -197,12 +181,10 @@ namespace IpTviewr.Internal.Tools.ChannelLogos
 
         internal static IEnumerable<Folder> GetLogosFiles()
         {
-            Folder[] result;
-
             var folders = Directory.GetDirectories(AppUiConfiguration.Current.Folders.Logos.Services, "*.*", SearchOption.TopDirectoryOnly);
-            result = new Folder[folders.Length];
+            var result = new Folder[folders.Length];
 
-            for (int index = 0; index<folders.Length; index++)
+            for (var index = 0; index < folders.Length; index++)
             {
                 var folder = new Folder(folders[index]);
                 result[index] = folder;
@@ -224,8 +206,8 @@ namespace IpTviewr.Internal.Tools.ChannelLogos
             {
                 foreach (var logo in folder.Logos)
                 {
-                    var missing = logo.MissingSizes();
-                    if (missing.Count() == 0) continue;
+                    var missing = logo.MissingSizes().ToList();
+                    if (missing.Count == 0) continue;
 
                     AddResult(Severity.Error, "Missing file(s)", logo.Logo, folder.FolderName);
                     foreach (var size in missing)
@@ -235,14 +217,13 @@ namespace IpTviewr.Internal.Tools.ChannelLogos
                     errorCount++;
                 } // foreach logo
 
-                if (folder.ExtraFiles.Count > 0)
+                if (folder.ExtraFiles.Count <= 0) continue;
+
+                AddResult(Severity.Warning, "Extra files", folder.FolderName);
+                foreach (var extraFile in folder.ExtraFiles)
                 {
-                    AddResult(Severity.Warning, "Extra files", folder.FolderName);
-                    foreach (var extraFile in folder.ExtraFiles)
-                    {
-                        AddResult(Severity.None, null, extraFile);
-                    } // foreach extraFile
-                } // if
+                    AddResult(Severity.None, null, extraFile);
+                } // foreach extraFile
             } // foreach folder
 
             if (errorCount == 0)
@@ -251,17 +232,16 @@ namespace IpTviewr.Internal.Tools.ChannelLogos
             } // if
         } // VerifyLogosFiles
 
-        private IEnumerable<Domain> GetReferencedFiles()
+        private static IEnumerable<Domain> GetReferencedFiles()
         {
-            IDictionary<string, Domain> result;
-
             var serviceMappings = LogosCommon.ParseServiceMappingsXml(AppUiConfiguration.Current.Folders.Logos.FileServiceMappings);
 
-            var domains = from package in serviceMappings.Packages
-                          from domain in package.Domains
-                          select domain;
+            var q = from collection in serviceMappings.Collections
+                    from domain in collection.Domains
+                    select domain;
 
-            result = new Dictionary<string, Domain>(domains.Count());
+            var domains = q.ToList();
+            IDictionary<string, Domain> result = new Dictionary<string, Domain>(domains.Count);
 
             foreach (var domain in domains)
             {
@@ -290,8 +270,10 @@ namespace IpTviewr.Internal.Tools.ChannelLogos
             {
                 foreach (var file in domain.Files)
                 {
-                    var filename = string.Format("{0}\\{1}\\{2}.ico", AppUiConfiguration.Current.Folders.Logos.Services, domain.DomainName, file.File);
+                    var filename =
+                        $"{AppUiConfiguration.Current.Folders.Logos.Services}\\{domain.DomainName}\\{file.File}.ico";
                     if (File.Exists(filename)) continue;
+
                     AddResult(Severity.Error, "Missing logo", file.File, domain.DomainName);
                     foreach (var service in file.Services)
                     {

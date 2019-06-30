@@ -52,8 +52,10 @@ namespace IpTviewr.Internal.Tools.ChannelLogos
             this.checkHighDefPriority = new System.Windows.Forms.CheckBox();
             this.labelServiceProvider = new System.Windows.Forms.Label();
             this.buttonSelectServiceProvider = new System.Windows.Forms.Button();
+            this.comboTheme = new System.Windows.Forms.ComboBox();
             ChannelLocal = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             ChannelWeb = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
@@ -87,8 +89,8 @@ namespace IpTviewr.Internal.Tools.ChannelLogos
             // 
             this.splitContainer1.Panel2.Controls.Add(this.listViewWebLogos);
             this.splitContainer1.Panel2MinSize = 75;
-            this.splitContainer1.Size = new System.Drawing.Size(460, 312);
-            this.splitContainer1.SplitterDistance = 228;
+            this.splitContainer1.Size = new System.Drawing.Size(600, 312);
+            this.splitContainer1.SplitterDistance = 297;
             this.splitContainer1.TabIndex = 5;
             // 
             // listViewLocalLogos
@@ -100,7 +102,7 @@ namespace IpTviewr.Internal.Tools.ChannelLogos
             this.listViewLocalLogos.HideSelection = false;
             this.listViewLocalLogos.Location = new System.Drawing.Point(0, 0);
             this.listViewLocalLogos.Name = "listViewLocalLogos";
-            this.listViewLocalLogos.Size = new System.Drawing.Size(228, 312);
+            this.listViewLocalLogos.Size = new System.Drawing.Size(297, 312);
             this.listViewLocalLogos.TabIndex = 0;
             this.listViewLocalLogos.UseCompatibleStateImageBehavior = false;
             this.listViewLocalLogos.View = System.Windows.Forms.View.Tile;
@@ -115,7 +117,7 @@ namespace IpTviewr.Internal.Tools.ChannelLogos
             this.listViewWebLogos.HideSelection = false;
             this.listViewWebLogos.Location = new System.Drawing.Point(0, 0);
             this.listViewWebLogos.Name = "listViewWebLogos";
-            this.listViewWebLogos.Size = new System.Drawing.Size(228, 312);
+            this.listViewWebLogos.Size = new System.Drawing.Size(299, 312);
             this.listViewWebLogos.TabIndex = 0;
             this.listViewWebLogos.UseCompatibleStateImageBehavior = false;
             this.listViewWebLogos.View = System.Windows.Forms.View.Tile;
@@ -139,7 +141,7 @@ namespace IpTviewr.Internal.Tools.ChannelLogos
             this.progressWeb});
             this.statusStrip1.Location = new System.Drawing.Point(0, 389);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(484, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(624, 22);
             this.statusStrip1.TabIndex = 8;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -149,7 +151,7 @@ namespace IpTviewr.Internal.Tools.ChannelLogos
             this.labelStatus.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.labelStatus.Name = "labelStatus";
             this.labelStatus.Overflow = System.Windows.Forms.ToolStripItemOverflow.Never;
-            this.labelStatus.Size = new System.Drawing.Size(315, 17);
+            this.labelStatus.Size = new System.Drawing.Size(455, 17);
             this.labelStatus.Spring = true;
             this.labelStatus.Text = "Ready";
             this.labelStatus.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -183,13 +185,6 @@ namespace IpTviewr.Internal.Tools.ChannelLogos
             // 
             this.comboLogoSize.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboLogoSize.FormattingEnabled = true;
-            this.comboLogoSize.Items.AddRange(new object[] {
-            "Small (32x32)",
-            "Normal (48x48)",
-            "Medium (64x64)",
-            "Large (96x96)",
-            "Extra Large (128x128)",
-            "Huge (256x256)"});
             this.comboLogoSize.Location = new System.Drawing.Point(118, 15);
             this.comboLogoSize.Name = "comboLogoSize";
             this.comboLogoSize.Size = new System.Drawing.Size(100, 21);
@@ -244,11 +239,26 @@ namespace IpTviewr.Internal.Tools.ChannelLogos
             this.buttonSelectServiceProvider.UseVisualStyleBackColor = true;
             this.buttonSelectServiceProvider.Click += new System.EventHandler(this.buttonSelectServiceProvider_Click);
             // 
+            // comboTheme
+            // 
+            this.comboTheme.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboTheme.FormattingEnabled = true;
+            this.comboTheme.Items.AddRange(new object[] {
+            "System theme",
+            "Dark theme",
+            "Light theme"});
+            this.comboTheme.Location = new System.Drawing.Point(472, 15);
+            this.comboTheme.Name = "comboTheme";
+            this.comboTheme.Size = new System.Drawing.Size(140, 21);
+            this.comboTheme.TabIndex = 9;
+            this.comboTheme.SelectedIndexChanged += new System.EventHandler(this.ComboTheme_SelectedIndexChanged);
+            // 
             // FormLogos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(484, 411);
+            this.ClientSize = new System.Drawing.Size(624, 411);
+            this.Controls.Add(this.comboTheme);
             this.Controls.Add(this.buttonSelectServiceProvider);
             this.Controls.Add(this.labelServiceProvider);
             this.Controls.Add(this.checkHighDefPriority);
@@ -263,6 +273,7 @@ namespace IpTviewr.Internal.Tools.ChannelLogos
             this.Load += new System.EventHandler(this.FormLogos_Load);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
@@ -286,6 +297,7 @@ namespace IpTviewr.Internal.Tools.ChannelLogos
         private System.Windows.Forms.CheckBox checkHighDefPriority;
         private System.Windows.Forms.Label labelServiceProvider;
         private System.Windows.Forms.Button buttonSelectServiceProvider;
+        private System.Windows.Forms.ComboBox comboTheme;
     }
 }
 

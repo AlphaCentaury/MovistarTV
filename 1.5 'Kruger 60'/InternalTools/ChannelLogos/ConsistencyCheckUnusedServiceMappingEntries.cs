@@ -5,21 +5,13 @@
 // 
 // http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
 
-using Etsi.Ts102034.v010501.XmlSerialization.ProviderDiscovery;
-using IpTviewr.UiServices.Configuration;
 using IpTviewr.UiServices.Configuration.Logos;
-using IpTviewr.UiServices.Configuration.Schema2014.Logos;
-using IpTviewr.UiServices.Discovery;
-using IpTviewr.UiServices.Forms;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Windows.Forms;
 
 namespace IpTviewr.Internal.Tools.ChannelLogos
 {
-    class ConsistencyCheckUnusedServiceMappingEntries: ConsistencyCheckAllServices
+    internal class ConsistencyCheckUnusedServiceMappingEntries: ConsistencyCheckAllServices
     {
         protected override void Run()
         {

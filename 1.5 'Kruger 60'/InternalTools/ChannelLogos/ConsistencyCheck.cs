@@ -7,13 +7,11 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace IpTviewr.Internal.Tools.ChannelLogos
 {
-    abstract class ConsistencyCheck
+    internal abstract class ConsistencyCheck
     {
         protected Form Owner;
 
@@ -92,23 +90,19 @@ namespace IpTviewr.Internal.Tools.ChannelLogos
         {
             Results.Add(new Result(severity, data));
 
-            if (severity == Severity.Info)
-            {
-                var e = new ProgressChangedEventArgs()
-                {
-                    Messages = data
-                };
+            if (severity != Severity.Info) return;
 
-                OnProgressChanged(this, e);
-            } // if
+            var e = new ProgressChangedEventArgs
+            {
+                Messages = data
+            };
+
+            OnProgressChanged(this, e);
         } // AddResult
 
         protected virtual void OnProgressChanged(object sender, ProgressChangedEventArgs e)
         {
-            var progressChanged = ProgressChanged;
-            if (progressChanged == null) return;
-
-            progressChanged(sender, e);
+            ProgressChanged?.Invoke(sender, e);
         } // OnProgressChanged
     } // abstract class ConsistencyCheck
 } // namespace

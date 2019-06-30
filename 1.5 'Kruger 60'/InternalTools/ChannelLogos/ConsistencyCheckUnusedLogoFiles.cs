@@ -7,15 +7,12 @@
 
 using IpTviewr.UiServices.Configuration;
 using IpTviewr.UiServices.Configuration.Schema2014.Logos;
-using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Text;
 
 namespace IpTviewr.Internal.Tools.ChannelLogos
 {
-    sealed class ConsistencyCheckUnusedLogoFiles: ConsistencyCheck
+    internal sealed class ConsistencyCheckUnusedLogoFiles : ConsistencyCheck
     {
         private class Domain
         {
@@ -59,29 +56,26 @@ namespace IpTviewr.Internal.Tools.ChannelLogos
             AddResult(Severity.Info, "Check ended");
         } // Run
 
-        private IEnumerable<Domain> GetMappings()
+        private static IEnumerable<Domain> GetMappings()
         {
             var serviceMappings = LogosCommon.ParseServiceMappingsXml(AppUiConfiguration.Current.Folders.Logos.FileServiceMappings);
 
-            var result = from package in serviceMappings.Packages
-                         from domain in package.Domains
+            var result = from collection in serviceMappings.Collections
+                         from domain in collection.Domains
                          select new Domain(domain.RedirectDomainName ?? domain.DomainName, domain.Mappings);
 
             return result;
         } // GetMappings
 
-        private IList<Unused> FindUnusedFiles(IEnumerable<ConsistencyCheckMissingLogoFiles.Folder> folders, IEnumerable<Domain> mappings)
+        private static IEnumerable<Unused> FindUnusedFiles(IEnumerable<ConsistencyCheckMissingLogoFiles.Folder> folders, IEnumerable<Domain> mappings)
         {
-            IDictionary<string, bool> files;
-            List<Unused> result;
-
-            files = new Dictionary<string, bool>();
+            IDictionary<string, bool> files = new Dictionary<string, bool>();
 
             foreach (var folder in folders)
             {
                 foreach (var logo in folder.Logos)
                 {
-                    files.Add(string.Format("{0}|{1}", folder.FolderName, logo.Logo), false);
+                    files.Add($"{folder.FolderName}|{logo.Logo}", false);
                 } // foreach logo
             } // foreach folder
 
@@ -89,25 +83,19 @@ namespace IpTviewr.Internal.Tools.ChannelLogos
             {
                 foreach (var referenced in mapping.Referenced)
                 {
-                    files[string.Format("{0}|{1}", mapping.DomainName, referenced)] = true;
+                    files[$"{mapping.DomainName}|{referenced}"] = true;
                 } // foreach referenced
             } // foreach mapping
 
             var q = from entry in files
                     where entry.Value == false
-                    select entry.Key;
+                    let parts = entry.Key.Split('|')
+                    select new Unused(parts[0], parts[1]);
 
-            result = new List<Unused>();
-            foreach (var file in q)
-            {
-                var parts = file.Split('|');
-                result.Add(new Unused(parts[0], parts[1]));
-            } // foreach file
-
-            return result;
+            return q;
         } // FindUnusedFiles
 
-        private void ListUnusedFiles(IList<Unused> unused)
+        private void ListUnusedFiles(IEnumerable<Unused> unused)
         {
             var errorCount = 0;
 

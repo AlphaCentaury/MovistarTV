@@ -5,16 +5,13 @@
 // 
 // http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
 
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using IpTviewr.UiServices.Configuration.Logos;
 using IpTviewr.UiServices.Discovery;
 
 namespace IpTviewr.Internal.Tools.ChannelLogos
 {
-    sealed class ConsistencyCheckMissingServiceLogos: ConsistencyCheckAllServices
+    internal sealed class ConsistencyCheckMissingServiceLogos: ConsistencyCheckAllServices
     {
         protected override void Run()
         {
@@ -40,16 +37,14 @@ namespace IpTviewr.Internal.Tools.ChannelLogos
             AddResult(Severity.Info, "Check ended");
         } // Run
 
-        private ICollection<UiBroadcastService> GetMissingEntries(IList<BroadcastList> list, IDictionary<string, MappedService> mappedServices, IDictionary<string, ServiceLogoMappings.ReplacementDomain> domainMappings)
+        private ICollection<UiBroadcastService> GetMissingEntries(IEnumerable<BroadcastList> list, IDictionary<string, MappedService> mappedServices, IDictionary<string, ServiceLogoMappings.ReplacementDomain> domainMappings)
         {
-            MappedService mappedService;
-
             var missing = new Dictionary<string, UiBroadcastService>();
             foreach (var item in list)
             {
                 foreach (var service in item.Services)
                 {
-                    mappedService = GetMappedService(item, service, mappedServices, domainMappings);
+                    var mappedService = GetMappedService(item, service, mappedServices, domainMappings);
                     if (mappedService != null) continue;
 
                     missing[service.ServiceName] = service;

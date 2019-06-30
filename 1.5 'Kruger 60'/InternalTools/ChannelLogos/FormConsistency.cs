@@ -5,15 +5,8 @@
 // 
 // http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
 
-using IpTviewr.UiServices.Configuration;
-using IpTviewr.UiServices.Discovery;
-using IpTviewr.UiServices.Forms;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
@@ -30,7 +23,7 @@ namespace IpTviewr.Internal.Tools.ChannelLogos
 
         private void comboCheck_SelectedIndexChanged(object sender, EventArgs e)
         {
-            buttonRun.Enabled = !(comboCheck.SelectedItem.ToString() ?? "").StartsWith("--");
+            buttonRun.Enabled = !(comboCheck.SelectedItem.ToString().StartsWith("--"));
         } // comboCheck_SelectedIndexChanged
 
         private void buttonRun_Click(object sender, EventArgs e)
@@ -38,14 +31,14 @@ namespace IpTviewr.Internal.Tools.ChannelLogos
             ConsistencyCheck check;
 
             // init list
-            var maxColumns = 3;
+            var width = (listViewResults.Width - SystemInformation.VerticalScrollBarWidth - 4) / 3;
+            listViewResults.BeginUpdate();
+            listViewResults.Columns.Clear();
             listViewResults.Items.Clear();
-            var width = (listViewResults.Width - SystemInformation.VerticalScrollBarWidth - 4) / maxColumns;
             listViewResults.Columns.Add("Activity").Width = width;
-            for (int i = 1; i < maxColumns; i++)
-            {
-                listViewResults.Columns.Add("Details").AutoResize(ColumnHeaderAutoResizeStyle.ColumnContent);
-            } // for i
+            listViewResults.Columns.Add("Details").Width = width;
+            listViewResults.Columns.Add("Data").Width = width;
+            listViewResults.EndUpdate();
 
             var test = int.Parse(comboCheck.SelectedItem.ToString().Substring(0, 2));
             switch (test)
@@ -81,24 +74,23 @@ namespace IpTviewr.Internal.Tools.ChannelLogos
 
         private void menuItemListContextCopyActivity_Click(object sender, EventArgs e)
         {
-            CopySubitemToClipboard(listViewResults, 0);
+            CopySubItemToClipboard(listViewResults, 0);
         } // menuItemListContextCopyActivity_Click
 
         private void menuItemListContextCopyFirstDetail_Click(object sender, EventArgs e)
         {
-            CopySubitemToClipboard(listViewResults, 1);
+            CopySubItemToClipboard(listViewResults, 1);
         } // menuItemListContextCopyFirstDetail_Click
 
-        private bool CopySubitemToClipboard(ListView list, int index)
+        private static void CopySubItemToClipboard(ListView list, int index)
         {
             var selectedItem = (list.SelectedIndices.Count == 0) ? null : list.SelectedItems[0];
-            if (selectedItem == null) return false;
+            if (selectedItem == null) return;
 
-            if (index > selectedItem.SubItems.Count) return false;
+            if (index > selectedItem.SubItems.Count) return;
 
             Clipboard.SetText(selectedItem.SubItems[index].Text);
-            return true;
-        } // CopySubitemToClipboard
+        } // CopySubItemToClipboard
 
         private void menuItemListContextCopyRow_Click(object sender, EventArgs e)
         {
@@ -107,7 +99,7 @@ namespace IpTviewr.Internal.Tools.ChannelLogos
 
             var result = new StringBuilder();
             result.Append(selectedItem.ImageKey);
-            foreach (var subitem in selectedItem.SubItems)
+            foreach (ListViewItem.ListViewSubItem subitem in selectedItem.SubItems)
             {
                 result.Append('\t');
                 result.Append(subitem);
@@ -126,15 +118,17 @@ namespace IpTviewr.Internal.Tools.ChannelLogos
         {
             LoadDisplayProgress(e.Messages[0]);
 
-            var item = new ListViewItem(e.Messages);
-            item.ImageKey = ConsistencyCheck.Severity.Info.ToString();
+            var item = new ListViewItem(e.Messages)
+            {
+                ImageKey = ConsistencyCheck.Severity.Info.ToString()
+            };
             listViewResults.Items.Add(item);
             item.EnsureVisible();
         } // Check_ProgressChanged
 
         private void ShowResults(ConsistencyCheck consistencyCheck)
         {
-            int maxColumns = 0;
+            var maxColumns = 0;
 
             listViewResults.BeginUpdate();
             listViewResults.Columns.Clear();
@@ -147,9 +141,11 @@ namespace IpTviewr.Internal.Tools.ChannelLogos
 
             foreach (var result in consistencyCheck.Results)
             {
-                var item = new ListViewItem(result.Data);
-                item.ImageKey = result.Severity.ToString();
-                for (int missing = 0; missing < maxColumns - result.Data.Length; missing++)
+                var item = new ListViewItem(result.Data)
+                {
+                    ImageKey = result.Severity.ToString()
+                };
+                for (var missing = 0; missing < maxColumns - result.Data.Length; missing++)
                 {
                     item.SubItems.Add((string)null);
                 } // for missing
@@ -158,11 +154,11 @@ namespace IpTviewr.Internal.Tools.ChannelLogos
             } // foreach result
 
             listViewResults.Columns.Add("Activity").AutoResize(ColumnHeaderAutoResizeStyle.ColumnContent);
-            for (int i = 1; i < maxColumns; i++)
+            for (var i = 1; i < maxColumns; i++)
             {
                 listViewResults.Columns.Add("Details").AutoResize(ColumnHeaderAutoResizeStyle.ColumnContent);
             } // for i
-            listViewResults.Columns.Add("Ellapsed").AutoResize(ColumnHeaderAutoResizeStyle.ColumnContent);
+            listViewResults.Columns.Add("Elapsed").AutoResize(ColumnHeaderAutoResizeStyle.ColumnContent);
 
             listViewResults.EndUpdate();
         } // ShowResults

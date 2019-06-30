@@ -7,12 +7,6 @@
 
 using IpTviewr.UiServices.Configuration;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace IpTviewr.Internal.Tools.ChannelLogos
@@ -43,34 +37,26 @@ namespace IpTviewr.Internal.Tools.ChannelLogos
             else if (radioConsistency.Checked) form = new FormConsistency();
             else form = null;
 
-            if (form == null) return;
-
-            form.Show();
+            form?.Show();
         } // buttonGo_Click
 
         private bool LoadConfiguration()
         {
             var result = GetConfiguration();
-            if (!result.IsOk)
-            {
-                LoadDisplayProgress(result.Message);
-                Program.HandleException(this, result.Caption, result.Message, result.InnerException);
-                return false;
-            };
+            if (result.IsOk) return true;
 
-            return true;
+            LoadDisplayProgress(result.Message);
+            Program.HandleException(this, result.Caption, result.Message, result.InnerException);
+
+            return false;
         } // LoadConfiguration
 
         private InitializationResult GetConfiguration()
         {
-            InitializationResult result;
-
             try
             {
-                result = AppUiConfiguration.Load(null, LoadDisplayProgress);
-                if (result.IsError) return result;
-
-                return InitializationResult.Ok;
+                var result = AppUiConfiguration.Load(null, LoadDisplayProgress);
+                return result.IsError ? result : InitializationResult.Ok;
             }
             catch (Exception ex)
             {
@@ -82,6 +68,7 @@ namespace IpTviewr.Internal.Tools.ChannelLogos
                 };
             } // try-catch
         } // GetConfiguration
+
         private void LoadDisplayProgress(string text)
         {
             labelLoadingConfiguration.Text = text;
