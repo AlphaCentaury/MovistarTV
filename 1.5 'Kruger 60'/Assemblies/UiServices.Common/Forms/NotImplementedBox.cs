@@ -21,18 +21,16 @@ namespace IpTviewr.UiServices.Common.Forms
         {
             using (var box = new NotImplementedBox())
             {
-                if (context == null)
-                {
-                    context = owner.GetType().Name;
-                }
-                else
-                {
-                    string.Format("{0}/{1}", owner.GetType().Name, context);
-                } // if-else
+                context = context == null ? owner.GetType().Name : $"{owner.GetType().Name}/{context}";
 
                 BasicGoogleTelemetry.SendScreenHit(box, context);
                 box.ShowDialog(owner);
             } // using
         } // ShowBox
+
+        private void NotImplementedBox_Load(object sender, System.EventArgs e)
+        {
+            labelCaption.Text = Owner?.Text;
+        } // NotImplementedBox_Load
     } // class NotImplementedBox
 } // namespace

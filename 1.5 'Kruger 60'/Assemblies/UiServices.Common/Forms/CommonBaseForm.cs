@@ -93,15 +93,14 @@ namespace IpTviewr.UiServices.Common.Forms
 
         protected void SafeDispose(IDisposable disposable)
         {
-            if (disposable == null) return;
-            disposable.Dispose();
+            disposable?.Dispose();
         } // SafeDispose
 
-        protected bool SafeCall(Action implementation)
+        protected bool SafeCall(Action callAction)
         {
             try
             {
-                implementation();
+                callAction();
 
                 return true;
             }
@@ -112,11 +111,26 @@ namespace IpTviewr.UiServices.Common.Forms
             } // try-catch
         } // SafeCall
 
-        protected bool SafeCall<T>(Action<T> implementation, T arg)
+        protected bool SafeCall<TEventArgs>(Action<object, TEventArgs> callAction, object sender, TEventArgs e) where TEventArgs : EventArgs
         {
             try
             {
-                implementation(arg);
+                callAction(sender, e);
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                HandleException(new ExceptionEventData(ex));
+                return false;
+            } // try-catch
+        } // SafeCall
+
+        protected bool SafeCall<T>(Action<T> callAction, T arg)
+        {
+            try
+            {
+                callAction(arg);
 
                 return true;
             }
@@ -127,11 +141,11 @@ namespace IpTviewr.UiServices.Common.Forms
             } // try-catch
         } // SafeCall<T>
 
-        protected bool SafeCall<T1, T2>(Action<T1, T2> implementation, T1 arg1, T2 arg2)
+        protected bool SafeCall<T1, T2>(Action<T1, T2> callAction, T1 arg1, T2 arg2)
         {
             try
             {
-                implementation(arg1, arg2);
+                callAction(arg1, arg2);
 
                 return true;
             }
