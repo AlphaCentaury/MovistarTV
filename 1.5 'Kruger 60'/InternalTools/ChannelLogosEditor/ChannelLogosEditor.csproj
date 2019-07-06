@@ -57,6 +57,11 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Texts.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Texts.resx</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="FormEditor.resx">
       <DependentUpon>FormEditor.cs</DependentUpon>
     </EmbeddedResource>
@@ -70,6 +75,10 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Properties\Texts.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Texts.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -82,6 +91,36 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Assemblies\UiServices.Common\UiServices.Common.csproj">
+      <Project>{76346905-ac2f-4f01-ba99-bbffbb2a6fe9}</Project>
+      <Name>UiServices.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Action_Add_16xM.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Action_Close_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Action_Delete_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Action_Edit_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Action_Ok_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Action_Save_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Action_Import_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Action_Cancel_16x16.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -330,9 +330,11 @@ namespace IpTviewr.Internal.Tools.ChannelLogos
 
         private void LoadLocalLogos()
         {
-            var worker = new BackgroundWorker();
-            worker.WorkerReportsProgress = true;
-            worker.WorkerSupportsCancellation = false;
+            var worker = new BackgroundWorker
+            {
+                WorkerReportsProgress = true,
+                WorkerSupportsCancellation = false
+            };
             worker.ProgressChanged += LocalWorker_ProgressChanged;
             worker.DoWork += LocalWorker_DoWork;
             worker.RunWorkerCompleted += LocalWorker_RunWorkerCompleted;

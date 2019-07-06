@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace IpTviewr.Internal.Tools.ChannelLogos.Properties {
+namespace IpTviewr.Internal.Tools.ChannelLogosEditor.Properties {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace IpTviewr.Internal.Tools.ChannelLogos.Properties {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources {
+    internal class Texts {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Resources() {
+        internal Texts() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace IpTviewr.Internal.Tools.ChannelLogos.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("IpTviewr.Internal.Tools.ChannelLogos.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("IpTviewr.Internal.Tools.ChannelLogosEditor.Properties.Texts", typeof(Texts).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,12 +61,11 @@ namespace IpTviewr.Internal.Tools.ChannelLogos.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        ///   Looks up a localized string similar to Do you want to save changes made to list?.
         /// </summary>
-        internal static System.Drawing.Icon IPTViewr_Tool {
+        internal static string SaveChanges {
             get {
-                object obj = ResourceManager.GetObject("IPTViewr_Tool", resourceCulture);
-                return ((System.Drawing.Icon)(obj));
+                return ResourceManager.GetString("SaveChanges", resourceCulture);
             }
         }
     }

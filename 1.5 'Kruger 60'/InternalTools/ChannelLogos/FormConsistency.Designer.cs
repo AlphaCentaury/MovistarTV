@@ -64,9 +64,9 @@ namespace IpTviewr.Internal.Tools.ChannelLogos
             this.comboCheck.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboCheck.FormattingEnabled = true;
             this.comboCheck.Items.AddRange(new object[] {
-            "-- BroadcastDiscovery",
+            "-- Broadcast discovery",
             "01 Missing logos",
-            "-- service-mappings.xml",
+            "-- Service mappings",
             "02 Unused entries",
             "03 Missing logo files",
             "04 Unused logo files"});

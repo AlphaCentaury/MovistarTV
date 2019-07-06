@@ -18,7 +18,7 @@ namespace IpTviewr.Internal.Tools.ChannelLogos
             AddResult(Severity.Info, "Loading providers");
             var providers = GetProviders();
 
-            AddResult(Severity.Info, "Loading broadcast data");
+            //AddResult(Severity.Info, "Loading broadcast data");
             var list = GetBroadcastList(providers);
             if (list == null) goto end;
 
@@ -37,15 +37,13 @@ namespace IpTviewr.Internal.Tools.ChannelLogos
             AddResult(Severity.Info, "Check ended");
         } // Run
 
-        private IEnumerable<MappedService> GetUnusedEntries(IList<BroadcastList> list, IDictionary<string, MappedService> mappedServices, IDictionary<string, ServiceLogoMappings.ReplacementDomain> domainMappings)
+        private IEnumerable<MappedService> GetUnusedEntries(IEnumerable<BroadcastList> list, IDictionary<string, MappedService> mappedServices, IDictionary<string, ServiceLogoMappings.ReplacementDomain> domainMappings)
         {
-            MappedService mappedService;
-
             foreach (var item in list)
             {
                 foreach (var service in item.Services)
                 {
-                    mappedService = GetMappedService(item, service, mappedServices, domainMappings);
+                    var mappedService = GetMappedService(item, service, mappedServices, domainMappings);
                     if (mappedService != null)
                     {
                         mappedService.Referenced = true;
