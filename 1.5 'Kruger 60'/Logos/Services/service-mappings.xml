@@ -325,7 +325,7 @@ http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
       <Mapping serviceName="3787" logo="movistar_generico_futbol" remarks ="448 La Liga TV Bar 1" />
       <Mapping serviceName="3789" logo="movistar_generico_futbol" remarks ="449 La Liga TV Bar 1" />
     </Domain>
-    <Domain name="dem_1.imagenio.es" redirectDomain="cataluna.imagenio.es">
+    <Domain name="dem_1.imagenio.es" redirectDomain="imagenio.es">
       <Mapping serviceName="56" logo="autonomico_cataluna" remarks="TV3" />
       <Mapping serviceName="57" logo="autonomico_cataluna_2" remarks="Super 3 / 33" />
       <Mapping serviceName="930" logo="autonomico_cataluna_8tv" remarks="8tv" />
