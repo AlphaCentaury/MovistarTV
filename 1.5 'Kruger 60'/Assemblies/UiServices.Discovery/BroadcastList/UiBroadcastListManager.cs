@@ -17,32 +17,33 @@ using IpTviewr.Common.Serialization;
 
 namespace IpTviewr.UiServices.Discovery.BroadcastList
 {
-    public class UiBroadcastListManager: IDisposable
+    public class UiBroadcastListManager : IDisposable
     {
         public const LogoSize SmallLogoSize = LogoSize.Size32;
         public const LogoSize LargeLogoSize = LogoSize.Size48;
 
-        private IList<UiBroadcastService> fieldBroadcastServices;
-        private IList<UiBroadcastService> DisplayedBroadcastServices;
-        private IEnumerable<UiBroadcastService> SortedBroadcastServices;
-        private UiBroadcastListSettings fieldOldSettings;
-        private UiBroadcastListSettings fieldSettings;
-        private UiBroadcastService fieldSelectedService;
+        private IList<UiBroadcastService> _broadcastServices;
+        private IList<UiBroadcastService> _displayedBroadcastServices;
+        private IEnumerable<UiBroadcastService> _sortedBroadcastServices;
+        private UiBroadcastListSettings _oldSettings;
+        private UiBroadcastListSettings _settings;
+        private UiBroadcastService _selectedService;
         private const int MinColumnWidth = 25;
-        private ImageList SmallImageList, LargeImageList;
+        private readonly ImageList _smallImageList;
+        private readonly ImageList _largeImageList;
 
         // TODO: Use fonts from Settings
-        private Font FontDetails;
-        private Font FontDetailsBold;
-        private Font FontNormal;
-        private Font FontNormalHidden;
-        private Font FontNormalNotAvailable;
+        private readonly Font _fontDetails;
+        private readonly Font _fontDetailsBold;
+        private readonly Font _fontNormal;
+        private readonly Font _fontNormalHidden;
+        private readonly Font _fontNormalNotAvailable;
 
         #region Static public methods
 
         public static List<KeyValuePair<UiBroadcastListColumn, string>> GetColumnNames(bool withNone = false)
         {
-            var result = new List<KeyValuePair<UiBroadcastListColumn, string>>(withNone? 22 : 21);
+            var result = new List<KeyValuePair<UiBroadcastListColumn, string>>(withNone ? 22 : 21);
 
             if (withNone)
             {
@@ -82,7 +83,7 @@ namespace IpTviewr.UiServices.Discovery.BroadcastList
                     select item;
 
             var count = withNone ? (names.Count + 1) : names.Count;
-            var result = new List<KeyValuePair<UiBroadcastListColumn, string>>(names.Count);
+            var result = new List<KeyValuePair<UiBroadcastListColumn, string>>(count);
             if (withNone)
             {
                 result.Add(new KeyValuePair<UiBroadcastListColumn, string>(UiBroadcastListColumn.None, Properties.ListViewManager.ColumnNone));
@@ -211,18 +212,17 @@ namespace IpTviewr.UiServices.Discovery.BroadcastList
 
         public UiBroadcastListManager(ListViewSortable listView, UiBroadcastListSettings settings, ImageList smallImageList, ImageList largeImageList, bool overrideDesignSettings)
         {
-            if (listView == null) throw new ArgumentNullException("listView");
             if (settings == null) throw new ArgumentNullException("settings");
 
-            ListView = listView;
-            SmallImageList = smallImageList;
-            LargeImageList = largeImageList;
+            ListView = listView ?? throw new ArgumentNullException("listView");
+            _smallImageList = smallImageList;
+            _largeImageList = largeImageList;
 
-            FontNormal = new Font("Segoe UI Semibold", 10.0f, FontStyle.Regular);
-            FontNormalHidden = new Font("Segoe UI Semibold", 9.5f, FontStyle.Regular);
-            FontNormalNotAvailable = new Font("Segoe UI", 9, FontStyle.Regular);
-            FontDetails = new Font(ListView.Font.OriginalFontName, ListView.Font.SizeInPoints, FontStyle.Regular);
-            FontDetailsBold = new Font("Tahoma", 10.5f, FontStyle.Bold);
+            _fontNormal = new Font("Segoe UI Semibold", 10.0f, FontStyle.Regular);
+            _fontNormalHidden = new Font("Segoe UI Semibold", 9.5f, FontStyle.Regular);
+            _fontNormalNotAvailable = new Font("Segoe UI", 9, FontStyle.Regular);
+            _fontDetails = new Font(ListView.Font.OriginalFontName, ListView.Font.SizeInPoints, FontStyle.Regular);
+            _fontDetailsBold = new Font("Tahoma", 10.5f, FontStyle.Bold);
 
             InitListViewControl(overrideDesignSettings);
             ApplySettings(settings);
@@ -245,15 +245,12 @@ namespace IpTviewr.UiServices.Discovery.BroadcastList
 
         public IList<UiBroadcastService> BroadcastServices
         {
-            get
-            {
-                return fieldBroadcastServices;
-            } // get
+            get => _broadcastServices;
             set
             {
-                fieldBroadcastServices = value;
-                SortedBroadcastServices = null;
-                fieldSelectedService = null;
+                _broadcastServices = value;
+                _sortedBroadcastServices = null;
+                _selectedService = null;
                 ListView.Items.Clear();
                 ApplySorting();
                 FireStatusChanged();
@@ -263,16 +260,13 @@ namespace IpTviewr.UiServices.Discovery.BroadcastList
 
         public UiBroadcastListSettings Settings
         {
-            get { return fieldSettings; } // get
-            set { ApplySettings(value); } // set
+            get => _settings;
+            set => ApplySettings(value);
         } // Settings
 
         public UiBroadcastService SelectedService
         {
-            get
-            {
-                return fieldSelectedService;
-            } // get
+            get => _selectedService;
             set
             {
                 var selected = value;
@@ -299,7 +293,7 @@ namespace IpTviewr.UiServices.Discovery.BroadcastList
                 } // if
 
                 // save selected service
-                fieldSelectedService = selected;
+                _selectedService = selected;
             } // set
         } // SelectedService
 
@@ -309,14 +303,11 @@ namespace IpTviewr.UiServices.Discovery.BroadcastList
             private set;
         } // SelectedSort
 
-        public bool HasItems
-        {
-            get { return (BroadcastServices == null) ? false : BroadcastServices.Count > 0; }
-        } // HasItems
+        public bool HasItems => BroadcastServices != null && BroadcastServices.Count > 0;
 
         public void Refesh()
         {
-            DisplayedBroadcastServices = null;
+            _displayedBroadcastServices = null;
             ListView.BeginUpdate();
             FillList();
             ListView.EndUpdate();
@@ -359,23 +350,16 @@ namespace IpTviewr.UiServices.Discovery.BroadcastList
 
         public IList<UiBroadcastService> GetDisplayedBroadcastList()
         {
-            if (DisplayedBroadcastServices == null)
-            {
-                DisplayedBroadcastServices = GetDisplayBroadcastList();
-            } // if
-
-            return DisplayedBroadcastServices;
+            return _displayedBroadcastServices ?? (_displayedBroadcastServices = GetDisplayBroadcastList());
         } // GetDisplayedBroadcastList
 
         public UiBroadcastListSettings ShowSettingsEditor(IWin32Window owner, bool autoApplyChanges)
         {
-            var result = ConfigurationForm.ShowConfigurationForm(owner, UiBroadcastListSettingsRegistration.RegistrationGuid, fieldSettings);
+            var result = ConfigurationForm.ShowConfigurationForm(owner, UiBroadcastListSettingsRegistration.RegistrationGuid, _settings);
 
-            if ((result != null) && (autoApplyChanges))
-            {
-                SaveSettings(result);
-                Settings = result;
-            } // if
+            if ((result == null) || (!autoApplyChanges)) return result;
+            SaveSettings(result);
+            Settings = result;
 
             return result;
         } // ShowSettingsEditor
@@ -401,9 +385,9 @@ namespace IpTviewr.UiServices.Discovery.BroadcastList
         private void FireSelectionChanged()
         {
             var listItem = (ListView.SelectedItems.Count == 0) ? null : ListView.SelectedItems[0];
-            fieldSelectedService = (UiBroadcastService) listItem?.Tag;
-         
-            OnSelectionChanged(this, new ListSelectionChangedEventArgs(fieldSelectedService));
+            _selectedService = (UiBroadcastService)listItem?.Tag;
+
+            OnSelectionChanged(this, new ListSelectionChangedEventArgs(_selectedService));
         } // FireSelectionChanged
 
         #endregion
@@ -415,15 +399,15 @@ namespace IpTviewr.UiServices.Discovery.BroadcastList
             if (Disposed) return;
 
             HookupEvents(false);
-            fieldBroadcastServices = null;
+            _broadcastServices = null;
             ListView.Items.Clear();
             ListView = null;
 
-            if (FontNormal != null) FontNormal.Dispose();
-            if (FontNormalHidden != null) FontNormalHidden.Dispose();
-            if (FontNormalNotAvailable != null) FontNormalNotAvailable.Dispose();
-            if (FontDetails != null) FontDetails.Dispose();
-            if (FontDetailsBold != null) FontDetailsBold.Dispose();
+            _fontNormal?.Dispose();
+            _fontNormalHidden?.Dispose();
+            _fontNormalNotAvailable?.Dispose();
+            _fontDetails?.Dispose();
+            _fontDetailsBold?.Dispose();
 
             Disposed = true;
         } // Dispose
@@ -455,7 +439,7 @@ namespace IpTviewr.UiServices.Discovery.BroadcastList
         {
             var sortColumn = new UiBroadcastListSortColumn();
             sortColumn.Column = Settings.CurrentColumns[e.Column];
-            sortColumn.IsAscending = sortColumn.Column == SelectedSort.Column? !SelectedSort.IsAscending : true;
+            sortColumn.IsAscending = sortColumn.Column == SelectedSort.Column ? !SelectedSort.IsAscending : true;
 
             if (Settings.UseGlobalSortColumns)
             {
@@ -477,8 +461,8 @@ namespace IpTviewr.UiServices.Discovery.BroadcastList
         private void InitListViewControl(bool overrideDesignSettings)
         {
             ListView.MultiSelect = false;
-            ListView.SmallImageList = SmallImageList;
-            ListView.LargeImageList = LargeImageList;
+            ListView.SmallImageList = _smallImageList;
+            ListView.LargeImageList = _largeImageList;
             ListView.SelfSorting = false;
             ListView.OwnerDraw = true;
 
@@ -501,11 +485,11 @@ namespace IpTviewr.UiServices.Discovery.BroadcastList
         private void ApplySettings(UiBroadcastListSettings newSettings)
         {
             // save existing settings
-            var oldSettings = fieldOldSettings;
+            var oldSettings = _oldSettings;
 
             // save new settings
-            fieldOldSettings = XmlSerialization.Clone(newSettings);
-            fieldSettings = newSettings;
+            _oldSettings = XmlSerialization.Clone(newSettings);
+            _settings = newSettings;
 
             // rebuild list?
             if (NeedToRebuildList(oldSettings, newSettings))
@@ -531,7 +515,7 @@ namespace IpTviewr.UiServices.Discovery.BroadcastList
             } // if-else
         } // ApplySettings
 
-        private void SaveSettings(UiBroadcastListSettings settings)
+        private static void SaveSettings(UiBroadcastListSettings settings)
         {
             UiBroadcastListSettingsRegistration.Settings = settings;
             AppUiConfiguration.Current.Save();
@@ -543,16 +527,16 @@ namespace IpTviewr.UiServices.Discovery.BroadcastList
             ListView.Items.Clear();
             ListView.Columns.Clear();
             ListView.View = Settings.CurrentMode;
-            ListView.Font = (Settings.CurrentMode == View.Details) ? FontDetails : FontNormal;
+            ListView.Font = (Settings.CurrentMode == View.Details) ? _fontDetails : _fontNormal;
 
             var columns = Settings.CurrentColumns;
             foreach (var column in columns)
             {
                 ListView.Columns.Add(GetColumnName(column), GetColumnWidth(column));
             } // foreach
-            ListView.Columns[0].Width += SmallImageList.ImageSize.Width + 5;
+            ListView.Columns[0].Width += _smallImageList.ImageSize.Width + 5;
 
-            ApplyCosmeticSettings(null, fieldSettings);
+            ApplyCosmeticSettings(null, _settings);
             ApplySorting();
             FillList();
             ListView.EndUpdate();
@@ -565,15 +549,12 @@ namespace IpTviewr.UiServices.Discovery.BroadcastList
                 return new List<UiBroadcastService>(0);
             } // if
 
-            var result = new List<UiBroadcastService>(fieldBroadcastServices.Count);
-
-            foreach (var service in SortedBroadcastServices)
-            {
-                if ((service.IsInactive) && (!Settings.ShowInactiveServices)) continue;
-                if ((service.IsHidden) && (!Settings.ShowHiddenServices)) continue;
-
-                result.Add(service);
-            } // foreach
+            var result = new List<UiBroadcastService>(_broadcastServices.Count);
+            var q = from service in _sortedBroadcastServices
+                    where (!service.IsInactive) || (Settings.ShowInactiveServices)
+                    where (!service.IsHidden) || (Settings.ShowHiddenServices)
+                    select service;
+            result.AddRange(q);
 
             return result;
         } // GetDisplayBroadcastList
@@ -581,7 +562,7 @@ namespace IpTviewr.UiServices.Discovery.BroadcastList
         private void FillList()
         {
             // save selected service
-            var savedSelectedService = fieldSelectedService;
+            var savedSelectedService = _selectedService;
 
             ListView.Items.Clear();
             var services = GetDisplayedBroadcastList();
@@ -596,17 +577,18 @@ namespace IpTviewr.UiServices.Discovery.BroadcastList
 
             foreach (var service in services)
             {
-                var item = new ListViewItem();
-                item.Tag = service;
-                item.Name = service.Key;
-                item.Text = GetColumnData(service, columns[0]);
+                var item = new ListViewItem
+                {
+                    Tag = service,
+                    Name = service.Key,
+                    Text = GetColumnData(service, columns[0])
+                };
 
                 var subItems = new string[columns.Count - 1];
-                var index = (int)0;
+                var index = 0;
                 foreach (var column in columns.Skip(1))
                 {
-                    subItems[index] = GetColumnData(service, column);
-                    index++;
+                    subItems[index++] = GetColumnData(service, column);
                 } // foreach
                 item.SubItems.AddRange(subItems);
 
@@ -634,12 +616,11 @@ namespace IpTviewr.UiServices.Discovery.BroadcastList
                 changed = true;
             } // if
 
-            if ((oldSettings == null) || (oldSettings.TilesPerRow != newSettings.TilesPerRow))
-            {
-                var tilesPerRow = Math.Max(newSettings.TilesPerRow, 1);
-                ListView.TileSize = new Size((ListView.Width - SystemInformation.VerticalScrollBarWidth - 6) / tilesPerRow,
+            if ((oldSettings != null) && (oldSettings.TilesPerRow == newSettings.TilesPerRow)) return changed;
+
+            var tilesPerRow = Math.Max(newSettings.TilesPerRow, 1);
+            ListView.TileSize = new Size((ListView.Width - SystemInformation.VerticalScrollBarWidth - 6) / tilesPerRow,
                 ListView.LargeImageList.ImageSize.Height + 6);
-            } // if
 
             return changed;
         } // ApplyCosmeticSettings
@@ -655,31 +636,30 @@ namespace IpTviewr.UiServices.Discovery.BroadcastList
 
             if (sortingColumn.Column == UiBroadcastListColumn.None)
             {
-                SortedBroadcastServices = fieldBroadcastServices;
+                _sortedBroadcastServices = _broadcastServices;
             }
             else
             {
                 var comparer = new ServiceSortComparer(Settings, sortingColumns);
-                SortedBroadcastServices = fieldBroadcastServices.OrderBy(item => item, comparer);
+                _sortedBroadcastServices = _broadcastServices.OrderBy(item => item, comparer);
             } // if-else
 
             // force use of SortedBroadcastServices when filling the list
-            DisplayedBroadcastServices = null;
+            _displayedBroadcastServices = null;
             FillList();
 
             // Update the 'arrow' in the header
-            if (Settings.CurrentMode == View.Details)
-            {
-                var q = from index in Enumerable.Range(0, Settings.CurrentColumns.Count)
-                        where Settings.CurrentColumns[index] == sortingColumn.Column
-                        select index;
+            if (Settings.CurrentMode != View.Details) return;
 
-                var columnIndex = q.DefaultIfEmpty(-1).First();
-                ListView.Sort(columnIndex, sortingColumn.IsAscending);
-            } // if
+            var q = from index in Enumerable.Range(0, Settings.CurrentColumns.Count)
+                where Settings.CurrentColumns[index] == sortingColumn.Column
+                select index;
+
+            var columnIndex = q.DefaultIfEmpty(-1).First();
+            ListView.Sort(columnIndex, sortingColumn.IsAscending);
         } // ApplySorting
 
-        private bool NeedToRebuildList(UiBroadcastListSettings oldSettings, UiBroadcastListSettings newSettings)
+        private static bool NeedToRebuildList(UiBroadcastListSettings oldSettings, UiBroadcastListSettings newSettings)
         {
             // new settings? 
             if (oldSettings == null) return true;
@@ -689,17 +669,11 @@ namespace IpTviewr.UiServices.Discovery.BroadcastList
 
             // number of columns changed?
             var oldColumns = oldSettings.CurrentColumns;
-            var newColums = newSettings.CurrentColumns;
-            if (oldColumns.Count != newColums.Count) return true;
+            var newColumns = newSettings.CurrentColumns;
+            if (oldColumns.Count != newColumns.Count) return true;
 
             // columns changed
-            for (var index = 0; index < oldColumns.Count; index++)
-            {
-                if (oldColumns[index] != newColums[index])
-                {
-                    return true;
-                } // if
-            } // for
+            if (oldColumns.Where((oldColumn, index) => oldColumn != newColumns[index]).Any()) return true;
 
             // show/hide changed
             if (oldSettings.ShowHiddenServices != newSettings.ShowHiddenServices) return true;
@@ -730,12 +704,7 @@ namespace IpTviewr.UiServices.Discovery.BroadcastList
         {
             if (oldColumns.Count != newColumns.Count) return false;
 
-            for (var index = 0; index < oldColumns.Count; index++)
-            {
-                if (oldColumns[index] != newColumns[index]) return false;
-            } // if
-
-            return true;
+            return !oldColumns.Where((oldColumn, index) => oldColumn != newColumns[index]).Any();
         } // CompareSortColumns
 
         private int GetColumnWidth(UiBroadcastListColumn column)
@@ -752,46 +721,45 @@ namespace IpTviewr.UiServices.Discovery.BroadcastList
             {
                 item.UseItemStyleForSubItems = (Settings.CurrentMode == View.Details);
                 item.ForeColor = SystemColors.GrayText;
-                item.Font = service.IsHidden ? FontNormalHidden : FontNormalNotAvailable;
+                item.Font = service.IsHidden ? _fontNormalHidden : _fontNormalNotAvailable;
                 item.ImageKey = GetServiceLogoImageKey(service, true);
             }
             else
             {
                 item.UseItemStyleForSubItems = false;
                 item.ForeColor = ListView.ForeColor;
-                item.Font = (Settings.CurrentMode == View.Details) ? FontDetails : FontNormal;
+                item.Font = (Settings.CurrentMode == View.Details) ? _fontDetails : _fontNormal;
                 item.ImageKey = GetServiceLogoImageKey(service, false);
             } // if-else
 
             // set certains columns as bold
-            if ((Settings.CurrentMode == View.Details) && (!item.UseItemStyleForSubItems))
+            if ((Settings.CurrentMode != View.Details) || (item.UseItemStyleForSubItems)) return;
+
+            var index = 0;
+            foreach (var column in columns)
             {
-                var index = (int)0;
-                foreach (var column in columns)
+                switch (column)
                 {
-                    switch (column)
-                    {
-                        case UiBroadcastListColumn.Name:
-                        case UiBroadcastListColumn.NameAndNumber:
-                        case UiBroadcastListColumn.Number:
-                        case UiBroadcastListColumn.NumberAndName:
-                        case UiBroadcastListColumn.NumberAndNameCrlf:
-                        case UiBroadcastListColumn.OriginalName:
-                        case UiBroadcastListColumn.OriginalNumber:
-                        case UiBroadcastListColumn.UserName:
-                        case UiBroadcastListColumn.UserNumber:
-                            item.SubItems[index].Font = FontDetailsBold;
-                            break;
-                    } // switch
-                    index++;
-                } // foreach
-            } // if
+                    case UiBroadcastListColumn.Name:
+                    case UiBroadcastListColumn.NameAndNumber:
+                    case UiBroadcastListColumn.Number:
+                    case UiBroadcastListColumn.NumberAndName:
+                    case UiBroadcastListColumn.NumberAndNameCrlf:
+                    case UiBroadcastListColumn.OriginalName:
+                    case UiBroadcastListColumn.OriginalNumber:
+                    case UiBroadcastListColumn.UserName:
+                    case UiBroadcastListColumn.UserNumber:
+                        item.SubItems[index].Font = _fontDetailsBold;
+                        break;
+                } // switch
+                index++;
+            } // foreach
         } // EnableListItem
 
         private string GetServiceLogoImageKey(UiBroadcastService service, bool disabled)
         {
             var logo = service.Logo;
-            if (SmallImageList.Images.ContainsKey(logo.Key))
+            if (_smallImageList.Images.ContainsKey(logo.Key))
             {
                 return disabled ? "<Disabled> " + logo.Key : logo.Key;
             } // if
@@ -802,20 +770,20 @@ namespace IpTviewr.UiServices.Discovery.BroadcastList
             // load small logo and add it to small image list
             using (var image = logo.GetImage(SmallLogoSize))
             {
-                SmallImageList.Images.Add(logo.Key, image);
+                _smallImageList.Images.Add(logo.Key, image);
                 using (var disabledImage = PictureBoxEx.ToGrayscale(image))
                 {
-                    SmallImageList.Images.Add(disabledKey, disabledImage);
+                    _smallImageList.Images.Add(disabledKey, disabledImage);
                 } // using image
             } // using image
 
             // load large logo and add it to large image list
             using (var image = logo.GetImage(LargeLogoSize))
             {
-                LargeImageList.Images.Add(logo.Key, image);
+                _largeImageList.Images.Add(logo.Key, image);
                 using (var disabledImage = PictureBoxEx.ToGrayscale(image))
                 {
-                    LargeImageList.Images.Add(disabledKey, disabledImage);
+                    _largeImageList.Images.Add(disabledKey, disabledImage);
                 } // using image
             } // using image
 

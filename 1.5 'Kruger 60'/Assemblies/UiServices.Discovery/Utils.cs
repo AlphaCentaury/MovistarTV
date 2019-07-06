@@ -16,7 +16,7 @@ namespace IpTviewr.UiServices.Discovery
         {
             if (text == null) return new Property(name, null);
             if (text.Language == null) return new Property(name, text.Value);
-            return new Property(string.Format("{0} ({1})", name, text.Language), text.Value);
+            return new Property($"{name} ({text.Language})", text.Value);
         } // GetLanguageProperty
     } // internal class Utils
 } // namespace

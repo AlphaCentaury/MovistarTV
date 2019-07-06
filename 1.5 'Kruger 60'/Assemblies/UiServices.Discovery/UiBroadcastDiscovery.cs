@@ -17,7 +17,7 @@ namespace IpTviewr.UiServices.Discovery
     [XmlRoot(ElementName="UI-BroadcastDiscovery", Namespace=SerializationCommon.XmlNamespace)]
     public class UiBroadcastDiscovery
     {
-        private IDictionary<string, UiBroadcastService> ServicesDictionary;
+        private IDictionary<string, UiBroadcastService> _servicesDictionary;
 
         public static UiBroadcastDiscoveryMergeResult Merge(UiBroadcastDiscovery oldDiscovery, UiBroadcastDiscovery newDiscovery)
         {
@@ -46,7 +46,7 @@ namespace IpTviewr.UiServices.Discovery
             // detect new services and changes
             foreach (var service in newDiscovery.Services)
             {
-                if (oldDiscovery.ServicesDictionary.TryGetValue(service.Key, out var oldService))
+                if (oldDiscovery._servicesDictionary.TryGetValue(service.Key, out var oldService))
                 {
                     if (service.IsSameService(oldService))
                     {
@@ -67,14 +67,14 @@ namespace IpTviewr.UiServices.Discovery
             // detect removed services
             foreach (var service in oldDiscovery.Services)
             {
-                if (!newDiscovery.ServicesDictionary.ContainsKey(service.Key))
+                if (!newDiscovery._servicesDictionary.ContainsKey(service.Key))
                 {
                     removedServices.Add(service);
                 } // if
             } // foreach service
 
-            oldDiscovery.ServicesDictionary = null;
-            newDiscovery.ServicesDictionary = null;
+            oldDiscovery._servicesDictionary = null;
+            newDiscovery._servicesDictionary = null;
 
             var result = new UiBroadcastDiscoveryMergeResult()
             {
@@ -120,21 +120,21 @@ namespace IpTviewr.UiServices.Discovery
         {
             get
             {
-                if (ServicesDictionary == null) BuildServicesDictionary();
-                return ServicesDictionary[serviceKey];
+                if (_servicesDictionary == null) BuildServicesDictionary();
+                return _servicesDictionary[serviceKey];
             } // get
         } // this[string]
 
         public bool TryGetService(string serviceKey, out UiBroadcastService service)
         {
-            if (ServicesDictionary == null) BuildServicesDictionary();
-            return ServicesDictionary.TryGetValue(serviceKey, out service);
+            if (_servicesDictionary == null) BuildServicesDictionary();
+            return _servicesDictionary.TryGetValue(serviceKey, out service);
         } // TryGetService
 
         public UiBroadcastService TryGetService(string serviceKey)
         {
-            if (ServicesDictionary == null) BuildServicesDictionary();
-            return ServicesDictionary.TryGetValue(serviceKey, out var service) ? service : null;
+            if (_servicesDictionary == null) BuildServicesDictionary();
+            return _servicesDictionary.TryGetValue(serviceKey, out var service) ? service : null;
         } // TryGetService
 
         private void Create(BroadcastDiscoveryRoot discoveryXml, string providerDomainName, int version)
@@ -156,10 +156,10 @@ namespace IpTviewr.UiServices.Discovery
 
         private void BuildServicesDictionary()
         {
-            ServicesDictionary = new Dictionary<string, UiBroadcastService>(Services.Count);
+            _servicesDictionary = new Dictionary<string, UiBroadcastService>(Services.Count);
             foreach (var service in Services)
             {
-                ServicesDictionary.Add(service.Key, service);
+                _servicesDictionary.Add(service.Key, service);
             } // foreach
         } // BuildServicesDictionary
     } // class UiBroadcastDiscovery

@@ -22,21 +22,21 @@ using Property = System.Collections.Generic.KeyValuePair<string, string>;
 namespace IpTviewr.UiServices.Discovery
 {
     [Serializable]
-    [XmlType(TypeName="UI-BroadcastService", Namespace=SerializationCommon.XmlNamespace)]
+    [XmlType(TypeName = "UI-BroadcastService", Namespace = SerializationCommon.XmlNamespace)]
     public class UiBroadcastService
     {
-        private string fieldDisplayOriginalName;
-        private string fieldDisplayShortName;
-        private string fieldDisplayDescription;
-        private string fieldDisplayGenre;
-        private string fieldDisplayGenreCode;
-        private string fieldDisplayParentalRating;
-        private string fieldDisplayParentalRatingCode;
-        private string fieldDisplayLockLevel;
-        private string fieldOriginalLocationUrl;
-        private string fieldDisplayServiceType;
+        private string _displayOriginalName;
+        private string _displayShortName;
+        private string _displayDescription;
+        private string _displayGenre;
+        private string _displayGenreCode;
+        private string _displayParentalRating;
+        private string _displayParentalRatingCode;
+        private string _displayLockLevel;
+        private string _originalLocationUrl;
+        private string _displayServiceType;
         [NonSerialized]
-        private ServiceLogo fieldLogo;
+        private ServiceLogo _logo;
 
         /// <remarks>Used by Serialization</remarks>
         public UiBroadcastService()
@@ -52,9 +52,7 @@ namespace IpTviewr.UiServices.Discovery
 
         public UiBroadcastService(IpService service, string providerDomainName)
         {
-            if (service == null) throw new ArgumentNullException("IpService service");
-
-            Data = service;
+            Data = service ?? throw new ArgumentNullException("IpService service");
             DomainName = (Data.TextualIdentifier.DomainName ?? providerDomainName).ToLowerInvariant();
             Key = GetKey(service.TextualIdentifier, providerDomainName);
         } // constructor
@@ -94,7 +92,7 @@ namespace IpTviewr.UiServices.Discovery
         } // IsStandardDefinitionTv
 
         [XmlIgnore]
-        public bool IsTelevionService
+        public bool IsTelevisionService
         {
             get
             {
@@ -109,156 +107,43 @@ namespace IpTviewr.UiServices.Discovery
                         return false;
                 } // switch
             } // get
-        } // IsTelevionService
+        } // IsTelevisionService
 
         [XmlIgnore]
-        public string DisplayLogicalNumber
-        {
-            get { return (UserLogicalNumber ?? (ServiceLogicalNumber ?? Properties.Texts.ChannelNumberNone)); }
-        } // DisplayLogicalNumber
+        public string DisplayLogicalNumber => UserLogicalNumber ?? (ServiceLogicalNumber ?? Properties.Texts.ChannelNumberNone);
 
         [XmlIgnore]
-        public string DisplayName
-        {
-            get { return (UserDisplayName ?? DisplayOriginalName); }
-        } // DisplayName
+        public string DisplayName => UserDisplayName ?? DisplayOriginalName;
 
         [XmlIgnore]
-        public string DisplayShortName
-        {
-            get
-            {
-                if (fieldDisplayShortName == null)
-                {
-                    fieldDisplayShortName = GetDisplayShortName();
-                } // if
-
-                return fieldDisplayShortName;
-            } // get
-        } // DisplayShortName
+        public string DisplayShortName => _displayShortName ?? (_displayShortName = GetDisplayShortName());
 
         [XmlIgnore]
-        public string DisplayOriginalName
-        {
-            get
-            {
-                if (fieldDisplayOriginalName == null)
-                {
-                    fieldDisplayOriginalName = GetDisplayOriginalName();
-                } // if
-
-                return fieldDisplayOriginalName;
-            } // get
-        } // DisplayOriginalName
+        public string DisplayOriginalName => _displayOriginalName ?? (_displayOriginalName = GetDisplayOriginalName());
 
         [XmlIgnore]
-        public string DisplayDescription
-        {
-            get
-            {
-                if (fieldDisplayDescription == null)
-                {
-                    fieldDisplayDescription = GetDisplayDescription();
-                } // if
-
-                return fieldDisplayDescription;
-            } // get
-        } // DisplayDescription
+        public string DisplayDescription => _displayDescription ?? (_displayDescription = GetDisplayDescription());
 
         [XmlIgnore]
-        public string DisplayServiceType
-        {
-            get
-            {
-                if (fieldDisplayServiceType == null)
-                {
-                    fieldDisplayServiceType = GetDisplayServiceType();
-                } // if
-
-                return fieldDisplayServiceType;
-            } // get
-        } //  DisplayServiceType
+        public string DisplayServiceType => _displayServiceType ?? (_displayServiceType = GetDisplayServiceType());
 
         [XmlIgnore]
-        public string DisplayLocationUrl
-        {
-            get
-            {
-                var locationUrl = LocationUrl;
-
-                return locationUrl ?? Properties.Texts.NotProvidedValue;
-            } // get
-        } // DisplayLocationUrl
+        public string DisplayLocationUrl => LocationUrl ?? Properties.Texts.NotProvidedValue;
 
         [XmlIgnore]
-        public string DisplayGenre
-        {
-            get
-            {
-                if (fieldDisplayGenre == null)
-                {
-                    fieldDisplayGenre = GetDisplayGenre();
-                } // if
-
-                return fieldDisplayGenre;
-            } // get
-        } // DisplayGenre
+        public string DisplayGenre => _displayGenre ?? (_displayGenre = GetDisplayGenre());
 
         [XmlIgnore]
-        public string DisplayGenreCode
-        {
-            get
-            {
-                if (fieldDisplayGenreCode == null)
-                {
-                    fieldDisplayGenreCode = GetDisplayGenreCode();
-                } // if
-
-                return fieldDisplayGenreCode;
-            } // get
-        } // DisplayGenreCode
+        public string DisplayGenreCode => _displayGenreCode ?? (_displayGenreCode = GetDisplayGenreCode());
 
         [XmlIgnore]
-        public string DisplayParentalRating
-        {
-            get
-            {
-                if (fieldDisplayParentalRating == null)
-                {
-                    fieldDisplayParentalRating = GetDisplayParentalRating();
-                } // if
-
-                return fieldDisplayParentalRating;
-            } // get
-        } // DisplayParentalRating
+        public string DisplayParentalRating => _displayParentalRating ?? (_displayParentalRating = GetDisplayParentalRating());
 
         [XmlIgnore]
-        public string DisplayParentalRatingCode
-        {
-            get
-            {
-                if (fieldDisplayParentalRatingCode == null)
-                {
-                    fieldDisplayParentalRatingCode = GetDisplayParentalRatingCode();
-                } // if
-
-                return fieldDisplayParentalRatingCode;
-            } // get
-        } // DisplayParentalRatingCode
+        public string DisplayParentalRatingCode => _displayParentalRatingCode ?? (_displayParentalRatingCode = GetDisplayParentalRatingCode());
 
         [XmlIgnore]
-        public string DisplayLockLevel
-        {
-            get
-            {
-                if (fieldDisplayLockLevel == null)
-                {
-                    fieldDisplayLockLevel = GetDisplayLockLevel();
-                } // if
-
-                return fieldDisplayLockLevel;
-            } // get
-        } // DisplayLockLevel
+        public string DisplayLockLevel => _displayLockLevel ?? (_displayLockLevel = GetDisplayLockLevel());
 
         #endregion
 
@@ -271,18 +156,7 @@ namespace IpTviewr.UiServices.Discovery
         } // DomainName
 
         [XmlIgnore]
-        public ServiceLogo Logo
-        {
-            get
-            {
-                if (fieldLogo == null)
-                {
-                    fieldLogo = GetLogo();
-                } // if
-
-                return fieldLogo;
-            }
-        } // Logo
+        public ServiceLogo Logo => _logo ?? (_logo = GetLogo());
 
         public string Key
         {
@@ -347,27 +221,18 @@ namespace IpTviewr.UiServices.Discovery
         } // Data
 
         [XmlIgnore]
-        public string ServiceName
-        {
-            get { return Data.TextualIdentifier.ServiceName; }
-        } // ServiceName
+        public string ServiceName => Data.TextualIdentifier.ServiceName;
 
         [XmlIgnore]
-        public string FullServiceName
-        {
-            get { return ServiceName + "." + DomainName; }
-        } // FullServiceName
+        public string FullServiceName => ServiceName + "." + DomainName;
 
         [XmlIgnore]
         public TextualIdentifier ReplacementService
         {
             get
             {
-                var si = Data.ServiceInformation;
-                if (si == null) return null;
-
-                var replacements = si.ReplacementService;
-                if ((replacements == null) || (replacements.Length == 0)) return null;
+                var replacements = Data.ServiceInformation?.ReplacementService;
+                if (replacements == null || (replacements.Length == 0)) return null;
 
                 var q = from r in replacements
                         let ti = r.TextualIdentifier
@@ -380,10 +245,7 @@ namespace IpTviewr.UiServices.Discovery
         } // ReplacementService
 
         [XmlIgnore]
-        public string ServiceType
-        {
-            get { return Data.ServiceInformation?.ServiceType; }
-        } // ServiceType
+        public string ServiceType => Data.ServiceInformation?.ServiceType;
 
         [XmlIgnore]
         public string LocationUrl
@@ -391,7 +253,7 @@ namespace IpTviewr.UiServices.Discovery
             get
             {
                 var networkSettings = NetworkSettingsRegistration.Settings;
-                if ((networkSettings == null) || (networkSettings.MulticastProxy == null) || (networkSettings.MulticastProxy.IsEnabled == false))
+                if (networkSettings?.MulticastProxy == null || (networkSettings.MulticastProxy.IsEnabled == false))
                 {
                     return OriginalLocationUrl;
                 } // if
@@ -401,42 +263,31 @@ namespace IpTviewr.UiServices.Discovery
         } // LocationUrl
 
         [XmlIgnore]
-        public string OriginalLocationUrl
-        {
-            get
-            {
-                if (fieldOriginalLocationUrl == null)
-                {
-                    fieldOriginalLocationUrl = GetLocationUrl();
-                } // if
-
-                return fieldOriginalLocationUrl;
-            } // get
-        } // OriginalLocationUrl
+        public string OriginalLocationUrl => _originalLocationUrl ?? (_originalLocationUrl = GetLocationUrl());
 
         #endregion
 
         public bool IsSameService(UiBroadcastService service)
         {
-            if (this.Key != service.Key) return false;
-            if (this.LocationUrl != service.LocationUrl) return false;
-            if (this.DisplayOriginalName != service.DisplayOriginalName) return false;
-            if (this.ServiceType != service.ServiceType) return false;
-
-            return true;
+            if (Key != service.Key) return false;
+            if (LocationUrl != service.LocationUrl) return false;
+            if (DisplayOriginalName != service.DisplayOriginalName) return false;
+            return ServiceType == service.ServiceType;
         } // IsSameService
 
         // v1.0 RC 0: code moved from ChannelList > ChanneListForm.cs > DumpProperties(UiBroadcastService)
 
         public IEnumerable<Property> DumpProperties()
         {
-            var properties = new List<Property>();
+            var properties = new List<Property>
+            {
+                new Property("Name (display)", DisplayName),
+                new Property("Description (display)", DisplayDescription),
+                new Property("Type (display)", DisplayServiceType),
+                new Property("Location URL (display)", DisplayLocationUrl),
+                new Property("Is active", (!IsInactive).ToString())
+            };
 
-            properties.Add(new Property("Name (display)", DisplayName));
-            properties.Add(new Property("Description (display)", DisplayDescription));
-            properties.Add(new Property("Type (display)", DisplayServiceType));
-            properties.Add(new Property("Location URL (display)", DisplayLocationUrl));
-            properties.Add(new Property("Is active", (!IsInactive).ToString()));
 
             if (Data.ServiceLocation == null)
             {
@@ -444,14 +295,7 @@ namespace IpTviewr.UiServices.Discovery
             }
             else
             {
-                if (Data.ServiceLocation.IpMulticastAddress == null)
-                {
-                    properties.Add(new Property("Service location (multicast)", null));
-                }
-                else
-                {
-                    properties.Add(new Property("Service location (multicast)", Data.ServiceLocation.IpMulticastAddress.Url));
-                } // if-else
+                properties.Add(new Property("Service location (multicast)", Data.ServiceLocation?.IpMulticastAddress?.Url));
 
                 if (Data.ServiceLocation.RtspUrl == null)
                 {
@@ -482,11 +326,9 @@ namespace IpTviewr.UiServices.Discovery
             }
             else
             {
-                foreach (var triplet in Data.DvbTriplet)
-                {
-                    properties.Add(new Property("DVB Triplet", string.Format("OrigNetId='{0}', TSId='{1}', ServiceId='{2}'",
-                        triplet.OrigNetId, triplet.TSId, triplet.ServiceId)));
-                } // foreach
+                var q = from triplet in Data.DvbTriplet
+                        select new Property("DVB Triplet", $"OrigNetId='{triplet.OrigNetId}', TSId='{triplet.TSId}', ServiceId='{triplet.ServiceId}'");
+                properties.AddRange(q);
             } // if-else
 
             properties.Add(new Property("Max bitarate", Data.MaxBitrate));
@@ -505,10 +347,9 @@ namespace IpTviewr.UiServices.Discovery
                 }
                 else
                 {
-                    foreach (var txt in Data.ServiceInformation.Name)
-                    {
-                        properties.Add(Utils.GetLanguageProperty("Name", txt));
-                    } // foreach
+                    var q = from txt in Data.ServiceInformation.Name
+                            select Utils.GetLanguageProperty("Name", txt);
+                    properties.AddRange(q);
                 } // if-else
                 if (Data.ServiceInformation.Description == null)
                 {
@@ -516,10 +357,9 @@ namespace IpTviewr.UiServices.Discovery
                 }
                 else
                 {
-                    foreach (var txt in Data.ServiceInformation.Description)
-                    {
-                        properties.Add(Utils.GetLanguageProperty("Description", txt));
-                    } // foreach
+                    var q = from txt in Data.ServiceInformation.Description
+                            select Utils.GetLanguageProperty("Description", txt);
+                    properties.AddRange(q);
                 } // if-else
 
                 if ((Data.ServiceInformation.ServiceDescriptionLocation == null) || (Data.ServiceInformation.ServiceDescriptionLocation.Length == 0))
@@ -528,10 +368,9 @@ namespace IpTviewr.UiServices.Discovery
                 }
                 else
                 {
-                    foreach (var location in Data.ServiceInformation.ServiceDescriptionLocation)
-                    {
-                        properties.Add(new Property("Description location", location.Value));
-                    } // foreach
+                    var q = from location in Data.ServiceInformation.ServiceDescriptionLocation
+                            select new Property("Description location", location.Value);
+                    properties.AddRange(q);
                 } // if-else
                 if (Data.ServiceInformation.ContentGenre == null)
                 {
@@ -557,16 +396,16 @@ namespace IpTviewr.UiServices.Discovery
                     foreach (var replacement in Data.ServiceInformation.ReplacementService)
                     {
                         var triplet = replacement.DvbTriplet as DvbTriplet;
-                        if (triplet != null)
+                        if (replacement.DvbTriplet != null)
                         {
-                            properties.Add(new Property("Replacement service", string.Format("DVB Triplet: OrigNetId='{0}', TSId='{1}', ServiceId='{2}'",
-                                                triplet.OrigNetId, triplet.TSId, triplet.ServiceId)));
+                            properties.Add(new Property("Replacement service",
+                                $"DVB Triplet: OrigNetId='{triplet.OrigNetId}', TSId='{triplet.TSId}', ServiceId='{triplet.ServiceId}'"));
                         } // if
                         var textual = replacement.TextualIdentifier;
                         if (textual != null)
                         {
-                            properties.Add(new Property("Replacement service", string.Format("Identifier: Name='{0}', Domain='{1}'",
-                                                textual.ServiceName, textual.DomainName)));
+                            properties.Add(new Property("Replacement service",
+                                $"Identifier: Name='{textual.ServiceName}', Domain='{textual.DomainName}'"));
 
                         } // if
                         if ((triplet == null) && (textual == null))
@@ -587,10 +426,10 @@ namespace IpTviewr.UiServices.Discovery
                 properties.Add(new Property("Has out-of-schema data", (Data.ServiceInformation.ExtraData != null).ToString()));
             } // if-else
 
-            // AudioAttibutes
+            // AudioAttributes
             properties.Add(new Property("Has audio details", (Data.AudioAttributes != null).ToString()));
 
-            // VideoAttibutes
+            // VideoAttributes
             properties.Add(new Property("Has video details", (Data.VideoAttributes != null).ToString()));
 
             return properties;
@@ -609,125 +448,100 @@ namespace IpTviewr.UiServices.Discovery
 
         private string GetDisplayOriginalName()
         {
-            if (Data.ServiceInformation != null)
+            if (Data.ServiceInformation == null)
             {
-                var text = Data.ServiceInformation.Name.SafeGetLanguageValue(AppUiConfiguration.Current.User.PreferredLanguagesList, true, null);
-                if (text != null) return text;
+                return string.Format(Properties.Texts.FormatBroadcastUnknownDisplayName,
+                    Data.TextualIdentifier.ServiceName, DomainName);
             } // if
 
-            return string.Format(Properties.Texts.FormatBroadcastUnknownDisplayName, Data.TextualIdentifier.ServiceName, DomainName);
+            var text = Data.ServiceInformation.Name.SafeGetLanguageValue(AppUiConfiguration.Current.User.PreferredLanguagesList, true, null);
+            return text ?? string.Format(Properties.Texts.FormatBroadcastUnknownDisplayName, Data.TextualIdentifier.ServiceName, DomainName);
         } // GetDisplayOriginalName
 
         private string GetDisplayShortName()
         {
-            if (Data.ServiceInformation != null)
-            {
-                var text = Data.ServiceInformation.ProprietaryShortName.SafeGetLanguageValue(AppUiConfiguration.Current.User.PreferredLanguagesList, true, null);
-                if (text != null) return text;
-            } // if
+            if (Data.ServiceInformation == null) return Properties.Texts.NotProvidedValue;
 
-            return Properties.Texts.NotProvidedValue;
+            var text = Data.ServiceInformation.ProprietaryShortName.SafeGetLanguageValue(AppUiConfiguration.Current.User.PreferredLanguagesList, true, null);
+            return text ?? Properties.Texts.NotProvidedValue;
         } // GetDisplayShortName
 
         private string GetDisplayDescription()
         {
-            if (Data.ServiceInformation != null)
-            {
-                var text = Data.ServiceInformation.Description.SafeGetLanguageValue(AppUiConfiguration.Current.User.PreferredLanguagesList, true, null);
-                if (text != null) return text;
-            } // if
+            if (Data.ServiceInformation == null) return Properties.Texts.BroadcastUnknownDisplayDescription;
 
-            return Properties.Texts.BroadcastUnknownDisplayDescription;
+            var text = Data.ServiceInformation.Description.SafeGetLanguageValue(AppUiConfiguration.Current.User.PreferredLanguagesList, true, null);
+            return text ?? Properties.Texts.BroadcastUnknownDisplayDescription;
         } // GetDisplayDescription
 
         private string GetLocationUrl()
         {
-            if (Data.ServiceLocation == null) return null;
-
-            return Data.ServiceLocation.LocationUrl;
+            return Data.ServiceLocation?.LocationUrl;
         } // GetLocationUrl
 
         private string GetProxiedLocationUrl(MulticastProxy proxy)
         {
-            if (Data == null) return null;
-            if (Data.ServiceLocation == null) return null;
-            if (Data.ServiceLocation.IpMulticastAddress != null)
+            if (Data?.ServiceLocation == null) return null;
+            if (Data.ServiceLocation.IpMulticastAddress == null)
             {
-                var multicast = Data.ServiceLocation.IpMulticastAddress;
-                return proxy.GetProxiedLocationUrl(multicast.Protocol, multicast.Address, multicast.Port);
+                return Data.ServiceLocation.RtspUrl?.Value;
             } // if
-            if (Data.ServiceLocation.RtspUrl != null) return Data.ServiceLocation.RtspUrl.Value;
-            return null;
+
+            var multicast = Data.ServiceLocation.IpMulticastAddress;
+            return proxy.GetProxiedLocationUrl(multicast.Protocol, multicast.Address, multicast.Port);
         } // GetProxiedLocationUrl
 
         private string GetDisplayServiceType()
         {
-            if (Data.ServiceInformation != null)
-            {
-                string serviceType;
-
-                serviceType = ServiceType;
-                if (!AppUiConfiguration.Current.DescriptionServiceTypes.TryGetValue(serviceType, out var serviceTypeDescription))
-                {
-                    serviceTypeDescription = string.Format(Properties.Texts.FormatServiceTypeIdUnknown, serviceType);
-                } // if
-
-                return serviceTypeDescription;
-            }
-            else
+            if (Data.ServiceInformation == null)
             {
                 return Properties.Texts.NotProvidedValue;
             } // if-else
+
+            var serviceType = ServiceType;
+            if (!AppUiConfiguration.Current.DescriptionServiceTypes.TryGetValue(serviceType, out var serviceTypeDescription))
+            {
+                serviceTypeDescription = string.Format(Properties.Texts.FormatServiceTypeIdUnknown, serviceType);
+            } // if
+
+            return serviceTypeDescription;
         } // GetDisplayServiceType
 
         private string GetDisplayGenre()
         {
-            if ((Data.ServiceInformation != null) && (Data.ServiceInformation.ProprietaryGenre != null))
-            {
-                return Data.ServiceInformation.ProprietaryGenre.Name;
-            } // if
-
-            return Properties.Texts.NotProvidedValue;
+            return Data.ServiceInformation?.ProprietaryGenre != null ? Data.ServiceInformation.ProprietaryGenre.Name : Properties.Texts.NotProvidedValue;
         } // GetDisplayGenre
 
         private string GetDisplayGenreCode()
         {
-            if ((Data.ServiceInformation != null) && (Data.ServiceInformation.ProprietaryGenre != null))
+            if (Data.ServiceInformation?.ProprietaryGenre == null)
             {
-                var code = Data.ServiceInformation.ProprietaryGenre.Code;
-                if (code.StartsWith("urn:miviewtv:cs:GenreCS:", StringComparison.InvariantCultureIgnoreCase))
-                {
-                    return code.Substring(21);
-                } // if
-                return code;
+                return Properties.Texts.NotProvidedValue;
             } // if
 
-            return Properties.Texts.NotProvidedValue;
+            var code = Data.ServiceInformation.ProprietaryGenre.Code;
+            return code.StartsWith("urn:miviewtv:cs:GenreCS:", StringComparison.InvariantCultureIgnoreCase) ? code.Substring(21) : code;
         } // GetDisplayGenreCode
 
         private string GetDisplayParentalRating()
         {
-            if ((Data.ServiceInformation != null) && (Data.ServiceInformation.ProprietaryParentalGuidance != null) && (Data.ServiceInformation.ProprietaryParentalGuidance.ParentalRating != null))
+            if ((Data.ServiceInformation?.ProprietaryParentalGuidance?.ParentalRating?.Name?.Length ?? 0) == 0)
             {
-                return Data.ServiceInformation.ProprietaryParentalGuidance.ParentalRating.Name[0].Value;
+                return Properties.Texts.NotProvidedValue;
             } // if
 
-            return Properties.Texts.NotProvidedValue;
+            return Data.ServiceInformation.ProprietaryParentalGuidance.ParentalRating.Name[0].Value;
         } // GetDisplayParentalRating
 
         private string GetDisplayParentalRatingCode()
         {
-            if ((Data.ServiceInformation != null) && (Data.ServiceInformation.ProprietaryParentalGuidance != null) && (Data.ServiceInformation.ProprietaryParentalGuidance.ParentalRating != null))
+            if (Data.ServiceInformation?.ProprietaryParentalGuidance?.ParentalRating == null)
             {
-                var code = Data.ServiceInformation.ProprietaryParentalGuidance.ParentalRating.TermUrl;
-                if (code.StartsWith("urn:dvb:metadata:cs:ParentalGuidanceCS:", StringComparison.InvariantCultureIgnoreCase))
-                {
-                    return code.Substring(36);
-                } // if
-                return code;
+                return Properties.Texts.NotProvidedValue;
             } // if
 
-            return Properties.Texts.NotProvidedValue;
+            var code = Data.ServiceInformation.ProprietaryParentalGuidance.ParentalRating.TermUrl;
+            return code.StartsWith("urn:dvb:metadata:cs:ParentalGuidanceCS:", StringComparison.InvariantCultureIgnoreCase) ? code.Substring(36) : code;
         } // GetDisplayParentalRatingCode
 
         private string GetDisplayLockLevel()

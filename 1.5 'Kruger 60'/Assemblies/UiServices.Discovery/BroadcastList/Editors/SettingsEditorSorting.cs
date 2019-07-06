@@ -13,8 +13,8 @@ namespace IpTviewr.UiServices.Discovery.BroadcastList.Editors
 {
     internal partial class SettingsEditorSorting : SettingsEditorBaseUserControl
     {
-        private UiBroadcastListSortColumn[] SortColumns;
-        private int ManualUpdateLock;
+        private UiBroadcastListSortColumn[] _sortColumns;
+        private int _manualUpdateLock;
 
         public event EventHandler UseGlobalSortChanged;
 
@@ -51,10 +51,10 @@ namespace IpTviewr.UiServices.Discovery.BroadcastList.Editors
         {
             get
             {
-                var result = new List<UiBroadcastListSortColumn>(SortColumns.Length);
-                for (var index = 0; index < SortColumns.Length; index++)
+                var result = new List<UiBroadcastListSortColumn>(_sortColumns.Length);
+                for (var index = 0; index < _sortColumns.Length; index++)
                 {
-                    var sortColumn = SortColumns[index];
+                    var sortColumn = _sortColumns[index];
                     result.Add(sortColumn);
                     if (sortColumn.Column == UiBroadcastListColumn.None) break;
                 } // for index
@@ -71,65 +71,65 @@ namespace IpTviewr.UiServices.Discovery.BroadcastList.Editors
                 Sort = new List<UiBroadcastListSortColumn>();
             } // if
 
-            SortColumns = new UiBroadcastListSortColumn[3];
+            _sortColumns = new UiBroadcastListSortColumn[3];
             for (var index = 0; index < Math.Min(3, Sort.Count); index++)
             {
-                SortColumns[index] = Sort[index];
+                _sortColumns[index] = Sort[index];
             } // for
             for (var index = Sort.Count; index < 3; index++)
             {
-                SortColumns[index] = new UiBroadcastListSortColumn(UiBroadcastListColumn.None, false);
+                _sortColumns[index] = new UiBroadcastListSortColumn(UiBroadcastListColumn.None, false);
             } // for
             if (Sort.Count == 0)
             {
-                SortColumns[0] = new UiBroadcastListSortColumn(UiBroadcastListColumn.Number, false);
+                _sortColumns[0] = new UiBroadcastListSortColumn(UiBroadcastListColumn.Number, false);
             } // if
 
-            ManualUpdateLock++;
+            _manualUpdateLock++;
             comboThirdColumn.DataSource = ColumnsNoneList.AsReadOnly();
             comboSecondColumn.DataSource = ColumnsNoneList.AsReadOnly();
             comboFirstColumn.DataSource = ColumnsNoneList.AsReadOnly();
 
-            comboThirdColumn.SelectedValue = SortColumns[2].Column;
-            comboSecondColumn.SelectedValue = SortColumns[1].Column;
-            comboFirstColumn.SelectedValue = SortColumns[0].Column;
+            comboThirdColumn.SelectedValue = _sortColumns[2].Column;
+            comboSecondColumn.SelectedValue = _sortColumns[1].Column;
+            comboFirstColumn.SelectedValue = _sortColumns[0].Column;
 
-            SetButtonDirectionStatus(buttonFirstDirection, 0, SortColumns[0].IsAscending);
-            SetButtonDirectionStatus(buttonSecondDirection, 1, SortColumns[1].IsAscending);
-            SetButtonDirectionStatus(buttonThirdDirection, 2, SortColumns[2].IsAscending);
+            SetButtonDirectionStatus(buttonFirstDirection, 0, _sortColumns[0].IsAscending);
+            SetButtonDirectionStatus(buttonSecondDirection, 1, _sortColumns[1].IsAscending);
+            SetButtonDirectionStatus(buttonThirdDirection, 2, _sortColumns[2].IsAscending);
 
             checkGlobalSorting.Visible = ShowUseGlobalSort;
             checkGlobalSorting.Checked = UseGlobalSort;
             EnableCombos();
 
-            ManualUpdateLock--;
+            _manualUpdateLock--;
         } // SettingsEditorSorting_Load
 
         private void comboFirstColumn_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (ManualUpdateLock > 0) return;
+            if (_manualUpdateLock > 0) return;
 
             var value = (UiBroadcastListColumn)comboFirstColumn.SelectedValue;
-            SortColumns[0].Column = value;
+            _sortColumns[0].Column = value;
             var enabled = (value != UiBroadcastListColumn.None);
             buttonFirstDirection.Enabled = enabled;
 
             comboSecondColumn.Enabled = enabled;
             comboSecondColumn.SelectedValue = ServiceSortComparer.GetSuggestedNextSortColumn(value);
-            SetButtonDirectionStatus(buttonSecondDirection, 1, SortColumns[0].IsAscending);
+            SetButtonDirectionStatus(buttonSecondDirection, 1, _sortColumns[0].IsAscending);
 
             comboSecondColumn_SelectedIndexChanged(sender, e);
         } // comboFirstColumn_SelectedIndexChanged
 
         private void comboSecondColumn_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (ManualUpdateLock > 0) return;
+            if (_manualUpdateLock > 0) return;
 
             var value = (UiBroadcastListColumn)comboSecondColumn.SelectedValue;
-            SortColumns[1].Column = value;
+            _sortColumns[1].Column = value;
             var enabled = (value != UiBroadcastListColumn.None);
             buttonSecondDirection.Enabled = enabled;
-            SetButtonDirectionStatus(buttonThirdDirection, 2, SortColumns[1].IsAscending);
+            SetButtonDirectionStatus(buttonThirdDirection, 2, _sortColumns[1].IsAscending);
 
             comboThirdColumn.Enabled = enabled;
             comboThirdColumn.SelectedValue = ServiceSortComparer.GetSuggestedNextSortColumn(value);
@@ -139,10 +139,10 @@ namespace IpTviewr.UiServices.Discovery.BroadcastList.Editors
 
         private void comboThirdColumn_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (ManualUpdateLock > 0) return;
+            if (_manualUpdateLock > 0) return;
 
             var value = (UiBroadcastListColumn)comboThirdColumn.SelectedValue;
-            SortColumns[2].Column = value;
+            _sortColumns[2].Column = value;
             var enabled = (value != UiBroadcastListColumn.None);
             buttonThirdDirection.Enabled = enabled;
             
@@ -166,20 +166,20 @@ namespace IpTviewr.UiServices.Discovery.BroadcastList.Editors
 
         private void ToggleDirectionStatus(Button button, int index)
         {
-            SetButtonDirectionStatus(button, index, !SortColumns[index].IsAscending);
+            SetButtonDirectionStatus(button, index, !_sortColumns[index].IsAscending);
             SetDataChanged();
         } // ToggleDirectionStatus
 
         private void SetButtonDirectionStatus(Button button, int index, bool isAscending)
         {
-            SortColumns[index].IsAscending = isAscending;
+            _sortColumns[index].IsAscending = isAscending;
             button.Image = isAscending ? Properties.Resources.Action_SortAscending_16x16 : Properties.Resources.Action_SortDescending_16x16;
             toolTip.SetToolTip(button, isAscending ? Properties.SettingsEditor.SortAscendingTooltip : Properties.SettingsEditor.SortDescendingTooltip);
         } //  // SetButtonDirectionStatus
 
         private void checkGlobalSorting_CheckedChanged(object sender, EventArgs e)
         {
-            if (ManualUpdateLock > 0) return;
+            if (_manualUpdateLock > 0) return;
 
             UseGlobalSort = checkGlobalSorting.Checked;
             EnableCombos();

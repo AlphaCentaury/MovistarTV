@@ -16,11 +16,11 @@ namespace IpTviewr.UiServices.Discovery.BroadcastList.Editors
 {
     public partial class UiBroadcastListSettingsEditor : UserControl, IConfigurationItemEditor, ISettingsEditorContainer
     {
-        private int ManualUpdateLock;
-        private ToolStripButton[] ListModeItems;
-        private ISettingsEditorModeColumns[] EditorModeColumns;
-        private SettingsEditorSorting EditorGlobalSorting;
-        private SettingsEditorSorting[] EditorModeSorting;
+        private int _manualUpdateLock;
+        private ToolStripButton[] _listModeItems;
+        private ISettingsEditorModeColumns[] _editorModeColumns;
+        private SettingsEditorSorting _editorGlobalSorting;
+        private SettingsEditorSorting[] _editorModeSorting;
 
         public UiBroadcastListSettingsEditor()
         {
@@ -111,43 +111,43 @@ namespace IpTviewr.UiServices.Discovery.BroadcastList.Editors
 
         private void LoadGeneralTab(List<KeyValuePair<UiBroadcastListColumn, string>> sortedColumnsNone)
         {
-            ListModeItems = new ToolStripButton[5];
-            ListModeItems[0] = toolButtonDetails;
-            ListModeItems[1] = toolButtonLarge;
-            ListModeItems[2] = toolButtonSmall;
-            ListModeItems[3] = toolButtonList;
-            ListModeItems[4] = toolButtonTile;
-            ListModeItems[0].Tag = View.Details;
-            ListModeItems[1].Tag = View.LargeIcon;
-            ListModeItems[2].Tag = View.SmallIcon;
-            ListModeItems[3].Tag = View.List;
-            ListModeItems[4].Tag = View.Tile;
+            _listModeItems = new ToolStripButton[5];
+            _listModeItems[0] = toolButtonDetails;
+            _listModeItems[1] = toolButtonLarge;
+            _listModeItems[2] = toolButtonSmall;
+            _listModeItems[3] = toolButtonList;
+            _listModeItems[4] = toolButtonTile;
+            _listModeItems[0].Tag = View.Details;
+            _listModeItems[1].Tag = View.LargeIcon;
+            _listModeItems[2].Tag = View.SmallIcon;
+            _listModeItems[3].Tag = View.List;
+            _listModeItems[4].Tag = View.Tile;
 
-            ManualUpdateLock++;
+            _manualUpdateLock++;
 
             checkShowInactive.Checked = Settings.ShowInactiveServices;
             checkShowHidden.Checked = Settings.ShowHiddenServices;
             checkShowOutOfPackage.Checked = Settings.ShowOutOfPackage;
 
-            EditorGlobalSorting = new SettingsEditorSorting();
-            EditorGlobalSorting.ColumnsNoneList = sortedColumnsNone;
-            EditorGlobalSorting.Sort = Settings.GlobalSortColumns;
-            EditorGlobalSorting.SetContainer(this);
-            EditorGlobalSorting.Dock = DockStyle.Fill;
-            EditorGlobalSorting.UseGlobalSort = Settings.UseGlobalSortColumns;
-            EditorGlobalSorting.ShowUseGlobalSort = true;
-            EditorGlobalSorting.UseGlobalSortChanged += EditorGlobalSorting_UseGlobalSortChanged;
-            panelGlobalSorting.Controls.Add(EditorGlobalSorting);
+            _editorGlobalSorting = new SettingsEditorSorting();
+            _editorGlobalSorting.ColumnsNoneList = sortedColumnsNone;
+            _editorGlobalSorting.Sort = Settings.GlobalSortColumns;
+            _editorGlobalSorting.SetContainer(this);
+            _editorGlobalSorting.Dock = DockStyle.Fill;
+            _editorGlobalSorting.UseGlobalSort = Settings.UseGlobalSortColumns;
+            _editorGlobalSorting.ShowUseGlobalSort = true;
+            _editorGlobalSorting.UseGlobalSortChanged += EditorGlobalSorting_UseGlobalSortChanged;
+            panelGlobalSorting.Controls.Add(_editorGlobalSorting);
 
-            ManualUpdateLock--;
+            _manualUpdateLock--;
         } // LoadGeneralTab
 
         private void SaveGeneralTab()
         {
-            if (EditorGlobalSorting.IsDataChanged)
+            if (_editorGlobalSorting.IsDataChanged)
             {
-                Settings.GlobalSortColumns = EditorGlobalSorting.SelectedSort;
-                Settings.UseGlobalSortColumns = EditorGlobalSorting.UseGlobalSort;
+                Settings.GlobalSortColumns = _editorGlobalSorting.SelectedSort;
+                Settings.UseGlobalSortColumns = _editorGlobalSorting.UseGlobalSort;
             } // if
         } // SaveGeneralTab
 
@@ -188,7 +188,7 @@ namespace IpTviewr.UiServices.Discovery.BroadcastList.Editors
         private void SetListMode(View mode)
         {
             Settings.CurrentMode = mode;
-            foreach (var control in ListModeItems)
+            foreach (var control in _listModeItems)
             {
                 if (mode == (View)control.Tag)
                 {
@@ -207,7 +207,7 @@ namespace IpTviewr.UiServices.Discovery.BroadcastList.Editors
 
         private void checkShowInactive_CheckedChanged(object sender, EventArgs e)
         {
-            if (ManualUpdateLock > 0) return;
+            if (_manualUpdateLock > 0) return;
 
             Settings.ShowInactiveServices = checkShowInactive.Checked;
             SetDataChanged();
@@ -215,7 +215,7 @@ namespace IpTviewr.UiServices.Discovery.BroadcastList.Editors
 
         private void checkShowHidden_CheckedChanged(object sender, EventArgs e)
         {
-            if (ManualUpdateLock > 0) return;
+            if (_manualUpdateLock > 0) return;
 
             Settings.ShowHiddenServices = checkShowHidden.Checked;
             SetDataChanged();
@@ -223,7 +223,7 @@ namespace IpTviewr.UiServices.Discovery.BroadcastList.Editors
 
         private void checkShowOutOfPackage_CheckedChanged(object sender, EventArgs e)
         {
-            if (ManualUpdateLock > 0) return;
+            if (_manualUpdateLock > 0) return;
 
             Settings.ShowOutOfPackage = checkShowOutOfPackage.Checked;
             SetDataChanged();
@@ -231,9 +231,9 @@ namespace IpTviewr.UiServices.Discovery.BroadcastList.Editors
 
         private void EditorGlobalSorting_UseGlobalSortChanged(object sender, EventArgs e)
         {
-            foreach (var editor in EditorModeSorting)
+            foreach (var editor in _editorModeSorting)
             {
-                editor.Enabled = !EditorGlobalSorting.UseGlobalSort;
+                editor.Enabled = !_editorGlobalSorting.UseGlobalSort;
             } // foreach editor
         } // EditorGlobalSorting_UseGlobalSortChanged
 
@@ -243,23 +243,23 @@ namespace IpTviewr.UiServices.Discovery.BroadcastList.Editors
 
         private void LoadModeSettingsTab(List<KeyValuePair<UiBroadcastListColumn, string>> sortedColumns, List<KeyValuePair<UiBroadcastListColumn, string>> sortedColumnsNone)
         {
-            EditorModeColumns = new ISettingsEditorModeColumns[5];
-            EditorModeColumns[0] = new SettingsEditorModeMultiColumn();
-            EditorModeColumns[1] = new SettingsEditorModeSingleColumn();
-            EditorModeColumns[2] = new SettingsEditorModeSingleColumn();
-            EditorModeColumns[3] = new SettingsEditorModeSingleColumn();
-            EditorModeColumns[4] = new SettingsEditorModeTripleColumn();
+            _editorModeColumns = new ISettingsEditorModeColumns[5];
+            _editorModeColumns[0] = new SettingsEditorModeMultiColumn();
+            _editorModeColumns[1] = new SettingsEditorModeSingleColumn();
+            _editorModeColumns[2] = new SettingsEditorModeSingleColumn();
+            _editorModeColumns[3] = new SettingsEditorModeSingleColumn();
+            _editorModeColumns[4] = new SettingsEditorModeTripleColumn();
 
-            EditorModeSorting = new SettingsEditorSorting[5];
-            EditorModeSorting[0] = new SettingsEditorSorting();
-            EditorModeSorting[1] = new SettingsEditorSorting();
-            EditorModeSorting[2] = new SettingsEditorSorting();
-            EditorModeSorting[3] = new SettingsEditorSorting();
-            EditorModeSorting[4] = new SettingsEditorSorting();
+            _editorModeSorting = new SettingsEditorSorting[5];
+            _editorModeSorting[0] = new SettingsEditorSorting();
+            _editorModeSorting[1] = new SettingsEditorSorting();
+            _editorModeSorting[2] = new SettingsEditorSorting();
+            _editorModeSorting[3] = new SettingsEditorSorting();
+            _editorModeSorting[4] = new SettingsEditorSorting();
 
-            for (var index = 0; index < EditorModeColumns.Length; index++)
+            for (var index = 0; index < _editorModeColumns.Length; index++)
             {
-                var editor = EditorModeColumns[index];
+                var editor = _editorModeColumns[index];
                 var view = IndexToView(index);
                 editor.SetContainer(this);
                 editor.ColumnsList = sortedColumns;
@@ -267,9 +267,9 @@ namespace IpTviewr.UiServices.Discovery.BroadcastList.Editors
                 editor.Columns = Settings[view].Columns;
             } // for
 
-            for (var index = 0; index < EditorModeSorting.Length; index++)
+            for (var index = 0; index < _editorModeSorting.Length; index++)
             {
-                var editor = EditorModeSorting[index];
+                var editor = _editorModeSorting[index];
                 var view = IndexToView(index);
                 editor.SetContainer(this);
                 editor.ColumnsNoneList = sortedColumnsNone;
@@ -277,7 +277,7 @@ namespace IpTviewr.UiServices.Discovery.BroadcastList.Editors
                 editor.Enabled = !Settings.UseGlobalSortColumns;
             } // for
 
-            ManualUpdateLock++;
+            _manualUpdateLock++;
 
             comboLogoSize.ValueMember = "Key";
             comboLogoSize.DisplayMember = "Value";
@@ -285,25 +285,25 @@ namespace IpTviewr.UiServices.Discovery.BroadcastList.Editors
 
             checkShowGridlines.Checked = Settings.ShowGridlines;
 
-            ManualUpdateLock--;
+            _manualUpdateLock--;
 
             SetListMode(Settings.CurrentMode);
         } // private LoadModeSettingsTab
 
         private void SaveModeSettingsTab()
         {
-            for (var index = 0; index < EditorModeColumns.Length; index++)
+            for (var index = 0; index < _editorModeColumns.Length; index++)
             {
-                var editor = EditorModeColumns[index];
+                var editor = _editorModeColumns[index];
                 if (!editor.IsDataChanged) continue;
 
                 var view = IndexToView(index);
                 Settings[view].Columns = editor.SelectedColumns;
             } // for
 
-            for (var index = 0; index < EditorModeSorting.Length; index++)
+            for (var index = 0; index < _editorModeSorting.Length; index++)
             {
-                var editor = EditorModeSorting[index];
+                var editor = _editorModeSorting[index];
                 if (!editor.IsDataChanged) continue;
 
                 var view = IndexToView(index);
@@ -345,28 +345,28 @@ namespace IpTviewr.UiServices.Discovery.BroadcastList.Editors
 
         private void comboMode_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ManualUpdateLock++;
+            _manualUpdateLock++;
 
             var index = comboMode.SelectedIndex;
 
             panelModeColumns.Controls.Clear();
-            panelModeColumns.Controls.Add(EditorModeColumns[index].GetUnderlyingControl());
+            panelModeColumns.Controls.Add(_editorModeColumns[index].GetUnderlyingControl());
             panelModeColumns.Controls[0].Dock = DockStyle.Fill;
 
             panelModeSorting.Controls.Clear();
-            panelModeSorting.Controls.Add(EditorModeSorting[index]);
+            panelModeSorting.Controls.Add(_editorModeSorting[index]);
             panelModeSorting.Controls[0].Dock = DockStyle.Fill;
 
             var view = IndexToView(comboMode.SelectedIndex);
             comboLogoSize.SelectedValue = Settings[view].LogoSize;
             checkShowGridlines.Visible = (view == View.Details);
 
-            ManualUpdateLock--;
+            _manualUpdateLock--;
         } // comboMode_SelectedIndexChanged
 
         private void comboLogoSize_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (ManualUpdateLock > 0) return;
+            if (_manualUpdateLock > 0) return;
 
             var view = IndexToView(comboMode.SelectedIndex);
             Settings[view].LogoSize = (LogoSize) comboLogoSize.SelectedValue;
@@ -375,7 +375,7 @@ namespace IpTviewr.UiServices.Discovery.BroadcastList.Editors
 
         private void checkShowGridlines_CheckedChanged(object sender, EventArgs e)
         {
-            if (ManualUpdateLock > 0) return;
+            if (_manualUpdateLock > 0) return;
 
             Settings.ShowGridlines = checkShowGridlines.Checked;
             SetDataChanged();

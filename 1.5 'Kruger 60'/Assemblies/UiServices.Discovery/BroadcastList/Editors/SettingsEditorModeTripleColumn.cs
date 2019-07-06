@@ -12,7 +12,7 @@ namespace IpTviewr.UiServices.Discovery.BroadcastList.Editors
 {
     internal partial class SettingsEditorModeTripleColumn : SettingsEditorModeBaseColumn
     {
-        private int ManualUpdateLock;
+        private int _manualUpdateLock;
 
         public SettingsEditorModeTripleColumn()
         {
@@ -46,7 +46,7 @@ namespace IpTviewr.UiServices.Discovery.BroadcastList.Editors
 
         private void SettingsEditorModeTripleColumn_Load(object sender, EventArgs e)
         {
-            ManualUpdateLock++;
+            _manualUpdateLock++;
             comboFirstColumn.DataSource = ColumnsList.AsReadOnly();
             comboSecondColumn.DataSource = ColumnsNoneList.AsReadOnly();
             comboThirdColumn.DataSource = ColumnsNoneList.AsReadOnly();
@@ -74,19 +74,19 @@ namespace IpTviewr.UiServices.Discovery.BroadcastList.Editors
                     comboThirdColumn.SelectedValue = Columns[2];
                     break;
             } // switch
-            ManualUpdateLock--;
+            _manualUpdateLock--;
         } // SettingsEditorModeTripleColumn_Load
 
         private void comboFirstColumn_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (ManualUpdateLock > 0) return;
+            if (_manualUpdateLock > 0) return;
 
             SetDataChanged();
         } // comboFirstColumn_SelectedIndexChanged
 
         private void comboSecondColumn_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (ManualUpdateLock > 0) return;
+            if (_manualUpdateLock > 0) return;
 
             comboThirdColumn.Enabled = ((UiBroadcastListColumn)comboSecondColumn.SelectedValue) != UiBroadcastListColumn.None;
             if (!comboThirdColumn.Enabled)
@@ -98,7 +98,7 @@ namespace IpTviewr.UiServices.Discovery.BroadcastList.Editors
 
         private void comboThirdColumn_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (ManualUpdateLock > 0) return;
+            if (_manualUpdateLock > 0) return;
 
             SetDataChanged();
         } // comboThirdColumn_SelectedIndexChanged

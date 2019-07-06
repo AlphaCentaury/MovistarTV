@@ -127,7 +127,7 @@ namespace IpTviewr.UiServices.Discovery
             this.buttonDetails.Image = global::IpTviewr.UiServices.Discovery.Properties.Resources.ListView_Details_16x16;
             this.buttonDetails.Name = "buttonDetails";
             this.buttonDetails.UseVisualStyleBackColor = true;
-            this.buttonDetails.Click += new System.EventHandler(this.buttonDetails_Click);
+            this.buttonDetails.Click += new System.EventHandler(this.ButtonDetails_Click);
             // 
             // pictureIconSuccess
             // 

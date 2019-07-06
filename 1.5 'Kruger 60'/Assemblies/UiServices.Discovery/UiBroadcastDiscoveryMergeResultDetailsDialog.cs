@@ -28,11 +28,9 @@ namespace IpTviewr.UiServices.Discovery
 
         private void UiBroadcastDiscoveryMergeResultDetailsDialog_Load(object sender, EventArgs e)
         {
-            List<ListViewItem> items;
-
             if (MergeResult == null) return;
 
-            items = new List<ListViewItem>();
+            var items = new List<ListViewItem>();
             AddServices(items, MergeResult.NewServices, listViewDetails.Groups["Added"]);
             AddServices(items, MergeResult.RemovedServices, listViewDetails.Groups["Removed"]);
             AddServices(items, MergeResult.ChangedServices, listViewDetails.Groups["Changed"]);
@@ -55,7 +53,7 @@ namespace IpTviewr.UiServices.Discovery
             } // if-else
         } // UiBroadcastDiscoveryMergeResultDetailsDialog_Load
 
-        private void buttonCopy_Click(object sender, EventArgs e)
+        private void ButtonCopy_Click(object sender, EventArgs e)
         {
             var output = new StringBuilder();
 
@@ -75,14 +73,13 @@ namespace IpTviewr.UiServices.Discovery
             Clipboard.SetText(output.ToString());
         } // buttonCopy_Click
 
-        private void AddServices(List<ListViewItem> items, IList<UiBroadcastService> services, ListViewGroup group)
+        private static void AddServices(List<ListViewItem> items, IList<UiBroadcastService> services, ListViewGroup group)
         {
             if ((services == null) || (services.Count == 0)) return;
 
             foreach(var service in services)
             {
-                var item = new ListViewItem(service.DisplayName);
-                item.Group = group;
+                var item = new ListViewItem(service.DisplayName) {Group = @group};
                 item.SubItems.Add(service.ServiceName);
 
                 items.Add(item);

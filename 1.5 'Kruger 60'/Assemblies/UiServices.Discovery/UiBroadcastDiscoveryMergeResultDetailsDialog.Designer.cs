@@ -84,7 +84,7 @@ namespace IpTviewr.UiServices.Discovery
             this.buttonCopy.Image = global::IpTviewr.UiServices.Discovery.Properties.Resources.Action_Copy_Clip_16x16;
             this.buttonCopy.Name = "buttonCopy";
             this.buttonCopy.UseVisualStyleBackColor = true;
-            this.buttonCopy.Click += new System.EventHandler(this.buttonCopy_Click);
+            this.buttonCopy.Click += new System.EventHandler(this.ButtonCopy_Click);
             // 
             // UiBroadcastDiscoveryMergeResultDetailsDialog
             // 

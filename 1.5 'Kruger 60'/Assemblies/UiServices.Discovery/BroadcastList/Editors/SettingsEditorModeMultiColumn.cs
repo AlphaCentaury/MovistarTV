@@ -13,7 +13,7 @@ namespace IpTviewr.UiServices.Discovery.BroadcastList.Editors
 {
     internal partial class SettingsEditorModeMultiColumn : SettingsEditorModeBaseColumn
     {
-        private ListItemsManager<UiBroadcastListColumn> ItemsManager;
+        private ListItemsManager<UiBroadcastListColumn> _itemsManager;
 
         public SettingsEditorModeMultiColumn()
         {
@@ -22,41 +22,41 @@ namespace IpTviewr.UiServices.Discovery.BroadcastList.Editors
 
         public override List<UiBroadcastListColumn> SelectedColumns
         {
-            get { return ItemsManager.GetListValues(); }
+            get { return _itemsManager.GetListValues(); }
         } // SelectedColumns
 
         private void SettingsEditorModeMultiColumn_Load(object sender, EventArgs e)
         {
-            ItemsManager = new ListItemsManager<UiBroadcastListColumn>(listSelectedColumns, buttonRemove, buttonMoveUp, buttonMoveDown);
+            _itemsManager = new ListItemsManager<UiBroadcastListColumn>(listSelectedColumns, buttonRemove, buttonMoveUp, buttonMoveDown);
 
             comboColumns.DataSource = ColumnsList.AsReadOnly();
             buttonAddColumn.Enabled = (comboColumns.Items.Count > 0);
 
-            ItemsManager.SetValueDictionary(ColumnsList, null);
-            ItemsManager.Add(Columns);
+            _itemsManager.SetValueDictionary(ColumnsList, null);
+            _itemsManager.Add(Columns);
         }  // SettingsEditorModeMultiColumn_Load
 
         private void buttonAddColumn_Click(object sender, EventArgs e)
         {
-            ItemsManager.Add((UiBroadcastListColumn)comboColumns.SelectedValue);
+            _itemsManager.Add((UiBroadcastListColumn)comboColumns.SelectedValue);
             SetDataChanged();
         } // buttonAddColumn_Click
 
         private void buttonRemove_Click(object sender, EventArgs e)
         {
-            ItemsManager.RemoveSelection();
+            _itemsManager.RemoveSelection();
             SetDataChanged();
         } // buttonRemove_Click
 
         private void buttonMoveUp_Click(object sender, EventArgs e)
         {
-            ItemsManager.MoveSelectionUp();
+            _itemsManager.MoveSelectionUp();
             SetDataChanged();
         } // buttonMoveUp_Click
 
         private void buttonMoveDown_Click(object sender, EventArgs e)
         {
-            ItemsManager.MoveSelectionDown();
+            _itemsManager.MoveSelectionDown();
             SetDataChanged();
         } // buttonMoveDown_Click
     } // class SettingsEditorModeMultiColumn

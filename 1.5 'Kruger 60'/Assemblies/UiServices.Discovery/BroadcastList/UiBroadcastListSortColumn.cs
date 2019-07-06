@@ -46,12 +46,12 @@ namespace IpTviewr.UiServices.Discovery.BroadcastList
         public override bool Equals(object obj)
         {
             // if parameter is null return false
-            if (object.ReferenceEquals(obj, null)) return false;
+            if (obj is null) return false;
 
             try
             {
                 // return true if the fields match
-                return this.Equals((UiBroadcastListSortColumn)obj);
+                return Equals((UiBroadcastListSortColumn)obj);
             }
             catch (InvalidCastException)
             {
@@ -62,10 +62,10 @@ namespace IpTviewr.UiServices.Discovery.BroadcastList
 
         public bool Equals(UiBroadcastListSortColumn column)
         {
-            if (this.Column != column.Column) return false;
-            if (this.IsAscending == column.IsAscending) return true;
+            if (Column != column.Column) return false;
+            if (IsAscending == column.IsAscending) return true;
             // special case
-            if (this.Column == UiBroadcastListColumn.None) return true;
+            if (Column == UiBroadcastListColumn.None) return true;
 
             return false;
         } // Equals

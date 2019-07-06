@@ -18,14 +18,13 @@ namespace IpTviewr.UiServices.Discovery
         {
             var result = UiBroadcastDiscovery.Merge(oldDiscovery, newDiscovery);
 
-            if (oldDiscovery != null)
+            if (oldDiscovery == null) return result;
+
+            using (var dialog = new UiBroadcastDiscoveryMergeResultDialog())
             {
-                using (var dialog = new UiBroadcastDiscoveryMergeResultDialog())
-                {
-                    dialog.MergeResult = result;
-                    dialog.ShowDialog(owner);
-                } // using dialog
-            } // if
+                dialog.MergeResult = result;
+                dialog.ShowDialog(owner);
+            } // using dialog
 
             return result;
         } // Merge
@@ -37,7 +36,7 @@ namespace IpTviewr.UiServices.Discovery
 
         private void UiBroadcastDiscoveryMergeResultDialog_Load(object sender, EventArgs e)
         {
-            this.Text = Owner.Text;
+            Text = Owner.Text;
 
             if (MergeResult.IsEmpty)
             {
@@ -98,7 +97,7 @@ namespace IpTviewr.UiServices.Discovery
             } // if-else
         } // UiBroadcastDiscoveryMergeResultDialog_Load
 
-        private void buttonDetails_Click(object sender, EventArgs e)
+        private void ButtonDetails_Click(object sender, EventArgs e)
         {
             using (var dlg = new UiBroadcastDiscoveryMergeResultDetailsDialog())
             {

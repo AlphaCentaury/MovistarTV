@@ -13,22 +13,22 @@ namespace IpTviewr.UiServices.Discovery.BroadcastList
 {
     public class ServiceSortComparer: IComparer<UiBroadcastService>
     {
-        private UiBroadcastListSettings Settings;
-        private IList<UiBroadcastListSortColumn> Sort;
-        private StringBuilder Buffer;
+        private readonly UiBroadcastListSettings _settings;
+        private readonly IList<UiBroadcastListSortColumn> _sort;
+        private readonly StringBuilder _buffer;
 
         public ServiceSortComparer(UiBroadcastListSettings settings, IList<UiBroadcastListSortColumn> sort)
         {
-            Settings = settings;
-            Sort = sort;
-            Buffer = new StringBuilder(512);
+            _settings = settings;
+            _sort = sort;
+            _buffer = new StringBuilder(512);
         } // constructor
 
         public int Compare(UiBroadcastService x, UiBroadcastService y)
         {
             var compare = 0;
 
-            foreach (var sort in Sort)
+            foreach (var sort in _sort)
             {
                 var sortColumn = sort.Column;
                 if (sortColumn == UiBroadcastListColumn.None) break;
@@ -36,8 +36,8 @@ namespace IpTviewr.UiServices.Discovery.BroadcastList
                 var data1 = UiBroadcastListManager.GetColumnData(x, sortColumn);
                 var data2 = UiBroadcastListManager.GetColumnData(y, sortColumn);
 
-                data1 = GetTextWithNumberForTextSorting(data1, Buffer);
-                data2 = GetTextWithNumberForTextSorting(data2, Buffer);
+                data1 = GetTextWithNumberForTextSorting(data1, _buffer);
+                data2 = GetTextWithNumberForTextSorting(data2, _buffer);
 
                 compare = data1.CompareTo(data2);
                 compare *= (sort.IsAscending ? 1 : -1);
@@ -105,10 +105,10 @@ namespace IpTviewr.UiServices.Discovery.BroadcastList
 
         public static string GetTextWithNumberForTextSorting(string textWithNumbers, StringBuilder buffer)
         {
-            int start, pos;
+            int pos;
 
             buffer.Length = 0;
-            start = -1;
+            var start = -1;
 
             for (pos = 0; pos < textWithNumbers.Length; pos++)
             {
@@ -125,27 +125,21 @@ namespace IpTviewr.UiServices.Discovery.BroadcastList
                     buffer.Append(textWithNumbers[pos]);
                 } // if-else
             } // for
-            if (start >= 0)
-            {
-                AddPartialNumber(textWithNumbers, buffer, ref start, pos - 1);
-                return buffer.ToString();
-            }
-            else
-            {
-                return textWithNumbers;
-            } // if-else
+
+            if (start < 0) return textWithNumbers;
+
+            AddPartialNumber(textWithNumbers, buffer, ref start, pos - 1);
+            return buffer.ToString();
         } // GetTextWithNumberForTextSorting
 
         private static int AddPartialNumber(string textWithNumbers, StringBuilder buffer, ref int start, int pos)
         {
-            string partial;
-            long number;
-
-            partial = textWithNumbers.Substring(start, (pos - start) + 1);
-            number = long.Parse(partial);
+            var partial = textWithNumbers.Substring(start, (pos - start) + 1);
+            var number = long.Parse(partial);
             partial = number.ToString("00000000000000000000");
             buffer.Append(partial);
             start = -1;
+
             return start;
         } // AddPartialNumber
     } // class ServiceSortComparer

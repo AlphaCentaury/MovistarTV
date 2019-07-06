@@ -13,15 +13,15 @@ namespace IpTviewr.UiServices.Discovery
 {
     public class UiServicesLogicalNumbers
     {
-        private UiBroadcastDiscovery UiDiscovery;
-        private PackageDiscoveryRoot PackageDiscovery;
-        private string DefaultDomain;
-        private bool HighDefinitionPriority;
+        private UiBroadcastDiscovery _uiDiscovery;
+        private PackageDiscoveryRoot _packageDiscovery;
+        private string _defaultDomain;
+        private bool _highDefinitionPriority;
 
         private class LogicalNumberChannels
         {
-            public ServicesCount SD = new ServicesCount();
-            public ServicesCount HD = new ServicesCount();
+            public readonly ServicesCount SD = new ServicesCount();
+            public readonly ServicesCount HD = new ServicesCount();
 
             public void Add(UiBroadcastService uiService)
             {
@@ -40,24 +40,24 @@ namespace IpTviewr.UiServices.Discovery
 
         private class ServicesCount
         {
-            private IDictionary<UiBroadcastService, int> Services = new Dictionary<UiBroadcastService, int>();
+            private readonly IDictionary<UiBroadcastService, int> _services = new Dictionary<UiBroadcastService, int>();
 
             public void Add(UiBroadcastService uiService)
             {
-                if (Services.TryGetValue(uiService, out var count))
+                if (_services.TryGetValue(uiService, out var count))
                 {
-                    Services[uiService] = count + 1;
+                    _services[uiService] = count + 1;
                 }
                 else
                 {
                     count = 1;
-                    Services.Add(uiService, count);
+                    _services.Add(uiService, count);
                 } // if-else
             } // Add
 
             public IEnumerable<UiBroadcastService> GetSortedServices()
             {
-                var q = from entry in Services
+                var q = from entry in _services
                         orderby entry.Value descending
                         select entry.Key;
 
@@ -96,17 +96,17 @@ namespace IpTviewr.UiServices.Discovery
             return false;
         } // IsHighDefinitionTv
 
-        private UiServicesLogicalNumbers (UiBroadcastDiscovery uiDiscovery, PackageDiscoveryRoot packageDiscovery, string defaultDomain, bool highDefinitionPriority, bool clear = false)
+        private UiServicesLogicalNumbers(UiBroadcastDiscovery uiDiscovery, PackageDiscoveryRoot packageDiscovery, string defaultDomain, bool highDefinitionPriority, bool clear = false)
         {
-            UiDiscovery = uiDiscovery;
-            PackageDiscovery = packageDiscovery;
-            DefaultDomain = defaultDomain;
-            HighDefinitionPriority = highDefinitionPriority;
+            _uiDiscovery = uiDiscovery;
+            _packageDiscovery = packageDiscovery;
+            _defaultDomain = defaultDomain;
+            _highDefinitionPriority = highDefinitionPriority;
         } // constructor
 
         private void Assign()
         {
-            var packages = PackageDiscovery.GetPackages();
+            var packages = _packageDiscovery.GetPackages();
 
             // step 1: create list of logical numbers and the associated channels
             var numbers = GetNumbersList(packages);
@@ -133,8 +133,8 @@ namespace IpTviewr.UiServices.Discovery
 
                     foreach (var textualIdentifier in service.TextualIdentifiers)
                     {
-                        var uiServiceKey = UiBroadcastService.GetKey(textualIdentifier, DefaultDomain);
-                        var uiService = UiDiscovery.TryGetService(uiServiceKey);
+                        var uiServiceKey = UiBroadcastService.GetKey(textualIdentifier, _defaultDomain);
+                        var uiService = _uiDiscovery.TryGetService(uiServiceKey);
                         if (uiService == null) continue; // service not found in global list of services
 
                         // get list of services assigned to logical number, or create if not found
@@ -145,14 +145,14 @@ namespace IpTviewr.UiServices.Discovery
                         } // if
 
                         listUiServices.Add(uiService);
-                    } /// foreach textualIdentifier
+                    } // foreach textualIdentifier
                 } // foreach service
             } // foreach package
 
             return numbers;
         } // GetNumbersList
 
-        private Dictionary<string, LogicalNumberChannels> GetCumulativeNumbers(Dictionary<string, IList<UiBroadcastService>> numbers)
+        private static Dictionary<string, LogicalNumberChannels> GetCumulativeNumbers(Dictionary<string, IList<UiBroadcastService>> numbers)
         {
             var cumulativeNumbers = new Dictionary<string, LogicalNumberChannels>(numbers.Count);
 
@@ -173,24 +173,15 @@ namespace IpTviewr.UiServices.Discovery
         {
             // TODO: feature request: give priority to user-overriden logical numbers, treat them as assigned by packges, or ignore them
 
-            var numbers = new Dictionary<string, int>(UiDiscovery.Services.Count);
+            var numbers = new Dictionary<string, int>(_uiDiscovery.Services.Count);
 
             foreach (var entry in cumulativeNumbers)
             {
-                string logicalNumber;
-
                 // format logical number
-                if (int.TryParse(entry.Key, out var number))
-                {
-                    logicalNumber = string.Format("{0:000}", number);
-                }
-                else
-                {
-                    logicalNumber = entry.Key;
-                } // if-else
+                var logicalNumber = int.TryParse(entry.Key, out var number) ? $"{number:000}" : entry.Key;
 
                 // assign numbers, in order of priority
-                var uiServices = entry.Value.GetSortedServices(HighDefinitionPriority);
+                var uiServices = entry.Value.GetSortedServices(_highDefinitionPriority);
                 foreach (var uiService in uiServices)
                 {
                     if (uiService == null) continue;
@@ -199,7 +190,7 @@ namespace IpTviewr.UiServices.Discovery
             } // foreach entry
         }// AssignNumbers
 
-        private void AssignNumber(UiBroadcastService uiService, string logicalNumber, IDictionary<string, int> numbers)
+        private static void AssignNumber(UiBroadcastService uiService, string logicalNumber, IDictionary<string, int> numbers)
         {
             string serviceLogicalNumber;
 
@@ -226,7 +217,7 @@ namespace IpTviewr.UiServices.Discovery
                 else
                 {
                     // H/S number already assign; create unique H/S number by adding a sufix leter
-                    uiService.ServiceLogicalNumber = string.Format("{0}{1}", serviceLogicalNumber, (char)('a' + (count - 1)));
+                    uiService.ServiceLogicalNumber = $"{serviceLogicalNumber}{(char)('a' + (count - 1))}";
                 } // if-else
             } // if-else
 
@@ -237,13 +228,14 @@ namespace IpTviewr.UiServices.Discovery
         private void AssignUnreferenced()
         {
             var noNumber = 1;
-            foreach (var uiService in UiDiscovery.Services)
+
+            var q = from uiService in _uiDiscovery.Services
+                    where uiService.ServiceLogicalNumber != null
+                    select uiService;
+
+            foreach (var uiService in q)
             {
-                if (uiService.ServiceLogicalNumber == null)
-                {
-                    uiService.ServiceLogicalNumber = string.Format("X{0:000}", noNumber++);
-                    continue;
-                } // if
+                uiService.ServiceLogicalNumber = $"X{noNumber++:000}";
             } // foreach uiService
         } // AssignUnreferenced
     } // class UiServicesLogicalNumbers

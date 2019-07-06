@@ -12,84 +12,43 @@ using IpTviewr.UiServices.Configuration;
 using IpTviewr.UiServices.Configuration.Logos;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Property = System.Collections.Generic.KeyValuePair<string, string>;
 
 namespace IpTviewr.UiServices.Discovery
 {
     public class UiServiceProvider
     {
-        private string fieldDisplayName;
-        private string fieldDisplayDescription;
-        private ProviderLogo fieldLogo;
+        private string _displayName;
+        private string _displayDescription;
+        private ProviderLogo _logo;
 
         public UiServiceProvider(ServiceProvider provider)
         {
-            if (provider == null) throw new ArgumentNullException("ServiceProvider provider");
-
-            Data = provider;
+            Data = provider ?? throw new ArgumentNullException("ServiceProvider provider");
             Key = provider.DomainName.ToLowerInvariant();
         } // constructor
 
         public ServiceProvider Data
         {
             get;
-            private set;
         } // Data
-
-        public string DomainName
-        {
-            get { return Data.DomainName; }
-        } // DomainName
-
-        public ProviderOffering Offering
-        {
-            get { return Data.Offering; }
-        } // Offering
-
-        public string DisplayName
-        {
-            get
-            {
-                if (fieldDisplayName == null)
-                {
-                    fieldDisplayName = GetDisplayName();
-                } // if
-
-                return fieldDisplayName;
-            } // get
-        } // DisplayName
-
-        public string DisplayDescription
-        {
-            get
-            {
-                if (fieldDisplayDescription == null)
-                {
-                    fieldDisplayDescription = GetDisplayDescription();
-                } // if
-
-                return fieldDisplayDescription;
-            } // get
-        } // DisplayDescription
 
         public string Key
         {
             get;
-            private set;
         } // Key
 
-        public ProviderLogo Logo
-        {
-            get
-            {
-                if (fieldLogo == null)
-                {
-                    fieldLogo = GetLogo();
-                } // if
+        public string DomainName => Data.DomainName;
 
-                return fieldLogo;
-            }
-        } // Logo
+        public ProviderOffering Offering => Data.Offering;
+
+        public string DisplayName => _displayName ?? (_displayName = GetDisplayName());
+
+        public string DisplayDescription => _displayDescription ?? (_displayDescription = GetDisplayDescription());
+
+
+        public ProviderLogo Logo => _logo ?? (_logo = GetLogo());
 
         // v1.0 RC 0: code moved from ChannelList > ChanneListForm.cs > DumpProperties(UiServiceProvider)
 
@@ -97,9 +56,7 @@ namespace IpTviewr.UiServices.Discovery
         {
             var properties = new List<Property>();
 
-            MultilingualText text;
-
-            text = Data.Name.SafeGetLanguageItem(AppUiConfiguration.Current.User.PreferredLanguagesList, true);
+            var text = Data.Name.SafeGetLanguageItem(AppUiConfiguration.Current.User.PreferredLanguagesList, true);
             properties.Add(Utils.GetLanguageProperty("Name (display)", text));
             text = Data.Description.SafeGetLanguageItem(AppUiConfiguration.Current.User.PreferredLanguagesList, true);
             properties.Add(Utils.GetLanguageProperty("Description (display)", text));
@@ -113,12 +70,12 @@ namespace IpTviewr.UiServices.Discovery
                     if (push.PayloadId == null)
                     {
                         properties.Add(new Property("Push offering",
-                            string.Format("{0}:{1}", push.Address, push.Port)));
+                            $"{push.Address}:{push.Port}"));
                     }
                     else
                     {
                         properties.Add(new Property("Push offering",
-                            string.Format("{0}:{1} with {2} payloads", push.Address, push.Port, push.PayloadId.Length)));
+                            $"{push.Address}:{push.Port} with {push.PayloadId.Length} payloads"));
                     } // if-else
                 } // foreach push
             }
@@ -134,12 +91,12 @@ namespace IpTviewr.UiServices.Discovery
                     if (pull.PayloadId == null)
                     {
                         properties.Add(new Property("Pull offering",
-                            string.Format("{0}", pull.Location)));
+                            $"{pull.Location}"));
                     }
                     else
                     {
                         properties.Add(new Property("Pull offering",
-                            string.Format("{0} with {1} payloads", pull.Location, pull.PayloadId.Length)));
+                            $"{pull.Location} with {pull.PayloadId.Length} payloads"));
                     } // if-else
                 } // foreach pull
             }
@@ -150,10 +107,9 @@ namespace IpTviewr.UiServices.Discovery
 
             if (Data.Name != null)
             {
-                foreach (var txt in Data.Name)
-                {
-                    properties.Add(Utils.GetLanguageProperty("Name", txt));
-                } // foreach
+                var q = from txt in Data.Name
+                        select Utils.GetLanguageProperty("Name", txt);
+                properties.AddRange(q);
             }
             else
             {
@@ -162,10 +118,9 @@ namespace IpTviewr.UiServices.Discovery
 
             if (Data.Description != null)
             {
-                foreach (var txt in Data.Description)
-                {
-                    properties.Add(Utils.GetLanguageProperty("Description", txt));
-                } // foreach
+                var q = from txt in Data.Description
+                        select Utils.GetLanguageProperty("Description", txt);
+                properties.AddRange(q);
             }
             else
             {
@@ -177,29 +132,21 @@ namespace IpTviewr.UiServices.Discovery
 
         private string GetDisplayName()
         {
-            string result;
-
-            result = Data.Name.SafeGetLanguageValue(AppUiConfiguration.Current.User.PreferredLanguagesList, AppUiConfiguration.Current.DisplayPreferredOrFirst, null);
+            var result = Data.Name.SafeGetLanguageValue(AppUiConfiguration.Current.User.PreferredLanguagesList, AppUiConfiguration.Current.DisplayPreferredOrFirst, null);
             if (result != null) return result;
 
             if (AppUiConfiguration.Current.ContentProvider.FriendlyNames.ServiceProvider.TryGetValue(Data.DomainName, out var friendlyName))
             {
                 return string.Format(Properties.Texts.FormatProviderFriendlyDisplayName, friendlyName, Data.DomainName.ToLowerInvariant());
-            }
-            else
-            {
-                return string.Format(Properties.Texts.FormatProviderUnknownDisplayName, Data.DomainName.ToLowerInvariant());
-            } // if-else
+            } // if
+
+            return string.Format(Properties.Texts.FormatProviderUnknownDisplayName, Data.DomainName.ToLowerInvariant());
         } // GetDisplayName
 
         private string GetDisplayDescription()
         {
-            string result;
-
-            result = Data.Description.SafeGetLanguageValue(AppUiConfiguration.Current.User.PreferredLanguagesList, AppUiConfiguration.Current.DisplayPreferredOrFirst, null);
-            if (result != null) return result;
-
-            return Properties.Texts.ProviderUnknownDisplayDescription;
+            var result = Data.Description.SafeGetLanguageValue(AppUiConfiguration.Current.User.PreferredLanguagesList, AppUiConfiguration.Current.DisplayPreferredOrFirst, null);
+            return result ?? Properties.Texts.ProviderUnknownDisplayDescription;
         } // GetDisplayDescription
 
         private ProviderLogo GetLogo()

@@ -12,7 +12,7 @@ namespace IpTviewr.UiServices.Discovery.BroadcastList.Editors
 {
     internal partial class SettingsEditorModeSingleColumn : SettingsEditorModeBaseColumn
     {
-        private int ManualUpdateLock;
+        private int _manualUpdateLock;
 
         public SettingsEditorModeSingleColumn()
         {
@@ -32,15 +32,15 @@ namespace IpTviewr.UiServices.Discovery.BroadcastList.Editors
 
         private void SettingsEditorModeMultiColumn_Load(object sender, EventArgs e)
         {
-            ManualUpdateLock++;
+            _manualUpdateLock++;
             comboColumns.DataSource = ColumnsList.AsReadOnly();
             comboColumns.SelectedValue = Columns[0];
-            ManualUpdateLock--;
+            _manualUpdateLock--;
         } // SettingsEditorModeMultiColumn_Load
 
         private void comboColumns_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (ManualUpdateLock > 0) return;
+            if (_manualUpdateLock > 0) return;
 
             SetDataChanged();
         }  // comboColumns_SelectedIndexChanged

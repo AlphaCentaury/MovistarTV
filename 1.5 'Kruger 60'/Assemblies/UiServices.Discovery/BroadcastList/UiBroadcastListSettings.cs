@@ -19,7 +19,7 @@ namespace IpTviewr.UiServices.Discovery.BroadcastList
     [XmlRoot("UiBroadcastList", Namespace=ConfigCommon.ConfigXmlNamespace)]
     public class UiBroadcastListSettings : IConfigurationItem
     {
-        private int[] fieldColumnWidth;
+        private int[] _columnWidth;
 
         public class ModeViewSettings
         {
@@ -83,11 +83,6 @@ namespace IpTviewr.UiServices.Discovery.BroadcastList
         } // GetDefaultSettings
 
         #endregion
-
-        public UiBroadcastListSettings()
-        {
-            // no op
-        } // constructor
 
         public View CurrentMode
         {
@@ -187,15 +182,15 @@ namespace IpTviewr.UiServices.Discovery.BroadcastList
         {
             get
             {
-                if (fieldColumnWidth == null)
+                if (_columnWidth == null)
                 {
-                    fieldColumnWidth = new int[23];
+                    _columnWidth = new int[23];
                 } // if
-                return fieldColumnWidth;
+                return _columnWidth;
             }
             set
             {
-                fieldColumnWidth = value;
+                _columnWidth = value;
             } // set
         } // ColumnWidth
 
