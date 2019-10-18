@@ -105,6 +105,7 @@
     <Compile Include="SimpleDvbStpDownloadForm.Designer.cs">
       <DependentUpon>SimpleDvbStpDownloadForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="TasksQueue.cs" />
     <EmbeddedResource Include="BinaryEditorForm.resx">
       <DependentUpon>BinaryEditorForm.cs</DependentUpon>
     </EmbeddedResource>
