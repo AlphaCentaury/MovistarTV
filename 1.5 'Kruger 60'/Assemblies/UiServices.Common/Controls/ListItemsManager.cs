@@ -27,7 +27,7 @@ namespace IpTviewr.UiServices.Common.Controls
 
             if ((listBox.SelectionMode == SelectionMode.MultiSimple) || (listBox.SelectionMode == SelectionMode.MultiExtended))
             {
-                throw new ArgumentException("listBox");
+                throw new ArgumentException(nameof(listBox));
             } // if
 
             ListBox = listBox;
@@ -43,6 +43,8 @@ namespace IpTviewr.UiServices.Common.Controls
             ListBox.ValueMember = "Key";
             ListBox.SelectedIndexChanged += ListBox_SelectedIndexChanged;
         }  // constructor
+
+        public bool IsReadOnly { get; set; }
 
         public void SetValueDictionary(IList<KeyValuePair<TValue, string>> items, IEqualityComparer<TValue> comparer)
         {
@@ -146,6 +148,8 @@ namespace IpTviewr.UiServices.Common.Controls
 
         public void RemoveSelection()
         {
+            if (IsReadOnly) return;
+
             var index = ListBox.SelectedIndex;
             if (index < 0) throw new InvalidOperationException();
 
@@ -157,6 +161,8 @@ namespace IpTviewr.UiServices.Common.Controls
 
         public void MoveSelectionUp()
         {
+            if (IsReadOnly) return;
+
             var index = ListBox.SelectedIndex;
             if (index < 0) throw new InvalidOperationException();
 
@@ -171,6 +177,8 @@ namespace IpTviewr.UiServices.Common.Controls
 
         public void MoveSelectionDown()
         {
+            if (IsReadOnly) return;
+
             var index = ListBox.SelectedIndex;
             if ((index +1) >= ListBox.Items.Count) throw new InvalidOperationException();
 
@@ -186,9 +194,9 @@ namespace IpTviewr.UiServices.Common.Controls
         private void ListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             var index = ListBox.SelectedIndex;
-            RemoveControl.Enabled = (index >= 0) && (ListBox.Items.Count > 0);
-            UpControl.Enabled = (index > 0) && (ListBox.Items.Count > 1);
-            DownControl.Enabled = ((index + 1) < ListBox.Items.Count);
+            RemoveControl.Enabled = (index >= 0) && (ListBox.Items.Count > 0) && (!IsReadOnly);
+            UpControl.Enabled = (index > 0) && (ListBox.Items.Count > 1) && (!IsReadOnly);
+            DownControl.Enabled = ((index + 1) < ListBox.Items.Count) && (!IsReadOnly);
         } // ListBox_SelectedIndexChanged
 
         private void AddItems(object[] items)

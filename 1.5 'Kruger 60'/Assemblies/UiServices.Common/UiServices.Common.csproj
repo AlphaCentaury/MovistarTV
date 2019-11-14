@@ -54,6 +54,12 @@
     <Compile Include="..\..\AssemblySolutionInfo.cs">
       <Link>Properties\AssemblySolutionInfo.cs</Link>
     </Compile>
+    <Compile Include="Controls\ListEditor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ListEditor.Designer.cs">
+      <DependentUpon>ListEditor.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\CommonBaseUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -180,11 +186,23 @@
     </Content>
     <Content Include="License.txt" />
     <None Include="Resources\DefaultSplash.png" />
+    <None Include="Resources\Action_Delete_16x16.png" />
+    <None Include="Resources\Action_GoNextDown_16x16.png" />
+    <None Include="Resources\Action_GoPreviousUp_16x16.png" />
+    <None Include="Resources\Action_Property_Add_16x16.png" />
+    <None Include="Resources\Action_Property_Edit_16x16.png" />
     <Content Include="Resources\DefaultAbout.png" />
     <Content Include="Resources\NotImplemented_200x200.png" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <EmbeddedResource Include="Controls\ListEditor.es.resx">
+      <DependentUpon>ListEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\ListEditor.resx">
+      <DependentUpon>ListEditor.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\BackgroundWorkerDialog.es.resx" />
     <EmbeddedResource Include="Properties\BackgroundWorkerDialog.resx">
       <Generator>ResXFileCodeGenerator</Generator>
