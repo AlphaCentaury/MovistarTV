@@ -61,7 +61,7 @@ namespace IpTviewr.ChannelList.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to movistar+ channels - IPTViewr (1.5“Kruger 60” Beta 1).
+        ///   Looks up a localized string similar to IPTViewr for movistar+ (1.5“Kruger 60” Beta 1).
         /// </summary>
         internal static string AppCaption {
             get {
@@ -79,7 +79,7 @@ namespace IpTviewr.ChannelList.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Alpha (experimental).
+        ///   Looks up a localized string similar to Beta (stable, but may fail/crash).
         /// </summary>
         internal static string AppStatus {
             get {
