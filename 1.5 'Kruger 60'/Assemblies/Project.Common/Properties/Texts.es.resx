@@ -112,12 +112,18 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="LauncherOpenUrlError" xml:space="preserve">
     <value>No ha sido posible abrir un navegador de Internet para mostrar la página web '{0}'.</value>
+  </data>
+  <data name="MyAppHandleExceptionDefaultCaption" xml:space="preserve">
+    <value>Se ha producido un error al procesar su solicitud</value>
+  </data>
+  <data name="MyAppHandleExceptionDefaultMessage" xml:space="preserve">
+    <value>Ninguna información ha sido proporcionada en cuanto a dónde ni por qué ocurrio el error. Los detalles del error se muestran a continuación:</value>
   </data>
 </root>
