@@ -112,10 +112,10 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="buttonAdd.ToolTip" xml:space="preserve">
     <value>Añade un nuevo argumento al final de la lista</value>
@@ -127,7 +127,7 @@
     <value>Sube una posición el argumento seleccionado</value>
   </data>
   <data name="buttonRemove.ToolTip" xml:space="preserve">
-    <value>Elimina el argumento seleccionado de la lista</value>
+    <value>Elimina el argumento seleccionado</value>
   </data>
   <data name="buttonEdit.ToolTip" xml:space="preserve">
     <value>Edita el argumento seleccionado</value>

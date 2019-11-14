@@ -31,6 +31,11 @@ namespace IpTviewr.UiServices.Configuration.Schema2014.Logos
         public ServiceDomains[] Domains { get; set; }
 
         public override string ToString() => $@"Service package: {Name} => {Package}";
+
+        public ServiceCollection ShallowClone()
+        {
+            return MemberwiseClone() as ServiceCollection;
+        } // ShallowClone
     } // ServiceCollection
 
     [XmlType(AnonymousType = true, Namespace = LogosCommon.LogoMappingsXmlNamespace)]

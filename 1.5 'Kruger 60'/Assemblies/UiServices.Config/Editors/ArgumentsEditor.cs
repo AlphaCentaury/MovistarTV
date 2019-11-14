@@ -11,13 +11,14 @@ using IpTviewr.UiServices.Common.Controls;
 
 namespace IpTviewr.UiServices.Configuration.Editors
 {
-    public partial class ArgumentsEditor : UserControl
+    public partial class ArgumentsEditor : ListEditor
     {
-        private ListItemsManager<string> ItemsManager;
+        private readonly ListItemsManager<string> _manager;
 
         public ArgumentsEditor()
         {
             InitializeComponent();
+            _manager = new ListItemsManager<string>(listItems, buttonRemove, buttonMoveUp, buttonMoveDown);
         } // constructor
 
         public string OpenBraceText
@@ -42,10 +43,10 @@ namespace IpTviewr.UiServices.Configuration.Editors
         {
             get
             {
-                var arguments = new string[listArguments.Items.Count];
+                var arguments = new string[listItems.Items.Count];
                 for (var index = 0; index < arguments.Length; index++)
                 {
-                    arguments[index] = listArguments.Items[index].ToString();
+                    arguments[index] = listItems.Items[index].ToString();
                 } // for
 
                 return arguments;
@@ -54,62 +55,38 @@ namespace IpTviewr.UiServices.Configuration.Editors
             {
                 if (value != null)
                 {
-                    listArguments.Items.AddRange(value);
+                    listItems.Items.AddRange(value);
                 }
                 else
                 {
-                    listArguments.Items.Clear();
+                    listItems.Items.Clear();
                 } // if-else
             } // set
         } // Arguments
 
-        public bool IsDataChanged
-        {
-            get;
-            private set;
-        } // IsDataChanged
-
-        private void ArgumentsEditor_Load(object sender, EventArgs e)
-        {
-            ItemsManager = new ListItemsManager<string>(listArguments, buttonRemove, buttonMoveUp, buttonMoveDown);
-            listArguments.DisplayMember = null;
-            listArguments.ValueMember = null;
-            buttonEdit.Enabled = false;
-        } // ArgumentsEditor_Load
-
-        private void listArguments_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            buttonEdit.Enabled = (listArguments.SelectedIndex >= 0);
-        } // listArguments_SelectedIndexChanged
-
-        private void listArguments_DoubleClick(object sender, EventArgs e)
-        {
-            buttonEdit.PerformClick();
-        } // listArguments_DoubleClick
-
-        private void buttonEdit_Click(object sender, EventArgs e)
+        protected override void ButtonEdit_Click(object sender, EventArgs e)
         {
             using (var dialog = GetArgumentEditorDialog())
             {
-                dialog.Parameter = listArguments.SelectedItem.ToString();
+                dialog.Parameter = listItems.SelectedItem.ToString();
                 if (dialog.ShowDialog(this) != DialogResult.OK)
                 {
                     return;
                 } // if
 
-                var index = listArguments.SelectedIndex;
-                listArguments.Items[index] = dialog.Parameter;
+                var index = listItems.SelectedIndex;
+                listItems.Items[index] = dialog.Parameter;
                 IsDataChanged = true;
             } // using
-        } // buttonEdit_Click
+        } // ButtonEdit_Click
 
-        private void buttonRemove_Click(object sender, EventArgs e)
+        protected override void ButtonRemove_Click(object sender, EventArgs e)
         {
-            ItemsManager.RemoveSelection();
+            _manager.RemoveSelection();
             IsDataChanged = true;
-        } // buttonRemove_Click
+        } // ButtonRemove_Click
 
-        private void buttonAdd_Click(object sender, EventArgs e)
+        protected override void ButtonAdd_Click(object sender, EventArgs e)
         {
             using (var dialog = GetArgumentEditorDialog())
             {
@@ -119,22 +96,22 @@ namespace IpTviewr.UiServices.Configuration.Editors
                     return;
                 } // if
 
-                listArguments.SelectedIndex = listArguments.Items.Add(dialog.Parameter);
+                listItems.SelectedIndex = listItems.Items.Add(dialog.Parameter);
                 IsDataChanged = true;
             } // using
-        } // buttonAdd_Click
+        } // ButtonAdd_Click
 
-        private void buttonMoveUp_Click(object sender, EventArgs e)
+        protected override void ButtonMoveUp_Click(object sender, EventArgs e)
         {
-            ItemsManager.MoveSelectionUp();
+            _manager.MoveSelectionUp();
             IsDataChanged = true;
-        } // buttonMoveUp_Click
+        } // ButtonMoveUp_Click
 
-        private void buttonMoveDown_Click(object sender, EventArgs e)
+        protected override void ButtonMoveDown_Click(object sender, EventArgs e)
         {
-            ItemsManager.MoveSelectionDown();
+            _manager.MoveSelectionDown();
             IsDataChanged = true;
-        } // buttonMoveDown_Click
+        } // ButtonMoveDown_Click
 
         private ArgumentEditorDialog GetArgumentEditorDialog()
         {
