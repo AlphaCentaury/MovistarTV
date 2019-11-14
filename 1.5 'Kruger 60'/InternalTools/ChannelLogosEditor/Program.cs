@@ -7,10 +7,11 @@
 
 using System;
 using System.Windows.Forms;
+using IpTviewr.Common;
 
 namespace IpTviewr.Internal.Tools.ChannelLogosEditor
 {
-    internal static class Program
+    internal class Program: BaseProgram
     {
         /// <summary>
         /// The main entry point for the application.

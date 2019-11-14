@@ -9,13 +9,18 @@ using System;
 using System.Windows.Forms;
 using IpTviewr.Internal.Tools.ChannelLogosEditor.Properties;
 using IpTviewr.UiServices.Common.Forms;
+using IpTviewr.UiServices.Configuration;
+using IpTviewr.UiServices.Configuration.Schema2014.Logos;
 
 namespace IpTviewr.Internal.Tools.ChannelLogosEditor
 {
     public partial class FormEditor : CommonBaseForm
     {
+        private bool _isConfigLoaded;
         private bool _isDirty;
         private bool _isOpen;
+        private ServiceCollection _currentCollection;
+        private ServiceMappingsXml _serviceMappingsXml;
 
         public FormEditor()
         {
@@ -39,11 +44,25 @@ namespace IpTviewr.Internal.Tools.ChannelLogosEditor
             {
                 _isOpen = value;
                 IsDirty = false;
+                CurrentCollection = null;
                 menuItemEditorOpen.Enabled = !_isOpen;
-                CollectionToolStripMenuItem.Enabled = _isOpen;
+                menuItemCollectionEditor.Enabled = _isOpen;
                 menuItemEditorClose.Enabled = _isOpen;
+                labelStatus.Text = _isOpen ? "Editor is ready" : "Editor closed";
             }
         } // IsOpen
+
+        private ServiceCollection CurrentCollection
+        {
+            get => _currentCollection;
+            set
+            {
+                _currentCollection = value;
+                menuItemCollectionSeparator1.Visible = value != null;
+                menuItemCollectionCurrent.Visible = value != null;
+                menuItemCollectionCurrent.Text = value?.Name;
+            } // set
+        } // CurrentCollection
 
         private void FormEditor_Load(object sender, EventArgs e)
         {
@@ -99,34 +118,39 @@ namespace IpTviewr.Internal.Tools.ChannelLogosEditor
             IsOpen = false;
         } // MenuItemEditorClose_ClickImplementation
 
-        private void MenuItemEditorCollectionAdd_Click(object sender, EventArgs e)
-        {
-            SafeCall(MenuItemEditorCollectionAdd_ClickImplementation, sender, e);
-        } // MenuItemEditorCollectionAdd_Click
-
-        private void MenuItemEditorCollectionAdd_ClickImplementation(object sender, EventArgs e)
-        {
-            NotImplementedBox.ShowBox(this, nameof(MenuItemEditorCollectionAdd_ClickImplementation));
-        } // MenuItemEditorCollectionAdd_ClickImplementation
-
-        private void MenuItemEditorCollectionEdit_Click(object sender, EventArgs e)
-        {
-            SafeCall(MenuItemEditorCollectionEdit_ClickImplementation, sender, e);
-        } // MenuItemEditorCollectionEdit_Click
-
-        private void MenuItemEditorCollectionEdit_ClickImplementation(object sender, EventArgs e)
-        {
-            NotImplementedBox.ShowBox(this, nameof(MenuItemEditorCollectionEdit_ClickImplementation));
-        } // MenuItemEditorCollectionEdit_ClickImplementation
-
         private void MenuItemEditorExit_Click(object sender, EventArgs e)
         {
             Close();
         } // MenuItemEditorExit_Click
 
+        private void MenuItemCollectionSelect_Click(object sender, EventArgs e)
+        {
+            using (var dialog = new DialogCollectionsEditor())
+            {
+                dialog.IsReadOnly = true;
+                dialog.Text = "Select collection";
+                dialog.Collections = _serviceMappingsXml.Collections;
+                if (dialog.ShowDialog(this) != DialogResult.OK) return;
+                CurrentCollection = dialog.SelectedCollection;
+            } // using
+        } // MenuItemCollectionSelect_Click
+
+        private void MenuItemCollectionEditor_Click(object sender, EventArgs e)
+        {
+            using (var dialog = new DialogCollectionsEditor())
+            {
+                dialog.Collections = _serviceMappingsXml.Collections;
+                if (dialog.ShowDialog(this) != DialogResult.OK) return;
+                _serviceMappingsXml.Collections = dialog.Collections;
+            } // using
+        } // MenuItemCollectionEditor_Click
+
         private void Open()
         {
             if (IsOpen) return;
+
+            if (!LoadConfiguration()) return;
+            _serviceMappingsXml = LogosCommon.ParseServiceMappingsXml(AppUiConfiguration.Current.Folders.Logos.FileServiceMappings);
 
             IsOpen = true;
         } // Open
@@ -137,5 +161,47 @@ namespace IpTviewr.Internal.Tools.ChannelLogosEditor
 
             IsDirty = false;
         } // Save
+
+        #region Configuration loader
+
+        private bool LoadConfiguration()
+        {
+            if (_isConfigLoaded) return true;
+
+            var result = GetConfiguration();
+            _isConfigLoaded = (result.IsOk);
+            if (_isConfigLoaded) return true;
+
+            LoadConfigurationDisplayProgress(result.Message);
+            Program.HandleException(this, result.Caption, result.Message, result.InnerException);
+
+            return false;
+        } // LoadConfiguration
+
+        private InitializationResult GetConfiguration()
+        {
+            try
+            {
+                var result = AppUiConfiguration.Load(null, LoadConfigurationDisplayProgress);
+                return result.IsError ? result : InitializationResult.Ok;
+            }
+            catch (Exception ex)
+            {
+                return new InitializationResult()
+                {
+                    Caption = "Application configuration error",
+                    Message = "An unexpected error has occured while loading the application configuration.",
+                    InnerException = ex
+                };
+            } // try-catch
+        } // GetConfiguration
+
+        private void LoadConfigurationDisplayProgress(string text)
+        {
+            labelStatus.Text = text;
+            statusStripMain.Refresh();
+        } // LoadDisplayProgress
+
+        #endregion
     } // class FormEditor
 } // namespace

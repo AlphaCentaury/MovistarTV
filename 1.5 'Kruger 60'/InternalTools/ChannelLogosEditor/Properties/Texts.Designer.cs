@@ -61,6 +61,35 @@ namespace IpTviewr.Internal.Tools.ChannelLogosEditor.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Confirm removal.
+        /// </summary>
+        internal static string RemoveCollectionCaption {
+            get {
+                return ResourceManager.GetString("RemoveCollectionCaption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Collection is empty. Remove it?.
+        /// </summary>
+        internal static string RemoveEmptyCollection {
+            get {
+                return ResourceManager.GetString("RemoveEmptyCollection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Warning! Collection is not empty and contains {0:N0} domains.
+        ///
+        ///Remove it?.
+        /// </summary>
+        internal static string RemoveNonEmptyCollection {
+            get {
+                return ResourceManager.GetString("RemoveNonEmptyCollection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Do you want to save changes made to list?.
         /// </summary>
         internal static string SaveChanges {

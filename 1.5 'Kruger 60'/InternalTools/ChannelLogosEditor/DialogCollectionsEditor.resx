@@ -117,18 +117,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="RemoveCollectionCaption" xml:space="preserve">
-    <value>Confirm removal</value>
-  </data>
-  <data name="RemoveEmptyCollection" xml:space="preserve">
-    <value>Collection is empty. Remove it?</value>
-  </data>
-  <data name="RemoveNonEmptyCollection" xml:space="preserve">
-    <value>Warning! Collection is not empty and contains {0:N0} domains.
-
-Remove it?</value>
-  </data>
-  <data name="SaveChanges" xml:space="preserve">
-    <value>Do you want to save changes made to list?</value>
-  </data>
 </root>
