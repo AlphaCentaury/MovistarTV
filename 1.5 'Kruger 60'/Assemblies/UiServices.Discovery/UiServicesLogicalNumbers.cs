@@ -230,7 +230,7 @@ namespace IpTviewr.UiServices.Discovery
             var noNumber = 1;
 
             var q = from uiService in _uiDiscovery.Services
-                    where uiService.ServiceLogicalNumber != null
+                    where uiService.ServiceLogicalNumber == null
                     select uiService;
 
             foreach (var uiService in q)
