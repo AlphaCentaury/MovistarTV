@@ -17,7 +17,7 @@ namespace IpTviewr.UiServices.Common.Controls
     [ToolboxBitmap(typeof(TextBox))]
     public class FilenameTextBox : TextBox
     {
-        private char[] _invalidCharacters;
+        private readonly char[] _invalidCharacters;
         private string _invalidCharacterText;
         private bool _manualUpdateOfValue;
 
@@ -30,10 +30,11 @@ namespace IpTviewr.UiServices.Common.Controls
         /// Sets the text and removes invalid characters if needed
         /// </summary>
         /// <param name="text">Text to set</param>
+        /// <param name="raiseTextChangedEvent"></param>
         public void SetText(string text, bool raiseTextChangedEvent)
         {
             _manualUpdateOfValue = true;
-            this.Text = text;
+            Text = text;
             RemoveInvalidChars(false);
             _manualUpdateOfValue = false;
 
@@ -83,7 +84,7 @@ namespace IpTviewr.UiServices.Common.Controls
         {
             int caretPos;
 
-            var newText = TextUtils.RemoveInvalidChars(this.Text, _invalidCharacters, null, out var modified);
+            var newText = TextUtils.RemoveInvalidChars(Text, _invalidCharacters, null, out var modified);
             if (!modified) return false;
 
             if (displayWarning)
@@ -92,9 +93,9 @@ namespace IpTviewr.UiServices.Common.Controls
             } // if
 
             _manualUpdateOfValue = true;
-            caretPos = this.SelectionStart;
-            this.Text = newText;
-            this.SelectionStart = (caretPos <= 0)? 0 : caretPos - 1;
+            caretPos = SelectionStart;
+            Text = newText;
+            SelectionStart = (caretPos <= 0)? 0 : caretPos - 1;
             _manualUpdateOfValue = false;
 
             return true;

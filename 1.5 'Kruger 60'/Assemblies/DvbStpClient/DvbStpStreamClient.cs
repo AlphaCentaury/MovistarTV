@@ -11,7 +11,7 @@ using System.Threading;
 
 namespace IpTviewr.DvbStp.Client
 {
-    public sealed partial class DvbStpStreamClient : DvbStpBaseClient
+    public sealed class DvbStpStreamClient : DvbStpBaseClient
     {
         public event EventHandler DownloadStarted;
         public event EventHandler DownloadEnded;

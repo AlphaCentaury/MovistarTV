@@ -56,7 +56,7 @@ namespace IpTviewr.UiServices.Record.Controls
 
             set
             {
-                _fieldEndDateTime = value.TruncateToSeconds(1);
+                _fieldEndDateTime = value.TruncateToSeconds();
                 if (_avoidRecursion) return;
 
                 _avoidRecursion = true;
@@ -163,8 +163,8 @@ namespace IpTviewr.UiServices.Record.Controls
             {
                 e.Cancel = true;
                 MessageBox.Show(this, ControlTexts.RecordingTimeInvalidTimeSpan, ControlTexts.RecordingTimeValidationCaption, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                this.Parent.Focus();
-                this.Focus();
+                Parent.Focus();
+                Focus();
             } // if
             RecordTimeSpan = span;
         } // timeSpanLength_Validating
@@ -243,7 +243,7 @@ namespace IpTviewr.UiServices.Record.Controls
         {
             var q = from index in Enumerable.Range(0, comboQuickSetting.Items.Count)
                     let item = (KeyValuePair<string, TimeSpan>)comboQuickSetting.Items[index]
-                    where (TimeSpan)item.Value == span
+                    where item.Value == span
                     select index + 1;
             var indexToSelect = (q.FirstOrDefault()) - 1;
 
@@ -314,16 +314,16 @@ namespace IpTviewr.UiServices.Record.Controls
             {
                 e.Cancel = true;
                 MessageBox.Show(Parent, ControlTexts.RecordingTimeInvalidDateTime, ControlTexts.RecordingTimeValidationCaption, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                this.Parent.Focus();
-                this.Focus();
+                Parent.Focus();
+                Focus();
                 return;
             } // if
             if (span.TotalSeconds < 60)
             {
                 e.Cancel = true;
                 MessageBox.Show(Parent, ControlTexts.RecordingTimeInvalidTimeSpan, ControlTexts.RecordingTimeValidationCaption, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                this.Parent.Focus();
-                this.Focus();
+                Parent.Focus();
+                Focus();
                 return;
             } // if
             if (span.TotalDays > timeSpanLength.MaxDays)
@@ -331,8 +331,8 @@ namespace IpTviewr.UiServices.Record.Controls
                 e.Cancel = true;
                 MessageBox.Show(Parent, string.Format(ControlTexts.RecordingTimeDateTimeSpanMaxValue, timeSpanLength.MaxDays),
                     ControlTexts.RecordingTimeValidationCaption, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                this.Parent.Focus();
-                this.Focus();
+                Parent.Focus();
+                Focus();
             } // if
         } // ValidateEndDateTime
 

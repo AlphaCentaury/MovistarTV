@@ -18,11 +18,11 @@ namespace IpTviewr.Services.EpgDiscovery
         Merge
     } // EpgMemoryStorageMethod
 
-    public sealed class EpgMemoryDatastore: EpgDataStore
+    public sealed class EpgMemoryDataStore: EpgDataStore
     {
-        private ConcurrentDictionary<string, EpgService> _data;
+        private readonly ConcurrentDictionary<string, EpgService> _data;
 
-        public EpgMemoryDatastore()
+        public EpgMemoryDataStore()
         {
             _data = new ConcurrentDictionary<string, EpgService>();
         } // constructor
@@ -134,5 +134,5 @@ namespace IpTviewr.Services.EpgDiscovery
 
             return new EpgLinkedListWrapper(service.ServiceIdReference, service.Programs, node);
         } // GetLinkedList
-    } // class EpgMemoryDatastore
+    } // class EpgMemoryDataStore
 } // namespace

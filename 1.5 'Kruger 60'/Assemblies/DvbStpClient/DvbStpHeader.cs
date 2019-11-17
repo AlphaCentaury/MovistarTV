@@ -16,7 +16,7 @@ namespace IpTviewr.DvbStp.Client
 
         public byte Version;
         public byte Reserved;
-        public byte Encription;
+        public byte Encryption;
         public bool HasCrc;
         public int TotalSegmentSize;
         public byte PayloadId;
@@ -49,19 +49,20 @@ namespace IpTviewr.DvbStp.Client
 
         public static DvbStpHeader PartialDecode(byte[] headerData)
         {
-            var header = new DvbStpHeader();
+            var header = new DvbStpHeader
+            {
+                Version = (byte)(headerData[0] & DvbStpHeaderMasks.Version),
 
-            header.Version = (byte)(headerData[0] & DvbStpHeaderMasks.Version);
+                // byte 4
+                PayloadId = headerData[4],
 
-            // byte 4
-            header.PayloadId = headerData[4];
+                // byte 5-6
+                SegmentIdNetworkLo = headerData[5],
+                SegmentIdNetworkHi = headerData[6],
 
-            // byte 5-6
-            header.SegmentIdNetworkLo = headerData[5];
-            header.SegmentIdNetworkHi = headerData[6];
-
-            // byte 7
-            header.SegmentVersion = headerData[7];
+                // byte 7
+                SegmentVersion = headerData[7]
+            };
 
             return header;
         } // PartialDecode
@@ -83,7 +84,7 @@ namespace IpTviewr.DvbStp.Client
 
         public override string ToString()
         {
-            return string.Format("p{0:X2}s{1:X4}v{2:X2}-{3}", PayloadId, SegmentId, SegmentVersion, SectionNumber);
+            return $"p{PayloadId:X2}s{SegmentId:X4}v{SegmentVersion:X2}-{SectionNumber}";
         } // ToString
 
         public void CompleteDecoding(byte[] headerData, int receivedBytes)
@@ -93,9 +94,9 @@ namespace IpTviewr.DvbStp.Client
 
             // byte 0
             // Decoded in BasicDecode: Version = Header[0] & DvbStpHeaderMasks.Version;
-            HasCrc = (headerData[0] & DvbStpHeaderMasks.HasCrc) == 0 ? false : true;
+            HasCrc = (headerData[0] & DvbStpHeaderMasks.HasCrc) != 0;
             Reserved = (byte)((headerData[0] & DvbStpHeaderMasks.Reserved) >> 3);
-            Encription = (byte)((headerData[0] & DvbStpHeaderMasks.Encription) >> 1);
+            Encryption = (byte)((headerData[0] & DvbStpHeaderMasks.Encryption) >> 1);
 
             // byte 1-3
             if (BitConverter.IsLittleEndian)
@@ -165,7 +166,7 @@ namespace IpTviewr.DvbStp.Client
             // byte 11
             HasServiceProviderId = (headerData[11] & DvbStpHeaderMasks.HasServiceProviderId) == 0 ? false : true;
             PrivateHeaderLength = (byte)(headerData[11] & DvbStpHeaderMasks.PrivateHeaderLength);
-            Compression = (DvbStpHeader.CompressionMethod)(headerData[0] & DvbStpHeaderMasks.Compression);
+            Compression = (CompressionMethod)(headerData[0] & DvbStpHeaderMasks.Compression);
 
             if (PrivateHeaderLength > 0)
             {

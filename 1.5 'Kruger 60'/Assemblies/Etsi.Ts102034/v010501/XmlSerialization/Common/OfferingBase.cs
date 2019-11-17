@@ -32,7 +32,7 @@ namespace Etsi.Ts102034.v010501.XmlSerialization.Common
     //[XmlInclude(typeof(ReferencedServices))]
     [XmlInclude(typeof(PackagedServices))]
     [XmlInclude(typeof(BroadcastOffering))]
-    public abstract partial class OfferingBase
+    public abstract class OfferingBase
     {
         /// <summary>
         /// An internet DNS domain name registered by the Service Provider that uniquely identifies the Service Provider

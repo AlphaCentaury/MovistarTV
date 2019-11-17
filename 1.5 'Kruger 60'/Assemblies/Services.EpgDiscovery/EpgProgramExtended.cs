@@ -63,7 +63,7 @@ namespace IpTviewr.Services.EpgDiscovery
         {
             get;
             set;
-        } // Actores
+        } // Actors
 
         public string[] Producers
         {

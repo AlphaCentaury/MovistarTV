@@ -19,7 +19,7 @@ namespace Etsi.Ts102034.v010501.XmlSerialization.PackageDiscovery
     [DebuggerStepThrough]
     [DesignerCategory("code")]
     [XmlType("PackagedServiceType", Namespace = "urn:dvb:metadata:iptv:sdns:2012-1")]
-    public partial class PackagedService
+    public class PackagedService
     {
         [XmlElement("TextualID")]
         public PackageTextualIdentifier[] TextualIdentifiers;

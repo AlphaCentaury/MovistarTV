@@ -10,9 +10,9 @@ using System.Collections.Generic;
 
 namespace IpTviewr.Services.EpgDiscovery
 {
-    public sealed class EpgLinkedListWrapper : IEpgLinkedList, IEnumerable<EpgProgram>
+    public sealed class EpgLinkedListWrapper : IEpgLinkedList
     {
-        private LinkedListNode<EpgProgram> _requestedNode;
+        private readonly LinkedListNode<EpgProgram> _requestedNode;
 
         public EpgLinkedListWrapper(string serviceIdRef, LinkedList<EpgProgram> linkedList, LinkedListNode<EpgProgram> requested = null)
         {

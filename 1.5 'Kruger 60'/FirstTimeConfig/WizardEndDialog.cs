@@ -16,7 +16,7 @@ namespace IpTviewr.Tools.FirstTimeConfig
         public WizardEndDialog()
         {
             InitializeComponent();
-            this.Icon = Properties.Resources.FirstTimeConfigIcon;
+            Icon = Properties.Resources.FirstTimeConfigIcon;
         } // constructor
 
         public DialogResult EndResult
@@ -41,7 +41,7 @@ namespace IpTviewr.Tools.FirstTimeConfig
         {
             switch (EndResult)
             {
-                case System.Windows.Forms.DialogResult.OK:
+                case DialogResult.OK:
                     BasicGoogleTelemetry.SendScreenHit(this, "Ok");
                     pictureEndIcon.Image = Properties.Resources.Success_48x48;
                     labelEndTitle.Text = Properties.Texts.WizardEndTitleOk;
@@ -51,7 +51,7 @@ namespace IpTviewr.Tools.FirstTimeConfig
                     checkRunMainProgram.Enabled = checkRunMainProgram.Checked;
                     checkRunMainProgram.Text = string.Format(checkRunMainProgram.Text, Properties.Texts.ProductMainProgramName);
                     break;
-                case System.Windows.Forms.DialogResult.Cancel:
+                case DialogResult.Cancel:
                     BasicGoogleTelemetry.SendScreenHit(this, "Cancel");
                     pictureEndIcon.Image = Properties.Resources.Warning_48x48;
                     labelEndTitle.Text = Properties.Texts.WizardEndTitleCancel;
@@ -80,7 +80,7 @@ namespace IpTviewr.Tools.FirstTimeConfig
                 }
                 else
                 {
-                    text = string.Format("{0}\r\n\r\n{1}", ErrorMessage, ErrorException.ToString());
+                    text = $"{ErrorMessage}\r\n\r\n{ErrorException.ToString()}";
                 } // if-else
             }
             else
@@ -95,7 +95,7 @@ namespace IpTviewr.Tools.FirstTimeConfig
                 } // if-else
             } // if-else
 
-            MessageBox.Show(this, text, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            MessageBox.Show(this, text, Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
         } // linkErrorDetails_LinkClicked
     } // class WizardEndDialog
 } // namespace

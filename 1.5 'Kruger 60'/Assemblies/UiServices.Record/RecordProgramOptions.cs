@@ -145,13 +145,12 @@ namespace IpTviewr.UiServices.Record
         private void SetChannelDetails()
         {
             pictureChannelLogo.Image = SelectedService.Logo.GetImage(Configuration.Logos.LogoSize.Size64);
-            labelChannelName.Text = string.Format("{0} {1}", SelectedService.DisplayLogicalNumber, SelectedService.DisplayName);
+            labelChannelName.Text = $"{SelectedService.DisplayLogicalNumber} {SelectedService.DisplayName}";
 
             if (SelectedProgram != null)
             {
                 labelProgramDescription.Text = SelectedProgram.Title;
-                labelProgramSchedule.Text = string.Format("{0} ({1})", FormatString.DateTimeFromToMinutes(SelectedProgram.LocalStartTime, SelectedProgram.LocalEndTime, LocalReferenceTime),
-                    FormatString.TimeSpanTotalMinutes(SelectedProgram.Duration, FormatString.Format.Extended));
+                labelProgramSchedule.Text = $"{FormatString.DateTimeFromToMinutes(SelectedProgram.LocalStartTime, SelectedProgram.LocalEndTime, LocalReferenceTime)} ({FormatString.TimeSpanTotalMinutes(SelectedProgram.Duration, FormatString.Format.Extended)})";
             }
             else
             {

@@ -94,9 +94,9 @@ namespace IpTviewr.Tools.FirstTimeConfig
 
                 var config = AppUiConfiguration.CreateForUserConfig(user);
                 config.RegisterConfiguration(new UiBroadcastListSettingsRegistration(), null, true);
-                config.RegisterConfiguration(new TvPlayersSettingsRegistration(), tvPlayers, false);
+                config.RegisterConfiguration(new TvPlayersSettingsRegistration(), tvPlayers);
                 config.RegisterConfiguration(new NetworkSettingsRegistration(), null, true);
-                config.RegisterConfiguration(new IpTvProviderSettingsRegistration(), movistarPlusIpTvProviderSettings, false);
+                config.RegisterConfiguration(new IpTvProviderSettingsRegistration(), movistarPlusIpTvProviderSettings);
 
                 config.Save(xmlConfigPath);
                 message = Properties.Texts.ConfigurationCreateOk;

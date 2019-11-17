@@ -14,8 +14,8 @@ namespace IpTviewr.UiServices.Configuration.Cache
 {
     public class CacheManager
     {
-        private string _baseDirectory;
-        private char[] _docNameOffendingChars;
+        private readonly string _baseDirectory;
+        private readonly char[] _docNameOffendingChars;
 
         public CacheManager(string baseDirectory)
         {
@@ -92,11 +92,8 @@ namespace IpTviewr.UiServices.Configuration.Cache
         /// <returns>A filesystem-safe filename</returns>
         public string GetSafeDocumentName(string documentType, string documentName, string extension, char? replacingChar = '~')
         {
-            StringBuilder buffer;
-            int startIndex, index;
-
             documentName = documentName.ToLowerInvariant();
-            buffer = new StringBuilder(documentType.Length + 2 + documentName.Length * 2);
+            var buffer = new StringBuilder(documentType.Length + 2 + documentName.Length * 2);
             if (documentType != null)
             {
                 buffer.Append('{');
@@ -105,7 +102,7 @@ namespace IpTviewr.UiServices.Configuration.Cache
             } // if
 
             // quick test: any offending char?
-            index = documentName.IndexOfAny(_docNameOffendingChars);
+            var index = documentName.IndexOfAny(_docNameOffendingChars);
             if (index < 0)
             {
                 buffer.Append(documentName);
@@ -113,7 +110,7 @@ namespace IpTviewr.UiServices.Configuration.Cache
                 return buffer.ToString();
             } // if
 
-            startIndex = 0;
+            var startIndex = 0;
             while (index >= 0)
             {
                 if (index != startIndex)

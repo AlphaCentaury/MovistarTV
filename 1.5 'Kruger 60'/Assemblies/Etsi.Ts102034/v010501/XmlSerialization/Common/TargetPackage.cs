@@ -18,7 +18,7 @@ namespace Etsi.Ts102034.v010501.XmlSerialization.Common
     [DebuggerStepThrough]
     [DesignerCategory("code")]
     [XmlType("TargetPackageType", Namespace = "urn:dvb:metadata:iptv:sdns:2012-1")]
-    public partial class TargetPackage
+    public class TargetPackage
     {
         [XmlElement("PackageType")]
         public MultilingualText[] PackageType;

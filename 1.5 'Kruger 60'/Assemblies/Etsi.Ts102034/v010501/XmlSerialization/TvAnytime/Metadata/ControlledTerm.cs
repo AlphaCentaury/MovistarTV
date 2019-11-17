@@ -20,7 +20,7 @@ namespace Etsi.Ts102034.v010501.XmlSerialization.TvAnytime.Metadata
     [DesignerCategory("code")]
     [XmlType("ControlledTermType", Namespace = "urn:tva:metadata:2011")]
     //[XmlInclude(typeof(GenreType))]
-    public partial class ControlledTerm
+    public class ControlledTerm
     {
         public TermName Name;
 

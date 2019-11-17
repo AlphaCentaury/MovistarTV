@@ -18,7 +18,7 @@ namespace Etsi.Ts102034.v010501.XmlSerialization.BroadcastDiscovery
     [DebuggerStepThrough]
     [DesignerCategory("code")]
     [XmlType(AnonymousType = true, Namespace = "urn:dvb:metadata:iptv:sdns:2012-1")]
-    public partial class MosaicDescriptionPackageId
+    public class MosaicDescriptionPackageId
     {
         [XmlAttribute]
         public string Domain;

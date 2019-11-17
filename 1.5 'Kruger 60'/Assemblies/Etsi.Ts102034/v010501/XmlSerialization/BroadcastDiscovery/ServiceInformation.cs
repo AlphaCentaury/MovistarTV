@@ -24,7 +24,7 @@ namespace Etsi.Ts102034.v010501.XmlSerialization.BroadcastDiscovery
     [DebuggerStepThrough]
     [DesignerCategory("code")]
     [XmlType("SI", Namespace = "urn:dvb:metadata:iptv:sdns:2012-1")]
-    public partial class ServiceInformation
+    public class ServiceInformation
     {
         [XmlElement("Name")]
         public MultilingualText[] Name;
@@ -82,7 +82,7 @@ namespace Etsi.Ts102034.v010501.XmlSerialization.BroadcastDiscovery
 
         public ServiceInformation()
         {
-            this.PrimaryServiceInformationSource = PrimaryServiceInformationSource.Xml;
+            PrimaryServiceInformationSource = PrimaryServiceInformationSource.Xml;
         } // default constructor
     } // class ServiceInformation
 } // namespace

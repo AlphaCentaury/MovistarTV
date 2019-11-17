@@ -8,7 +8,7 @@
 using System;
 using System.Runtime.InteropServices;
 
-namespace IpTviewr.UiServices.Configuration
+namespace IpTviewr.Native
 {
     public static class WindowsBitness
     {
@@ -53,7 +53,7 @@ namespace IpTviewr.UiServices.Configuration
         } // Is64BitWindows
 
         /// <summary>
-        /// The function determins whether a method exists in the export 
+        /// The function determines whether a method exists in the export 
         /// table of a certain module.
         /// </summary>
         /// <param name="moduleName">The name of the module</param>

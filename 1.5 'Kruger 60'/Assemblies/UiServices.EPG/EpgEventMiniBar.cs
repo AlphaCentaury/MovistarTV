@@ -45,10 +45,8 @@ namespace IpTviewr.UiServices.EPG
             else
             {
                 labelProgramTitle.Text = _epgProgram.Title;
-                labelProgramTime.Text = string.Format("{0} ({1})", FormatString.DateTimeFromToMinutes(_epgProgram.LocalStartTime, _epgProgram.LocalEndTime, referenceTime),
-                    FormatString.TimeSpanTotalMinutes(_epgProgram.Duration, FormatString.Format.Extended));
-                labelProgramDetails.Text = string.Format("{0} / {1}", (_epgProgram.Genre != null) ? _epgProgram.Genre.Description : Properties.Texts.EpgNoGenre,
-                    (_epgProgram.ParentalRating != null) ? _epgProgram.ParentalRating.Description : Properties.Texts.EpgNoParentalRating);
+                labelProgramTime.Text = $"{FormatString.DateTimeFromToMinutes(_epgProgram.LocalStartTime, _epgProgram.LocalEndTime, referenceTime)} ({FormatString.TimeSpanTotalMinutes(_epgProgram.Duration, FormatString.Format.Extended)})";
+                labelProgramDetails.Text = $"{((_epgProgram.Genre != null) ? _epgProgram.Genre.Description : Properties.Texts.EpgNoGenre)} / {((_epgProgram.ParentalRating != null) ? _epgProgram.ParentalRating.Description : Properties.Texts.EpgNoParentalRating)}";
 
                 pictureProgramThumbnail.Image = Properties.Resources.EpgLoadingProgramImage;
                 pictureProgramThumbnail.ImageLocation = null;

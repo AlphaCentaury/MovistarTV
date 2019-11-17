@@ -103,11 +103,12 @@ namespace IpTviewr.DvbStp.Client
             var sectionReceived = SectionReceived;
             if (sectionReceived == null) return;
 
-            var args = new SectionReceivedEventArgs();
-
-            args.Header = Header.Clone();
-            args.BytesReceived = ReceivedBytes;
-            args.Payload = new byte[Header.PayloadSize];
+            var args = new SectionReceivedEventArgs
+            {
+                Header = Header.Clone(),
+                BytesReceived = ReceivedBytes,
+                Payload = new byte[Header.PayloadSize]
+            };
             Array.Copy(DatagramData, Header.PayloadOffset, args.Payload, 0, Header.PayloadSize);
             if (Header.PrivateHeaderLength > 0)
             {
@@ -122,10 +123,11 @@ namespace IpTviewr.DvbStp.Client
         {
             if (UnexpectedHeaderVersionReceived == null) return;
 
-            var args = new UnexpectedHeaderVersionReceivedEventArgs();
-
-            args.HeaderVersion = Header.Version;
-            args.DatagramData = new byte[ReceivedBytes];
+            var args = new UnexpectedHeaderVersionReceivedEventArgs
+            {
+                HeaderVersion = Header.Version,
+                DatagramData = new byte[ReceivedBytes]
+            };
             Array.Copy(DatagramData, args.DatagramData, ReceivedBytes);
 
             UnexpectedHeaderVersionReceived?.Invoke(this, args);

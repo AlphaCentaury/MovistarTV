@@ -18,7 +18,7 @@ namespace Etsi.Ts102034.v010501.XmlSerialization.BroadcastDiscovery
     [DebuggerStepThrough]
     [DesignerCategory("code")]
     [XmlType("RetransmissionInfo", Namespace = "urn:dvb:metadata:iptv:sdns:2012-1")]
-    public partial class RetransmissionInfo
+    public class RetransmissionInfo
     {
         [XmlElement("RTCPReporting")]
         public RtcpRetransmissionReporting RtcpReporting;

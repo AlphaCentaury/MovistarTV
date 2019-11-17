@@ -22,11 +22,11 @@ namespace IpTviewr.UiServices.Configuration.Schema2014.Config
         {
             if (array == null)
             {
-                return ConfigCommon.ErrorMissingTag(arrayTag, ownerTag);
+                return ErrorMissingTag(arrayTag, ownerTag);
             } // if
             if (array.Length < 1)
             {
-                return ConfigCommon.ErrorAtLeastOne(arrayElementTag, arrayTag);
+                return ErrorAtLeastOne(arrayElementTag, arrayTag);
             } // if
 
             return null;

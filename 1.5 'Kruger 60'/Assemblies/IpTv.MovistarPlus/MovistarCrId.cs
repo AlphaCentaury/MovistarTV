@@ -11,6 +11,13 @@ namespace IpTviewr.MovistarPlus
 {
     public class MovistarCrId
     {
+        public MovistarCrId(string contentIdRoot, string contentId, string seriesId)
+        {
+            ContentIdRoot = contentIdRoot;
+            ContentId = contentId;
+            SeriesId = seriesId;
+        }
+
         public static MovistarCrId Get(string crId)
         {
             var crid = new Uri(crId);
@@ -19,32 +26,18 @@ namespace IpTviewr.MovistarPlus
             if (components[2] != components[3]) return null;
             if (components[3].Length < 5) return null;
 
-            var result = new MovistarCrId()
-            {
-                SeriesId = components[1],
-                ContentIdRoot = components[3].Substring(0, 4),
-                ContentId = components[3]
-            };
+            var result = new MovistarCrId(
+                seriesId: components[1],
+                contentIdRoot: components[3].Substring(0, 4),
+                contentId: components[3]);
 
             return result;
         } // Get
 
-        public string SeriesId
-        {
-            get;
-            private set;
-        } // SeriedId
+        public string SeriesId { get; }
 
-        public string ContentIdRoot
-        {
-            get;
-            private set;
-        } // ContentIdRoot
+        public string ContentIdRoot { get; }
 
-        public string ContentId
-        {
-            get;
-            private set;
-        } // ContentId
+        public string ContentId { get; }
     } // class MovistarCrId
 } // namespace

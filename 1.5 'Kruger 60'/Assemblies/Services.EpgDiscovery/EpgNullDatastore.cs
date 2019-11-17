@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace IpTviewr.Services.EpgDiscovery
 {
-    public sealed class EpgNullDatastore: EpgDataStore
+    public sealed class EpgNullDataStore: EpgDataStore
     {
         protected override void AddEpgService(EpgService epgService)
         {
@@ -31,5 +31,5 @@ namespace IpTviewr.Services.EpgDiscovery
         {
             return new Dictionary<string, IEpgLinkedList>(0);
         } // GetAllPrograms
-    } // class EpgNullDatastore
+    } // class EpgNullDataStore
 } // namespace

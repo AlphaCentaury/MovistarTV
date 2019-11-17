@@ -14,8 +14,10 @@ namespace IpTviewr.UiServices.Common.Controls
 {
     public class ListItemsManager<TValue>
     {
-        private ListBox _listBox;
-        private Control _removeControl, _upControl, _downControl;
+        private readonly ListBox _listBox;
+        private readonly Control _removeControl;
+        private readonly Control _upControl;
+        private readonly Control _downControl;
         private IDictionary<TValue, string> _dictionary;
 
         public ListItemsManager(ListBox listBox, Control removeControl, Control upControl, Control downControl)

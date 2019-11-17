@@ -81,7 +81,7 @@ namespace IpTviewr.UiServices.Record
             // Initialize
             if (Task == null)
             {
-                if (this.DesignMode)
+                if (DesignMode)
                 {
                     Task = RecordTask.CreateWithDefaultValues(null);
                     IsNewTask = true;
@@ -120,7 +120,7 @@ namespace IpTviewr.UiServices.Record
 
         private void buttonOk_Click_Implementation(object sender, EventArgs e)
         {
-            var isValid = this.ValidateChildren(ValidationConstraints.Enabled);
+            var isValid = ValidateChildren(ValidationConstraints.Enabled);
             if (!isValid) return;
 
             // General
@@ -136,7 +136,7 @@ namespace IpTviewr.UiServices.Record
             // Advanced tab
             GetAdvancedData();
 
-            this.DialogResult = System.Windows.Forms.DialogResult.OK;
+            DialogResult = DialogResult.OK;
         } // buttonOk_Click_Implementation
 
         #endregion
@@ -145,7 +145,7 @@ namespace IpTviewr.UiServices.Record
 
         private void ControlValidationFailed(string text, Control control)
         {
-            MessageBox.Show(this, text, this.Name, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            MessageBox.Show(this, text, Name, MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
             var tabPage = control.Parent as TabPage;
             if (tabPage != null)

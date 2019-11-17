@@ -437,8 +437,10 @@ namespace IpTviewr.UiServices.Discovery.BroadcastList
 
         private void ListView_ColumnClick(object sender, ColumnClickEventArgs e)
         {
-            var sortColumn = new UiBroadcastListSortColumn();
-            sortColumn.Column = Settings.CurrentColumns[e.Column];
+            var sortColumn = new UiBroadcastListSortColumn
+            {
+                Column = Settings.CurrentColumns[e.Column]
+            };
             sortColumn.IsAscending = sortColumn.Column == SelectedSort.Column ? !SelectedSort.IsAscending : true;
 
             if (Settings.UseGlobalSortColumns)

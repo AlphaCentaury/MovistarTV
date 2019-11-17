@@ -23,7 +23,7 @@ namespace Etsi.Ts102034.v010501.XmlSerialization.BroadcastDiscovery
     [DebuggerStepThrough]
     [DesignerCategory("code")]
     [XmlType(TypeName = "BroadcastOffering", Namespace = "urn:dvb:metadata:iptv:sdns:2012-1")]
-    public partial class BroadcastOffering : OfferingBase
+    public class BroadcastOffering : OfferingBase
     {
         [XmlElement("ServiceList")]
         public IpServiceList[] Services;

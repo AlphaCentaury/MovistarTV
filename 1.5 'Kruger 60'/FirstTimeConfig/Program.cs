@@ -73,15 +73,15 @@ namespace IpTviewr.Tools.FirstTimeConfig
         static int LaunchWizard()
         {
             InitializationResult initResult;
-            bool launchMainProgram = false;
-            int result = 0;
+            var launchMainProgram = false;
+            var result = 0;
 
             _wizardEndResult = DialogResult.Abort;
 
             AppUiConfig = Installation.LoadRegistrySettings(out initResult);
             if (AppUiConfig == null)
             {
-                Program.SetWizardResult(DialogResult.Abort, string.Format("{0}\r\n{1}", initResult.Caption, initResult.Message), initResult.InnerException);
+                SetWizardResult(DialogResult.Abort, $"{initResult.Caption}\r\n{initResult.Message}", initResult.InnerException);
                 goto End;
             } // if
             BasicGoogleTelemetry.Init(Properties.Resources.AnalyticsGoogleTrackingId, AppUiConfig.AnalyticsClientId, true, true, true);
@@ -91,7 +91,7 @@ namespace IpTviewr.Tools.FirstTimeConfig
                 switch (dlg.ShowDialog())
                 {
                     case DialogResult.Cancel:
-                        Program.SetWizardResult(DialogResult.Cancel);
+                        SetWizardResult(DialogResult.Cancel);
                         goto End;
                 } // switch
             } // using

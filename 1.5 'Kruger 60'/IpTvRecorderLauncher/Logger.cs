@@ -31,9 +31,9 @@ namespace IpTviewr.RecorderLauncher
         /// <remarks>NOT THREAD SAFE. Call from MAIN thread before being used in other threads</remarks>
         public static void Start(string logFilename, Level minLevel)
         {
-            Logger._logFilename = logFilename;
-            Logger._syncLock = new object();
-            Logger.MinLevel = minLevel;
+            _logFilename = logFilename;
+            _syncLock = new object();
+            MinLevel = minLevel;
             _startTime = DateTime.Now;
 
             using (var process = Process.GetCurrentProcess())
@@ -50,7 +50,7 @@ namespace IpTviewr.RecorderLauncher
                 } // if
             } // if
 
-            WriteDate("PROGRAM-START", string.Format("ProcessId={0}", _processId), false);
+            WriteDate("PROGRAM-START", $"ProcessId={_processId}", false);
         } // Start
 
         /// <remarks>NOT THREAD SAFE. Call from main() just before returning the exit code</remarks>
@@ -58,7 +58,7 @@ namespace IpTviewr.RecorderLauncher
         {
             if (_syncLock == null) return;
 
-            WriteDate("PROGRAM-STOP ", string.Format("ProcessId={0} & ExitCode={1}", _processId, exitCode), true);
+            WriteDate("PROGRAM-STOP ", $"ProcessId={_processId} & ExitCode={exitCode}", true);
 
             _syncLock = null;
             _logFilename = null;

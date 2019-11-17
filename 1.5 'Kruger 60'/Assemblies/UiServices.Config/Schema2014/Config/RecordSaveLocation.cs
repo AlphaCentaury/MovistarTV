@@ -17,7 +17,6 @@ namespace IpTviewr.UiServices.Configuration.Schema2014.Config
     public sealed class RecordSaveLocation : StringPair
     {
         public RecordSaveLocation()
-            : base()
         {
             // no op
         } // constructor

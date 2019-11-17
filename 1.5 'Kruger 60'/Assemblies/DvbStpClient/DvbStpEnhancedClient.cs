@@ -43,7 +43,7 @@ namespace IpTviewr.DvbStp.Client
             MaxDownloadRestartCount = 5;
         } // constructor
 
-        public int DowloadRestartCount
+        public int DownloadRestartCount
         {
             get;
             private set;
@@ -170,11 +170,11 @@ namespace IpTviewr.DvbStp.Client
         private void RestartSectionData(SegmentStatus status)
         {
             // increment restart count
-            DowloadRestartCount++;
+            DownloadRestartCount++;
             status.DownloadRestartCount++;
 
             // avoid infinite restart loops
-            if (DowloadRestartCount > MaxDownloadRestartCount)
+            if (DownloadRestartCount > MaxDownloadRestartCount)
             {
                 throw new TimeoutException();
             } // if
@@ -223,14 +223,14 @@ namespace IpTviewr.DvbStp.Client
 
             e = new DvbStpSimpleClient.SectionReceivedEventArgs()
             {
-                DatagramCount = this.DatagramCount,
+                DatagramCount = DatagramCount,
                 PayloadId = Header.PayloadId,
                 SegmentIdNetworkLo = Header.SegmentIdNetworkLo,
                 SegmentIdNetworkHi = Header.SegmentIdNetworkHi,
                 SegmentVersion = Header.SegmentVersion
             };
 
-            SectionReceived(this, e);
+            SectionReceived?.Invoke(this, e);
         } // OnSectionReceived
 
         private void ProcessSegments()

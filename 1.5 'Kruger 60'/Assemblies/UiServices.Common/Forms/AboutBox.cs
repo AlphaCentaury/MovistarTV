@@ -29,7 +29,7 @@ namespace IpTviewr.UiServices.Common.Forms
         private void AboutBox_Load(object sender, EventArgs e)
         {
             BasicGoogleTelemetry.SendScreenHit(this, Assembly.GetEntryAssembly().GetName().Name);
-            this.Text = string.Format(this.Text, Assembly.GetEntryAssembly().GetName().Name);
+            Text = string.Format(Text, Assembly.GetEntryAssembly().GetName().Name);
             if (ApplicationData != null)
             {
                 if (ApplicationData.LargeIcon != null)
@@ -37,8 +37,8 @@ namespace IpTviewr.UiServices.Common.Forms
                     logoPictureBox.Image?.Dispose();
                     logoPictureBox.Image = ApplicationData.LargeIcon;
                 } // if
-                labelAppName.Text = string.Format("{0}", ApplicationData.Name);
-                labelAppVersion.Text = string.Format("{0} - {1}", ApplicationData.Version, ApplicationData.Status);
+                labelAppName.Text = $"{ApplicationData.Name}";
+                labelAppVersion.Text = $"{ApplicationData.Version} - {ApplicationData.Status}";
                 if (ApplicationData.LicenseTextRtf != null)
                 {
                     textBoxDescription.Rtf = ApplicationData.LicenseTextRtf;

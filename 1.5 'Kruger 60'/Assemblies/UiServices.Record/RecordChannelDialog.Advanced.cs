@@ -153,7 +153,7 @@ namespace IpTviewr.UiServices.Record
 
         private void checkSchedulerRetry_CheckedChanged(object sender, EventArgs e)
         {
-            bool enabled = checkSchedulerRetry.Checked;
+            var enabled = checkSchedulerRetry.Checked;
 
             checkSchedulerRetry.Enabled = enabled;
             timeSpanSchedulerRetry.Enabled = enabled;

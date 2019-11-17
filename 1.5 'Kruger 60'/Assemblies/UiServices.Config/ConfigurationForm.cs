@@ -147,9 +147,11 @@ namespace IpTviewr.UiServices.Configuration
 
                 configItem.Editor = registration.CreateEditor(AppUiConfiguration.CloneSettings<IConfigurationItem>(configItem.ExistingData));
 
-                var item = new ListViewItem(registration.EditorDisplayName);
-                item.ImageIndex = imageListConfigItems.Images.Count - 1;
-                item.Tag = configItem.Editor;
+                var item = new ListViewItem(registration.EditorDisplayName)
+                {
+                    ImageIndex = imageListConfigItems.Images.Count - 1,
+                    Tag = configItem.Editor
+                };
 
                 listViewConfigItems.Items.Add(item);
             } // foreach
@@ -236,7 +238,7 @@ namespace IpTviewr.UiServices.Configuration
 
             if (IsAppRestartNeeded)
             {
-                MessageBox.Show(this, Properties.SettingsTexts.ConfigFormAppRestartRequired, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(this, Properties.SettingsTexts.ConfigFormAppRestartRequired, Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
             } // if
 
             buttonOk.DialogResult = DialogResult.OK;

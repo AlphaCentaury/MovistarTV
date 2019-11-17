@@ -18,7 +18,7 @@ namespace Etsi.Ts102034.v010501.XmlSerialization.Common
     [DebuggerStepThrough]
     [DesignerCategory("code")]
     [XmlType(Namespace = "urn:dvb:metadata:iptv:sdns:2012-1")]
-    public partial class DvbTriplet
+    public class DvbTriplet
     {
         [XmlAttribute]
         public ushort OrigNetId;
@@ -34,7 +34,7 @@ namespace Etsi.Ts102034.v010501.XmlSerialization.Common
 
         public DvbTriplet()
         {
-            this.TsIdWildcard = "*";
+            TsIdWildcard = "*";
         } // default constructor
     } // class DvbTriplet
 } // namespace

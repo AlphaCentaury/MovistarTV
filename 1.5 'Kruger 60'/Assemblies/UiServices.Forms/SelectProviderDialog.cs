@@ -41,7 +41,7 @@ namespace IpTviewr.UiServices.Forms
         {
             if (!SafeCall(SelectProviderDialog_Load_Implementation, sender, e))
             {
-                this.Close();
+                Close();
             } // if
         } // SelectProviderDialog_Load
 
@@ -211,8 +211,10 @@ namespace IpTviewr.UiServices.Forms
 
             foreach (var provider in _providersDiscovery.Providers)
             {
-                var item = new ListViewItem(provider.DisplayName);
-                item.ImageKey = GetProviderLogoKey(provider.Logo);
+                var item = new ListViewItem(provider.DisplayName)
+                {
+                    ImageKey = GetProviderLogoKey(provider.Logo)
+                };
                 item.SubItems.Add(provider.DisplayDescription);
                 item.Tag = provider;
                 item.Name = provider.Key;

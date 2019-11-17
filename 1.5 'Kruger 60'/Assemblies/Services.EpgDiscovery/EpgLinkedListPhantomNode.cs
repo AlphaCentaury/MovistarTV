@@ -9,7 +9,7 @@ namespace IpTviewr.Services.EpgDiscovery
 {
     public sealed class EpgLinkedListPhantomNode : IEpgLinkedListNode
     {
-        private EpgLinkedListWrapper _linkedList;
+        private readonly EpgLinkedListWrapper _linkedList;
 
         public EpgLinkedListPhantomNode(EpgLinkedListWrapper list, EpgProgram program, bool first)
         {

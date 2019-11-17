@@ -59,7 +59,7 @@ namespace IpTviewr.UiServices.Configuration.Schema2014.Config
                 Arguments[index] = ConfigCommon.Normalize(Arguments[index]);
                 if (string.IsNullOrEmpty(Arguments[index]))
                 {
-                    ConfigCommon.ErrorMissingEmpty("Argument", "Arguments"); ;
+                    ConfigCommon.ErrorMissingEmpty("Argument", "Arguments");
                 } // if
             } // for
 

@@ -14,8 +14,8 @@ namespace IpTviewr.Common.Serialization
 {
     public class XmlTextReaderTrimExtraWhitespace : XmlTextReader
     {
-        private XmlReaderSettings _mySettings;
-        private Func<string, string> _namespaceReplacer;
+        private readonly XmlReaderSettings _mySettings;
+        private readonly Func<string, string> _namespaceReplacer;
 
         public XmlTextReaderTrimExtraWhitespace(Stream input, Func<string, string> namespaceReplacer)
             : base(input)

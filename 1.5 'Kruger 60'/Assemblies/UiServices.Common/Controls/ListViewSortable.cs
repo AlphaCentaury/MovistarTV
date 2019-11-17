@@ -25,7 +25,6 @@ namespace IpTviewr.UiServices.Common.Controls
         } // enum EllipsisStyle
 
         public ListViewSortable()
-            : base()
         {
             SelfSorting = true;
             IsDoubleBuffered = true;
@@ -152,7 +151,7 @@ namespace IpTviewr.UiServices.Common.Controls
 
                 if (SelfSorting)
                 {
-                    this.ListViewItemSorter = new ListViewColumnItemComparer(CurrentSortColumn, CurrentSortIsDescending);
+                    ListViewItemSorter = new ListViewColumnItemComparer(CurrentSortColumn, CurrentSortIsDescending);
                 } // if
             } // if-else
 
@@ -220,7 +219,7 @@ namespace IpTviewr.UiServices.Common.Controls
                         format = TextFormatFlags.Default; break;
                 } // case
 
-                switch (this.HeaderCustomEllipsis)
+                switch (HeaderCustomEllipsis)
                 {
                     case EllipsisStyle.None: break;
                     case EllipsisStyle.End: format |= TextFormatFlags.EndEllipsis; break;

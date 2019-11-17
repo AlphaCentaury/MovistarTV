@@ -24,7 +24,7 @@ namespace IpTviewr.RecorderLauncher
 
         public static void ToString(this Exception ex, StringBuilder buffer, bool withMessage, bool withStackTrace)
         {
-            string message = withMessage ? ex.Message : null;
+            var message = withMessage ? ex.Message : null;
 
             buffer.Append(ex.GetType().FullName);
             if (message != null && message.Length > 0)
@@ -45,7 +45,7 @@ namespace IpTviewr.RecorderLauncher
 
             if (withStackTrace)
             {
-                string stackTrace = ex.StackTrace;
+                var stackTrace = ex.StackTrace;
                 if (stackTrace != null)
                 {
                     buffer.Append(Environment.NewLine);

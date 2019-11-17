@@ -181,7 +181,7 @@ namespace IpTviewr.UiServices.Forms
 
         private void DialogMulticastServiceScanner_FormClosed(object sender, FormClosedEventArgs e)
         {
-            this.Dispose();
+            Dispose();
         } // DialogMulticastServiceScanner_FormClosed
 
         #endregion
@@ -226,7 +226,7 @@ namespace IpTviewr.UiServices.Forms
                 listViewStats.Items[4].SubItems[1].Text = stats.Count.ToString("N0");
             } // if-else
 
-            var progress = (stats.Total > 0) ? ((double)stats.Count) / ((double)stats.Total) : 1;
+            var progress = (stats.Total > 0) ? stats.Count / ((double)stats.Total) : 1;
             labelProgressPercentage.Text = string.Format(_formatProgressPercentage, progress);
             progressBar.Value = (int) (progress * 1000);
             labelScanning.Text = string.Format(_formatScanningProgress, stats.Count, stats.Total);
@@ -248,9 +248,11 @@ namespace IpTviewr.UiServices.Forms
             timerEllapsed.Enabled = true;
             DisplayEllapsedTime();
 
-            _worker = new BackgroundWorker();
-            _worker.WorkerReportsProgress = true;
-            _worker.WorkerSupportsCancellation = true;
+            _worker = new BackgroundWorker
+            {
+                WorkerReportsProgress = true,
+                WorkerSupportsCancellation = true
+            };
             _worker.ProgressChanged += Worker_ProgressChanged;
             _worker.RunWorkerCompleted += Worker_RunWorkerCompleted;
             _worker.DoWork += Worker_DoWork;

@@ -18,7 +18,7 @@ namespace Etsi.Ts102034.v010501.XmlSerialization.TvAnytime.Metadata
     [DebuggerStepThrough]
     [DesignerCategory("code")]
     [XmlType("VideoAttributesType", Namespace = "urn:tva:metadata:2011")]
-    public partial class VideoAttributes
+    public class VideoAttributes
     {
         public ControlledTerm Coding;
 

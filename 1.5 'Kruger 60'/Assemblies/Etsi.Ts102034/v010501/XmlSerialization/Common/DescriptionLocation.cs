@@ -18,7 +18,7 @@ namespace Etsi.Ts102034.v010501.XmlSerialization.Common
     [DebuggerStepThrough]
     [DesignerCategory("code")]
     [XmlType(TypeName = "DescriptionLocationBCG", Namespace = "urn:dvb:metadata:iptv:sdns:2012-1")]
-    public partial class DescriptionLocation
+    public class DescriptionLocation
     {
         [XmlAttribute("preferred")]
         public bool Preferred;

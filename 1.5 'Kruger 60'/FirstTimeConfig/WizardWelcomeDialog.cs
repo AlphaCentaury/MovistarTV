@@ -16,7 +16,7 @@ namespace IpTviewr.Tools.FirstTimeConfig
         public WizardWelcomeDialog()
         {
             InitializeComponent();
-            this.Icon = Properties.Resources.FirstTimeConfigIcon;
+            Icon = Properties.Resources.FirstTimeConfigIcon;
 #if DEBUG
             checkAnalytics.Checked = false;
             checkAnalytics.Enabled = false;

@@ -30,7 +30,7 @@ namespace Etsi.Ts102034.v010501.XmlSerialization.TvAnytime.Mpeg7
     //[XmlInclude(typeof(KeywordType))]
     [XmlInclude(typeof(TermName))]
     //[XmlInclude(typeof(NameComponentType))]
-    public abstract partial class TextualBase
+    public abstract class TextualBase
     {
         [XmlAttribute("lang", Form = XmlSchemaForm.Qualified, Namespace = "http://www.w3.org/XML/1998/namespace")]
         public string Language;

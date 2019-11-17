@@ -42,7 +42,7 @@ namespace IpTviewr.UiServices.Record.Controls
             _schedule = (RecordWeekly)schedule;
 
             numericRecurEvery.Value = _schedule.RecurEveryWeeks;
-            for (int index = 0; index < _listIndexDay.Length; index++)
+            for (var index = 0; index < _listIndexDay.Length; index++)
             {
                 checkedListDays.SetItemChecked(index, (_schedule.WeekDays & _listIndexDay[index]) != 0);
             } // for index
@@ -53,7 +53,7 @@ namespace IpTviewr.UiServices.Record.Controls
             _schedule.RecurEveryWeeks = (short)numericRecurEvery.Value;
 
             _schedule.WeekDays = default(RecordWeekDays);
-            for (int index = 0; index < checkedListDays.CheckedIndices.Count; index++)
+            for (var index = 0; index < checkedListDays.CheckedIndices.Count; index++)
             {
                 _schedule.WeekDays |= _listIndexDay[checkedListDays.CheckedIndices[index]];
             } // for
@@ -72,7 +72,7 @@ namespace IpTviewr.UiServices.Record.Controls
 
             for (int index = 0, day = (int)info.FirstDayOfWeek; index < dayNames.Length; index++)
             {
-                var dayName = dayNames[(int)day];
+                var dayName = dayNames[day];
                 dayName = char.ToUpper(dayName[0], culture) + dayName.Substring(1, dayName.Length - 1);
                 checkedListDays.Items.Add(dayName);
 
@@ -86,7 +86,7 @@ namespace IpTviewr.UiServices.Record.Controls
             if (checkAllDays.CheckState == CheckState.Indeterminate) return;
 
             var checkState = checkAllDays.CheckState;
-            for (int index = 0; index < checkedListDays.Items.Count; index++)
+            for (var index = 0; index < checkedListDays.Items.Count; index++)
             {
                 checkedListDays.SetItemCheckState(index, checkState);
             } // for
@@ -94,7 +94,7 @@ namespace IpTviewr.UiServices.Record.Controls
 
         private void checkedListDays_ItemCheck(object sender, ItemCheckEventArgs e)
         {
-            int checkCount = checkedListDays.CheckedItems.Count;
+            var checkCount = checkedListDays.CheckedItems.Count;
             checkCount += (e.NewValue == CheckState.Checked) ? 1 : -1;
             if (checkCount == checkedListDays.Items.Count)
             {
@@ -109,13 +109,13 @@ namespace IpTviewr.UiServices.Record.Controls
         private void checkedListDays_Validating(object sender, CancelEventArgs e)
         {
             e.Cancel = false;
-            if (!this.Visible) return;
+            if (!Visible) return;
 
             if (checkedListDays.CheckedIndices.Count == 0)
             {
                 e.Cancel = true;
                 MessageBox.Show(this, ControlTexts.WeeklyScheduleNoDays, ControlTexts.RecordingScheduleValidationCaption, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                this.Focus();
+                Focus();
                 checkedListDays.Focus();
             } // if
         } // checkedListDays_Validating

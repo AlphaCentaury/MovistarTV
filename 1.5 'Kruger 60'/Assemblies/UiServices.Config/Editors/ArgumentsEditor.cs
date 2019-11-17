@@ -117,9 +117,9 @@ namespace IpTviewr.UiServices.Configuration.Editors
         {
             var dialog = new ArgumentEditorDialog()
             {
-                OpenBraceText = this.OpenBraceText,
-                CloseBraceText = this.CloseBraceText,
-                ParametersList = this.ParametersList
+                OpenBraceText = OpenBraceText,
+                CloseBraceText = CloseBraceText,
+                ParametersList = ParametersList
             };
 
             return dialog;

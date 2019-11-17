@@ -20,7 +20,7 @@ namespace Etsi.Ts102034.v010501.XmlSerialization.ProviderDiscovery
     [DebuggerStepThrough()]
     [DesignerCategory("code")]
     [XmlType(AnonymousType = true, Namespace = "urn:dvb:metadata:iptv:sdns:2012-1")]
-    public partial class ProviderOffering
+    public class ProviderOffering
     {
         /// <summary>
         /// One entry per Pull Offering

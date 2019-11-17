@@ -39,7 +39,7 @@ namespace IpTViewr.Setup.Logos
                 // Initial setup
                 EntryAssembly = Assembly.GetEntryAssembly() ?? Assembly.GetAssembly(typeof(Program));
                 ToolName = EntryAssembly.GetName();
-                Console.Title = Properties.Texts.ProgramName;
+                Console.Title = Texts.ProgramName;
                 var arguments = GetArguments(args);
                 if (arguments == null) return (int)Result.Arguments;
 
@@ -102,13 +102,13 @@ namespace IpTViewr.Setup.Logos
             var attributes = EntryAssembly.GetCustomAttributes(typeof(AssemblyCopyrightAttribute), false);
             var copyright = (attributes.Length > 0) ? ((AssemblyCopyrightAttribute)attributes[0]).Copyright : "Copyright (C) http://www.alphacentaury.org";
 
-            Console.WriteLine(Properties.Texts.StartLogo, Properties.Texts.ProgramName, ToolName.Version, copyright);
+            Console.WriteLine(Texts.StartLogo, Texts.ProgramName, ToolName.Version, copyright);
             Console.WriteLine();
         } // DisplayLogo
 
         private static void DisplayHelp()
         {
-            Console.WriteLine(Properties.Texts.ProgramHelp, ToolName.Name);
+            Console.WriteLine(Texts.ProgramHelp, ToolName.Name);
         } // DisplayHelp
     } // class Program
 } // namespace

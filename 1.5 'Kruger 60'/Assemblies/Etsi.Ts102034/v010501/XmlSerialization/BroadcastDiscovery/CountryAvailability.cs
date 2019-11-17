@@ -18,7 +18,7 @@ namespace Etsi.Ts102034.v010501.XmlSerialization.BroadcastDiscovery
     [DebuggerStepThrough]
     [DesignerCategory("code")]
     [XmlType(Namespace = "urn:dvb:metadata:iptv:sdns:2012-1")]
-    public partial class CountryAvailability
+    public class CountryAvailability
     {
         [XmlAttribute]
         public string Countries;
@@ -29,7 +29,7 @@ namespace Etsi.Ts102034.v010501.XmlSerialization.BroadcastDiscovery
 
         public CountryAvailability()
         {
-            this.Available = true;
+            Available = true;
         } // default constructor
     } // class CountryAvailability
 } // namespace

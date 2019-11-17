@@ -42,7 +42,7 @@ namespace IpTviewr.DvbStp.Client
 
         public override string ToString()
         {
-            return string.Format("p{0:X2}s{1:X4}v{2:X2}", PayloadId, Id, Version);
+            return $"p{PayloadId:X2}s{Id:X4}v{Version:X2}";
         } // ToString
     } // struct DvbStpSegmentIdentity
 } // namespace

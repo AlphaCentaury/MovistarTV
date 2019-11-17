@@ -19,7 +19,7 @@ namespace Etsi.Ts102034.v010501.XmlSerialization.ProviderDiscovery
     [DebuggerStepThrough]
     [DesignerCategory("code")]
     [XmlType(AnonymousType = true, Namespace = "urn:dvb:metadata:iptv:sdns:2012-1")]
-    public partial class ProviderOfferingPull : PayloadList
+    public class ProviderOfferingPull : PayloadList
     {
         [XmlAttribute(DataType = "anyURI")]
         public string Location;

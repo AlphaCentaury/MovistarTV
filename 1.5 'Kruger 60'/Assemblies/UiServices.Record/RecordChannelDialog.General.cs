@@ -22,14 +22,13 @@ namespace IpTviewr.UiServices.Record
             pictureChannelLogo.Image = serviceLogo.GetImage(LogoSize.Size64);
 
             // service name
-            labelChannelName.Text = string.Format("{0} {1}", Task.Channel.LogicalNumber, Task.Channel.Name);
+            labelChannelName.Text = $"{Task.Channel.LogicalNumber} {Task.Channel.Name}";
 
             // program name
             if (Task.Program != null)
             {
                 labelProgramDescription.Text = Task.Program.Title;
-                labelProgramSchedule.Text = string.Format("{0} ({1})", FormatString.DateTimeFromToMinutes(Task.Program.LocalStartTime, Task.Program.LocalEndTime, LocalReferenceTime),
-                    FormatString.TimeSpanTotalMinutes(Task.Program.Duration, FormatString.Format.Extended));
+                labelProgramSchedule.Text = $"{FormatString.DateTimeFromToMinutes(Task.Program.LocalStartTime, Task.Program.LocalEndTime, LocalReferenceTime)} ({FormatString.TimeSpanTotalMinutes(Task.Program.Duration, FormatString.Format.Extended)})";
             }
             else
             {

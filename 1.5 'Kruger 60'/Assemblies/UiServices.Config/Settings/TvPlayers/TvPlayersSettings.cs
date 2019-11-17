@@ -21,9 +21,11 @@ namespace IpTviewr.UiServices.Configuration.Settings.TvPlayers
 
         public TvPlayersSettings()
         {
-            PlayerIcons = new ImageList();
-            PlayerIcons.ImageSize = new Size(32, 32);
-            PlayerIcons.ColorDepth = ColorDepth.Depth32Bit;
+            PlayerIcons = new ImageList
+            {
+                ImageSize = new Size(32, 32),
+                ColorDepth = ColorDepth.Depth32Bit
+            };
         } // constructor
 
         public Guid DefaultPlayerId

@@ -40,7 +40,7 @@ namespace IpTviewr.ChannelList
 
         private void menuItemDvbExit_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Close();
         } // menuItemDvbExit_Click
 
         #endregion
@@ -93,22 +93,22 @@ namespace IpTviewr.ChannelList
 
         private void Implementation_menuItemHelpDocumentation_Click(object sender, EventArgs e)
         {
-            OpenUrl(Properties.InvariantTexts.UrlDocumentation);
+            OpenUrl(InvariantTexts.UrlDocumentation);
         } // Implementation_menuItemHelpDocumentation_Click
 
         private void Implementation_menuItemHelpHomePage_Click(object sender, EventArgs e)
         {
-            OpenUrl(Properties.InvariantTexts.UrlHomePage);
+            OpenUrl(InvariantTexts.UrlHomePage);
         } // Implementation_menuItemHelpHomePage_Click
 
         private void Implementation_menuItemHelpReportIssue_Click(object sender, EventArgs e)
         {
-            OpenUrl(Properties.InvariantTexts.UrlReportIssue);
+            OpenUrl(InvariantTexts.UrlReportIssue);
         } // Implementation_menuItemHelpReportIssue_Click
 
         private void Implementation_menuItemHelpCheckUpdates_Click(object sender, EventArgs e)
         {
-            OpenUrl(Properties.InvariantTexts.UrlCheckForUpdatesManual);
+            OpenUrl(InvariantTexts.UrlCheckForUpdatesManual);
         } // Implementation_menuItemHelpCheckUpdates_Click
 
         private void Implementation_menuItemHelpAbout_Click(object sender, EventArgs e)
@@ -117,7 +117,7 @@ namespace IpTviewr.ChannelList
             {
                 box.ApplicationData = new AboutBoxApplicationData()
                 {
-                    LargeIcon = Properties.Resources.AboutIcon,
+                    LargeIcon = Resources.AboutIcon,
                     Name = Texts.AppName,
                     Version = Texts.AppVersion,
                     Status = Texts.AppStatus,

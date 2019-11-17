@@ -164,9 +164,9 @@ namespace IpTviewr.Native
 
         private struct IconKind
         {
-            public short Size;
-            public byte BitsPerPixel;
-            public SaveAs SaveAs;
+            public readonly short Size;
+            public readonly byte BitsPerPixel;
+            public readonly SaveAs SaveAs;
 
             public IconKind(int size, byte bitsPerPixel, SaveAs saveAs)
             {

@@ -42,8 +42,10 @@ namespace IpTviewr.UiServices.Configuration
         {
             AppUiConfiguration config;
 
-            config = new AppUiConfiguration();
-            config.User = userConfig;
+            config = new AppUiConfiguration
+            {
+                User = userConfig
+            };
 
             return config;
         } // CreateForUserConfig
@@ -53,12 +55,12 @@ namespace IpTviewr.UiServices.Configuration
             AppUiConfiguration config;
             InitializationResult result;
 
-            displayProgress?.Invoke(Properties.Texts.LoadProgress_Start);
+            displayProgress?.Invoke(Texts.LoadProgress_Start);
             config = new AppUiConfiguration();
             result = config.LoadBasicConfiguration(overrideBasePath);
             if (result.IsError) return result;
 
-            displayProgress?.Invoke(Properties.Texts.LoadProgress_UserConfig);
+            displayProgress?.Invoke(Texts.LoadProgress_UserConfig);
             result = config.LoadUserConfiguration();
             if (result.IsError) return result;
 
@@ -68,7 +70,7 @@ namespace IpTviewr.UiServices.Configuration
             result = config.ProcessXmlConfigurationItems();
             if (result.IsError) return result;
 
-            displayProgress?.Invoke(Properties.Texts.LoadProgress_ContentProvider);
+            displayProgress?.Invoke(Texts.LoadProgress_ContentProvider);
             result = config.LoadIpTvProviderData();
             if (result.IsError) return result;
 
@@ -208,8 +210,10 @@ namespace IpTviewr.UiServices.Configuration
 
         public void Save(string overrideSaveLocation = null)
         {
-            User.Configuration = new XmlConfigurationItems();
-            User.Configuration.XmlData = new List<XmlElement>(Items.Count);
+            User.Configuration = new XmlConfigurationItems
+            {
+                XmlData = new List<XmlElement>(Items.Count)
+            };
 
             // serialize configuration items
             foreach (var pair in ItemsIndex)
@@ -265,17 +269,17 @@ namespace IpTviewr.UiServices.Configuration
             Cultures = GetUiCultures();
 
             var descriptionServiceType = new Dictionary<string, string>();
-            descriptionServiceType.Add("1", Properties.Texts.DvbServiceTypeDescription_01); // SD TV
-            descriptionServiceType.Add("2", Properties.Texts.DvbServiceTypeDescription_02); // Radio (MPEG-1)
-            descriptionServiceType.Add("3", Properties.Texts.DvbServiceTypeDescription_03); // Teletext
-            descriptionServiceType.Add("6", Properties.Texts.DvbServiceTypeDescription_06); // Mosaic
-            descriptionServiceType.Add("10", Properties.Texts.DvbServiceTypeDescription_10); // Radio (AAC)
-            descriptionServiceType.Add("11", Properties.Texts.DvbServiceTypeDescription_11); // Mosaic (AAC)
-            descriptionServiceType.Add("12", Properties.Texts.DvbServiceTypeDescription_12); // Data
-            descriptionServiceType.Add("16", Properties.Texts.DvbServiceTypeDescription_16); // DVB MHP
-            descriptionServiceType.Add("17", Properties.Texts.DvbServiceTypeDescription_17); // HD TV (MPEG-2)
-            descriptionServiceType.Add("22", Properties.Texts.DvbServiceTypeDescription_22); // SD TV (AVC)
-            descriptionServiceType.Add("25", Properties.Texts.DvbServiceTypeDescription_25); // "HD TV
+            descriptionServiceType.Add("1", Texts.DvbServiceTypeDescription_01); // SD TV
+            descriptionServiceType.Add("2", Texts.DvbServiceTypeDescription_02); // Radio (MPEG-1)
+            descriptionServiceType.Add("3", Texts.DvbServiceTypeDescription_03); // Teletext
+            descriptionServiceType.Add("6", Texts.DvbServiceTypeDescription_06); // Mosaic
+            descriptionServiceType.Add("10", Texts.DvbServiceTypeDescription_10); // Radio (AAC)
+            descriptionServiceType.Add("11", Texts.DvbServiceTypeDescription_11); // Mosaic (AAC)
+            descriptionServiceType.Add("12", Texts.DvbServiceTypeDescription_12); // Data
+            descriptionServiceType.Add("16", Texts.DvbServiceTypeDescription_16); // DVB MHP
+            descriptionServiceType.Add("17", Texts.DvbServiceTypeDescription_17); // HD TV (MPEG-2)
+            descriptionServiceType.Add("22", Texts.DvbServiceTypeDescription_22); // SD TV (AVC)
+            descriptionServiceType.Add("25", Texts.DvbServiceTypeDescription_25); // "HD TV
             DescriptionServiceTypes = descriptionServiceType;
 
             // TODO: load from user config
@@ -377,13 +381,13 @@ namespace IpTviewr.UiServices.Configuration
         protected void GetFolders()
         {
             // Record tasks
-            Folders.RecordTasks = Path.Combine(Folders.Base, Properties.InvariantTexts.FolderRecordTasks);
+            Folders.RecordTasks = Path.Combine(Folders.Base, InvariantTexts.FolderRecordTasks);
 
             // Cache
-            Folders.Cache = Path.Combine(Folders.Base, Properties.InvariantTexts.FolderCache);
+            Folders.Cache = Path.Combine(Folders.Base, InvariantTexts.FolderCache);
 
             // Logos
-            Folders.Logos = new AppUiConfigurationFolders.FolderLogos(Path.Combine(Folders.Base, Properties.InvariantTexts.FolderLogosRoot), Folders.Cache);
+            Folders.Logos = new AppUiConfigurationFolders.FolderLogos(Path.Combine(Folders.Base, InvariantTexts.FolderLogosRoot), Folders.Cache);
         } // GetFolders
 
         #endregion
@@ -392,18 +396,20 @@ namespace IpTviewr.UiServices.Configuration
         {
             InitializationResult result;
 
-            result = new InitializationResult();
-            result.Caption = Properties.Texts.LoadConfigValidationCaption;
+            result = new InitializationResult
+            {
+                Caption = Texts.LoadConfigValidationCaption
+            };
 
             if (!Directory.Exists(Folders.Base))
             {
-                result.Message = string.Format(Properties.Texts.AppConfigValidationBasePath, Folders.Base);
+                result.Message = string.Format(Texts.AppConfigValidationBasePath, Folders.Base);
                 return result;
             } // if
 
             if (!Directory.Exists(Folders.Logos.Root))
             {
-                result.Message = string.Format(Properties.Texts.AppConfigValidationLogosPath, Folders.Logos);
+                result.Message = string.Format(Texts.AppConfigValidationLogosPath, Folders.Logos);
                 return result;
             } // if
 
@@ -432,8 +438,8 @@ namespace IpTviewr.UiServices.Configuration
                 {
                     return new InitializationResult()
                     {
-                        Caption = Properties.Texts.LoadContentProviderDataValidationCaption,
-                        Message = string.Format(Properties.Texts.LoadContentProviderDataValidation, xmlPath, validationResult),
+                        Caption = Texts.LoadContentProviderDataValidationCaption,
+                        Message = string.Format(Texts.LoadContentProviderDataValidation, xmlPath, validationResult),
                     };
                 } // if
 
@@ -444,8 +450,8 @@ namespace IpTviewr.UiServices.Configuration
             {
                 return new InitializationResult()
                 {
-                    Caption = Properties.Texts.LoadContentProviderDataExceptionCaption,
-                    Message = string.Format(Properties.Texts.LoadContentProviderDataValidation, xmlPath, Properties.Texts.LoadContentProviderDataValidationException),
+                    Caption = Texts.LoadContentProviderDataExceptionCaption,
+                    Message = string.Format(Texts.LoadContentProviderDataValidation, xmlPath, Texts.LoadContentProviderDataValidationException),
                     InnerException = ex
                 };
             } // try-catch
@@ -470,8 +476,8 @@ namespace IpTviewr.UiServices.Configuration
                 {
                     return new InitializationResult()
                     {
-                        Caption = Properties.Texts.LoadUserConfigValidationCaption,
-                        Message = string.Format(Properties.Texts.LoadConfigUserConfigValidation, _defaultSaveLocation, validationError),
+                        Caption = Texts.LoadUserConfigValidationCaption,
+                        Message = string.Format(Texts.LoadConfigUserConfigValidation, _defaultSaveLocation, validationError),
                     };
                 } // if
 
@@ -481,8 +487,8 @@ namespace IpTviewr.UiServices.Configuration
             {
                 return new InitializationResult()
                 {
-                    Caption = Properties.Texts.LoadUserConfigExceptionCaption,
-                    Message = string.Format(Properties.Texts.LoadConfigUserConfigValidation, _defaultSaveLocation, Properties.Texts.LoadConfigUserConfigValidationException),
+                    Caption = Texts.LoadUserConfigExceptionCaption,
+                    Message = string.Format(Texts.LoadConfigUserConfigValidation, _defaultSaveLocation, Texts.LoadConfigUserConfigValidationException),
                     InnerException = ex
                 };
             } // try-catch

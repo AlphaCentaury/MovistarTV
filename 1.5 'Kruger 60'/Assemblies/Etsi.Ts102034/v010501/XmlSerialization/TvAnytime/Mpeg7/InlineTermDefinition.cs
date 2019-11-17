@@ -20,7 +20,7 @@ namespace Etsi.Ts102034.v010501.XmlSerialization.TvAnytime.Mpeg7
     [XmlType("InlineTermDefinitionType", Namespace = "urn:tva:mpeg7:2008")]
     [XmlInclude(typeof(TermUse))]
     [XmlInclude(typeof(ControlledTermUse))]
-    public abstract partial class InlineTermDefinition
+    public abstract class InlineTermDefinition
     {
         [XmlElement("Name")]
         public InlineTermDefinitionTypeName[] Name;

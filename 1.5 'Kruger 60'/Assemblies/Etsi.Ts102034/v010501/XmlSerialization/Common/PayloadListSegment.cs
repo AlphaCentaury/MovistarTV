@@ -18,7 +18,7 @@ namespace Etsi.Ts102034.v010501.XmlSerialization.Common
     [DebuggerStepThrough]
     [DesignerCategory("code")]
     [XmlType("PayloadListSegmentType", Namespace = "urn:dvb:metadata:iptv:sdns:2012-1")]
-    public partial class PayloadListSegment
+    public class PayloadListSegment
     {
         [XmlElement("TargetPackage")]
         public TargetPackage[] TargetPackage;

@@ -36,11 +36,12 @@ namespace IpTviewr.UiServices.Configuration
             if (contentProvider == null) throw new ArgumentNullException();
             if (uiCultures == null) throw new ArgumentNullException();
 
-            var result = new UiContentProvider();
-
-            result.Identification = UiContentProviderIdentification.FromXmlConfiguration(contentProvider.Identification, uiCultures);
-            result.FriendlyNames = UiContentProviderFriendlyNames.FromXmlConfiguration(contentProvider.FriendlyNames, uiCultures);
-            result.Bootstrap = contentProvider.Bootstrap;
+            var result = new UiContentProvider
+            {
+                Identification = UiContentProviderIdentification.FromXmlConfiguration(contentProvider.Identification, uiCultures),
+                FriendlyNames = UiContentProviderFriendlyNames.FromXmlConfiguration(contentProvider.FriendlyNames, uiCultures),
+                Bootstrap = contentProvider.Bootstrap
+            };
 
             return result;
         } // FromXmlConfiguration

@@ -7,6 +7,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Text;
 
 namespace IpTviewr.Common
@@ -77,13 +78,14 @@ namespace IpTviewr.Common
             return result.ToString();
         } // JoinArguments
 
+        [SuppressMessage("ReSharper", "ParameterOnlyUsedForPreconditionCheck.Local")]
         private static void Validate(IDictionary<string, string> parameters, string openBrace, string closeBrace)
         {
             if ((string.IsNullOrEmpty(openBrace)) || (string.IsNullOrEmpty(closeBrace)))
             {
                 throw new ArgumentException();
             } // if
-            if ((parameters == null) || (parameters.Count == 0))
+            if ((parameters?.Count ?? 0) == 0)
             {
                 throw new ArgumentException();
             } // if
@@ -95,11 +97,9 @@ namespace IpTviewr.Common
 
         private static string InternalExpandArgument(string rawArgument, IDictionary<string, string> parameters, string openBrace, string closeBrace, StringComparison braceComparisonType)
         {
-            int index, param;
-
             if (string.IsNullOrEmpty(rawArgument)) return rawArgument;
 
-            index = rawArgument.IndexOf(openBrace, braceComparisonType);
+            var index = rawArgument.IndexOf(openBrace, braceComparisonType);
             if (index < 0) return rawArgument;
 
             var current = 0;
@@ -111,7 +111,7 @@ namespace IpTviewr.Common
                     result.Append(rawArgument.Substring(current, index - current));
                 } // if
 
-                param = index + openBrace.Length;
+                var param = index + openBrace.Length;
                 index = rawArgument.IndexOf(closeBrace, param, braceComparisonType);
 
                 // close 'brace' not found or no param key is specified

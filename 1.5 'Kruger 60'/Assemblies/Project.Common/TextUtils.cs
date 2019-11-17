@@ -8,6 +8,7 @@
 using System;
 using System.IO;
 using System.Text;
+using JetBrains.Annotations;
 
 namespace IpTviewr.Common
 {
@@ -15,11 +16,13 @@ namespace IpTviewr.Common
     {
         #region RemoveInvalidChars
 
+        [PublicAPI]
         public static string RemoveInvalidChars(string text, char[] invalidChars)
         {
             return RemoveInvalidChars(text, invalidChars, null, out _);
         } // RemoveInvalidChars
 
+        [PublicAPI]
         public static string RemoveInvalidChars(string text, char[] invalidChars, string replacementText)
         {
             return RemoveInvalidChars(text, invalidChars, replacementText, out _);
@@ -37,20 +40,17 @@ namespace IpTviewr.Common
 
         private static string InternalRemoveInvalidChars(string text, char[] invalidChars, string replacementString, out bool modified)
         {
-            StringBuilder buffer;
-            int startIndex, index;
-
             modified = false;
 
             // do nothing is null or empty
             if (string.IsNullOrEmpty(text)) return text;
 
             // quick test: any offending char?
-            index = text.IndexOfAny(invalidChars);
+            var index = text.IndexOfAny(invalidChars);
             if (index < 0) return text;
 
-            buffer = new StringBuilder(text.Length * 2);
-            startIndex = 0;
+            var buffer = new StringBuilder(text.Length * 2);
+            var startIndex = 0;
             while (index >= 0)
             {
                 if (index != startIndex)
@@ -85,16 +85,19 @@ namespace IpTviewr.Common
             return Path.GetInvalidFileNameChars();
         } // GetInvalidChars
 
+        [PublicAPI]
         public static string SanitizeFilename(string text)
         {
             return InternalRemoveInvalidChars(text, GetFilenameInvalidChars(), null, out _);
         } // SanitizeFilename
 
+        [PublicAPI]
         public static string SanitizeFilename(string text, string replacementText)
         {
             return InternalRemoveInvalidChars(text, GetFilenameInvalidChars(), replacementText, out _);
         } // SanitizeFilename
 
+        [PublicAPI]
         public static string SanitizeFilename(string text, string replacementText, out bool modified)
         {
             return InternalRemoveInvalidChars(text, GetFilenameInvalidChars(), replacementText, out modified);

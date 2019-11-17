@@ -47,10 +47,10 @@
     <Compile Include="EpgLinkedListNodeWrapper.cs" />
     <Compile Include="EpgLinkedListPhantomNode.cs" />
     <Compile Include="EpgLinkedListWrapper.cs" />
-    <Compile Include="EpgMemoryDatastore.cs" />
+    <Compile Include="EpgMemoryDataStore.cs" />
     <Compile Include="EpgProgramEpisode.cs" />
-    <Compile Include="EpgSingleServiceDatastore.cs" />
-    <Compile Include="EpgNullDatastore.cs" />
+    <Compile Include="EpgSingleServiceDataStore.cs" />
+    <Compile Include="EpgNullDataStore.cs" />
     <Compile Include="EpgProgram.cs" />
     <Compile Include="EpgCodedValue.cs" />
     <Compile Include="EpgService.cs" />

@@ -54,7 +54,7 @@ namespace IpTviewr.ChannelList
         public ChannelListForm()
         {
             InitializeComponent();
-            Icon = Properties.Resources.IPTV;
+            Icon = Resources.IPTV;
             _notifications = new Stack<Notification>();
         } // constructor
 
@@ -79,7 +79,7 @@ namespace IpTviewr.ChannelList
         {
             if (!SafeCall(ChannelListForm_Load_Implementation, sender, e))
             {
-                this.Close();
+                Close();
             } // if
         }  // ChannelListForm_Load
 
@@ -106,7 +106,7 @@ namespace IpTviewr.ChannelList
         {
             BasicGoogleTelemetry.SendScreenHit(this, "Load");
 
-            Text = Properties.Texts.AppCaption;
+            Text = Texts.AppCaption;
 
             // disable functionality
             menuItemDvbRecent.Enabled = EnableMenuItemDvbRecent;
@@ -138,7 +138,7 @@ namespace IpTviewr.ChannelList
             } // if-else
 
             // load from cache, if available
-            _selectedServiceProvider = SelectProviderDialog.GetLastUserSelectedProvider(Properties.Settings.Default.LastSelectedServiceProvider);
+            _selectedServiceProvider = SelectProviderDialog.GetLastUserSelectedProvider(Settings.Default.LastSelectedServiceProvider);
             ServiceProviderChanged();
 
             // notify Splash Screeen the form has finished loading and is about to be shown
@@ -212,7 +212,7 @@ namespace IpTviewr.ChannelList
 
         private void OpenUrl(string url)
         {
-            Launcher.OpenUrl(this, url, HandleException, Properties.Texts.OpenUrlError);
+            Launcher.OpenUrl(this, url, HandleException, Texts.OpenUrlError);
         } // OpenUrl
 
         #endregion
@@ -223,15 +223,15 @@ namespace IpTviewr.ChannelList
         {
             if (fullScreen)
             {
-                this.FormBorderStyle = FormBorderStyle.None;
-                this.WindowState = FormWindowState.Maximized;
-                this.TopMost = topMost;
+                FormBorderStyle = FormBorderStyle.None;
+                WindowState = FormWindowState.Maximized;
+                TopMost = topMost;
             }
             else
             {
-                this.WindowState = FormWindowState.Normal;
-                this.FormBorderStyle = FormBorderStyle.Sizable;
-                this.TopMost = false;
+                WindowState = FormWindowState.Normal;
+                FormBorderStyle = FormBorderStyle.Sizable;
+                TopMost = false;
             } // if-else
         } // SetFullscreenMode
 

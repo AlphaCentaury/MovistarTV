@@ -13,10 +13,10 @@ namespace IpTviewr.UiServices.Discovery
 {
     public class UiServicesLogicalNumbers
     {
-        private UiBroadcastDiscovery _uiDiscovery;
-        private PackageDiscoveryRoot _packageDiscovery;
-        private string _defaultDomain;
-        private bool _highDefinitionPriority;
+        private readonly UiBroadcastDiscovery _uiDiscovery;
+        private readonly PackageDiscoveryRoot _packageDiscovery;
+        private readonly string _defaultDomain;
+        private readonly bool _highDefinitionPriority;
 
         private class LogicalNumberChannels
         {

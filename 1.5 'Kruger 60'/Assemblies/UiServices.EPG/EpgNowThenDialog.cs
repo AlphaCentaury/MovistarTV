@@ -40,8 +40,8 @@ namespace IpTviewr.UiServices.EPG
         {
             BasicGoogleTelemetry.SendScreenHit(this);
 
-            pictureChannelLogo.Image = _service.Logo.GetImage(LogoSize.Size48, true);
-            labelChannelName.Text = string.Format("{0}\r\n{1}", _service.DisplayLogicalNumber, _service.DisplayName);
+            pictureChannelLogo.Image = _service.Logo.GetImage(LogoSize.Size48);
+            labelChannelName.Text = $"{_service.DisplayLogicalNumber}\r\n{_service.DisplayName}";
 
             EpgProgramBefore.DisplayData(_service, (_epgPrograms != null) ? _epgPrograms[0] : null, _referenceTime, Properties.Texts.EpgProgramBeforeCaption);
             EpgProgramNow.DisplayData(_service, (_epgPrograms != null) ? _epgPrograms[1] : null, _referenceTime, Properties.Texts.EpgProgramNowCaption);

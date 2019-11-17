@@ -97,7 +97,7 @@ namespace IpTviewr.UiServices.Common.Controls
         // ctor
         public SelectFolderDialog()
         {
-            this.Reset();
+            Reset();
         } // SelectFolderDialog
 
         // Factory Methods
@@ -123,7 +123,7 @@ namespace IpTviewr.UiServices.Common.Controls
         {
             _uiFlags += BrowseFlags.BifBrowseforprinter;
             Description = "Select a printer:";
-            UnsafeNativeMethods.Shell32.SHGetSpecialFolderLocation(IntPtr.Zero, Csidl.Printers, ref this._rootFolderLocation);
+            UnsafeNativeMethods.Shell32.SHGetSpecialFolderLocation(IntPtr.Zero, Csidl.Printers, ref _rootFolderLocation);
             ShowNewFolderButton = false;
             ShowEditBox = false;
         } // BecomePrinterBrowser
@@ -132,7 +132,7 @@ namespace IpTviewr.UiServices.Common.Controls
         {
             _uiFlags += BrowseFlags.BifBrowseforcomputer;
             Description = "Select a computer:";
-            UnsafeNativeMethods.Shell32.SHGetSpecialFolderLocation(IntPtr.Zero, Csidl.Network, ref this._rootFolderLocation);
+            UnsafeNativeMethods.Shell32.SHGetSpecialFolderLocation(IntPtr.Zero, Csidl.Network, ref _rootFolderLocation);
             ShowNewFolderButton = false;
             ShowEditBox = false;
         } // BecomeComputerBrowser
@@ -185,14 +185,14 @@ namespace IpTviewr.UiServices.Common.Controls
             switch (msg)
             {
                 case BrowseForFolderMessages.BffmInitialized:
-                    if (this._selectedPath.Length != 0)
+                    if (_selectedPath.Length != 0)
                     {
-                        UnsafeNativeMethods.User32.SendMessage(new HandleRef(null, hwnd), BrowseForFolderMessages.BffmSetselectionw, (IntPtr)1, this._selectedPath);
-                        if (this._showEditBox && this._showFullPathInEditBox)
+                        UnsafeNativeMethods.User32.SendMessage(new HandleRef(null, hwnd), BrowseForFolderMessages.BffmSetselectionw, (IntPtr)1, _selectedPath);
+                        if (_showEditBox && _showFullPathInEditBox)
                         {
                             // get handle to the Edit box inside the Folder Browser Dialog
                             _hwndEdit = UnsafeNativeMethods.User32.FindWindowExW(new HandleRef(null, hwnd), IntPtr.Zero, "Edit", null);
-                            UnsafeNativeMethods.User32.SetWindowTextW(_hwndEdit, this._selectedPath);
+                            UnsafeNativeMethods.User32.SetWindowTextW(_hwndEdit, _selectedPath);
                         }
                     }
                     break;
@@ -244,16 +244,16 @@ namespace IpTviewr.UiServices.Common.Controls
 
         public override void Reset()
         {
-            this._rootFolder = (Environment.SpecialFolder)0;
-            this._descriptionText = string.Empty;
-            this._selectedPath = string.Empty;
-            this._selectedPathNeedsCheck = false;
-            this._showNewFolderButton = true;
-            this._showEditBox = true;
-            this._newStyle = true;
-            this._dontIncludeNetworkFoldersBelowDomainLevel = false;
-            this._hwndEdit = IntPtr.Zero;
-            this._rootFolderLocation = IntPtr.Zero;
+            _rootFolder = 0;
+            _descriptionText = string.Empty;
+            _selectedPath = string.Empty;
+            _selectedPathNeedsCheck = false;
+            _showNewFolderButton = true;
+            _showEditBox = true;
+            _newStyle = true;
+            _dontIncludeNetworkFoldersBelowDomainLevel = false;
+            _hwndEdit = IntPtr.Zero;
+            _rootFolderLocation = IntPtr.Zero;
         } // Reset
 
         [PermissionSet(SecurityAction.Demand, Name = "FullTrust")]
@@ -262,7 +262,7 @@ namespace IpTviewr.UiServices.Common.Controls
             var result = false;
             if (_rootFolderLocation == IntPtr.Zero)
             {
-                UnsafeNativeMethods.Shell32.SHGetSpecialFolderLocation(hWndOwner, (int)this._rootFolder, ref _rootFolderLocation);
+                UnsafeNativeMethods.Shell32.SHGetSpecialFolderLocation(hWndOwner, (int)_rootFolder, ref _rootFolderLocation);
                 if (_rootFolderLocation == IntPtr.Zero)
                 {
                     UnsafeNativeMethods.Shell32.SHGetSpecialFolderLocation(hWndOwner, 0, ref _rootFolderLocation);
@@ -276,13 +276,13 @@ namespace IpTviewr.UiServices.Common.Controls
             //_uiFlags = 0;
             if (_dontIncludeNetworkFoldersBelowDomainLevel)
                 _uiFlags += BrowseFlags.BifDontgobelowdomain;
-            if (this._newStyle)
+            if (_newStyle)
                 _uiFlags += BrowseFlags.BifNewdialogstyle;
-            if (!this._showNewFolderButton)
+            if (!_showNewFolderButton)
                 _uiFlags += BrowseFlags.BifNonewfolderbutton;
-            if (this._showEditBox)
+            if (_showEditBox)
                 _uiFlags += BrowseFlags.BifEditbox;
-            if (this._showBothFilesAndFolders)
+            if (_showBothFilesAndFolders)
                 _uiFlags += BrowseFlags.BifBrowseincludefiles;
 
 
@@ -298,20 +298,20 @@ namespace IpTviewr.UiServices.Common.Controls
                 var browseInfo = new UnsafeNativeMethods.Browseinfo();
                 hglobal = Marshal.AllocHGlobal(MaxPath * Marshal.SystemDefaultCharSize);
                 pszPath = Marshal.AllocHGlobal(MaxPath * Marshal.SystemDefaultCharSize);
-                this._callback = new UnsafeNativeMethods.BrowseFolderCallbackProc(this.FolderBrowserCallback);
+                _callback = FolderBrowserCallback;
                 browseInfo.pidlRoot = _rootFolderLocation;
                 browseInfo.Owner = hWndOwner;
                 browseInfo.pszDisplayName = hglobal;
-                browseInfo.Title = this._descriptionText;
+                browseInfo.Title = _descriptionText;
                 browseInfo.Flags = _uiFlags;
-                browseInfo.callback = this._callback;
+                browseInfo.callback = _callback;
                 browseInfo.lParam = IntPtr.Zero;
                 browseInfo.iImage = 0;
                 pidl = UnsafeNativeMethods.Shell32.SHBrowseForFolderW(browseInfo);
                 if (((_uiFlags & BrowseFlags.BifBrowseforprinter) == BrowseFlags.BifBrowseforprinter) ||
                 ((_uiFlags & BrowseFlags.BifBrowseforcomputer) == BrowseFlags.BifBrowseforcomputer))
                 {
-                    this._selectedPath = Marshal.PtrToStringAuto(browseInfo.pszDisplayName);
+                    _selectedPath = Marshal.PtrToStringAuto(browseInfo.pszDisplayName);
                     result = true;
                 }
                 else
@@ -319,8 +319,8 @@ namespace IpTviewr.UiServices.Common.Controls
                     if (pidl != IntPtr.Zero)
                     {
                         UnsafeNativeMethods.Shell32.SHGetPathFromIDList(pidl, pszPath);
-                        this._selectedPathNeedsCheck = true;
-                        this._selectedPath = Marshal.PtrToStringAuto(pszPath);
+                        _selectedPathNeedsCheck = true;
+                        _selectedPath = Marshal.PtrToStringAuto(pszPath);
                         result = true;
                     }
                 }
@@ -342,7 +342,7 @@ namespace IpTviewr.UiServices.Common.Controls
                 {
                     Marshal.FreeHGlobal(hglobal);
                 }
-                this._callback = null;
+                _callback = null;
             }
             return result;
         }
@@ -355,21 +355,21 @@ namespace IpTviewr.UiServices.Common.Controls
         /// </summary>
         public string Description
         {
-            get => this._descriptionText;
-            set => this._descriptionText = value ?? string.Empty;
+            get => _descriptionText;
+            set => _descriptionText = value ?? string.Empty;
         } // Description
 
         //[Localizable(false), SRCategory("CatFolderBrowsing"), SRDescription("FolderBrowserDialogRootFolder"), TypeConverter(typeof(SpecialFolderEnumConverter)), Browsable(true), DefaultValue(0)]
         public Environment.SpecialFolder RootFolder
         {
-            get => this._rootFolder;
+            get => _rootFolder;
             set
             {
                 if (!Enum.IsDefined(typeof(Environment.SpecialFolder), value))
                 {
                     throw new InvalidEnumArgumentException("value", (int)value, typeof(Environment.SpecialFolder));
                 }
-                this._rootFolder = value;
+                _rootFolder = value;
             }
         } // RootFolder
 
@@ -382,17 +382,17 @@ namespace IpTviewr.UiServices.Common.Controls
         {
             get
             {
-                if (((this._selectedPath != null) && (this._selectedPath.Length != 0)) && this._selectedPathNeedsCheck)
+                if (((_selectedPath != null) && (_selectedPath.Length != 0)) && _selectedPathNeedsCheck)
                 {
-                    new FileIOPermission(FileIOPermissionAccess.PathDiscovery, this._selectedPath).Demand();
-                    this._selectedPathNeedsCheck = false;
+                    new FileIOPermission(FileIOPermissionAccess.PathDiscovery, _selectedPath).Demand();
+                    _selectedPathNeedsCheck = false;
                 }
-                return this._selectedPath;
+                return _selectedPath;
             }
             set
             {
-                this._selectedPath = value ?? string.Empty;
-                this._selectedPathNeedsCheck = true;
+                _selectedPath = value ?? string.Empty;
+                _selectedPathNeedsCheck = true;
             }
         } // SelectedPath
 
@@ -403,8 +403,8 @@ namespace IpTviewr.UiServices.Common.Controls
         /// </summary>
         public bool ShowNewFolderButton
         {
-            get => this._showNewFolderButton;
-            set => this._showNewFolderButton = value;
+            get => _showNewFolderButton;
+            set => _showNewFolderButton = value;
         } // ShowNewFolderButton
 
         /// <summary>
@@ -417,8 +417,8 @@ namespace IpTviewr.UiServices.Common.Controls
         /// <seealso cref="ShowFullPathInEditBox"/>
         public bool ShowEditBox
         {
-            get => this._showEditBox;
-            set => this._showEditBox = value;
+            get => _showEditBox;
+            set => _showEditBox = value;
         } // ShowEditBox
 
         /// <summary>
@@ -429,8 +429,8 @@ namespace IpTviewr.UiServices.Common.Controls
         /// </remarks>
         public bool NewStyle
         {
-            get => this._newStyle;
-            set => this._newStyle = value;
+            get => _newStyle;
+            set => _newStyle = value;
         } // NewStyle
 
 
@@ -514,9 +514,9 @@ namespace IpTviewr.UiServices.Common.Controls
         {
             // Methods
             [DllImport("shell32.dll", CharSet = CharSet.Unicode)]
-            public static extern IntPtr SHBrowseForFolderW([In] UnsafeNativeMethods.Browseinfo lpbi);
+            public static extern IntPtr SHBrowseForFolderW([In] Browseinfo lpbi);
             [DllImport("shell32.dll")]
-            public static extern int SHGetMalloc([Out, MarshalAs(UnmanagedType.LPArray)] UnsafeNativeMethods.IMalloc[] ppMalloc);
+            public static extern int SHGetMalloc([Out, MarshalAs(UnmanagedType.LPArray)] IMalloc[] ppMalloc);
             [DllImport("shell32.dll", CharSet = CharSet.Auto)]
             public static extern bool SHGetPathFromIDList(IntPtr pidl, IntPtr pszPath);
             [DllImport("shell32.dll")]

@@ -86,9 +86,11 @@ namespace IpTviewr.UiServices.Configuration.Settings.TvPlayers.Editors
 
             if (Player == null)
             {
-                Player = new TvPlayer();
-                Player.Id = Guid.NewGuid();
-                Player.Arguments = argumentsEditor.Arguments;
+                Player = new TvPlayer
+                {
+                    Id = Guid.NewGuid(),
+                    Arguments = argumentsEditor.Arguments
+                };
             } // if
 
             IsDataChanged = true;
@@ -118,7 +120,7 @@ namespace IpTviewr.UiServices.Configuration.Settings.TvPlayers.Editors
             {
                 if (MessageBox.Show(this,
                     Properties.SettingsTexts.TvPlayerArgumentsListEmpty,
-                    this.Text, MessageBoxButtons.YesNo, MessageBoxIcon.Warning,
+                    Text, MessageBoxButtons.YesNo, MessageBoxIcon.Warning,
                     MessageBoxDefaultButton.Button2) != DialogResult.Yes)
                 {
                     buttonOk.DialogResult = DialogResult.None;

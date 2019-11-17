@@ -10,12 +10,12 @@ using System.Collections.Generic;
 
 namespace IpTviewr.Services.EpgDiscovery
 {
-    public sealed class EpgSingleServiceDatastore: EpgDataStore
+    public sealed class EpgSingleServiceDataStore: EpgDataStore
     {
-        private string _fullServiceName;
-        private IEpgLinkedList _servicePrograms;
+        private readonly string _fullServiceName;
+        private readonly IEpgLinkedList _servicePrograms;
 
-        public EpgSingleServiceDatastore(string fullServiceName, IEpgLinkedList servicePrograms)
+        public EpgSingleServiceDataStore(string fullServiceName, IEpgLinkedList servicePrograms)
         {
             _fullServiceName = fullServiceName;
             _servicePrograms = servicePrograms;
@@ -43,5 +43,5 @@ namespace IpTviewr.Services.EpgDiscovery
 
             return result;
         } // GetAllPrograms
-    } // class EpgSingleServiceDatastore
+    } // class EpgSingleServiceDataStore
 } // namespace

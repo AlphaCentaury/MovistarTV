@@ -47,7 +47,7 @@ namespace IpTviewr.Native
             public interface IShellLinkW
             {
                 /// <summary>Retrieves the path and file name of a Shell link object</summary>
-                void GetPath([Out, MarshalAs(UnmanagedType.LPWStr)] StringBuilder pszFile, int cchMaxPath, out UnsafeNativeMethods.Win32FindDataw pfd, UnsafeNativeMethods.SlgpFlags fFlags);
+                void GetPath([Out, MarshalAs(UnmanagedType.LPWStr)] StringBuilder pszFile, int cchMaxPath, out Win32FindDataw pfd, SlgpFlags fFlags);
                 /// <summary>Retrieves the list of item identifiers for a Shell link object</summary>
                 void GetIDList(out IntPtr ppidl);
                 /// <summary>Sets the pointer to an item identifier list (PIDL) for a Shell link object.</summary>
@@ -79,7 +79,7 @@ namespace IpTviewr.Native
                 /// <summary>Sets the relative path to the Shell link object</summary>
                 void SetRelativePath([MarshalAs(UnmanagedType.LPWStr)] string pszPathRel, int dwReserved);
                 /// <summary>Attempts to find the target of a Shell link, even if it has been moved or renamed</summary>
-                void Resolve(IntPtr hwnd, UnsafeNativeMethods.SlrFlags fFlags);
+                void Resolve(IntPtr hwnd, SlrFlags fFlags);
                 /// <summary>Sets the path and file name of a Shell link object</summary>
                 void SetPath([MarshalAs(UnmanagedType.LPWStr)] string pszFile);
             } // interface IShellLink
@@ -238,8 +238,8 @@ namespace IpTviewr.Native
             }
             finally
             {
-                if (shortcutFile != null) System.Runtime.InteropServices.Marshal.ReleaseComObject(shortcutFile);
-                if (shortcut != null) System.Runtime.InteropServices.Marshal.ReleaseComObject(shortcut);
+                if (shortcutFile != null) Marshal.ReleaseComObject(shortcutFile);
+                if (shortcut != null) Marshal.ReleaseComObject(shortcut);
             } // try-finally
         } // Create
     } // ShellLink

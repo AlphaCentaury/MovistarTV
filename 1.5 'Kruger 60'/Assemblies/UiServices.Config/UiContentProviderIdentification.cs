@@ -42,10 +42,12 @@ namespace IpTviewr.UiServices.Configuration
             if (identification == null) throw new ArgumentNullException();
             if (uiCultures == null) throw new ArgumentNullException();
 
-            var result = new UiContentProviderIdentification();
+            var result = new UiContentProviderIdentification
+            {
 
-            // id
-            result.Id = identification.Id;
+                // id
+                Id = identification.Id
+            };
 
             // identification
             var matching = LocalizedObject.FindMatchingCultureObject(identification.Localized, uiCultures);

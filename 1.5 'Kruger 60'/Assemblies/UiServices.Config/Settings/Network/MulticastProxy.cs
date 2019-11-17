@@ -43,7 +43,7 @@ namespace IpTviewr.UiServices.Configuration.Settings.Network
         {
             if (!IsEnabled)
             {
-                return string.Format("{0}://@{1}:{2}", protocol, address, port);
+                return $"{protocol}://@{address}:{port}";
             } // if
 
             var paramKeys = new[]

@@ -72,7 +72,7 @@ namespace IpTviewr.DvbStp.Client
 
         public class SegmentDownloadCompletedEventArgs : EventArgs
         {
-            private SegmentAssembler _segmentData;
+            private readonly SegmentAssembler _segmentData;
 
             public SegmentDownloadCompletedEventArgs(SegmentAssembler segmentData)
             {
@@ -124,7 +124,7 @@ namespace IpTviewr.DvbStp.Client
 
             var e = new DownloadStartedEventArgs()
             {
-                SegmentsCount = this._payloads.Count
+                SegmentsCount = _payloads.Count
             };
             OnDownloadStarted(this, e);
         } // FireDownloadStarted
@@ -135,7 +135,7 @@ namespace IpTviewr.DvbStp.Client
 
             var e = new DownloadCompletedEventArgs()
             {
-                Payloads = this._payloads
+                Payloads = _payloads
             };
             OnDownloadCompleted(this, e);
         } // FireDownloadCompleted
@@ -146,7 +146,7 @@ namespace IpTviewr.DvbStp.Client
 
             var e = new DvbStpSimpleClient.SectionReceivedEventArgs()
             {
-                DatagramCount = this.DatagramCount,
+                DatagramCount = DatagramCount,
                 PayloadId = Header.PayloadId,
                 SegmentIdNetworkLo = Header.SegmentIdNetworkLo,
                 SegmentIdNetworkHi = Header.SegmentIdNetworkHi,
@@ -184,7 +184,7 @@ namespace IpTviewr.DvbStp.Client
                 NewVersion = status.SegmentVersion,
                 SectionCount = status.SegmentData.LastSectionNumber + 1,
                 RestartCount = status.DownloadRestartCount,
-                GlobalRestartCount = this.DowloadRestartCount,
+                GlobalRestartCount = DownloadRestartCount,
             };
             OnSegmentDownloadRestarted(this, e);
         } // FireSegmentDownloadRestarted
@@ -200,8 +200,8 @@ namespace IpTviewr.DvbStp.Client
                 SegmentVersion = Header.SegmentVersion,
                 SectionCount = status.SegmentData.LastSectionNumber + 1,
                 SegmentListIndex = status.InfoIndex,
-                SegmentsReceived = this._segmentsReceived,
-                SegmentsPending = this._segmentsPending,
+                SegmentsReceived = _segmentsReceived,
+                SegmentsPending = _segmentsPending,
             };
             OnSegmentDownloadCompleted(this, e);
         } // SegmentDownloadCompleted

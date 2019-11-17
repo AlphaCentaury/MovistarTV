@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 
 namespace IpTviewr.RecorderLauncher
 {
-    internal partial class UnsafeNativeMethods
+    internal class UnsafeNativeMethods
     {
         /// <remarks>Win32: JOBOBJECTINFOCLASS</remarks>
         public enum JobObjectInfoClass
@@ -75,7 +75,7 @@ namespace IpTviewr.RecorderLauncher
         // lpJobAttributes: LPSECURITY_ATTRIBUTES->_SECURITY_ATTRIBUTES*
         // lpName: LPCWSTR->WCHAR*
         [DllImport("kernel32.dll", EntryPoint = "CreateJobObjectW", SetLastError=true)]
-        public static extern System.IntPtr CreateJobObject([In] IntPtr lpJobAttributes, [In] [MarshalAs(UnmanagedType.LPWStr)] string lpName);
+        public static extern IntPtr CreateJobObject([In] IntPtr lpJobAttributes, [In] [MarshalAs(UnmanagedType.LPWStr)] string lpName);
 
         // Return Type: BOOL->int
         // hJob: HANDLE->void*

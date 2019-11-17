@@ -188,7 +188,7 @@ namespace IpTviewr.DvbStp.Client
         protected void DecodeHeader()
         {
             Header.CompleteDecoding(DatagramData, ReceivedBytes);
-            if ((Header.Encription != 0) || (Header.Compression != DvbStpHeader.CompressionMethod.None))
+            if ((Header.Encryption != 0) || (Header.Compression != DvbStpHeader.CompressionMethod.None))
             {
                 throw new NotImplementedException();
             } // if

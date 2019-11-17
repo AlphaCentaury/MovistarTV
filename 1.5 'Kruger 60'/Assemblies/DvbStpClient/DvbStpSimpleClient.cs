@@ -178,7 +178,7 @@ namespace IpTviewr.DvbStp.Client
 
             e = new SectionReceivedEventArgs()
             {
-                DatagramCount = this.DatagramCount,
+                DatagramCount = DatagramCount,
                 PayloadId = Header.PayloadId,
                 SegmentIdNetworkLo = Header.SegmentIdNetworkLo,
                 SegmentIdNetworkHi = Header.SegmentIdNetworkHi,
@@ -200,8 +200,8 @@ namespace IpTviewr.DvbStp.Client
                 PayloadId = Header.PayloadId,
                 SegmentId = Header.SegmentId,
                 SegmentVersion = Header.SegmentVersion,
-                SectionCount = this.SectionCount,
-                SectionsReceived = this.ReceivedSections,
+                SectionCount = SectionCount,
+                SectionsReceived = ReceivedSections,
                 SectionNumber = Header.SectionNumber,
             };
         } // GetPayloadSectionReceivedEventArgs

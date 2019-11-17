@@ -44,7 +44,7 @@ namespace IpTviewr.ChannelList
             return exitCode;
         } // Main
 
-        static void Application_ThreadException(object sender, System.Threading.ThreadExceptionEventArgs e)
+        static void Application_ThreadException(object sender, ThreadExceptionEventArgs e)
         {
             MyApplication.HandleException(null, e.Exception);
         } // Application_ThreadException

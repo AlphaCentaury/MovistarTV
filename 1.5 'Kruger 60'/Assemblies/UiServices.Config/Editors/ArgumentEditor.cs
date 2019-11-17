@@ -102,7 +102,7 @@ namespace IpTviewr.UiServices.Configuration.Editors
 
         private void AddParameter()
         {
-            var parameter = string.Format("{0}{1}{2}", OpenBraceText, listParameters.SelectedItems[0].Text, CloseBraceText);
+            var parameter = $"{OpenBraceText}{listParameters.SelectedItems[0].Text}{CloseBraceText}";
             textBoxCommandLine.Paste(parameter);
         } // AddParameter
     } // class ArgumentEditor

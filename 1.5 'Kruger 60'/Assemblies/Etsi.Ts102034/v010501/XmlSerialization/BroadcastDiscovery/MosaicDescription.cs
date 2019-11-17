@@ -18,7 +18,7 @@ namespace Etsi.Ts102034.v010501.XmlSerialization.BroadcastDiscovery
     [DebuggerStepThrough]
     [DesignerCategory("code")]
     [XmlType(Namespace = "urn:dvb:metadata:iptv:sdns:2012-1")]
-    public partial class MosaicDescription
+    public class MosaicDescription
     {
         [XmlElement("LogicalCell")]
         public MosaicDescriptionLogicalCell[] LogicalCell;
@@ -35,7 +35,7 @@ namespace Etsi.Ts102034.v010501.XmlSerialization.BroadcastDiscovery
 
         public MosaicDescription()
         {
-            this.EntryPoint = true;
+            EntryPoint = true;
         } // default constructor
     } // class MosaicDescription
 } // namespace

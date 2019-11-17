@@ -18,7 +18,7 @@ namespace Etsi.Ts102034.v010501.XmlSerialization.BroadcastDiscovery
     [DebuggerStepThrough]
     [DesignerCategory("code")]
     [XmlType(Namespace = "urn:dvb:metadata:iptv:sdns:2012-1")]
-    public partial class MulticastRetransmission
+    public class MulticastRetransmission
     {
         [XmlAttribute]
         public string SourceAddress;
@@ -59,7 +59,7 @@ namespace Etsi.Ts102034.v010501.XmlSerialization.BroadcastDiscovery
 
         public MulticastRetransmission()
         {
-            this.RtcpMux = false;
+            RtcpMux = false;
         } // default constructor
     } // MulticastRetransmission
 } // namespace

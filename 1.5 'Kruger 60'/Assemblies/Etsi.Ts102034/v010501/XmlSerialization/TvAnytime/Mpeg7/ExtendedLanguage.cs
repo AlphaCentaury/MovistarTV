@@ -20,7 +20,7 @@ namespace Etsi.Ts102034.v010501.XmlSerialization.TvAnytime.Mpeg7
     [DesignerCategory("code")]
     [XmlType("ExtendedLanguageType", Namespace = "urn:tva:mpeg7:2008")]
     [XmlInclude(typeof(AudioLanguage))]
-    public partial class ExtendedLanguage
+    public class ExtendedLanguage
     {
 
         [XmlAttribute("type")]
@@ -36,8 +36,8 @@ namespace Etsi.Ts102034.v010501.XmlSerialization.TvAnytime.Mpeg7
 
         public ExtendedLanguage()
         {
-            this.Kind = ExtendedLanguageKind.Original;
-            this.Supplemental = false;
+            Kind = ExtendedLanguageKind.Original;
+            Supplemental = false;
         } // default constructor
     } // class ExtendedLanguage
 } // namespace

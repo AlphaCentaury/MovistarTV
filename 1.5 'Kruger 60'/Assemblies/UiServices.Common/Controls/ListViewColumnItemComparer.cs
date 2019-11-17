@@ -12,8 +12,8 @@ namespace IpTviewr.UiServices.Common.Controls
 {
     public class ListViewColumnItemComparer : IComparer
     {
-        private int _columnIndex;
-        private int _resultSign;
+        private readonly int _columnIndex;
+        private readonly int _resultSign;
 
         public ListViewColumnItemComparer(int columnIndex, bool descending)
         {
@@ -23,15 +23,12 @@ namespace IpTviewr.UiServices.Common.Controls
 
         public int Compare(object x, object y)
         {
-            ListViewItem item1, item2;
-            int compare;
+            var item1 = x as ListViewItem;
+            var item2 = y as ListViewItem;
 
-            item1 = x as ListViewItem;
-            item2 = y as ListViewItem;
+            if (Equals(item1, item2)) return 0;
 
-            if (object.Equals(item1, item2)) return 0;
-
-            compare = _resultSign * string.Compare(GetSafeText(item1, _columnIndex), GetSafeText(item2, _columnIndex));
+            var compare = _resultSign * string.Compare(GetSafeText(item1, _columnIndex), GetSafeText(item2, _columnIndex));
             if ((compare == 0) && (_columnIndex > 0))
             {
                 compare = string.Compare(item1.SubItems[0].Text, item2.SubItems[0].Text);

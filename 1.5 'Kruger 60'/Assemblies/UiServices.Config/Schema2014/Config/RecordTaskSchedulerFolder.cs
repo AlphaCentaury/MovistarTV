@@ -16,7 +16,6 @@ namespace IpTviewr.UiServices.Configuration.Schema2014.Config
     public class RecordTaskSchedulerFolder : StringPair
     {
         public RecordTaskSchedulerFolder()
-            : base()
         {
             // no op
         } // constructor

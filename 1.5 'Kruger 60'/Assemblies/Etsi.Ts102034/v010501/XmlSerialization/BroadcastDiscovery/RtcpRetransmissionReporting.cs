@@ -18,7 +18,7 @@ namespace Etsi.Ts102034.v010501.XmlSerialization.BroadcastDiscovery
     [DebuggerStepThrough]
     [DesignerCategory("code")]
     [XmlType("RtcpRetransmissionReporting", Namespace = "urn:dvb:metadata:iptv:sdns:2012-1")]
-    public partial class RtcpRetransmissionReporting
+    public class RtcpRetransmissionReporting
     {
         [XmlAttribute]
         public string DestinationAddress;
@@ -72,11 +72,11 @@ namespace Etsi.Ts102034.v010501.XmlSerialization.BroadcastDiscovery
 
         public RtcpRetransmissionReporting()
         {
-            this.DvbDisableTtcpRr = false;
-            this.DvbEnableByte = false;
-            this.DvbTWaitMin = ((uint)(0));
-            this.DvbTWaitMax = ((uint)(0));
-            this.DvbSsrcBitmask = "ffffffff";
+            DvbDisableTtcpRr = false;
+            DvbEnableByte = false;
+            DvbTWaitMin = 0;
+            DvbTWaitMax = 0;
+            DvbSsrcBitmask = "ffffffff";
         } // default constructor
     } // class RtcpRetransmissionReporting
 } // namespace

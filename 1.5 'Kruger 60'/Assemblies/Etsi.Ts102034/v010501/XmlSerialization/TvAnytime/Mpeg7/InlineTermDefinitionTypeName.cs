@@ -18,7 +18,7 @@ namespace Etsi.Ts102034.v010501.XmlSerialization.TvAnytime.Mpeg7
     [DebuggerStepThrough]
     [DesignerCategory("code")]
     [XmlType(AnonymousType = true, Namespace = "urn:tva:mpeg7:2008")]
-    public partial class InlineTermDefinitionTypeName : TextualData
+    public class InlineTermDefinitionTypeName : TextualData
     {
         [XmlAttribute("preferred")]
         public bool Preferred;

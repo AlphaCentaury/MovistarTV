@@ -25,7 +25,7 @@ namespace IpTviewr.DvbStp.Client
             } // Header
         } // class StorageHeaderEventArgs
 
-        public class SegmentStartedEventArgs : PayloadStorage.StorageHeaderEventArgs
+        public class SegmentStartedEventArgs : StorageHeaderEventArgs
         {
             public SegmentStartedEventArgs(DvbStpHeader header)
                 : base(header)
@@ -33,7 +33,7 @@ namespace IpTviewr.DvbStp.Client
             } // constructor
         } // class SegmentStartedEventArgs
 
-        public class SectionReceivedEventArgs : PayloadStorage.StorageHeaderEventArgs
+        public class SectionReceivedEventArgs : StorageHeaderEventArgs
         {
             public SectionReceivedEventArgs(DvbStpHeader header, SegmentAssembler assembler)
                 : base(header)

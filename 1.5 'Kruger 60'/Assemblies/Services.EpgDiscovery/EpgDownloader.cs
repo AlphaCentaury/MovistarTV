@@ -69,7 +69,7 @@ namespace IpTviewr.Services.EpgDiscovery
             Token = token;
             DataStore = datastore;
 
-            return Task.Run((Action)Download, token);
+            return Task.Run(Download, token);
         } // StartAsync
 
         private void Download()
@@ -88,10 +88,12 @@ namespace IpTviewr.Services.EpgDiscovery
                 while (retryTime <= maxRetryTime)
                 {
                     // initialize DVB-STP client
-                    _streamClient = new DvbStpStreamClient(MulticastIpAddress, MulticastPort, Token);
-                    _streamClient.NoDataTimeout = -1; // not implemented by DvbStpStreamClient
-                    _streamClient.ReceiveDatagramTimeout = 60 * 1000; // 60 seconds
-                    _streamClient.OperationTimeout = -1; // forever
+                    _streamClient = new DvbStpStreamClient(MulticastIpAddress, MulticastPort, Token)
+                    {
+                        NoDataTimeout = -1, // not implemented by DvbStpStreamClient
+                        ReceiveDatagramTimeout = 60 * 1000, // 60 seconds
+                        OperationTimeout = -1 // forever
+                    };
                     _streamClient.SegmentPayloadReceived += SegmentPayloadReceived;
 
                     var retry = false;

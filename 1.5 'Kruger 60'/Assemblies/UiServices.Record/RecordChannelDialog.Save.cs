@@ -77,7 +77,7 @@ namespace IpTviewr.UiServices.Record
         {
             _currentSelectedLocationIndex = (listViewLocations.SelectedIndices.Count > 0) ? listViewLocations.SelectedIndices[0] : -1;
 
-            for (int index = 0; index < listViewLocations.Items.Count; index++)
+            for (var index = 0; index < listViewLocations.Items.Count; index++)
             {
                 var item = listViewLocations.Items[index];
                 if (item.Index == _currentSelectedLocationIndex)
@@ -111,7 +111,7 @@ namespace IpTviewr.UiServices.Record
                 selectFolder.SelectedPath = listViewLocations.SelectedItems[0].SubItems[1].Text;
             } // if-else
 
-            if (selectFolder.ShowDialog(this) != System.Windows.Forms.DialogResult.OK) return;
+            if (selectFolder.ShowDialog(this) != DialogResult.OK) return;
 
             SelectAppendSaveLocation(selectFolder.SelectedPath);
         } // buttonSelectFolder_Click
@@ -127,7 +127,7 @@ namespace IpTviewr.UiServices.Record
             listViewLocations.Items.Clear();
 
             _currentSelectedLocationIndex = (locations.Count == 0) ? -1 : 0;
-            for (int index = 0; index < locations.Count; index++)
+            for (var index = 0; index < locations.Count; index++)
             {
                 var name = locations[index].Name;
                 if (string.IsNullOrEmpty(name)) name = Properties.RecordChannel.SaveDefaultLocation;
@@ -139,7 +139,7 @@ namespace IpTviewr.UiServices.Record
                 if (string.IsNullOrEmpty(locations[index].Name)) defaultItem = item;
             } // for
 
-            int sortColumn = (listViewLocations.CurrentSortColumn < 0) ? 0 : listViewLocations.CurrentSortColumn;
+            var sortColumn = (listViewLocations.CurrentSortColumn < 0) ? 0 : listViewLocations.CurrentSortColumn;
             listViewLocations.Sort(sortColumn, !listViewLocations.CurrentSortIsDescending);
             listViewLocations.EndUpdate();
 

@@ -64,7 +64,7 @@ namespace IpTviewr.Tools.FirstTimeConfig
             UpdateWizardButtons();
             PreviousButton.Click += PreviousButton_Click;
             NextButton.Click += NextButton_Click;
-            this.Selected += WizardTabControl_Selected;
+            Selected += WizardTabControl_Selected;
         } // OnCreateControl
 
         protected override void WndProc(ref Message m)
@@ -110,7 +110,7 @@ namespace IpTviewr.Tools.FirstTimeConfig
                 {
                     Initialization.Remove(e.TabPage.Name);
                     init();
-                    BasicGoogleTelemetry.SendScreenHit(this.FindForm(), e.TabPage.Text);
+                    BasicGoogleTelemetry.SendScreenHit(FindForm(), e.TabPage.Text);
                 } // if
             } // if
         } // OnSelecting
@@ -125,12 +125,12 @@ namespace IpTviewr.Tools.FirstTimeConfig
 
         private void PreviousButton_Click(object sender, EventArgs e)
         {
-            this.SelectedIndex = this.SelectedIndex - 1;
+            SelectedIndex = SelectedIndex - 1;
         } // PreviousButton_Click
 
         private void NextButton_Click(object sender, EventArgs e)
         {
-            this.SelectedIndex = this.SelectedIndex + 1;
+            SelectedIndex = SelectedIndex + 1;
         } // NextButton_Click
 
         public void UpdateWizardButtons()
@@ -138,17 +138,17 @@ namespace IpTviewr.Tools.FirstTimeConfig
             bool isAllowed;
 
             isAllowed = false;
-            if (this.SelectedIndex > 0)
+            if (SelectedIndex > 0)
             {
-                var page = TabPages[this.SelectedIndex - 1];
+                var page = TabPages[SelectedIndex - 1];
                 isAllowed = (IsPageAllowed.TryGetValue(page.Name, out isAllowed)) ? isAllowed : false;
             } // if
             PreviousButton.Enabled = isAllowed;
 
             isAllowed = false;
-            if ((this.SelectedIndex + 1) < this.TabCount)
+            if ((SelectedIndex + 1) < TabCount)
             {
-                var page = TabPages[this.SelectedIndex + 1];
+                var page = TabPages[SelectedIndex + 1];
                 isAllowed = (IsPageAllowed.TryGetValue(page.Name, out isAllowed)) ? isAllowed : false;
             } // if
 

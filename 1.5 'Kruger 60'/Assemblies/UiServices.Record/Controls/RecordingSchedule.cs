@@ -19,8 +19,8 @@ namespace IpTviewr.UiServices.Record.Controls
         private int _manualUpdate;
 
         private IRecordingScheduleFragment _currentFragment;
-        private IRecordingScheduleFragment[] _scheduleFragments;
-        private RadioButton[] _radioButtons;
+        private readonly IRecordingScheduleFragment[] _scheduleFragments;
+        private readonly RadioButton[] _radioButtons;
         private DateTime _originalDateTime;
 
         public event EventHandler<KindChangedEventArgs> ScheduleKindChanged;
@@ -109,7 +109,7 @@ namespace IpTviewr.UiServices.Record.Controls
             _manualUpdate++;
 
             panelPlaceholder.Visible = false;
-            for(int index=0; index<_scheduleFragments.Length; index++)
+            for(var index=0; index<_scheduleFragments.Length; index++)
             {
                 var control = _scheduleFragments[index];
                 control.UserControl.Location = panelPlaceholder.Location;
@@ -173,8 +173,8 @@ namespace IpTviewr.UiServices.Record.Controls
             {
                 e.Cancel = true;
                 MessageBox.Show(Parent, ControlTexts.RecordingInvalidStartDateTime, ControlTexts.RecordingScheduleValidationCaption, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                this.Parent.Focus();
-                this.Focus();
+                Parent.Focus();
+                Focus();
             } // if
         } // dateTimeStartDate_Validating
 

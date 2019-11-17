@@ -23,8 +23,8 @@ namespace IpTviewr.UiServices.Configuration
 
         public StringPair(string item1, string item2)
         {
-            this._item1 = item1;
-            this._item2 = item2;
+            _item1 = item1;
+            _item2 = item2;
         } // constructor
 
         [XmlIgnore]
@@ -75,8 +75,8 @@ namespace IpTviewr.UiServices.Configuration
 
         public void SetPair(string item1, string item2)
         {
-            this._item1 = item1;
-            this._item2 = item2;
+            _item1 = item1;
+            _item2 = item2;
             CalcHashCode();
         } // SetPair
 
@@ -92,14 +92,14 @@ namespace IpTviewr.UiServices.Configuration
 
         public override string ToString()
         {
-            return string.Format("<{0}, {1}>", Item1, Item2);
+            return $"<{Item1}, {Item2}>";
         } // ToString
 
         public override bool Equals(object obj)
         {
             var pair = obj as StringPair;
 
-            if (object.ReferenceEquals(this, obj)) return true;
+            if (ReferenceEquals(this, obj)) return true;
             if (pair == null) return false;
 
             return ((pair.Item1 == Item1) && (pair.Item2 == Item2));

@@ -63,7 +63,7 @@ namespace IpTviewr.UiServices.DvbStpClient
         {
             if (Request == null) throw new ArgumentNullException();
 
-            TelemetryScreenName = string.Format("{0}: {1}:{2} 0x{3:X2}", this.GetType().Name, Request.MulticastAddress, Request.MulticastPort, Request.PayloadId);
+            TelemetryScreenName = $"{GetType().Name}: {Request.MulticastAddress}:{Request.MulticastPort} 0x{Request.PayloadId:X2}";
 
             if (!string.IsNullOrEmpty(Request.Description))
             {
@@ -128,9 +128,11 @@ namespace IpTviewr.UiServices.DvbStpClient
             DisplayEllapsedTime();
 
             _cancellationTokenSource = new CancellationTokenSource();
-            _worker = new BackgroundWorker();
-            _worker.WorkerReportsProgress = true;
-            _worker.WorkerSupportsCancellation = true;
+            _worker = new BackgroundWorker
+            {
+                WorkerReportsProgress = true,
+                WorkerSupportsCancellation = true
+            };
             _worker.ProgressChanged += Worker_ProgressChanged;
             _worker.RunWorkerCompleted += Worker_RunWorkerCompleted;
             _worker.DoWork += Worker_DoWork;
@@ -261,7 +263,7 @@ namespace IpTviewr.UiServices.DvbStpClient
                 if ((Request.PayloadDataType != null) && (payload != null))
                 {
                     _worker.ReportProgress(int.MaxValue);
-                    Response.DeserializedPayloadData = UiDvbStpSimpleDownloadResponse.ParsePayload(Request.PayloadDataType, payload, Request.PayloadId, !Request.AllowXmlExtraWhitespace, Request.XmlNamespaceReplacer);
+                    Response.DeserializedPayloadData = UiDvbStpBaseDownloadResponse.ParsePayload(Request.PayloadDataType, payload, Request.PayloadId, !Request.AllowXmlExtraWhitespace, Request.XmlNamespaceReplacer);
                 } // if
             }
             finally
@@ -288,9 +290,10 @@ namespace IpTviewr.UiServices.DvbStpClient
 
         private DvbStpSimpleClient CreateDvbStpClient()
         {
-            var dvbStpClient = new DvbStpSimpleClient(Request.MulticastAddress, Request.MulticastPort, _cancellationTokenSource.Token);
-
-            dvbStpClient.ReceiveDatagramTimeout = Request.ReceiveDatagramTimeout;
+            var dvbStpClient = new DvbStpSimpleClient(Request.MulticastAddress, Request.MulticastPort, _cancellationTokenSource.Token)
+            {
+                ReceiveDatagramTimeout = Request.ReceiveDatagramTimeout
+            };
             dvbStpClient.ReceiveDatagramTimeout = Request.ReceiveDatagramTimeout;
             dvbStpClient.NoDataTimeout = Request.NoDataTimeout;
             dvbStpClient.SectionReceived += StpClient_SectionReceived;

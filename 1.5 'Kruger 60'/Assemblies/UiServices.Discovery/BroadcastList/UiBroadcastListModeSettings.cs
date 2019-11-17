@@ -18,8 +18,10 @@ namespace IpTviewr.UiServices.Discovery.BroadcastList
     {
         public static UiBroadcastListModeSettings GetDefaultSettings(View mode)
         {
-            var result = new UiBroadcastListModeSettings();
-            result.Sort = ServiceSortComparer.GetSuggestedSortColumns(UiBroadcastListColumn.Number, true, 3);
+            var result = new UiBroadcastListModeSettings
+            {
+                Sort = ServiceSortComparer.GetSuggestedSortColumns(UiBroadcastListColumn.Number, true, 3)
+            };
 
             switch (mode)
             {

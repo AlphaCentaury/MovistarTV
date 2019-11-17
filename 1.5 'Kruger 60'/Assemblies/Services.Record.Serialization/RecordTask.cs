@@ -12,7 +12,7 @@ using System.Xml.Serialization;
 namespace IpTviewr.Services.Record.Serialization
 {
     [Serializable]
-    [XmlRoot(ElementName = "RecordTask", Namespace = RecordTask.XmlNamespace)]
+    [XmlRoot(ElementName = "RecordTask", Namespace = XmlNamespace)]
     public class RecordTask
     {
         public const string XmlNamespace = "urn:AlphaCentaury:IpTViewr:2014:RecordTask";

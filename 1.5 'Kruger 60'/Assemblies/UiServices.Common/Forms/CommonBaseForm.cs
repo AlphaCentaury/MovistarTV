@@ -61,7 +61,7 @@ namespace IpTviewr.UiServices.Common.Forms
         /// </remarks>
         protected virtual void ExceptionHandler(CommonBaseForm form, ExceptionEventData ex)
         {
-            BasicGoogleTelemetry.SendExtendedExceptionHit(ex.Exception, true, ex.Message, this.GetType().Name);
+            BasicGoogleTelemetry.SendExtendedExceptionHit(ex.Exception, true, ex.Message, GetType().Name);
 
             var box = new ExceptionMessageBox()
             {

@@ -91,9 +91,9 @@ namespace IpTviewr.Common.Telemetry
                 bag.Add("t", "event");
                 bag.Add("ec", "Session");
                 bag.Add("ea", end? "End" : "Start");
-                bag.Add("sr", string.Format("{0}x{1}", Screen.PrimaryScreen.Bounds.Width, Screen.PrimaryScreen.Bounds.Height));
-                bag.Add("vp", string.Format("{0}x{1}", SystemInformation.WorkingArea.Width, SystemInformation.WorkingArea.Height));
-                bag.Add("sd", string.Format("{0}-bits", Screen.PrimaryScreen.BitsPerPixel));
+                bag.Add("sr", $"{Screen.PrimaryScreen.Bounds.Width}x{Screen.PrimaryScreen.Bounds.Height}");
+                bag.Add("vp", $"{SystemInformation.WorkingArea.Width}x{SystemInformation.WorkingArea.Height}");
+                bag.Add("sd", $"{Screen.PrimaryScreen.BitsPerPixel}-bits");
                 bag.Add("ni", "1"); // non-interactive
                 bag.Add("cd<1>", Environment.OSVersion.ToString());
                 Send(bag);
@@ -132,7 +132,7 @@ namespace IpTviewr.Common.Telemetry
                 }
                 else
                 {
-                    bag.Add("cd", string.Format("{0}: {1}", form.GetType().Name, status));
+                    bag.Add("cd", $"{form.GetType().Name}: {status}");
                 } // if-else
                 Send(bag);
             });
@@ -271,7 +271,7 @@ namespace IpTviewr.Common.Telemetry
             string osName;
 
             var osInfo = Environment.OSVersion;
-            var osVersion = string.Format("{0}.{1}.{2}", osInfo.Version.Major, osInfo.Version.Minor, osInfo.Version.Build);
+            var osVersion = $"{osInfo.Version.Major}.{osInfo.Version.Minor}.{osInfo.Version.Build}";
             switch (osInfo.Platform)
             {
                 case PlatformID.Win32NT: osName = "Windows NT"; break;
@@ -284,7 +284,7 @@ namespace IpTviewr.Common.Telemetry
                     osName = "Unknown"; break;
             } // switch
 
-            return string.Format("{0} ({1} {2})", "Mozilla/5.0", osName, osVersion);
+            return $"{"Mozilla/5.0"} ({osName} {osVersion})";
         } // BuildUserAgent
     } // internal class BasicGoogleTelemetry
 } // namespace

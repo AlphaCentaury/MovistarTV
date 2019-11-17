@@ -18,7 +18,7 @@ namespace Etsi.Ts102034.v010501.XmlSerialization.BroadcastDiscovery
     [DebuggerStepThrough]
     [DesignerCategory("code")]
     [XmlType("UnicastRetransmission", Namespace = "urn:dvb:metadata:iptv:sdns:2012-1")]
-    public partial class UnicastRetransmission
+    public class UnicastRetransmission
     {
         [XmlAttribute("trr-int")]
         public uint TrrInt;
@@ -75,7 +75,7 @@ namespace Etsi.Ts102034.v010501.XmlSerialization.BroadcastDiscovery
 
         public UnicastRetransmission()
         {
-            this.RtcpMux = false;
+            RtcpMux = false;
         } // default constructor
     } // class UnicastRetransmission
 } // namespace

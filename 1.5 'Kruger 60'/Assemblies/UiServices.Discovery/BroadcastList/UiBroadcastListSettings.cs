@@ -58,23 +58,26 @@ namespace IpTviewr.UiServices.Discovery.BroadcastList
 
         public static UiBroadcastListSettings GetDefaultSettings()
         {
-            var result = new UiBroadcastListSettings();
+            var result = new UiBroadcastListSettings
+            {
+                CurrentMode = View.Tile,
+                ShowGridlines = true,
+                ShowInactiveServices = true,
+                ShowOutOfPackage = true,
+                TilesPerRow = 4,
 
-            result.CurrentMode = View.Tile;
-            result.ShowGridlines = true;
-            result.ShowInactiveServices = true;
-            result.ShowOutOfPackage = true;
-            result.TilesPerRow = 4;
+                ViewSettings = new ModeViewSettings
+                {
+                    Details = UiBroadcastListModeSettings.GetDefaultSettings(View.Details),
+                    LargeIcon = UiBroadcastListModeSettings.GetDefaultSettings(View.LargeIcon),
+                    SmallIcon = UiBroadcastListModeSettings.GetDefaultSettings(View.SmallIcon),
+                    List = UiBroadcastListModeSettings.GetDefaultSettings(View.List),
+                    Tile = UiBroadcastListModeSettings.GetDefaultSettings(View.Tile)
+                },
 
-            result.ViewSettings = new ModeViewSettings();
-            result.ViewSettings.Details = UiBroadcastListModeSettings.GetDefaultSettings(View.Details);
-            result.ViewSettings.LargeIcon = UiBroadcastListModeSettings.GetDefaultSettings(View.LargeIcon);
-            result.ViewSettings.SmallIcon = UiBroadcastListModeSettings.GetDefaultSettings(View.SmallIcon);
-            result.ViewSettings.List = UiBroadcastListModeSettings.GetDefaultSettings(View.List);
-            result.ViewSettings.Tile = UiBroadcastListModeSettings.GetDefaultSettings(View.Tile);
-
-            result.GlobalSortColumns = ServiceSortComparer.GetSuggestedSortColumns(UiBroadcastListColumn.Number, true, 3);
-            result.UseGlobalSortColumns = false;
+                GlobalSortColumns = ServiceSortComparer.GetSuggestedSortColumns(UiBroadcastListColumn.Number, true, 3),
+                UseGlobalSortColumns = false
+            };
 
             // force creation of ColumnWidth field
             _ = result.ColumnWidth[0];

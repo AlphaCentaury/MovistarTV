@@ -14,9 +14,9 @@ namespace IpTviewr.Tools.FirstTimeConfig
     internal class WindowsFirewall : IDisposable
     {
         private bool _disposed;
-        private INetFwPolicy2 _firewallPolicy;
-        private Type _netFwRuleType;
-        private bool _supportsIFwRule2;
+        private readonly INetFwPolicy2 _firewallPolicy;
+        private readonly Type _netFwRuleType;
+        private readonly bool _supportsIFwRule2;
 
         public WindowsFirewall()
         {

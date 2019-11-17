@@ -25,7 +25,7 @@ namespace Etsi.Ts102034.v010501.XmlSerialization.TvAnytime.Mpeg7
     //[XmlInclude(typeof(SynopsisType))]
     //[XmlInclude(typeof(KeywordType))]
     [XmlInclude(typeof(TermName))]
-    public partial class TextualData : TextualBase
+    public class TextualData : TextualBase
     {
         // no new elements or attributes
     } // class TextualData

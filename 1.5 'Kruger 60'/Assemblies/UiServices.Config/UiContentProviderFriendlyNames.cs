@@ -24,9 +24,10 @@ namespace IpTviewr.UiServices.Configuration
             if (friendlyNames == null) throw new ArgumentNullException();
             if (uiCultures == null) throw new ArgumentNullException();
 
-            var result = new UiContentProviderFriendlyNames();
-
-            result.ServiceProvider = FromSpFriendlyNames(friendlyNames.Providers, uiCultures);
+            var result = new UiContentProviderFriendlyNames
+            {
+                ServiceProvider = FromSpFriendlyNames(friendlyNames.Providers, uiCultures)
+            };
 
             return result;
         } // FromXmlConfiguration

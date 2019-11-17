@@ -43,7 +43,7 @@ namespace IpTviewr.UiServices.EPG
         public EpgBasicGridDialog()
         {
             InitializeComponent();
-            this.Icon = Properties.Resources.Epg;
+            Icon = Properties.Resources.Epg;
         } // constructor
 
         #region Event handlers
@@ -137,7 +137,7 @@ namespace IpTviewr.UiServices.EPG
                 } // if
             } // foreach
 
-            for (int index = 0; index < _epgPrograms.Length; index++)
+            for (var index = 0; index < _epgPrograms.Length; index++)
             {
                 int cellIndex;
                 var row = dataGridPrograms.Rows[index];
@@ -242,10 +242,10 @@ namespace IpTviewr.UiServices.EPG
             } // if
 
             var epgPrograms = _epgPrograms[rowIndex];
-            var singleServiceDatastore = new EpgSingleServiceDatastore(_selectedService.FullServiceName, _epgPrograms[_selectedRowIndex]);
+            var singleServiceDataStore = new EpgSingleServiceDataStore(_selectedService.FullServiceName, epgPrograms);
 
             epgMiniGuide.LoadEpgPrograms(_selectedService, _localReferenceTime, false);
-            epgMiniGuide.SetEpgDataStore(singleServiceDatastore, false);
+            epgMiniGuide.SetEpgDataStore(singleServiceDataStore, false);
             epgMiniGuide.Visible = true;
         } // ChangeSelectedRow
     } // class EpgBasicGridDialog

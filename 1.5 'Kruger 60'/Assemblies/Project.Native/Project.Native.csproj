@@ -55,6 +55,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Texts.resx</DependentUpon>
     </Compile>
+    <Compile Include="WindowsBitness.cs" />
     <Compile Include="WindowsIcon.cs" />
     <Compile Include="WindowsIcon.Structs.cs" />
   </ItemGroup>

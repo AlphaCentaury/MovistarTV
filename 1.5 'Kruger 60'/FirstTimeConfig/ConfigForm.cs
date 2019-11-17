@@ -23,7 +23,7 @@ namespace IpTviewr.Tools.FirstTimeConfig
         public ConfigForm()
         {
             InitializeComponent();
-            this.Icon = Properties.Resources.FirstTimeConfigIcon;
+            Icon = Resources.FirstTimeConfigIcon;
             wizardControl.LabelTitle = labelStepTitle;
             wizardControl.PreviousButton = buttonPreviousPage;
             wizardControl.NextButton = buttonNextPage;
@@ -34,9 +34,9 @@ namespace IpTviewr.Tools.FirstTimeConfig
         {
             BasicGoogleTelemetry.SendScreenHit(this);
 
-            selectFolder.Description = Properties.Texts.SelectFolderSaveDescription;
-            openFile.Title = Properties.Texts.OpenFileVlcTitle;
-            openFile.Filter = Properties.Texts.OpenFileVlcFilter;
+            selectFolder.Description = Texts.SelectFolderSaveDescription;
+            openFile.Title = Texts.OpenFileVlcTitle;
+            openFile.Filter = Texts.OpenFileVlcFilter;
 
             try
             {
@@ -88,7 +88,7 @@ namespace IpTviewr.Tools.FirstTimeConfig
 
         private bool ConfirmUserCancel()
         {
-            if (MessageBox.Show(this, Texts.ConfirmUserCancel, this.Text, MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes) return false;
+            if (MessageBox.Show(this, Texts.ConfirmUserCancel, Text, MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes) return false;
             EndWizard(DialogResult.Cancel, null, null);
 
             return true;
@@ -165,7 +165,7 @@ namespace IpTviewr.Tools.FirstTimeConfig
             var installed = Installation.IsEmbInstalled(out message);
             if (withUi)
             {
-                MessageBox.Show(this, message, this.Text, MessageBoxButtons.OK,
+                MessageBox.Show(this, message, Text, MessageBoxButtons.OK,
                     installed ? MessageBoxIcon.Information : MessageBoxIcon.Warning);
             } // if
             if (!installed) return;
@@ -190,7 +190,7 @@ namespace IpTviewr.Tools.FirstTimeConfig
             var installed = Installation.IsSqlCeInstalled(out message);
             if (withUi)
             {
-                MessageBox.Show(this, message, this.Text, MessageBoxButtons.OK,
+                MessageBox.Show(this, message, Text, MessageBoxButtons.OK,
                     installed ? MessageBoxIcon.Information : MessageBoxIcon.Warning);
             } // if
             if (!installed) return;
@@ -222,7 +222,7 @@ namespace IpTviewr.Tools.FirstTimeConfig
             if (withUi)
             {
                 labelVlcInstallCheckResult.Text = null;
-                MessageBox.Show(this, message, this.Text, MessageBoxButtons.OK,
+                MessageBox.Show(this, message, Text, MessageBoxButtons.OK,
                     installed ? MessageBoxIcon.Information : MessageBoxIcon.Warning);
             }
             else
@@ -252,7 +252,7 @@ namespace IpTviewr.Tools.FirstTimeConfig
 
         private void linkLabelPrerequisiteNet_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Installation.OpenUrl(this, Properties.Texts.DownloadUrlNet);
+            Installation.OpenUrl(this, Texts.DownloadUrlNet);
         } // linkLabelPrerequisiteNet_LinkClicked
 
         private void linkLabelSetupEmb_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -280,7 +280,7 @@ namespace IpTviewr.Tools.FirstTimeConfig
         private void linkLabelPrerequisiteEmb_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Installation.PromptDownloadFromVendor(this, "Microsoft", Texts.DownloadEmbFile, Texts.DownloadEmbFile32bit);
-            Installation.OpenUrl(this, Properties.Texts.DownloadUrlEmb);
+            Installation.OpenUrl(this, Texts.DownloadUrlEmb);
         } // linkLabelPrerequisiteEmb_LinkClicked
 
         private void linkLabelSetupSqlCe_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -308,12 +308,12 @@ namespace IpTviewr.Tools.FirstTimeConfig
         private void linkLabelPrerequisiteSqlCe_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Installation.PromptDownloadFromVendor(this, "Microsoft", Texts.DownloadSqlCeFile, Texts.DownloadSqlCeFile32bit);
-            Installation.OpenUrl(this, Properties.Texts.DownloadUrlSqlCe);
+            Installation.OpenUrl(this, Texts.DownloadUrlSqlCe);
         } // linkLabelPrerequisiteSqlCe_LinkClicked
 
         private void linkLabelPrerequisiteVlc_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Installation.OpenUrl(this, Properties.Texts.DownloadUrlVlc);
+            Installation.OpenUrl(this, Texts.DownloadUrlVlc);
         } // linkLabelPrerequisiteVlc_LinkClicked
 
         private void buttonVerifyNet_Click(object sender, EventArgs e)
@@ -359,7 +359,7 @@ namespace IpTviewr.Tools.FirstTimeConfig
 
             var testMedia = Installation.GetTestMedia();
             var installed = Installation.TestVlcInstallation(out message, textBoxVlc.Text, testMedia);
-            MessageBox.Show(this, message, this.Text, MessageBoxButtons.OK,
+            MessageBox.Show(this, message, Text, MessageBoxButtons.OK,
                 installed ? MessageBoxIcon.Information : MessageBoxIcon.Warning);
 
             if (!installed) return;
@@ -394,7 +394,7 @@ namespace IpTviewr.Tools.FirstTimeConfig
             if (result.Message == null) return;
             if (result.InnerException != null)
             {
-                MessageBox.Show(this, Texts.FirewallException + "\r\n" + result.InnerException.ToString(), this.Text,
+                MessageBox.Show(this, Texts.FirewallException + "\r\n" + result.InnerException.ToString(), Text,
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else if (result.IsOk)
@@ -410,7 +410,7 @@ namespace IpTviewr.Tools.FirstTimeConfig
             }
             else
             {
-                MessageBox.Show(this, result.Message, this.Text, MessageBoxButtons.OK, result.IsOk ? MessageBoxIcon.Information : MessageBoxIcon.Warning);
+                MessageBox.Show(this, result.Message, Text, MessageBoxButtons.OK, result.IsOk ? MessageBoxIcon.Information : MessageBoxIcon.Warning);
             } // if-else
         } // buttonFirewall_Click
 
@@ -447,7 +447,7 @@ namespace IpTviewr.Tools.FirstTimeConfig
 
         private void linkAnalyticsHelp_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            HelpDialog.ShowRtfHelp(this, Properties.Texts.GoogleTelemetry, Properties.Texts.TelemetryHelpCaption);
+            HelpDialog.ShowRtfHelp(this, Texts.GoogleTelemetry, Texts.TelemetryHelpCaption);
         } // linkAnalyticsHelp_LinkClicked
 
 #endregion
@@ -506,7 +506,7 @@ namespace IpTviewr.Tools.FirstTimeConfig
 
             if (File.Exists(xmlConfigPath))
             {
-                if (MessageBox.Show(this, Properties.Texts.OverwriteXmlConfigFile, this.Text,
+                if (MessageBox.Show(this, Texts.OverwriteXmlConfigFile, Text,
                     MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) != DialogResult.Yes)
                 {
                     return;

@@ -14,7 +14,7 @@ namespace IpTviewr.DvbStp.Client
 {
     public partial class DvbStpDownloadClient
     {
-        private DvbStpDownloadClientSettings _settings;
+        private readonly DvbStpDownloadClientSettings _settings;
         private SegmentDataProcessor _processor;
         private Task _downloadTask;
 
@@ -115,10 +115,12 @@ namespace IpTviewr.DvbStp.Client
         private DvbStpStreamClient CreateStreamClient()
         {
             // initialize DVB-STP client
-            var streamClient = new DvbStpStreamClient(_settings.EndPoint.Address, _settings.EndPoint.Port, _settings.CancellationToken);
-            streamClient.NoDataTimeout = -1; // not implemented by DvbStpStreamClient
-            streamClient.ReceiveDatagramTimeout = (int)Math.Floor(_settings.ReceiveDatagramTimeout.TotalMilliseconds);
-            streamClient.OperationTimeout = -1; // forever
+            var streamClient = new DvbStpStreamClient(_settings.EndPoint.Address, _settings.EndPoint.Port, _settings.CancellationToken)
+            {
+                NoDataTimeout = -1, // not implemented by DvbStpStreamClient
+                ReceiveDatagramTimeout = (int)Math.Floor(_settings.ReceiveDatagramTimeout.TotalMilliseconds),
+                OperationTimeout = -1 // forever
+            };
             streamClient.SegmentPayloadReceived += SegmentPayloadReceived;
 
             return streamClient;

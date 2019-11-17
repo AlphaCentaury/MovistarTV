@@ -19,7 +19,7 @@ namespace Etsi.Ts102034.v010501.XmlSerialization.BroadcastDiscovery
     [DebuggerStepThrough]
     [DesignerCategory("code")]
     [XmlType(TypeName="IPServiceList", Namespace = "urn:dvb:metadata:iptv:sdns:2012-1")]
-    public partial class IpServiceList
+    public class IpServiceList
     {
         [XmlElement("ServicesDescriptionLocation")]
         public DescriptionLocation[] ServicesDescriptionLocation;

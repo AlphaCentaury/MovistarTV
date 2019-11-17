@@ -18,7 +18,7 @@ namespace IpTviewr.DvbStp.Client
         // byte 0
         public const byte Version = 0xC0; // 1100 0000
         public const byte Reserved = 0x38; // 0011 1000
-        public const byte Encription = 0x06; // 0000 0110
+        public const byte Encryption = 0x06; // 0000 0110
         public const byte HasCrc = 0x01; // 0000 0001
 
         // byte 8-9

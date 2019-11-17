@@ -19,7 +19,7 @@ namespace Etsi.Ts102034.v010501.XmlSerialization.TvAnytime.Metadata
     [DebuggerStepThrough]
     [DesignerCategory("code")]
     [XmlType("AudioLanguageType", Namespace = "urn:tva:metadata:2011")]
-    public partial class AudioLanguage : ExtendedLanguage
+    public class AudioLanguage : ExtendedLanguage
     {
         [XmlAttribute("purpose")]
         public string Purpose;

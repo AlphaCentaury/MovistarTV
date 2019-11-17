@@ -18,7 +18,7 @@ namespace Etsi.Ts102034.v010501.XmlSerialization.Common
     [DebuggerStepThrough]
     [DesignerCategory("code")]
     [XmlType(Namespace = "urn:dvb:metadata:iptv:sdns:2012-1")]
-    public partial class HttpTransportMode : PayloadList
+    public class HttpTransportMode : PayloadList
     {
         [XmlAttribute(DataType = "anyURI")]
         public string Location;
@@ -29,7 +29,7 @@ namespace Etsi.Ts102034.v010501.XmlSerialization.Common
 
         public HttpTransportMode()
         {
-            this.Soap = "false";
+            Soap = "false";
         } // default constructor
     } // class HttpTransportMode
 } // namespace

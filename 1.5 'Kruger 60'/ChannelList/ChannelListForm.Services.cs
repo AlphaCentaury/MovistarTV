@@ -109,7 +109,7 @@ namespace IpTviewr.ChannelList
                     break;
                 case MulticastScannerOptionsDialog.ScanWhatList.DeadServices:
                     whatList = from service in _broadcastDiscovery.Services
-                               where service.IsInactive == true
+                               where service.IsInactive
                                select service;
                     break;
                 default:
@@ -154,7 +154,7 @@ namespace IpTviewr.ChannelList
             // Refresh list if needed
             if (e.IsListRefreshNeeded)
             {
-                MessageBox.Show(this, Properties.Texts.MulticastScannerScanCompleteRefresh, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(this, Texts.MulticastScannerScanCompleteRefresh, Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 _listManager.Refesh();
             } // if
         } // MulticastScanner_ScanCompleted
@@ -165,10 +165,10 @@ namespace IpTviewr.ChannelList
 
             using (var dlg = new PropertiesDialog()
             {
-                Caption = Properties.Texts.BroadcastServiceProperties,
+                Caption = Texts.BroadcastServiceProperties,
                 ItemProperties = _listManager.SelectedService.DumpProperties(),
-                Description = string.Format("{0}\r\n{1}", _listManager.SelectedService.DisplayLogicalNumber, _listManager.SelectedService.DisplayName),
-                ItemIcon = _listManager.SelectedService.Logo.GetImage(LogoSize.Size64, true),
+                Description = $"{_listManager.SelectedService.DisplayLogicalNumber}\r\n{_listManager.SelectedService.DisplayName}",
+                ItemIcon = _listManager.SelectedService.Logo.GetImage(LogoSize.Size64),
             })
             {
                 dlg.ShowDialog(this);
@@ -190,7 +190,7 @@ namespace IpTviewr.ChannelList
 
             if (isActive)
             {
-                MessageBox.Show(this, Properties.Texts.ChannelFormActiveScan, Properties.Texts.ChannelFormActiveScanCaption, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(this, Texts.ChannelFormActiveScan, Texts.ChannelFormActiveScanCaption, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 _multicastScanner.Activate();
 
                 return true;
@@ -206,7 +206,7 @@ namespace IpTviewr.ChannelList
             {
                 if (e.CachedDiscovery == null)
                 {
-                    Notify(Properties.Resources.Error_24x24, Properties.Texts.ChannelListNoCache, 60000);
+                    Notify(Resources.Error_24x24, Texts.ChannelListNoCache, 60000);
                 }
                 else
                 {
@@ -237,7 +237,7 @@ namespace IpTviewr.ChannelList
                 var stp = q.FirstOrDefault();
                 if (stp == null) return true;
 
-                _epgDataStore = new EpgMemoryDatastore();
+                _epgDataStore = new EpgMemoryDataStore();
                 _tokenSource = new CancellationTokenSource();
                 var epgDownloader = new EpgDownloader(stp.Address, stp.Port.ToString());
                 epgDownloader.FatalError += (sender, args)
@@ -266,7 +266,7 @@ namespace IpTviewr.ChannelList
 
             if (_broadcastDiscovery.Services.Count <= 0)
             {
-                Notify(Properties.Resources.Info_24x24, Properties.Texts.ChannelListCacheEmpty, 30000);
+                Notify(Resources.Info_24x24, Texts.ChannelListCacheEmpty, 30000);
             } // if
 
             return true;
@@ -295,11 +295,11 @@ namespace IpTviewr.ChannelList
         {
             if (daysAge > ListObsoleteAge)
             {
-                Notify(Properties.Resources.HighPriority_24x24, string.Format(Properties.Texts.ChannelListAgeObsolete, ListObsoleteAge), 0);
+                Notify(Resources.HighPriority_24x24, string.Format(Texts.ChannelListAgeObsolete, ListObsoleteAge), 0);
             }
             else if (daysAge >= ListOldAge)
             {
-                Notify(Properties.Resources.Warning_24x24, string.Format(Properties.Texts.ChannelListAgeOld, daysAge), 90000);
+                Notify(Resources.Warning_24x24, string.Format(Texts.ChannelListAgeOld, daysAge), 90000);
             }
             else
             {

@@ -19,7 +19,7 @@ namespace Etsi.Ts102034.v010501.XmlSerialization.PackageDiscovery
     [DebuggerStepThrough]
     [DesignerCategory("code")]
     [XmlType(Namespace = "urn:dvb:metadata:iptv:sdns:2012-1")]
-    public partial class PackagedServices : OfferingBase
+    public class PackagedServices : OfferingBase
     {
         [XmlElement("Package")]
         public Package[] Packages;

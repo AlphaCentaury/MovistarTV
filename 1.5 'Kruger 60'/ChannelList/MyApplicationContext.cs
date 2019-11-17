@@ -25,7 +25,7 @@ namespace IpTviewr.ChannelList
 
         #region SplashApplicationContext implementation
 
-        protected override System.Drawing.Image SetupSplashScreen(System.Windows.Forms.Label progressLabel)
+        protected override System.Drawing.Image SetupSplashScreen(Label progressLabel)
         {
             progressLabel.Location = new System.Drawing.Point(40, 320);
             progressLabel.Size = new System.Drawing.Size(320, 50);

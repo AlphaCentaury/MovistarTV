@@ -16,7 +16,7 @@ namespace IpTviewr.Tools.FirstTimeConfig
         public FirewallForm()
         {
             InitializeComponent();
-            this.Icon = Resources.FirewallIcon;
+            Icon = Resources.FirewallIcon;
 
             checkBoxFirewallDecoder.Enabled = !string.IsNullOrEmpty(Program.FirewallBinPath);
             checkBoxFirewallDecoder.Checked = checkBoxFirewallDecoder.Enabled;
@@ -35,7 +35,7 @@ namespace IpTviewr.Tools.FirstTimeConfig
 
             if (message != null)
             {
-                MessageBox.Show(this, message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(this, message, Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             } // if
 

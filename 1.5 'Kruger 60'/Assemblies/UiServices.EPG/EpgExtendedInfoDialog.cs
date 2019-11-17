@@ -19,8 +19,8 @@ namespace IpTviewr.UiServices.EPG
 {
     public partial class EpgExtendedInfoDialog : Form
     {
-        private Encoding _ansi1252Encoding;
-        private DateTime _referenceTime;
+        private readonly Encoding _ansi1252Encoding;
+        // private DateTime _referenceTime;
 
         public static void ShowExtendedInfo(IWin32Window owner, UiBroadcastService service, EpgProgram epgProgram)
         {
@@ -41,7 +41,7 @@ namespace IpTviewr.UiServices.EPG
         public EpgExtendedInfoDialog()
         {
             InitializeComponent();
-            this.Icon = Properties.Resources.Epg;
+            Icon = Properties.Resources.Epg;
             _ansi1252Encoding = Encoding.GetEncoding(1252);
         } // constructor
 
@@ -56,7 +56,7 @@ namespace IpTviewr.UiServices.EPG
 
         private void EpgExtendedInfoDialog_Load(object sender, EventArgs e)
         {
-            _referenceTime = DateTime.Now;
+            // _referenceTime = DateTime.Now;
             buttonPrevious.Visible = false; //(NavigationCallback != null);
             buttonNext.Visible = false; // (NavigationCallback != null);
 
@@ -199,8 +199,8 @@ namespace IpTviewr.UiServices.EPG
             if (text == null) return null;
 
             // quick check
-            bool found = false;
-            for (int index = 0; index < text.Length; index++)
+            var found = false;
+            for (var index = 0; index < text.Length; index++)
             {
                 if (text[index] > 127) { found = true; break; }
             } // for
@@ -208,7 +208,7 @@ namespace IpTviewr.UiServices.EPG
             if (!found) return text;
 
             var buffer = new StringBuilder();
-            for (int index = 0; index < text.Length; index++)
+            for (var index = 0; index < text.Length; index++)
             {
                 var c = text[index];
                 if (c < 127)
@@ -229,8 +229,8 @@ namespace IpTviewr.UiServices.EPG
                 else
                 {
                     var ansiChar = _ansi1252Encoding.GetBytes(new[] { c })[0];
-                    var ansiCharRtf = (ansiChar <= 127) ? ansiChar.ToString() : string.Format("\\'{0:x0}", ansiChar);
-                    buffer.AppendFormat("\\u{0}{1}", (c <= 32767) ? (int)c : ((int)c) - 32768, ansiCharRtf);
+                    var ansiCharRtf = (ansiChar <= 127) ? ansiChar.ToString() : $"\\'{ansiChar:x0}";
+                    buffer.AppendFormat("\\u{0}{1}", (c <= 32767) ? (int)c : c - 32768, ansiCharRtf);
                 } // if-else
             } // for
 

@@ -12,7 +12,7 @@ namespace IpTviewr.DvbStp.Client
 {
     public partial class PayloadStorage
     {
-        private Dictionary<int, VersionStorage> _sections;
+        private readonly Dictionary<int, VersionStorage> _sections;
 
         internal static byte[] EmptyData = new byte[0];
 
@@ -36,7 +36,7 @@ namespace IpTviewr.DvbStp.Client
         public bool AddSection(DvbStpHeader header, byte[] data, bool isRawData)
         {
             var p = (int)header.PayloadId;
-            var s = (int)header.SegmentId;
+            var s = header.SegmentId;
             var key = ((p << 16) | s);
 
             if (!_sections.TryGetValue(key, out var versions))

@@ -31,7 +31,7 @@ namespace IpTviewr.RecorderLauncher
 
         public Program.Result Run(Guid taskId, string dbFile, string logFolder)
         {
-            var logFilename = Path.Combine(logFolder, string.Format("{0}{1}", taskId, Properties.Resources.ExtensionLogFile));
+            var logFilename = Path.Combine(logFolder, $"{taskId}{Properties.Resources.ExtensionLogFile}");
             if (logFolder != null)
             {
                 Logger.Start(logFilename, Logger.Level.Verbose);
@@ -98,7 +98,7 @@ namespace IpTviewr.RecorderLauncher
             {
                 using (var process = Process.GetCurrentProcess())
                 {
-                    string jobName = string.Format(Properties.Resources.FormatJobName, Assembly.GetEntryAssembly().GetName().Name, process.Id);
+                    var jobName = string.Format(Properties.Resources.FormatJobName, Assembly.GetEntryAssembly().GetName().Name, process.Id);
                     Logger.Log(Logger.Level.Verbose, Properties.Texts.LogVerboseJobName, jobName);
 
                     var jobHandleNative = UnsafeNativeMethods.CreateJobObject(IntPtr.Zero, jobName);
@@ -391,7 +391,7 @@ namespace IpTviewr.RecorderLauncher
             buffer.Append("\" ");
             buffer.Append(arguments);
 
-            for (int index = 0; index < originalArguments.Length; index++)
+            for (var index = 0; index < originalArguments.Length; index++)
             {
                 buffer.AppendLine();
                 buffer.AppendFormat("{0}", originalArguments[index]);

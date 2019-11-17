@@ -21,7 +21,7 @@ namespace Etsi.Ts102034.v010501.XmlSerialization.PackageDiscovery
     [DebuggerStepThrough]
     [DesignerCategory("code")]
     [XmlType(Namespace = "urn:dvb:metadata:iptv:sdns:2012-1")]
-    public partial class Package
+    public class Package
     {
         [XmlElement("PackageName")]
         public MultilingualText[] Name;
@@ -50,7 +50,7 @@ namespace Etsi.Ts102034.v010501.XmlSerialization.PackageDiscovery
 
         public Package()
         {
-            this.Visible = true;
+            Visible = true;
         } // default constructor
     } // class Package
 } // namespace

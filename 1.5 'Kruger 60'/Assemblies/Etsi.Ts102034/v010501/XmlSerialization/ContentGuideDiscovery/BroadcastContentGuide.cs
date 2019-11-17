@@ -20,7 +20,7 @@ namespace Etsi.Ts102034.v010501.XmlSerialization.ContentGuideDiscovery
     [DebuggerStepThrough]
     [DesignerCategory("code")]
     [XmlType(AnonymousType = true, Namespace = "urn:dvb:metadata:iptv:sdns:2012-1")]
-    public partial class BroadcastContentGuide
+    public class BroadcastContentGuide
     {
         // TODO: clean-up code
         public class TransportModeClass

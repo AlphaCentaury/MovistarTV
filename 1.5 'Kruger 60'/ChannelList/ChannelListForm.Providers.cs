@@ -50,7 +50,7 @@ namespace IpTviewr.ChannelList
                 Caption = Properties.Texts.SPProperties,
                 ItemProperties = _selectedServiceProvider.DumpProperties(),
                 Description = _selectedServiceProvider.DisplayName,
-                ItemIcon = _selectedServiceProvider.Logo.GetImage(LogoSize.Size64, true),
+                ItemIcon = _selectedServiceProvider.Logo.GetImage(LogoSize.Size64),
             })
             {
                 dlg.ShowDialog(this);
@@ -92,7 +92,7 @@ namespace IpTviewr.ChannelList
 
             labelProviderName.Text = _selectedServiceProvider.DisplayName;
             labelProviderDescription.Text = _selectedServiceProvider.DisplayDescription;
-            pictureProviderLogo.Image = _selectedServiceProvider.Logo.GetImage(LogoSize.Size32, true);
+            pictureProviderLogo.Image = _selectedServiceProvider.Logo.GetImage(LogoSize.Size32);
 
             menuItemProviderDetails.Enabled = true;
             menuItemChannelRefreshList.Enabled = true;

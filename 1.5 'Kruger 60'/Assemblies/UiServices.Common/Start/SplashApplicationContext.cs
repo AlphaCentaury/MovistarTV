@@ -99,9 +99,11 @@ namespace IpTviewr.UiServices.Common.Start
 
         private void SplashScreen_Shown(object sender, EventArgs e)
         {
-            _worker = new BackgroundWorker();
-            _worker.WorkerReportsProgress = false;
-            _worker.WorkerSupportsCancellation = true;
+            _worker = new BackgroundWorker
+            {
+                WorkerReportsProgress = false,
+                WorkerSupportsCancellation = true
+            };
             _worker.DoWork += Worker_DoWork;
             _worker.RunWorkerCompleted += Worker_RunWorkerCompleted;
             _worker.RunWorkerAsync(Thread.CurrentThread);

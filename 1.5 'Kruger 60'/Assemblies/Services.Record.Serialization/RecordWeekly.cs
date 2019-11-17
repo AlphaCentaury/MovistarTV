@@ -51,7 +51,7 @@ namespace IpTviewr.Services.Record.Serialization
         {
             base.SetDefaultValues();
             RecurEveryWeeks = 1;
-            WeekDays = RecordWeekly.ToRecordWeekDays(DateTime.Now.DayOfWeek);
+            WeekDays = ToRecordWeekDays(DateTime.Now.DayOfWeek);
         } // SetDefaultValues
 
         public override void Verbalize(bool pastTime, StringBuilder builder)

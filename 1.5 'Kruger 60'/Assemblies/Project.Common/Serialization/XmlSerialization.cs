@@ -21,9 +21,9 @@ namespace IpTviewr.Common.Serialization
         {
             using (var buffer = new MemoryStream())
             {
-                XmlSerialization.SerializeObject(buffer, data);
+                SerializeObject(buffer, data);
                 buffer.Seek(0, SeekOrigin.Begin);
-                return XmlSerialization.Deserialize(buffer, data.GetType());
+                return Deserialize(buffer, data.GetType());
             } // using buffer
         } // Clone
 
@@ -31,9 +31,9 @@ namespace IpTviewr.Common.Serialization
         {
             using (var buffer = new MemoryStream())
             {
-                XmlSerialization.Serialize(buffer, data);
+                Serialize(buffer, data);
                 buffer.Seek(0, SeekOrigin.Begin);
-                return XmlSerialization.Deserialize<T>(buffer);
+                return Deserialize<T>(buffer);
             } // using buffer
         } // CloneSettings
 

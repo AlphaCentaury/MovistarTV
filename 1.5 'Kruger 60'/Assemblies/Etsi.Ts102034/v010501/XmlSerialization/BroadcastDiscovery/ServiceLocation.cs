@@ -22,7 +22,7 @@ namespace Etsi.Ts102034.v010501.XmlSerialization.BroadcastDiscovery
     [DebuggerStepThrough]
     [DesignerCategory("code")]
     [XmlType(TypeName = "ServiceLocation", Namespace = "urn:dvb:metadata:iptv:sdns:2012-1")]
-    public partial class ServiceLocation
+    public class ServiceLocation
     {
         [XmlElement("BroadcastSystem", typeof(string))]
         public string BroadcastSystem;

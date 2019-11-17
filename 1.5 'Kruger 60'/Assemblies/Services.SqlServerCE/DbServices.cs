@@ -267,9 +267,11 @@ namespace IpTviewr.Services.SqlServerCE
         {
             SqlCeConnectionStringBuilder builder;
 
-            builder = new SqlCeConnectionStringBuilder();
-            builder.DataSource = dbFile;
-            builder.Password = "movistartv.codeplex.com";
+            builder = new SqlCeConnectionStringBuilder
+            {
+                DataSource = dbFile,
+                Password = "movistartv.codeplex.com"
+            };
 
             var cn = new SqlCeConnection(builder.ConnectionString);
             cn.Open();

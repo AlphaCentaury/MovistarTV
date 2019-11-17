@@ -22,7 +22,7 @@ namespace IpTviewr.UiServices.Configuration
             using (var writer = xNavigator.AppendChild())
             {
                 var ser = new XmlSerializer(item.GetType());
-                ser.Serialize(writer, (object)item);
+                ser.Serialize(writer, item);
             } // using
 
             var xAttr = xDoc.CreateAttribute("configurationId");

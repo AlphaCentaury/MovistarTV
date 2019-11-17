@@ -226,7 +226,7 @@ namespace IpTviewr.ChannelList
                 filename = fileDialog.FileName;
             } // using
 
-            BasicGoogleTelemetry.SendEventHit("Feature", "contextMenuListExportM3u", "contextMenuListExportM3u.Text", this.GetType().Name);
+            BasicGoogleTelemetry.SendEventHit("Feature", "contextMenuListExportM3u", "contextMenuListExportM3u.Text", GetType().Name);
 
             var sortedServices = from service in _listManager.BroadcastServices
                                  orderby service.DisplayLogicalNumber

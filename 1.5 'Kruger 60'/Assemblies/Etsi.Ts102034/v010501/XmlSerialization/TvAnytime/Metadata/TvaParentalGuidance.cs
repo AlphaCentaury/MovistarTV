@@ -19,7 +19,7 @@ namespace Etsi.Ts102034.v010501.XmlSerialization.TvAnytime.Metadata
     [DebuggerStepThrough]
     [DesignerCategory("code")]
     [XmlType("TVAParentalGuidanceType", Namespace = "urn:tva:metadata:2011")]
-    public partial class TvaParentalGuidance : ParentalGuidance
+    public class TvaParentalGuidance : ParentalGuidance
     {
         [XmlElement("ExplanatoryText")]
         public Explanation[] ExplanatoryText;

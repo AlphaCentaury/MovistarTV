@@ -83,7 +83,7 @@ namespace IpTviewr.UiServices.DvbStpClient
         {
             if (Request == null) throw new ArgumentNullException();
 
-            TelemetryScreenName = string.Format("{0}: {1}:{2}", this.GetType().Name, Request.MulticastAddress, Request.MulticastPort);
+            TelemetryScreenName = $"{GetType().Name}: {Request.MulticastAddress}:{Request.MulticastPort}";
 
             if (!string.IsNullOrEmpty(Request.Description))
             {
@@ -101,7 +101,7 @@ namespace IpTviewr.UiServices.DvbStpClient
 
             foreach (var segment in Request.Payloads)
             {
-                var displayName = segment.DisplayName ?? string.Format("Payload 0x{0:X2}", segment.PayloadId);
+                var displayName = segment.DisplayName ?? $"Payload 0x{segment.PayloadId:X2}";
                 var item = new ListViewItem(displayName);
                 item.SubItems.Add("-");
                 item.SubItems.Add("-");
@@ -159,9 +159,11 @@ namespace IpTviewr.UiServices.DvbStpClient
             DisplayEllapsedTime();
 
             _cancellationTokenSource = new CancellationTokenSource();
-            _worker = new BackgroundWorker();
-            _worker.WorkerReportsProgress = true;
-            _worker.WorkerSupportsCancellation = true;
+            _worker = new BackgroundWorker
+            {
+                WorkerReportsProgress = true,
+                WorkerSupportsCancellation = true
+            };
             _worker.ProgressChanged += Worker_ProgressChanged;
             _worker.RunWorkerCompleted += Worker_RunWorkerCompleted;
             _worker.DoWork += Worker_DoWork;
@@ -383,10 +385,11 @@ namespace IpTviewr.UiServices.DvbStpClient
 
         private DvbStpEnhancedClient CreateDvbStpClient()
         {
-            var dvbStpClient = new DvbStpEnhancedClient(Request.MulticastAddress, Request.MulticastPort, _cancellationTokenSource.Token);
-
-            dvbStpClient.ReceiveDatagramTimeout = Request.ReceiveDatagramTimeout;
-            dvbStpClient.NoDataTimeout = Request.NoDataTimeout;
+            var dvbStpClient = new DvbStpEnhancedClient(Request.MulticastAddress, Request.MulticastPort, _cancellationTokenSource.Token)
+            {
+                ReceiveDatagramTimeout = Request.ReceiveDatagramTimeout,
+                NoDataTimeout = Request.NoDataTimeout
+            };
             dvbStpClient.DownloadStarted += DvbStpClient_DownloadStarted;
             dvbStpClient.SectionReceived += DvbStpClient_SectionReceived;
             dvbStpClient.SegmentDownloadStarted += DvbStpClient_SegmentDownloadStarted;
@@ -417,7 +420,7 @@ namespace IpTviewr.UiServices.DvbStpClient
             {
                 if (payload.XmlType != null)
                 {
-                    payload.XmlDeserializedData = UiDvbStpSimpleDownloadResponse.ParsePayload(payload.XmlType,
+                    payload.XmlDeserializedData = UiDvbStpBaseDownloadResponse.ParsePayload(payload.XmlType,
                         payload.Data,
                         payload.PayloadId,
                         !Request.AllowXmlExtraWhitespace,
@@ -440,7 +443,7 @@ namespace IpTviewr.UiServices.DvbStpClient
             {
                 if (payload.Data != null)
                 {
-                    var filename = Path.Combine(Request.DumpToFolder, string.Format("DvbStpEnhancedDownloadDialog_P{0:X2}_S{1:X4}v{2:X2}.xml", payload.PayloadId, payload.SegmentId.Value, payload.SegmentVersion));
+                    var filename = Path.Combine(Request.DumpToFolder, $"DvbStpEnhancedDownloadDialog_P{payload.PayloadId:X2}_S{payload.SegmentId.Value:X4}v{payload.SegmentVersion:X2}.xml");
                     File.WriteAllBytes(filename, payload.Data);
                 } // if
             } // foreach

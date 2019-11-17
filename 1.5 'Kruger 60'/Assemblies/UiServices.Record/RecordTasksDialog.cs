@@ -210,17 +210,17 @@ namespace IpTviewr.UiServices.Record
 
         private void buttonEditTask_Click_Implementation(object sender, EventArgs e)
         {
-            IpTviewr.UiServices.Common.Forms.NotImplementedBox.ShowBox(this, "buttonEditTask");
+            NotImplementedBox.ShowBox(this, "buttonEditTask");
         } // buttonEditTask_Click_Implementation
 
         private void buttonDeleteTasks_Click_Implementation(object sender, EventArgs e)
         {
-            IpTviewr.UiServices.Common.Forms.NotImplementedBox.ShowBox(this, "buttonDeleteTasks");
+            NotImplementedBox.ShowBox(this, "buttonDeleteTasks");
         } // buttonDeleteTasks_Click_Implementation
 
         private void buttonViewRecordings_Click_Implementation(object sender, EventArgs e)
         {
-            IpTviewr.UiServices.Common.Forms.NotImplementedBox.ShowBox(this, "buttonViewRecordings");
+            NotImplementedBox.ShowBox(this, "buttonViewRecordings");
         } // buttonViewRecordings_Click_Implementation
 
         #endregion

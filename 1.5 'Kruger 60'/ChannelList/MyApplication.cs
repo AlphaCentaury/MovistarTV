@@ -29,7 +29,7 @@ namespace IpTviewr.ChannelList
             BasicGoogleTelemetry.SendExtendedExceptionHit(ex);
             AddExceptionAdvancedInformation(ex);
 
-            var box = new Microsoft.SqlServer.MessageBox.ExceptionMessageBox()
+            var box = new ExceptionMessageBox()
             {
                 Caption = Properties.Texts.MyAppHandleExceptionDefaultCaption,
                 Message = ex,
@@ -59,7 +59,7 @@ namespace IpTviewr.ChannelList
 
         public static void HandleException(Form owner, string caption, string message, MessageBoxIcon icon, Exception ex)
         {
-            BasicGoogleTelemetry.SendExtendedExceptionHit(ex, true, message, null);
+            BasicGoogleTelemetry.SendExtendedExceptionHit(ex, true, message);
             AddExceptionAdvancedInformation(ex);
 
             var box = new ExceptionMessageBox()
@@ -75,12 +75,12 @@ namespace IpTviewr.ChannelList
 
         internal static void HandleException(Form form, ExceptionEventData ex)
         {
-            MyApplication.HandleException(form, ex.Caption, ex.Message, ex.Exception);
+            HandleException(form, ex.Caption, ex.Message, ex.Exception);
         } // HandleException
 
         internal static void HandleException(object sender, HandleExceptionEventArgs e)
         {
-            MyApplication.HandleException(e.OwnerForm, e.Caption, e.Message, e.Exception);
+            HandleException(e.OwnerForm, e.Caption, e.Message, e.Exception);
         } // HandleException
 
         #endregion
@@ -150,7 +150,7 @@ namespace IpTviewr.ChannelList
             }
             catch (Exception ex)
             {
-                MyApplication.HandleException(null, Properties.InvariantTexts.ExceptionForceUiCulture, ex);
+                HandleException(null, Properties.InvariantTexts.ExceptionForceUiCulture, ex);
             } // try-catch
         } // ForceUiCulture
     } // static class MyApplication

@@ -19,7 +19,7 @@ namespace Etsi.Ts102034.v010501.XmlSerialization.ProviderDiscovery
     [DebuggerStepThrough]
     [DesignerCategory("code")]
     [XmlType(Namespace = "urn:dvb:metadata:iptv:sdns:2012-1")]
-    public partial class ServiceProvider
+    public class ServiceProvider
     {
         /// <summary>
         /// Name of the Service Provider for display in one or more languages; one Service Provider name is allowed per

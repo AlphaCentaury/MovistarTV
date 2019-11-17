@@ -20,7 +20,7 @@ namespace Etsi.Ts102034.v010501.XmlSerialization.TvAnytime.Mpeg7
     [DesignerCategory("code")]
     [XmlType("ParentalGuidance", Namespace = "urn:tva:mpeg7:2008")]
     [XmlInclude(typeof(TvaParentalGuidance))]
-    public partial class ParentalGuidance
+    public class ParentalGuidance
     {
         [XmlElement("MinimumAge", typeof(string), DataType = "nonNegativeInteger")]
         public string MinimumAge;

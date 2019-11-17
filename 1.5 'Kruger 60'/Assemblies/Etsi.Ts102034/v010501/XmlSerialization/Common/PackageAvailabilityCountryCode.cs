@@ -18,7 +18,7 @@ namespace Etsi.Ts102034.v010501.XmlSerialization.Common
     [DebuggerStepThrough]
     [DesignerCategory("code")]
     [XmlType(Namespace = "urn:dvb:metadata:iptv:sdns:2012-1")]
-    public partial class PackageAvailabilityCountryCode
+    public class PackageAvailabilityCountryCode
     {
         [XmlAttribute("Availability")]
         [DefaultValue(true)]
@@ -29,7 +29,7 @@ namespace Etsi.Ts102034.v010501.XmlSerialization.Common
 
         public PackageAvailabilityCountryCode()
         {
-            this.Availability = true;
+            Availability = true;
         } // default constructor
     } // class PackageAvailabilityCountryCode
 } // namespace

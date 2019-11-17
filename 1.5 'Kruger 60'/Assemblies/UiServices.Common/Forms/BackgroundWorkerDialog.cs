@@ -31,7 +31,7 @@ namespace IpTviewr.UiServices.Common.Forms
         public BackgroundWorkerDialog()
         {
             InitializeComponent();
-            this.Icon = Resources.WaitClock_Icon;
+            Icon = Resources.WaitClock_Icon;
         }  // constructor
 
         public BackgroundWorkerOptions Options
@@ -46,7 +46,7 @@ namespace IpTviewr.UiServices.Common.Forms
             {
                 _dialogResult = DialogResult.Abort;
                 _formCanClose = true;
-                this.Close();
+                Close();
 
                 return;
             } // if
@@ -62,25 +62,25 @@ namespace IpTviewr.UiServices.Common.Forms
             }
             else
             {
-                this.DialogResult = _dialogResult;
+                DialogResult = _dialogResult;
             } // if-else
         } // BackgroundWorkerDialog_FormClosing
 
         private void buttonRequestCancel_Click(object sender, EventArgs e)
         {
             RequestCancelBackgroundTask();
-            this.DialogResult = DialogResult.None;
+            DialogResult = DialogResult.None;
         } // buttonRequestCancel_Click
 
         private void buttonClose_Click(object sender, EventArgs e)
         {
-            this.DialogResult = _dialogResult;
-            this.Close();
+            DialogResult = _dialogResult;
+            Close();
         } // buttonClose_Click
 
         private void BackgroundWorkerDialog_Load_Implementation(object sender, EventArgs e)
         {
-            if (Options.Caption != null) this.Text = Options.Caption;
+            if (Options.Caption != null) Text = Options.Caption;
             labelTaskDescription.Text = Options.TaskDescription;
             labelProgressText.Text = null;
             progressBar.Style = ProgressBarStyle.Marquee;
@@ -99,9 +99,11 @@ namespace IpTviewr.UiServices.Common.Forms
 
             Options.BeforeTask?.Invoke(Options, this);
 
-            _worker = new BackgroundWorker();
-            _worker.WorkerReportsProgress = false;
-            _worker.WorkerSupportsCancellation = true;
+            _worker = new BackgroundWorker
+            {
+                WorkerReportsProgress = false,
+                WorkerSupportsCancellation = true
+            };
 
             _worker.DoWork += Worker_DoWork;
             _worker.RunWorkerCompleted += Worker_RunWorkerCompleted;
@@ -160,7 +162,7 @@ namespace IpTviewr.UiServices.Common.Forms
 
             if ((Options.AllowAutoClose) || (e.Error != null))
             {
-                this.Close();
+                Close();
             }
             else
             {
@@ -192,13 +194,13 @@ namespace IpTviewr.UiServices.Common.Forms
 
         IWin32Window IBackgroundWorkerDialog.ThisWindow => this;
 
-        Form IBackgroundWorkerDialog.OwnerForm => this.ParentForm;
+        Form IBackgroundWorkerDialog.OwnerForm => ParentForm;
 
         void IBackgroundWorkerDialog.SetProgressText(string text)
         {
-            if (this.InvokeRequired)
+            if (InvokeRequired)
             {
-                this.BeginInvoke(new Action<string>(SetProgressText), text);
+                BeginInvoke(new Action<string>(SetProgressText), text);
             }
             else
             {
@@ -208,9 +210,9 @@ namespace IpTviewr.UiServices.Common.Forms
 
         void IBackgroundWorkerDialog.SetProgressMinMax(int min, int max)
         {
-            if (this.InvokeRequired)
+            if (InvokeRequired)
             {
-                this.BeginInvoke(new Action<int, int>(SetProgressMinMax), min, max);
+                BeginInvoke(new Action<int, int>(SetProgressMinMax), min, max);
             }
             else
             {
@@ -220,9 +222,9 @@ namespace IpTviewr.UiServices.Common.Forms
 
         void IBackgroundWorkerDialog.SetProgress(int value)
         {
-            if (this.InvokeRequired)
+            if (InvokeRequired)
             {
-                this.BeginInvoke(new Action<int>(SetProgress), value);
+                BeginInvoke(new Action<int>(SetProgress), value);
             }
             else
             {
@@ -232,9 +234,9 @@ namespace IpTviewr.UiServices.Common.Forms
 
         void IBackgroundWorkerDialog.SetProgressUndefined()
         {
-            if (this.InvokeRequired)
+            if (InvokeRequired)
             {
-                this.BeginInvoke(new Action(SetProgressUndefined));
+                BeginInvoke(new Action(SetProgressUndefined));
             }
             else
             {

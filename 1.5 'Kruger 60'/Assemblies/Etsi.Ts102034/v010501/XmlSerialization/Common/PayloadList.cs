@@ -22,7 +22,7 @@ namespace Etsi.Ts102034.v010501.XmlSerialization.Common
     [XmlInclude(typeof(DvbStpTransportMode))]
     [XmlInclude(typeof(HttpTransportMode))]
     [XmlInclude(typeof(ProviderOfferingPull))]
-    public partial class PayloadList
+    public class PayloadList
     {
         [XmlElement("PayloadId")]
         public PayloadListPayloadId[] PayloadId;

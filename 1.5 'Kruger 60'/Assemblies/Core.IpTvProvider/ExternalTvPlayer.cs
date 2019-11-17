@@ -41,7 +41,7 @@ namespace IpTviewr.Core.IpTvProvider
                     Buttons = ExceptionMessageBoxButtons.YesNo,
                     DefaultButton = ExceptionMessageBoxDefaultButton.Button2,
                 };
-                if (box.Show(owner) != System.Windows.Forms.DialogResult.Yes) return;
+                if (box.Show(owner) != DialogResult.Yes) return;
             } // if
 
             var tvPlayerSettings = TvPlayersSettingsRegistration.Settings;
@@ -62,7 +62,7 @@ namespace IpTviewr.Core.IpTvProvider
                 } // using
             } // if-else
 
-            ExternalTvPlayer.Launch(player, service, !tvPlayerSettings.DirectLaunch);
+            Launch(player, service, !tvPlayerSettings.DirectLaunch);
         } // ShowTvChannel
 
         public static void Launch(TvPlayer player, UiBroadcastService service, bool throughShortcut)

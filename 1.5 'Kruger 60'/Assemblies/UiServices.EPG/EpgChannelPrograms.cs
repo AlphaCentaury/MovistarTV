@@ -71,8 +71,8 @@ namespace IpTviewr.UiServices.EPG
         {
             BasicGoogleTelemetry.SendScreenHit(this);
 
-            pictureChannelLogo.Image = Service.Logo.GetImage(LogoSize.Size48, true);
-            labelChannelName.Text = string.Format("{0} - {1}", Service.DisplayLogicalNumber, Service.DisplayName);
+            pictureChannelLogo.Image = Service.Logo.GetImage(LogoSize.Size48);
+            labelChannelName.Text = $"{Service.DisplayLogicalNumber} - {Service.DisplayName}";
 
             _boldListFont = new Font(listPrograms.Font, FontStyle.Bold);
             _italicListFont = new Font(listPrograms.Font, FontStyle.Italic);
@@ -148,17 +148,21 @@ namespace IpTviewr.UiServices.EPG
             {
                 if ((last != null) && (last.LocalEndTime != epgProgram.LocalStartTime))
                 {
-                    item = new ListViewItem(last.LocalEndTime.ToShortTimeString());
-                    item.UseItemStyleForSubItems = false;
+                    item = new ListViewItem(last.LocalEndTime.ToShortTimeString())
+                    {
+                        UseItemStyleForSubItems = false
+                    };
                     item.SubItems.Add("Información de programa no disponible");
                     item.SubItems[1].Font = _italicListFont;
                 }
                 else
                 {
-                    item = new ListViewItem(epgProgram.LocalStartTime.ToShortTimeString());
-                    item.UseItemStyleForSubItems = false;
-                    item.Font = _boldListFont;
-                    item.Tag = epgProgram;
+                    item = new ListViewItem(epgProgram.LocalStartTime.ToShortTimeString())
+                    {
+                        UseItemStyleForSubItems = false,
+                        Font = _boldListFont,
+                        Tag = epgProgram
+                    };
                     item.SubItems.Add(epgProgram.Title);
                     item.ToolTipText = epgProgram.Title;
                 } // if-else

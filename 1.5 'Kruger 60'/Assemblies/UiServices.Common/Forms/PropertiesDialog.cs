@@ -31,9 +31,9 @@ namespace IpTviewr.UiServices.Common.Forms
         private void PropertiesDialog_Load(object sender, EventArgs e)
         {
             BasicGoogleTelemetry.SendScreenHit(this, Caption);
-            this.Text = Caption;
-            this.labelDescription.Text = (Description ?? Properties.PropertiesDialog.CaptionDefault);
-            this.pictureBoxItemIcon.Image = ItemIcon;
+            Text = Caption;
+            labelDescription.Text = (Description ?? Properties.PropertiesDialog.CaptionDefault);
+            pictureBoxItemIcon.Image = ItemIcon;
         } // PropertiesDialog_Load
 
         private void PropertiesDialog_Shown(object sender, EventArgs e)
@@ -92,7 +92,7 @@ namespace IpTviewr.UiServices.Common.Forms
             var selectedRow = (listViewProperties.SelectedItems.Count > 0) ? listViewProperties.SelectedItems[0] : null;
             if (selectedRow == null) return;
 
-            Clipboard.SetText(string.Format("{0}\t{1}", selectedRow.SubItems[0].Text, selectedRow.SubItems[1].Text), TextDataFormat.UnicodeText);
+            Clipboard.SetText($"{selectedRow.SubItems[0].Text}\t{selectedRow.SubItems[1].Text}", TextDataFormat.UnicodeText);
         } // contextMenuListCopyRow_Click
 
         private void contextMenuListCopyAll_Click(object sender, EventArgs e)

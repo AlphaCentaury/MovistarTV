@@ -260,7 +260,7 @@ namespace IpTviewr.UiServices.EPG
             ButtonClicked?.Invoke(this, new EpgMiniBarButtonClickedEventArgs(Button.Show));
             if (ManualActions) return;
 
-            ExternalTvPlayer.ShowTvChannel(ParentForm, SelectedService, true);
+            ExternalTvPlayer.ShowTvChannel(ParentForm, SelectedService);
         } // buttonDisplayChannel_Click
 
         private void buttonRecordChannel_Click(object sender, EventArgs e)
@@ -268,7 +268,7 @@ namespace IpTviewr.UiServices.EPG
             ButtonClicked?.Invoke(this, new EpgMiniBarButtonClickedEventArgs(Button.Record));
             if (ManualActions) return;
 
-            RecordHelper.RecordProgram(ParentForm as CommonBaseForm, SelectedService, SelectedProgram, LocalReferenceTime, true);
+            RecordHelper.RecordProgram(ParentForm as CommonBaseForm, SelectedService, SelectedProgram, LocalReferenceTime);
         } // buttonRecordChannel_Click
 
         #endregion
@@ -295,7 +295,7 @@ namespace IpTviewr.UiServices.EPG
                 RequestId = Interlocked.Increment(ref _currentRequestId),
                 FullServiceName = fullServiceName,
                 FullAlternateServiceName = fullAlternateServiceName,
-                ReferenceTime = this.LocalReferenceTime
+                ReferenceTime = LocalReferenceTime
             };
 
             if (async)
@@ -399,8 +399,8 @@ namespace IpTviewr.UiServices.EPG
                     EnableBackForward(false, _epgPrograms[1] != null);
                     break;
                 case 1:
-                    labelStartTime.Text = string.Format("{0:HH:mm}", epgProgram.LocalStartTime);
-                    labelEndTime.Text = string.Format("{0:t}", epgProgram.LocalEndTime);
+                    labelStartTime.Text = $"{epgProgram.LocalStartTime:HH:mm}";
+                    labelEndTime.Text = $"{epgProgram.LocalEndTime:t}";
                     ellapsed = (LocalReferenceTime - epgProgram.LocalStartTime);
                     epgProgressBar.MaximumValue = epgProgram.Duration.TotalMinutes;
                     epgProgressBar.Value = ellapsed.TotalMinutes;
@@ -428,7 +428,7 @@ namespace IpTviewr.UiServices.EPG
             } // if
 
             // look forward
-            for (int index=epgIndex; index<4;index++)
+            for (var index=epgIndex; index<4;index++)
             {
                 if (_epgPrograms[index] != null)
                 {
@@ -438,7 +438,7 @@ namespace IpTviewr.UiServices.EPG
             } // for
 
             // look backwards
-            for (int index=epgIndex; index>=0;index--)
+            for (var index=epgIndex; index>=0;index--)
             {
                 if (_epgPrograms[index] != null)
                 {

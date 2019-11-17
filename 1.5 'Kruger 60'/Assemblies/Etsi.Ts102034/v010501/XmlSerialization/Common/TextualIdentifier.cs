@@ -19,7 +19,7 @@ namespace Etsi.Ts102034.v010501.XmlSerialization.Common
     [DesignerCategory("code")]
     [XmlType(Namespace = "urn:dvb:metadata:iptv:sdns:2012-1")]
     //[XmlInclude(typeof(PackageTextualIdentifier))]
-    public partial class TextualIdentifier
+    public class TextualIdentifier
     {
         [XmlAttribute]
         public string DomainName;

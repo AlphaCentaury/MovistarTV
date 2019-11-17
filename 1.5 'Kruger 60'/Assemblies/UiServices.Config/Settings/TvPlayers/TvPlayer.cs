@@ -71,7 +71,7 @@ namespace IpTviewr.UiServices.Configuration.Settings.TvPlayers
                 Arguments[index] = ConfigCommon.Normalize(Arguments[index]);
                 if (string.IsNullOrEmpty(Arguments[index]))
                 {
-                    ConfigCommon.ErrorMissingEmpty("Argument", "Arguments"); ;
+                    ConfigCommon.ErrorMissingEmpty("Argument", "Arguments");
                 } // if
             } // for
 

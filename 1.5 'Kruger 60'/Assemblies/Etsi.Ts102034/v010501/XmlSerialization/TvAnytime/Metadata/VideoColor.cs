@@ -18,7 +18,7 @@ namespace Etsi.Ts102034.v010501.XmlSerialization.TvAnytime.Metadata
     [DebuggerStepThrough]
     [DesignerCategory("code")]
     [XmlType("ColorType", Namespace = "urn:tva:metadata:2011")]
-    public partial class VideoColor
+    public class VideoColor
     {
         [XmlAttribute("type")]
         public VideoColorKind Kind;

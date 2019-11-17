@@ -208,9 +208,11 @@ namespace IpTviewr.UiServices.Configuration.Settings.TvPlayers.Editors
 
         private static ListViewItem GetTvPlayerListItem(TvPlayer player, Guid defaultPlayerId, Font listFont, bool selectDefault)
         {
-            var item = new ListViewItem(player.Name);
-            item.Tag = player;
-            item.ImageKey = TvPlayersSettingsRegistration.Settings.GetPlayerIconKey(player.Path);
+            var item = new ListViewItem(player.Name)
+            {
+                Tag = player,
+                ImageKey = TvPlayersSettingsRegistration.Settings.GetPlayerIconKey(player.Path)
+            };
             if (player.Id == defaultPlayerId)
             {
                 item.Font = new Font(listFont, FontStyle.Bold);

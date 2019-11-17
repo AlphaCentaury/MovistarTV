@@ -19,8 +19,8 @@ namespace Etsi.Ts102034.v010501.XmlSerialization.BroadcastDiscovery
     [Serializable]
     [DebuggerStepThrough]
     [DesignerCategory("code")]
-    [XmlType(TypeName="IPService", Namespace = IpService.Namespace)]
-    public partial class IpService
+    [XmlType(TypeName="IPService", Namespace = Namespace)]
+    public class IpService
     {
         public const string Namespace = "urn:dvb:metadata:iptv:sdns:2012-1";
 

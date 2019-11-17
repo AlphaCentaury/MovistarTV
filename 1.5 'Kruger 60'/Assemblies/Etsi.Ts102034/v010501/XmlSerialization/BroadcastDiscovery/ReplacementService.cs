@@ -23,7 +23,7 @@ namespace Etsi.Ts102034.v010501.XmlSerialization.BroadcastDiscovery
     [DebuggerStepThrough]
     [DesignerCategory("code")]
     [XmlType(Namespace = "urn:dvb:metadata:iptv:sdns:2012-1")]
-    public partial class ReplacementService
+    public class ReplacementService
     {
         [XmlElement("DVBTriplet", typeof(DvbTriplet))]
         public DvbTriplet DvbTriplet;
@@ -37,7 +37,7 @@ namespace Etsi.Ts102034.v010501.XmlSerialization.BroadcastDiscovery
 
         public ReplacementService()
         {
-            this.Kind = "5";
+            Kind = "5";
         } // default constructor
     } // class ReplacementService
 } // namespace

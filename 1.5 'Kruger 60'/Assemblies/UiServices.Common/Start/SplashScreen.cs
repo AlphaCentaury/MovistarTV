@@ -15,7 +15,7 @@ namespace IpTviewr.UiServices.Common.Start
         public SplashScreen()
         {
             InitializeComponent();
-            this.Text = Path.GetFileName(Application.ExecutablePath);
+            Text = Path.GetFileName(Application.ExecutablePath);
         }  // constructor
     } // class SplashScreen
 } // namespace

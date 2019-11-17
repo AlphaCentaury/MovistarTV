@@ -103,7 +103,8 @@ namespace IpTviewr.Services.EpgDiscovery
                 if (node.Value.IsCurrent(utcTime)) return node;
                 node = node.Next;
             } // while
-            return node;
+
+            return null;
         } // GetUtcProgram
 
         public static EpgService FromSchedule(TvAnytime.TvaSchedule schedule)

@@ -12,7 +12,7 @@ namespace IpTviewr.DvbStp.Client
 {
     public class VersionStorage
     {
-        private Dictionary<byte, SegmentAssembler> _versions;
+        private readonly Dictionary<byte, SegmentAssembler> _versions;
 
         public event EventHandler<PayloadStorage.SegmentStartedEventArgs> SegmentStarted;
         public event EventHandler<PayloadStorage.SectionReceivedEventArgs> SectionReceived;
@@ -37,7 +37,7 @@ namespace IpTviewr.DvbStp.Client
             private set;
         } // SegmentId
 
-        public string HexId => string.Format("p{0:X2}s{1:X4}", PayloadId, SegmentId);
+        public string HexId => $"p{PayloadId:X2}s{SegmentId:X4}";
 
         public VersionStorage(byte payloadId, int segmentId, bool saveData)
         {

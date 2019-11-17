@@ -178,7 +178,6 @@
     <Compile Include="UiContentProvider.cs" />
     <Compile Include="UiContentProviderFriendlyNames.cs" />
     <Compile Include="UiContentProviderIdentification.cs" />
-    <Compile Include="WindowsBitness.cs" />
     <Compile Include="XmlConfigurationItems.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -207,7 +207,7 @@ namespace IpTviewr.UiServices.Record
             var action = RecordAction.CreateWithDefaultValues();
             var defaultLocation = RecordSaveLocation.GetDefaultSaveLocation(AppUiConfiguration.Current.User.Record.SaveLocations);
 
-            action.Filename = string.Format("{0} - {1}", service.DisplayName, epgProgram.Title);
+            action.Filename = $"{service.DisplayName} - {epgProgram.Title}";
             action.FileExtension = RecordChannelDialog.GetFilenameExtensions()[0];
             action.SaveLocationName = defaultLocation.Name;
             action.SaveLocationPath = defaultLocation.Path;

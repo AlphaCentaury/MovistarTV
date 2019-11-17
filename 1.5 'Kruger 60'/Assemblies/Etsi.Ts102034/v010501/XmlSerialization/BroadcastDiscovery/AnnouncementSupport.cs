@@ -22,7 +22,7 @@ namespace Etsi.Ts102034.v010501.XmlSerialization.BroadcastDiscovery
     [DebuggerStepThrough]
     [DesignerCategory("code")]
     [XmlType(Namespace = "urn:dvb:metadata:iptv:sdns:2012-1")]
-    public partial class AnnouncementSupport
+    public class AnnouncementSupport
     {
         [XmlElement("Announcement")]
         public AnnouncementSupportAnnouncement[] Announcement;

@@ -115,9 +115,11 @@ namespace IpTviewr.Services.Record.Serialization
 
         private static SqlCeCommand GetDbLoadCommand()
         {
-            var cmd = new SqlCeCommand();
-            cmd.CommandType = CommandType.Text;
-            cmd.CommandText = "SELECT [XmlData] FROM [Tasks] WHERE [TaskId] = ?";
+            var cmd = new SqlCeCommand
+            {
+                CommandType = CommandType.Text,
+                CommandText = "SELECT [XmlData] FROM [Tasks] WHERE [TaskId] = ?"
+            };
             cmd.Parameters.Add("@TaskId", SqlDbType.UniqueIdentifier);
 
             return cmd;
@@ -133,9 +135,11 @@ namespace IpTviewr.Services.Record.Serialization
 
         private static SqlCeCommand GetDbSaveCommand()
         {
-            var cmd = new SqlCeCommand();
-            cmd.CommandType = CommandType.Text;
-            cmd.CommandText = "INSERT INTO [Tasks] (TaskId, TaskName, SchedulerName, SchedulerFolder, XmlData) VALUES (?, ?, ?, ?, ?)";
+            var cmd = new SqlCeCommand
+            {
+                CommandType = CommandType.Text,
+                CommandText = "INSERT INTO [Tasks] (TaskId, TaskName, SchedulerName, SchedulerFolder, XmlData) VALUES (?, ?, ?, ?, ?)"
+            };
             cmd.Parameters.Add("@TaskId", SqlDbType.UniqueIdentifier);
             cmd.Parameters.Add("@TaskName", SqlDbType.NVarChar, MaxTaskNameLength);
             cmd.Parameters.Add("@SchedulerName", SqlDbType.NVarChar, 150);

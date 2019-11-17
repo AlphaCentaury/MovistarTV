@@ -18,7 +18,7 @@ namespace Etsi.Ts102034.v010501.XmlSerialization.TvAnytime.Metadata
     [DebuggerStepThrough]
     [DesignerCategory("code")]
     [XmlType("AspectRatioType", Namespace = "urn:tva:metadata:2011")]
-    public partial class AspectRatio
+    public class AspectRatio
     {
         [XmlAttribute("type")]
         [DefaultValue(AspectRatioKind.Original)]
@@ -29,7 +29,7 @@ namespace Etsi.Ts102034.v010501.XmlSerialization.TvAnytime.Metadata
 
         public AspectRatio()
         {
-            this.Kind = AspectRatioKind.Original;
+            Kind = AspectRatioKind.Original;
         } // default constructor
     } // class AspectRatio
 } // namespace

@@ -105,9 +105,11 @@ namespace IpTviewr.Services.Record
                 task = null;
                 try
                 {
-                    task = new TaskData();
-                    task.XmlFilePath = file;
-                    task.Task = RecordTaskSerialization.LoadFromXmlFile(file);
+                    task = new TaskData
+                    {
+                        XmlFilePath = file,
+                        Task = RecordTaskSerialization.LoadFromXmlFile(file)
+                    };
                     task.SchedulerName = task.Task.Description.TaskSchedulerName;
                     task.SchedulerPath = task.Task.AdvancedSettings.TaskSchedulerFolder;
                     task.Status = TaskStatus.WindowsTaskMissing;

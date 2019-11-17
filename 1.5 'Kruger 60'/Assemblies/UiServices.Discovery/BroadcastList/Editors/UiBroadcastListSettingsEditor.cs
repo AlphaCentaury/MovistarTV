@@ -123,9 +123,11 @@ namespace IpTviewr.UiServices.Discovery.BroadcastList.Editors
             checkShowHidden.Checked = Settings.ShowHiddenServices;
             checkShowOutOfPackage.Checked = Settings.ShowOutOfPackage;
 
-            _editorGlobalSorting = new SettingsEditorSorting();
-            _editorGlobalSorting.ColumnsNoneList = sortedColumnsNone;
-            _editorGlobalSorting.Sort = Settings.GlobalSortColumns;
+            _editorGlobalSorting = new SettingsEditorSorting
+            {
+                ColumnsNoneList = sortedColumnsNone,
+                Sort = Settings.GlobalSortColumns
+            };
             _editorGlobalSorting.SetContainer(this);
             _editorGlobalSorting.Dock = DockStyle.Fill;
             _editorGlobalSorting.UseGlobalSort = Settings.UseGlobalSortColumns;

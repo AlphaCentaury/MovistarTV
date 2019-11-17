@@ -20,11 +20,10 @@ namespace IpTviewr.Services.Record
 {
     public class Scheduler
     {
-        private Action<ExceptionEventData> _exceptionHandler;
-        private string _recordTasksFolder;
-        private string _recorderLauncherPath;
-        private string _dbFile;
-        private string _logFolder;
+        private readonly Action<ExceptionEventData> _exceptionHandler;
+        private readonly string _recorderLauncherPath;
+        private readonly string _dbFile;
+        private readonly string _logFolder;
 
         private TimeSpan _startSafetyMargin;
         private TimeSpan _endSafetyMargin;
@@ -41,7 +40,6 @@ namespace IpTviewr.Services.Record
             } // if
 
             _exceptionHandler = exceptionHandler;
-            _recordTasksFolder = recordTasksFolder;
             _recorderLauncherPath = recorderLauncherPath;
             _dbFile = Path.Combine(recordTasksFolder, Resources.RecordTasksDatabaseFile);
             _logFolder = recordTasksFolder;
@@ -225,8 +223,10 @@ namespace IpTviewr.Services.Record
             {
                 case RecordScheduleKind.RightNow:
                     {
-                        var rightNow = new TimeTrigger();
-                        rightNow.EndBoundary = DateTime.Now.TruncateToSeconds() + _totalRecordTime + new TimeSpan(0,1,0);
+                        var rightNow = new TimeTrigger
+                        {
+                            EndBoundary = DateTime.Now.TruncateToSeconds() + _totalRecordTime + new TimeSpan(0, 1, 0)
+                        };
 
                         definition.Triggers.Add(rightNow);
                         break;
@@ -384,7 +384,7 @@ namespace IpTviewr.Services.Record
 
         private static void SetAdditionalData(TaskDefinition definition, RecordTask record, string dbFile)
         {
-            definition.RegistrationInfo.Author = string.Format("{0} {1}", Assembly.GetEntryAssembly().GetName().Name, SolutionVersion.ProductVersion);
+            definition.RegistrationInfo.Author = $"{Assembly.GetEntryAssembly().GetName().Name} {SolutionVersion.ProductVersion}";
             definition.RegistrationInfo.Source = Resources.DefinitionRegistrationInfo_Source;
             definition.RegistrationInfo.Documentation = string.Format(Resources.DefinitionRegistrationInfo_Documentation, record.TaskId, dbFile);
             definition.RegistrationInfo.Date = DateTime.Now;
@@ -396,9 +396,9 @@ namespace IpTviewr.Services.Record
             var arguments = new[]
             {
                 "/Action:Record",
-                string.Format("/TaskId:{0}", record.TaskId),
-                string.Format("/Database:{0}", dbFile),
-                string.Format("/LogFolder:{0}", logFolder)
+                $"/TaskId:{record.TaskId}",
+                $"/Database:{dbFile}",
+                $"/LogFolder:{logFolder}"
             };
 
             var action = new ExecAction()
@@ -446,11 +446,8 @@ namespace IpTviewr.Services.Record
 
         private static string EnsureTaskNameIsUnique(string taskName, TaskFolder folder)
         {
-            string originalName;
-            int count;
-
-            originalName = taskName;
-            count = 2;
+            var originalName = taskName;
+            var count = 2;
 
             while (true)
             {
@@ -459,7 +456,7 @@ namespace IpTviewr.Services.Record
                             select true;
                 if (query.FirstOrDefault())
                 {
-                    taskName = string.Format("{0} #{1}", originalName, count.ToString(CultureInfo.InvariantCulture));
+                    taskName = $"{originalName} #{count.ToString(CultureInfo.InvariantCulture)}";
                     count++;
                 }
                 else

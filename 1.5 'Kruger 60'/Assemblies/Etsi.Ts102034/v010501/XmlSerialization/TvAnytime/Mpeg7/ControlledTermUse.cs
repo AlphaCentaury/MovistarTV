@@ -18,7 +18,7 @@ namespace Etsi.Ts102034.v010501.XmlSerialization.TvAnytime.Mpeg7
     [DebuggerStepThrough]
     [DesignerCategory("code")]
     [XmlType("ControlledTermUseType", Namespace = "urn:tva:mpeg7:2008")]
-    public partial class ControlledTermUse : InlineTermDefinition
+    public class ControlledTermUse : InlineTermDefinition
     {
         [XmlAttribute("href")]
         public string TermUrl;

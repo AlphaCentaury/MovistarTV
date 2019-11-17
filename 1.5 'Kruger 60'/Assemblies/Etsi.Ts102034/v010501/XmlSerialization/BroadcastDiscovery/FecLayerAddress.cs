@@ -18,7 +18,7 @@ namespace Etsi.Ts102034.v010501.XmlSerialization.BroadcastDiscovery
     [DebuggerStepThrough]
     [DesignerCategory("code")]
     [XmlType(TypeName="FecLayerAddress", Namespace = "urn:dvb:metadata:iptv:sdns:2012-1")]
-    public partial class FecLayerAddress
+    public class FecLayerAddress
     {
         [XmlAttribute]
         public string Address;

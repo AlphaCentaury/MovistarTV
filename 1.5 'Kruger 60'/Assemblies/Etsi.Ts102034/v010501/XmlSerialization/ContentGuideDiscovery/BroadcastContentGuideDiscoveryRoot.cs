@@ -28,7 +28,7 @@ namespace Etsi.Ts102034.v010501.XmlSerialization.ContentGuideDiscovery
     [DesignerCategory("code")]
     [XmlType(AnonymousType = true, Namespace = "urn:dvb:metadata:iptv:sdns:2012-1")]
     [XmlRoot(ElementName = "ServiceDiscovery", Namespace = "urn:dvb:metadata:iptv:sdns:2012-1", IsNullable = false)]
-    public partial class BroadcastContentGuideDiscoveryRoot // ServiceDiscovery
+    public class BroadcastContentGuideDiscoveryRoot // ServiceDiscovery
     {
         /// <summary>
         /// Version of this record. A change in this value indicates a change in one of the ServiceProviderDiscovery Records
