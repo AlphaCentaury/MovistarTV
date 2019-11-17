@@ -15,11 +15,9 @@ namespace IpTviewr.Common
     {
         public static string[] ExpandArguments(string[] rawArguments, IDictionary<string, string> parameters, string openBrace, string closeBrace, StringComparison braceComparisonType)
         {
-            string[] result;
-
             if (rawArguments == null) return null;
 
-            result = new string[rawArguments.Length];
+            var result = new string[rawArguments.Length];
             if (rawArguments.Length == 0) return result;
 
             Validate(parameters, openBrace, closeBrace);

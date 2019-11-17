@@ -11,61 +11,37 @@ using System.Drawing;
 
 namespace IpTviewr.UiServices.Discovery.BroadcastList
 {
-    public class UiBroadcastListSettingsRegistration: IConfigurationItemRegistration
+    public class UiBroadcastListSettingsRegistration : IConfigurationItemRegistration
     {
         public const string RegistrationGuid = "{68B9F98B-DB50-4A08-AF04-35457F0224FB}";
-        private static int MyDirectIndex;
+        private static int _myDirectIndex;
 
         public static UiBroadcastListSettings Settings
         {
-            get { return AppUiConfiguration.Current[MyDirectIndex] as UiBroadcastListSettings; }
-            set { AppUiConfiguration.Current[MyDirectIndex] = value; }
+            get => AppUiConfiguration.Current[_myDirectIndex] as UiBroadcastListSettings;
+            set => AppUiConfiguration.Current[_myDirectIndex] = value;
         } // Settings
 
-        public static Guid SettingsGuid
-        {
-            get { return new Guid(RegistrationGuid); }
-        } // SettingsGuid
+        public static Guid SettingsGuid => new Guid(RegistrationGuid);
 
-        public Guid Id
-        {
-            get { return new Guid(RegistrationGuid); }
-        } // Id
+        public Guid Id => new Guid(RegistrationGuid);
 
-        public bool HasEditor
-        {
-            get { return true; }
-        } // HasEditor
+        public bool HasEditor => true;
 
-        public Type ItemType
-        {
-            get { return typeof(UiBroadcastListSettings); }
-        } // GetItemType
+        public Type ItemType => typeof(UiBroadcastListSettings);
 
         public IConfigurationItem CreateDefault()
         {
             return UiBroadcastListSettings.GetDefaultSettings();
         } // CreateDefault
 
-        public string EditorDisplayName
-        {
-            get { return Properties.SettingsEditor.DisplayName; }
-        } // EditorDisplayName
+        public string EditorDisplayName => Properties.SettingsEditor.DisplayName;
 
-        public string EditorDescription
-        {
-            get { return Properties.SettingsEditor.Description; }
-        } // EditorDescription
+        public string EditorDescription => Properties.SettingsEditor.Description;
 
-        public Image EditorImage
-        {
-            get { return Properties.Resources.BroadcastListSettings_32x32; }
-        } // EditorImage
+        public Image EditorImage => Properties.Resources.BroadcastListSettings_32x32;
 
-        public int EditorPriority
-        {
-            get { return 50; }
-        } // EditorPriority
+        public int EditorPriority => 50;
 
         public IConfigurationItemEditor CreateEditor(IConfigurationItem data)
         {
@@ -79,8 +55,8 @@ namespace IpTviewr.UiServices.Discovery.BroadcastList
 
         public int DirectIndex
         {
-            get { return MyDirectIndex; }
-            set { MyDirectIndex = value; }
+            get => _myDirectIndex;
+            set => _myDirectIndex = value;
         } // DirectIndex
     } // UiBroadcastListSettingsRegistration
 } // namespace

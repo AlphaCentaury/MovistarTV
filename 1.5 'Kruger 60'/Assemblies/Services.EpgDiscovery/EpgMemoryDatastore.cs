@@ -20,11 +20,11 @@ namespace IpTviewr.Services.EpgDiscovery
 
     public sealed class EpgMemoryDatastore: EpgDataStore
     {
-        private ConcurrentDictionary<string, EpgService> Data;
+        private ConcurrentDictionary<string, EpgService> _data;
 
         public EpgMemoryDatastore()
         {
-            Data = new ConcurrentDictionary<string, EpgService>();
+            _data = new ConcurrentDictionary<string, EpgService>();
         } // constructor
 
         public EpgMemoryStorageMethod StorageMethod
@@ -35,20 +35,20 @@ namespace IpTviewr.Services.EpgDiscovery
 
         public override ICollection<string> GetServicesRefs()
         {
-            return Data.Keys;
+            return _data.Keys;
         } // GetServicesRefs
 
         public override IEpgLinkedList GetPrograms(string serviceIdRef, DateTime? localTime, int nodesBefore, int nodesAfter)
         {
-            if (!Data.TryGetValue(serviceIdRef, out var epgService)) return null;
+            if (!_data.TryGetValue(serviceIdRef, out var epgService)) return null;
 
             return GetLinkedList(epgService, localTime);
         } // GetPrograms
 
         public override IDictionary<string, IEpgLinkedList> GetAllPrograms(DateTime? localTime, int nodesBefore, int nodesAfter)
         {
-            var result = new Dictionary<string, IEpgLinkedList>(Data.Count);
-            foreach(var entry in Data)
+            var result = new Dictionary<string, IEpgLinkedList>(_data.Count);
+            foreach(var entry in _data)
             {
                 if (entry.Value.Programs.Count == 0) continue;
 
@@ -60,17 +60,17 @@ namespace IpTviewr.Services.EpgDiscovery
 
         protected override void AddEpgService(EpgService epgService)
         {
-            Console.WriteLine("Store.Add: {0} with {1} programs", epgService.ServiceIdReference, epgService.Programs?.Count);
+            Console.WriteLine("Store.Add: {0} with {1} programs", epgService.ServiceIdReference, epgService.Programs?.Count ?? 0);
             if (epgService.Programs == null) return;
 
             switch (StorageMethod)
             {
                 case EpgMemoryStorageMethod.Replace:
-                    Data[epgService.ServiceIdReference] = epgService;
+                    _data[epgService.ServiceIdReference] = epgService;
                     break;
 
                 case EpgMemoryStorageMethod.Merge:
-                    Data.AddOrUpdate(epgService.ServiceIdReference, epgService, (k,v) => Merge(v, epgService));
+                    _data.AddOrUpdate(epgService.ServiceIdReference, epgService, (k,v) => Merge(v, epgService));
                     break;
             } // switch
         } // AddEpgService

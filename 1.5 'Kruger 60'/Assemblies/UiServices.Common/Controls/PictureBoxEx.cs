@@ -15,14 +15,14 @@ namespace IpTviewr.UiServices.Common.Controls
     [ToolboxBitmap(typeof(PictureBox))]
     public class PictureBoxEx : PictureBox
     {
-        public static Bitmap ToGrayscale(Image original)
+        public static Bitmap ToGreyscale(Image original)
         {
-            // create the grayscale ColorMatrix
-            var colorMatrix = new ColorMatrix(new float[][] 
+            // create the gray scale ColorMatrix
+            var colorMatrix = new ColorMatrix(new[]
             {
-                new float[] {.3f, .3f, .3f, 0, 0},
-                new float[] {.59f, .59f, .59f, 0, 0},
-                new float[] {.11f, .11f, .11f, 0, 0},
+                new[] {.3f, .3f, .3f, 0, 0},
+                new[] {.59f, .59f, .59f, 0, 0},
+                new[] {.11f, .11f, .11f, 0, 0},
                 new float[] {0, 0, 0, 1, 0},
                 new float[] {0, 0, 0, 0, 1}
             });
@@ -44,11 +44,11 @@ namespace IpTviewr.UiServices.Common.Controls
             } // using
             
             return greyscaleBitmap;
-        } // ToGrayscale
+        } // ToGreyscale
 
         public void SetImage(Image image)
         {
-            if (Image != null) Image.Dispose();
+            Image?.Dispose();
             Image = image;
         } // SetImage
 

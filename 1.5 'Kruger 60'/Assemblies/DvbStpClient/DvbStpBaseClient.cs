@@ -17,14 +17,12 @@ namespace IpTviewr.DvbStp.Client
     {
         public const int UdpMaxDatagramSize = 0xFFFF;
 
-        private byte[] TempBytesBuffer;
-
-        public DvbStpBaseClient(IPAddress ip, int port) : this(ip, port, CancellationToken.None)
+        protected DvbStpBaseClient(IPAddress ip, int port) : this(ip, port, CancellationToken.None)
         {
             // no-op
         } // constructor
 
-        public DvbStpBaseClient(IPAddress ip, int port, CancellationToken cancellationToken)
+        protected DvbStpBaseClient(IPAddress ip, int port, CancellationToken cancellationToken)
         {
             MulticastIpAddress = ip;
             MulticastPort = port;
@@ -36,19 +34,16 @@ namespace IpTviewr.DvbStp.Client
         public IPAddress MulticastIpAddress
         {
             get;
-            private set;
         } // MulticastIpAddress
 
         public int MulticastPort
         {
             get;
-            private set;
         } // MulticastPort
 
         public CancellationToken CancellationToken
         {
             get;
-            private set;
         } // CancellationToken
 
         public int ReceiveDatagramTimeout // in milliseconds
@@ -63,10 +58,7 @@ namespace IpTviewr.DvbStp.Client
             private set;
         } // public
 
-        public bool CancelRequested
-        {
-            get { return CancellationToken.IsCancellationRequested; }
-        } // CancelRequested
+        public bool CancelRequested => CancellationToken.IsCancellationRequested;
 
         public DateTime StartTime
         {
@@ -122,7 +114,6 @@ namespace IpTviewr.DvbStp.Client
 
             Socket.Close();
             DatagramData = null;
-            TempBytesBuffer = null;
             Header = null;
         } // Close
 
@@ -169,19 +160,15 @@ namespace IpTviewr.DvbStp.Client
 
         protected virtual void Connect()
         {
-            Socket s;
-            MulticastOption multicastData;
-
             if (Socket != null) return;
 
             DatagramData = new byte[UdpMaxDatagramSize];
-            TempBytesBuffer = new byte[4];
 
-            s = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
+            var s = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
             s.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true);
             s.ReceiveTimeout = ReceiveDatagramTimeout;
             s.Bind(new IPEndPoint(IPAddress.Any, MulticastPort));
-            multicastData = new MulticastOption(MulticastIpAddress, IPAddress.Any);
+            var multicastData = new MulticastOption(MulticastIpAddress, IPAddress.Any);
             s.SetSocketOption(SocketOptionLevel.IP, SocketOptionName.AddMembership, multicastData);
 
             Socket = s;
@@ -191,7 +178,7 @@ namespace IpTviewr.DvbStp.Client
         protected void Receive(bool decodeHeader = false)
         {
             ReceivedBytes = Socket.Receive(DatagramData);
-            DatagramCount = DatagramCount + 1;
+            DatagramCount += 1;
 
             if (ReceivedBytes < DvbStpHeader.MinHeaderLength) throw new InvalidDataException("ReceivedBytes < MinHeaderLength");
 

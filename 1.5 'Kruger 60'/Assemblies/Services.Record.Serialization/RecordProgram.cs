@@ -34,21 +34,12 @@ namespace IpTviewr.Services.Record.Serialization
         } // UtcEndTime
 
         [XmlIgnore]
-        public DateTime LocalStartTime
-        {
-            get { return UtcStartTime.ToLocalTime(); }
-        } // LocalStartTime
+        public DateTime LocalStartTime => UtcStartTime.ToLocalTime();
 
         [XmlIgnore]
-        public DateTime LocalEndTime
-        {
-            get { return UtcEndTime.ToLocalTime(); }
-        } // LocalEndTime
+        public DateTime LocalEndTime => UtcEndTime.ToLocalTime();
 
         [XmlIgnore]
-        public TimeSpan Duration
-        {
-            get { return UtcEndTime - UtcStartTime; }
-        } // Duration
+        public TimeSpan Duration => UtcEndTime - UtcStartTime;
     } // class RecordProgram
 } // namespace

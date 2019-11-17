@@ -8,25 +8,17 @@
 using IpTviewr.Common.Telemetry;
 using IpTviewr.Tools.FirstTimeConfig.Properties;
 using IpTviewr.UiServices.Common.Forms;
-using IpTviewr.UiServices.Configuration;
 using IpTviewr.UiServices.Configuration.Schema2014.Config;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Diagnostics;
-using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace IpTviewr.Tools.FirstTimeConfig
 {
     public partial class ConfigForm : Form
     {
-        private string DefaultRecordingsSavePath;
-        private bool IsFormAllowedToClose;
+        private string _defaultRecordingsSavePath;
+        private bool _isFormAllowedToClose;
 
         public ConfigForm()
         {
@@ -48,11 +40,11 @@ namespace IpTviewr.Tools.FirstTimeConfig
 
             try
             {
-                DefaultRecordingsSavePath = Installation.GetCurrentUserVideosFolder();
+                _defaultRecordingsSavePath = Installation.GetCurrentUserVideosFolder();
             }
             catch
             {
-                DefaultRecordingsSavePath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+                _defaultRecordingsSavePath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
             } // try-catch
 
             wizardControl.Initialization[wizardPageReadme.Name] = PageReadme_Setup;
@@ -75,7 +67,7 @@ namespace IpTviewr.Tools.FirstTimeConfig
         private void ConfigForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             e.Cancel = false;
-            if (IsFormAllowedToClose) return;
+            if (_isFormAllowedToClose) return;
 
             e.Cancel = true;
             DialogResult = DialogResult.None;
@@ -473,14 +465,14 @@ namespace IpTviewr.Tools.FirstTimeConfig
 
         private void PageRecordings_Setup()
         {
-            textBoxSave.Text = DefaultRecordingsSavePath;
+            textBoxSave.Text = _defaultRecordingsSavePath;
             labelCreatingConfig.Visible = false;
         } // PageRecordings_Setup
 
         private void buttonBrowseSave_Click(object sender, EventArgs e)
         {
             selectFolder.NewStyle = true;
-            selectFolder.SelectedPath = string.IsNullOrEmpty(textBoxSave.Text) ? DefaultRecordingsSavePath : textBoxSave.Text;
+            selectFolder.SelectedPath = string.IsNullOrEmpty(textBoxSave.Text) ? _defaultRecordingsSavePath : textBoxSave.Text;
             selectFolder.RootFolder = Environment.SpecialFolder.Desktop;
             if (selectFolder.ShowDialog(this) != DialogResult.OK) return;
 
@@ -545,7 +537,7 @@ namespace IpTviewr.Tools.FirstTimeConfig
 
         private void EndWizard(DialogResult result, string message, Exception ex)
         {
-            IsFormAllowedToClose = true;
+            _isFormAllowedToClose = true;
             Program.SetWizardResult(result, message, ex);
             Close();
         } // EndWizard

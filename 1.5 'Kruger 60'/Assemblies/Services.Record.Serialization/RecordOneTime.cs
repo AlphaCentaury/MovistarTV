@@ -15,14 +15,11 @@ namespace IpTviewr.Services.Record.Serialization
     [XmlType(Namespace = RecordTask.XmlNamespace)]
     public sealed class RecordOneTime : RecordSchedule
     {
-        public override RecordScheduleKind Kind
-        {
-            get { return RecordScheduleKind.OneTime; }
-        } // King
+        public override RecordScheduleKind Kind => RecordScheduleKind.OneTime;
 
         public override void Verbalize(bool pastTime, StringBuilder builder)
         {
-            builder.AppendFormat(pastTime? Properties.Texts.VerbalizeRecordOneTimePast : Properties.Texts.VerbalizeRecordOneTime,
+            builder.AppendFormat(pastTime ? Properties.Texts.VerbalizeRecordOneTimePast : Properties.Texts.VerbalizeRecordOneTime,
                 StartDate, StartDate, SafetyMarginTimeSpan.TotalMinutes);
         } // Verbalize
     } // class RecordOneTime

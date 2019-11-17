@@ -13,9 +13,9 @@ namespace IpTviewr.DvbStp.Client
 {
     public sealed partial class DvbStpSimpleClient : DvbStpBaseClient
     {
-        private byte ExpectedPayloadId;
-        private byte[] ExpectedSegmentId;
-        private SegmentAssembler SegmentData;
+        private byte _expectedPayloadId;
+        private byte[] _expectedSegmentId;
+        private SegmentAssembler _segmentData;
 
         public DvbStpSimpleClient(IPAddress ip, int port)
             : this(ip, port, CancellationToken.None)
@@ -29,32 +29,23 @@ namespace IpTviewr.DvbStp.Client
             MaxDowloadRestartCount = 5;
         } // constructor
 
-        public int ReceivedSections
-        {
-            get { return SegmentData?.ReceivedSections ?? 0; }
-        } // ReceivedSections
+        public int ReceivedSections => _segmentData?.ReceivedSections ?? 0;
 
-        public int SectionCount
-        {
-            get { return SegmentData?.LastSectionNumber + 1 ?? 0; }
-        } // SectionCount
+        public int SectionCount => _segmentData?.LastSectionNumber + 1 ?? 0;
 
-        public byte SegmentVersion
-        {
-            get { return SegmentData?.SegmentIdentity.Version ?? (byte)0; }
-        } // SegmentVersion
+        public byte SegmentVersion => _segmentData?.SegmentIdentity.Version ?? (byte)0;
 
         public int DowloadRestartCount
         {
             get;
             private set;
-        } // DowloadRestartCount
+        } // DownloadRestartCount
 
         public int MaxDowloadRestartCount
         {
             get;
             private set;
-        } // MaxDowloadRestartCount
+        } // MaxDownloadRestartCount
 
         public event EventHandler<SectionReceivedEventArgs> SectionReceived;
         public event EventHandler<PayloadSectionReceivedEventArgs> PayloadSectionReceived;
@@ -66,8 +57,8 @@ namespace IpTviewr.DvbStp.Client
         {
             try
             {
-                ExpectedPayloadId = payloadId;
-                ExpectedSegmentId = segmentId.HasValue ? BitConverter.GetBytes(IPAddress.HostToNetworkOrder(segmentId.Value)) : null;
+                _expectedPayloadId = payloadId;
+                _expectedSegmentId = segmentId.HasValue ? BitConverter.GetBytes(IPAddress.HostToNetworkOrder(segmentId.Value)) : null;
                 Clean();
 
                 ReceiveData();
@@ -75,7 +66,7 @@ namespace IpTviewr.DvbStp.Client
                 if (CancelRequested) return null;
                 if (DownloadCompleted != null) OnDownloadCompleted();
 
-                return SegmentData.GetPayload();
+                return _segmentData.GetPayload();
             }
             finally
             {
@@ -95,11 +86,11 @@ namespace IpTviewr.DvbStp.Client
             if (SectionReceived != null) OnSectionReceived();
 
             // quick filtering of payloadId & segment
-            if (Header.PayloadId != ExpectedPayloadId) return true;
-            if (ExpectedSegmentId == null)
+            if (Header.PayloadId != _expectedPayloadId) return true;
+            if (_expectedSegmentId == null)
             {
                 // accept first segment received as the one we're looking for and then ignore remaining segments
-                ExpectedSegmentId = new byte[]
+                _expectedSegmentId = new[]
                         {
                             Header.SegmentIdNetworkLo,
                             Header.SegmentIdNetworkHi
@@ -107,8 +98,8 @@ namespace IpTviewr.DvbStp.Client
             }
             else
             {
-                if (Header.SegmentIdNetworkLo != ExpectedSegmentId[0]) return true;
-                if (Header.SegmentIdNetworkHi != ExpectedSegmentId[1]) return true;
+                if (Header.SegmentIdNetworkLo != _expectedSegmentId[0]) return true;
+                if (Header.SegmentIdNetworkHi != _expectedSegmentId[1]) return true;
             } // if-else
 
             // accept this section data
@@ -118,7 +109,7 @@ namespace IpTviewr.DvbStp.Client
         protected override void ProcessReceivedData()
         {
             // have we just received a "first" section of the payload?
-            if (SegmentData == null)
+            if (_segmentData == null)
             {
                 InitSectionData();
             } // if
@@ -133,7 +124,7 @@ namespace IpTviewr.DvbStp.Client
         private void InitSectionData()
         {
             // initialize segment data storage
-            SegmentData = new SegmentAssembler(new DvbStpSegmentIdentity(Header), Header.LastSectionNumber);
+            _segmentData = new SegmentAssembler(new DvbStpSegmentIdentity(Header), Header.LastSectionNumber);
 
             // notify start of download
             if (DownloadStarted != null)
@@ -157,7 +148,7 @@ namespace IpTviewr.DvbStp.Client
             if (DownloadRestarted != null) OnDowloadRestarted();
 
             // start over
-            SegmentData = new SegmentAssembler(new DvbStpSegmentIdentity(Header), Header.LastSectionNumber);
+            _segmentData = new SegmentAssembler(new DvbStpSegmentIdentity(Header), Header.LastSectionNumber);
             ResetNoDataTimeout();
         } // RestartSectionData
 
@@ -172,13 +163,13 @@ namespace IpTviewr.DvbStp.Client
                 RestartSectionData();
             } // if
 
-            SegmentData.AddSectionData(Header.SectionNumber, DatagramData, Header.PayloadOffset, Header.PayloadSize);
-            EndReceptionLoop = SegmentData.IsSegmentComplete;
+            _segmentData.AddSectionData(Header.SectionNumber, DatagramData, Header.PayloadOffset, Header.PayloadSize);
+            EndReceptionLoop = _segmentData.IsSegmentComplete;
         } // StoreSectionData
 
         private void Clean()
         {
-            SegmentData = null;
+            _segmentData = null;
         } // Clean
 
         private void OnSectionReceived()

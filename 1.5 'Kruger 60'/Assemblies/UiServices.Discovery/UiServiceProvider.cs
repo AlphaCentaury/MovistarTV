@@ -6,7 +6,6 @@
 // http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
 
 using Etsi.Ts102034.v010501.XmlSerialization;
-using Etsi.Ts102034.v010501.XmlSerialization.Common;
 using Etsi.Ts102034.v010501.XmlSerialization.ProviderDiscovery;
 using IpTviewr.UiServices.Configuration;
 using IpTviewr.UiServices.Configuration.Logos;

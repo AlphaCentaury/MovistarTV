@@ -12,13 +12,13 @@ namespace IpTviewr.UiServices.Common.Controls
 {
     public class ListViewColumnItemComparer : IComparer
     {
-        private int ColumnIndex;
-        private int ResultSign;
+        private int _columnIndex;
+        private int _resultSign;
 
         public ListViewColumnItemComparer(int columnIndex, bool descending)
         {
-            ColumnIndex = columnIndex;
-            ResultSign = descending ? -1 : 1;
+            _columnIndex = columnIndex;
+            _resultSign = descending ? -1 : 1;
         } // ListViewColumnItemSorter
 
         public int Compare(object x, object y)
@@ -31,8 +31,8 @@ namespace IpTviewr.UiServices.Common.Controls
 
             if (object.Equals(item1, item2)) return 0;
 
-            compare = ResultSign * string.Compare(GetSafeText(item1, ColumnIndex), GetSafeText(item2, ColumnIndex));
-            if ((compare == 0) && (ColumnIndex > 0))
+            compare = _resultSign * string.Compare(GetSafeText(item1, _columnIndex), GetSafeText(item2, _columnIndex));
+            if ((compare == 0) && (_columnIndex > 0))
             {
                 compare = string.Compare(item1.SubItems[0].Text, item2.SubItems[0].Text);
             } // if

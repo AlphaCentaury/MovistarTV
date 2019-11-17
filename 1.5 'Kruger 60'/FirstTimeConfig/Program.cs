@@ -8,9 +8,7 @@
 using IpTviewr.Common.Telemetry;
 using IpTviewr.UiServices.Configuration;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -28,9 +26,9 @@ namespace IpTviewr.Tools.FirstTimeConfig
         internal static string FirewallVlcPath;
         internal static AppUiConfiguration AppUiConfig;
 
-        private static DialogResult WizardEndResult;
-        private static string WizardEndText;
-        private static Exception WizardEndException;
+        private static DialogResult _wizardEndResult;
+        private static string _wizardEndText;
+        private static Exception _wizardEndException;
 
         /// <summary>
         /// The main entry point for the application.
@@ -67,9 +65,9 @@ namespace IpTviewr.Tools.FirstTimeConfig
 
         internal static void SetWizardResult(DialogResult endResult, string message, Exception ex)
         {
-            WizardEndResult = endResult;
-            WizardEndText = message;
-            WizardEndException = ex;
+            _wizardEndResult = endResult;
+            _wizardEndText = message;
+            _wizardEndException = ex;
         } // SetWizardResult
 
         static int LaunchWizard()
@@ -78,7 +76,7 @@ namespace IpTviewr.Tools.FirstTimeConfig
             bool launchMainProgram = false;
             int result = 0;
 
-            WizardEndResult = DialogResult.Abort;
+            _wizardEndResult = DialogResult.Abort;
 
             AppUiConfig = Installation.LoadRegistrySettings(out initResult);
             if (AppUiConfig == null)
@@ -106,13 +104,13 @@ namespace IpTviewr.Tools.FirstTimeConfig
             End:
             using (var dlg = new WizardEndDialog())
             {
-                dlg.EndResult = WizardEndResult;
-                dlg.ErrorMessage = WizardEndText;
-                dlg.ErrorException = WizardEndException;
+                dlg.EndResult = _wizardEndResult;
+                dlg.ErrorMessage = _wizardEndText;
+                dlg.ErrorException = _wizardEndException;
                 dlg.ShowDialog();
 
                 launchMainProgram = dlg.checkRunMainProgram.Checked;
-                result = (WizardEndResult == DialogResult.OK) ? 0 : -1;
+                result = (_wizardEndResult == DialogResult.OK) ? 0 : -1;
             } // using
 
             if (launchMainProgram)

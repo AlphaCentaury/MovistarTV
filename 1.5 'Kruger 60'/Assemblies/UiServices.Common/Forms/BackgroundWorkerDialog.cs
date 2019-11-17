@@ -15,9 +15,9 @@ namespace IpTviewr.UiServices.Common.Forms
 {
     public partial class BackgroundWorkerDialog : CommonBaseForm, IBackgroundWorkerDialog
     {
-        private bool formCanClose;
-        private BackgroundWorker worker;
-        private DialogResult dialogResult;
+        private bool _formCanClose;
+        private BackgroundWorker _worker;
+        private DialogResult _dialogResult;
 
         public static DialogResult RunWorkerAsync(IWin32Window owner, BackgroundWorkerOptions options)
         {
@@ -44,8 +44,8 @@ namespace IpTviewr.UiServices.Common.Forms
         {
             if (Options == null)
             {
-                dialogResult = DialogResult.Abort;
-                formCanClose = true;
+                _dialogResult = DialogResult.Abort;
+                _formCanClose = true;
                 this.Close();
 
                 return;
@@ -55,14 +55,14 @@ namespace IpTviewr.UiServices.Common.Forms
 
         private void BackgroundWorkerDialog_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (!formCanClose)
+            if (!_formCanClose)
             {
                 e.Cancel = true;
                 RequestCancelBackgroundTask();
             }
             else
             {
-                this.DialogResult = dialogResult;
+                this.DialogResult = _dialogResult;
             } // if-else
         } // BackgroundWorkerDialog_FormClosing
 
@@ -74,7 +74,7 @@ namespace IpTviewr.UiServices.Common.Forms
 
         private void buttonClose_Click(object sender, EventArgs e)
         {
-            this.DialogResult = dialogResult;
+            this.DialogResult = _dialogResult;
             this.Close();
         } // buttonClose_Click
 
@@ -99,14 +99,14 @@ namespace IpTviewr.UiServices.Common.Forms
 
             Options.BeforeTask?.Invoke(Options, this);
 
-            worker = new BackgroundWorker();
-            worker.WorkerReportsProgress = false;
-            worker.WorkerSupportsCancellation = true;
+            _worker = new BackgroundWorker();
+            _worker.WorkerReportsProgress = false;
+            _worker.WorkerSupportsCancellation = true;
 
-            worker.DoWork += Worker_DoWork;
-            worker.RunWorkerCompleted += Worker_RunWorkerCompleted;
+            _worker.DoWork += Worker_DoWork;
+            _worker.RunWorkerCompleted += Worker_RunWorkerCompleted;
 
-            worker.RunWorkerAsync(Thread.CurrentThread);
+            _worker.RunWorkerAsync(Thread.CurrentThread);
         } // BackgroundWorkerDialog_Load_Implementation
 
         private void timerShow_Tick(object sender, EventArgs e)
@@ -136,22 +136,22 @@ namespace IpTviewr.UiServices.Common.Forms
 
         private void Worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            formCanClose = true;
+            _formCanClose = true;
 
             if (e.Cancelled)
             {
                 labelProgressText.Text = Options.TaskCancelledText ?? Properties.BackgroundWorkerDialog.TaskCancelled;
-                dialogResult = DialogResult.Cancel;
+                _dialogResult = DialogResult.Cancel;
             } // if
 
             if (e.Error != null)
             {
                 Options.OutputException = e.Error;
-                dialogResult = DialogResult.Abort;
+                _dialogResult = DialogResult.Abort;
             }
             else
             {
-                dialogResult = DialogResult.OK;
+                _dialogResult = DialogResult.OK;
                 if (Options.AfterTask != null)
                 {
                     SafeCall(Options.AfterTask, Options, this);
@@ -180,25 +180,19 @@ namespace IpTviewr.UiServices.Common.Forms
 
         private void RequestCancelBackgroundTask()
         {
-            if (worker == null) return;
+            if (_worker == null) return;
 
             labelProgressText.Text = Options.TaskCancellingText ?? Properties.BackgroundWorkerDialog.TaskCancelling;
             buttonRequestCancel.Enabled = false;
 
-            worker.CancelAsync();
+            _worker.CancelAsync();
         } // RequestCancelBackgroundTask
 
         #region IBackgroundWorkerDialog members
 
-        IWin32Window IBackgroundWorkerDialog.ThisWindow
-        {
-            get { return this; }
-        } // IBackgroundWorkerDialog.ThisWindow
+        IWin32Window IBackgroundWorkerDialog.ThisWindow => this;
 
-        Form IBackgroundWorkerDialog.OwnerForm
-        {
-            get { return this.ParentForm; }
-        } // IBackgroundWorkerDialog.OwnerForm
+        Form IBackgroundWorkerDialog.OwnerForm => this.ParentForm;
 
         void IBackgroundWorkerDialog.SetProgressText(string text)
         {
@@ -250,8 +244,8 @@ namespace IpTviewr.UiServices.Common.Forms
 
         bool IBackgroundWorkerDialog.QueryCancel()
         {
-            if (worker == null) return false;
-            return worker.CancellationPending;
+            if (_worker == null) return false;
+            return _worker.CancellationPending;
         } // IBackgroundWorkerDialog.QueryCancel
 
         #endregion

@@ -18,15 +18,15 @@ namespace IpTviewr.UiServices.DvbStpClient
 {
     public partial class DvbStpSimpleDownloadDialog : Form
     {
-        private string FormatProgressPercentage;
-        private string FormatSectionProgress;
-        private string FormatEllapsedTime;
-        private char DataReceptionSymbol;
-        private int DataReceptionCount;
-        private BackgroundWorker Worker;
-        private bool AllowFormToClose;
-        private CancellationTokenSource CancellationTokenSource;
-        private DateTime StartTime;
+        private string _formatProgressPercentage;
+        private string _formatSectionProgress;
+        private string _formatEllapsedTime;
+        private char _dataReceptionSymbol;
+        private int _dataReceptionCount;
+        private BackgroundWorker _worker;
+        private bool _allowFormToClose;
+        private CancellationTokenSource _cancellationTokenSource;
+        private DateTime _startTime;
 
         public UiDvbStpSimpleDownloadRequest Request
         {
@@ -70,10 +70,10 @@ namespace IpTviewr.UiServices.DvbStpClient
                 labelDownloadingPayloadName.Text = Request.Description;
             } // if
             labelDownloadSource.Text = string.Format(labelDownloadSource.Text, Request.MulticastAddress, Request.MulticastPort);
-            FormatProgressPercentage = labelProgressPct.Text;
-            FormatSectionProgress = labelSectionProgress.Text;
-            FormatEllapsedTime = labelEllapsedTime.Text;
-            DataReceptionSymbol = labelDataReception.Text[0];
+            _formatProgressPercentage = labelProgressPct.Text;
+            _formatSectionProgress = labelSectionProgress.Text;
+            _formatEllapsedTime = labelEllapsedTime.Text;
+            _dataReceptionSymbol = labelDataReception.Text[0];
 
             labelProgressPct.Text = null;
             labelSectionProgress.Text = null;
@@ -94,7 +94,7 @@ namespace IpTviewr.UiServices.DvbStpClient
         {
             if ((e.CloseReason != CloseReason.UserClosing) && (e.CloseReason != CloseReason.None)) return;
 
-            if (AllowFormToClose) return;
+            if (_allowFormToClose) return;
 
             e.Cancel = true;
             CancelDownload();
@@ -123,18 +123,18 @@ namespace IpTviewr.UiServices.DvbStpClient
 
         private void StartDownload()
         {
-            StartTime = DateTime.Now;
+            _startTime = DateTime.Now;
             timerEllapsed.Enabled = true;
             DisplayEllapsedTime();
 
-            CancellationTokenSource = new CancellationTokenSource();
-            Worker = new BackgroundWorker();
-            Worker.WorkerReportsProgress = true;
-            Worker.WorkerSupportsCancellation = true;
-            Worker.ProgressChanged += Worker_ProgressChanged;
-            Worker.RunWorkerCompleted += Worker_RunWorkerCompleted;
-            Worker.DoWork += Worker_DoWork;
-            Worker.RunWorkerAsync(Thread.CurrentThread);
+            _cancellationTokenSource = new CancellationTokenSource();
+            _worker = new BackgroundWorker();
+            _worker.WorkerReportsProgress = true;
+            _worker.WorkerSupportsCancellation = true;
+            _worker.ProgressChanged += Worker_ProgressChanged;
+            _worker.RunWorkerCompleted += Worker_RunWorkerCompleted;
+            _worker.DoWork += Worker_DoWork;
+            _worker.RunWorkerAsync(Thread.CurrentThread);
         } // StartDownload
 
         private void CancelDownload()
@@ -143,8 +143,8 @@ namespace IpTviewr.UiServices.DvbStpClient
             labelDownloadingPayloadName.Text = Properties.Texts.CancellingDownloadOperation;
 
             Response.UserCancelled = true;
-            Worker.CancelAsync();
-            CancellationTokenSource.Cancel();
+            _worker.CancelAsync();
+            _cancellationTokenSource.Cancel();
         } // CancelDownload
 
         private void StartClose()
@@ -159,16 +159,16 @@ namespace IpTviewr.UiServices.DvbStpClient
         private void CloseForm()
         {
             timerClose.Enabled = false;
-            AllowFormToClose = true;
+            _allowFormToClose = true;
             Close();
         } // CloseForm
 
         private void DisplayEllapsedTime()
         {
-            var ellapsed = DateTime.Now - StartTime;
+            var ellapsed = DateTime.Now - _startTime;
             var ellapsedRounded = new TimeSpan(ellapsed.Days, ellapsed.Hours, ellapsed.Minutes, ellapsed.Seconds);
 
-            labelEllapsedTime.Text = string.Format(FormatEllapsedTime, ellapsedRounded);
+            labelEllapsedTime.Text = string.Format(_formatEllapsedTime, ellapsedRounded);
         } // DisplayEllapsedTime
 
         #region Worker events
@@ -177,11 +177,11 @@ namespace IpTviewr.UiServices.DvbStpClient
         {
             timerEllapsed.Enabled = false;
 
-            Worker.Dispose();
-            Worker = null;
+            _worker.Dispose();
+            _worker = null;
 
-            CancellationTokenSource.Dispose();
-            CancellationTokenSource = null;
+            _cancellationTokenSource.Dispose();
+            _cancellationTokenSource = null;
 
             Response.UserCancelled = e.Cancelled;
             Response.DownloadException = e.Error;
@@ -214,16 +214,16 @@ namespace IpTviewr.UiServices.DvbStpClient
             if (progressBar.Style == ProgressBarStyle.Marquee) progressBar.Style = ProgressBarStyle.Continuous;
 
             var sectionReceivedArgs = e.UserState as DvbStpSimpleClient.PayloadSectionReceivedEventArgs;
-            labelProgressPct.Text = string.Format(FormatProgressPercentage, e.ProgressPercentage / 1000.0);
-            labelSectionProgress.Text = string.Format(FormatSectionProgress, sectionReceivedArgs.SectionsReceived, sectionReceivedArgs.SectionCount);
+            labelProgressPct.Text = string.Format(_formatProgressPercentage, e.ProgressPercentage / 1000.0);
+            labelSectionProgress.Text = string.Format(_formatSectionProgress, sectionReceivedArgs.SectionsReceived, sectionReceivedArgs.SectionCount);
             progressBar.Value = e.ProgressPercentage / 10;
         } // DisplaySectionReception
 
         private void DisplayDataReception(ProgressChangedEventArgs e)
         {
-            DataReceptionCount++;
+            _dataReceptionCount++;
             labelReceiving.Visible = true;
-            labelDataReception.Text = new string(DataReceptionSymbol, (DataReceptionCount % 6));
+            labelDataReception.Text = new string(_dataReceptionSymbol, (_dataReceptionCount % 6));
         }  // DisplayDataReception
 
         private void DisplayParsingData(ProgressChangedEventArgs e)
@@ -246,7 +246,7 @@ namespace IpTviewr.UiServices.DvbStpClient
 
             InitWorker(e);
 
-            dvbStpClient = new DvbStpSimpleClient(Request.MulticastAddress, Request.MulticastPort, CancellationTokenSource.Token);
+            dvbStpClient = new DvbStpSimpleClient(Request.MulticastAddress, Request.MulticastPort, _cancellationTokenSource.Token);
             try
             {
                 payload = dvbStpClient.GetPayload(Request.PayloadId, Request.SegmentId);
@@ -260,13 +260,13 @@ namespace IpTviewr.UiServices.DvbStpClient
 #endif
                 if ((Request.PayloadDataType != null) && (payload != null))
                 {
-                    Worker.ReportProgress(int.MaxValue);
+                    _worker.ReportProgress(int.MaxValue);
                     Response.DeserializedPayloadData = UiDvbStpSimpleDownloadResponse.ParsePayload(Request.PayloadDataType, payload, Request.PayloadId, !Request.AllowXmlExtraWhitespace, Request.XmlNamespaceReplacer);
                 } // if
             }
             finally
             {
-                e.Cancel = Worker.CancellationPending;
+                e.Cancel = _worker.CancellationPending;
                 dvbStpClient.Close();
             } // finally
         } // Worker_DoWork
@@ -288,7 +288,7 @@ namespace IpTviewr.UiServices.DvbStpClient
 
         private DvbStpSimpleClient CreateDvbStpClient()
         {
-            var dvbStpClient = new DvbStpSimpleClient(Request.MulticastAddress, Request.MulticastPort, CancellationTokenSource.Token);
+            var dvbStpClient = new DvbStpSimpleClient(Request.MulticastAddress, Request.MulticastPort, _cancellationTokenSource.Token);
 
             dvbStpClient.ReceiveDatagramTimeout = Request.ReceiveDatagramTimeout;
             dvbStpClient.ReceiveDatagramTimeout = Request.ReceiveDatagramTimeout;
@@ -305,12 +305,12 @@ namespace IpTviewr.UiServices.DvbStpClient
 
         private void StpClient_SectionReceived(object sender, DvbStpSimpleClient.SectionReceivedEventArgs e)
         {
-            Worker.ReportProgress(-1, e);
+            _worker.ReportProgress(-1, e);
         } // StpClient_SectionReceived
 
         private void StpClient_PayloadSectionReceived(object sender, DvbStpSimpleClient.PayloadSectionReceivedEventArgs e)
         {
-            Worker.ReportProgress((e.SectionsReceived * 1000) / e.SectionCount, e);
+            _worker.ReportProgress((e.SectionsReceived * 1000) / e.SectionCount, e);
         } // StpClient_PayloadSectionReceived
 
         #endregion

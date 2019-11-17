@@ -11,7 +11,7 @@ namespace IpTviewr.DvbStp.Client
 {
     public sealed class SegmentAssembler
     {
-        private byte[][] SectionData;
+        private byte[][] _sectionData;
 
         public DvbStpSegmentIdentity SegmentIdentity
         {
@@ -49,10 +49,7 @@ namespace IpTviewr.DvbStp.Client
             private set;
         } // IsDisposed
 
-        public bool IsSegmentComplete
-        {
-            get { return RemainingSections <= 0; }
-        } // IsSegmentComplete
+        public bool IsSegmentComplete => RemainingSections <= 0;
 
         public SegmentAssembler(DvbStpSegmentIdentity segmentIdentity, int lastSectionNumber)
         {
@@ -63,10 +60,10 @@ namespace IpTviewr.DvbStp.Client
 
         public bool AddSectionData(int sectionNumber, byte[] data, int start, int length)
         {
-            if (SectionData[sectionNumber] != null) return false;
+            if (_sectionData[sectionNumber] != null) return false;
 
-            SectionData[sectionNumber] = new byte[length];
-            Array.Copy(data, start, SectionData[sectionNumber], 0, length);
+            _sectionData[sectionNumber] = new byte[length];
+            Array.Copy(data, start, _sectionData[sectionNumber], 0, length);
 
             ReceivedSections++;
             RemainingSections--;
@@ -78,17 +75,17 @@ namespace IpTviewr.DvbStp.Client
         public byte[] GetPayload()
         {
             if (IsDisposed) throw new ObjectDisposedException("SegmentAssembler");
-            if ((!IsSegmentComplete) || (SectionData == null)) throw new InvalidOperationException();
+            if ((!IsSegmentComplete) || (_sectionData == null)) throw new InvalidOperationException();
 
             int totalPayloadSize;
             byte[] payload;
 
             totalPayloadSize = ReceivedBytes;
             payload = new byte[totalPayloadSize];
-            for (int i = 0, destIndex = 0; i < SectionData.Length; i++)
+            for (int i = 0, destIndex = 0; i < _sectionData.Length; i++)
             {
-                Array.Copy(SectionData[i], 0, payload, destIndex, SectionData[i].Length);
-                destIndex += SectionData[i].Length;
+                Array.Copy(_sectionData[i], 0, payload, destIndex, _sectionData[i].Length);
+                destIndex += _sectionData[i].Length;
             } // for
 
             return payload;
@@ -96,14 +93,14 @@ namespace IpTviewr.DvbStp.Client
 
         public void Reset()
         {
-            SectionData = new byte[LastSectionNumber + 1][];
+            _sectionData = new byte[LastSectionNumber + 1][];
             RemainingSections = LastSectionNumber + 1;
             IsDisposed = false;
         } // Reset
 
         public void Dispose()
         {
-            SectionData = null;
+            _sectionData = null;
             IsDisposed = true;
         } // Dispose
 

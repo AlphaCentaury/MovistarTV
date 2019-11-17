@@ -35,10 +35,7 @@ namespace IpTviewr.UiServices.Discovery.BroadcastList.Editors
         protected void SetDataChanged()
         {
             IsDataChanged = true;
-            if (EditorContainer != null)
-            {
-                EditorContainer.SetDataChanged();
-            } // if
+            EditorContainer?.SetDataChanged();
         } // SetDataChanged
     } // internal class SettingsEditorBaseUserControl
 } // namespace

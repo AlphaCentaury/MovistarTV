@@ -7,10 +7,6 @@
 
 using IpTviewr.Services.Record.Serialization;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace IpTviewr.UiServices.Record
 {
@@ -28,7 +24,7 @@ namespace IpTviewr.UiServices.Record
         {
             if (Task.Schedule.Kind == RecordScheduleKind.RightNow)
             {
-                CurrentStartDateTime = DateTime.Now;
+                _currentStartDateTime = DateTime.Now;
                 UpdateTaskName();
             } // if
             Task.Description.Description = textTaskDescription.Text.Trim();

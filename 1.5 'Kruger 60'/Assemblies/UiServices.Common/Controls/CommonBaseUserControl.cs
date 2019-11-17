@@ -45,10 +45,7 @@ namespace IpTviewr.UiServices.Common.Controls
             if (!HandleMyOwnExceptions)
             {
                 var parent = ParentForm as CommonBaseForm;
-                if (parent != null)
-                {
-                    parent.GetExceptionHandler().Invoke(ex);
-                } // if
+                parent?.GetExceptionHandler()(ex);
             } // if
 
             ExceptionHandler(ex);
@@ -93,8 +90,7 @@ namespace IpTviewr.UiServices.Common.Controls
 
         protected void SafeDispose(IDisposable disposable)
         {
-            if (disposable == null) return;
-            disposable.Dispose();
+            disposable?.Dispose();
         } // SafeDispose
 
         protected bool SafeCall(Action implementation)

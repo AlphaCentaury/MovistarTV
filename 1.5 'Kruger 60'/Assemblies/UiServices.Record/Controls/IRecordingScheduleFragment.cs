@@ -7,9 +7,6 @@
 
 using IpTviewr.Services.Record.Serialization;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace IpTviewr.UiServices.Record.Controls

@@ -17,7 +17,7 @@ namespace IpTviewr.DvbStp.Client
         public byte Version;
         public byte Reserved;
         public byte Encription;
-        public bool HasCRC;
+        public bool HasCrc;
         public int TotalSegmentSize;
         public byte PayloadId;
         public int SegmentId;
@@ -33,7 +33,7 @@ namespace IpTviewr.DvbStp.Client
         public int PrivateHeaderOffset;
         public int PayloadOffset;
         public int PayloadSize;
-        public int CRC;
+        public int Crc;
 
         public enum CompressionMethod: byte
         {
@@ -89,30 +89,30 @@ namespace IpTviewr.DvbStp.Client
         public void CompleteDecoding(byte[] headerData, int receivedBytes)
         {
             int networkInt;
-            var TempBytesBuffer = new byte[4];
+            var tempBytesBuffer = new byte[4];
 
             // byte 0
             // Decoded in BasicDecode: Version = Header[0] & DvbStpHeaderMasks.Version;
-            HasCRC = (headerData[0] & DvbStpHeaderMasks.HasCRC) == 0 ? false : true;
+            HasCrc = (headerData[0] & DvbStpHeaderMasks.HasCrc) == 0 ? false : true;
             Reserved = (byte)((headerData[0] & DvbStpHeaderMasks.Reserved) >> 3);
             Encription = (byte)((headerData[0] & DvbStpHeaderMasks.Encription) >> 1);
 
             // byte 1-3
             if (BitConverter.IsLittleEndian)
             {
-                TempBytesBuffer[3] = 0x00;
-                TempBytesBuffer[2] = headerData[1];
-                TempBytesBuffer[1] = headerData[2];
-                TempBytesBuffer[0] = headerData[3];
+                tempBytesBuffer[3] = 0x00;
+                tempBytesBuffer[2] = headerData[1];
+                tempBytesBuffer[1] = headerData[2];
+                tempBytesBuffer[0] = headerData[3];
             }
             else
             {
-                TempBytesBuffer[0] = 0x00;
-                TempBytesBuffer[1] = headerData[1];
-                TempBytesBuffer[2] = headerData[2];
-                TempBytesBuffer[3] = headerData[3];
+                tempBytesBuffer[0] = 0x00;
+                tempBytesBuffer[1] = headerData[1];
+                tempBytesBuffer[2] = headerData[2];
+                tempBytesBuffer[3] = headerData[3];
             } // if-else IsLittleEndian
-            TotalSegmentSize = BitConverter.ToInt32(TempBytesBuffer, 0);
+            TotalSegmentSize = BitConverter.ToInt32(tempBytesBuffer, 0);
 
             // byte 4
             // Decoded in BasicDecode: PayloadId = Header[4]
@@ -122,15 +122,15 @@ namespace IpTviewr.DvbStp.Client
             // Decoded in BasicDecode: Header.SegmentIdNetworkHi = Header[6];
             if (BitConverter.IsLittleEndian)
             {
-                TempBytesBuffer[1] = headerData[5];
-                TempBytesBuffer[0] = headerData[6];
+                tempBytesBuffer[1] = headerData[5];
+                tempBytesBuffer[0] = headerData[6];
             }
             else
             {
-                TempBytesBuffer[0] = headerData[5];
-                TempBytesBuffer[1] = headerData[6];
+                tempBytesBuffer[0] = headerData[5];
+                tempBytesBuffer[1] = headerData[6];
             } // if-else IsLittleEndian
-            SegmentId = BitConverter.ToUInt16(TempBytesBuffer, 0);
+            SegmentId = BitConverter.ToUInt16(tempBytesBuffer, 0);
 
             // byte 7
             // Decoded in BasicDecode: Header.SegmentVersion = Header[7];
@@ -138,29 +138,29 @@ namespace IpTviewr.DvbStp.Client
             // byte 8-9
             if (BitConverter.IsLittleEndian)
             {
-                TempBytesBuffer[1] = headerData[8];
-                TempBytesBuffer[0] = (byte)(headerData[9] & DvbStpHeaderMasks.SectionNumberLSB);
+                tempBytesBuffer[1] = headerData[8];
+                tempBytesBuffer[0] = (byte)(headerData[9] & DvbStpHeaderMasks.SectionNumberLsb);
             }
             else
             {
-                TempBytesBuffer[0] = headerData[8];
-                TempBytesBuffer[1] = (byte)(headerData[9] & DvbStpHeaderMasks.SectionNumberLSB);
+                tempBytesBuffer[0] = headerData[8];
+                tempBytesBuffer[1] = (byte)(headerData[9] & DvbStpHeaderMasks.SectionNumberLsb);
             } // if-else IsLittleEndian
-            var number = (int)BitConverter.ToUInt16(TempBytesBuffer, 0);
+            var number = (int)BitConverter.ToUInt16(tempBytesBuffer, 0);
             SectionNumber = ((number >> 4) & 0x00000FFF);
 
             // byte 9-10
             if (BitConverter.IsLittleEndian)
             {
-                TempBytesBuffer[1] = (byte)(headerData[9] & DvbStpHeaderMasks.LastSectionNumberMSB);
-                TempBytesBuffer[0] = headerData[10];
+                tempBytesBuffer[1] = (byte)(headerData[9] & DvbStpHeaderMasks.LastSectionNumberMsb);
+                tempBytesBuffer[0] = headerData[10];
             }
             else
             {
-                TempBytesBuffer[0] = (byte)(headerData[9] & DvbStpHeaderMasks.LastSectionNumberMSB);
-                TempBytesBuffer[1] = headerData[10];
+                tempBytesBuffer[0] = (byte)(headerData[9] & DvbStpHeaderMasks.LastSectionNumberMsb);
+                tempBytesBuffer[1] = headerData[10];
             } // if-else IsLittleEndian
-            LastSectionNumber = BitConverter.ToInt16(TempBytesBuffer, 0);
+            LastSectionNumber = BitConverter.ToInt16(tempBytesBuffer, 0);
 
             // byte 11
             HasServiceProviderId = (headerData[11] & DvbStpHeaderMasks.HasServiceProviderId) == 0 ? false : true;
@@ -184,13 +184,13 @@ namespace IpTviewr.DvbStp.Client
             } // if
 
             PayloadOffset = MinHeaderLength + (HasServiceProviderId ? 4 : 0) + PrivateHeaderLength;
-            PayloadSize = receivedBytes - PayloadOffset - (HasCRC ? 4 : 0);
+            PayloadSize = receivedBytes - PayloadOffset - (HasCrc ? 4 : 0);
 
             // CRC
-            if (HasCRC)
+            if (HasCrc)
             {
                 networkInt = BitConverter.ToInt32(headerData, PayloadOffset + PayloadSize);
-                CRC = IPAddress.NetworkToHostOrder(networkInt);
+                Crc = IPAddress.NetworkToHostOrder(networkInt);
             } // if
         } // CompleteDecoding
     } // class DvbStpHeader

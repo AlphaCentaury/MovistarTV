@@ -13,19 +13,14 @@ namespace IpTviewr.UiServices.Configuration
 {
     public abstract class LocalizedObject : ILocalizedObject
     {
-        private string fieldCultureName;
+        private string _fieldCultureName;
 
         [XmlAttribute("culture")]
         public string CultureName
         {
-            get
-            {
-                return fieldCultureName;
-            } // get
-            set
-            {
-                fieldCultureName = (string.IsNullOrEmpty(value)) ? "<default>" : value.ToLowerInvariant();
-            } // 
+            get => _fieldCultureName;
+
+            set => _fieldCultureName = (string.IsNullOrEmpty(value)) ? "<default>" : value.ToLowerInvariant();
         } // CultureName
 
         public static T FindMatchingCultureObject<T>(IEnumerable<T> collection, IEnumerable<string> uiCultures) where T : ILocalizedObject

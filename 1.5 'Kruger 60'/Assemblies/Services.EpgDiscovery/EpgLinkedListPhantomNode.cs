@@ -9,11 +9,11 @@ namespace IpTviewr.Services.EpgDiscovery
 {
     public sealed class EpgLinkedListPhantomNode : IEpgLinkedListNode
     {
-        private EpgLinkedListWrapper LinkedList;
+        private EpgLinkedListWrapper _linkedList;
 
         public EpgLinkedListPhantomNode(EpgLinkedListWrapper list, EpgProgram program, bool first)
         {
-            LinkedList = list;
+            _linkedList = list;
             Program = program;
             IsFirst = first;
             if (first)
@@ -28,37 +28,16 @@ namespace IpTviewr.Services.EpgDiscovery
             } // if-else
         } // constructor
 
-        public IEpgLinkedList List
-        {
-            get { return LinkedList; }
-        } // List
+        public IEpgLinkedList List => _linkedList;
 
-        public IEpgLinkedListNode Next
-        {
-            get;
-            private set;
-        } // Next
+        public IEpgLinkedListNode Next { get; }
 
-        public IEpgLinkedListNode Previous
-        {
-            get;
-            private set;
-        } // Previous
+        public IEpgLinkedListNode Previous { get; }
 
-        public EpgProgram Program
-        {
-            get; private set;
-        } // Program
+        public EpgProgram Program { get; }
 
-        public bool IsFirst
-        {
-            get;
-            private set;
-        } // IsFirst
+        public bool IsFirst { get; }
 
-        public bool IsLast
-        {
-            get { return !IsFirst; }
-        } // IsLast
+        public bool IsLast => !IsFirst;
     } // sealed class EpgLinkedListPhantomNode
 } // namespace

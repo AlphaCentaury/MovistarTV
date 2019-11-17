@@ -5,18 +5,13 @@
 // 
 // http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
 
-using IpTviewr.Common;
 using IpTviewr.Common.Telemetry;
 using IpTviewr.Services.EpgDiscovery;
 using IpTviewr.UiServices.Configuration.Logos;
 using IpTviewr.UiServices.Discovery;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 using IpTviewr.UiServices.Common.Forms;
@@ -26,8 +21,8 @@ namespace IpTviewr.UiServices.EPG
 {
     public partial class EpgChannelPrograms : Form
     {
-        DateTime ReferenceTime;
-        private Font BoldListFont, ItalicListFont;
+        DateTime _referenceTime;
+        private Font _boldListFont, _italicListFont;
 
         public int DaysDelta
         {
@@ -68,8 +63,8 @@ namespace IpTviewr.UiServices.EPG
         {
             if (!disposing) return;
 
-            if (BoldListFont != null) BoldListFont.Dispose();
-            if (ItalicListFont != null) ItalicListFont.Dispose();
+            _boldListFont?.Dispose();
+            _italicListFont?.Dispose();
         } // DisposeForm
 
         private void EpgChannelPrograms_Load(object sender, EventArgs e)
@@ -79,8 +74,8 @@ namespace IpTviewr.UiServices.EPG
             pictureChannelLogo.Image = Service.Logo.GetImage(LogoSize.Size48, true);
             labelChannelName.Text = string.Format("{0} - {1}", Service.DisplayLogicalNumber, Service.DisplayName);
 
-            BoldListFont = new Font(listPrograms.Font, FontStyle.Bold);
-            ItalicListFont = new Font(listPrograms.Font, FontStyle.Italic);
+            _boldListFont = new Font(listPrograms.Font, FontStyle.Bold);
+            _italicListFont = new Font(listPrograms.Font, FontStyle.Italic);
 
             comboBoxDate.SelectedIndex = DaysDelta;
             buttonDisplayChannel.Enabled = false;
@@ -97,10 +92,10 @@ namespace IpTviewr.UiServices.EPG
         {
             var epgProgram = (listPrograms.SelectedItems.Count != 0) ? (EpgProgram)listPrograms.SelectedItems[0].Tag : null;
             EpgProgramDetails.Visible = (epgProgram != null);
-            EpgProgramDetails.DisplayData(Service, epgProgram, ReferenceTime, "Programa");
+            EpgProgramDetails.DisplayData(Service, epgProgram, _referenceTime, "Programa");
 
-            buttonDisplayChannel.Enabled = (epgProgram != null) && (epgProgram.LocalStartTime <= ReferenceTime) && (epgProgram.LocalEndTime > ReferenceTime);
-            buttonRecordChannel.Enabled = (epgProgram != null) && (epgProgram.LocalEndTime >= ReferenceTime);
+            buttonDisplayChannel.Enabled = (epgProgram != null) && (epgProgram.LocalStartTime <= _referenceTime) && (epgProgram.LocalEndTime > _referenceTime);
+            buttonRecordChannel.Enabled = (epgProgram != null) && (epgProgram.LocalEndTime >= _referenceTime);
         } // listPrograms_SelectedIndexChanged
 
         private void buttonDisplayChannel_Click(object sender, EventArgs e)
@@ -130,8 +125,8 @@ namespace IpTviewr.UiServices.EPG
 
         private void LoadEpg(object state)
         {
-            ReferenceTime = DateTime.Now;
-            var start = new DateTime(ReferenceTime.Year, ReferenceTime.Month, ReferenceTime.Day).AddDays(DaysDelta);
+            _referenceTime = DateTime.Now;
+            var start = new DateTime(_referenceTime.Year, _referenceTime.Month, _referenceTime.Day).AddDays(DaysDelta);
             var end = start.AddDays(1);
             // TODO: EPG
             //var epgPrograms = EpgDbSerialization.GetServiceEvents(EpgDatabase, FullServiceName, FullAlternateServiceName, start, end);
@@ -156,13 +151,13 @@ namespace IpTviewr.UiServices.EPG
                     item = new ListViewItem(last.LocalEndTime.ToShortTimeString());
                     item.UseItemStyleForSubItems = false;
                     item.SubItems.Add("Información de programa no disponible");
-                    item.SubItems[1].Font = ItalicListFont;
+                    item.SubItems[1].Font = _italicListFont;
                 }
                 else
                 {
                     item = new ListViewItem(epgProgram.LocalStartTime.ToShortTimeString());
                     item.UseItemStyleForSubItems = false;
-                    item.Font = BoldListFont;
+                    item.Font = _boldListFont;
                     item.Tag = epgProgram;
                     item.SubItems.Add(epgProgram.Title);
                     item.ToolTipText = epgProgram.Title;
@@ -170,7 +165,7 @@ namespace IpTviewr.UiServices.EPG
                 listPrograms.Items.Add(item);
                 last = epgProgram;
 
-                if ((select == null) && (epgProgram.LocalStartTime <= ReferenceTime) && (epgProgram.LocalEndTime > ReferenceTime))
+                if ((select == null) && (epgProgram.LocalStartTime <= _referenceTime) && (epgProgram.LocalEndTime > _referenceTime))
                 {
                     select = item;
                 } // if

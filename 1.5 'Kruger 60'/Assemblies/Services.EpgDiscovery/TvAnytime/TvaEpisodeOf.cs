@@ -19,7 +19,7 @@ namespace IpTviewr.Services.EpgDiscovery.TvAnytime
     public class TvaEpisodeOf
     {
         [XmlAttribute("crid")]
-        public string CRID
+        public string Crid
         {
             get;
             set;

@@ -30,15 +30,15 @@ namespace IpTviewr.UiServices.Configuration.Schema2014.Config
         [XmlAttribute("displayName")]
         public string Name
         {
-            get { return Item1; }
-            set { Item1 = ConfigCommon.Normalize(value); }
+            get => Item1;
+            set => Item1 = ConfigCommon.Normalize(value);
         } // Name
 
         [XmlText()]
         public string Path
         {
-            get { return Item2; }
-            set { Item2 = ConfigCommon.Normalize(value); }
+            get => Item2;
+            set => Item2 = ConfigCommon.Normalize(value);
         } // Value
 
         public string Validate(string ownerTag)

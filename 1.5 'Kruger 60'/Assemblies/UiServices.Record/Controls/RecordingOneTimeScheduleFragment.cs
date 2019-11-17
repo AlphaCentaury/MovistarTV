@@ -6,12 +6,6 @@
 // http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
 
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using IpTviewr.Services.Record.Serialization;
 
@@ -19,7 +13,7 @@ namespace IpTviewr.UiServices.Record.Controls
 {
     internal partial class RecordingOneTimeScheduleFragment : UserControl, IRecordingScheduleFragment
     {
-        private RecordOneTime Schedule;
+        private RecordOneTime _schedule;
 
         public RecordingOneTimeScheduleFragment()
         {
@@ -28,29 +22,23 @@ namespace IpTviewr.UiServices.Record.Controls
 
         #region IRecordingScheduleFragment
 
-        public UserControl UserControl
-        {
-            get { return this; }
-        } // UserControl
+        public UserControl UserControl => this;
 
-        public RecordScheduleKind Kind
-        {
-            get { return RecordScheduleKind.OneTime; }
-        } // ScheduleKind
+        public RecordScheduleKind Kind => RecordScheduleKind.OneTime;
 
         public void UpdateStartDate(DateTime startDate)
         {
-            Schedule.StartDate = startDate;
+            _schedule.StartDate = startDate;
         } // UpdateStartDate
 
         public void SetSchedule(RecordSchedule schedule)
         {
-            Schedule = (RecordOneTime)schedule;
+            _schedule = (RecordOneTime)schedule;
         } // SetSchedule
 
         public RecordSchedule GetSchedule()
         {
-            return Schedule;
+            return _schedule;
         } // GetSchedule
 
         #endregion

@@ -15,9 +15,7 @@ using IpTviewr.UiServices.Forms;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using IpTviewr.ChannelList.Properties;
 using IpTviewr.Services.EpgDiscovery;
@@ -223,7 +221,7 @@ namespace IpTviewr.ChannelList
             SetBroadcastDiscovery(downloader.BroadcastDiscovery);
 
             // TODO: clean-up
-            if (enable_Epg)
+            if (_enableEpg)
             {
                 var discovery = downloader.EpgDiscovery;
                 if (discovery == null) return true;
@@ -279,7 +277,7 @@ namespace IpTviewr.ChannelList
             _broadcastDiscovery = broadcastDiscovery;
             _listManager.BroadcastServices = _broadcastDiscovery?.Services;
 
-            if (!enable_Epg) return;
+            if (!_enableEpg) return;
 
             _tokenSource?.Cancel();
             _tokenSource = null;

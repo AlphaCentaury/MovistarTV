@@ -9,18 +9,14 @@ using IpTviewr.Services.Record.Serialization;
 using IpTviewr.UiServices.Configuration;
 using IpTviewr.UiServices.Configuration.Schema2014.Config;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace IpTviewr.UiServices.Record
 {
     partial class RecordChannelDialog
     {
-        private bool IsTaskNameUserProvided;
+        private bool _isTaskNameUserProvided;
 
         #region "Advanced" tab events / setup & get data
 
@@ -35,7 +31,7 @@ namespace IpTviewr.UiServices.Record
             }
             else
             {
-                IsTaskNameUserProvided = true;
+                _isTaskNameUserProvided = true;
                 textTaskName.Text = Task.Description.TaskSchedulerName;
             } // if-else
             textTaskName.Enabled = IsNewTask;
@@ -125,7 +121,7 @@ namespace IpTviewr.UiServices.Record
 
         private void textTaskName_TextChanged(object sender, EventArgs e)
         {
-            IsTaskNameUserProvided = true;
+            _isTaskNameUserProvided = true;
         } // textTaskName_TextChanged
 
         private void textTaskName_Validating(object sender, CancelEventArgs e)
@@ -149,9 +145,9 @@ namespace IpTviewr.UiServices.Record
 
         private void UpdateTaskName()
         {
-            if (IsTaskNameUserProvided) return;
+            if (_isTaskNameUserProvided) return;
 
-            var taskName = RecordDescription.CreateTaskName(Task.Channel, CurrentStartDateTime);
+            var taskName = RecordDescription.CreateTaskName(Task.Channel, _currentStartDateTime);
             textTaskName.SetText(taskName, false);
         } // UpdateTaskName
 

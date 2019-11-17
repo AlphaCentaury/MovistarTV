@@ -14,39 +14,36 @@ namespace IpTviewr.Common.Serialization
 {
     public class XmlTextReaderTrimExtraWhitespace : XmlTextReader
     {
-        private XmlReaderSettings MySettings;
-        private Func<string, string> NamespaceReplacer;
+        private XmlReaderSettings _mySettings;
+        private Func<string, string> _namespaceReplacer;
 
         public XmlTextReaderTrimExtraWhitespace(Stream input, Func<string, string> namespaceReplacer)
             : base(input)
         {
-            NamespaceReplacer = namespaceReplacer;
+            _namespaceReplacer = namespaceReplacer;
         } // constructor
 
         public XmlTextReaderTrimExtraWhitespace(Stream input, XmlReaderSettings settings, Func<string, string> namespaceReplacer)
             : base(input)
         {
-            MySettings = settings;
-            NamespaceReplacer = namespaceReplacer;
+            _mySettings = settings;
+            _namespaceReplacer = namespaceReplacer;
         } // constructor
 
         public XmlTextReaderTrimExtraWhitespace(TextReader input, Func<string, string> namespaceReplacer)
             : base(input)
         {
-            NamespaceReplacer = namespaceReplacer;
+            _namespaceReplacer = namespaceReplacer;
         } // constructor
 
         public XmlTextReaderTrimExtraWhitespace(TextReader input, XmlReaderSettings settings, Func<string, string> namespaceReplacer)
             : base(input)
         {
-            MySettings = settings;
-            NamespaceReplacer = namespaceReplacer;
+            _mySettings = settings;
+            _namespaceReplacer = namespaceReplacer;
         } // constructor
 
-        public override XmlReaderSettings Settings
-        {
-            get { return MySettings ?? base.Settings; }
-        } // Settings
+        public override XmlReaderSettings Settings => _mySettings ?? base.Settings;
 
         public override string NamespaceURI
         {
@@ -54,10 +51,10 @@ namespace IpTviewr.Common.Serialization
             {
                 var ns = base.NamespaceURI;
 
-                if (NamespaceReplacer == null) return ns;
+                if (_namespaceReplacer == null) return ns;
                 if (string.IsNullOrEmpty(ns)) return ns;
 
-                return NamespaceReplacer(ns);
+                return _namespaceReplacer(ns);
             } // get
         } // NamespaceURI
 

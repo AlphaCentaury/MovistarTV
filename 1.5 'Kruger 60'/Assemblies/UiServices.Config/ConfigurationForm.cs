@@ -16,7 +16,7 @@ namespace IpTviewr.UiServices.Configuration
 {
     public partial class ConfigurationForm : Form
     {
-        private ListViewItem SelectedConfigurationListItem;
+        private ListViewItem _selectedConfigurationListItem;
 
         private class ConfigurationItem
         {
@@ -193,8 +193,8 @@ namespace IpTviewr.UiServices.Configuration
             var newSelection = (listViewConfigItems.SelectedItems.Count > 0) ? listViewConfigItems.SelectedItems[0] : null;
             if (newSelection == null) return;
 
-            SelectedConfigurationListItem = newSelection;
-            var configItem = SelectedConfigurationListItem.Tag as IConfigurationItemEditor;
+            _selectedConfigurationListItem = newSelection;
+            var configItem = _selectedConfigurationListItem.Tag as IConfigurationItemEditor;
 
             panelConfigItemUi.Controls.Clear();
             var ui = configItem.UserInterfaceItem;

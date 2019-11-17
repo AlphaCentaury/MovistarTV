@@ -9,10 +9,7 @@ using IpTviewr.Common.Telemetry;
 using IpTviewr.UiServices.Common.Start;
 using IpTviewr.UiServices.Configuration;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 

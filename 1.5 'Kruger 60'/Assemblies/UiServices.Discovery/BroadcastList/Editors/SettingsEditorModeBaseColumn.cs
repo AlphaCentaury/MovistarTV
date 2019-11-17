@@ -33,10 +33,9 @@ namespace IpTviewr.UiServices.Discovery.BroadcastList.Editors
             set;
         } // Columns
 
-        public virtual List<UiBroadcastListColumn> SelectedColumns
-        {
-            get { throw new NotImplementedException(); }
-        } // SelectedColumns
+        // class should be abstract and this method as well
+        // however, being a UserControl, it can't be abstract to be used by WinForms designers
+        public virtual List<UiBroadcastListColumn> SelectedColumns => throw new NotImplementedException();
 
         public Control GetUnderlyingControl()
         {

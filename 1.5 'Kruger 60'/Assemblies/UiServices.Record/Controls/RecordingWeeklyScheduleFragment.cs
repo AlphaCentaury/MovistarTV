@@ -6,12 +6,7 @@
 // http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
 
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using IpTviewr.Services.Record.Serialization;
 using IpTviewr.UiServices.Record.Properties;
@@ -20,8 +15,8 @@ namespace IpTviewr.UiServices.Record.Controls
 {
     internal partial class RecordingWeeklyScheduleFragment : UserControl, IRecordingScheduleFragment
     {
-        private RecordWeekly Schedule;
-        private RecordWeekDays[] ListIndexDay;
+        private RecordWeekly _schedule;
+        private RecordWeekDays[] _listIndexDay;
 
         public RecordingWeeklyScheduleFragment()
         {
@@ -30,43 +25,40 @@ namespace IpTviewr.UiServices.Record.Controls
 
         #region IRecordingScheduleFragment
 
-        public UserControl UserControl
-        {
-            get { return this; }
-        } // UserControl
+        public UserControl UserControl => this;
 
         public RecordScheduleKind Kind
-        {
-            get { return RecordScheduleKind.Weekly; }
-        } // ScheduleKind
+            // ScheduleKind
+            =>
+                RecordScheduleKind.Weekly;
 
         public void UpdateStartDate(DateTime startDate)
         {
-            Schedule.StartDate = startDate;
+            _schedule.StartDate = startDate;
         } // UpdateStartDate
 
         public void SetSchedule(RecordSchedule schedule)
         {
-            Schedule = (RecordWeekly)schedule;
+            _schedule = (RecordWeekly)schedule;
 
-            numericRecurEvery.Value = Schedule.RecurEveryWeeks;
-            for (int index = 0; index < ListIndexDay.Length; index++)
+            numericRecurEvery.Value = _schedule.RecurEveryWeeks;
+            for (int index = 0; index < _listIndexDay.Length; index++)
             {
-                checkedListDays.SetItemChecked(index, (Schedule.WeekDays & ListIndexDay[index]) != 0);
+                checkedListDays.SetItemChecked(index, (_schedule.WeekDays & _listIndexDay[index]) != 0);
             } // for index
         } // SetSchedule
 
         public RecordSchedule GetSchedule()
         {
-            Schedule.RecurEveryWeeks = (short)numericRecurEvery.Value;
+            _schedule.RecurEveryWeeks = (short)numericRecurEvery.Value;
 
-            Schedule.WeekDays = default(RecordWeekDays);
+            _schedule.WeekDays = default(RecordWeekDays);
             for (int index = 0; index < checkedListDays.CheckedIndices.Count; index++)
             {
-                Schedule.WeekDays |= ListIndexDay[checkedListDays.CheckedIndices[index]];
+                _schedule.WeekDays |= _listIndexDay[checkedListDays.CheckedIndices[index]];
             } // for
 
-            return Schedule;
+            return _schedule;
         } // GetSchedule
 
         #endregion
@@ -76,7 +68,7 @@ namespace IpTviewr.UiServices.Record.Controls
             var culture = System.Threading.Thread.CurrentThread.CurrentCulture;
             var info = culture.DateTimeFormat;
             var dayNames = info.DayNames;
-            ListIndexDay = new RecordWeekDays[7];
+            _listIndexDay = new RecordWeekDays[7];
 
             for (int index = 0, day = (int)info.FirstDayOfWeek; index < dayNames.Length; index++)
             {
@@ -84,7 +76,7 @@ namespace IpTviewr.UiServices.Record.Controls
                 dayName = char.ToUpper(dayName[0], culture) + dayName.Substring(1, dayName.Length - 1);
                 checkedListDays.Items.Add(dayName);
 
-                ListIndexDay[index] = RecordWeekly.ToRecordWeekDays((DayOfWeek)day);
+                _listIndexDay[index] = RecordWeekly.ToRecordWeekDays((DayOfWeek)day);
                 day = (day + 1) % 7;
             } // for
         } // SchedulePatternWeekly_Load

@@ -44,10 +44,7 @@ namespace IpTviewr.UiServices.Common.Forms
             if (!HandleOwnedFormsExceptions)
             {
                 var parent = form.ParentForm as CommonBaseForm;
-                if (parent != null)
-                {
-                    parent.HandleOwnedFormException(this, ex);
-                } // if
+                parent?.HandleOwnedFormException(this, ex);
             } // if
 
             ExceptionHandler(form, ex);

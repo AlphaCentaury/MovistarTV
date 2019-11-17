@@ -39,17 +39,17 @@ namespace IpTviewr.UiServices.Configuration.Editors
 
         public string CommandLine
         {
-            get { return textBoxCommandLine.Text; }
-            set { textBoxCommandLine.Text = value; }
+            get => textBoxCommandLine.Text;
+            set => textBoxCommandLine.Text = value;
         } // CommandLine
 
         private void ParametersEditor_Load(object sender, EventArgs e)
         {
-            var dataSeparator = new char[] { '|' };
+            var dataSeparator = new[] { '|' };
 
             if (!string.IsNullOrEmpty(ParametersList))
             {
-                var lines = ParametersList.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
+                var lines = ParametersList.Split(new[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
 
                 listParameters.BeginUpdate();
                 foreach (var line in lines)

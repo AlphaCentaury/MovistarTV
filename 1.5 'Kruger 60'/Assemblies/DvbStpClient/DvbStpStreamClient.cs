@@ -17,10 +17,10 @@ namespace IpTviewr.DvbStp.Client
         public event EventHandler DownloadEnded;
         public event EventHandler<PayloadStorage.SegmentPayloadReceivedEventArgs> SegmentPayloadReceived;
 
-        private PayloadStorage Storage;
-        private System.Collections.BitArray ReceivedSegments;
-        private int TotalSegments, LoadedSegments;
-        private double Threshold;
+        private PayloadStorage _storage;
+        private System.Collections.BitArray _receivedSegments;
+        private int _totalSegments, _loadedSegments;
+        private double _threshold;
 
         public bool IsDownloadStarted
         {
@@ -54,12 +54,12 @@ namespace IpTviewr.DvbStp.Client
             {
                 if (threshold >= 0.01)
                 {
-                    Threshold = threshold;
-                    ReceivedSegments = new System.Collections.BitArray(ushort.MaxValue + 1);
+                    _threshold = threshold;
+                    _receivedSegments = new System.Collections.BitArray(ushort.MaxValue + 1);
                 } // if
 
-                Storage = new PayloadStorage(true);
-                Storage.SegmentPayloadReceived += PayloadReceived;
+                _storage = new PayloadStorage(true);
+                _storage.SegmentPayloadReceived += PayloadReceived;
                 ReceiveData();
             }
             finally
@@ -76,8 +76,8 @@ namespace IpTviewr.DvbStp.Client
 
         private void Clean()
         {
-            if (Storage != null) Storage = null;
-            if (ReceivedSegments != null) ReceivedSegments = null;
+            if (_storage != null) _storage = null;
+            if (_receivedSegments != null) _receivedSegments = null;
         } // Clean
 
         protected override void ProcessReceivedData()
@@ -89,25 +89,25 @@ namespace IpTviewr.DvbStp.Client
                 FireDownloadStarted();
             } // if
 
-            Storage.AddSection(Header, DatagramData, true);
+            _storage.AddSection(Header, DatagramData, true);
         } // ProcessReceivedData
 
         private void PayloadReceived(object sender, PayloadStorage.SegmentPayloadReceivedEventArgs e)
         {
             SegmentPayloadReceived?.Invoke(this, e);
 
-            if (ReceivedSegments != null)
+            if (_receivedSegments != null)
             {
-                if (!ReceivedSegments[e.SegmentIdentity.Id])
+                if (!_receivedSegments[e.SegmentIdentity.Id])
                 {
-                    TotalSegments++;
-                    ReceivedSegments[e.SegmentIdentity.Id] = true;
+                    _totalSegments++;
+                    _receivedSegments[e.SegmentIdentity.Id] = true;
                     SegmentPayloadReceived?.Invoke(this, e);
                 }
                 else
                 {
-                    LoadedSegments++;
-                    if (LoadedSegments >= (TotalSegments * Threshold))
+                    _loadedSegments++;
+                    if (_loadedSegments >= (_totalSegments * _threshold))
                     {
                         EndReceptionLoop = true;
                         DownloadEnded?.Invoke(this, EventArgs.Empty);

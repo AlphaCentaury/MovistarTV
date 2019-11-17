@@ -111,10 +111,8 @@ namespace IpTviewr.UiServices.Discovery
             set;
         } // Services
 
-        public UiBroadcastService this[int index]
-        {
-            get { return Services[index]; }
-        } // this[index]
+        public UiBroadcastService this[int index] => Services[index];
+        
 
         public UiBroadcastService this[string serviceKey]
         {

@@ -10,8 +10,6 @@ using System.Drawing;
 using System.IO;
 using IpTviewr.Native;
 using System.IO.Compression;
-using System.Linq;
-using System.Xml;
 
 namespace IpTViewr.Setup.Logos
 {

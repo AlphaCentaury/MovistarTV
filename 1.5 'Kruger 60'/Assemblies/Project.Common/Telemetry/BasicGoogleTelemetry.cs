@@ -19,12 +19,12 @@ namespace IpTviewr.Common.Telemetry
     public class BasicGoogleTelemetry
     {
 #if DEBUG
-        private static Uri UrlEndpoint = new Uri("https://www.google-analytics.com/debug/collect");
+        private static Uri _urlEndpoint = new Uri("https://www.google-analytics.com/debug/collect");
 #else
         private static Uri UrlEndpoint = new Uri("https://www.google-analytics.com/collect");
 #endif
-        private static string UserAgent;
-        private static string ApplicationName;
+        private static string _userAgent;
+        private static string _applicationName;
 
         public static bool Enabled
         {
@@ -58,8 +58,8 @@ namespace IpTviewr.Common.Telemetry
 
         public static void Init(string trackingId, string clientId, bool enabled, bool usage, bool exceptions)
         {
-            UserAgent = BuildUserAgent();
-            ApplicationName = Path.GetFileNameWithoutExtension(Application.ExecutablePath);
+            _userAgent = BuildUserAgent();
+            _applicationName = Path.GetFileNameWithoutExtension(Application.ExecutablePath);
             TrackingId = trackingId;
             ClientId = clientId;
             Enabled = enabled;
@@ -222,7 +222,7 @@ namespace IpTviewr.Common.Telemetry
             bag.Add("tid", TrackingId);
             bag.Add("cid", ClientId);
             bag.Add("ul", Thread.CurrentThread.CurrentUICulture.Name.ToLowerInvariant());
-            bag.Add("an", ApplicationName);
+            bag.Add("an", _applicationName);
             bag.Add("av", SolutionVersion.AssemblyFileVersion);
 
             return bag;
@@ -233,7 +233,7 @@ namespace IpTviewr.Common.Telemetry
             try
             {
                 var client = new WebClient();
-                client.Headers.Add(HttpRequestHeader.UserAgent, UserAgent);
+                client.Headers.Add(HttpRequestHeader.UserAgent, _userAgent);
 
                 var postData = GetPostData(propertyBag);
                 var binPostData = Encoding.UTF8.GetBytes(postData);

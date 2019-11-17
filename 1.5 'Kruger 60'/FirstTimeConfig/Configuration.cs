@@ -13,11 +13,6 @@ using IpTviewr.UiServices.Discovery.BroadcastList;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
-using System.Xml;
-using System.Xml.Linq;
 using IpTviewr.Core.IpTvProvider;
 using IpTviewr.MovistarPlus;
 
@@ -37,7 +32,7 @@ namespace IpTviewr.Tools.FirstTimeConfig
                     PreferredLanguages = Properties.Texts.DvbIpTv_PreferredLanguages,
                     Record = new RecordConfig()
                     {
-                        SaveLocations = new RecordSaveLocation[]
+                        SaveLocations = new[]
                         {
                             new RecordSaveLocation()
                             {
@@ -54,7 +49,7 @@ namespace IpTviewr.Tools.FirstTimeConfig
                                 Path = Path.Combine(rootSaveLocation, Properties.Texts.SaveLocationMoviesFolder)
                             } // RecordSaveLocation
                         }, // SaveLocations
-                        TaskSchedulerFolders = new RecordTaskSchedulerFolder[]
+                        TaskSchedulerFolders = new[]
                         {
                             new RecordTaskSchedulerFolder()
                             {
@@ -62,13 +57,13 @@ namespace IpTviewr.Tools.FirstTimeConfig
                                 Path = "\\IPTViewr"
                             } // RecordTaskSchedulerFolder
                         }, // TaskSchedulerFolders
-                        Recorders = new RecorderConfig[]
+                        Recorders = new[]
                         {
                             new RecorderConfig()
                             {
                                 Name = "VLC",
                                 Path = vlcPath,
-                                Arguments = new string[]
+                                Arguments = new[]
                                 {
                                     "--intf=dummy",
                                     "--dummy-quiet",
@@ -130,7 +125,7 @@ namespace IpTviewr.Tools.FirstTimeConfig
                 Name = "VLC",
                 Id = new Guid("{C12055FC-315A-47C4-B9CC-48D2E6ECD8FA}"),
                 Path = vlcPath,
-                Arguments = new string[]
+                Arguments = new[]
                 {
                     "{param:Channel.Url}",
                     ":meta-title={param:Channel.Name}",
@@ -144,7 +139,7 @@ namespace IpTviewr.Tools.FirstTimeConfig
                 Name = Properties.Texts.GetTvPlayersVlcSameWindow,
                 Id = new Guid("{4154BC96-5FE0-45C2-9895-083C4FB4C8CE}"),
                 Path = vlcPath,
-                Arguments = new string[]
+                Arguments = new[]
                 {
                     "{param:Channel.Url}",
                     ":meta-title={param:Channel.Name}",
@@ -163,7 +158,7 @@ namespace IpTviewr.Tools.FirstTimeConfig
                     Name = "K-Lite Media Player Classic",
                     Id = new Guid("{8FFA2EE6-8823-40B1-B20F-F962389D4B07}"),
                     Path = path,
-                    Arguments = new string[]
+                    Arguments = new[]
                     {
                         "{param:Channel.Url}",
                         "/play",

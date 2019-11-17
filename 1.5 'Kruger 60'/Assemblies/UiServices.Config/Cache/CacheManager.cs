@@ -14,27 +14,27 @@ namespace IpTviewr.UiServices.Configuration.Cache
 {
     public class CacheManager
     {
-        private string BaseDirectory;
-        private char[] DocNameOffendingChars;
+        private string _baseDirectory;
+        private char[] _docNameOffendingChars;
 
         public CacheManager(string baseDirectory)
         {
-            BaseDirectory = baseDirectory;
-            if (!Directory.Exists(BaseDirectory))
+            _baseDirectory = baseDirectory;
+            if (!Directory.Exists(_baseDirectory))
             {
-                Directory.CreateDirectory(BaseDirectory);
+                Directory.CreateDirectory(_baseDirectory);
             } // if
 
             var invalidFileChars = Path.GetInvalidFileNameChars();
-            DocNameOffendingChars = new char[invalidFileChars.Length + 2];
-            DocNameOffendingChars[0] = '.';
-            DocNameOffendingChars[1] = ' ';
-            Array.Copy(invalidFileChars, 0, DocNameOffendingChars, 2, invalidFileChars.Length);
+            _docNameOffendingChars = new char[invalidFileChars.Length + 2];
+            _docNameOffendingChars[0] = '.';
+            _docNameOffendingChars[1] = ' ';
+            Array.Copy(invalidFileChars, 0, _docNameOffendingChars, 2, invalidFileChars.Length);
         } // constructor
 
         public void SaveXml<T>(string documentType, string name, int version, T xmlTree) where T: class
         {
-            var path = Path.Combine(BaseDirectory, GetSafeDocumentName(documentType, name, ".xml"));
+            var path = Path.Combine(_baseDirectory, GetSafeDocumentName(documentType, name, ".xml"));
             XmlSerialization.Serialize(path, Encoding.UTF8, xmlTree);
         } // SaveXml
 
@@ -42,7 +42,7 @@ namespace IpTviewr.UiServices.Configuration.Cache
         {
             try
             {
-                var path = Path.Combine(BaseDirectory, GetSafeDocumentName(documentType, name, ".xml"));
+                var path = Path.Combine(_baseDirectory, GetSafeDocumentName(documentType, name, ".xml"));
                 if (!File.Exists(path))
                 {
                     return null;
@@ -61,7 +61,7 @@ namespace IpTviewr.UiServices.Configuration.Cache
         {
             try
             {
-                var path = Path.Combine(BaseDirectory, GetSafeDocumentName(documentType, name, ".xml"));
+                var path = Path.Combine(_baseDirectory, GetSafeDocumentName(documentType, name, ".xml"));
                 if (!File.Exists(path))
                 {
                     return null;
@@ -105,7 +105,7 @@ namespace IpTviewr.UiServices.Configuration.Cache
             } // if
 
             // quick test: any offending char?
-            index = documentName.IndexOfAny(DocNameOffendingChars);
+            index = documentName.IndexOfAny(_docNameOffendingChars);
             if (index < 0)
             {
                 buffer.Append(documentName);
@@ -123,7 +123,7 @@ namespace IpTviewr.UiServices.Configuration.Cache
                 } // if
 
                 startIndex = index + 1;
-                index = (startIndex < documentName.Length) ? documentName.IndexOfAny(DocNameOffendingChars, startIndex) : -1;
+                index = (startIndex < documentName.Length) ? documentName.IndexOfAny(_docNameOffendingChars, startIndex) : -1;
             } // while
 
             // add final text

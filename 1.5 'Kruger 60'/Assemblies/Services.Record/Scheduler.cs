@@ -6,7 +6,6 @@
 // http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
 
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Microsoft.Win32.TaskScheduler;
@@ -15,25 +14,24 @@ using IpTviewr.Services.Record.Serialization;
 using System.Reflection;
 using System.IO;
 using IpTviewr.Services.Record.Properties;
-using System.Text.RegularExpressions;
 using IpTviewr.Common;
 
 namespace IpTviewr.Services.Record
 {
     public class Scheduler
     {
-        private Action<ExceptionEventData> ExceptionHandler;
-        private string RecordTasksFolder;
-        private string RecorderLauncherPath;
-        private string DbFile;
-        private string LogFolder;
+        private Action<ExceptionEventData> _exceptionHandler;
+        private string _recordTasksFolder;
+        private string _recorderLauncherPath;
+        private string _dbFile;
+        private string _logFolder;
 
-        private TimeSpan StartSafetyMargin;
-        private TimeSpan EndSafetyMargin;
-        private TimeSpan RecordDuration;
-        private TimeSpan TotalRecordTime;
-        private TaskFolder TaskFolder;
-        private string TaskName;
+        private TimeSpan _startSafetyMargin;
+        private TimeSpan _endSafetyMargin;
+        private TimeSpan _recordDuration;
+        private TimeSpan _totalRecordTime;
+        private TaskFolder _taskFolder;
+        private string _taskName;
 
         public Scheduler(Action<ExceptionEventData> exceptionHandler, string recordTasksFolder, string recorderLauncherPath)
         {
@@ -42,11 +40,11 @@ namespace IpTviewr.Services.Record
                 throw new ArgumentNullException();
             } // if
 
-            ExceptionHandler = exceptionHandler;
-            RecordTasksFolder = recordTasksFolder;
-            RecorderLauncherPath = recorderLauncherPath;
-            DbFile = Path.Combine(recordTasksFolder, Resources.RecordTasksDatabaseFile);
-            LogFolder = recordTasksFolder;
+            _exceptionHandler = exceptionHandler;
+            _recordTasksFolder = recordTasksFolder;
+            _recorderLauncherPath = recorderLauncherPath;
+            _dbFile = Path.Combine(recordTasksFolder, Resources.RecordTasksDatabaseFile);
+            _logFolder = recordTasksFolder;
         } // constructor
 
         public static bool IsRecordSchedulerTask(Task schedulerTask, out RecordTask recordTask)
@@ -80,8 +78,8 @@ namespace IpTviewr.Services.Record
             Task task;
             bool isOk;
 
-            TaskFolder = null;
-            TaskName = null;
+            _taskFolder = null;
+            _taskName = null;
 
             taskScheduler = null;
             definition = null;
@@ -94,7 +92,7 @@ namespace IpTviewr.Services.Record
                 definition = taskScheduler.NewTask();
 
                 // Get folder for new task
-                TaskFolder = GetTaskSchedulerFolder(record.AdvancedSettings, taskScheduler);
+                _taskFolder = GetTaskSchedulerFolder(record.AdvancedSettings, taskScheduler);
 
                 // "Duration"
                 // Duration 'per-se' is handled by the recording process.
@@ -117,13 +115,13 @@ namespace IpTviewr.Services.Record
                 SaveXmlData(record);
 
                 // Aditional task data
-                SetAdditionalData(definition, record, DbFile);
+                SetAdditionalData(definition, record, _dbFile);
 
                 // Action
-                SetAction(definition, record, DbFile, LogFolder);
+                SetAction(definition, record, _dbFile, _logFolder);
 
                 // Register task
-                task = TaskFolder.RegisterTaskDefinition(TaskName, definition);
+                task = _taskFolder.RegisterTaskDefinition(_taskName, definition);
                 isOk = true;
 
                 // Run task right now?
@@ -135,7 +133,7 @@ namespace IpTviewr.Services.Record
                     }
                     catch (Exception ex)
                     {
-                        ExceptionHandler(new ExceptionEventData(Texts.TaskRunException, ex));
+                        _exceptionHandler(new ExceptionEventData(Texts.TaskRunException, ex));
                         return false;
                     } // try-catch
                 } // if
@@ -144,14 +142,14 @@ namespace IpTviewr.Services.Record
             }
             catch (Exception ex)
             {
-                ExceptionHandler(new ExceptionEventData(Texts.TaskCreationException, ex));
+                _exceptionHandler(new ExceptionEventData(Texts.TaskCreationException, ex));
                 return false;
             }
             finally
             {
                 if (!isOk)
                 {
-                    RecordTaskSerialization.TryDeleteFromDatabase(record.TaskId, DbFile);
+                    RecordTaskSerialization.TryDeleteFromDatabase(record.TaskId, _dbFile);
                 } // if
                 if (task != null)
                 {
@@ -163,17 +161,17 @@ namespace IpTviewr.Services.Record
                     definition.Dispose();
                     definition = null;
                 } // if
-                if (TaskFolder != null)
+                if (_taskFolder != null)
                 {
-                    TaskFolder.Dispose();
-                    TaskFolder = null;
+                    _taskFolder.Dispose();
+                    _taskFolder = null;
                 } // if
                 if (taskScheduler != null)
                 {
                     taskScheduler.Dispose();
                     taskScheduler = null;
                 } // if
-                TaskName = null;
+                _taskName = null;
             } // try-finally
         } // CreateTask
 
@@ -211,14 +209,14 @@ namespace IpTviewr.Services.Record
             } // if-else
 
             // extract start details
-            StartSafetyMargin = task.Schedule.SafetyMarginTimeSpan;
+            _startSafetyMargin = task.Schedule.SafetyMarginTimeSpan;
 
             // extract duration details
-            EndSafetyMargin = task.Duration.SafetyMarginTimeSpan;
-            RecordDuration = task.Duration.Length;
+            _endSafetyMargin = task.Duration.SafetyMarginTimeSpan;
+            _recordDuration = task.Duration.Length;
 
             // do some math
-            TotalRecordTime = StartSafetyMargin + RecordDuration + EndSafetyMargin;
+            _totalRecordTime = _startSafetyMargin + _recordDuration + _endSafetyMargin;
         } // GetDuration
 
         private void SetSchedule(TaskDefinition definition, RecordSchedule recordSchedule)
@@ -228,7 +226,7 @@ namespace IpTviewr.Services.Record
                 case RecordScheduleKind.RightNow:
                     {
                         var rightNow = new TimeTrigger();
-                        rightNow.EndBoundary = DateTime.Now.TruncateToSeconds() + TotalRecordTime + new TimeSpan(0,1,0);
+                        rightNow.EndBoundary = DateTime.Now.TruncateToSeconds() + _totalRecordTime + new TimeSpan(0,1,0);
 
                         definition.Triggers.Add(rightNow);
                         break;
@@ -238,8 +236,8 @@ namespace IpTviewr.Services.Record
                     {
                         var oneTime = new TimeTrigger();
                         var schedule = (RecordOneTime)recordSchedule;
-                        oneTime.StartBoundary = schedule.StartDate - StartSafetyMargin;
-                        oneTime.EndBoundary = schedule.StartDate + TotalRecordTime;
+                        oneTime.StartBoundary = schedule.StartDate - _startSafetyMargin;
+                        oneTime.EndBoundary = schedule.StartDate + _totalRecordTime;
 
                         definition.Triggers.Add(oneTime);
                         break;
@@ -249,7 +247,7 @@ namespace IpTviewr.Services.Record
                     {
                         var daily = new DailyTrigger();
                         var schedule = (RecordDaily)recordSchedule;
-                        daily.StartBoundary = schedule.StartDate - StartSafetyMargin;
+                        daily.StartBoundary = schedule.StartDate - _startSafetyMargin;
                         if (schedule.ExpiryDate.HasValue)
                         {
                             daily.EndBoundary = schedule.ExpiryDate.Value;
@@ -264,7 +262,7 @@ namespace IpTviewr.Services.Record
                     {
                         var weekly = new WeeklyTrigger();
                         var schedule = (RecordWeekly)recordSchedule;
-                        weekly.StartBoundary = schedule.StartDate - StartSafetyMargin;
+                        weekly.StartBoundary = schedule.StartDate - _startSafetyMargin;
                         if (schedule.ExpiryDate.HasValue)
                         {
                             weekly.EndBoundary = schedule.ExpiryDate.Value;
@@ -280,7 +278,7 @@ namespace IpTviewr.Services.Record
                     {
                         var monthly = new MonthlyTrigger();
                         var schedule = (RecordMonthly)recordSchedule;
-                        monthly.StartBoundary = schedule.StartDate - StartSafetyMargin;
+                        monthly.StartBoundary = schedule.StartDate - _startSafetyMargin;
                         if (schedule.ExpiryDate.HasValue)
                         {
                             monthly.EndBoundary = schedule.ExpiryDate.Value;
@@ -298,8 +296,8 @@ namespace IpTviewr.Services.Record
         {
             string userDescription;
 
-            TaskName = GetUniqueTaskName(task, "IPTViewr");
-            task.Description.TaskSchedulerName = TaskName;
+            _taskName = GetUniqueTaskName(task, "IPTViewr");
+            task.Description.TaskSchedulerName = _taskName;
 
             userDescription = task.Description.Description;
             if (!task.Description.AddDetails)
@@ -375,13 +373,13 @@ namespace IpTviewr.Services.Record
             // The RecordTask execution limit is not an absolute value. It has to be added to the total record time (including safety margins)
             if ((advanced.ExecutionTimeLimit != null) && (advanced.ExecutionTimeLimit.Enabled))
             {
-                settings.ExecutionTimeLimit = TotalRecordTime + advanced.ExecutionTimeLimit.Time;
+                settings.ExecutionTimeLimit = _totalRecordTime + advanced.ExecutionTimeLimit.Time;
             } // if
         } // SetAdvancedSettings
 
         private void SaveXmlData(RecordTask record)
         {
-            record.SaveToDatabase(DbFile);
+            record.SaveToDatabase(_dbFile);
         } // SaveXmlData
 
         private static void SetAdditionalData(TaskDefinition definition, RecordTask record, string dbFile)
@@ -395,7 +393,7 @@ namespace IpTviewr.Services.Record
 
         private void SetAction(TaskDefinition definition, RecordTask record, string dbFile, string logFolder)
         {
-            var arguments = new string[]
+            var arguments = new[]
             {
                 "/Action:Record",
                 string.Format("/TaskId:{0}", record.TaskId),
@@ -405,7 +403,7 @@ namespace IpTviewr.Services.Record
 
             var action = new ExecAction()
             {
-                Path = RecorderLauncherPath,
+                Path = _recorderLauncherPath,
                 Arguments = ArgumentsManager.JoinArguments(arguments),
                 WorkingDirectory = record.Action.SaveLocationPath,
             };

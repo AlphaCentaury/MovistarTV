@@ -6,11 +6,8 @@
 // http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.InteropServices;
 using System.Security.Permissions;
-using System.Text;
 
 namespace IpTviewr.Tools.FirstTimeConfig
 {
@@ -40,9 +37,9 @@ namespace IpTviewr.Tools.FirstTimeConfig
         public class System
         {
             public const string ProgramFiles = "905e63b6-c1bf-494e-b29c-65b732d3d21a";
-            public const string ProgramFiles_x86 = "7C5A40EF-A0FB-4BFC-874A-C0F2E0B9FA8E";
+            public const string ProgramFilesX86 = "7C5A40EF-A0FB-4BFC-874A-C0F2E0B9FA8E";
             /// <remarks>This value is not supported on 32-bit operating systems. It also is not supported for 32-bit applications running on 64-bit operating systems. Attempting to use ProgramFiles_x64 in either situation results in an error.</remarks>
-            public const string ProgramFiles_x64 = "6D809377-6AF0-444b-8957-A3773F02200E";
+            public const string ProgramFilesX64 = "6D809377-6AF0-444b-8957-A3773F02200E";
             // work in progress
         } // class System
 

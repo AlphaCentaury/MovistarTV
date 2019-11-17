@@ -19,13 +19,13 @@ namespace IpTviewr.DvbStp.Client
         public const byte Version = 0xC0; // 1100 0000
         public const byte Reserved = 0x38; // 0011 1000
         public const byte Encription = 0x06; // 0000 0110
-        public const byte HasCRC = 0x01; // 0000 0001
+        public const byte HasCrc = 0x01; // 0000 0001
 
         // byte 8-9
-        public const ushort SectionNumberLSB = 0xF0; // 1111 0000
+        public const ushort SectionNumberLsb = 0xF0; // 1111 0000
 
         // byte 9-10
-        public const ushort LastSectionNumberMSB = 0x0F; // 0000 1111
+        public const ushort LastSectionNumberMsb = 0x0F; // 0000 1111
 
         // byte 11
         public const byte Compression = 0xE0; // 1110 0000

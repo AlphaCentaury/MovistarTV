@@ -5,17 +5,9 @@
 // 
 // http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
 
-using IpTviewr.Core.IpTvProvider;
-using IpTviewr.Core.IpTvProvider.EPG;
 using IpTviewr.Services.EpgDiscovery;
 using IpTviewr.UiServices.Common.Controls;
-using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace IpTviewr.UiServices.EPG
 {

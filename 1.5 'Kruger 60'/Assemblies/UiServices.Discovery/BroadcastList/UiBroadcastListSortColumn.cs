@@ -39,8 +39,8 @@ namespace IpTviewr.UiServices.Discovery.BroadcastList
         [XmlIgnore]
         public bool IsAscending
         {
-            get { return !Descending; }
-            set { Descending = !value; }
+            get => !Descending;
+            set => Descending = !value;
         } // IsAscending
 
         public override bool Equals(object obj)

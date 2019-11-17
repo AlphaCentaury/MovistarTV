@@ -39,8 +39,7 @@ namespace Etsi.Ts102034.v010501.XmlSerialization
             var found = q.FirstOrDefault();
             if (found == null)
             {
-                if (preferredOrFirst) return text[0];
-                return null;
+                return preferredOrFirst ? text[0] : null;
             } // if
 
             return found.Item;
@@ -48,8 +47,7 @@ namespace Etsi.Ts102034.v010501.XmlSerialization
 
         public static string SafeGetValue(this MultilingualText text)
         {
-            if (text == null) return null;
-            return text.Value;
+            return text?.Value;
         } // MultilingualText.SafeGetValue
 
         public static string SafeGetValue(this MultilingualText text, string defaultValue)

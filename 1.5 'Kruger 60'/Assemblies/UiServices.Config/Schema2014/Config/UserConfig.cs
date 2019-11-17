@@ -14,7 +14,7 @@ namespace IpTviewr.UiServices.Configuration.Schema2014.Config
     [XmlRoot(ElementName = "UserConfiguration", Namespace = ConfigCommon.ConfigXmlNamespace)]
     public class UserConfig
     {
-        private string[] preferredLanguagesList;
+        private string[] _preferredLanguagesList;
 
         [XmlElement("Telemetry")]
         public TelemetryConfiguration Telemetry
@@ -62,12 +62,12 @@ namespace IpTviewr.UiServices.Configuration.Schema2014.Config
         {
             get
             {
-                if (preferredLanguagesList == null)
+                if (_preferredLanguagesList == null)
                 {
-                    preferredLanguagesList = PreferredLanguages.Split(',', ';');
+                    _preferredLanguagesList = PreferredLanguages.Split(',', ';');
                 } // if
 
-                return preferredLanguagesList;
+                return _preferredLanguagesList;
             } // get
         } // PreferredLanguagesList
 
@@ -78,9 +78,7 @@ namespace IpTviewr.UiServices.Configuration.Schema2014.Config
 
             if (Record == null) return ConfigCommon.ErrorMissingTag("Record", ownerTag);
             validationError = Record.Validate("Record");
-            if (validationError != null) return validationError;
-
-            return null;
+            return validationError;
         } // Validate
     } // UserConfig
 } // namespace

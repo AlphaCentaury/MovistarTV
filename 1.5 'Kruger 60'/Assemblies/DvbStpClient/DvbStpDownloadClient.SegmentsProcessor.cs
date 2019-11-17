@@ -42,24 +42,24 @@ namespace IpTviewr.DvbStp.Client
 
         private class SegmentDataProcessor
         {
-            private Thread WorkerThread;
-            private ConcurrentQueue<SegmentData> Queue;
-            private AutoResetEvent Enqueued;
-            private AutoResetEvent ProcessSegmentsEnded;
+            private Thread _workerThread;
+            private ConcurrentQueue<SegmentData> _queue;
+            private readonly AutoResetEvent _enqueued;
+            private readonly AutoResetEvent _processSegmentsEnded;
 
             public SegmentDataProcessor()
             {
-                Queue = new ConcurrentQueue<SegmentData>();
-                Enqueued = new AutoResetEvent(false);
-                ProcessSegmentsEnded = new AutoResetEvent(false);
+                _queue = new ConcurrentQueue<SegmentData>();
+                _enqueued = new AutoResetEvent(false);
+                _processSegmentsEnded = new AutoResetEvent(false);
             } // constructor
 
             public void Start()
             {
-                if (WorkerThread != null) throw new InvalidOperationException();
+                if (_workerThread != null) throw new InvalidOperationException();
 
-                WorkerThread = new Thread(ProcessSegments);
-                WorkerThread.Start();
+                _workerThread = new Thread(ProcessSegments);
+                _workerThread.Start();
             } // Start
 
             public void AddSegment(SegmentData segmentData)
@@ -70,16 +70,16 @@ namespace IpTviewr.DvbStp.Client
 			public void WaitCompletion()
             {
                 Enqueue(new SegmentData()); // signal end
-                ProcessSegmentsEnded.WaitOne();
+                _processSegmentsEnded.WaitOne();
             } // WaitCompletion
 
 			public void Dispose()
             {
-                if (Queue == null) return;
+                if (_queue == null) return;
 
-                Queue = null;
-                Enqueued.Dispose();
-                ProcessSegmentsEnded.Dispose();
+                _queue = null;
+                _enqueued.Dispose();
+                _processSegmentsEnded.Dispose();
             } // Dispose
 
             private void ProcessSegments()
@@ -100,29 +100,29 @@ namespace IpTviewr.DvbStp.Client
                     } // try-catch
                 } // while
 
-                ProcessSegmentsEnded.Set();
+                _processSegmentsEnded.Set();
             } // ProcessSegments
 
             private void Enqueue(SegmentData data)
             {
                 Console.WriteLine("Enqueue");
-                Queue.Enqueue(data);
-                Enqueued.Set();
+                _queue.Enqueue(data);
+                _enqueued.Set();
             } // Enqueue
 
             private SegmentData Dequeue()
             {
                 while (true)
                 {
-                    Console.WriteLine("Queue: {0} items", Queue.Count);
-                    if (Queue.TryDequeue(out var payload))
+                    Console.WriteLine("Queue: {0} items", _queue.Count);
+                    if (_queue.TryDequeue(out var payload))
                     {
                         Console.WriteLine("Dequeue.Ok");
                         return payload;
                     } // if
 
                     Console.WriteLine("Dequeue.Wait");
-                    Enqueued.WaitOne();
+                    _enqueued.WaitOne();
                 } // while
             } // Dequeue
         } // SegmentDataProcessor

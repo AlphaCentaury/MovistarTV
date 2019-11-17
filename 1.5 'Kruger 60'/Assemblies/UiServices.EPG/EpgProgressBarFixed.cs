@@ -6,76 +6,66 @@
 // http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
 
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace IpTviewr.UiServices.EPG
 {
     public class EpgProgressBarFixed: Control
     {
-        private Image BarBase, BarFilled;
-        private double min, max, progressValue;
+        private Image _barBase, _barFilled;
+        private double _min, _max, _progressValue;
 
         public EpgProgressBarFixed()
         {
-            min = 0;
-            max = 100;
-            progressValue = min;
+            _min = 0;
+            _max = 100;
+            _progressValue = _min;
         } // constructor
 
         [DefaultValue(0.0)]
         public double MinimumValue
         {
-            get
-            {
-                return min;
-            } // get
+            get => _min;
             set
             {
-                if (min > max) throw new ArgumentOutOfRangeException();
-                min = value;
-                if (progressValue < min) Value = min;
+                if (_min > _max) throw new ArgumentOutOfRangeException();
+                _min = value;
+                if (_progressValue < _min) Value = _min;
             } // set
         } // MinimumValue
 
         [DefaultValue(100.0)]
         public double MaximumValue
         {
-            get
-            {
-                return max;
-            } // get
+            get => _max;
+// get
             set
             {
-                if (max < min) throw new ArgumentOutOfRangeException();
-                max = value;
-                if (progressValue > max) Value = max;
+                if (_max < _min) throw new ArgumentOutOfRangeException();
+                _max = value;
+                if (_progressValue > _max) Value = _max;
             } // set
         } // MaximumValue
 
         public double ValueRange
-        {
-            get { return max - min; }
-        } // ValueRange
+            // ValueRange
+            =>
+                _max - _min;
 
         [DefaultValue(0.0)]
         public double Value
         {
-            get
-            {
-                return progressValue;
-            } // get
+            get => _progressValue;
+// get
             set
             {
-                var old = progressValue;
-                progressValue = value;
-                if (progressValue < min) progressValue = min;
-                if (progressValue > max) progressValue = max;
-                if (progressValue != old)
+                var old = _progressValue;
+                _progressValue = value;
+                if (_progressValue < _min) _progressValue = _min;
+                if (_progressValue > _max) _progressValue = _max;
+                if (_progressValue != old)
                 {
                     Invalidate();
                 } // if
@@ -85,36 +75,36 @@ namespace IpTviewr.UiServices.EPG
         protected override void OnCreateControl()
         {
             base.OnCreateControl();
-            BarBase = Properties.Resources.ProgressBarBase;
-            BarFilled = Properties.Resources.ProgressBarFilled;
+            _barBase = Properties.Resources.ProgressBarBase;
+            _barFilled = Properties.Resources.ProgressBarFilled;
         } // OnCreateControl
 
         protected override Size DefaultSize
-        {
-            get { return new Size(125, 20); }
-        } // DefaultSize
+            // DefaultSize
+            =>
+                new Size(125, 20);
 
         protected override void Dispose(bool disposing)
         {
             base.Dispose(disposing);
             if (disposing)
             {
-                if (BarBase != null) BarBase.Dispose();
-                if (BarFilled != null) BarFilled.Dispose();
-                BarBase = null;
-                BarFilled = null;
+                _barBase?.Dispose();
+                _barFilled?.Dispose();
+                _barBase = null;
+                _barFilled = null;
             } // if
         } // Dispose
 
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
-            if (BarBase == null) return;
+            if (_barBase == null) return;
 
-            var width = (int)(((progressValue - min) * BarFilled.Width) / ValueRange);
+            var width = (int)(((_progressValue - _min) * _barFilled.Width) / ValueRange);
 
-            e.Graphics.DrawImage(BarFilled, 0, 0, new Rectangle(0, 0, width, BarFilled.Height), GraphicsUnit.Pixel);
-            e.Graphics.DrawImage(BarBase, width, 0, new Rectangle(width, 0, BarBase.Width - width, BarBase.Height), GraphicsUnit.Pixel);
+            e.Graphics.DrawImage(_barFilled, 0, 0, new Rectangle(0, 0, width, _barFilled.Height), GraphicsUnit.Pixel);
+            e.Graphics.DrawImage(_barBase, width, 0, new Rectangle(width, 0, _barBase.Width - width, _barBase.Height), GraphicsUnit.Pixel);
         } // OnPaint
     } // class EpgProgressBarFixed
 } // namespace

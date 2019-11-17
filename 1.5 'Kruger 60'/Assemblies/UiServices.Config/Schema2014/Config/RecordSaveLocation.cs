@@ -13,7 +13,7 @@ using System.Xml.Serialization;
 namespace IpTviewr.UiServices.Configuration.Schema2014.Config
 {
     [Serializable]
-    [XmlType("SaveLocation", Namespace=ConfigCommon.ConfigXmlNamespace)]
+    [XmlType("SaveLocation", Namespace = ConfigCommon.ConfigXmlNamespace)]
     public sealed class RecordSaveLocation : StringPair
     {
         public RecordSaveLocation()
@@ -40,21 +40,19 @@ namespace IpTviewr.UiServices.Configuration.Schema2014.Config
         [XmlAttribute("name")]
         public string Name
         {
-            get { return Item1; }
-            set { Item1 = ConfigCommon.Normalize(value); }
+            get => Item1;
+            set => Item1 = ConfigCommon.Normalize(value);
         } // Name
 
-        [XmlText()]
+        [XmlText]
         public string Path
         {
-            get { return Item2; }
-            set { Item2 = ConfigCommon.Normalize(value); }
+            get => Item2;
+            set => Item2 = ConfigCommon.Normalize(value);
         } // Value
 
-        public bool IsDefaultSaveLocation
-        {
-            get { return string.IsNullOrEmpty(Name); }
-        } // IsDefaultSaveLocation
+        [XmlIgnore]
+        public bool IsDefaultSaveLocation => string.IsNullOrEmpty(Name);
 
         public string Validate(string ownerTag)
         {

@@ -39,8 +39,7 @@ namespace Etsi.Ts102034.v010501.XmlSerialization.BroadcastDiscovery
             get
             {
                 if (IpMulticastAddress != null) return IpMulticastAddress.Url;
-                if (RtspUrl != null) return RtspUrl.Value;
-                return null;
+                return RtspUrl?.Value;
             } // get
         } // LocationUrl
     } // class ServiceLocation

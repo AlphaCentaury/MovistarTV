@@ -19,7 +19,6 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Threading;
 using System.Windows.Forms;
-using IpTviewr.UiServices.EPG;
 using IpTviewr.Services.EpgDiscovery;
 
 namespace IpTviewr.ChannelList
@@ -45,12 +44,12 @@ namespace IpTviewr.ChannelList
         private int _epgDataCount;
 
         // disabled functionality
-        private const bool enable_menuItemDvbRecent = false;
-        private const bool enable_menuItemDvbPackages = false;
-        private const bool enable_menuItemDvbExport = false;
-        private const bool enable_menuItemChannelFavorites = false;
-        private const bool enable_menuItemChannelEditList = false;
-        private bool enable_Epg = false;
+        private const bool EnableMenuItemDvbRecent = false;
+        private const bool EnableMenuItemDvbPackages = false;
+        private const bool EnableMenuItemDvbExport = false;
+        private const bool EnableMenuItemChannelFavorites = false;
+        private const bool EnableMenuItemChannelEditList = false;
+        private bool _enableEpg = false;
 
         public ChannelListForm()
         {
@@ -110,9 +109,9 @@ namespace IpTviewr.ChannelList
             Text = Properties.Texts.AppCaption;
 
             // disable functionality
-            menuItemDvbRecent.Enabled = enable_menuItemDvbRecent;
-            menuItemDvbPackages.Enabled = enable_menuItemDvbPackages;
-            menuItemDvbExport.Enabled = enable_menuItemDvbExport;
+            menuItemDvbRecent.Enabled = EnableMenuItemDvbRecent;
+            menuItemDvbPackages.Enabled = EnableMenuItemDvbPackages;
+            menuItemDvbExport.Enabled = EnableMenuItemDvbExport;
 
             var settings = UiBroadcastListSettingsRegistration.Settings;
             _listManager = new UiBroadcastListManager(listViewChannelList, settings, imageListChannels, imageListChannelsLarge, true);
@@ -125,12 +124,12 @@ namespace IpTviewr.ChannelList
             Notify(null, null, -1);
 
             // set-up EPG functionality
-            enable_Epg = AppUiConfiguration.Current.User.Epg.Enabled;
+            _enableEpg = AppUiConfiguration.Current.User.Epg.Enabled;
             epgMiniGuide.Visible = false;
-            epgMiniGuide.IsDisabled = !enable_Epg;
-            statusLabelEpg.Text = enable_Epg ? Texts.EpgStatusNotStarted : Texts.EpgStatusDisabled;
+            epgMiniGuide.IsDisabled = !_enableEpg;
+            statusLabelEpg.Text = _enableEpg ? Texts.EpgStatusNotStarted : Texts.EpgStatusDisabled;
             _epgDataCount = 0;
-            if (!enable_Epg)
+            if (!_enableEpg)
             {
                 foreach (ToolStripItem item in menuItemEpg.DropDownItems)
                 {
@@ -187,10 +186,7 @@ namespace IpTviewr.ChannelList
         {
             timerDismissNotification.Enabled = false;
 
-            if (statusLabelMain.Image != null)
-            {
-                statusLabelMain.Image.Dispose();
-            } // if
+            statusLabelMain.Image?.Dispose();
 
             statusLabelMain.Image = icon;
             statusLabelMain.Text = text ?? "Ready";

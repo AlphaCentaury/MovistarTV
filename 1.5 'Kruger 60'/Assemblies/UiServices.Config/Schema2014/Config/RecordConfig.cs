@@ -40,25 +40,18 @@ namespace IpTviewr.UiServices.Configuration.Schema2014.Config
         } // Recorders
 
         [XmlIgnore]
-        public string RecorderLauncherPath
-        {
-            get { return Path.Combine(AppUiConfiguration.Current.Folders.Install, Properties.InvariantTexts.RecorderLauncher); }
-        } // RecorderLauncherPath
+        public string RecorderLauncherPath=>Path.Combine(AppUiConfiguration.Current.Folders.Install, Properties.InvariantTexts.RecorderLauncher);
 
         public string Validate(string ownerTag)
         {
-            string validationError;
-
-            validationError = RecordSaveLocation.ValidateArray(SaveLocations, "Location", "SaveLocations", ownerTag);
+            var validationError = RecordSaveLocation.ValidateArray(SaveLocations, "Location", "SaveLocations", ownerTag);
             if (validationError != null) return validationError;
 
             validationError = RecordTaskSchedulerFolder.ValidateArray(TaskSchedulerFolders, "Folder", "TaskSchedulerFolders", ownerTag);
             if (validationError != null) return validationError;
 
             validationError = RecorderConfig.ValidateArray(Recorders, "Recorder", "Recorders", ownerTag);
-            if (validationError != null) return validationError;
-
-            return null;
+            return validationError;
         } // Validate
     } // class RecordConfig
 } // namespace

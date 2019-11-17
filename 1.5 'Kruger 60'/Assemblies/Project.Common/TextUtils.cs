@@ -17,12 +17,12 @@ namespace IpTviewr.Common
 
         public static string RemoveInvalidChars(string text, char[] invalidChars)
         {
-            return RemoveInvalidChars(text, invalidChars, null, out var modified);
+            return RemoveInvalidChars(text, invalidChars, null, out _);
         } // RemoveInvalidChars
 
         public static string RemoveInvalidChars(string text, char[] invalidChars, string replacementText)
         {
-            return RemoveInvalidChars(text, invalidChars, replacementText, out var modified);
+            return RemoveInvalidChars(text, invalidChars, replacementText, out _);
         } // RemoveInvalidChars
 
         public static string RemoveInvalidChars(string text, char[] invalidChars, string replacementText, out bool modified)
@@ -87,12 +87,12 @@ namespace IpTviewr.Common
 
         public static string SanitizeFilename(string text)
         {
-            return InternalRemoveInvalidChars(text, GetFilenameInvalidChars(), null, out var modified);
+            return InternalRemoveInvalidChars(text, GetFilenameInvalidChars(), null, out _);
         } // SanitizeFilename
 
         public static string SanitizeFilename(string text, string replacementText)
         {
-            return InternalRemoveInvalidChars(text, GetFilenameInvalidChars(), replacementText, out var modified);
+            return InternalRemoveInvalidChars(text, GetFilenameInvalidChars(), replacementText, out _);
         } // SanitizeFilename
 
         public static string SanitizeFilename(string text, string replacementText, out bool modified)

@@ -46,9 +46,9 @@ namespace IpTviewr.Services.Record.Serialization
         /// Default safety margin, in minutes
         /// </summary>
         public static int DefaultSafetyMargin
-        {
-            get { return 5; }
-        } // DefaultSafetyMargin
+            // DefaultSafetyMargin
+            =>
+                5;
 
         #region Properties
 
@@ -75,10 +75,8 @@ namespace IpTviewr.Services.Record.Serialization
         [Browsable(false), EditorBrowsable(EditorBrowsableState.Never)]
         public string XmlExpiryDate
         {
-            get
-            {
-                return (ExpiryDate == null) ? null : XmlConvert.ToString(ExpiryDate.Value, XmlDateTimeSerializationMode.RoundtripKind);
-            } // get
+            get => (ExpiryDate == null) ? null : XmlConvert.ToString(ExpiryDate.Value, XmlDateTimeSerializationMode.RoundtripKind);
+// get
             set
             {
                 if (string.IsNullOrEmpty(value))
@@ -106,14 +104,10 @@ namespace IpTviewr.Services.Record.Serialization
         [Browsable(false), EditorBrowsable(EditorBrowsableState.Never)]
         public string XmlSafetyMargin
         {
-            get
-            {
-                return SafetyMargin.HasValue ? XmlConvert.ToString(SafetyMargin.Value) : null;
-            } // get
-            set
-            {
-                SafetyMargin = string.IsNullOrEmpty(value) ? null : (int?)XmlConvert.ToInt32(value);
-            } // set
+            get => SafetyMargin.HasValue ? XmlConvert.ToString(SafetyMargin.Value) : null;
+// get
+            set => SafetyMargin = string.IsNullOrEmpty(value) ? null : (int?)XmlConvert.ToInt32(value);
+// set
         } // XmlSafetyMargin
 
         /// <summary>
@@ -121,12 +115,9 @@ namespace IpTviewr.Services.Record.Serialization
         /// </summary>
         [XmlIgnore]
         public TimeSpan SafetyMarginTimeSpan
-        {
-            get
-            {
-                return (SafetyMargin.HasValue) ? new TimeSpan(0, SafetyMargin.Value, 0) : new TimeSpan();
-            } // get
-        } // SafetyMarginTimeSpan
+            // SafetyMarginTimeSpan
+            =>
+                (SafetyMargin.HasValue) ? new TimeSpan(0, SafetyMargin.Value, 0) : new TimeSpan();
 
         #endregion
 

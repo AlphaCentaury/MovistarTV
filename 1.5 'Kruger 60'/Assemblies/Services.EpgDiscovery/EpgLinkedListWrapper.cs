@@ -12,13 +12,13 @@ namespace IpTviewr.Services.EpgDiscovery
 {
     public sealed class EpgLinkedListWrapper : IEpgLinkedList, IEnumerable<EpgProgram>
     {
-        private LinkedListNode<EpgProgram> RequestedNode;
+        private LinkedListNode<EpgProgram> _requestedNode;
 
         public EpgLinkedListWrapper(string serviceIdRef, LinkedList<EpgProgram> linkedList, LinkedListNode<EpgProgram> requested = null)
         {
             ServiceIdRef = serviceIdRef;
             List = linkedList;
-            RequestedNode = requested;
+            _requestedNode = requested;
         } // constructor
 
         public EpgLinkedListWrapper(string serviceIdRef, LinkedList<EpgProgram> linkedList, EpgProgram phantomEmptyProgram, bool first = true)
@@ -28,10 +28,7 @@ namespace IpTviewr.Services.EpgDiscovery
             PhantomNode = new EpgLinkedListPhantomNode(this, phantomEmptyProgram, first);
         } // constructor
 
-        public int Count
-        {
-            get { return (PhantomNode == null) ? List.Count : List.Count + 1; }
-        } // Count
+        public int Count => (PhantomNode == null) ? List.Count : List.Count + 1;
 
         public IEpgLinkedListNode First
         {
@@ -59,7 +56,7 @@ namespace IpTviewr.Services.EpgDiscovery
             {
                 if (PhantomNode != null) return PhantomNode;
 
-                return new EpgLinkedListNodeWrapper(this, RequestedNode ?? List.First);
+                return new EpgLinkedListNodeWrapper(this, _requestedNode ?? List.First);
             } // get
         } // Requested
 

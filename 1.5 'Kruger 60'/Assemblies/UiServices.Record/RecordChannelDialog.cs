@@ -5,22 +5,20 @@
 // 
 // http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
 
-using IpTviewr.Common;
 using IpTviewr.Common.Telemetry;
 using IpTviewr.Services.Record.Serialization;
 using IpTviewr.UiServices.Common.Forms;
 using System;
 using System.Diagnostics;
-using System.Linq;
 using System.Windows.Forms;
 
 namespace IpTviewr.UiServices.Record
 {
     public partial class RecordChannelDialog : CommonBaseForm
     {
-        private DateTime CurrentStartDateTime;
-        private RecordScheduleKind CurrentScheduleKind;
-        private int CurrentSelectedLocationIndex;
+        private DateTime _currentStartDateTime;
+        private RecordScheduleKind _currentScheduleKind;
+        private int _currentSelectedLocationIndex;
 
         public RecordTask Task
         {
@@ -42,7 +40,7 @@ namespace IpTviewr.UiServices.Record
 
         public static string[] GetFilenameExtensions()
         {
-            var separators = new string[] { "\r\n" };
+            var separators = new[] { "\r\n" };
             var extensions = Properties.RecordChannel.FileExtensions.Split(separators, StringSplitOptions.RemoveEmptyEntries);
 
             return extensions;
@@ -110,13 +108,13 @@ namespace IpTviewr.UiServices.Record
 
         private void DialogRecordChannel_Shown_Implementation(object sender, EventArgs e)
         {
-            if (CurrentSelectedLocationIndex >= 0)
+            if (_currentSelectedLocationIndex >= 0)
             {
                 // force creation of the control
                 // .NET WinForms BUG: selecting an item when the control is NOT created does not update the SelectedItems/SelectedIndexes collection
-                var x = listViewLocations.Handle;
+                _ = listViewLocations.Handle;
                 Debug.Assert(listViewLocations.IsHandleCreated);
-                listViewLocations.Items[CurrentSelectedLocationIndex].Selected = true;
+                listViewLocations.Items[_currentSelectedLocationIndex].Selected = true;
             } // if
         } // DialogRecordChannel_Shown_Implementation
 

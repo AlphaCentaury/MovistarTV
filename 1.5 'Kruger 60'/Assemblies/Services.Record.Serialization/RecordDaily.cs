@@ -20,10 +20,7 @@ namespace IpTviewr.Services.Record.Serialization
             RecurEveryDays = 1;
         } // constructor
 
-        public override RecordScheduleKind Kind
-        {
-            get { return RecordScheduleKind.Daily; }
-        } // ScheduleKind
+        public override RecordScheduleKind Kind => RecordScheduleKind.Daily;
 
         public short RecurEveryDays
         {
@@ -39,16 +36,7 @@ namespace IpTviewr.Services.Record.Serialization
 
         public override void Verbalize(bool pastTime, StringBuilder builder)
         {
-            string format;
-
-            if (RecurEveryDays > 1)
-            {
-                format = Properties.Texts.VerbalizeRecordDaily;
-            }
-            else
-            {
-                format = Properties.Texts.VerbalizeRecordDailyEveryday;
-            } // if-else
+            var format = RecurEveryDays > 1 ? Properties.Texts.VerbalizeRecordDaily : Properties.Texts.VerbalizeRecordDailyEveryday;
             builder.AppendFormat(format, RecurEveryDays, StartDate, SafetyMarginTimeSpan.TotalMinutes);
             VerbalizeStartExpiryDate(pastTime, builder);
         } // Verbalize

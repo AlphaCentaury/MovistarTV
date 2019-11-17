@@ -6,14 +6,7 @@
 // http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
 
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
-using IpTviewr.Services.SqlServerCE;
 using IpTviewr.Common;
 using IpTviewr.UiServices.Discovery;
 using IpTviewr.UiServices.Record;
@@ -27,9 +20,9 @@ namespace IpTviewr.UiServices.EPG
 {
     public partial class EpgMiniGuide : CommonBaseUserControl
     {
-        private EpgProgram[] EpgPrograms;
-        private int EpgIndex;
-        private int CurrentRequestId;
+        private EpgProgram[] _epgPrograms;
+        private int _epgIndex;
+        private int _currentRequestId;
 
         private class LoadEpgProgramsData
         {
@@ -62,10 +55,7 @@ namespace IpTviewr.UiServices.EPG
             private set;
         } // SelectedService
 
-        public EpgProgram SelectedProgram
-        {
-            get { return (EpgPrograms == null) ? null : EpgPrograms[EpgIndex]; }
-        } // SelectedProgram
+        public EpgProgram SelectedProgram => _epgPrograms?[_epgIndex];
 
         public DateTime LocalReferenceTime
         {
@@ -156,8 +146,8 @@ namespace IpTviewr.UiServices.EPG
         {
             timerLoadingData.Enabled = false;
             SetAutoRefreshTimer(false);
-            EpgPrograms = null;
-            EpgIndex = -1;
+            _epgPrograms = null;
+            _epgIndex = -1;
 
             pictureChannelLogo.SetImage(null);
 
@@ -186,10 +176,10 @@ namespace IpTviewr.UiServices.EPG
 
         public EpgProgram[] GetEpgPrograms()
         {
-            if (EpgPrograms == null) return null;
+            if (_epgPrograms == null) return null;
 
-            var result = new EpgProgram[EpgPrograms.Length];
-            Array.Copy(EpgPrograms, result, EpgPrograms.Length);
+            var result = new EpgProgram[_epgPrograms.Length];
+            Array.Copy(_epgPrograms, result, _epgPrograms.Length);
 
             return result;
         } // GetEpgPrograms
@@ -201,12 +191,12 @@ namespace IpTviewr.UiServices.EPG
 
         public void GoBack()
         {
-            DisplayEpgProgram(EpgIndex - 1);
+            DisplayEpgProgram(_epgIndex - 1);
         } // GoBack
 
         public void GoForward()
         {
-            DisplayEpgProgram(EpgIndex + 1);
+            DisplayEpgProgram(_epgIndex + 1);
         } // GoFoward
 
         #endregion
@@ -288,7 +278,7 @@ namespace IpTviewr.UiServices.EPG
         private void BeginLoadEpgPrograms(bool async)
         {
             if (IsDisabled) return;
-            if (CurrentRequestId == int.MaxValue) CurrentRequestId = 0;
+            if (_currentRequestId == int.MaxValue) _currentRequestId = 0;
 
             if (async)
             {
@@ -302,7 +292,7 @@ namespace IpTviewr.UiServices.EPG
 
             var data = new LoadEpgProgramsData()
             {
-                RequestId = Interlocked.Increment(ref CurrentRequestId),
+                RequestId = Interlocked.Increment(ref _currentRequestId),
                 FullServiceName = fullServiceName,
                 FullAlternateServiceName = fullAlternateServiceName,
                 ReferenceTime = this.LocalReferenceTime
@@ -358,13 +348,13 @@ namespace IpTviewr.UiServices.EPG
             {
                 // ignore data if not from current request
                 // as data is loading async, "old" load request may arrive if channel is quickly changed
-                if (data.RequestId != CurrentRequestId) return;
+                if (data.RequestId != _currentRequestId) return;
 
                 timerLoadingData.Enabled = false;
                 SetAutoRefreshTimer(true);
 
-                EpgPrograms = data.EpgPrograms;
-                buttonFullView.Enabled = (EpgPrograms != null);
+                _epgPrograms = data.EpgPrograms;
+                buttonFullView.Enabled = (_epgPrograms != null);
 
                 DisplayEpgProgram((data.EpgPrograms != null)? 1 : 0);
             }
@@ -379,14 +369,14 @@ namespace IpTviewr.UiServices.EPG
             TimeSpan ellapsed;
 
             if ((index < 0) || (index > 3)) return;
-            EpgIndex = index;
+            _epgIndex = index;
 
             epgProgressBar.Visible = (index == 1);
             labelEndTime.Visible = (index == 1);
             labelStartTime.Visible = (index == 1);
             labelFromTo.Visible = (index != 1);
 
-            var epgProgram = EpgPrograms?[EpgIndex];
+            var epgProgram = _epgPrograms?[_epgIndex];
 
             buttonDetails.Enabled = DetailsEnabled && (epgProgram != null) && (!epgProgram.IsBlank);
             labelProgramTitle.Text = (epgProgram != null) ? epgProgram.Title : Properties.Texts.EpgNoInformation;
@@ -400,13 +390,13 @@ namespace IpTviewr.UiServices.EPG
                 return;
             } // if
 
-            switch (EpgIndex)
+            switch (_epgIndex)
             {
                 case 0:
                     labelFromTo.Text = FormatString.DateTimeFromToMinutes(epgProgram.LocalStartTime, epgProgram.LocalEndTime, LocalReferenceTime);
                     ellapsed = (LocalReferenceTime - epgProgram.LocalEndTime);
                     labelEllapsed.Text = string.Format(Properties.Texts.ProgramEnded, FormatString.TimeSpanTotalMinutes(ellapsed, FormatString.Format.Extended));
-                    EnableBackForward(false, EpgPrograms[1] != null);
+                    EnableBackForward(false, _epgPrograms[1] != null);
                     break;
                 case 1:
                     labelStartTime.Text = string.Format("{0:HH:mm}", epgProgram.LocalStartTime);
@@ -415,13 +405,13 @@ namespace IpTviewr.UiServices.EPG
                     epgProgressBar.MaximumValue = epgProgram.Duration.TotalMinutes;
                     epgProgressBar.Value = ellapsed.TotalMinutes;
                     labelEllapsed.Text = string.Format(Properties.Texts.ProgramStarted, FormatString.TimeSpanTotalMinutes(ellapsed, FormatString.Format.Extended));
-                    EnableBackForward(EpgPrograms[0] != null, EpgPrograms[2] != null);
+                    EnableBackForward(_epgPrograms[0] != null, _epgPrograms[2] != null);
                     break;
                 default:
                     labelFromTo.Text = FormatString.DateTimeFromToMinutes(epgProgram.LocalStartTime, epgProgram.LocalEndTime, LocalReferenceTime);
                     ellapsed = (epgProgram.LocalStartTime - LocalReferenceTime);
                     labelEllapsed.Text = string.Format(Properties.Texts.ProgramWillStart, FormatString.TimeSpanTotalMinutes(ellapsed, FormatString.Format.Extended));
-                    EnableBackForward(SafeGetItem(EpgPrograms, EpgIndex - 1) != null, SafeGetItem(EpgPrograms, EpgIndex + 1) != null);
+                    EnableBackForward(SafeGetItem(_epgPrograms, _epgIndex - 1) != null, SafeGetItem(_epgPrograms, _epgIndex + 1) != null);
                     break;
             } // switch
         } // DisplayEpgProgram
@@ -431,7 +421,7 @@ namespace IpTviewr.UiServices.EPG
             if (epgIndex < 0) epgIndex = 0;
             if (epgIndex > 3) epgIndex = 3;
 
-            if (EpgPrograms == null)
+            if (_epgPrograms == null)
             {
                 DisplayEpgProgram(0);
                 return;
@@ -440,7 +430,7 @@ namespace IpTviewr.UiServices.EPG
             // look forward
             for (int index=epgIndex; index<4;index++)
             {
-                if (EpgPrograms[index] != null)
+                if (_epgPrograms[index] != null)
                 {
                     DisplayEpgProgram(index);
                     return;
@@ -450,7 +440,7 @@ namespace IpTviewr.UiServices.EPG
             // look backwards
             for (int index=epgIndex; index>=0;index--)
             {
-                if (EpgPrograms[index] != null)
+                if (_epgPrograms[index] != null)
                 {
                     DisplayEpgProgram(index);
                     return;

@@ -16,7 +16,7 @@ using System.Xml.Serialization;
 namespace IpTviewr.UiServices.Discovery.BroadcastList
 {
     [Serializable]
-    [XmlRoot("UiBroadcastList", Namespace=ConfigCommon.ConfigXmlNamespace)]
+    [XmlRoot("UiBroadcastList", Namespace = ConfigCommon.ConfigXmlNamespace)]
     public class UiBroadcastListSettings : IConfigurationItem
     {
         private int[] _columnWidth;
@@ -77,7 +77,7 @@ namespace IpTviewr.UiServices.Discovery.BroadcastList
             result.UseGlobalSortColumns = false;
 
             // force creation of ColumnWidth field
-            var dummy = result.ColumnWidth[0];
+            _ = result.ColumnWidth[0];
 
             return result;
         } // GetDefaultSettings
@@ -95,16 +95,15 @@ namespace IpTviewr.UiServices.Discovery.BroadcastList
         {
             get
             {
-                switch (mode)
+                return mode switch
                 {
-                    case View.Details: return ViewSettings.Details;
-                    case View.LargeIcon: return ViewSettings.LargeIcon;
-                    case View.SmallIcon: return ViewSettings.SmallIcon;
-                    case View.List: return ViewSettings.List;
-                    case View.Tile: return ViewSettings.Tile;
-                    default:
-                        throw new IndexOutOfRangeException();
-                } // switch
+                    View.Details => ViewSettings.Details,
+                    View.LargeIcon => ViewSettings.LargeIcon,
+                    View.SmallIcon => ViewSettings.SmallIcon,
+                    View.List => ViewSettings.List,
+                    View.Tile => ViewSettings.Tile,
+                    _ => throw new IndexOutOfRangeException(),
+                };
             } // get
             set
             {
@@ -180,42 +179,23 @@ namespace IpTviewr.UiServices.Discovery.BroadcastList
         [XmlArrayItem("Width")]
         public int[] ColumnWidth
         {
-            get
-            {
-                if (_columnWidth == null)
-                {
-                    _columnWidth = new int[23];
-                } // if
-                return _columnWidth;
-            }
-            set
-            {
-                _columnWidth = value;
-            } // set
+            get => _columnWidth ??= new int[23];
+            set => _columnWidth = value;
         } // ColumnWidth
 
         [XmlIgnore]
-        public IList<UiBroadcastListColumn> CurrentColumns
-        {
-            get { return this[CurrentMode].Columns.AsReadOnly(); }
-        } // CurrentColumns
+        public IList<UiBroadcastListColumn> CurrentColumns => this[CurrentMode].Columns.AsReadOnly();
 
         #region IConfigurationItem implementation
 
-        bool IConfigurationItem.SupportsInitialization
-        {
-            get { return false; }
-        } // IConfigurationItem.SupportsInitialization
+        bool IConfigurationItem.SupportsInitialization => false;
 
-        bool IConfigurationItem.SupportsValidation
-        {
-            get { return false; }
-        } // IConfigurationItem.CanValidate
+        bool IConfigurationItem.SupportsValidation => false;
 
-        InitializationResult IConfigurationItem.Initializate()
+        InitializationResult IConfigurationItem.Initialize()
         {
             throw new NotSupportedException();
-        } // IConfigurationItem.Initializate
+        } // IConfigurationItem.Initialize
 
         string IConfigurationItem.Validate(string ownerTag)
         {

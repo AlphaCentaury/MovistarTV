@@ -14,9 +14,9 @@ namespace IpTviewr.UiServices.Common.Controls
 {
     public class ListItemsManager<TValue>
     {
-        private ListBox ListBox;
-        private Control RemoveControl, UpControl, DownControl;
-        private IDictionary<TValue, string> Dictionary;
+        private ListBox _listBox;
+        private Control _removeControl, _upControl, _downControl;
+        private IDictionary<TValue, string> _dictionary;
 
         public ListItemsManager(ListBox listBox, Control removeControl, Control upControl, Control downControl)
         {
@@ -30,18 +30,18 @@ namespace IpTviewr.UiServices.Common.Controls
                 throw new ArgumentException(nameof(listBox));
             } // if
 
-            ListBox = listBox;
-            RemoveControl = removeControl;
-            UpControl = upControl;
-            DownControl = downControl;
+            _listBox = listBox;
+            _removeControl = removeControl;
+            _upControl = upControl;
+            _downControl = downControl;
 
-            RemoveControl.Enabled = false;
-            UpControl.Enabled = false;
-            DownControl.Enabled = false;
+            _removeControl.Enabled = false;
+            _upControl.Enabled = false;
+            _downControl.Enabled = false;
 
-            ListBox.DisplayMember = "Value";
-            ListBox.ValueMember = "Key";
-            ListBox.SelectedIndexChanged += ListBox_SelectedIndexChanged;
+            _listBox.DisplayMember = "Value";
+            _listBox.ValueMember = "Key";
+            _listBox.SelectedIndexChanged += ListBox_SelectedIndexChanged;
         }  // constructor
 
         public bool IsReadOnly { get; set; }
@@ -50,17 +50,17 @@ namespace IpTviewr.UiServices.Common.Controls
         {
             if (items == null) throw new ArgumentNullException("items");
 
-            Dictionary = new Dictionary<TValue, string>(items.Count, comparer);
+            _dictionary = new Dictionary<TValue, string>(items.Count, comparer);
             foreach (var item in items)
             {
-                Dictionary.Add(item);
+                _dictionary.Add(item);
             } // if
         } // SetValueDictionary
 
         public void SetValueDictionary(IDictionary<TValue, string> dictionary)
         {
             if (dictionary == null) throw new ArgumentNullException("dictionary");
-            Dictionary = dictionary;
+            _dictionary = dictionary;
         } // SetValueDictionary
 
         public int Add(TValue value, string text)
@@ -70,8 +70,8 @@ namespace IpTviewr.UiServices.Common.Controls
 
         public int Add(KeyValuePair<TValue, string> item)
         {
-            var index = ListBox.Items.Add(item);
-            ListBox.SelectedIndex = index;
+            var index = _listBox.Items.Add(item);
+            _listBox.SelectedIndex = index;
 
             return index;
         } // Add
@@ -100,32 +100,32 @@ namespace IpTviewr.UiServices.Common.Controls
 
         public int Add(TValue value)
         {
-            if (Dictionary == null) throw new InvalidOperationException();
+            if (_dictionary == null) throw new InvalidOperationException();
 
-            return Add(value, Dictionary[value]);
+            return Add(value, _dictionary[value]);
         } // Add
 
         public void Add(IList<TValue> values)
         {
-            if (Dictionary == null) throw new InvalidOperationException();
+            if (_dictionary == null) throw new InvalidOperationException();
 
             var add = new object[values.Count];
             for (var index = 0; index < values.Count; index++)
             {
                 var value = values[index];
-                add[index] = new KeyValuePair<TValue, string>(value, Dictionary[value]);
+                add[index] = new KeyValuePair<TValue, string>(value, _dictionary[value]);
             } // for
             AddItems(add);
         } // Add
 
         public List<TValue> GetListValues()
         {
-            var count = ListBox.Items.Count;
+            var count = _listBox.Items.Count;
             var result = new List<TValue>(count);
 
             for (var index = 0; index < count; index++)
             {
-                var item = (KeyValuePair<TValue, string>)ListBox.Items[index];
+                var item = (KeyValuePair<TValue, string>)_listBox.Items[index];
                 result.Add(item.Key);
             } // for
 
@@ -134,12 +134,12 @@ namespace IpTviewr.UiServices.Common.Controls
 
         public IList<KeyValuePair<TValue, string>> GetListItems()
         {
-            var count = ListBox.Items.Count;
+            var count = _listBox.Items.Count;
             var result = new List<KeyValuePair<TValue, string>>(count);
 
             for (var index = 0; index < count; index++)
             {
-                var item = (KeyValuePair<TValue, string>)ListBox.Items[index];
+                var item = (KeyValuePair<TValue, string>)_listBox.Items[index];
                 result.Add(item);
             } // for
 
@@ -150,60 +150,60 @@ namespace IpTviewr.UiServices.Common.Controls
         {
             if (IsReadOnly) return;
 
-            var index = ListBox.SelectedIndex;
+            var index = _listBox.SelectedIndex;
             if (index < 0) throw new InvalidOperationException();
 
-            ListBox.Items.RemoveAt(index);
+            _listBox.Items.RemoveAt(index);
 
-            if (index >= ListBox.Items.Count) index -= 1;
-            ListBox.SelectedIndex = index;
+            if (index >= _listBox.Items.Count) index -= 1;
+            _listBox.SelectedIndex = index;
         } // RemoveSelection
 
         public void MoveSelectionUp()
         {
             if (IsReadOnly) return;
 
-            var index = ListBox.SelectedIndex;
+            var index = _listBox.SelectedIndex;
             if (index < 0) throw new InvalidOperationException();
 
-            var upItem = ListBox.Items[index - 1];
-            var current = ListBox.Items[index];
+            var upItem = _listBox.Items[index - 1];
+            var current = _listBox.Items[index];
 
-            ListBox.Items[index - 1] = current;
-            ListBox.Items[index] = upItem;
+            _listBox.Items[index - 1] = current;
+            _listBox.Items[index] = upItem;
 
-            ListBox.SelectedIndex = index - 1;
+            _listBox.SelectedIndex = index - 1;
         } // MoveUp
 
         public void MoveSelectionDown()
         {
             if (IsReadOnly) return;
 
-            var index = ListBox.SelectedIndex;
-            if ((index +1) >= ListBox.Items.Count) throw new InvalidOperationException();
+            var index = _listBox.SelectedIndex;
+            if ((index +1) >= _listBox.Items.Count) throw new InvalidOperationException();
 
-            var current = ListBox.Items[index];
-            var downItem = ListBox.Items[index + 1];
+            var current = _listBox.Items[index];
+            var downItem = _listBox.Items[index + 1];
 
-            ListBox.Items[index + 1] = current;
-            ListBox.Items[index] = downItem;
+            _listBox.Items[index + 1] = current;
+            _listBox.Items[index] = downItem;
 
-            ListBox.SelectedIndex = index + 1;
+            _listBox.SelectedIndex = index + 1;
         } // MoveDown
 
         private void ListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var index = ListBox.SelectedIndex;
-            RemoveControl.Enabled = (index >= 0) && (ListBox.Items.Count > 0) && (!IsReadOnly);
-            UpControl.Enabled = (index > 0) && (ListBox.Items.Count > 1) && (!IsReadOnly);
-            DownControl.Enabled = ((index + 1) < ListBox.Items.Count) && (!IsReadOnly);
+            var index = _listBox.SelectedIndex;
+            _removeControl.Enabled = (index >= 0) && (_listBox.Items.Count > 0) && (!IsReadOnly);
+            _upControl.Enabled = (index > 0) && (_listBox.Items.Count > 1) && (!IsReadOnly);
+            _downControl.Enabled = ((index + 1) < _listBox.Items.Count) && (!IsReadOnly);
         } // ListBox_SelectedIndexChanged
 
         private void AddItems(object[] items)
         {
-            var index = ListBox.SelectedIndex;
-            ListBox.Items.AddRange(items);
-            ListBox.SelectedIndex = index;
+            var index = _listBox.SelectedIndex;
+            _listBox.Items.AddRange(items);
+            _listBox.SelectedIndex = index;
         } // AddItems
     } // class ListItemsManager<TValue>
 } // namespace

@@ -14,13 +14,13 @@ namespace IpTviewr.UiServices.Common
     {
         public static void ChangeImage(this Button control, Image newImage)
         {
-            if (control.Image != null) control.Image.Dispose();
+            control.Image?.Dispose();
             control.Image = newImage;
         } // ChangeImage
 
         public static void ChangeImage(this PictureBox control, Image newImage)
         {
-            if (control.Image != null) control.Image.Dispose();
+            control.Image?.Dispose();
             control.Image = newImage;
         } // ChangeImage
     } // static class WinFormsControlsExtensions

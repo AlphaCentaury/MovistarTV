@@ -12,13 +12,13 @@ namespace IpTviewr.Services.EpgDiscovery
 {
     public sealed class EpgSingleServiceDatastore: EpgDataStore
     {
-        private string FullServiceName;
-        private IEpgLinkedList ServicePrograms;
+        private string _fullServiceName;
+        private IEpgLinkedList _servicePrograms;
 
         public EpgSingleServiceDatastore(string fullServiceName, IEpgLinkedList servicePrograms)
         {
-            FullServiceName = fullServiceName;
-            ServicePrograms = servicePrograms;
+            _fullServiceName = fullServiceName;
+            _servicePrograms = servicePrograms;
         } // constructor
 
         protected override void AddEpgService(EpgService epgService)
@@ -28,18 +28,18 @@ namespace IpTviewr.Services.EpgDiscovery
 
         public override ICollection<string> GetServicesRefs()
         {
-            return new string[] { FullServiceName };
+            return new[] { _fullServiceName };
         } // GetServicesRefs
 
         public override IEpgLinkedList GetPrograms(string serviceIdRef, DateTime? localTime, int nodesBefore, int nodesAfter)
         {
-            return ServicePrograms;
+            return _servicePrograms;
         } // GetPrograms
 
         public override IDictionary<string, IEpgLinkedList> GetAllPrograms(DateTime? localTime, int nodesBefore, int nodesAfter)
         {
             var result = new Dictionary<string, IEpgLinkedList>(1);
-            result.Add(FullServiceName, ServicePrograms);
+            result.Add(_fullServiceName, _servicePrograms);
 
             return result;
         } // GetAllPrograms

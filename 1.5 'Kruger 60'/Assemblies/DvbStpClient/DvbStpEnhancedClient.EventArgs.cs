@@ -72,11 +72,11 @@ namespace IpTviewr.DvbStp.Client
 
         public class SegmentDownloadCompletedEventArgs : EventArgs
         {
-            private SegmentAssembler SegmentData;
+            private SegmentAssembler _segmentData;
 
             public SegmentDownloadCompletedEventArgs(SegmentAssembler segmentData)
             {
-                SegmentData = segmentData;
+                _segmentData = segmentData;
             } // constructor
 
             public int SegmentListIndex
@@ -104,10 +104,10 @@ namespace IpTviewr.DvbStp.Client
 
             public byte[] GetPayloadData(bool keep)
             {
-                var data = SegmentData.GetPayload();
+                var data = _segmentData.GetPayload();
                 if (!keep)
                 {
-                    SegmentData.Dispose();
+                    _segmentData.Dispose();
                 } // if
 
                 return data;
@@ -124,7 +124,7 @@ namespace IpTviewr.DvbStp.Client
 
             var e = new DownloadStartedEventArgs()
             {
-                SegmentsCount = this.Payloads.Count
+                SegmentsCount = this._payloads.Count
             };
             OnDownloadStarted(this, e);
         } // FireDownloadStarted
@@ -135,7 +135,7 @@ namespace IpTviewr.DvbStp.Client
 
             var e = new DownloadCompletedEventArgs()
             {
-                Payloads = this.Payloads
+                Payloads = this._payloads
             };
             OnDownloadCompleted(this, e);
         } // FireDownloadCompleted
@@ -183,7 +183,7 @@ namespace IpTviewr.DvbStp.Client
                 OldVersion = oldVersion,
                 NewVersion = status.SegmentVersion,
                 SectionCount = status.SegmentData.LastSectionNumber + 1,
-                RestartCount = status.DowloadRestartCount,
+                RestartCount = status.DownloadRestartCount,
                 GlobalRestartCount = this.DowloadRestartCount,
             };
             OnSegmentDownloadRestarted(this, e);
@@ -200,8 +200,8 @@ namespace IpTviewr.DvbStp.Client
                 SegmentVersion = Header.SegmentVersion,
                 SectionCount = status.SegmentData.LastSectionNumber + 1,
                 SegmentListIndex = status.InfoIndex,
-                SegmentsReceived = this.SegmentsReceived,
-                SegmentsPending = this.SegmentsPending,
+                SegmentsReceived = this._segmentsReceived,
+                SegmentsPending = this._segmentsPending,
             };
             OnSegmentDownloadCompleted(this, e);
         } // SegmentDownloadCompleted
@@ -212,51 +212,37 @@ namespace IpTviewr.DvbStp.Client
 
         protected virtual void OnDownloadStarted(object sender, DownloadStartedEventArgs e)
         {
-            if (DownloadStarted == null) return;
-
-            DownloadStarted(sender, e);
+            DownloadStarted?.Invoke(sender, e);
         } // OnDownloadStarted
 
         protected virtual void OnDownloadCompleted(object sender, DownloadCompletedEventArgs e)
         {
-            if (DownloadCompleted == null) return;
-
-            DownloadCompleted(sender, e);
+            DownloadCompleted?.Invoke(sender, e);
         } // OnDownloadCompleted
 
         protected virtual void OnSectionReceived(object sender, DvbStpSimpleClient.SectionReceivedEventArgs e)
         {
-            if (SectionReceived == null) return;
-
-            SectionReceived(sender, e);
+            SectionReceived?.Invoke(sender, e);
         } // OnSectionReceived
 
         protected virtual void OnSegmentDownloadStarted(object sender, SegmentSectionReceivedEventArgs e)
         {
-            if (SegmentDownloadStarted == null) return;
-
-            SegmentDownloadStarted(sender, e);
+            SegmentDownloadStarted?.Invoke(sender, e);
         } // OnSegmentDownloadStarted
 
         protected virtual void OnSegmentSectionReceived(object sender, SegmentSectionReceivedEventArgs e)
         {
-            if (SegmentSectionReceived == null) return;
-
-            SegmentSectionReceived(sender, e);
+            SegmentSectionReceived?.Invoke(sender, e);
         } // OnSegmentSectionReceived
 
         protected virtual void OnSegmentDownloadRestarted(object sender, SegmentDownloadRestartedEventArgs e)
         {
-            if (SegmentDownloadRestarted == null) return;
-
-            SegmentDownloadRestarted(sender, e);
+            SegmentDownloadRestarted?.Invoke(sender, e);
         } // SegmentDownloadRestarted
 
         protected virtual void OnSegmentDownloadCompleted(object sender, SegmentDownloadCompletedEventArgs e)
         {
-            if (SegmentDownloadCompleted == null) return;
-
-            SegmentDownloadCompleted(sender, e);
+            SegmentDownloadCompleted?.Invoke(sender, e);
         } // OnSegmentDownloadCompleted
 
         #endregion

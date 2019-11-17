@@ -9,7 +9,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
-using IpTviewr.Native;
 using SaveAs = IpTviewr.Native.WindowsIcon.SaveAs;
 
 namespace IpTViewr.Setup.Logos

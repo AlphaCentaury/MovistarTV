@@ -6,12 +6,7 @@
 // http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
 
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using IpTviewr.Services.Record.Serialization;
 using IpTviewr.UiServices.Record.Properties;
@@ -21,12 +16,12 @@ namespace IpTviewr.UiServices.Record.Controls
 {
     public partial class RecordingSchedule : UserControl
     {
-        private int ManualUpdate;
+        private int _manualUpdate;
 
-        private IRecordingScheduleFragment CurrentFragment;
-        private IRecordingScheduleFragment[] ScheduleFragments;
-        private RadioButton[] RadioButtons;
-        private DateTime OriginalDateTime;
+        private IRecordingScheduleFragment _currentFragment;
+        private IRecordingScheduleFragment[] _scheduleFragments;
+        private RadioButton[] _radioButtons;
+        private DateTime _originalDateTime;
 
         public event EventHandler<KindChangedEventArgs> ScheduleKindChanged;
         public event EventHandler<DateTimeChangedEventArgs> DateTimeChanged;
@@ -63,18 +58,18 @@ namespace IpTviewr.UiServices.Record.Controls
         {
             InitializeComponent();
 
-            ScheduleFragments = new IRecordingScheduleFragment[4]; // 5
-            ScheduleFragments[0] = fragmentRightNow;
-            ScheduleFragments[1] = fragmentOneTime;
-            ScheduleFragments[2] = fragmentDaily;
-            ScheduleFragments[3] = fragmentWeekly;
+            _scheduleFragments = new IRecordingScheduleFragment[4]; // 5
+            _scheduleFragments[0] = fragmentRightNow;
+            _scheduleFragments[1] = fragmentOneTime;
+            _scheduleFragments[2] = fragmentDaily;
+            _scheduleFragments[3] = fragmentWeekly;
             //ScheduleFragments[4] = fragmentMonthly;
 
-            RadioButtons = new RadioButton[4]; // 5
-            RadioButtons[0] = radioRightNow;
-            RadioButtons[1] = radioOneTime;
-            RadioButtons[2] = radioDaily;
-            RadioButtons[3] = radioWeekly;
+            _radioButtons = new RadioButton[4]; // 5
+            _radioButtons[0] = radioRightNow;
+            _radioButtons[1] = radioOneTime;
+            _radioButtons[2] = radioDaily;
+            _radioButtons[3] = radioWeekly;
             //RadioButtons[4] = radioMonthly;
         } // constructor
 
@@ -85,15 +80,15 @@ namespace IpTviewr.UiServices.Record.Controls
                 throw new InvalidOperationException("A 'RightNow' recording task can not be edited!");
             } // if
 
-            OriginalDateTime = schedule.StartDate;
+            _originalDateTime = schedule.StartDate;
 
-            foreach (var fragment in ScheduleFragments)
+            foreach (var fragment in _scheduleFragments)
             {
                 if (schedule.Kind == fragment.Kind) fragment.SetSchedule(schedule);
                 else fragment.SetSchedule(RecordSchedule.CreateWithDefaultValues(fragment.Kind));
             } // foreach
 
-            foreach (var radio in RadioButtons)
+            foreach (var radio in _radioButtons)
             {
                 var kind = (RecordScheduleKind)radio.Tag;
                 radio.Checked = (schedule.Kind == kind);
@@ -106,23 +101,23 @@ namespace IpTviewr.UiServices.Record.Controls
 
         public RecordSchedule GetSchedule()
         {
-            return CurrentFragment.GetSchedule();
+            return _currentFragment.GetSchedule();
         } // GetSchedule
 
         private void SchedulePattern_Load(object sender, EventArgs e)
         {
-            ManualUpdate++;
+            _manualUpdate++;
 
             panelPlaceholder.Visible = false;
-            for(int index=0; index<ScheduleFragments.Length; index++)
+            for(int index=0; index<_scheduleFragments.Length; index++)
             {
-                var control = ScheduleFragments[index];
+                var control = _scheduleFragments[index];
                 control.UserControl.Location = panelPlaceholder.Location;
                 control.UserControl.Size = panelPlaceholder.Size;
                 control.UserControl.Visible = false;
 
-                RadioButtons[index].Tag = control.Kind;
-                RadioButtons[index].Enabled = false;
+                _radioButtons[index].Tag = control.Kind;
+                _radioButtons[index].Enabled = false;
             } // foreach
 
             // init DateTimePicker controls with a default date/time
@@ -132,7 +127,7 @@ namespace IpTviewr.UiServices.Record.Controls
             dateTimeStartDate.Value = oneTime.StartDate;
             dateTimeStartTime.Value = oneTime.StartDate;
 
-            ManualUpdate--;
+            _manualUpdate--;
         } // SchedulePattern_Load
 
         private void radioButton_CheckedChanged(object sender, EventArgs e)
@@ -140,7 +135,7 @@ namespace IpTviewr.UiServices.Record.Controls
             RecordScheduleKind selectedKind;
             bool canSelectDateTime;
 
-            if (ManualUpdate> 0) return;
+            if (_manualUpdate> 0) return;
 
             selectedKind = (RecordScheduleKind)((RadioButton)sender).Tag;
             canSelectDateTime = (selectedKind != RecordScheduleKind.RightNow);
@@ -148,12 +143,12 @@ namespace IpTviewr.UiServices.Record.Controls
             dateTimeStartDate.Enabled = canSelectDateTime;
             dateTimeStartTime.Enabled = canSelectDateTime;
 
-            ManualUpdate++;
+            _manualUpdate++;
 
-            dateTimeStartDate.Value = OriginalDateTime;
-            dateTimeStartTime.Value = OriginalDateTime;
+            dateTimeStartDate.Value = _originalDateTime;
+            dateTimeStartTime.Value = _originalDateTime;
 
-            ManualUpdate--;
+            _manualUpdate--;
 
             StartTimerUpdateRightNow(selectedKind == RecordScheduleKind.RightNow);
 
@@ -163,7 +158,7 @@ namespace IpTviewr.UiServices.Record.Controls
 
         private void dateTimeStart_ValueChanged(object sender, EventArgs e)
         {
-            if (ManualUpdate > 0) return;
+            if (_manualUpdate > 0) return;
 
             StartDateChanged();
         } // dateTimeStart_ValueChanged
@@ -190,13 +185,13 @@ namespace IpTviewr.UiServices.Record.Controls
 
         private void SetPatternKind(RecordScheduleKind kind)
         {
-            foreach (var patternControl in ScheduleFragments)
+            foreach (var patternControl in _scheduleFragments)
             {
                 if (patternControl.Kind == kind)
                 {
-                    if (CurrentFragment != null) CurrentFragment.UserControl.Visible = false;
+                    if (_currentFragment != null) _currentFragment.UserControl.Visible = false;
                     patternControl.UserControl.Visible = true;
-                    CurrentFragment = patternControl;
+                    _currentFragment = patternControl;
                     break;
                 } // if
             } // foreach
@@ -210,7 +205,7 @@ namespace IpTviewr.UiServices.Record.Controls
             var time = dateTimeStartTime.Value;
             var startDate = new DateTime(date.Year, date.Month, date.Day, time.Hour, time.Minute, time.Second);
 
-            foreach (var fragment in ScheduleFragments)
+            foreach (var fragment in _scheduleFragments)
             {
                 fragment.UpdateStartDate(startDate);
             } // foreach
@@ -226,12 +221,12 @@ namespace IpTviewr.UiServices.Record.Controls
 
         private void UpdateStartTimeRightNow()
         {
-            ManualUpdate++;
+            _manualUpdate++;
 
             var now = DateTime.Now.TruncateToSeconds(5);
             dateTimeStartDate.Value = now;
 
-            ManualUpdate--;
+            _manualUpdate--;
 
             dateTimeStartTime.Value = now;
         } // UpdateStartTimeRightNow

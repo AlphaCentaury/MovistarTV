@@ -7,10 +7,6 @@
 
 using IpTviewr.UiServices.EPG;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace IpTviewr.ChannelList
 {
@@ -76,12 +72,12 @@ namespace IpTviewr.ChannelList
 
         private void EnableEpgMenus(bool enable)
         {
-            menuItemEpgNow.Enabled = enable & enable_Epg;
-            menuItemEpgToday.Enabled = enable & enable_Epg;
-            menuItemEpgTomorrow.Enabled = enable & enable_Epg;
+            menuItemEpgNow.Enabled = enable & _enableEpg;
+            menuItemEpgToday.Enabled = enable & _enableEpg;
+            menuItemEpgTomorrow.Enabled = enable & _enableEpg;
             menuItemEpgPrevious.Enabled = false;
             menuItemEpgNext.Enabled = false;
-            menuItemEpgBasicGrid.Enabled = enable_Epg && (_selectedServiceProvider != null);
+            menuItemEpgBasicGrid.Enabled = _enableEpg && (_selectedServiceProvider != null);
         } // EnableEpgMenus
 
         private void ShowEpgMiniGuide(bool display)

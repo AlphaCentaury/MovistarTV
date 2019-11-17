@@ -17,11 +17,11 @@ namespace Etsi.Ts102034.v010501.XmlSerialization.BroadcastDiscovery
     [XmlType("Usage", Namespace = "urn:dvb:metadata:iptv:sdns:2012-1")]
     public enum ServiceUsage
     {
-        FCC,
+        Fcc,
         PiP,
         Main,
-        HD,
-        SD,
+        Hd,
+        Sd,
         [XmlEnum("3D")]
         ThreeD,
     } // ServiceUsage

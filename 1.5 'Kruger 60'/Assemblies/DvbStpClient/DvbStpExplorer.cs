@@ -18,10 +18,10 @@ namespace IpTviewr.DvbStp.Client
         public event EventHandler<UnexpectedHeaderVersionReceivedEventArgs> UnexpectedHeaderVersionReceived;
         public event EventHandler<RunEndedEventArgs> RunEnded;
 
-        private int StartSectionNumber;
-        private int ReceivedPayloadBytes;
-        private DvbStpHeader LastHeader;
-        private IList<DvbStpHeader> ReceivedHeaders;
+        private int _startSectionNumber;
+        private int _receivedPayloadBytes;
+        private DvbStpHeader _lastHeader;
+        private IList<DvbStpHeader> _receivedHeaders;
 
         public DvbStpExplorer(IPAddress ip, int port) : base(ip, port)
         {
@@ -39,15 +39,15 @@ namespace IpTviewr.DvbStp.Client
             {
                 Connect();
 
-                StartSectionNumber = -1;
+                _startSectionNumber = -1;
                 while (!CancelRequested)
                 {
                     Receive(true);
 
-                    if (StartSectionNumber == -1)
+                    if (_startSectionNumber == -1)
                     {
-                        LastHeader = Header.Clone();
-                        LastHeader.SectionNumber--;
+                        _lastHeader = Header.Clone();
+                        _lastHeader.SectionNumber--;
                         InitRun();
                     } // if
 
@@ -60,18 +60,18 @@ namespace IpTviewr.DvbStp.Client
                         OnSectionReceived();
                     } // if-else
 
-                    if ((Header.PayloadId != LastHeader.PayloadId) ||
-                        (Header.SegmentId != LastHeader.SegmentId) ||
-                        (Header.SegmentVersion != LastHeader.SegmentVersion) ||
-                        (Header.SectionNumber != LastHeader.SectionNumber + 1))
+                    if ((Header.PayloadId != _lastHeader.PayloadId) ||
+                        (Header.SegmentId != _lastHeader.SegmentId) ||
+                        (Header.SegmentVersion != _lastHeader.SegmentVersion) ||
+                        (Header.SectionNumber != _lastHeader.SectionNumber + 1))
                     {
                         OnRunEnded();
                         InitRun();
                     } // if
 
-                    ReceivedPayloadBytes += Header.PayloadSize;
-                    ReceivedHeaders.Add(Header.Clone());
-                    LastHeader = Header.Clone();
+                    _receivedPayloadBytes += Header.PayloadSize;
+                    _receivedHeaders.Add(Header.Clone());
+                    _lastHeader = Header.Clone();
                 } // while
 
                 if (!CancelRequested)
@@ -93,9 +93,9 @@ namespace IpTviewr.DvbStp.Client
 
         private void InitRun()
         {
-            StartSectionNumber = Header.SectionNumber;
-            ReceivedHeaders = new List<DvbStpHeader>(Header.LastSectionNumber + 1);
-            ReceivedPayloadBytes = 0;
+            _startSectionNumber = Header.SectionNumber;
+            _receivedHeaders = new List<DvbStpHeader>(Header.LastSectionNumber + 1);
+            _receivedPayloadBytes = 0;
         } // InitRun
 
         private void OnSectionReceived()
@@ -137,14 +137,14 @@ namespace IpTviewr.DvbStp.Client
 
             var args = new RunEndedEventArgs()
             {
-                PayloadId = LastHeader.PayloadId,
-                ReceivedPayloadBytes = ReceivedPayloadBytes,
-                SegmentId = LastHeader.SegmentId,
-                LastSectionNumber = LastHeader.LastSectionNumber,
-                SegmentVersion = LastHeader.SegmentVersion,
-                StartSectionNumber = StartSectionNumber,
-                EndSectionNumber = LastHeader.SectionNumber,
-                TotalSegmentSize = LastHeader.TotalSegmentSize,
+                PayloadId = _lastHeader.PayloadId,
+                ReceivedPayloadBytes = _receivedPayloadBytes,
+                SegmentId = _lastHeader.SegmentId,
+                LastSectionNumber = _lastHeader.LastSectionNumber,
+                SegmentVersion = _lastHeader.SegmentVersion,
+                StartSectionNumber = _startSectionNumber,
+                EndSectionNumber = _lastHeader.SectionNumber,
+                TotalSegmentSize = _lastHeader.TotalSegmentSize,
             };
 
             RunEnded?.Invoke(this, args);

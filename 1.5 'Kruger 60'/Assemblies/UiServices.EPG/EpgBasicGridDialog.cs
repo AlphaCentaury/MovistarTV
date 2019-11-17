@@ -7,43 +7,35 @@
 
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using IpTviewr.Common.Telemetry;
-using IpTviewr.Core.IpTvProvider;
 using IpTviewr.Services.EpgDiscovery;
-using IpTviewr.Services.SqlServerCE;
 using IpTviewr.UiServices.Common.Forms;
-using IpTviewr.UiServices.Configuration;
 using IpTviewr.UiServices.Discovery;
 using IpTviewr.UiServices.Discovery.BroadcastList;
 using IpTviewr.Common;
-using System.Threading;
 
 namespace IpTviewr.UiServices.EPG
 {
     public partial class EpgBasicGridDialog : CommonBaseForm
     {
-        private IList<UiBroadcastService> ServicesList;
-        private UiBroadcastService InitialService;
-        private UiBroadcastService SelectedService;
-        private IEpgLinkedList[] EpgPrograms;
-        private EpgDataStore Datastore;
-        private int SelectedRowIndex;
-        private DateTime LocalReferenceTime;
-        private bool IsGridReady;
+        private IList<UiBroadcastService> _servicesList;
+        private UiBroadcastService _initialService;
+        private UiBroadcastService _selectedService;
+        private IEpgLinkedList[] _epgPrograms;
+        private EpgDataStore _datastore;
+        private int _selectedRowIndex;
+        private DateTime _localReferenceTime;
+        private bool _isGridReady;
 
         public static DialogResult ShowGrid(CommonBaseForm parentForm, IList<UiBroadcastService> list, UiBroadcastService currentService, EpgDataStore datastore)
         {
             using (var dialog = new EpgBasicGridDialog())
             {
-                dialog.ServicesList = list;
-                dialog.InitialService = currentService;
-                dialog.Datastore = datastore;
+                dialog._servicesList = list;
+                dialog._initialService = currentService;
+                dialog._datastore = datastore;
                 return dialog.ShowDialog(parentForm);
             } // using
         }  // ShowGrid
@@ -60,12 +52,12 @@ namespace IpTviewr.UiServices.EPG
         {
             BasicGoogleTelemetry.SendScreenHit(this);
 
-            EpgPrograms = new IEpgLinkedList[ServicesList.Count];
+            _epgPrograms = new IEpgLinkedList[_servicesList.Count];
             ChangeSelectedRow(-1);
 
             var workerOptions = new BackgroundWorkerOptions()
             {
-                OutputData = EpgPrograms,
+                OutputData = _epgPrograms,
                 BackgroundTask = AsyncGetEpgPrograms,
                 AfterTask = FillGrid,
                 AllowAutoClose = true,
@@ -94,7 +86,7 @@ namespace IpTviewr.UiServices.EPG
 
         private void dataGridPrograms_SelectionChanged(object sender, EventArgs e)
         {
-            if (!IsGridReady) return;
+            if (!_isGridReady) return;
 
             var cell = (dataGridPrograms.SelectedCells.Count > 0) ? dataGridPrograms.SelectedCells[0] : null;
             if (cell == null)
@@ -108,7 +100,7 @@ namespace IpTviewr.UiServices.EPG
                 // don't allow to select the service
                 if (cell.ColumnIndex == 0)
                 {
-                    var row = dataGridPrograms.Rows[SelectedRowIndex];
+                    var row = dataGridPrograms.Rows[_selectedRowIndex];
                     row.Cells[1].Selected = true;
 
                     // changing the selected cell will cause SelectionChanged to be fired
@@ -128,12 +120,12 @@ namespace IpTviewr.UiServices.EPG
             dialog.SetProgressText("Filling the list...");
 
             var serviceRowIndex = -1;
-            foreach (var service in ServicesList)
+            foreach (var service in _servicesList)
             {
                 var name = UiBroadcastListManager.GetColumnData(service, UiBroadcastListColumn.NumberAndName);
                 var rowIndex = dataGridPrograms.Rows.Add(name);
 
-                if (service.Key == InitialService?.Key)
+                if (service.Key == _initialService?.Key)
                 {
                     serviceRowIndex = rowIndex;
                 } // if
@@ -145,12 +137,12 @@ namespace IpTviewr.UiServices.EPG
                 } // if
             } // foreach
 
-            for (int index = 0; index < EpgPrograms.Length; index++)
+            for (int index = 0; index < _epgPrograms.Length; index++)
             {
                 int cellIndex;
                 var row = dataGridPrograms.Rows[index];
 
-                var node = EpgPrograms[index]?.Requested;
+                var node = _epgPrograms[index]?.Requested;
                 cellIndex = 1;
                 while ((node != null) && (cellIndex < 4))
                 {
@@ -171,8 +163,8 @@ namespace IpTviewr.UiServices.EPG
                 } // for cellIndex
             } // for index
 
-            SelectedService = null;
-            IsGridReady = true;
+            _selectedService = null;
+            _isGridReady = true;
 
             if (serviceRowIndex >= 0)
             {
@@ -180,7 +172,7 @@ namespace IpTviewr.UiServices.EPG
             }
             else
             {
-                SelectedRowIndex = -1;
+                _selectedRowIndex = -1;
             } // if-else
         } // FillGrid
 
@@ -190,13 +182,13 @@ namespace IpTviewr.UiServices.EPG
 
             dialog.SetProgressText("Requesting data for channels...");
 
-            LocalReferenceTime = DateTime.Now;
-            var programs = Datastore.GetAllPrograms(LocalReferenceTime, 0, 2);
+            _localReferenceTime = DateTime.Now;
+            var programs = _datastore.GetAllPrograms(_localReferenceTime, 0, 2);
 
             dialog.SetProgressText("Sorting information...");
 
             var index = -1;
-            foreach (var service in ServicesList)
+            foreach (var service in _servicesList)
             {
                 index++;
 
@@ -212,7 +204,7 @@ namespace IpTviewr.UiServices.EPG
                     } // if
                 } // if
 
-                EpgPrograms[index] = servicePrograms;
+                _epgPrograms[index] = servicePrograms;
             } // foreach
         }  // AsyncGetEpgPrograms
 
@@ -238,9 +230,9 @@ namespace IpTviewr.UiServices.EPG
 
         private void ChangeSelectedRow(int rowIndex)
         {
-            if (rowIndex == SelectedRowIndex) return;
-            SelectedRowIndex = rowIndex;
-            SelectedService = (rowIndex >= 0)? ServicesList[rowIndex] : null;
+            if (rowIndex == _selectedRowIndex) return;
+            _selectedRowIndex = rowIndex;
+            _selectedService = (rowIndex >= 0)? _servicesList[rowIndex] : null;
 
             if (rowIndex == -1)
             {
@@ -249,10 +241,10 @@ namespace IpTviewr.UiServices.EPG
                 return;
             } // if
 
-            var epgPrograms = EpgPrograms[rowIndex];
-            var singleServiceDatastore = new EpgSingleServiceDatastore(SelectedService.FullServiceName, EpgPrograms[SelectedRowIndex]);
+            var epgPrograms = _epgPrograms[rowIndex];
+            var singleServiceDatastore = new EpgSingleServiceDatastore(_selectedService.FullServiceName, _epgPrograms[_selectedRowIndex]);
 
-            epgMiniGuide.LoadEpgPrograms(SelectedService, LocalReferenceTime, false);
+            epgMiniGuide.LoadEpgPrograms(_selectedService, _localReferenceTime, false);
             epgMiniGuide.SetEpgDataStore(singleServiceDatastore, false);
             epgMiniGuide.Visible = true;
         } // ChangeSelectedRow

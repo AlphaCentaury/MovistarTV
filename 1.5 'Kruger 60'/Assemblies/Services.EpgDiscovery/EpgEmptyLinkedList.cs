@@ -10,38 +10,22 @@ using System.Collections.Generic;
 
 namespace IpTviewr.Services.EpgDiscovery
 {
-    public class EpgEmptyLinkedList : IEpgLinkedList, IEnumerable<EpgProgram>
+    public class EpgEmptyLinkedList : IEpgLinkedList
     {
         public EpgEmptyLinkedList(string serviceIdRef)
         {
             ServiceIdRef = serviceIdRef;
         } // constructor
 
-        public int Count
-        {
-            get { return 0; }
-        } // Count
+        public int Count=>0;
 
-        public IEpgLinkedListNode First
-        {
-            get { return null; }
-        } // First
+        public IEpgLinkedListNode First=>null;
 
-        public IEpgLinkedListNode Last
-        {
-            get { return null; }
-        } // Last
+        public IEpgLinkedListNode Last=>null;
 
-        public IEpgLinkedListNode Requested
-        {
-            get { return null; }
-        } // Requested
+        public IEpgLinkedListNode Requested=>null;
 
-        public string ServiceIdRef
-        {
-            get;
-            private set;
-        } // ServiceIdRef
+        public string ServiceIdRef { get; }
 
         public IEpgLinkedListNode GetMore(bool forward, int nodesCount, bool keepExistingData)
         {

@@ -771,7 +771,7 @@ namespace IpTviewr.UiServices.Discovery.BroadcastList
             using (var image = logo.GetImage(SmallLogoSize))
             {
                 _smallImageList.Images.Add(logo.Key, image);
-                using (var disabledImage = PictureBoxEx.ToGrayscale(image))
+                using (var disabledImage = PictureBoxEx.ToGreyscale(image))
                 {
                     _smallImageList.Images.Add(disabledKey, disabledImage);
                 } // using image
@@ -781,7 +781,7 @@ namespace IpTviewr.UiServices.Discovery.BroadcastList
             using (var image = logo.GetImage(LargeLogoSize))
             {
                 _largeImageList.Images.Add(logo.Key, image);
-                using (var disabledImage = PictureBoxEx.ToGrayscale(image))
+                using (var disabledImage = PictureBoxEx.ToGreyscale(image))
                 {
                     _largeImageList.Images.Add(disabledKey, disabledImage);
                 } // using image

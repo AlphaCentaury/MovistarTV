@@ -13,55 +13,34 @@ namespace IpTviewr.Core.IpTvProvider
 {
     public class IpTvProviderSettingsRegistration : IConfigurationItemRegistration
     {
-        private static int MyDirectIndex;
+        private static int _myDirectIndex;
 
         public static IpTvProviderSettings Settings
         {
-            get { return AppUiConfiguration.Current[MyDirectIndex] as IpTvProviderSettings; }
-            set { AppUiConfiguration.Current[MyDirectIndex] = value; }
+            get => AppUiConfiguration.Current[_myDirectIndex] as IpTvProviderSettings;
+            set => AppUiConfiguration.Current[_myDirectIndex] = value;
         } // Settings
 
         #region IConfigurationItemRegistration Members
 
-        public Guid Id
-        {
-            get { return new Guid(AppUiConfiguration.IpTvProviderSettingsRegistrationGuid); }
-        } // Id
+        public Guid Id => new Guid(AppUiConfiguration.IpTvProviderSettingsRegistrationGuid);
 
-        public bool HasEditor
-        {
-            get { return false; }
-        } // HasEditor
+        public bool HasEditor => false;
 
         public IConfigurationItem CreateDefault()
         {
             throw new NotSupportedException();
         } // CreateDefault
 
-        public Type ItemType
-        {
-            get { return typeof(IpTvProviderSettings); }
-        } // ItemType
+        public Type ItemType => typeof(IpTvProviderSettings);
 
-        public string EditorDisplayName
-        {
-            get { throw new NotSupportedException(); }
-        } // EditorDisplayName
+        public string EditorDisplayName => throw new NotSupportedException();
 
-        public string EditorDescription
-        {
-            get { throw new NotSupportedException(); }
-        } // EditorDescription
+        public string EditorDescription => throw new NotSupportedException();
 
-        public Image EditorImage
-        {
-            get { throw new NotSupportedException(); }
-        } // EditorImage
+        public Image EditorImage => throw new NotSupportedException();
 
-        public int EditorPriority
-        {
-            get { throw new NotSupportedException(); }
-        } // EditorPriority
+        public int EditorPriority => throw new NotSupportedException();
 
         public IConfigurationItemEditor CreateEditor(IConfigurationItem data)
         {
@@ -70,8 +49,8 @@ namespace IpTviewr.Core.IpTvProvider
 
         public int DirectIndex
         {
-            get { return MyDirectIndex; }
-            set { MyDirectIndex = value; }
+            get => _myDirectIndex;
+            set => _myDirectIndex = value;
         } // DirectIndex
 
         #endregion

@@ -24,7 +24,7 @@ namespace Etsi.Ts102034.v010501.XmlSerialization.BroadcastDiscovery
         public FecLayerAddress FecBaseLayer;
 
         [XmlElement("FECEnhancementLayer")]
-        public FecLayerAddress[] FECEnhancementLayer;
+        public FecLayerAddress[] FecEnhancementLayer;
 
         [XmlElement("CNAME")]
         public string CName;
@@ -55,13 +55,7 @@ namespace Etsi.Ts102034.v010501.XmlSerialization.BroadcastDiscovery
         public bool StreamingSpecified;
 
         [XmlIgnore]
-        public string Url
-        {
-            get
-            {
-                return string.Format("{0}://@{1}:{2}", Protocol, Address, Port);
-            } // get
-        } // Url
+        public string Url => $"{Protocol}://@{Address}:{Port}";
 
         [XmlIgnore]
         public string Protocol
@@ -71,16 +65,18 @@ namespace Etsi.Ts102034.v010501.XmlSerialization.BroadcastDiscovery
                 if ((!StreamingSpecified) || (Streaming == StreamingKind.Rtp))
                 {
                     return "rtp";
-                }
-                else if (Streaming == StreamingKind.Udp)
+                } // if
+
+                if (Streaming == StreamingKind.Udp)
                 {
                     return "udp";
-                }
-                else
-                {
-                    throw new IndexOutOfRangeException();
-                } // if-else
+                } // if
+
+                throw new IndexOutOfRangeException();
             } // get
         } // Protocol
+
+        public override string ToString() => Url;
+
     } // class IpMulticastAddress
 } // namespace

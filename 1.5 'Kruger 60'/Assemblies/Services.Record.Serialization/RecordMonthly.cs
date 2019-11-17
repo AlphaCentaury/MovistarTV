@@ -15,10 +15,7 @@ namespace IpTviewr.Services.Record.Serialization
     [XmlType(Namespace = RecordTask.XmlNamespace)]
     public class RecordMonthly : RecordSchedule
     {
-        public override RecordScheduleKind Kind
-        {
-            get { return RecordScheduleKind.Monthly; }
-        } // ScheduleKind
+        public override RecordScheduleKind Kind => RecordScheduleKind.Monthly;
 
         public RecordYearMonths Months
         {

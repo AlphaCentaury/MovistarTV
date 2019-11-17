@@ -25,10 +25,7 @@ namespace IpTviewr.UiServices.Configuration.Editors
 
         public string Parameter
         {
-            get
-            {
-                return parameterEditor.CommandLine;
-            }
+            get => parameterEditor.CommandLine;
             set
             {
                 parameterEditor.CommandLine = value;
@@ -39,20 +36,20 @@ namespace IpTviewr.UiServices.Configuration.Editors
 
         public string OpenBraceText
         {
-            get { return parameterEditor.OpenBraceText; }
-            set { parameterEditor.OpenBraceText = value; }
+            get => parameterEditor.OpenBraceText;
+            set => parameterEditor.OpenBraceText = value;
         } // OpenBraceText
 
         public string CloseBraceText
         {
-            get { return parameterEditor.CloseBraceText; }
-            set { parameterEditor.CloseBraceText = value; }
+            get => parameterEditor.CloseBraceText;
+            set => parameterEditor.CloseBraceText = value;
         } // CloseBraceText
 
         public string ParametersList
         {
-            get { return parameterEditor.ParametersList; }
-            set { parameterEditor.ParametersList = value; }
+            get => parameterEditor.ParametersList;
+            set => parameterEditor.ParametersList = value;
         } // ParametersList
 
         private void parameterEditor_CommandLineChanged(object sender, EventArgs e)

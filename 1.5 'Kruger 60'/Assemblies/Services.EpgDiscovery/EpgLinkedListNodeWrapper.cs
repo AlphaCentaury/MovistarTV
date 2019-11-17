@@ -11,99 +11,79 @@ namespace IpTviewr.Services.EpgDiscovery
 {
     public sealed class EpgLinkedListNodeWrapper : IEpgLinkedListNode
     {
-        private LinkedListNode<EpgProgram> Node;
-        private EpgLinkedListWrapper LinkedList;
+        private readonly LinkedListNode<EpgProgram> _node;
+        private readonly EpgLinkedListWrapper _linkedList;
 
         public EpgLinkedListNodeWrapper(EpgLinkedListWrapper list, LinkedListNode<EpgProgram> node)
         {
-            LinkedList = list;
-            Node = node;
+            _linkedList = list;
+            _node = node;
         } // constructor
 
-        public IEpgLinkedList List
-        {
-            get { return LinkedList; }
-        } // List
+        public IEpgLinkedList List => _linkedList;
 
         public IEpgLinkedListNode Next
         {
             get
             {
-                var next = Node.Next;
-                if (next == null)
+                var next = _node.Next;
+                if (next != null) return new EpgLinkedListNodeWrapper(_linkedList, next);
+
+                if ((_linkedList.PhantomNode != null) && (_linkedList.PhantomNode.IsLast))
                 {
-                    if ((LinkedList.PhantomNode != null) && (LinkedList.PhantomNode.IsLast))
-                    {
-                        return LinkedList.PhantomNode;
-                    }
-                    else
-                    {
-                        return null;
-                    } // if-else
-                }
-                else
-                {
-                    return new EpgLinkedListNodeWrapper(LinkedList, next);
-                } // if-else
-            }
+                    return _linkedList.PhantomNode;
+                } // if
+
+                return null;
+            } // get
         } // Next
 
         public IEpgLinkedListNode Previous
         {
             get
             {
-                var previous = Node.Previous;
-                if (previous == null)
+                var previous = _node.Previous;
+                if (previous != null) return new EpgLinkedListNodeWrapper(_linkedList, previous);
+
+                if ((_linkedList.PhantomNode != null) && (_linkedList.PhantomNode.IsFirst))
                 {
-                    if ((LinkedList.PhantomNode != null) && (LinkedList.PhantomNode.IsFirst))
-                    {
-                        return LinkedList.PhantomNode;
-                    }
-                    else
-                    {
-                        return null;
-                    } // if-else
-                }
-                else
-                {
-                    return new EpgLinkedListNodeWrapper(LinkedList, previous);
-                } // if-else
+                    return _linkedList.PhantomNode;
+                } // if
+
+                return null;
             } // get
         } // Previous
 
-        public EpgProgram Program
-        {
-            get { return Node.Value; }
-        } // Program
+        public EpgProgram Program=>_node.Value;
 
         public override int GetHashCode()
         {
-            return Node.GetHashCode();
+            return _node.GetHashCode();
         } // GetHashCode
 
         public override bool Equals(object obj)
         {
             var wrappedNode = obj as EpgLinkedListNodeWrapper;
-            if (object.ReferenceEquals(wrappedNode, null)) return false;
+            if (ReferenceEquals(wrappedNode, null)) return false;
 
-            return (Node == wrappedNode.Node);
+            return (_node == wrappedNode._node);
         } // Equals
 
         public override string ToString()
         {
-            return Node.Value.ToString();
+            return _node.Value.ToString();
         } // ToString
 
-        public static bool operator == (EpgLinkedListNodeWrapper a, EpgLinkedListNodeWrapper b)
+        public static bool operator ==(EpgLinkedListNodeWrapper a, EpgLinkedListNodeWrapper b)
         {
             if ((a == null) || (b == null)) return false;
-            return (a.Node == b.Node);
+            return (a._node == b._node);
         } // operator ==
 
-        public static bool operator != (EpgLinkedListNodeWrapper a, EpgLinkedListNodeWrapper b)
+        public static bool operator !=(EpgLinkedListNodeWrapper a, EpgLinkedListNodeWrapper b)
         {
             if ((a == null) || (b == null)) return true;
-            return (a.Node != b.Node);
+            return (a._node != b._node);
         } // operator !=
     } // class EpgLinkedListNodeWrapper
 } // namespace

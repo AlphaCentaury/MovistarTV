@@ -8,10 +8,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
-using System.Data;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using IpTviewr.Services.Record.Serialization;
 using IpTviewr.UiServices.Record.Properties;
@@ -21,13 +18,13 @@ namespace IpTviewr.UiServices.Record.Controls
 {
     public partial class RecordingDuration : UserControl
     {
-        private int ManualUpdate;
-        private bool AvoidRecursion;
-        private RecordScheduleKind ScheduleKind;
-        private DateTime StartDateTime;
-        private TimeSpan fieldRecordTimeSpan;
-        private DateTime fieldEndDateTime;
-        private bool IsScheduledProgram;
+        private int _manualUpdate;
+        private bool _avoidRecursion;
+        private RecordScheduleKind _scheduleKind;
+        private DateTime _startDateTime;
+        private TimeSpan _fieldRecordTimeSpan;
+        private DateTime _fieldEndDateTime;
+        private bool _isScheduledProgram;
 
         public RecordingDuration()
         {
@@ -39,38 +36,33 @@ namespace IpTviewr.UiServices.Record.Controls
 
         private TimeSpan RecordTimeSpan
         {
-            get
-            {
-                return fieldRecordTimeSpan;
-            } // get
+            get => _fieldRecordTimeSpan;
             set
             {
-                fieldRecordTimeSpan = value;
-                if (AvoidRecursion) return;
+                _fieldRecordTimeSpan = value;
+                if (_avoidRecursion) return;
 
-                AvoidRecursion = true;
+                _avoidRecursion = true;
                 OnTimeSpanChanged();
                 OnEndDateTimeChanged();
-                AvoidRecursion = false;
+                _avoidRecursion = false;
             } // set
         } // RecordTimeSpan
 
         private DateTime EndDateTime
         {
-            get
-            {
-                return fieldEndDateTime;
-            } // get
+            get => _fieldEndDateTime;
+// get
 
             set
             {
-                fieldEndDateTime = value.TruncateToSeconds(1);
-                if (AvoidRecursion) return;
+                _fieldEndDateTime = value.TruncateToSeconds(1);
+                if (_avoidRecursion) return;
 
-                AvoidRecursion = true;
+                _avoidRecursion = true;
                 OnEndDateTimeChanged();
                 OnTimeSpanChanged();
-                AvoidRecursion = false;
+                _avoidRecursion = false;
             } // set
         } // EndDateTime
 
@@ -87,7 +79,7 @@ namespace IpTviewr.UiServices.Record.Controls
             }
             else
             {
-                IsScheduledProgram = (kind == RecordScheduleKind.RightNow);
+                _isScheduledProgram = (kind == RecordScheduleKind.RightNow);
                 radioEndDateTime.Checked = true;
                 EndDateTime = duration.EndDateTime.Value;
             } // if-else
@@ -119,24 +111,24 @@ namespace IpTviewr.UiServices.Record.Controls
 
         public void SetStartTime(DateTime startDateTime)
         {
-            ManualUpdate++;
+            _manualUpdate++;
 
-            StartDateTime = startDateTime;
+            _startDateTime = startDateTime;
             if (!radioEndDateTime.Checked)
             {
-                EndDateTime = StartDateTime + RecordTimeSpan;
+                EndDateTime = _startDateTime + RecordTimeSpan;
             }
             else
             {
-                RecordTimeSpan = EndDateTime - StartDateTime;
+                RecordTimeSpan = EndDateTime - _startDateTime;
             } // if-else
 
-            ManualUpdate--;
+            _manualUpdate--;
         } // UpdateStartTime
 
         public void SetScheduleKind(RecordScheduleKind kind)
         {
-            ScheduleKind = kind;
+            _scheduleKind = kind;
             OnScheduleKindChanged();
         } // SetScheduleKind
 
@@ -151,7 +143,7 @@ namespace IpTviewr.UiServices.Record.Controls
 
         private void comboQuickSetting_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (ManualUpdate > 0) return;
+            if (_manualUpdate > 0) return;
             if (comboQuickSetting.SelectedItem == null) return;
 
             RecordTimeSpan = ((KeyValuePair<string, TimeSpan>)comboQuickSetting.SelectedItem).Value;
@@ -159,7 +151,7 @@ namespace IpTviewr.UiServices.Record.Controls
 
         private void timeSpanLength_ValueChanged(object sender, EventArgs e)
         {
-            if (ManualUpdate > 0) return;
+            if (_manualUpdate > 0) return;
 
             RecordTimeSpan = timeSpanLength.Value;
         } // timeSpanLength_ValueChanged
@@ -179,7 +171,7 @@ namespace IpTviewr.UiServices.Record.Controls
 
         private void dateTimeEndDate_ValueChanged(object sender, EventArgs e)
         {
-            if (ManualUpdate > 0) return;
+            if (_manualUpdate > 0) return;
 
             EndDateTime = GetEndDateTime();
         } // dateTimeEndDate_ValueChanged
@@ -202,9 +194,9 @@ namespace IpTviewr.UiServices.Record.Controls
         {
             bool showEndMargin;
 
-            if (ScheduleKind == RecordScheduleKind.RightNow)
+            if (_scheduleKind == RecordScheduleKind.RightNow)
             {
-                radioTimeSpan.Enabled = !IsScheduledProgram;
+                radioTimeSpan.Enabled = !_isScheduledProgram;
                 showEndMargin = radioEndDateTime.Checked;
             }
             else
@@ -236,8 +228,8 @@ namespace IpTviewr.UiServices.Record.Controls
             combo.DisplayMember = "Key";
             combo.ValueMember = "Value";
             converter = new TimeSpanConverter();
-            linesSeparators = new string[] { "\r\n" };
-            lineSeparators = new string[] { " ~ " };
+            linesSeparators = new[] { "\r\n" };
+            lineSeparators = new[] { " ~ " };
             lines = ControlTexts.RecordTimeQuickSettings.Split(linesSeparators, StringSplitOptions.RemoveEmptyEntries);
             foreach (var line in lines)
             {
@@ -257,9 +249,9 @@ namespace IpTviewr.UiServices.Record.Controls
 
             if (indexToSelect != comboQuickSetting.SelectedIndex)
             {
-                ManualUpdate++;
+                _manualUpdate++;
                 comboQuickSetting.SelectedIndex = indexToSelect;
-                ManualUpdate--;
+                _manualUpdate--;
             } // if
         } // UpdateComboQuickSettingsSelection
 
@@ -268,40 +260,40 @@ namespace IpTviewr.UiServices.Record.Controls
             if (span.TotalSeconds <= 0) span = TimeSpan.Zero;
             if (span.Days > timeSpanLength.MaxDays) span = new TimeSpan(timeSpanLength.MaxDays, 23, 59, 59);
 
-            ManualUpdate++;
+            _manualUpdate++;
 
             timeSpanLength.Value = span;
             RecordTimeSpan = span;
 
-            ManualUpdate--;
+            _manualUpdate--;
         } // UpdateUpDownTimeSpan
 
         private void OnTimeSpanChanged()
         {
-            ManualUpdate++;
+            _manualUpdate++;
 
             UpdateComboQuickSettingsSelection(RecordTimeSpan);
             UpdateUpDownTimeSpan(RecordTimeSpan);
 
-            ManualUpdate--;
+            _manualUpdate--;
 
             if (!radioEndDateTime.Checked)
             {
-                EndDateTime = StartDateTime + RecordTimeSpan;
+                EndDateTime = _startDateTime + RecordTimeSpan;
             } // if
 
         } // OnTimeSpanChanged
 
         private void OnEndDateTimeChanged()
         {
-            ManualUpdate++;
+            _manualUpdate++;
 
             dateTimeEndDate.Value = EndDateTime;
             dateTimeEndTime.Value = EndDateTime;
 
-            ManualUpdate--;
+            _manualUpdate--;
 
-            RecordTimeSpan = EndDateTime - StartDateTime;
+            RecordTimeSpan = EndDateTime - _startDateTime;
         } // OnEndDateTimeChanged
 
         private DateTime GetEndDateTime()
@@ -317,7 +309,7 @@ namespace IpTviewr.UiServices.Record.Controls
         {
             TimeSpan span;
 
-            span = GetEndDateTime() - StartDateTime;
+            span = GetEndDateTime() - _startDateTime;
             if (span.TotalSeconds < 0)
             {
                 e.Cancel = true;

@@ -46,14 +46,14 @@ namespace IpTviewr.UiServices.Configuration.Settings.Network
                 return string.Format("{0}://@{1}:{2}", protocol, address, port);
             } // if
 
-            var paramKeys = new string[]
+            var paramKeys = new[]
                 {
                     "protocol",
                     "protocolU",
                     "multicastAddress",
                     "multicastPort"
                 };
-            var paramValues = new string[]
+            var paramValues = new[]
                 {
                     protocol,
                     protocol.ToUpperInvariant(),

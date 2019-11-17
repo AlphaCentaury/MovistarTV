@@ -13,53 +13,32 @@ namespace IpTviewr.UiServices.Configuration.Settings.Network
     public class NetworkSettingsRegistration : IConfigurationItemRegistration
     {
         public const string ConfigurationGuid = "{BA2C8A80-A12A-48A2-91DE-1615D5CBA791}";
-        private static int MyDirectIndex;
+        private static int _myDirectIndex;
 
         public static NetworkSettings Settings
         {
-            get { return AppUiConfiguration.Current[MyDirectIndex] as NetworkSettings; }
-            set { AppUiConfiguration.Current[MyDirectIndex] = value; }
+            get => AppUiConfiguration.Current[_myDirectIndex] as NetworkSettings;
+            set => AppUiConfiguration.Current[_myDirectIndex] = value;
         } // Settings
 
-        public Guid Id
-        {
-            get { return new Guid(ConfigurationGuid); }
-        } // Id
+        public Guid Id => new Guid(ConfigurationGuid);
 
-        public bool HasEditor
-        {
-            get { return true; }
-        } // HasEditor
+        public bool HasEditor => true;
 
-        public Type ItemType
-        {
-            get { return typeof(NetworkSettings); }
-        } // GetItemType
+        public Type ItemType => typeof(NetworkSettings);
 
         public IConfigurationItem CreateDefault()
         {
             return NetworkSettings.GetDefaultSettings();
         } // CreateDefault
 
-        public string EditorDisplayName
-        {
-            get { return Properties.SettingsTexts.NetworkDisplayName; }
-        } // EditorDisplayName
+        public string EditorDisplayName => Properties.SettingsTexts.NetworkDisplayName;
 
-        public string EditorDescription
-        {
-            get { return Properties.SettingsTexts.NetworkDescription; }
-        } // EditorDescription
+        public string EditorDescription => Properties.SettingsTexts.NetworkDescription;
 
-        public Image EditorImage
-        {
-            get { return Properties.Resources.NetworkSettings_32; }
-        } // EditorImage
+        public Image EditorImage => Properties.Resources.NetworkSettings_32;
 
-        public int EditorPriority
-        {
-            get { return 9000; }
-        } // EditorPriority
+        public int EditorPriority => 9000;
 
         public IConfigurationItemEditor CreateEditor(IConfigurationItem data)
         {
@@ -73,8 +52,8 @@ namespace IpTviewr.UiServices.Configuration.Settings.Network
 
         public int DirectIndex
         {
-            get { return MyDirectIndex; }
-            set { MyDirectIndex = value; }
+            get => _myDirectIndex;
+            set => _myDirectIndex = value;
         } // DirectIndex
     } // class NetworkSettingsRegistration
 } // namespace

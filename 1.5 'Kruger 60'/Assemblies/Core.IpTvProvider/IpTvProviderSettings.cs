@@ -24,17 +24,11 @@ namespace IpTviewr.Core.IpTvProvider
 
         #region IConfigurationItem Members
 
-        bool IConfigurationItem.SupportsInitialization
-        {
-            get { return false; }
-        } // SupportsInitialization
+        bool IConfigurationItem.SupportsInitialization => false;
 
-        bool IConfigurationItem.SupportsValidation
-        {
-            get { return false; }
-        } // SupportsValidation
+        bool IConfigurationItem.SupportsValidation => false;
 
-        InitializationResult IConfigurationItem.Initializate()
+        InitializationResult IConfigurationItem.Initialize()
         {
             try
             {
@@ -52,7 +46,7 @@ namespace IpTviewr.Core.IpTvProvider
             {
                 return new InitializationResult(ex);
             } // try-catch
-        } // Initializate
+        } // Initialize
 
         string IConfigurationItem.Validate(string ownerTag)
         {

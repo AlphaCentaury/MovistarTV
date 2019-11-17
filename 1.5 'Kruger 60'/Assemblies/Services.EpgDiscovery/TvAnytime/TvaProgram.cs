@@ -19,7 +19,7 @@ namespace IpTviewr.Services.EpgDiscovery.TvAnytime
     public class TvaProgram
     {
         [XmlAttribute("crid", Namespace = Common.DefaultXmlNamespace)]
-        public string CRID
+        public string Crid
         {
             get;
             set;

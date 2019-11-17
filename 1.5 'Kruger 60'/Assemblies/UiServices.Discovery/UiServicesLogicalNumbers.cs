@@ -20,8 +20,8 @@ namespace IpTviewr.UiServices.Discovery
 
         private class LogicalNumberChannels
         {
-            public readonly ServicesCount SD = new ServicesCount();
-            public readonly ServicesCount HD = new ServicesCount();
+            private readonly ServicesCount SD = new ServicesCount();
+            private readonly ServicesCount HD = new ServicesCount();
 
             public void Add(UiBroadcastService uiService)
             {
@@ -193,8 +193,8 @@ namespace IpTviewr.UiServices.Discovery
         private static void AssignNumber(UiBroadcastService uiService, string logicalNumber, IDictionary<string, int> numbers)
         {
             string serviceLogicalNumber;
-
-            if (!numbers.TryGetValue(logicalNumber, out var count))
+            int count;
+            if (!numbers.TryGetValue(logicalNumber, out _))
             {
                 // number not assigned; assign direct logical number
                 serviceLogicalNumber = logicalNumber;

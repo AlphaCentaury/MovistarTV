@@ -6,28 +6,21 @@
 // http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
 
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using IpTviewr.Core.IpTvProvider;
 // TODO: EPG
 // using IpTviewr.Core.IpTvProvider.EPG;
 using IpTviewr.UiServices.Common.Forms;
-using IpTviewr.UiServices.Configuration.Logos;
 using IpTviewr.UiServices.Discovery;
-using IpTviewr.UiServices.Discovery.BroadcastList;
 using IpTviewr.Services.EpgDiscovery;
 
 namespace IpTviewr.UiServices.EPG
 {
     public partial class EpgExtendedInfoDialog : Form
     {
-        private Encoding Ansi1252Encoding;
-        private DateTime ReferenceTime;
+        private Encoding _ansi1252Encoding;
+        private DateTime _referenceTime;
 
         public static void ShowExtendedInfo(IWin32Window owner, UiBroadcastService service, EpgProgram epgProgram)
         {
@@ -49,7 +42,7 @@ namespace IpTviewr.UiServices.EPG
         {
             InitializeComponent();
             this.Icon = Properties.Resources.Epg;
-            Ansi1252Encoding = Encoding.GetEncoding(1252);
+            _ansi1252Encoding = Encoding.GetEncoding(1252);
         } // constructor
 
         // TODO: EPG
@@ -63,7 +56,7 @@ namespace IpTviewr.UiServices.EPG
 
         private void EpgExtendedInfoDialog_Load(object sender, EventArgs e)
         {
-            ReferenceTime = DateTime.Now;
+            _referenceTime = DateTime.Now;
             buttonPrevious.Visible = false; //(NavigationCallback != null);
             buttonNext.Visible = false; // (NavigationCallback != null);
 
@@ -235,7 +228,7 @@ namespace IpTviewr.UiServices.EPG
                 }
                 else
                 {
-                    var ansiChar = Ansi1252Encoding.GetBytes(new char[] { c })[0];
+                    var ansiChar = _ansi1252Encoding.GetBytes(new[] { c })[0];
                     var ansiCharRtf = (ansiChar <= 127) ? ansiChar.ToString() : string.Format("\\'{0:x0}", ansiChar);
                     buffer.AppendFormat("\\u{0}{1}", (c <= 32767) ? (int)c : ((int)c) - 32768, ansiCharRtf);
                 } // if-else

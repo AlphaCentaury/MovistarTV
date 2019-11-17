@@ -12,7 +12,7 @@ namespace IpTviewr.DvbStp.Client
 {
     public class VersionStorage
     {
-        private Dictionary<byte, SegmentAssembler> Versions;
+        private Dictionary<byte, SegmentAssembler> _versions;
 
         public event EventHandler<PayloadStorage.SegmentStartedEventArgs> SegmentStarted;
         public event EventHandler<PayloadStorage.SectionReceivedEventArgs> SectionReceived;
@@ -37,16 +37,13 @@ namespace IpTviewr.DvbStp.Client
             private set;
         } // SegmentId
 
-        public string HexId
-        {
-            get { return string.Format("p{0:X2}s{1:X4}", PayloadId, SegmentId); }
-        } // HexId
+        public string HexId => string.Format("p{0:X2}s{1:X4}", PayloadId, SegmentId);
 
         public VersionStorage(byte payloadId, int segmentId, bool saveData)
         {
             PayloadId = payloadId;
             SegmentId = segmentId;
-            Versions = new Dictionary<byte, SegmentAssembler>();
+            _versions = new Dictionary<byte, SegmentAssembler>();
             SaveData = saveData;
         } // constructor
 
@@ -54,10 +51,10 @@ namespace IpTviewr.DvbStp.Client
         {
             bool newSection;
 
-            if (!Versions.TryGetValue(header.SegmentVersion, out var assembler))
+            if (!_versions.TryGetValue(header.SegmentVersion, out var assembler))
             {
                 assembler = new SegmentAssembler(new DvbStpSegmentIdentity(header), header.LastSectionNumber);
-                Versions[header.SegmentVersion] = assembler;
+                _versions[header.SegmentVersion] = assembler;
                 OnSegmentStarted(header);
             } // if
 
@@ -85,7 +82,7 @@ namespace IpTviewr.DvbStp.Client
                     OnSegmentReceived(assembler);
                     // discard data
                     assembler = null;
-                    Versions.Remove(header.SegmentVersion);
+                    _versions.Remove(header.SegmentVersion);
                 } // if
             } // if
 

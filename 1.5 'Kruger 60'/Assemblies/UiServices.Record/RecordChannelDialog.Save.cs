@@ -11,8 +11,6 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace IpTviewr.UiServices.Record
@@ -77,12 +75,12 @@ namespace IpTviewr.UiServices.Record
 
         private void listViewLocations_SelectedIndexChanged(object sender, EventArgs e)
         {
-            CurrentSelectedLocationIndex = (listViewLocations.SelectedIndices.Count > 0) ? listViewLocations.SelectedIndices[0] : -1;
+            _currentSelectedLocationIndex = (listViewLocations.SelectedIndices.Count > 0) ? listViewLocations.SelectedIndices[0] : -1;
 
             for (int index = 0; index < listViewLocations.Items.Count; index++)
             {
                 var item = listViewLocations.Items[index];
-                if (item.Index == CurrentSelectedLocationIndex)
+                if (item.Index == _currentSelectedLocationIndex)
                 {
                     item.ImageKey = ListLocationsSelectedImageKey;
                 }
@@ -128,7 +126,7 @@ namespace IpTviewr.UiServices.Record
             listViewLocations.BeginUpdate();
             listViewLocations.Items.Clear();
 
-            CurrentSelectedLocationIndex = (locations.Count == 0) ? -1 : 0;
+            _currentSelectedLocationIndex = (locations.Count == 0) ? -1 : 0;
             for (int index = 0; index < locations.Count; index++)
             {
                 var name = locations[index].Name;
@@ -182,12 +180,12 @@ namespace IpTviewr.UiServices.Record
 
             if (item == null)
             {
-                CurrentSelectedLocationIndex = -1;
+                _currentSelectedLocationIndex = -1;
             }
             else
             {
                 item.Selected = true;
-                CurrentSelectedLocationIndex = item.Index;
+                _currentSelectedLocationIndex = item.Index;
             } // if-else
         } // SelectSaveLocation
 
@@ -206,7 +204,7 @@ namespace IpTviewr.UiServices.Record
             } // if
 
             item.Selected = true;
-            CurrentSelectedLocationIndex = item.Index;
+            _currentSelectedLocationIndex = item.Index;
         } // SelectAppendSaveLocation
 
         #endregion

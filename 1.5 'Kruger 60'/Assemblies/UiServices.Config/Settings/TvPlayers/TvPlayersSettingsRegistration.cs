@@ -13,53 +13,35 @@ namespace IpTviewr.UiServices.Configuration.Settings.TvPlayers
     public class TvPlayersSettingsRegistration : IConfigurationItemRegistration
     {
         public const string ConfigurationGuid = "{AE75DE5D-11A9-4B0F-9EFB-242E70C022C9}";
-        private static int MyDirectIndex;
+        private static int _myDirectIndex;
 
         public static TvPlayersSettings Settings
         {
-            get { return AppUiConfiguration.Current[MyDirectIndex] as TvPlayersSettings; }
-            set { AppUiConfiguration.Current[MyDirectIndex] = value; }
+            get => AppUiConfiguration.Current[_myDirectIndex] as TvPlayersSettings;
+            set => AppUiConfiguration.Current[_myDirectIndex] = value;
         } // Settings
 
-        public Guid Id
-        {
-            get { return new Guid(ConfigurationGuid); }
-        } // Id
+        public Guid Id => new Guid(ConfigurationGuid);
 
-        public bool HasEditor
-        {
-            get { return true; }
-        } // HasEditor
+        public bool HasEditor => true;
 
         public Type ItemType
-        {
-            get { return typeof(TvPlayersSettings); }
-        } // GetItemType
+            // GetItemType
+            =>
+                typeof(TvPlayersSettings);
 
         public IConfigurationItem CreateDefault()
         {
             return null;
         } // CreateDefault
 
-        public string EditorDisplayName
-        {
-            get { return Properties.SettingsTexts.TvPlayersDisplayName; }
-        } // EditorDisplayName
+        public string EditorDisplayName => Properties.SettingsTexts.TvPlayersDisplayName;
 
-        public string EditorDescription
-        {
-            get { return Properties.SettingsTexts.TvPlayersDescription; }
-        } // EditorDescription
+        public string EditorDescription => Properties.SettingsTexts.TvPlayersDescription;
 
-        public Image EditorImage
-        {
-            get { return Properties.Resources.TvPlayersSettings_32; }
-        } // EditorImage
+        public Image EditorImage => Properties.Resources.TvPlayersSettings_32;
 
-        public int EditorPriority
-        {
-            get { return 250; }
-        } // EditorPriority
+        public int EditorPriority => 250;
 
         public IConfigurationItemEditor CreateEditor(IConfigurationItem data)
         {
@@ -73,8 +55,8 @@ namespace IpTviewr.UiServices.Configuration.Settings.TvPlayers
 
         public int DirectIndex
         {
-            get { return MyDirectIndex; }
-            set { MyDirectIndex = value; }
+            get => _myDirectIndex;
+            set => _myDirectIndex = value;
         } // DirectIndex
     } // class TvPlayersSettingsRegistration
 } // namespace

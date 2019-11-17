@@ -51,7 +51,7 @@ namespace Etsi.Ts102034.v010501.XmlSerialization.ContentGuideDiscovery
         public string[] TargetProvider;
 
         [XmlElement("BCGProviderName")]
-        public MultilingualText[] BCGProviderName;
+        public MultilingualText[] BcgProviderName;
 
         /*
         [XmlArrayItem("DVBSTP", typeof(CdsDownloadSessionDescriptionLocationDVBSTP), IsNullable = false)]

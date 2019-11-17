@@ -25,7 +25,7 @@ namespace IpTviewr.UiServices.Configuration
     {
         public const string IpTvProviderSettingsRegistrationGuid = "{1E8D4BC4-4D78-4B69-BB50-96BA921A7449}";
 
-        private string DefaultSaveLocation;
+        private string _defaultSaveLocation;
         internal IDictionary<Guid, IConfigurationItemRegistration> ItemsRegistry;
         internal IDictionary<Guid, int> ItemsIndex;
         internal IList<IConfigurationItem> Items;
@@ -89,7 +89,7 @@ namespace IpTviewr.UiServices.Configuration
             return config;
         } // LoadRegistryAppConfiguration
 
-        public static T CloneSettings<T>(IConfigurationItem settings) where T: class, IConfigurationItem
+        public static T CloneSettings<T>(IConfigurationItem settings) where T : class, IConfigurationItem
         {
             return XmlSerialization.CloneObject(settings) as T;
         } // CloneSettings
@@ -181,14 +181,14 @@ namespace IpTviewr.UiServices.Configuration
 
         public IConfigurationItem this[Guid guid]
         {
-            get { return Items[ItemsIndex[guid]]; } // get
-            set { Items[ItemsIndex[guid]] = value; } // set
+            get => Items[ItemsIndex[guid]];
+            set => Items[ItemsIndex[guid]] = value;
         } // this[Guid]
 
         public IConfigurationItem this[int directIndex]
         {
-            get { return Items[directIndex]; } // get
-            set { Items[directIndex] = value; } // set
+            get => Items[directIndex];
+            set => Items[directIndex] = value;
         } // this[int]
 
         public bool IsDirty
@@ -224,7 +224,7 @@ namespace IpTviewr.UiServices.Configuration
                 User.Configuration.Registry.Add(pair.Value.GetType().AssemblyQualifiedName);
             } // foreach
 
-            var configFilename = overrideSaveLocation ?? DefaultSaveLocation;
+            var configFilename = overrideSaveLocation ?? _defaultSaveLocation;
             XmlSerialization.Serialize(configFilename, Encoding.UTF8, User);
 
             // save memory
@@ -246,7 +246,7 @@ namespace IpTviewr.UiServices.Configuration
             ItemsRegistry.Add(registration.Id, registration);
             var directIndex = Items.Count;
             ItemsIndex[registration.Id] = directIndex;
-            Items.Add(configItem ?? (createDefault? registration.CreateDefault() : null));
+            Items.Add(configItem ?? (createDefault ? registration.CreateDefault() : null));
             registration.DirectIndex = directIndex;
         } // RegisterConfiguration
 
@@ -422,7 +422,7 @@ namespace IpTviewr.UiServices.Configuration
                 var ipTvProviderSettingsRegistrationGuid = new Guid(IpTvProviderSettingsRegistrationGuid);
                 var ipTvProviderSettings = this[ipTvProviderSettingsRegistrationGuid];
 
-                var result = ipTvProviderSettings.Initializate();
+                var result = ipTvProviderSettings.Initialize();
                 if (!result.IsOk) return result;
 
                 var xmlContentProvider = IpTvProviderData.Load(xmlPath);
@@ -457,12 +457,12 @@ namespace IpTviewr.UiServices.Configuration
 
         protected InitializationResult LoadUserConfiguration()
         {
-            DefaultSaveLocation = Path.Combine(Folders.Base, "user-config.xml");
+            _defaultSaveLocation = Path.Combine(Folders.Base, "user-config.xml");
 
             try
             {
                 // load
-                User = XmlSerialization.Deserialize<UserConfig>(DefaultSaveLocation, true);
+                User = XmlSerialization.Deserialize<UserConfig>(_defaultSaveLocation, true);
 
                 // validate
                 var validationError = User.Validate();
@@ -471,7 +471,7 @@ namespace IpTviewr.UiServices.Configuration
                     return new InitializationResult()
                     {
                         Caption = Properties.Texts.LoadUserConfigValidationCaption,
-                        Message = string.Format(Properties.Texts.LoadConfigUserConfigValidation, DefaultSaveLocation, validationError),
+                        Message = string.Format(Properties.Texts.LoadConfigUserConfigValidation, _defaultSaveLocation, validationError),
                     };
                 } // if
 
@@ -482,7 +482,7 @@ namespace IpTviewr.UiServices.Configuration
                 return new InitializationResult()
                 {
                     Caption = Properties.Texts.LoadUserConfigExceptionCaption,
-                    Message = string.Format(Properties.Texts.LoadConfigUserConfigValidation, DefaultSaveLocation, Properties.Texts.LoadConfigUserConfigValidationException),
+                    Message = string.Format(Properties.Texts.LoadConfigUserConfigValidation, _defaultSaveLocation, Properties.Texts.LoadConfigUserConfigValidationException),
                     InnerException = ex
                 };
             } // try-catch
@@ -529,7 +529,7 @@ namespace IpTviewr.UiServices.Configuration
 
                     using (var reader = new XmlNodeReader(item))
                     {
-                        var configItem = (IConfigurationItem) XmlSerialization.Deserialize(reader, registration.ItemType);
+                        var configItem = (IConfigurationItem)XmlSerialization.Deserialize(reader, registration.ItemType);
 
                         if (configItem.SupportsValidation)
                         {
@@ -542,7 +542,7 @@ namespace IpTviewr.UiServices.Configuration
 
                         if (configItem.SupportsInitialization)
                         {
-                            var result = configItem.Initializate();
+                            var result = configItem.Initialize();
                             if (result.IsError) return result;
                         } // if
 

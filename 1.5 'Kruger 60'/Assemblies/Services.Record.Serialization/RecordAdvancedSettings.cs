@@ -37,8 +37,8 @@ namespace IpTviewr.Services.Record.Serialization
             [Browsable(false), EditorBrowsable(EditorBrowsableState.Never)]
             public string XmlRestartInterval
             {
-                get { return SoapDuration.ToString(RestartInterval); }
-                set { RestartInterval = string.IsNullOrEmpty(value) ? new TimeSpan() : SoapDuration.Parse(value); }
+                get => SoapDuration.ToString(RestartInterval);
+                set => RestartInterval = string.IsNullOrEmpty(value) ? new TimeSpan() : SoapDuration.Parse(value);
             } // XmlRestartInterval
 
             [XmlAttribute("retries")]
@@ -50,9 +50,7 @@ namespace IpTviewr.Services.Record.Serialization
 
             public static Retry CreateWithDefaultValues()
             {
-                Retry retry;
-
-                retry = new Retry()
+                var retry = new Retry()
                 {
                     Enabled = true,
                     MaxRetries = 5,
@@ -85,8 +83,8 @@ namespace IpTviewr.Services.Record.Serialization
             [Browsable(false), EditorBrowsable(EditorBrowsableState.Never)]
             public string XmlTimeSpan
             {
-                get { return SoapDuration.ToString(Time); }
-                set { Time = string.IsNullOrEmpty(value) ? new TimeSpan() : SoapDuration.Parse(value); }
+                get => SoapDuration.ToString(Time);
+                set => Time = string.IsNullOrEmpty(value) ? new TimeSpan() : SoapDuration.Parse(value);
             } // XmlTimeSpan
         } // TimeLimit
 
@@ -134,9 +132,7 @@ namespace IpTviewr.Services.Record.Serialization
 
         public static RecordAdvancedSettings CreateWithDefaultValues()
         {
-            RecordAdvancedSettings settings;
-
-            settings = new RecordAdvancedSettings()
+            var settings = new RecordAdvancedSettings()
             {
                 TaskSchedulerFolder = null,
                 AsSoonAsPossible = true,

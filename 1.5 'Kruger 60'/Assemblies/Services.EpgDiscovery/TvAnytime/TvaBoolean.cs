@@ -31,8 +31,8 @@ namespace IpTviewr.Services.EpgDiscovery.TvAnytime
         [Browsable(false), EditorBrowsable(EditorBrowsableState.Never)]
         public string XmlValue
         {
-            get { return (Value.HasValue) ? XmlConvert.ToString(Value.Value) : null; }
-            set { Value = (value != null) ? XmlConvert.ToBoolean(value) : (bool?)null; }
+            get => (Value.HasValue) ? XmlConvert.ToString(Value.Value) : null;
+            set => Value = (value != null) ? XmlConvert.ToBoolean(value) : (bool?)null;
         } // XmlValue
     } // class TvaBoolean
 } // namespace

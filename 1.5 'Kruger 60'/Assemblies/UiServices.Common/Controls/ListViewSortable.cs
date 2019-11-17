@@ -37,8 +37,8 @@ namespace IpTviewr.UiServices.Common.Controls
 
         public bool IsDoubleBuffered
         {
-            get { return base.DoubleBuffered; }
-            set { base.DoubleBuffered = value; }
+            get => base.DoubleBuffered;
+            set => base.DoubleBuffered = value;
         } // IsDoubleBuffered
 
 

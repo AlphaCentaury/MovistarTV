@@ -14,11 +14,11 @@ namespace IpTviewr.DvbStp.Client
 {
     public partial class DvbStpEnhancedClient : DvbStpBaseClient
     {
-        private SegmentStatus[] Status;
-        private IList<DvbStpClientSegmentInfo> Payloads;
-        private int SegmentsReceived;
-        private int SegmentsPending;
-        private bool IsDownloadStarted;
+        private SegmentStatus[] _status;
+        private IList<DvbStpClientSegmentInfo> _payloads;
+        private int _segmentsReceived;
+        private int _segmentsPending;
+        private bool _isDownloadStarted;
 
         protected class SegmentStatus
         {
@@ -28,7 +28,7 @@ namespace IpTviewr.DvbStp.Client
             public SegmentAssembler SegmentData;
             public int InfoIndex;
             public byte SegmentVersion;
-            public int DowloadRestartCount;
+            public int DownloadRestartCount;
         } // SegmentStatus
 
         public DvbStpEnhancedClient(IPAddress ip, int port) : this(ip, port, CancellationToken.None)
@@ -40,20 +40,20 @@ namespace IpTviewr.DvbStp.Client
             : base(ip, port, cancellationToken)
         {
             NoDataTimeout = 30000; // milliseconds
-            MaxDowloadRestartCount = 5;
+            MaxDownloadRestartCount = 5;
         } // constructor
 
         public int DowloadRestartCount
         {
             get;
             private set;
-        } // DowloadRestartCount
+        } // DownloadRestartCount
 
-        public int MaxDowloadRestartCount
+        public int MaxDownloadRestartCount
         {
             get;
             private set;
-        } // MaxDowloadRestartCount
+        } // MaxDownloadRestartCount
 
         public void DownloadPayloads(IList<DvbStpClientSegmentInfo> payloads)
         {
@@ -85,13 +85,13 @@ namespace IpTviewr.DvbStp.Client
             FireSectionReceived();
 
             // quick filtering of payloadId & segment
-            var status = Status[Header.PayloadId];
+            var status = _status[Header.PayloadId];
             if (status == null) return true;
             
             if (status.ExpectedSegmentId == null)
             {
                 // accept first segment received as the one we're looking for and then ignore remaining segments
-                status.ExpectedSegmentId = new byte[]
+                status.ExpectedSegmentId = new[]
                 {
                     Header.SegmentIdNetworkLo,
                     Header.SegmentIdNetworkHi
@@ -113,13 +113,13 @@ namespace IpTviewr.DvbStp.Client
         protected override void ProcessReceivedData()
         {
             // download started?
-            if (!IsDownloadStarted)
+            if (!_isDownloadStarted)
             {
-                IsDownloadStarted = true;
+                _isDownloadStarted = true;
                 FireDownloadStarted();
             } // if
 
-            var status = Status[Header.PayloadId];
+            var status = _status[Header.PayloadId];
 
             // have we just received a "first" section of the payload?
             if (status.SegmentData == null)
@@ -136,10 +136,10 @@ namespace IpTviewr.DvbStp.Client
 
         private void Setup(IList<DvbStpClientSegmentInfo> payloads)
         {
-            Payloads = payloads;
-            SegmentsReceived = 0;
-            SegmentsPending = payloads.Count;
-            Status = new SegmentStatus[256];
+            _payloads = payloads;
+            _segmentsReceived = 0;
+            _segmentsPending = payloads.Count;
+            _status = new SegmentStatus[256];
 
             for (var index = 0; index < payloads.Count; index++)
             {
@@ -152,7 +152,7 @@ namespace IpTviewr.DvbStp.Client
                     InfoIndex = index,
                     ExpectedSegmentId = info.SegmentId.HasValue ? BitConverter.GetBytes(IPAddress.HostToNetworkOrder(info.SegmentId.Value)) : null
                 };
-                Status[info.PayloadId] = status;
+                _status[info.PayloadId] = status;
             } // for
         } // Setup
 
@@ -171,10 +171,10 @@ namespace IpTviewr.DvbStp.Client
         {
             // increment restart count
             DowloadRestartCount++;
-            status.DowloadRestartCount++;
+            status.DownloadRestartCount++;
 
             // avoid infinite restart loops
-            if (DowloadRestartCount > MaxDowloadRestartCount)
+            if (DowloadRestartCount > MaxDownloadRestartCount)
             {
                 throw new TimeoutException();
             } // if
@@ -203,18 +203,18 @@ namespace IpTviewr.DvbStp.Client
             status.SegmentData.AddSectionData(Header.SectionNumber, DatagramData, Header.PayloadOffset, Header.PayloadSize);
             if (status.SegmentData.IsSegmentComplete)
             {
-                SegmentsReceived++;
-                SegmentsPending--;
+                _segmentsReceived++;
+                _segmentsPending--;
                 FireSegmentDownloadCompleted(status);
             } // if
 
-            EndReceptionLoop = (SegmentsPending == 0);
+            EndReceptionLoop = (_segmentsPending == 0);
         } // StoreSectionData
 
         private void Clean()
         {
-            Status = null;
-            Payloads = null;
+            _status = null;
+            _payloads = null;
         } // Clean
 
         private void OnSectionReceived()
@@ -235,10 +235,10 @@ namespace IpTviewr.DvbStp.Client
 
         private void ProcessSegments()
         {
-            for (var index = 0; index < Payloads.Count; index++)
+            for (var index = 0; index < _payloads.Count; index++)
             {
-                var segment = Payloads[index];
-                var status = Status[segment.PayloadId];
+                var segment = _payloads[index];
+                var status = _status[segment.PayloadId];
                 segment.SegmentId = status.SegmentId;
                 segment.SegmentVersion = status.SegmentVersion;
                 if ((status.SegmentData != null) && (!status.SegmentData.IsDisposed))

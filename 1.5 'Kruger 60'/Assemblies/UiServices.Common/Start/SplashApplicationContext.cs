@@ -17,8 +17,8 @@ namespace IpTviewr.UiServices.Common.Start
     {
         private delegate void Action<T1, T2, T3, T4, T5, T6>(T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5, T6 arg6);
 
-        private SplashScreen splashScreen;
-        private BackgroundWorker worker;
+        private SplashScreen _splashScreen;
+        private BackgroundWorker _worker;
 
         /// <remarks>Descendants MUST NOT perform any work on the constructor; instead all constructor-related initialization (if any) MUST BE done in InitializeContext</remarks>
         public SplashApplicationContext()
@@ -29,20 +29,20 @@ namespace IpTviewr.UiServices.Common.Start
 
         private void SetThingsInMotion()
         {
-            splashScreen = new SplashScreen();
-            splashScreen.Load += SplashScreen_Load;
-            splashScreen.Shown += SplashScreen_Shown;
-            splashScreen.FormClosing += SplashScreen_FormClosing;
-            splashScreen.Show();
+            _splashScreen = new SplashScreen();
+            _splashScreen.Load += SplashScreen_Load;
+            _splashScreen.Shown += SplashScreen_Shown;
+            _splashScreen.FormClosing += SplashScreen_FormClosing;
+            _splashScreen.Show();
         }  // SetThingsInMotion
 
         private void EndSplashScreen(Form mainForm)
         {
-            if (splashScreen == null) return;
+            if (_splashScreen == null) return;
 
-            splashScreen.Close();
-            splashScreen.Dispose();
-            splashScreen = null;
+            _splashScreen.Close();
+            _splashScreen.Dispose();
+            _splashScreen = null;
 
             mainForm.Activate();
         } // EndSplashScreen
@@ -92,24 +92,24 @@ namespace IpTviewr.UiServices.Common.Start
 
         private void SplashScreen_Load(object sender, EventArgs e)
         {
-            var backgroundImage = SetupSplashScreen(splashScreen.LabelProgress) ?? Properties.Resources.DefaultSplash;
-            splashScreen.BackgroundImage = backgroundImage;
-            splashScreen.Size = backgroundImage.Size;
+            var backgroundImage = SetupSplashScreen(_splashScreen.LabelProgress) ?? Properties.Resources.DefaultSplash;
+            _splashScreen.BackgroundImage = backgroundImage;
+            _splashScreen.Size = backgroundImage.Size;
         } // SplashScreen_Load
 
         private void SplashScreen_Shown(object sender, EventArgs e)
         {
-            worker = new BackgroundWorker();
-            worker.WorkerReportsProgress = false;
-            worker.WorkerSupportsCancellation = true;
-            worker.DoWork += Worker_DoWork;
-            worker.RunWorkerCompleted += Worker_RunWorkerCompleted;
-            worker.RunWorkerAsync(Thread.CurrentThread);
+            _worker = new BackgroundWorker();
+            _worker.WorkerReportsProgress = false;
+            _worker.WorkerSupportsCancellation = true;
+            _worker.DoWork += Worker_DoWork;
+            _worker.RunWorkerCompleted += Worker_RunWorkerCompleted;
+            _worker.RunWorkerAsync(Thread.CurrentThread);
         } // SplashScreen_Shown
 
         private void SplashScreen_FormClosing(object sender, FormClosingEventArgs e)
         {
-            e.Cancel = (worker != null);
+            e.Cancel = (_worker != null);
         } // SplashScreen_FormClosing
 
         #endregion
@@ -138,37 +138,37 @@ namespace IpTviewr.UiServices.Common.Start
 
         protected void DisplayProgress(string progressMessage, bool async)
         {
-            if (splashScreen == null) throw new InvalidOperationException();
+            if (_splashScreen == null) throw new InvalidOperationException();
 
-            if (splashScreen.InvokeRequired)
+            if (_splashScreen.InvokeRequired)
             {
                 if (async)
                 {
-                    splashScreen.BeginInvoke(new Action<string, bool>(DisplayProgress), progressMessage, async);
+                    _splashScreen.BeginInvoke(new Action<string, bool>(DisplayProgress), progressMessage, async);
                 }
                 else
                 {
-                    splashScreen.Invoke(new Action<string, bool>(DisplayProgress), progressMessage, async);
+                    _splashScreen.Invoke(new Action<string, bool>(DisplayProgress), progressMessage, async);
                 } // if
             }
             else
             {
-                splashScreen.LabelProgress.Text = progressMessage;
-                splashScreen.LabelProgress.Refresh();
+                _splashScreen.LabelProgress.Text = progressMessage;
+                _splashScreen.LabelProgress.Refresh();
             } // if-else InvokeRequired
         } // DisplayProgress
 
         protected void CallForegroundAction(Action action, bool async)
         {
-            if ((splashScreen != null) && (splashScreen.InvokeRequired))
+            if ((_splashScreen != null) && (_splashScreen.InvokeRequired))
             {
                 if (async)
                 {
-                    splashScreen.BeginInvoke(new Action<Action, bool>(CallForegroundAction), action, async);
+                    _splashScreen.BeginInvoke(new Action<Action, bool>(CallForegroundAction), action, async);
                 }
                 else
                 {
-                    splashScreen.Invoke(new Action<Action, bool>(CallForegroundAction), action, async);
+                    _splashScreen.Invoke(new Action<Action, bool>(CallForegroundAction), action, async);
                 } // if-else
             }
             else
@@ -179,15 +179,15 @@ namespace IpTviewr.UiServices.Common.Start
 
         protected void CallForegroundAction(Action<object> action, object data, bool async)
         {
-            if ((splashScreen != null) && (splashScreen.InvokeRequired))
+            if ((_splashScreen != null) && (_splashScreen.InvokeRequired))
             {
                 if (async)
                 {
-                    splashScreen.BeginInvoke(new Action<Action<object>, object, bool>(CallForegroundAction), action, data, async);
+                    _splashScreen.BeginInvoke(new Action<Action<object>, object, bool>(CallForegroundAction), action, data, async);
                 }
                 else
                 {
-                    splashScreen.Invoke(new Action<Action<object>, object, bool>(CallForegroundAction), action, data, async);
+                    _splashScreen.Invoke(new Action<Action<object>, object, bool>(CallForegroundAction), action, data, async);
                 } // if-else
             }
             else
@@ -198,9 +198,9 @@ namespace IpTviewr.UiServices.Common.Start
 
         protected object CallForegroundFunction(Func<object, object> function, object data)
         {
-            if (splashScreen.InvokeRequired)
+            if (_splashScreen.InvokeRequired)
             {
-                return splashScreen.Invoke(new Func<Func<object, object>, object, object>(CallForegroundFunction), function, data);
+                return _splashScreen.Invoke(new Func<Func<object, object>, object, object>(CallForegroundFunction), function, data);
             }
             else
             {
@@ -215,20 +215,20 @@ namespace IpTviewr.UiServices.Common.Start
 
         protected void DisplayMessage(string caption, string message, MessageBoxIcon icon, bool async)
         {
-            if ((splashScreen != null) && (splashScreen.InvokeRequired))
+            if ((_splashScreen != null) && (_splashScreen.InvokeRequired))
             {
                 if (async)
                 {
-                    splashScreen.BeginInvoke(new Action<string, string, MessageBoxIcon, bool>(DisplayMessage), caption, message, icon, async);
+                    _splashScreen.BeginInvoke(new Action<string, string, MessageBoxIcon, bool>(DisplayMessage), caption, message, icon, async);
                 }
                 else
                 {
-                    splashScreen.Invoke(new Action<string, string, MessageBoxIcon, bool>(DisplayMessage), caption, message, icon, async);
+                    _splashScreen.Invoke(new Action<string, string, MessageBoxIcon, bool>(DisplayMessage), caption, message, icon, async);
                 } // if-else
             }
             else
             {
-                DoDisplayMessage(splashScreen, caption, message, icon);
+                DoDisplayMessage(_splashScreen, caption, message, icon);
             } // if-else InvokeRequired
         } // DisplayMessage
 
@@ -239,25 +239,25 @@ namespace IpTviewr.UiServices.Common.Start
 
         protected void DisplayException(string caption, string message, MessageBoxIcon icon, bool async, bool isFatal, Exception exception)
         {
-            if ((splashScreen != null) && (splashScreen.InvokeRequired))
+            if ((_splashScreen != null) && (_splashScreen.InvokeRequired))
             {
                 if ((!isFatal) || (async))
                 {
-                    splashScreen.BeginInvoke(new Action<string, string, MessageBoxIcon, bool, bool, Exception>(DisplayException), exception, caption, message, icon, async, isFatal);
+                    _splashScreen.BeginInvoke(new Action<string, string, MessageBoxIcon, bool, bool, Exception>(DisplayException), exception, caption, message, icon, async, isFatal);
                 }
                 else
                 {
-                    splashScreen.Invoke(new Action<string, string, MessageBoxIcon, bool, bool, Exception>(DisplayException), exception, caption, message, icon, async, isFatal);
+                    _splashScreen.Invoke(new Action<string, string, MessageBoxIcon, bool, bool, Exception>(DisplayException), exception, caption, message, icon, async, isFatal);
                 } // if-else
             }
             else
             {
                 try
                 {
-                    DoDisplayException(splashScreen, caption, message, icon, exception);
-                    if ((isFatal) && (worker != null))
+                    DoDisplayException(_splashScreen, caption, message, icon, exception);
+                    if ((isFatal))
                     {
-                        worker.CancelAsync();
+                        _worker?.CancelAsync();
                     } // if
                 }
                 catch
@@ -293,8 +293,8 @@ namespace IpTviewr.UiServices.Common.Start
             Form mainForm = null;
 
             var isOk = BackgroundWorkCompleted(e);
-            worker.Dispose();
-            worker = null;
+            _worker.Dispose();
+            _worker = null;
 
             var close = (!isOk) || (e.Cancelled) || (e.Error != null);
             if (!close)
@@ -328,7 +328,7 @@ namespace IpTviewr.UiServices.Common.Start
 
             if (close)
             {
-                splashScreen.Close();
+                _splashScreen.Close();
                 ExitThread();
                 return;
             } // if

@@ -20,7 +20,7 @@ namespace IpTviewr.Services.EpgDiscovery
     [XmlType(TypeName = "Service", Namespace = Common.XmlNamespace)]
     public class EpgService
     {
-        private string fieldServiceIdReference;
+        private string _fieldServiceIdReference;
 
         [XmlAttribute("version")]
         public int Version
@@ -32,13 +32,10 @@ namespace IpTviewr.Services.EpgDiscovery
         [XmlAttribute("serviceIdRef")]
         public string ServiceIdReference
         {
-            get
-            {
-                return fieldServiceIdReference;
-            } // get
+            get => _fieldServiceIdReference;
             set
             {
-                fieldServiceIdReference = value;
+                _fieldServiceIdReference = value;
 
                 var parts = value.Split('.');
                 if (parts.Length < 3) throw new ArgumentOutOfRangeException();
@@ -85,10 +82,7 @@ namespace IpTviewr.Services.EpgDiscovery
 
                 return programs;
             } // get
-            set
-            {
-                Programs = new LinkedList<EpgProgram>(value);
-            } // set
+            set => Programs = new LinkedList<EpgProgram>(value);
         } // XmlEvents
 
         public LinkedListNode<EpgProgram> GetCurrentProgram()

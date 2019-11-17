@@ -15,17 +15,15 @@ namespace IpTviewr.UiServices.Common.Controls
     [ToolboxBitmap(typeof(NumericUpDown))]
     public partial class TimeSpanUpDown : UserControl
     {
-        private int SupressValueChangedEvent;
-        private TimeSpan fieldValue;
+        private int _supressValueChangedEvent;
+        private TimeSpan _fieldValue;
 
         public event EventHandler ValueChanged;
 
         public int MaxDays
         {
-            get
-            {
-                return (int)numericTimeSpanDays.Maximum;
-            } // get
+            get => (int)numericTimeSpanDays.Maximum;
+
             set
             {
                 if (value < 0) throw new ArgumentOutOfRangeException();
@@ -48,31 +46,29 @@ namespace IpTviewr.UiServices.Common.Controls
         [DefaultValue(1)]
         public int DaysIncrement
         {
-            get { return (int)numericTimeSpanDays.Increment; }
-            set { numericTimeSpanDays.Increment = value; }
+            get => (int)numericTimeSpanDays.Increment;
+            set => numericTimeSpanDays.Increment = value;
         } // DaysIncrement
 
         [DefaultValue(1)]
         public int HoursIncrement
         {
-            get { return (int)numericTimeSpanHours.Increment; }
-            set { numericTimeSpanHours.Increment = value; }
+            get => (int)numericTimeSpanHours.Increment;
+            set => numericTimeSpanHours.Increment = value;
         } // HoursIncrement
 
         [DefaultValue(1)]
         public int MinutesIncrement
         {
-            get { return (int)numericTimeSpanMinutes.Increment; }
-            set { numericTimeSpanMinutes.Increment = value; }
+            get => (int)numericTimeSpanMinutes.Increment;
+            set => numericTimeSpanMinutes.Increment = value;
         } // MinutesIncrement
 
         [DefaultValue(false)]
         public bool SecondsAllowed
         {
-            get
-            {
-                return numericTimeSpanSeconds.Visible;
-            } // get
+            get => numericTimeSpanSeconds.Visible;
+// get
             set
             {
                 var current = numericTimeSpanSeconds.Visible;
@@ -87,27 +83,25 @@ namespace IpTviewr.UiServices.Common.Controls
         [DefaultValue(1)]
         public int SecondsIncrement
         {
-            get { return (int)numericTimeSpanSeconds.Increment; }
-            set { numericTimeSpanSeconds.Increment = value; }
+            get => (int)numericTimeSpanSeconds.Increment;
+            set => numericTimeSpanSeconds.Increment = value;
         } // SecondsIncrement
 
         public TimeSpan Value
         {
-            get
-            {
-                return fieldValue;
-            } // get
+            get => _fieldValue;
+// get
             set
             {
                 if (value.TotalSeconds < 0) throw new ArgumentOutOfRangeException();
 
-                SupressValueChangedEvent++;
+                _supressValueChangedEvent++;
                 numericTimeSpanDays.Value = Math.Min(numericTimeSpanDays.Maximum, value.Days);
                 numericTimeSpanHours.Value = Math.Min(numericTimeSpanHours.Maximum, value.Hours);
                 numericTimeSpanMinutes.Value = value.Minutes;
                 numericTimeSpanSeconds.Value = value.Seconds;
-                SupressValueChangedEvent--;
-                fieldValue = value;
+                _supressValueChangedEvent--;
+                _fieldValue = value;
                 FireValueChanged();
             } // set
         } // Value
@@ -135,11 +129,11 @@ namespace IpTviewr.UiServices.Common.Controls
             var value = (int)numericTimeSpanHours.Value;
             if (value > 24)
             {
-                SupressValueChangedEvent++;
+                _supressValueChangedEvent++;
                 numericTimeSpanHours.Value = value % 60;
                 var days = numericTimeSpanDays.Value + value / 60;
                 numericTimeSpanDays.Value = Math.Min(numericTimeSpanDays.Maximum, days);
-                SupressValueChangedEvent--;
+                _supressValueChangedEvent--;
             } // if
 
             UpdateValue();
@@ -151,10 +145,10 @@ namespace IpTviewr.UiServices.Common.Controls
             var value = (int)numericTimeSpanMinutes.Value;
             if (value > 59)
             {
-                SupressValueChangedEvent++;
+                _supressValueChangedEvent++;
                 numericTimeSpanMinutes.Value = value % 60;
                 numericTimeSpanHours.Value += value / 60;
-                SupressValueChangedEvent--;
+                _supressValueChangedEvent--;
             } // if
 
             UpdateValue();
@@ -166,10 +160,10 @@ namespace IpTviewr.UiServices.Common.Controls
             var value = (int)numericTimeSpanSeconds.Value;
             if (value > 59)
             {
-                SupressValueChangedEvent++;
+                _supressValueChangedEvent++;
                 numericTimeSpanSeconds.Value = value % 60;
                 numericTimeSpanMinutes.Value += value / 60;
-                SupressValueChangedEvent--;
+                _supressValueChangedEvent--;
             } // if
 
             UpdateValue();
@@ -204,13 +198,13 @@ namespace IpTviewr.UiServices.Common.Controls
 
         private void FireValueChanged()
         {
-            if ((SupressValueChangedEvent > 0) || (ValueChanged == null)) return;
+            if ((_supressValueChangedEvent > 0) || (ValueChanged == null)) return;
             ValueChanged(this, EventArgs.Empty);
         } // FireValueChanged
 
         private void UpdateValue()
         {
-            fieldValue = new TimeSpan(numericTimeSpanDays.Visible ? (int)numericTimeSpanDays.Value : 0,
+            _fieldValue = new TimeSpan(numericTimeSpanDays.Visible ? (int)numericTimeSpanDays.Value : 0,
                 (int)numericTimeSpanHours.Value,
                 (int)numericTimeSpanMinutes.Value,
                 SecondsAllowed ? (int)numericTimeSpanSeconds.Value : 0);

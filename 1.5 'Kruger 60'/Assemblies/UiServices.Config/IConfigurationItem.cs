@@ -11,7 +11,7 @@ namespace IpTviewr.UiServices.Configuration
     public interface IConfigurationItem
     {
         bool SupportsInitialization { get; }
-        InitializationResult Initializate();
+        InitializationResult Initialize();
 
         bool SupportsValidation { get; }
         string Validate(string ownerTag);

@@ -10,13 +10,11 @@ using IpTviewr.Common.Telemetry;
 using IpTviewr.Tools.FirstTimeConfig.Properties;
 using IpTviewr.UiServices.Configuration;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Reflection;
 using System.Text;
 using System.Windows.Forms;
 
@@ -24,7 +22,7 @@ namespace IpTviewr.Tools.FirstTimeConfig
 {
     internal class Installation
     {
-        private static string RedistFolder;
+        private static string _redistFolder;
 
         public static bool Is32BitWindows
         {
@@ -37,7 +35,7 @@ namespace IpTviewr.Tools.FirstTimeConfig
             Is32BitWindows = WindowsBitness.Is32BitWindows();
             var result = AppUiConfiguration.LoadRegistryAppConfiguration(out initializationResult);
 #if DEBUG
-            RedistFolder = Path.Combine(result.Folders.Base, "Bin\\Redist");
+            _redistFolder = Path.Combine(result.Folders.Base, "Bin\\Redist");
 #else
             RedistFolder = Path.Combine(result.Folders.Install, "Redist");
 #endif
@@ -53,7 +51,7 @@ namespace IpTviewr.Tools.FirstTimeConfig
             object value;
             int intValue;
 
-            string[] keys = new string[]
+            string[] keys = new[]
             {
                 "SOFTWARE",
                 "Microsoft",
@@ -236,32 +234,32 @@ namespace IpTviewr.Tools.FirstTimeConfig
 
         #region Redist setup
 
-        public static bool CheckRedistFile(string file64bit, string file32bit)
+        public static bool CheckRedistFile(string file64Bit, string file32Bit)
         {
-            var file = GetRedistFileFullPath(file64bit, file32bit);
+            var file = GetRedistFileFullPath(file64Bit, file32Bit);
             return File.Exists(file);
         } // CheckRedistFile
 
-        public static void PromptDownloadFromVendor(Form owner, string vendor, string file64bit, string file32bit)
+        public static void PromptDownloadFromVendor(Form owner, string vendor, string file64Bit, string file32Bit)
         {
             string text;
 
             if (Is32BitWindows)
             {
-                text = string.Format(Properties.Texts.DownloadFromVendor32bit, vendor, file32bit);
+                text = string.Format(Properties.Texts.DownloadFromVendor32bit, vendor, file32Bit);
             }
             else
             {
-                text = string.Format(Properties.Texts.DownloadFromVendor64bit, vendor, file64bit);
+                text = string.Format(Properties.Texts.DownloadFromVendor64bit, vendor, file64Bit);
             } // if-else
 
             MessageBox.Show(owner, text, owner.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
         } // PromptDownloadFromVendor
 
-        public static bool RedistSetup(Form owner, string file64bit, string file32bit, string productName, Label labelProduct, Action<bool> setupExitCallback)
+        public static bool RedistSetup(Form owner, string file64Bit, string file32Bit, string productName, Label labelProduct, Action<bool> setupExitCallback)
         {
             Exception exception;
-            var filename = GetRedistFileFullPath(file64bit, file32bit);
+            var filename = GetRedistFileFullPath(file64Bit, file32Bit);
 
             exception = null;
             try
@@ -280,7 +278,7 @@ namespace IpTviewr.Tools.FirstTimeConfig
                         var exitCode = process.ExitCode;
                         process.Dispose();
 
-                        owner.BeginInvoke(new RedistSetup_ProcessExited_Delegate(RedistSetup_ProcessExited), exitCode, owner, productName, labelProduct, setupExitCallback);
+                        owner.BeginInvoke(new RedistSetupProcessExitedDelegate(RedistSetup_ProcessExited), exitCode, owner, productName, labelProduct, setupExitCallback);
                     };
                 process.Start();
 
@@ -309,7 +307,7 @@ namespace IpTviewr.Tools.FirstTimeConfig
             return false;
         }  // RedistSetup
 
-        private delegate void RedistSetup_ProcessExited_Delegate(int exitCode, Form owner, string productName, Label labelProduct, Action<bool> setupExitCallback);
+        private delegate void RedistSetupProcessExitedDelegate(int exitCode, Form owner, string productName, Label labelProduct, Action<bool> setupExitCallback);
 
         static void RedistSetup_ProcessExited(int exitCode, Form owner, string productName, Label labelProduct, Action<bool> setupExitCallback)
         {
@@ -322,11 +320,11 @@ namespace IpTviewr.Tools.FirstTimeConfig
             setupExitCallback(exitCode == 0);
         } // RedistSetup_ProcessExited
 
-        private static string GetRedistFileFullPath(string file64bit, string file32bit)
+        private static string GetRedistFileFullPath(string file64Bit, string file32Bit)
         {
-            var file = Is32BitWindows ? file32bit : file64bit;
+            var file = Is32BitWindows ? file32Bit : file64Bit;
             file.Replace('\\', Path.DirectorySeparatorChar);
-            file = Path.Combine(RedistFolder, file);
+            file = Path.Combine(_redistFolder, file);
 
             return file;
         } // GetRedistFileFullPath
@@ -430,7 +428,7 @@ namespace IpTviewr.Tools.FirstTimeConfig
                 if (binPath != null)
                 {
                     binPath = Path.GetDirectoryName(binPath);
-                    var programs = Resources.FirewallProgramList.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
+                    var programs = Resources.FirewallProgramList.Split(new[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
                     foreach (var program in programs)
                     {
                         var programPath = Path.Combine(binPath, program);
@@ -458,7 +456,7 @@ namespace IpTviewr.Tools.FirstTimeConfig
             }
             finally
             {
-                if (firewall != null) firewall.Dispose();
+                firewall?.Dispose();
             }  // try-catch-finally
 
             message = null;
@@ -481,13 +479,13 @@ namespace IpTviewr.Tools.FirstTimeConfig
 
         public static string GetProgramFilesx86Folder()
         {
-            var folder = KnownFolders.GetKnownFolder(KnownFolders.System.ProgramFiles_x86, KnownFolders.Flags.None);
+            var folder = KnownFolders.GetKnownFolder(KnownFolders.System.ProgramFilesX86, KnownFolders.Flags.None);
             return System.Environment.ExpandEnvironmentVariables(folder);
         } // GetProgramFilesx86Folder
 
         public static string GetProgramFilesx64Folder()
         {
-            var folder = KnownFolders.GetKnownFolder(KnownFolders.System.ProgramFiles_x64, KnownFolders.Flags.None);
+            var folder = KnownFolders.GetKnownFolder(KnownFolders.System.ProgramFilesX64, KnownFolders.Flags.None);
             return System.Environment.ExpandEnvironmentVariables(folder);
         } // GetProgramFilesx64Folder
 

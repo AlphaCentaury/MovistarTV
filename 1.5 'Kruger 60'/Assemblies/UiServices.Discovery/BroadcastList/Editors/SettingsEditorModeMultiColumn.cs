@@ -20,10 +20,7 @@ namespace IpTviewr.UiServices.Discovery.BroadcastList.Editors
             InitializeComponent();
         } // constructor
 
-        public override List<UiBroadcastListColumn> SelectedColumns
-        {
-            get { return _itemsManager.GetListValues(); }
-        } // SelectedColumns
+        public override List<UiBroadcastListColumn> SelectedColumns => _itemsManager.GetListValues();
 
         private void SettingsEditorModeMultiColumn_Load(object sender, EventArgs e)
         {

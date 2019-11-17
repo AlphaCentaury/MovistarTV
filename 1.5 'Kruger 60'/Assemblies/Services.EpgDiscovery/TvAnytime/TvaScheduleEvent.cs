@@ -46,10 +46,7 @@ namespace IpTviewr.Services.EpgDiscovery.TvAnytime
         [Browsable(false), EditorBrowsable(EditorBrowsableState.Never)]
         public string XmlPublishedStartTime
         {
-            get
-            {
-                return (PublishedStartTime == null) ? null : XmlConvert.ToString(PublishedStartTime.Value, XmlDateTimeSerializationMode.RoundtripKind);
-            } // get
+            get => (PublishedStartTime == null) ? null : XmlConvert.ToString(PublishedStartTime.Value, XmlDateTimeSerializationMode.RoundtripKind);
             set
             {
                 if (string.IsNullOrEmpty(value))
@@ -76,8 +73,8 @@ namespace IpTviewr.Services.EpgDiscovery.TvAnytime
         [Browsable(false), EditorBrowsable(EditorBrowsableState.Never)]
         public string XmlPublishedDuration
         {
-            get { return SoapDuration.ToString(PublishedDuration); }
-            set { PublishedDuration = string.IsNullOrEmpty(value) ? new TimeSpan() : SoapDuration.Parse(value); }
+            get => SoapDuration.ToString(PublishedDuration);
+            set => PublishedDuration = string.IsNullOrEmpty(value) ? new TimeSpan() : SoapDuration.Parse(value);
         } // XmlPublishedDuration
 
         public TvaBoolean ImmediateViewing
@@ -117,10 +114,7 @@ namespace IpTviewr.Services.EpgDiscovery.TvAnytime
         [Browsable(false), EditorBrowsable(EditorBrowsableState.Never)]
         public string XmlEventStartTime
         {
-            get
-            {
-                return (StartTime == null) ? null : XmlConvert.ToString(StartTime.Value, XmlDateTimeSerializationMode.RoundtripKind);
-            } // get
+            get => (StartTime == null) ? null : XmlConvert.ToString(StartTime.Value, XmlDateTimeSerializationMode.RoundtripKind);
             set
             {
                 if (string.IsNullOrEmpty(value))
@@ -147,8 +141,8 @@ namespace IpTviewr.Services.EpgDiscovery.TvAnytime
         [Browsable(false), EditorBrowsable(EditorBrowsableState.Never)]
         public string XmlEventDuration
         {
-            get { return SoapDuration.ToString(Duration); }
-            set { Duration = string.IsNullOrEmpty(value) ? new TimeSpan() : SoapDuration.Parse(value); }
+            get => SoapDuration.ToString(Duration);
+            set => Duration = string.IsNullOrEmpty(value) ? new TimeSpan() : SoapDuration.Parse(value);
         } // XmlPublishedDuration
 
 #if DEBUG

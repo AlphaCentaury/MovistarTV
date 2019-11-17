@@ -40,7 +40,7 @@ namespace IpTviewr.UiServices.Configuration.Settings.TvPlayers.Editors
             }
             else
             {
-                argumentsEditor.Arguments = new string[]
+                argumentsEditor.Arguments = new[]
                 {
                     "{param:Channel.Url}"
                 };

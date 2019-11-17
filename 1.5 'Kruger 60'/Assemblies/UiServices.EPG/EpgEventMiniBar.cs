@@ -6,25 +6,18 @@
 // http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
 
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using IpTviewr.Common;
-using IpTviewr.Core.IpTvProvider;
 using IpTviewr.UiServices.Discovery;
-using IpTviewr.UiServices.Common.Forms;
 using IpTviewr.Services.EpgDiscovery;
 
 namespace IpTviewr.UiServices.EPG
 {
     public partial class EpgProgramMiniBar : UserControl
     {
-        private UiBroadcastService Service;
-        private EpgProgram EpgProgram;
+        private UiBroadcastService _service;
+        private EpgProgram _epgProgram;
 
         public EpgProgramMiniBar()
         {
@@ -33,8 +26,8 @@ namespace IpTviewr.UiServices.EPG
 
         public void DisplayData(UiBroadcastService service, EpgProgram epgProgram, DateTime referenceTime, string caption)
         {
-            Service = service;
-            EpgProgram = epgProgram;
+            _service = service;
+            _epgProgram = epgProgram;
 
             labelProgramCaption.Text = caption;
             labelProgramCaption.Visible = caption != null;
@@ -44,18 +37,18 @@ namespace IpTviewr.UiServices.EPG
             buttonProgramProperties.Visible = (epgProgram != null);
             pictureProgramThumbnail.Cursor = (epgProgram != null) ? Cursors.Hand : Cursors.Default;
 
-            if (EpgProgram == null)
+            if (_epgProgram == null)
             {
                 labelProgramTitle.Text = Properties.Texts.EpgNoInformation;
                 pictureProgramThumbnail.Image = Properties.Resources.EpgNoProgramImage;
             }
             else
             {
-                labelProgramTitle.Text = EpgProgram.Title;
-                labelProgramTime.Text = string.Format("{0} ({1})", FormatString.DateTimeFromToMinutes(EpgProgram.LocalStartTime, EpgProgram.LocalEndTime, referenceTime),
-                    FormatString.TimeSpanTotalMinutes(EpgProgram.Duration, FormatString.Format.Extended));
-                labelProgramDetails.Text = string.Format("{0} / {1}", (EpgProgram.Genre != null) ? EpgProgram.Genre.Description : Properties.Texts.EpgNoGenre,
-                    (EpgProgram.ParentalRating != null) ? EpgProgram.ParentalRating.Description : Properties.Texts.EpgNoParentalRating);
+                labelProgramTitle.Text = _epgProgram.Title;
+                labelProgramTime.Text = string.Format("{0} ({1})", FormatString.DateTimeFromToMinutes(_epgProgram.LocalStartTime, _epgProgram.LocalEndTime, referenceTime),
+                    FormatString.TimeSpanTotalMinutes(_epgProgram.Duration, FormatString.Format.Extended));
+                labelProgramDetails.Text = string.Format("{0} / {1}", (_epgProgram.Genre != null) ? _epgProgram.Genre.Description : Properties.Texts.EpgNoGenre,
+                    (_epgProgram.ParentalRating != null) ? _epgProgram.ParentalRating.Description : Properties.Texts.EpgNoParentalRating);
 
                 pictureProgramThumbnail.Image = Properties.Resources.EpgLoadingProgramImage;
                 pictureProgramThumbnail.ImageLocation = null;
@@ -66,7 +59,7 @@ namespace IpTviewr.UiServices.EPG
 
         private void buttonProgramProperties_Click(object sender, EventArgs e)
         {
-            EpgExtendedInfoDialog.ShowExtendedInfo(this, Service, EpgProgram);
+            EpgExtendedInfoDialog.ShowExtendedInfo(this, _service, _epgProgram);
         } // buttonProgramProperties_Click
 
         private void pictureProgramThumbnail_LoadCompleted(object sender, AsyncCompletedEventArgs e)
@@ -79,7 +72,7 @@ namespace IpTviewr.UiServices.EPG
 
         private void pictureProgramThumbnail_Click(object sender, EventArgs e)
         {
-            EpgExtendedInfoDialog.ShowExtendedInfo(this, Service, EpgProgram);
+            EpgExtendedInfoDialog.ShowExtendedInfo(this, _service, _epgProgram);
         } // pictureProgramThumbnail_Click
     } // class EpgProgramMiniBar
 } // namespace

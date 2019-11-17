@@ -27,6 +27,6 @@ namespace Etsi.Ts102034.v010501.XmlSerialization.TvAnytime.Metadata
         public TextualData Definition;
 
         [XmlAttribute("href")]
-        public string href;
+        public string Href;
     } // ControlledTerm
 } // namespace

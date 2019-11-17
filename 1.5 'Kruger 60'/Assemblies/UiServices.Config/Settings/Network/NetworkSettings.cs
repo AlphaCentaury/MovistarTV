@@ -33,20 +33,14 @@ namespace IpTviewr.UiServices.Configuration.Settings.Network
 
         #region IConfigurationItem implementation
 
-        bool IConfigurationItem.SupportsInitialization
-        {
-            get { return false; }
-        } // IConfigurationItem.SupportsInitialization
+        bool IConfigurationItem.SupportsInitialization => false;
 
-        bool IConfigurationItem.SupportsValidation
-        {
-            get { return false; }
-        } // IConfigurationItem.CanValidate
+        bool IConfigurationItem.SupportsValidation => false;
 
-        InitializationResult IConfigurationItem.Initializate()
+        InitializationResult IConfigurationItem.Initialize()
         {
             throw new NotSupportedException();
-        } // IConfigurationItem.Initializate
+        } // IConfigurationItem.Initialize
 
         string IConfigurationItem.Validate(string ownerTag)
         {

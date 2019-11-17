@@ -43,9 +43,6 @@ namespace IpTviewr.UiServices.Configuration.Cache
             private set;
         } // Date
 
-        public TimeSpan Age
-        {
-            get { return DateTime.Now - Date; }
-        } // Age
+        public TimeSpan Age => DateTime.Now - Date;
     } // CachedItemBase
 } // namespace

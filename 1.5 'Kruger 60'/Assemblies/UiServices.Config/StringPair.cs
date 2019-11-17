@@ -13,8 +13,8 @@ namespace IpTviewr.UiServices.Configuration
     [Serializable]
     public class StringPair
     {
-        private int? hashCode;
-        private string item1, item2;
+        private int? _hashCode;
+        private string _item1, _item2;
 
         public StringPair()
         {
@@ -23,20 +23,17 @@ namespace IpTviewr.UiServices.Configuration
 
         public StringPair(string item1, string item2)
         {
-            this.item1 = item1;
-            this.item2 = item2;
+            this._item1 = item1;
+            this._item2 = item2;
         } // constructor
 
         [XmlIgnore]
         public string Item1
         {
-            get
-            {
-                return item1;
-            } // get
+            get => _item1;
             set
             {
-                item1 = value;
+                _item1 = value;
                 CalcHashCode();
             } // set
         } // Item1
@@ -44,13 +41,10 @@ namespace IpTviewr.UiServices.Configuration
         [XmlIgnore]
         public string Item2
         {
-            get
-            {
-                return item2;
-            } // get
+            get => _item2;
             set
             {
-                item2 = value;
+                _item2 = value;
                 CalcHashCode();
             } // set
         } // Item2
@@ -81,19 +75,19 @@ namespace IpTviewr.UiServices.Configuration
 
         public void SetPair(string item1, string item2)
         {
-            this.item1 = item1;
-            this.item2 = item2;
+            this._item1 = item1;
+            this._item2 = item2;
             CalcHashCode();
         } // SetPair
 
         public override int GetHashCode()
         {
-            if (!hashCode.HasValue)
+            if (!_hashCode.HasValue)
             {
                 CalcHashCode();
             } // if
 
-            return hashCode.Value;
+            return _hashCode.Value;
         } // GetHashCode
 
         public override string ToString()
@@ -125,7 +119,7 @@ namespace IpTviewr.UiServices.Configuration
 
         private void CalcHashCode()
         {
-            hashCode = ToString().GetHashCode();
+            _hashCode = ToString().GetHashCode();
         } // CalcHashCode
     } // StringPair
 } // namespace

@@ -5,28 +5,20 @@
 // 
 // http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
 
-using IpTviewr.Common;
-using IpTviewr.Common.Serialization;
 using IpTviewr.Common.Telemetry;
 using IpTviewr.Services.EpgDiscovery;
 using IpTviewr.UiServices.Configuration.Logos;
 using IpTviewr.UiServices.Discovery;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace IpTviewr.UiServices.EPG
 {
     public partial class EpgNowThenDialog : Form
     {
-        private UiBroadcastService Service;
-        private EpgProgram[] EpgPrograms;
-        private DateTime ReferenceTime;
+        private UiBroadcastService _service;
+        private EpgProgram[] _epgPrograms;
+        private DateTime _referenceTime;
 
         public EpgNowThenDialog()
         {
@@ -37,9 +29,9 @@ namespace IpTviewr.UiServices.EPG
         {
             using (var form = new EpgNowThenDialog())
             {
-                form.Service = service;
-                form.EpgPrograms = epg;
-                form.ReferenceTime = referenceTime;
+                form._service = service;
+                form._epgPrograms = epg;
+                form._referenceTime = referenceTime;
                 form.ShowDialog(owner);
             } // using form
         } // ShowEpgBasicData
@@ -48,12 +40,12 @@ namespace IpTviewr.UiServices.EPG
         {
             BasicGoogleTelemetry.SendScreenHit(this);
 
-            pictureChannelLogo.Image = Service.Logo.GetImage(LogoSize.Size48, true);
-            labelChannelName.Text = string.Format("{0}\r\n{1}", Service.DisplayLogicalNumber, Service.DisplayName);
+            pictureChannelLogo.Image = _service.Logo.GetImage(LogoSize.Size48, true);
+            labelChannelName.Text = string.Format("{0}\r\n{1}", _service.DisplayLogicalNumber, _service.DisplayName);
 
-            EpgProgramBefore.DisplayData(Service, (EpgPrograms != null) ? EpgPrograms[0] : null, ReferenceTime, Properties.Texts.EpgProgramBeforeCaption);
-            EpgProgramNow.DisplayData(Service, (EpgPrograms != null) ? EpgPrograms[1] : null, ReferenceTime, Properties.Texts.EpgProgramNowCaption);
-            EpgProgramThen.DisplayData(Service, (EpgPrograms != null) ? EpgPrograms[2] : null, ReferenceTime, Properties.Texts.EpgProgramThenCaption);
+            EpgProgramBefore.DisplayData(_service, (_epgPrograms != null) ? _epgPrograms[0] : null, _referenceTime, Properties.Texts.EpgProgramBeforeCaption);
+            EpgProgramNow.DisplayData(_service, (_epgPrograms != null) ? _epgPrograms[1] : null, _referenceTime, Properties.Texts.EpgProgramNowCaption);
+            EpgProgramThen.DisplayData(_service, (_epgPrograms != null) ? _epgPrograms[2] : null, _referenceTime, Properties.Texts.EpgProgramThenCaption);
         } // FormBasicEpgData_Load
     } // class EpgNowThenDialog
 } // namespace

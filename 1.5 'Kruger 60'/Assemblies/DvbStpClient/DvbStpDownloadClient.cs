@@ -14,30 +14,27 @@ namespace IpTviewr.DvbStp.Client
 {
     public partial class DvbStpDownloadClient
     {
-        private DvbStpDownloadClientSettings Settings;
-        private SegmentDataProcessor Processor;
-        private Task DownloadTask;
+        private DvbStpDownloadClientSettings _settings;
+        private SegmentDataProcessor _processor;
+        private Task _downloadTask;
 
-        public DvbStpDownloadClientSettings DownloadSettings
-        {
-            get { return Settings.ShallowClone(); }
-        } // DownloadSettings
+        public DvbStpDownloadClientSettings DownloadSettings => _settings.ShallowClone();
 
         public DvbStpDownloadClient(DvbStpDownloadClientSettings settings)
         {
-            Settings = settings;
+            _settings = settings;
         } // constructor
 
         public async void StartAsync(IProgress<DvbStpDownloadProgress> progressCallback)
         {
-            DownloadTask = Task.Factory.StartNew(Download, TaskCreationOptions.LongRunning);
-            await DownloadTask;
+            _downloadTask = Task.Factory.StartNew(Download, TaskCreationOptions.LongRunning);
+            await _downloadTask;
         } // StartAsync
 
         public async void StartAsync(IProgress<DvbStpDownloadProgress> progressCallback, CancellationToken cancellationToken)
         {
-            DownloadTask = Task.Factory.StartNew(Download, cancellationToken, TaskCreationOptions.LongRunning, TaskScheduler.Default);
-            await DownloadTask;
+            _downloadTask = Task.Factory.StartNew(Download, cancellationToken, TaskCreationOptions.LongRunning, TaskScheduler.Default);
+            await _downloadTask;
         } // StartAsync
 
         private void Download()
@@ -46,17 +43,19 @@ namespace IpTviewr.DvbStp.Client
 
             try
             {
-                Processor = new SegmentDataProcessor();
+                _processor = new SegmentDataProcessor();
                 var retryTime = new TimeSpan(0, 0, 0);
 
-                while (retryTime <= Settings.MaxRetryTime)
+                while (retryTime <= _settings.MaxRetryTime)
                 {
                     streamClient = CreateStreamClient();
 
+                    // ReSharper disable once RedundantAssignment
+                    // assignment to false is necessary
                     var retry = false;
                     try
                     {
-                        Processor.Start();
+                        _processor.Start();
                         streamClient.DownloadStream();
                         break;
                     }
@@ -69,16 +68,16 @@ namespace IpTviewr.DvbStp.Client
                     // we can ignore it and end the reception;
                     if (streamClient.CancelRequested) break;
 
-                    if (retry)
-                    {
-                        // wait and then retry, increasing wait time
-                        retryTime += Settings.RetryIncrement;
-                        Thread.Sleep(retryTime);
-                        continue;
-                    } // if
+                    // ReSharper disable once ConditionIsAlwaysTrueOrFalse
+                    // ReSharper disable once HeuristicUnreachableCode
+                    if (!retry) continue;
+
+                    // wait and then retry, increasing wait time
+                    retryTime += _settings.RetryIncrement;
+                    Thread.Sleep(retryTime);
                 } // while
 
-                Processor.WaitCompletion();
+                _processor.WaitCompletion();
             }
             finally
             {
@@ -88,16 +87,16 @@ namespace IpTviewr.DvbStp.Client
                     streamClient = null;
                 } // if
 
-                if (Processor != null)
+                if (_processor != null)
                 {
-                    Processor.Dispose();
-                    Processor = null;
+                    _processor.Dispose();
+                    _processor = null;
                 } // if
 
-                if (DownloadTask != null)
+                if (_downloadTask != null)
                 {
-                    DownloadTask.Dispose();
-                    DownloadTask = null;
+                    _downloadTask.Dispose();
+                    _downloadTask = null;
                 } /// if
             } // try-finally
         } // Download
@@ -116,9 +115,9 @@ namespace IpTviewr.DvbStp.Client
         private DvbStpStreamClient CreateStreamClient()
         {
             // initialize DVB-STP client
-            var streamClient = new DvbStpStreamClient(Settings.EndPoint.Address, Settings.EndPoint.Port, Settings.CancellationToken);
+            var streamClient = new DvbStpStreamClient(_settings.EndPoint.Address, _settings.EndPoint.Port, _settings.CancellationToken);
             streamClient.NoDataTimeout = -1; // not implemented by DvbStpStreamClient
-            streamClient.ReceiveDatagramTimeout = (int)Math.Floor(Settings.ReceiveDatagramTimeout.TotalMilliseconds);
+            streamClient.ReceiveDatagramTimeout = (int)Math.Floor(_settings.ReceiveDatagramTimeout.TotalMilliseconds);
             streamClient.OperationTimeout = -1; // forever
             streamClient.SegmentPayloadReceived += SegmentPayloadReceived;
 
@@ -129,13 +128,13 @@ namespace IpTviewr.DvbStp.Client
         {
             var segmentData = new SegmentData()
             {
-                EndPoint = Settings.EndPoint,
+                EndPoint = _settings.EndPoint,
                 SegmentIdentity = e.SegmentIdentity,
                 PayloadData = e.Payload,
-                DataReceivedAction = Settings.DataReceivedAction
+                DataReceivedAction = _settings.DataReceivedAction
             }; // segmentData
 
-            Processor.AddSegment(segmentData);
+            _processor.AddSegment(segmentData);
         } // AddSegment
     } // DvbStpDownloadClient
 } // namespace

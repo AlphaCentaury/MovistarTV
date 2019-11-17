@@ -11,9 +11,9 @@ namespace IpTviewr.MovistarPlus
 {
     public class MovistarCrId
     {
-        public static MovistarCrId Get(string CRID)
+        public static MovistarCrId Get(string crId)
         {
-            var crid = new Uri(CRID);
+            var crid = new Uri(crId);
             var components = crid.AbsolutePath.Split('/');
             if (components.Length != 4) return null;
             if (components[2] != components[3]) return null;

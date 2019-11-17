@@ -15,8 +15,7 @@ namespace IpTviewr.UiServices.Configuration.Schema2014.Config
 
         internal static string Normalize(string value)
         {
-            if (value == null) return null;
-            return value.Trim();
+            return value?.Trim();
         } // Normalize
 
         internal static string ValidateArray<T>(T[] array, string arrayElementTag, string arrayTag, string ownerTag)

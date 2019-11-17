@@ -18,10 +18,7 @@ namespace IpTviewr.Services.Record.Serialization
     {
         public const RecordWeekDays AllWeekDays = RecordWeekDays.Sunday | RecordWeekDays.Monday | RecordWeekDays.Tuesday | RecordWeekDays.Wednesday | RecordWeekDays.Thursday | RecordWeekDays.Friday | RecordWeekDays.Saturday;
 
-        public override RecordScheduleKind Kind
-        {
-            get { return RecordScheduleKind.Weekly; }
-        } // ScheduleKind
+        public override RecordScheduleKind Kind => RecordScheduleKind.Weekly;
 
         public short RecurEveryWeeks
         {
@@ -37,18 +34,17 @@ namespace IpTviewr.Services.Record.Serialization
 
         public static RecordWeekDays ToRecordWeekDays(DayOfWeek day)
         {
-            switch (day)
+            return day switch
             {
-                case DayOfWeek.Sunday: return RecordWeekDays.Sunday;
-                case DayOfWeek.Monday: return RecordWeekDays.Monday;
-                case DayOfWeek.Tuesday: return RecordWeekDays.Tuesday;
-                case DayOfWeek.Wednesday: return RecordWeekDays.Wednesday;
-                case DayOfWeek.Thursday: return RecordWeekDays.Thursday;
-                case DayOfWeek.Friday: return RecordWeekDays.Friday;
-                case DayOfWeek.Saturday: return RecordWeekDays.Saturday;
-            } // switch
-
-            return default(RecordWeekDays);
+                DayOfWeek.Sunday => RecordWeekDays.Sunday,
+                DayOfWeek.Monday => RecordWeekDays.Monday,
+                DayOfWeek.Tuesday => RecordWeekDays.Tuesday,
+                DayOfWeek.Wednesday => RecordWeekDays.Wednesday,
+                DayOfWeek.Thursday => RecordWeekDays.Thursday,
+                DayOfWeek.Friday => RecordWeekDays.Friday,
+                DayOfWeek.Saturday => RecordWeekDays.Saturday,
+                _ => default,
+            };
         } // ToRecordWeekDays
 
         public override void SetDefaultValues()

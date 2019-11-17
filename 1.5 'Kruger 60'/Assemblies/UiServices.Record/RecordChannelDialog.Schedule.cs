@@ -9,10 +9,6 @@ using IpTviewr.Services.Record.Serialization;
 using IpTviewr.UiServices.Common;
 using IpTviewr.UiServices.Record.Controls;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace IpTviewr.UiServices.Record
 {
@@ -32,7 +28,7 @@ namespace IpTviewr.UiServices.Record
             // Expiry date
             var schedule = Task.Schedule;
             checkBoxExpiryDate.Checked = schedule.ExpiryDate.HasValue;
-            dateTimeExpiryDate.Value = (schedule.ExpiryDate.HasValue) ? schedule.ExpiryDate.Value : CurrentStartDateTime + DefaultExpiryDateTimeSpan;
+            dateTimeExpiryDate.Value = (schedule.ExpiryDate.HasValue) ? schedule.ExpiryDate.Value : _currentStartDateTime + DefaultExpiryDateTimeSpan;
 
             // Safety margin
             checkBoxStartMargin.Checked = schedule.SafetyMargin.HasValue;
@@ -64,7 +60,7 @@ namespace IpTviewr.UiServices.Record
 
         private void recordingSchedule_ScheduleKindChanged(object sender, RecordingSchedule.KindChangedEventArgs e)
         {
-            CurrentScheduleKind = e.Kind;
+            _currentScheduleKind = e.Kind;
 
             var enabled = (e.Kind != RecordScheduleKind.RightNow);
             UpdateStartMarginStatus(enabled);
@@ -76,8 +72,8 @@ namespace IpTviewr.UiServices.Record
 
         private void recordingSchedule_DateTimeChanged(object sender, RecordingSchedule.DateTimeChangedEventArgs e)
         {
-            CurrentStartDateTime = e.DateTime;
-            recordingTime.SetStartTime(CurrentStartDateTime);
+            _currentStartDateTime = e.DateTime;
+            recordingTime.SetStartTime(_currentStartDateTime);
             UpdateTaskName();
         } // schedulePattern_DateTimeChanged
 
@@ -88,8 +84,8 @@ namespace IpTviewr.UiServices.Record
 
         private void EnableExpiryDate()
         {
-            var expiryDisallowed = (CurrentScheduleKind == RecordScheduleKind.RightNow) ||
-                (CurrentScheduleKind == RecordScheduleKind.OneTime);
+            var expiryDisallowed = (_currentScheduleKind == RecordScheduleKind.RightNow) ||
+                (_currentScheduleKind == RecordScheduleKind.OneTime);
 
             checkBoxExpiryDate.Visible = !expiryDisallowed;
             checkBoxExpiryDate.Enabled = !expiryDisallowed;

@@ -12,7 +12,7 @@ namespace IpTviewr.UiServices.Configuration.Settings.Network.Editors
 {
     public partial class NetworkSettingsEditor : UserControl, IConfigurationItemEditor
     {
-        private int ManualUpdateLock; 
+        private int _manualUpdateLock;
 
         public NetworkSettingsEditor()
         {
@@ -29,15 +29,9 @@ namespace IpTviewr.UiServices.Configuration.Settings.Network.Editors
 
         #region IConfigurationItemEditor implementation
 
-        UserControl IConfigurationItemEditor.UserInterfaceItem
-        {
-            get { return this; }
-        } // IConfigurationItemEditor.UserInterfaceItem
+        UserControl IConfigurationItemEditor.UserInterfaceItem => this;
 
-        bool IConfigurationItemEditor.SupportsWinFormsValidation
-        {
-            get { return false; }
-        } // IConfigurationItemEditor.SupportsWinFormsValidation
+        bool IConfigurationItemEditor.SupportsWinFormsValidation => false;
 
         public bool IsDataChanged
         {
@@ -45,16 +39,13 @@ namespace IpTviewr.UiServices.Configuration.Settings.Network.Editors
             protected set;
         } // IsDataChanged
 
-        public bool IsAppRestartNeeded
-        {
-            get { return false; }
-        } // IsAppRestartNeeded
+        public bool IsAppRestartNeeded => false;
 
         bool IConfigurationItemEditor.Validate()
         {
             if ((checkBoxEnableMulticastProxy.Enabled) && (parametersEditorMulticastProxy.CommandLine == ""))
             {
-                MessageBox.Show(this, Properties.SettingsTexts.NetworkMulticastProxyValidation, Properties.SettingsTexts.NetworkValidationErrorCaption, MessageBoxButtons.OK, MessageBoxIcon.Warning); 
+                MessageBox.Show(this, Properties.SettingsTexts.NetworkMulticastProxyValidation, Properties.SettingsTexts.NetworkValidationErrorCaption, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             } // if
 
@@ -83,19 +74,19 @@ namespace IpTviewr.UiServices.Configuration.Settings.Network.Editors
 
         private void NetworkSettingsEditor_Load(object sender, EventArgs e)
         {
-            ManualUpdateLock++;
+            _manualUpdateLock++;
             checkBoxEnableMulticastProxy.Checked = Settings.MulticastProxy.IsEnabled;
             parametersEditorMulticastProxy.Enabled = checkBoxEnableMulticastProxy.Checked;
             parametersEditorMulticastProxy.OpenBraceText = MulticastProxy.ParameterOpenBrace;
             parametersEditorMulticastProxy.CloseBraceText = MulticastProxy.ParameterCloseBrace;
             parametersEditorMulticastProxy.CommandLine = Settings.MulticastProxy.ProxyConfiguration;
             parametersEditorMulticastProxy.ParametersList = Properties.SettingsTexts.NetworkUpdProxyParameters;
-            ManualUpdateLock--;
+            _manualUpdateLock--;
         } // NetworkSettingsEditor_Load
 
         private void checkBoxEnableMulticastProxy_CheckedChanged(object sender, EventArgs e)
         {
-            if (ManualUpdateLock > 0) return;
+            if (_manualUpdateLock > 0) return;
 
             parametersEditorMulticastProxy.Enabled = checkBoxEnableMulticastProxy.Checked;
             IsDataChanged = true;
@@ -103,8 +94,8 @@ namespace IpTviewr.UiServices.Configuration.Settings.Network.Editors
 
         private void parametersEditorMulticastProxy_CommandLineChanged(object sender, EventArgs e)
         {
-            if (ManualUpdateLock > 0) return;
-            
+            if (_manualUpdateLock > 0) return;
+
             IsDataChanged = true;
         } // parametersEditorMulticastProxy_CommandLineChanged
     } // class NetworkSettingsEditor

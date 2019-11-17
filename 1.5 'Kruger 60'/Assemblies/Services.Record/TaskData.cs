@@ -6,9 +6,6 @@
 // http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using IpTviewr.Services.Record.Serialization;
 
 namespace IpTviewr.Services.Record
@@ -27,15 +24,9 @@ namespace IpTviewr.Services.Record
             set;
         } // Action
 
-        public Guid Id
-        {
-            get { return Task.TaskId; }
-        } // Id
+        public Guid Id => Task.TaskId;
 
-        public string Name
-        {
-            get { return Task.Description.Name; }
-        } // Name
+        public string Name => Task.Description.Name;
 
         public string SchedulerName
         {

@@ -16,8 +16,8 @@ namespace IpTviewr.UiServices.Configuration.Settings.TvPlayers
     [XmlRoot("TvPlayers", Namespace = ConfigCommon.ConfigXmlNamespace)]
     public class TvPlayersSettings : IConfigurationItem
     {
-        private TvPlayer DefaultPlayer;
-        private Guid DefaultPlayerGuid;
+        private TvPlayer _defaultPlayer;
+        private Guid _defaultPlayerGuid;
 
         public TvPlayersSettings()
         {
@@ -28,14 +28,11 @@ namespace IpTviewr.UiServices.Configuration.Settings.TvPlayers
 
         public Guid DefaultPlayerId
         {
-            get
-            {
-                return DefaultPlayerGuid;
-            } // get
+            get => _defaultPlayerGuid;
             set
             {
-                DefaultPlayerGuid = value;
-                DefaultPlayer = null;
+                _defaultPlayerGuid = value;
+                _defaultPlayer = null;
             } // set
         } // DefaultPlayerId
 
@@ -55,19 +52,19 @@ namespace IpTviewr.UiServices.Configuration.Settings.TvPlayers
 
         public TvPlayer GetDefaultPlayer()
         {
-            if (DefaultPlayer == null)
+            if (_defaultPlayer == null)
             {
                 foreach (var player in Players)
                 {
-                    if (player.Id == DefaultPlayerGuid)
+                    if (player.Id == _defaultPlayerGuid)
                     {
-                        DefaultPlayer = player;
+                        _defaultPlayer = player;
                         break;
                     } // if
                 } // foreach
             } // if
 
-            return DefaultPlayer;
+            return _defaultPlayer;
         } // GetDefaultPlayer
 
         [XmlIgnore]
@@ -97,29 +94,19 @@ namespace IpTviewr.UiServices.Configuration.Settings.TvPlayers
 
         #region IConfigurationItem implementation
 
-        bool IConfigurationItem.SupportsInitialization
-        {
-            get { return false; }
-        } // IConfigurationItem.SupportsInitialization
+        bool IConfigurationItem.SupportsInitialization => false;
 
-        bool IConfigurationItem.SupportsValidation
-        {
-            get { return true; }
-        } // IConfigurationItem.CanValidate
+        bool IConfigurationItem.SupportsValidation => true;
 
-        InitializationResult IConfigurationItem.Initializate()
+        InitializationResult IConfigurationItem.Initialize()
         {
             throw new NotSupportedException();
-        } // IConfigurationItem.Initializate
+        } // IConfigurationItem.Initialize
 
         string IConfigurationItem.Validate(string ownerTag)
         {
-            string validationError;
-
-            validationError = TvPlayer.ValidateArray(Players, "Player", "Players", ownerTag);
-            if (validationError != null) return validationError;
-
-            return null;
+            var validationError = TvPlayer.ValidateArray(Players, "Player", "Players", ownerTag);
+            return validationError ?? null;
         } // IConfigurationItem.Validate
 
         #endregion

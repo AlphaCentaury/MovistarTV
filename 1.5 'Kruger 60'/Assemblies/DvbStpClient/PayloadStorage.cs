@@ -12,7 +12,7 @@ namespace IpTviewr.DvbStp.Client
 {
     public partial class PayloadStorage
     {
-        private Dictionary<int, VersionStorage> Sections;
+        private Dictionary<int, VersionStorage> _sections;
 
         internal static byte[] EmptyData = new byte[0];
 
@@ -29,7 +29,7 @@ namespace IpTviewr.DvbStp.Client
 
         public PayloadStorage(bool saveData)
         {
-            Sections = new Dictionary<int, VersionStorage>();
+            _sections = new Dictionary<int, VersionStorage>();
             SaveData = saveData;
         } // constructor
 
@@ -39,10 +39,10 @@ namespace IpTviewr.DvbStp.Client
             var s = (int)header.SegmentId;
             var key = ((p << 16) | s);
 
-            if (!Sections.TryGetValue(key, out var versions))
+            if (!_sections.TryGetValue(key, out var versions))
             {
                 versions = CreateNewVersions(header);
-                Sections[key] = versions;
+                _sections[key] = versions;
             } // if
 
             return versions.AddSection(header, data, isRawData);
@@ -75,30 +75,22 @@ namespace IpTviewr.DvbStp.Client
 
         private void Versions_SegmentStarted(object sender, SegmentStartedEventArgs e)
         {
-            if (SegmentStarted == null) return;
-
-            SegmentStarted(this, e);
+            SegmentStarted?.Invoke(this, e);
         } // Versions_SegmentStarted
 
         private void Versions_SectionReceived(object sender, SectionReceivedEventArgs e)
         {
-            if (SectionReceived == null) return;
-
-            SectionReceived(this, e);
+            SectionReceived?.Invoke(this, e);
         } // Versions_SectionReceived
 
         private void Versions_SegmentReceived(object sender, SegmentReceivedEventArgs e)
         {
-            if (SegmentReceived == null) return;
-
-            SegmentReceived(this, e);
+            SegmentReceived?.Invoke(this, e);
         } // Versions_SegmentReceived
 
         private void Versions_SegmentPayloadReceived(object sender, SegmentPayloadReceivedEventArgs e)
         {
-            if (SegmentPayloadReceived == null) return;
-
-            SegmentPayloadReceived(this, e);
+            SegmentPayloadReceived?.Invoke(this, e);
         } // Versions_SegmentPayloadReceived
     } // class PayloadStorage
 } // namespace

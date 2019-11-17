@@ -12,8 +12,6 @@ using IpTviewr.UiServices.Record;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace IpTviewr.ChannelList
 {
@@ -60,7 +58,7 @@ namespace IpTviewr.ChannelList
             var q = from folder in schedulerFolders
                     select folder.Path;
 
-            return (new string[] { "\\" }).Concat(q);
+            return (new[] { "\\" }).Concat(q);
         } // GetTaskSchedulerFolders
 
         private void menuItemRecordingsRepair_Click_Implementation(object sender, EventArgs e)

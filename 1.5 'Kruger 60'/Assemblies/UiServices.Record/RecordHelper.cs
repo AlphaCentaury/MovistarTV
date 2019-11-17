@@ -14,10 +14,7 @@ using IpTviewr.UiServices.Configuration.Schema2014.Config;
 using IpTviewr.UiServices.Discovery;
 using Microsoft.SqlServer.MessageBox;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace IpTviewr.UiServices.Record

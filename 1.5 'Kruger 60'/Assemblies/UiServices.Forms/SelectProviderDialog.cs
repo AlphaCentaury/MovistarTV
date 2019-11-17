@@ -24,7 +24,7 @@ namespace IpTviewr.UiServices.Forms
 {
     public partial class SelectProviderDialog : CommonBaseForm
     {
-        private UiProviderDiscovery ProvidersDiscovery;
+        private UiProviderDiscovery _providersDiscovery;
 
         public SelectProviderDialog()
         {
@@ -162,7 +162,7 @@ namespace IpTviewr.UiServices.Forms
                     AppUiConfiguration.Current.Cache.SaveXml("ProviderDiscovery", baseIpAddress, downloader.Response.Version, discovery);
                 } // if
 
-                ProvidersDiscovery = new UiProviderDiscovery(discovery);
+                _providersDiscovery = new UiProviderDiscovery(discovery);
                 FillServiceProviderList();
 
                 return true;
@@ -199,17 +199,17 @@ namespace IpTviewr.UiServices.Forms
             listViewServiceProviders.BeginUpdate();
             listViewServiceProviders.Items.Clear();
 
-            if (ProvidersDiscovery == null)
+            if (_providersDiscovery == null)
             {
                 listViewServiceProviders.EndUpdate();
                 return;
             } // if
 
-            listItems = new ListViewItem[ProvidersDiscovery.Providers.Count()];
+            listItems = new ListViewItem[_providersDiscovery.Providers.Count()];
             index = 0;
             selectedItem = null;
 
-            foreach (var provider in ProvidersDiscovery.Providers)
+            foreach (var provider in _providersDiscovery.Providers)
             {
                 var item = new ListViewItem(provider.DisplayName);
                 item.ImageKey = GetProviderLogoKey(provider.Logo);

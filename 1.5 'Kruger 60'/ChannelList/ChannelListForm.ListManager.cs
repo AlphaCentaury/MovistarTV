@@ -9,12 +9,10 @@ using IpTviewr.Common.Telemetry;
 using IpTviewr.UiServices.Discovery;
 using IpTviewr.UiServices.Discovery.BroadcastList;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace IpTviewr.ChannelList
@@ -36,9 +34,9 @@ namespace IpTviewr.ChannelList
         private void ListManager_StatusChanged_Implementation(object sender, ListStatusChangedEventArgs e)
         {
             _listManager.ListView.Enabled = e.HasItems;
-            menuItemChannelFavorites.Enabled = e.HasItems && enable_menuItemChannelFavorites;
+            menuItemChannelFavorites.Enabled = e.HasItems && EnableMenuItemChannelFavorites;
             menuItemChannelListView.Enabled = e.HasItems;
-            menuItemChannelEditList.Enabled = e.HasItems && enable_menuItemChannelEditList;
+            menuItemChannelEditList.Enabled = e.HasItems && EnableMenuItemChannelEditList;
             menuItemChannelVerify.Enabled = e.HasItems;
         } // ListManager_StatusChanged_Implementation
 

@@ -20,10 +20,7 @@ namespace IpTviewr.Services.Record.Serialization
         /// <summary>
         /// Default safety margin, in minutes
         /// </summary>
-        public static int DefaultSafetyMargin
-        {
-            get { return 10; }
-        } // DefaultSafetyMargin
+        public static int DefaultSafetyMargin => 10;
 
         /// <summary>
         /// The duration of the recording, as a TimeSpan
@@ -39,8 +36,8 @@ namespace IpTviewr.Services.Record.Serialization
         [Browsable(false), EditorBrowsable(EditorBrowsableState.Never)]
         public string XmlLength
         {
-            get { return SoapDuration.ToString(Length); }
-            set { Length = string.IsNullOrEmpty(value) ? new TimeSpan() : SoapDuration.Parse(value); }
+            get => SoapDuration.ToString(Length);
+            set => Length = string.IsNullOrEmpty(value) ? new TimeSpan() : SoapDuration.Parse(value);
         } // XmlTimeSpan
 
         [XmlIgnore]
@@ -54,10 +51,7 @@ namespace IpTviewr.Services.Record.Serialization
         [Browsable(false), EditorBrowsable(EditorBrowsableState.Never)]
         public string XmlEndDateTime
         {
-            get
-            {
-                return (EndDateTime == null) ? null : XmlConvert.ToString(EndDateTime.Value, XmlDateTimeSerializationMode.RoundtripKind);
-            } // get
+            get => (EndDateTime == null) ? null : XmlConvert.ToString(EndDateTime.Value, XmlDateTimeSerializationMode.RoundtripKind);
             set
             {
                 if (string.IsNullOrEmpty(value))
@@ -85,21 +79,15 @@ namespace IpTviewr.Services.Record.Serialization
         [Browsable(false), EditorBrowsable(EditorBrowsableState.Never)]
         public string XmlSafetyMargin
         {
-            get { return SafetyMargin.HasValue ? XmlConvert.ToString(SafetyMargin.Value) : null; }
-            set { SafetyMargin = string.IsNullOrEmpty(value) ? null : (int?)XmlConvert.ToInt32(value); }
+            get => SafetyMargin.HasValue ? XmlConvert.ToString(SafetyMargin.Value) : null;
+            set => SafetyMargin = string.IsNullOrEmpty(value) ? null : (int?)XmlConvert.ToInt32(value);
         } // XmlSafetyMargin
 
         /// <summary>
         /// Gets the safety margin as a TimeSpan
         /// </summary>
         [XmlIgnore]
-        public TimeSpan SafetyMarginTimeSpan
-        {
-            get
-            {
-                return (SafetyMargin.HasValue) ? new TimeSpan(0, SafetyMargin.Value, 0) : TimeSpan.Zero;
-            } // get
-        } // SafetyMarginTimeSpan
+        public TimeSpan SafetyMarginTimeSpan => (SafetyMargin.HasValue) ? new TimeSpan(0, SafetyMargin.Value, 0) : TimeSpan.Zero;
 
         public TimeSpan GetDuration(DateTime startDateTime)
         {

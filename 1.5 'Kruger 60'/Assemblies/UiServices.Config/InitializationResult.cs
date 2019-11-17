@@ -9,46 +9,24 @@ using System;
 
 namespace IpTviewr.UiServices.Configuration
 {
-    public class InitializationResult
+    public sealed class InitializationResult
     {
-        private static InitializationResult OkSingleton = new InitializationResult() { IsOk = true };
+        private static readonly InitializationResult OkSingleton = new InitializationResult() { IsOk = true };
 
         /// <summary>
         /// Gets an <see cref="InitializationResult"/> with IsOk set to <see cref="true"/> and all remaining fields set to <see cref="null"/>
         /// </summary>
-        public static InitializationResult Ok
-        {
-            get { return OkSingleton; }
-        } // Ok
+        public static InitializationResult Ok => OkSingleton;
 
-        public bool IsOk
-        {
-            get;
-            set;
-        } // IsOk
+        public bool IsOk { get; set; }
 
-        public bool IsError
-        {
-            get { return !IsOk; }
-        } // IsError
+        public bool IsError => !IsOk;
 
-        public string Caption
-        {
-            get;
-            set;
-        } // Caption
+        public string Caption { get; set; }
 
-        public string Message
-        {
-            get;
-            set;
-        } // Message
+        public string Message { get; set; }
 
-        public Exception InnerException
-        {
-            get;
-            set;
-        } // InnerException
+        public Exception InnerException { get; set; }
 
         public InitializationResult()
         {

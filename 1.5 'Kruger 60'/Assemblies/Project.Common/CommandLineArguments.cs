@@ -19,34 +19,16 @@ namespace IpTviewr.Common
             set;
         } // SpecialHelpArgument
 
-        public bool IsHelpRequested
-        {
-            get { return Switches?.ContainsKey("help") ?? false; }
-        } // IsHelpRequested
+        public bool IsHelpRequested => Switches?.ContainsKey("help") ?? false;
 
-        public bool IsOk
-        {
-            get;
-            private set;
-        } // IsOk
+        public bool IsOk { get; private set; }
 
-        public IList<string> Arguments
-        {
-            get;
-            private set;
-        } // Arguments
+        public IList<string> Arguments{get;private set;}
 
-        public IDictionary<string, string> Switches
-        {
-            get;
-            private set;
-        } // Switches
+        public IDictionary<string, string> Switches{get;private set;}
 
         public void Parse(string[] args, int startIndex = 0)
         {
-            string argName;
-            string argValue;
-
             IsOk = false;
 
             var arguments = new List<string>(args.Length);
@@ -71,8 +53,10 @@ namespace IpTviewr.Common
                         } // if
                     } // if
 
-                    var pos = arg.IndexOf(':');
+                    string argName;
+                    string argValue;
 
+                    var pos = arg.IndexOf(':');
                     if (pos < 0)
                     {
                         argName = arg.Substring(1);

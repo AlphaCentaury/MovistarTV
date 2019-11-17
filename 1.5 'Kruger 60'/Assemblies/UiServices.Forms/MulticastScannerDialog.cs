@@ -30,13 +30,13 @@ namespace IpTviewr.UiServices.Forms
     public partial class MulticastScannerDialog : CommonBaseForm
     {
         private const int UdpMaxDatagramSize = 65535;
-        private string FormatProgressPercentage;
-        private string FormatScanningProgress;
-        private string FormatEllapsedTime;
-        private BackgroundWorker Worker;
-        private bool AllowFormToClose;
-        private DateTime StartTime;
-        private bool RefreshNeeded;
+        private string _formatProgressPercentage;
+        private string _formatScanningProgress;
+        private string _formatEllapsedTime;
+        private BackgroundWorker _worker;
+        private bool _allowFormToClose;
+        private DateTime _startTime;
+        private bool _refreshNeeded;
 
         #region Inner classes
 
@@ -56,21 +56,9 @@ namespace IpTviewr.UiServices.Forms
             public bool WasInactive;
             public bool IsInList;
 
-            public bool IsOk
-            {
-                get
-                {
-                    return ((ScanResult == ScanResult.Active) || (ScanResult == ScanResult.Inactive));
-                } // get
-            } // IsOk
+            public bool IsOk => ((ScanResult == ScanResult.Active) || (ScanResult == ScanResult.Inactive));
 
-            public bool IsInactive
-            {
-                get
-                {
-                    return (ScanResult == ScanResult.Inactive);
-                } // get
-            } // IsInactive
+            public bool IsInactive => (ScanResult == ScanResult.Inactive);
         } // class ScanResultEventArgs
 
         public class ScanCompletedEventArgs : EventArgs
@@ -163,9 +151,9 @@ namespace IpTviewr.UiServices.Forms
         {
             BasicGoogleTelemetry.SendScreenHit(this);
 
-            FormatProgressPercentage = labelProgressPercentage.Text;
-            FormatScanningProgress = labelScanning.Text;
-            FormatEllapsedTime = labelEllapsedTime.Text;
+            _formatProgressPercentage = labelProgressPercentage.Text;
+            _formatScanningProgress = labelScanning.Text;
+            _formatEllapsedTime = labelEllapsedTime.Text;
 
             BroadcastServicesCount = BroadcastServices.Count();
             DisplayStats(new Stats() { Total = BroadcastServicesCount });
@@ -185,7 +173,7 @@ namespace IpTviewr.UiServices.Forms
         {
             if ((e.CloseReason != CloseReason.UserClosing) && (e.CloseReason != CloseReason.None)) return;
 
-            if (AllowFormToClose) return;
+            if (_allowFormToClose) return;
 
             e.Cancel = true;
             CancelScan();
@@ -205,7 +193,7 @@ namespace IpTviewr.UiServices.Forms
 
         private void buttonClose_Click(object sender, EventArgs e)
         {
-            AllowFormToClose = true;
+            _allowFormToClose = true;
             Close();
         } // buttonClose_Click
 
@@ -218,11 +206,11 @@ namespace IpTviewr.UiServices.Forms
         {
             if (listViewStats.Items.Count == 0)
             {
-                listViewStats.Items.Add(new ListViewItem(new string[] { MulticastScanner.Active, "-"}));
-                listViewStats.Items.Add(new ListViewItem(new string[] { MulticastScanner.Dead, "-" }));
-                listViewStats.Items.Add(new ListViewItem(new string[] { MulticastScanner.Error, "-" }));
-                listViewStats.Items.Add(new ListViewItem(new string[] { MulticastScanner.Skipped, "-" }));
-                listViewStats.Items.Add(new ListViewItem(new string[] { MulticastScanner.Total, "-" }));
+                listViewStats.Items.Add(new ListViewItem(new[] { MulticastScanner.Active, "-"}));
+                listViewStats.Items.Add(new ListViewItem(new[] { MulticastScanner.Dead, "-" }));
+                listViewStats.Items.Add(new ListViewItem(new[] { MulticastScanner.Error, "-" }));
+                listViewStats.Items.Add(new ListViewItem(new[] { MulticastScanner.Skipped, "-" }));
+                listViewStats.Items.Add(new ListViewItem(new[] { MulticastScanner.Total, "-" }));
                 for (var index = 0; index < listViewStats.Items.Count; index++)
                 {
                     listViewStats.Items[index].UseItemStyleForSubItems = false;
@@ -239,35 +227,35 @@ namespace IpTviewr.UiServices.Forms
             } // if-else
 
             var progress = (stats.Total > 0) ? ((double)stats.Count) / ((double)stats.Total) : 1;
-            labelProgressPercentage.Text = string.Format(FormatProgressPercentage, progress);
+            labelProgressPercentage.Text = string.Format(_formatProgressPercentage, progress);
             progressBar.Value = (int) (progress * 1000);
-            labelScanning.Text = string.Format(FormatScanningProgress, stats.Count, stats.Total);
+            labelScanning.Text = string.Format(_formatScanningProgress, stats.Count, stats.Total);
         } // DisplayStats
 
         private void DisplayEllapsedTime()
         {
-            var ellapsed = DateTime.Now - StartTime;
+            var ellapsed = DateTime.Now - _startTime;
             var ellapsedRounded = new TimeSpan(ellapsed.Days, ellapsed.Hours, ellapsed.Minutes, ellapsed.Seconds);
 
-            labelEllapsedTime.Text = string.Format(FormatEllapsedTime, ellapsedRounded);
+            labelEllapsedTime.Text = string.Format(_formatEllapsedTime, ellapsedRounded);
         } // DisplayEllapsedTime
 
         private void StartScan()
         {
-            RefreshNeeded = false;
+            _refreshNeeded = false;
 
-            StartTime = DateTime.Now;
+            _startTime = DateTime.Now;
             timerEllapsed.Enabled = true;
             DisplayEllapsedTime();
 
-            Worker = new BackgroundWorker();
-            Worker.WorkerReportsProgress = true;
-            Worker.WorkerSupportsCancellation = true;
-            Worker.ProgressChanged += Worker_ProgressChanged;
-            Worker.RunWorkerCompleted += Worker_RunWorkerCompleted;
-            Worker.DoWork += Worker_DoWork;
+            _worker = new BackgroundWorker();
+            _worker.WorkerReportsProgress = true;
+            _worker.WorkerSupportsCancellation = true;
+            _worker.ProgressChanged += Worker_ProgressChanged;
+            _worker.RunWorkerCompleted += Worker_RunWorkerCompleted;
+            _worker.DoWork += Worker_DoWork;
             ScanInProgress = true;
-            Worker.RunWorkerAsync(Thread.CurrentThread);
+            _worker.RunWorkerAsync(Thread.CurrentThread);
         } // StartScan
 
         private void CancelScan()
@@ -275,7 +263,7 @@ namespace IpTviewr.UiServices.Forms
             buttonRequestCancel.Enabled = false;
             labelCaption.Text = MulticastScanner.ScanningCancelling;
 
-            Worker.CancelAsync();
+            _worker.CancelAsync();
         } // CancelScan
 
         #region Worker events
@@ -283,8 +271,8 @@ namespace IpTviewr.UiServices.Forms
         private void Worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             timerEllapsed.Enabled = false;
-            Worker.Dispose();
-            Worker = null;
+            _worker.Dispose();
+            _worker = null;
             buttonRequestCancel.Enabled = false;
 
             if (e.Cancelled)
@@ -301,7 +289,7 @@ namespace IpTviewr.UiServices.Forms
                 HandleException(new ExceptionEventData(e.Error));
             } // if-else
 
-            AllowFormToClose = true;
+            _allowFormToClose = true;
             ScanInProgress = false;
 
             // replace cancel button with close button
@@ -316,7 +304,7 @@ namespace IpTviewr.UiServices.Forms
                 {
                     Cancelled = e.Cancelled,
                     Error = e.Error,
-                    IsListRefreshNeeded = RefreshNeeded
+                    IsListRefreshNeeded = _refreshNeeded
                 };
                 ScanCompleted(this, eventArgs);
             } // if
@@ -356,11 +344,11 @@ namespace IpTviewr.UiServices.Forms
 
         private void NotifyScanResult(ProgressData progress)
         {
-            var IsInactive = (progress.ScanResult == ScanResult.Inactive);
+            var isInactive = (progress.ScanResult == ScanResult.Inactive);
 
             if (ChannelScanResult == null)
             {
-                progress.Service.IsInactive = IsInactive;
+                progress.Service.IsInactive = isInactive;
                 return;
             } // if
 
@@ -373,9 +361,9 @@ namespace IpTviewr.UiServices.Forms
 
             ChannelScanResult(this, e);
 
-            if ((e.WasInactive != IsInactive) && (!e.IsInList))
+            if ((e.WasInactive != isInactive) && (!e.IsInList))
             {
-                RefreshNeeded = true;
+                _refreshNeeded = true;
             } // if
         } // NotifyScanResult
 
@@ -383,7 +371,7 @@ namespace IpTviewr.UiServices.Forms
         {
             var currentLogo = pictureBoxServiceLogo.Image;
             pictureBoxServiceLogo.Image = newLogo;
-            if (currentLogo != null) currentLogo.Dispose();
+            currentLogo?.Dispose();
         } // ReplaceLogo
 
         #endregion
@@ -404,14 +392,14 @@ namespace IpTviewr.UiServices.Forms
                 currentThread.CurrentUICulture = parentThread.CurrentUICulture; // UICulture not inherited from spwawning thread
             } // if
 
-            Worker.ReportProgress((int)ProgressReportKind.Started);
+            _worker.ReportProgress((int)ProgressReportKind.Started);
 
             buffer = new byte[UdpMaxDatagramSize];
             progress = new ProgressData() { Total = BroadcastServicesCount };
 
             foreach (var service in BroadcastServices)
             {
-                if (Worker.CancellationPending) break;
+                if (_worker.CancellationPending) break;
 
                 // set progress for current service
                 progress.ScanResult = ScanResult.NotScanned;
@@ -419,7 +407,7 @@ namespace IpTviewr.UiServices.Forms
                 progress.Logo = service.Logo.GetImage(LogoSize.Size64);
                 progress.WasInactive = progress.Service.IsInactive;
 
-                Worker.ReportProgress((int)ProgressReportKind.Progress, progress.ShallowClone());
+                _worker.ReportProgress((int)ProgressReportKind.Progress, progress.ShallowClone());
                 progress.Count++;
 
                 progress.ScanResult = ScanService(service, buffer);
@@ -441,11 +429,11 @@ namespace IpTviewr.UiServices.Forms
                         break;
                 } // switch
 
-                Worker.ReportProgress((int)ProgressReportKind.Scanned, progress.ShallowClone());
+                _worker.ReportProgress((int)ProgressReportKind.Scanned, progress.ShallowClone());
             } // foreach
 
-            Worker.ReportProgress((int)ProgressReportKind.Ended, progress.ShallowClone());
-            e.Cancel = Worker.CancellationPending;
+            _worker.ReportProgress((int)ProgressReportKind.Ended, progress.ShallowClone());
+            e.Cancel = _worker.CancellationPending;
         } // Worker_DoWork
 
         private ScanResult ScanService(UiBroadcastService service, byte[] buffer)
@@ -469,7 +457,7 @@ namespace IpTviewr.UiServices.Forms
             }
             catch
             {
-                if (s != null) s.Dispose();
+                s?.Dispose();
                 s = null;
             } // try-catch
 

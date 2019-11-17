@@ -17,24 +17,24 @@ namespace IpTviewr.Services.EpgDiscovery
     {
         private class SegmentsProcessor
         {
-            private ConcurrentQueue<byte[]> SegmentsQueue;
-            private AutoResetEvent EnqueuedSegments;
-            private AutoResetEvent ProcessSegmentsEnded;
-            private bool NoMoreSegments;
-            private EpgDataStore Datastore;
+            private ConcurrentQueue<byte[]> _segmentsQueue;
+            private AutoResetEvent _enqueuedSegments;
+            private AutoResetEvent _processSegmentsEnded;
+            private bool _noMoreSegments;
+            private EpgDataStore _datastore;
 
             public event EventHandler ScheduleReceived;
             public event EventHandler ParseError;
 
             public void Start(EpgDataStore datastore)
             {
-                if (SegmentsQueue != null) throw new InvalidOperationException();
+                if (_segmentsQueue != null) throw new InvalidOperationException();
 
-                SegmentsQueue = new ConcurrentQueue<byte[]>();
-                EnqueuedSegments = new AutoResetEvent(false);
-                ProcessSegmentsEnded = new AutoResetEvent(false);
-                NoMoreSegments = false;
-                Datastore = datastore;
+                _segmentsQueue = new ConcurrentQueue<byte[]>();
+                _enqueuedSegments = new AutoResetEvent(false);
+                _processSegmentsEnded = new AutoResetEvent(false);
+                _noMoreSegments = false;
+                _datastore = datastore;
 
                 var worker = new Thread(ProcessSegments);
                 worker.Start();
@@ -42,30 +42,30 @@ namespace IpTviewr.Services.EpgDiscovery
 
             public void AddSegment(byte[] segmentPayload)
             {
-                if (SegmentsQueue == null) throw new ObjectDisposedException(nameof(SegmentsProcessor));
+                if (_segmentsQueue == null) throw new ObjectDisposedException(nameof(SegmentsProcessor));
 
 #if DEBUG
                 Console.WriteLine("Enqueue");
 #endif
-                SegmentsQueue.Enqueue(segmentPayload);
-                EnqueuedSegments.Set();
+                _segmentsQueue.Enqueue(segmentPayload);
+                _enqueuedSegments.Set();
             } // AddSegment
 
             public void WaitCompletion()
             {
-                NoMoreSegments = true;
-                EnqueuedSegments.Set();
-                ProcessSegmentsEnded.WaitOne();
+                _noMoreSegments = true;
+                _enqueuedSegments.Set();
+                _processSegmentsEnded.WaitOne();
             } // WaitCompletion
 
             public void Dispose()
             {
-                if (SegmentsQueue == null) return;
+                if (_segmentsQueue == null) return;
 
-                SegmentsQueue = null;
-                EnqueuedSegments.Dispose();
-                ProcessSegmentsEnded.Dispose();
-                Datastore = null;
+                _segmentsQueue = null;
+                _enqueuedSegments.Dispose();
+                _processSegmentsEnded.Dispose();
+                _datastore = null;
             } // Dispose
 
             private void ProcessSegments()
@@ -85,7 +85,7 @@ namespace IpTviewr.Services.EpgDiscovery
                         } // if
                         var epgService = EpgService.FromSchedule(schedule);
                         ScheduleReceived?.Invoke(this, EventArgs.Empty);
-                        Datastore.Add(epgService);
+                        _datastore.Add(epgService);
                     }
                     catch (Exception ex)
                     {
@@ -98,7 +98,7 @@ namespace IpTviewr.Services.EpgDiscovery
                     } // try-catch
                 } // while
 
-                ProcessSegmentsEnded.Set();
+                _processSegmentsEnded.Set();
             } // ProcessSegments
 
             private byte[] GetNextSegment()
@@ -106,9 +106,9 @@ namespace IpTviewr.Services.EpgDiscovery
                 while (true)
                 {
 #if DEBUG
-                    Console.WriteLine("Queue: {0} items", SegmentsQueue.Count);
+                    Console.WriteLine("Queue: {0} items", _segmentsQueue.Count);
 #endif
-                    if (SegmentsQueue.TryDequeue(out var payload))
+                    if (_segmentsQueue.TryDequeue(out var payload))
                     {
 #if DEBUG
                         Console.WriteLine("Dequeue.Ok");
@@ -116,10 +116,10 @@ namespace IpTviewr.Services.EpgDiscovery
                         return payload;
                     } // if
 
-                    if (NoMoreSegments) return null;
+                    if (_noMoreSegments) return null;
 
                     Console.WriteLine("Dequeue.Wait");
-                    EnqueuedSegments.WaitOne();
+                    _enqueuedSegments.WaitOne();
                 } // while
             } // GetNextPayload
         } // SegmentsProcessor

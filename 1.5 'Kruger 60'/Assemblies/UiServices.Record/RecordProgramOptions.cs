@@ -10,13 +10,6 @@ using IpTviewr.Services.EpgDiscovery;
 using IpTviewr.UiServices.Common;
 using IpTviewr.UiServices.Discovery;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace IpTviewr.UiServices.Record

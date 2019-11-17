@@ -7,12 +7,7 @@
 
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.IO;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using IpTviewr.Services.Record;
 using IpTviewr.Services.Record.Serialization;
@@ -27,8 +22,8 @@ namespace IpTviewr.UiServices.Record
     {
         private class AsyncResult
         {
-            public TaskList taskList;
-            public ListViewItem[] items;
+            public TaskList TaskList;
+            public ListViewItem[] Items;
         } // class AsyncResult
 
         public RecordTasksDialog()
@@ -93,7 +88,7 @@ namespace IpTviewr.UiServices.Record
             } // using worker
 
             listViewTasks.BeginUpdate();
-            listViewTasks.Items.AddRange(result.items);
+            listViewTasks.Items.AddRange(result.Items);
             listViewTasks.EndUpdate();
 
             if (listViewTasks.Items.Count == 0)
@@ -114,7 +109,7 @@ namespace IpTviewr.UiServices.Record
             if (dialog.QueryCancel()) return;
 
             dialog.SetProgressText(TasksTexts.ObtainingTasks);
-            result.taskList = TaskList.Build(new TaskListBuildOptions()
+            result.TaskList = TaskList.Build(new TaskListBuildOptions()
             {
                 RecordTaskFolder = RecordTaskFolder,
                 SchedulerFolders = SchedulerFolders,
@@ -125,11 +120,11 @@ namespace IpTviewr.UiServices.Record
             if (dialog.QueryCancel()) return;
             dialog.SetProgressText(TasksTexts.CreatingTasksList);
 
-            var q = from task in result.taskList
+            var q = from task in result.TaskList
                     where task.Status == TaskStatus.Ok
                     select task;
 
-            var items = new List<ListViewItem>(result.taskList.Count);
+            var items = new List<ListViewItem>(result.TaskList.Count);
             foreach (var task in q)
             {
                 var channelName = (task.Task != null) ? task.Task.Channel.Name : null;
@@ -149,7 +144,7 @@ namespace IpTviewr.UiServices.Record
                 items.Add(item);
             } // foreach
 
-            result.items = items.ToArray();
+            result.Items = items.ToArray();
         } // AsyncBuildList
 
         private void listViewTasks_SelectedIndexChanged(object sender, EventArgs e)

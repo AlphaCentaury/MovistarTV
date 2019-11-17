@@ -5,12 +5,6 @@
 // 
 // http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace IpTviewr.UiServices.Record
 {
     partial class RecordChannelDialog
@@ -19,7 +13,7 @@ namespace IpTviewr.UiServices.Record
 
         private void InitDurationData()
         {
-            recordingTime.SetDuration(CurrentStartDateTime, Task.Schedule.Kind, Task.Duration);
+            recordingTime.SetDuration(_currentStartDateTime, Task.Schedule.Kind, Task.Duration);
         } // InitDurationData()
 
         private void GetDurationData()

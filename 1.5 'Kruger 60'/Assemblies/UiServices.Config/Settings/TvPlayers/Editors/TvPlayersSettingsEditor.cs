@@ -14,8 +14,8 @@ namespace IpTviewr.UiServices.Configuration.Settings.TvPlayers.Editors
 {
     public partial class TvPlayersSettingsEditor : UserControl, IConfigurationItemEditor
     {
-        private int ManualUpdateLock;
-        private List<TvPlayer> Players;
+        private int _manualUpdateLock;
+        private List<TvPlayer> _players;
 
         public TvPlayersSettingsEditor()
         {
@@ -30,15 +30,9 @@ namespace IpTviewr.UiServices.Configuration.Settings.TvPlayers.Editors
 
         #region IConfigurationItemEditor implementation
 
-        UserControl IConfigurationItemEditor.UserInterfaceItem
-        {
-            get { return this; }
-        } // IConfigurationItemEditor.UserInterfaceItem
+        UserControl IConfigurationItemEditor.UserInterfaceItem => this;
 
-        bool IConfigurationItemEditor.SupportsWinFormsValidation
-        {
-            get { return false; }
-        } // IConfigurationItemEditor.SupportsWinFormsValidation
+        bool IConfigurationItemEditor.SupportsWinFormsValidation => false;
 
         public bool IsDataChanged
         {
@@ -46,10 +40,7 @@ namespace IpTviewr.UiServices.Configuration.Settings.TvPlayers.Editors
             protected set;
         } // IsDataChanged
 
-        public bool IsAppRestartNeeded
-        {
-            get { return false; }
-        } // IsAppRestartNeeded
+        public bool IsAppRestartNeeded => false;
 
         bool IConfigurationItemEditor.Validate()
         {
@@ -58,7 +49,7 @@ namespace IpTviewr.UiServices.Configuration.Settings.TvPlayers.Editors
 
         IConfigurationItem IConfigurationItemEditor.GetNewData()
         {
-            Settings.Players = Players.ToArray();
+            Settings.Players = _players.ToArray();
 
             return Settings;
         } // IConfigurationItemEditor.GetNewData
@@ -88,12 +79,12 @@ namespace IpTviewr.UiServices.Configuration.Settings.TvPlayers.Editors
             listViewPlayers.TileSize = new Size((listViewPlayers.Width - SystemInformation.VerticalScrollBarWidth - 6) / tilesPerRow,
                 Settings.PlayerIcons.ImageSize.Height + 4);
 
-            ManualUpdateLock++;
+            _manualUpdateLock++;
             labelDefaultPlayer.Text = Settings.GetDefaultPlayer().Name;
             checkBoxShortcut.Checked = !Settings.DirectLaunch;
-            ManualUpdateLock--;
+            _manualUpdateLock--;
 
-            Players = new List<TvPlayer>(Settings.Players);
+            _players = new List<TvPlayer>(Settings.Players);
             FillList(false, true);
         } // TvPlayersSettingsEditor_Load
 
@@ -148,7 +139,7 @@ namespace IpTviewr.UiServices.Configuration.Settings.TvPlayers.Editors
                 MessageBoxDefaultButton.Button2) != DialogResult.Yes) return;
 
             item.Selected = false;
-            Players.Remove(player);
+            _players.Remove(player);
             IsDataChanged = true;
             FillList(false, false);
         } // buttonDelete_Click
@@ -174,7 +165,7 @@ namespace IpTviewr.UiServices.Configuration.Settings.TvPlayers.Editors
                 editor.ShowDialog(this);
                 if (editor.IsDataChanged)
                 {
-                    Players.Add(editor.Player);
+                    _players.Add(editor.Player);
                     FillList(false, false);
                     listViewPlayers.Items[listViewPlayers.Items.Count - 1].Selected = true;
                 } // if
@@ -189,7 +180,7 @@ namespace IpTviewr.UiServices.Configuration.Settings.TvPlayers.Editors
 
         private void FillList(bool keepSelection, bool selectDefault)
         {
-            FillList(listViewPlayers, Players, Settings.DefaultPlayerId, keepSelection, selectDefault);
+            FillList(listViewPlayers, _players, Settings.DefaultPlayerId, keepSelection, selectDefault);
         } // FillList
 
         internal static void FillList(ListView list, IList<TvPlayer> players, Guid defaultPlayerId, bool keepSelection, bool selectDefault)

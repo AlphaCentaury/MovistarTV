@@ -16,10 +16,7 @@ namespace IpTviewr.Services.Record.Serialization
     [XmlType(Namespace = RecordTask.XmlNamespace)]
     public sealed class RecordRightNow: RecordSchedule
     {
-        public override RecordScheduleKind Kind
-        {
-            get { return RecordScheduleKind.RightNow; }
-        } // ScheduleKind
+        public override RecordScheduleKind Kind=>RecordScheduleKind.RightNow;
 
         public override void SetDefaultValues()
         {

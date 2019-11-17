@@ -15,19 +15,16 @@ namespace IpTviewr.UiServices.Common.Controls
     [ToolboxBitmap(typeof(TabControl))]
     public sealed class TabControlEx: TabControl
     {
-        private bool fieldShowTabs;
-        private const int TCM_ADJUSTRECT = 0x1328;
+        private bool _fieldShowTabs;
+        private const int TcmAdjustrect = 0x1328;
 
         [DefaultValue(false)]
         public bool ShowTabs
         {
-            get
-            {
-                return fieldShowTabs;
-            } // get
+            get => _fieldShowTabs;
             set
             {
-                fieldShowTabs = value;
+                _fieldShowTabs = value;
                 RecreateHandle();
             } // set
         } // ShowTabs
@@ -35,7 +32,7 @@ namespace IpTviewr.UiServices.Common.Controls
         protected override void WndProc(ref Message m)
         {
             // Hide tabs by trapping the TCM_ADJUSTRECT message
-            if (m.Msg == TCM_ADJUSTRECT && !DesignMode)
+            if (m.Msg == TcmAdjustrect && !DesignMode)
             {
                 if (!ShowTabs)
                 {

@@ -8,25 +8,28 @@
 using System;
 using System.Net;
 using System.Threading;
+using JetBrains.Annotations;
 
 namespace IpTviewr.DvbStp.Client
 {
     public sealed class DvbStpDownloadClientSettings
     {
-        public static IPEndPoint GetIPEndPoint(string multicastIpEndPoint)
+        [PublicAPI]
+        public static IPEndPoint GetIpEndPoint(string multicastIpEndPoint)
         {
             var parts = multicastIpEndPoint.Split(':');
             if (parts.Length != 2) throw new ArgumentOutOfRangeException();
 
-            return GetIPEndPoint(parts[0], parts[1]);
+            return GetIpEndPoint(parts[0], parts[1]);
         } // GetIPEndPoint
 
-        public static IPEndPoint GetIPEndPoint(string multicastIpAddress, string port)
+        public static IPEndPoint GetIpEndPoint(string multicastIpAddress, string port)
         {
             return new IPEndPoint(IPAddress.Parse(multicastIpAddress), ushort.Parse(port));
         } // GetIPEndPoint
 
-        public static IPEndPoint GetIPEndPoint(IPAddress multicastIpAddress, int port)
+        [PublicAPI]
+        public static IPEndPoint GetIpEndPoint(IPAddress multicastIpAddress, int port)
         {
             return new IPEndPoint(multicastIpAddress, port);
         } // GetIPEndPoint

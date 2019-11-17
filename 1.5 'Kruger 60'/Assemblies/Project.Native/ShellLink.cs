@@ -16,8 +16,8 @@ namespace IpTviewr.Native
     {
         public class UnsafeNativeMethods
         {
-            public static readonly Guid CLSID_FolderShortcut = new Guid(0x0AFACED1, 0xE828, 0x11D1, 0x91, 0x87, 0xB5, 0x32, 0xF1, 0xE9, 0x57, 0x5D);
-            public static readonly Guid CLSID_ShellLink = new Guid("00021401-0000-0000-C000-000000000046");
+            public static readonly Guid ClsidFolderShortcut = new Guid(0x0AFACED1, 0xE828, 0x11D1, 0x91, 0x87, 0xB5, 0x32, 0xF1, 0xE9, 0x57, 0x5D);
+            public static readonly Guid ClsidShellLink = new Guid("00021401-0000-0000-C000-000000000046");
 
             [ComImport, Guid("0000010c-0000-0000-c000-000000000046"), InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
             public interface IPersist
@@ -47,7 +47,7 @@ namespace IpTviewr.Native
             public interface IShellLinkW
             {
                 /// <summary>Retrieves the path and file name of a Shell link object</summary>
-                void GetPath([Out, MarshalAs(UnmanagedType.LPWStr)] StringBuilder pszFile, int cchMaxPath, out UnsafeNativeMethods.WIN32_FIND_DATAW pfd, UnsafeNativeMethods.SLGP_FLAGS fFlags);
+                void GetPath([Out, MarshalAs(UnmanagedType.LPWStr)] StringBuilder pszFile, int cchMaxPath, out UnsafeNativeMethods.Win32FindDataw pfd, UnsafeNativeMethods.SlgpFlags fFlags);
                 /// <summary>Retrieves the list of item identifiers for a Shell link object</summary>
                 void GetIDList(out IntPtr ppidl);
                 /// <summary>Sets the pointer to an item identifier list (PIDL) for a Shell link object.</summary>
@@ -79,13 +79,13 @@ namespace IpTviewr.Native
                 /// <summary>Sets the relative path to the Shell link object</summary>
                 void SetRelativePath([MarshalAs(UnmanagedType.LPWStr)] string pszPathRel, int dwReserved);
                 /// <summary>Attempts to find the target of a Shell link, even if it has been moved or renamed</summary>
-                void Resolve(IntPtr hwnd, UnsafeNativeMethods.SLR_FLAGS fFlags);
+                void Resolve(IntPtr hwnd, UnsafeNativeMethods.SlrFlags fFlags);
                 /// <summary>Sets the path and file name of a Shell link object</summary>
                 void SetPath([MarshalAs(UnmanagedType.LPWStr)] string pszFile);
             } // interface IShellLink
 
             [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Unicode)]
-            public struct WIN32_FIND_DATAW
+            public struct Win32FindDataw
             {
                 public uint dwFileAttributes;
                 public long ftCreationTime;
@@ -103,19 +103,19 @@ namespace IpTviewr.Native
 
             /// <summary>IShellLink.GetPath fFlags: Flags that specify the type of path information to retrieve</summary>
             [Flags()]
-            public enum SLGP_FLAGS
+            public enum SlgpFlags
             {
                 /// <summary>Retrieves the standard short (8.3 format) file name</summary>
-                SLGP_SHORTPATH = 0x1,
+                SlgpShortpath = 0x1,
                 /// <summary>Retrieves the Universal Naming Convention (UNC) path name of the file</summary>
-                SLGP_UNCPRIORITY = 0x2,
+                SlgpUncpriority = 0x2,
                 /// <summary>Retrieves the raw path name. A raw path is something that might not exist and may include environment variables that need to be expanded</summary>
-                SLGP_RAWPATH = 0x4
+                SlgpRawpath = 0x4
             } // enum SLGP_FLAGS
 
             /// <summary>IShellLink.Resolve fFlags</summary>
             [Flags()]
-            public enum SLR_FLAGS
+            public enum SlrFlags
             {
                 /// <summary>
                 /// Do not display a dialog box if the link cannot be resolved. When SLR_NO_UI is set,
@@ -126,26 +126,26 @@ namespace IpTviewr.Native
                 /// (3 seconds). To specify a value, set the high word of fFlags to the desired time-out
                 /// duration, in milliseconds.
                 /// </summary>
-                SLR_NO_UI = 0x1,
+                SlrNoUi = 0x1,
                 /// <summary>Obsolete and no longer used</summary>
-                SLR_ANY_MATCH = 0x2,
+                SlrAnyMatch = 0x2,
                 /// <summary>If the link object has changed, update its path and list of identifiers. 
                 /// If SLR_UPDATE is set, you do not need to call IPersistFile::IsDirty to determine 
                 /// whether or not the link object has changed.</summary>
-                SLR_UPDATE = 0x4,
+                SlrUpdate = 0x4,
                 /// <summary>Do not update the link information</summary>
-                SLR_NOUPDATE = 0x8,
+                SlrNoupdate = 0x8,
                 /// <summary>Do not execute the search heuristics</summary>
-                SLR_NOSEARCH = 0x10,
+                SlrNosearch = 0x10,
                 /// <summary>Do not use distributed link tracking</summary>
-                SLR_NOTRACK = 0x20,
+                SlrNotrack = 0x20,
                 /// <summary>Disable distributed link tracking. By default, distributed link tracking tracks
                 /// removable media across multiple devices based on the volume name. It also uses the
                 /// Universal Naming Convention (UNC) path to track remote file systems whose drive letter
                 /// has changed. Setting SLR_NOLINKINFO disables both types of tracking.</summary>
-                SLR_NOLINKINFO = 0x40,
+                SlrNolinkinfo = 0x40,
                 /// <summary>Call the Microsoft Windows Installer</summary>
-                SLR_INVOKE_MSI = 0x80
+                SlrInvokeMsi = 0x80
             } // enum SLR_FLAGS
         } // class
 

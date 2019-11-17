@@ -35,15 +35,9 @@ namespace IpTviewr.UiServices.Discovery.BroadcastList.Editors
 
         #region IConfigurationItemEditor implementation
 
-        UserControl IConfigurationItemEditor.UserInterfaceItem
-        {
-            get { return this; }
-        } // IConfigurationItemEditor.UserInterfaceItem
+        UserControl IConfigurationItemEditor.UserInterfaceItem => this;
 
-        bool IConfigurationItemEditor.SupportsWinFormsValidation
-        {
-            get { return false; }
-        } // IConfigurationItemEditor.SupportsWinFormsValidation
+        bool IConfigurationItemEditor.SupportsWinFormsValidation => false;
 
         public bool IsDataChanged
         {
@@ -52,9 +46,9 @@ namespace IpTviewr.UiServices.Discovery.BroadcastList.Editors
         } // IsDataChanged
 
         public bool IsAppRestartNeeded
-        {
-            get { return false; }
-        } // IsAppRestartNeeded
+            // IsAppRestartNeeded
+            =>
+                false;
 
         bool IConfigurationItemEditor.Validate()
         {

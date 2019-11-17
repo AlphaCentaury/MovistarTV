@@ -8,21 +8,19 @@
 using IpTviewr.Common;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using System.Text;
 
 namespace IpTviewr.RecorderLauncher
 {
     class Program
     {
-        private static AssemblyName ToolName;
-        private static bool PressAnyKey;
-        private static bool NoLogo;
-        private static Guid TaskId;
-        private static string DbFile;
-        private static string LogFolder;
-        private static ProgramMode Mode;
+        private static AssemblyName _toolName;
+        private static bool _pressAnyKey;
+        private static bool _noLogo;
+        private static Guid _taskId;
+        private static string _dbFile;
+        private static string _logFolder;
+        private static ProgramMode _mode;
 
         enum ProgramMode
         {
@@ -57,7 +55,7 @@ namespace IpTviewr.RecorderLauncher
                 result = Result.Exception;
             } // try-catch
 
-            if (PressAnyKey)
+            if (_pressAnyKey)
             {
                 Console.WriteLine();
                 Console.Write(Properties.Texts.PressAnyKeyEnd);
@@ -78,30 +76,30 @@ namespace IpTviewr.RecorderLauncher
             } // using icon
 
             // Initial setup
-            ToolName = Assembly.GetEntryAssembly().GetName();
+            _toolName = Assembly.GetEntryAssembly().GetName();
             Console.Title = Properties.Texts.ProgramCaption;
-            PressAnyKey = true;
+            _pressAnyKey = true;
 
             if (!ProcessArguments(args))
             {
                 return Result.Arguments;
             } // if
 
-            if (!NoLogo)
+            if (!_noLogo)
             {
                 DisplayLogo();
             } // if
 
-            switch (Mode)
+            switch (_mode)
             {
                 case ProgramMode.Help:
                     DisplayHelp();
                     return Result.Help;
 
                 case ProgramMode.Record:
-                    PressAnyKey = false;
+                    _pressAnyKey = false;
                     var launcher = new Launcher();
-                    return launcher.Run(TaskId, DbFile, LogFolder);
+                    return launcher.Run(_taskId, _dbFile, _logFolder);
 
                 default:
                     return Result.Arguments;
@@ -132,12 +130,12 @@ namespace IpTviewr.RecorderLauncher
 
             if (parser.Switches.ContainsKey("nologo"))
             {
-                NoLogo = true;
+                _noLogo = true;
             } // if
 
             if (parser.Switches.ContainsKey("help"))
             {
-                Mode = ProgramMode.Help;
+                _mode = ProgramMode.Help;
                 return true;
             }
             else
@@ -152,46 +150,46 @@ namespace IpTviewr.RecorderLauncher
 
             if (arguments.TryGetValue("TaskId", out value))
             {
-                TaskId = new Guid(value);
+                _taskId = new Guid(value);
             } // if
 
             if (arguments.TryGetValue("Database", out value))
             {
-                DbFile = value;
+                _dbFile = value;
             } // if
 
             if (arguments.TryGetValue("LogFolder", out value))
             {
-                LogFolder = value;
+                _logFolder = value;
             } // if
 
             if (arguments.TryGetValue("Action", out value))
             {
                 if (string.Compare(value, "Record", true) == 0)
                 {
-                    Mode = ProgramMode.Record;
+                    _mode = ProgramMode.Record;
                 }
                 else
                 {
                     // Unknown action
-                    Mode = ProgramMode.None;
+                    _mode = ProgramMode.None;
                 } // if-else
             } // if
 
             // TODO: display error message if arguments validation fails
 
             // validate general arguments
-            if (!string.IsNullOrEmpty(LogFolder))
+            if (!string.IsNullOrEmpty(_logFolder))
             {
-                if (!System.IO.Directory.Exists(LogFolder)) return false;
+                if (!System.IO.Directory.Exists(_logFolder)) return false;
             } // if
 
             // validate record mode arguments
-            if (Mode == ProgramMode.Record)
+            if (_mode == ProgramMode.Record)
             {
-                if (TaskId == Guid.Empty) return false;
-                if (string.IsNullOrEmpty(DbFile)) return false;
-                if (!System.IO.File.Exists(DbFile)) return false;
+                if (_taskId == Guid.Empty) return false;
+                if (string.IsNullOrEmpty(_dbFile)) return false;
+                if (!System.IO.File.Exists(_dbFile)) return false;
             } // if
 
             return true;
@@ -210,13 +208,13 @@ namespace IpTviewr.RecorderLauncher
             object[] attributes = Assembly.GetEntryAssembly().GetCustomAttributes(typeof(AssemblyCopyrightAttribute), false);
             copyright = (attributes.Length > 0) ? ((AssemblyCopyrightAttribute)attributes[0]).Copyright : "Copyright (C) http://movistartv.alphacentaury.org";
 
-            Console.WriteLine(Properties.Texts.StartLogo, Properties.Texts.ProgramCaption, ToolName.Version, copyright);
+            Console.WriteLine(Properties.Texts.StartLogo, Properties.Texts.ProgramCaption, _toolName.Version, copyright);
             Console.WriteLine();
         } // DisplayLogo
 
         private static void DisplayHelp()
         {
-            Console.WriteLine(Properties.Texts.ProgramHelp, ToolName.Name);
+            Console.WriteLine(Properties.Texts.ProgramHelp, _toolName.Name);
         } // DisplayHelp
     } // class Program
 } // namespace

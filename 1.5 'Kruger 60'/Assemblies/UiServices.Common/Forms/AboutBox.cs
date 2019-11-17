@@ -34,7 +34,7 @@ namespace IpTviewr.UiServices.Common.Forms
             {
                 if (ApplicationData.LargeIcon != null)
                 {
-                    if (logoPictureBox.Image != null) logoPictureBox.Image.Dispose();
+                    logoPictureBox.Image?.Dispose();
                     logoPictureBox.Image = ApplicationData.LargeIcon;
                 } // if
                 labelAppName.Text = string.Format("{0}", ApplicationData.Name);
@@ -100,13 +100,7 @@ namespace IpTviewr.UiServices.Common.Forms
             }
         }
 
-        public string AssemblyVersion
-        {
-            get
-            {
-                return Assembly.GetCallingAssembly().GetName().Version.ToString();
-            }
-        }
+        public string AssemblyVersion => Assembly.GetCallingAssembly().GetName().Version.ToString();
 
         public string AssemblyDescription
         {

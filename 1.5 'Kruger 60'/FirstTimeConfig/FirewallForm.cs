@@ -7,12 +7,6 @@
 
 using IpTviewr.Tools.FirstTimeConfig.Properties;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace IpTviewr.Tools.FirstTimeConfig
@@ -34,8 +28,7 @@ namespace IpTviewr.Tools.FirstTimeConfig
         private void buttonFirewall_Click(object sender, EventArgs e)
         {
             string message;
-
-            var ok = Installation.ConfigureFirewall(
+            _ = Installation.ConfigureFirewall(
                 checkBoxFirewallDecoder.Checked ? Program.FirewallBinPath : null,
                 checkBoxFirewallVlc.Checked ? Program.FirewallVlcPath : null,
                 out message);

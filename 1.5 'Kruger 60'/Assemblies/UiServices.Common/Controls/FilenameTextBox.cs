@@ -17,13 +17,13 @@ namespace IpTviewr.UiServices.Common.Controls
     [ToolboxBitmap(typeof(TextBox))]
     public class FilenameTextBox : TextBox
     {
-        private char[] InvalidCharacters;
-        private string InvalidCharacterText;
-        private bool ManualUpdateOfValue;
+        private char[] _invalidCharacters;
+        private string _invalidCharacterText;
+        private bool _manualUpdateOfValue;
 
         public FilenameTextBox()
         {
-            InvalidCharacters = TextUtils.GetFilenameInvalidChars();
+            _invalidCharacters = TextUtils.GetFilenameInvalidChars();
         } // constructor
 
         /// <summary>
@@ -32,10 +32,10 @@ namespace IpTviewr.UiServices.Common.Controls
         /// <param name="text">Text to set</param>
         public void SetText(string text, bool raiseTextChangedEvent)
         {
-            ManualUpdateOfValue = true;
+            _manualUpdateOfValue = true;
             this.Text = text;
             RemoveInvalidChars(false);
-            ManualUpdateOfValue = false;
+            _manualUpdateOfValue = false;
 
             if (raiseTextChangedEvent)
             {
@@ -45,7 +45,7 @@ namespace IpTviewr.UiServices.Common.Controls
 
         protected override void OnTextChanged(EventArgs e)
         {
-            if (ManualUpdateOfValue) return;
+            if (_manualUpdateOfValue) return;
             if (RemoveInvalidChars(true)) return;
 
             base.OnTextChanged(e);
@@ -53,7 +53,7 @@ namespace IpTviewr.UiServices.Common.Controls
 
         private void DisplayInvalidCharacterWarning()
         {
-            if (InvalidCharacterText == null)
+            if (_invalidCharacterText == null)
             {
                 StringBuilder buffer;
 
@@ -62,7 +62,7 @@ namespace IpTviewr.UiServices.Common.Controls
                 buffer.AppendLine();
                 buffer.AppendLine();
 
-                var invalid = from c in InvalidCharacters
+                var invalid = from c in _invalidCharacters
                               where c >= 31
                               orderby c
                               select c;
@@ -72,10 +72,10 @@ namespace IpTviewr.UiServices.Common.Controls
                     buffer.Append(' ');
                     buffer.Append(ch);
                 } // foreach
-                InvalidCharacterText = buffer.ToString();
+                _invalidCharacterText = buffer.ToString();
             } // if
 
-            MessageBox.Show(this, InvalidCharacterText, Properties.Filename.InputInvalidCharCaption,
+            MessageBox.Show(this, _invalidCharacterText, Properties.Filename.InputInvalidCharCaption,
                 MessageBoxButtons.OK, MessageBoxIcon.Warning);
         } // DisplayInvalidCharacterWarning
 
@@ -83,7 +83,7 @@ namespace IpTviewr.UiServices.Common.Controls
         {
             int caretPos;
 
-            var newText = TextUtils.RemoveInvalidChars(this.Text, InvalidCharacters, null, out var modified);
+            var newText = TextUtils.RemoveInvalidChars(this.Text, _invalidCharacters, null, out var modified);
             if (!modified) return false;
 
             if (displayWarning)
@@ -91,11 +91,11 @@ namespace IpTviewr.UiServices.Common.Controls
                 DisplayInvalidCharacterWarning();
             } // if
 
-            ManualUpdateOfValue = true;
+            _manualUpdateOfValue = true;
             caretPos = this.SelectionStart;
             this.Text = newText;
             this.SelectionStart = (caretPos <= 0)? 0 : caretPos - 1;
-            ManualUpdateOfValue = false;
+            _manualUpdateOfValue = false;
 
             return true;
         } // RemoveInvalidChars

@@ -31,8 +31,8 @@ namespace IpTviewr.Services.EpgDiscovery.TvAnytime
         [Browsable(false), EditorBrowsable(EditorBrowsableState.Never)]
         public string XmlValue
         {
-            get { return (Nullable.HasValue) ? XmlConvert.ToString(Nullable.Value) : null; }
-            set { Nullable = (value != null) ? XmlConvert.ToInt32(value) : (int?)null; }
+            get => (Nullable.HasValue) ? XmlConvert.ToString(Nullable.Value) : null;
+            set => Nullable = (value != null) ? XmlConvert.ToInt32(value) : (int?)null;
         } // XmlValue
     } // class TvaNullableInt32
 } // namespace

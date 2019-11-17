@@ -24,17 +24,17 @@ namespace Etsi.Ts102034.v010501.XmlSerialization.Common
         public ushort OrigNetId;
 
         [XmlAttribute]
-        public ushort TSId;
+        public ushort TsId;
 
         [XmlAttribute]
         public ushort ServiceId;
 
         [XmlAttribute]
-        public string TSIdWildcard;
+        public string TsIdWildcard;
 
         public DvbTriplet()
         {
-            this.TSIdWildcard = "*";
+            this.TsIdWildcard = "*";
         } // default constructor
     } // class DvbTriplet
 } // namespace

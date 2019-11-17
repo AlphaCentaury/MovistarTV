@@ -21,7 +21,7 @@ namespace IpTviewr.Core.IpTvProvider
 {
     public static class ExternalTvPlayer
     {
-        private static string[] LaunchParamKeys;
+        private static string[] _launchParamKeys;
 
         public static void ShowTvChannel(Form owner, UiBroadcastService service, bool defaultPlayer = true)
         {
@@ -73,9 +73,9 @@ namespace IpTviewr.Core.IpTvProvider
                 throw new FileNotFoundException(ex.Message + "\r\n" + player.Path);
             } // if
 
-            if (LaunchParamKeys == null)
+            if (_launchParamKeys == null)
             {
-                LaunchParamKeys = new string[]
+                _launchParamKeys = new[]
                 {
                     "Channel.Url",
                     "Channel.Name",
@@ -84,7 +84,7 @@ namespace IpTviewr.Core.IpTvProvider
                 };
             } // if
 
-            var paramValues = new string[]
+            var paramValues = new[]
             {
                 service.LocationUrl,
                 service.DisplayName,
@@ -92,7 +92,7 @@ namespace IpTviewr.Core.IpTvProvider
                 throughShortcut? service.Logo.GetLogoIconPath() : null,
             };
 
-            var parameters = ArgumentsManager.CreateParameters(LaunchParamKeys, paramValues, false);
+            var parameters = ArgumentsManager.CreateParameters(_launchParamKeys, paramValues, false);
             var arguments = ArgumentsManager.ExpandArguments(player.Arguments, parameters, TvPlayer.ParameterOpenBrace, TvPlayer.ParameterCloseBrace, StringComparison.CurrentCultureIgnoreCase);
             var launchArguments = ArgumentsManager.JoinArguments(arguments);
 

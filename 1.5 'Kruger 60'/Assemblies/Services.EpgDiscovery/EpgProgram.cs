@@ -7,13 +7,14 @@
 
 using System;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Runtime.Remoting.Metadata.W3cXsd2001;
 using System.Xml.Serialization;
 
 namespace IpTviewr.Services.EpgDiscovery
 {
     [Serializable()]
-    //[DebuggerStepThrough]
+    [DebuggerStepThrough]
     [DesignerCategory("code")]
     [XmlType(TypeName = "Program", Namespace = Common.XmlNamespace)]
     public class EpgProgram
@@ -54,22 +55,13 @@ namespace IpTviewr.Services.EpgDiscovery
         } // UtcStartTime
 
         [XmlIgnore]
-        public DateTime LocalStartTime
-        {
-            get { return UtcStartTime.ToLocalTime(); }
-        } // LocalStartTime
+        public DateTime LocalStartTime => UtcStartTime.ToLocalTime();
 
         [XmlIgnore]
-        public DateTime UtcEndTime
-        {
-            get { return UtcStartTime + Duration; }
-        } // UtcEndTime
+        public DateTime UtcEndTime => UtcStartTime + Duration;
 
         [XmlIgnore]
-        public DateTime LocalEndTime
-        {
-            get { return UtcEndTime.ToLocalTime(); }
-        } // LocalEndTime
+        public DateTime LocalEndTime => UtcEndTime.ToLocalTime();
 
         [XmlIgnore]
         public TimeSpan Duration
@@ -82,8 +74,8 @@ namespace IpTviewr.Services.EpgDiscovery
         [Browsable(false), EditorBrowsable(EditorBrowsableState.Never)]
         public string XmlDuration
         {
-            get { return SoapDuration.ToString(Duration); }
-            set { Duration = string.IsNullOrEmpty(value) ? new TimeSpan() : SoapDuration.Parse(value); }
+            get => SoapDuration.ToString(Duration);
+            set => Duration = string.IsNullOrEmpty(value) ? new TimeSpan() : SoapDuration.Parse(value);
         } // XmlDuration
 
         [XmlAttribute("isBlank")]
@@ -138,7 +130,7 @@ namespace IpTviewr.Services.EpgDiscovery
 
             var result = new EpgProgram()
             {
-                Id = item.Program.CRID,
+                Id = item.Program.Crid,
                 Duration = (item.Duration.TotalSeconds > 0) ? item.Duration : item.PublishedDuration,
                 UtcStartTime = utcStartTime.Value
             };
@@ -152,7 +144,7 @@ namespace IpTviewr.Services.EpgDiscovery
 
             result.Title = item.Description.Title;
             result.Genre = EpgCodedValue.ToCodedValue(item.Description.Genre);
-            result.ParentalRating = (item.Description.ParentalGuidance != null)? EpgCodedValue.ToCodedValue(item.Description.ParentalGuidance.ParentalRating) : null;
+            result.ParentalRating = (item.Description.ParentalGuidance != null) ? EpgCodedValue.ToCodedValue(item.Description.ParentalGuidance.ParentalRating) : null;
 
             var releaseDate = item.Description.ReleaseInfo?.ReleaseDate;
             if (releaseDate != null)
@@ -168,16 +160,13 @@ namespace IpTviewr.Services.EpgDiscovery
             if (item.EpisodeOf == null) return result;
 
             var episode = result.Episode ?? new EpgProgramEpisode();
-            episode.SeriesId = item.EpisodeOf.CRID;
+            episode.SeriesId = item.EpisodeOf.Crid;
             episode.SeriesName = item.EpisodeOf.Title;
             result.Episode = episode;
 
             return result;
         } // FromScheduleEvent
 
-        public override string ToString()
-        {
-            return Title;
-        } // ToString
+        public override string ToString() => $"{Title} @ {LocalStartTime}";
     } // EPGEvent
 } // namespace

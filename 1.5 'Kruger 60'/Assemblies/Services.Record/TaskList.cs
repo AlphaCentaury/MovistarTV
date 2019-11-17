@@ -8,15 +8,12 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
 using IpTviewr.Services.Record.Serialization;
-using IpTviewr.Services.Record.Properties;
 using Microsoft.Win32.TaskScheduler;
 
 namespace IpTviewr.Services.Record
 {
-    public class TaskList: ICollection<TaskData>
+    public class TaskList : ICollection<TaskData>
     {
         protected IList<TaskData> List;
 
@@ -32,7 +29,7 @@ namespace IpTviewr.Services.Record
             if (options == null) throw new ArgumentNullException();
             if (string.IsNullOrEmpty(options.RecordTaskFolder)) throw new ArgumentNullException();
             if (!Directory.Exists(options.RecordTaskFolder)) throw new DirectoryNotFoundException(options.RecordTaskFolder);
-            
+
 
             result = new TaskList();
             result.FillFromFolder(options.RecordTaskFolder);
@@ -63,22 +60,16 @@ namespace IpTviewr.Services.Record
         public bool Contains(TaskData item)
         {
             return List.Contains(item);
-        } // Constains
+        } // Contains
 
         public void CopyTo(TaskData[] array, int arrayIndex)
         {
             List.CopyTo(array, arrayIndex);
         } // CopyTo
 
-        public int Count
-        {
-            get { return List.Count; }
-        } // Count
+        public int Count => List.Count;
 
-        public bool IsReadOnly
-        {
-            get { return true; }
-        } // IsReadOnly
+        public bool IsReadOnly => true;
 
         public bool Remove(TaskData item)
         {

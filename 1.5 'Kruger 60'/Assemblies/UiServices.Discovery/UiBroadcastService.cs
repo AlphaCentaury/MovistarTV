@@ -327,11 +327,11 @@ namespace IpTviewr.UiServices.Discovery
             else
             {
                 var q = from triplet in Data.DvbTriplet
-                        select new Property("DVB Triplet", $"OrigNetId='{triplet.OrigNetId}', TSId='{triplet.TSId}', ServiceId='{triplet.ServiceId}'");
+                        select new Property("DVB Triplet", $"OrigNetId='{triplet.OrigNetId}', TSId='{triplet.TsId}', ServiceId='{triplet.ServiceId}'");
                 properties.AddRange(q);
             } // if-else
 
-            properties.Add(new Property("Max bitarate", Data.MaxBitrate));
+            properties.Add(new Property("Max bitrate", Data.MaxBitrate));
 
             if (Data.ServiceInformation == null)
             {
@@ -399,7 +399,7 @@ namespace IpTviewr.UiServices.Discovery
                         if (replacement.DvbTriplet != null)
                         {
                             properties.Add(new Property("Replacement service",
-                                $"DVB Triplet: OrigNetId='{triplet.OrigNetId}', TSId='{triplet.TSId}', ServiceId='{triplet.ServiceId}'"));
+                                $"DVB Triplet: OrigNetId='{triplet.OrigNetId}', TSId='{triplet.TsId}', ServiceId='{triplet.ServiceId}'"));
                         } // if
                         var textual = replacement.TextualIdentifier;
                         if (textual != null)
