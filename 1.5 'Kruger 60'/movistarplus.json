@@ -1,0 +1,27 @@
+{
+  "environment": {
+    "contents.url": "http://172.26.22.23:2001/appclientv/nux",
+    "appserver.url": "{OPCH:cfg.resources.url}/appserver/mvtv.do"
+  },
+  "variables": {
+    "clientProfile": {
+      "tvWholesaler": "1"
+    },
+    "getConfigurationParams": {
+      "tvChannelLogoPath2": "incoming/epg/channelLogo/bn/",
+      "landscapeSubPath": "landscape/",
+      "portraitSubPath": "portrait/",
+      "smallSubpath": "small/",
+      "bigSubpath": "big/",
+      "epgPath": "incoming/epg/",
+      "videoServerUrl": "rtsp://cdvr1.catchup2.imagenio.telefonica.net/"
+    }
+  },
+  "opch": {
+    "multicastAddress": "239.0.2.30",
+    "multicastPort": 22222,
+    "default": {
+      "cfg.resources.url": "http://www-60.svc.imagenio.telefonica.net:2001"
+    }
+  }
+}

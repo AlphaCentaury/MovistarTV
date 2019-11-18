@@ -257,3 +257,7 @@ paket-files/
 
 #Include ALL files in Assemblies/Third Party
 !Assemblies/Third-Party
+/1.5 'Kruger 60'/Assemblies/Core.IpTvProvider/Implementation/ServiceProviderTexts.cs
+/1.5 'Kruger 60'/Assemblies/Core.IpTvProvider/Implementation/ServiceTexts.cs
+/1.5 'Kruger 60'/Assemblies/Core.IpTvProvider/ITvServiceProviderTexts.cs
+/1.5 'Kruger 60'/Assemblies/Core.IpTvProvider/ITvServiceTexts.cs
