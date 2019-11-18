@@ -496,6 +496,8 @@ namespace IpTviewr.UiServices.Configuration
 
         private InitializationResult RegisterConfigurationItems()
         {
+            var regType = "";
+
             try
             {
                 var registerItems = User.Configuration.Registry;
@@ -503,16 +505,16 @@ namespace IpTviewr.UiServices.Configuration
 
                 foreach (var registerType in registerItems)
                 {
+                    regType = registerType;
                     var type = Type.GetType(registerType);
+                    if (type == null) throw new TypeLoadException();
                     var registration = (IConfigurationItemRegistration)Activator.CreateInstance(type);
-                    if (registration == null) continue;
-
                     ItemsRegistry.Add(registration.Id, registration);
                 } // foreach
             }
             catch (Exception ex)
             {
-                return new InitializationResult(ex);
+                return new InitializationResult(ex, $"Unable to register configuration item '{regType}'.");
             } // try-catch
 
             return InitializationResult.Ok;
@@ -520,6 +522,8 @@ namespace IpTviewr.UiServices.Configuration
 
         private InitializationResult ProcessXmlConfigurationItems()
         {
+            var name = "";
+
             try
             {
                 ItemsIndex = new Dictionary<Guid, int>(User.Configuration.XmlData.Count);
@@ -527,6 +531,7 @@ namespace IpTviewr.UiServices.Configuration
 
                 foreach (var item in User.Configuration.XmlData)
                 {
+                    name = item.Name;
                     var xAttr = item.Attributes["configurationId"];
                     if ((xAttr == null) || (xAttr.Value == null)) continue;
                     var id = new Guid(xAttr.Value);
@@ -565,7 +570,7 @@ namespace IpTviewr.UiServices.Configuration
             }
             catch (Exception ex)
             {
-                return new InitializationResult(ex);
+                return new InitializationResult(ex, $"Unable to read user configuration item '{name}'.");
             } // try-catch
 
             return InitializationResult.Ok;

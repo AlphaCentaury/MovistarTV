@@ -38,8 +38,9 @@ namespace IpTviewr.UiServices.Configuration
             Message = message;
         } // InitializationResult
 
-        public InitializationResult(Exception exception)
+        public InitializationResult(Exception exception, string message)
         {
+            Message = message;
             InnerException = exception;
         } // InitializationResult
     } // InitializationResult
