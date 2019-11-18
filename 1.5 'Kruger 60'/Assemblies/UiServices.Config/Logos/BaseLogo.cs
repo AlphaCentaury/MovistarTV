@@ -11,6 +11,7 @@ using System.IO;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO.Compression;
+using IpTviewr.Common;
 
 namespace IpTviewr.UiServices.Configuration.Logos
 {
@@ -80,7 +81,7 @@ namespace IpTviewr.UiServices.Configuration.Logos
             try
             {
                 var iconPath = Path.Combine(AppUiConfiguration.Current.Folders.Logos.Cache,
-                    $"{Key.Replace('/', '~')}.ico");
+                    $"{TextUtils.SanitizeFilename(Key, "~")}.ico");
 
                 var zipEntry = Mapping.GetIcon(MappingKey, MappingEntry, out var lastModifiedUtc);
                 if (zipEntry == null) return null;
