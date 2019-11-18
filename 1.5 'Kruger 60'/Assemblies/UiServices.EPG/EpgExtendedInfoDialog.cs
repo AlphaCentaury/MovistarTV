@@ -10,7 +10,7 @@ using System.ComponentModel;
 using System.Text;
 using System.Windows.Forms;
 // TODO: EPG
-// using IpTviewr.Core.IpTvProvider.EPG;
+// using IpTviewr.Core.IpTvService.EPG;
 using IpTviewr.UiServices.Common.Forms;
 using IpTviewr.UiServices.Discovery;
 using IpTviewr.Services.EpgDiscovery;
@@ -84,7 +84,7 @@ namespace IpTviewr.UiServices.EPG
             pictureProgramPreview.Image = Properties.Resources.EpgLoadingProgramImage;
             pictureProgramPreview.ImageLocation = null;
             // TODO: EPG
-            // pictureProgramPreview.ImageLocation = IpTvProvider.Current.EpgInfo.GetEpgProgramThumbnailUrl(ProgramInfo.Service, ProgramInfo.Base, true);
+            // pictureProgramPreview.ImageLocation = IpTvService.Current.EpgInfo.GetEpgProgramThumbnailUrl(ProgramInfo.Service, ProgramInfo.Base, true);
 
             buttonShowProgram.Enabled = false;
             buttonRecordProgram.Enabled = false;
@@ -93,7 +93,7 @@ namespace IpTviewr.UiServices.EPG
         private void EpgExtendedInfoDialog_Shown(object sender, EventArgs e)
         {
             // TODO: EPG
-            // ProgramInfo.Extended = IpTvProvider.Current.EpgInfo.GetEpgInfo(ProgramInfo.Service, ProgramInfo.Base, true);
+            // ProgramInfo.Extended = IpTvService.Current.EpgInfo.GetEpgInfo(ProgramInfo.Service, ProgramInfo.Base, true);
             // if (ProgramInfo.Extended == null)
             // {
                 richTextProgramData.Text = Properties.EpgRtf.NullProgramData;

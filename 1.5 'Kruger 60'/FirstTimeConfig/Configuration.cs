@@ -13,7 +13,7 @@ using IpTviewr.UiServices.Discovery.BroadcastList;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using IpTViewr.Core;
+using IpTviewr.Core;
 using IpTviewr.IpTvServices.MovistarPlus;
 
 namespace IpTviewr.Tools.FirstTimeConfig
@@ -89,7 +89,7 @@ namespace IpTviewr.Tools.FirstTimeConfig
                 var tvPlayers = GetTvPlayers(vlcPath);
                 var movistarPlusIpTvProviderSettings = new IpTvProviderSettings()
                 {
-                    ProviderClass = typeof(ServiceMovistarPlus).AssemblyQualifiedName
+                    ProviderClass = typeof(IpTvServiceMovistarPlus).AssemblyQualifiedName
                 };
 
                 var config = AppUiConfiguration.CreateForUserConfig(user);

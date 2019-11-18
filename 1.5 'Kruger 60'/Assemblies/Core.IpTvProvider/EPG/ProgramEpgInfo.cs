@@ -5,10 +5,10 @@
 // 
 // http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
 
-using IpTviewr.UiServices.Discovery;
 using IpTviewr.Services.EpgDiscovery;
+using IpTviewr.UiServices.Discovery;
 
-namespace IpTviewr.Core.IpTvProvider.EPG
+namespace IpTviewr.IpTvServices.EPG
 {
     public class ProgramEpgInfo
     {

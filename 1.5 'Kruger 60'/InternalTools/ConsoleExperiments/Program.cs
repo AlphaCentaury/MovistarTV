@@ -12,7 +12,15 @@ using IpTviewr.Services.EPG.TvAnytime;
 using IpTviewr.Services.SqlServerCE;
 using IpTviewr.UiServices.EPG;
 */
+
+using System.Collections.Generic;
+using System.Runtime.Serialization;
 using System.Windows.Forms;
+using IpTviewr.Common.Serialization;
+using IpTviewr.UiServices.Configuration.Schema2014.ContentProvider;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Serialization;
 
 namespace IpTviewr.Internal.Tools.ConsoleExperiments
 {
@@ -25,14 +33,28 @@ namespace IpTviewr.Internal.Tools.ConsoleExperiments
 
             Experiment experiment;
 
+            var root = @"C:\Users\Developer\source\repos\AlphaCentaury\MovistarTV\1.5 'Kruger 60'";
+            var x = XmlSerialization.Deserialize<IpTvProviderData>(root + @"\movistartv-config.xml", true);
+            var y = JsonConvert.SerializeObject(x, Formatting.Indented, new JsonSerializerSettings()
+            {
+                ContractResolver = new CamelCasePropertyNamesContractResolver(),
+                NullValueHandling = NullValueHandling.Ignore,
+                Converters = new JsonConverter[]
+                {
+                    new StringEnumConverter() 
+                }
+            });
+
+            return 0;
+
             //experiment = new CachedLogos();
             //experiment = new WindowsIconTest();
             //experiment = new Find();
             //experiment = new ExceptionMsgBoxExperiment();
             //experiment = new PlayingWithLogos();
-            experiment = new ReorganizeLogos();
+            //experiment = new ReorganizeLogos();
 
-            return experiment.Execute(args);
+            //return experiment.Execute(args);
         } // Main
     } // class Program
 } // namespace

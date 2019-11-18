@@ -87,7 +87,7 @@ namespace IpTviewr.ChannelList
 
             // display mini bar
             // TODO: epgMiniGuide.DetailsEnabled
-            epgMiniGuide.DetailsEnabled = false; //(IpTvProvider.Current.EpgInfo.Capabilities & EpgInfoProviderCapabilities.ExtendedInfo) != 0;
+            epgMiniGuide.DetailsEnabled = false; //(IpTvService.Current.EpgInfo.Capabilities & EpgInfoProviderCapabilities.ExtendedInfo) != 0;
             epgMiniGuide.LoadEpgPrograms(_listManager.SelectedService, DateTime.Now);
             epgMiniGuide.SetEpgDataStore(_epgDataStore);
         }  // ShowEpgMiniGuide

@@ -51,7 +51,7 @@ namespace IpTviewr.UiServices.EPG
                 pictureProgramThumbnail.Image = Properties.Resources.EpgLoadingProgramImage;
                 pictureProgramThumbnail.ImageLocation = null;
                 // TODO: EPG
-                // pictureProgramThumbnail.ImageLocation = IpTvProvider.Current.EpgInfo.GetEpgProgramThumbnailUrl(service, EpgProgram, false);
+                // pictureProgramThumbnail.ImageLocation = IpTvService.Current.EpgInfo.GetEpgProgramThumbnailUrl(service, EpgProgram, false);
             } // if-else
         }  // DisplayData
 

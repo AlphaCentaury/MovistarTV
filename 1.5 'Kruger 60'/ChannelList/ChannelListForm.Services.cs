@@ -5,8 +5,10 @@
 // 
 // http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
 
+using IpTviewr.ChannelList.Properties;
 using IpTviewr.Common.Telemetry;
-using IpTviewr.Core.IpTvProvider;
+using IpTviewr.Core;
+using IpTviewr.Services.EpgDiscovery;
 using IpTviewr.UiServices.Common.Forms;
 using IpTviewr.UiServices.Configuration;
 using IpTviewr.UiServices.Configuration.Logos;
@@ -17,8 +19,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
-using IpTviewr.ChannelList.Properties;
-using IpTviewr.Services.EpgDiscovery;
 
 namespace IpTviewr.ChannelList
 {

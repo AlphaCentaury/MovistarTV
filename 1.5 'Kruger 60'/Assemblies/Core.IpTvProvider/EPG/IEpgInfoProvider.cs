@@ -5,7 +5,7 @@
 // 
 // http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
 
-namespace IpTviewr.Core.IpTvProvider.EPG
+namespace IpTviewr.IpTvServices.EPG
 {
     public interface IEpgInfoProvider
     {

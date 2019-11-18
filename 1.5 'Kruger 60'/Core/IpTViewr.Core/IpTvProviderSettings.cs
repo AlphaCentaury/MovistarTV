@@ -7,10 +7,11 @@
 
 using System;
 using System.Xml.Serialization;
+using IpTviewr.IpTvServices;
 using IpTviewr.UiServices.Configuration;
 using IpTviewr.UiServices.Configuration.Schema2014.Config;
 
-namespace IpTviewr.Core.IpTvProvider
+namespace IpTviewr.Core
 {
     [Serializable]
     [XmlRoot("IpTvProvider", Namespace = ConfigCommon.ConfigXmlNamespace)]
@@ -32,19 +33,20 @@ namespace IpTviewr.Core.IpTvProvider
         {
             try
             {
-                if (IpTvProvider.Current != null) return InitializationResult.Ok;
+                if (IpTvService.Current != null) return InitializationResult.Ok;
 
                 var ipTvProviderType = Type.GetType(ProviderClass);
-                var ipTvProvider = (IpTvProvider)Activator.CreateInstance(ipTvProviderType);
+                if (ipTvProviderType == null) throw new TypeLoadException();
+                var ipTvProvider = (IpTvService)Activator.CreateInstance(ipTvProviderType);
 
                 var result = ipTvProvider.Initialize();
-                IpTvProvider.Current = ipTvProvider;
+                IpTvService.Current = ipTvProvider;
 
                 return result;
             }
             catch (Exception ex)
             {
-                return new InitializationResult(ex);
+                return new InitializationResult(ex, $"Unable to create IpTvService '{ProviderClass}'.");
             } // try-catch
         } // Initialize
 

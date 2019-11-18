@@ -11,9 +11,9 @@ using IpTviewr.Common;
 using IpTviewr.UiServices.Discovery;
 using IpTviewr.UiServices.Record;
 using IpTviewr.UiServices.Common.Forms;
-using IpTviewr.Core.IpTvProvider;
 using IpTviewr.Services.EpgDiscovery;
 using System.Threading;
+using IpTviewr.Core;
 using IpTviewr.UiServices.Common.Controls;
 
 namespace IpTviewr.UiServices.EPG

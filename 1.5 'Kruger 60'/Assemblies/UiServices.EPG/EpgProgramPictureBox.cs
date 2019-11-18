@@ -15,7 +15,7 @@ namespace IpTviewr.UiServices.EPG
     {
         public void LoadProgramImageAsync(EpgProgram epgProgram, bool portrait)
         {
-            if ((epgProgram == null)) // || (!IpTvProvider.Current.EpgInfo.Capabilities.HasFlag(EpgProviderCapabilities.ProgramThumbnail)))
+            if ((epgProgram == null)) // || (!IpTvService.Current.EpgInfo.Capabilities.HasFlag(EpgProviderCapabilities.ProgramThumbnail)))
             {
                 OnProgramImageLoaded(null, portrait);
             }

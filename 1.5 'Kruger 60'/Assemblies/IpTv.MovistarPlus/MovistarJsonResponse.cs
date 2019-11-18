@@ -7,9 +7,9 @@
 
 using Newtonsoft.Json;
 
-namespace IpTviewr.MovistarPlus
+namespace IpTviewr.IpTvServices.MovistarPlus
 {
-    public abstract class MovistarJsonResponse
+    internal abstract class MovistarJsonResponse
     {
         [JsonProperty("resultCode")]
         public int Code;

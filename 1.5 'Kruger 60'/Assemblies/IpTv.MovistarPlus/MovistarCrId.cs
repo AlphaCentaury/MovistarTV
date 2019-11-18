@@ -7,9 +7,9 @@
 
 using System;
 
-namespace IpTviewr.MovistarPlus
+namespace IpTviewr.IpTvServices.MovistarPlus
 {
-    public class MovistarCrId
+    internal class MovistarCrId
     {
         public MovistarCrId(string contentIdRoot, string contentId, string seriesId)
         {

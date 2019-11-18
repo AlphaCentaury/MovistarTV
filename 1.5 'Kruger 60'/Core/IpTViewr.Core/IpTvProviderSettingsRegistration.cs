@@ -9,7 +9,7 @@ using System;
 using System.Drawing;
 using IpTviewr.UiServices.Configuration;
 
-namespace IpTviewr.Core.IpTvProvider
+namespace IpTviewr.Core
 {
     public class IpTvProviderSettingsRegistration : IConfigurationItemRegistration
     {

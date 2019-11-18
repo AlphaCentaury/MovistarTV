@@ -7,7 +7,7 @@
 
 using System;
 
-namespace IpTviewr.Core.IpTvProvider.EPG
+namespace IpTviewr.IpTvServices.EPG
 {
     [Flags]
     public enum EpgProviderCapabilities

@@ -505,38 +505,20 @@
   <data name="menuItemDvbRecent.Text" xml:space="preserve">
     <value>Canales &amp;recientes</value>
   </data>
-  <data name="separatorDvb1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>191, 6</value>
-  </data>
   <data name="menuItemProviderSelect.Text" xml:space="preserve">
     <value>&amp;Seleccionar proveedor...</value>
   </data>
   <data name="menuItemProviderDetails.Text" xml:space="preserve">
     <value>Ver &amp;detalles técnicos...</value>
   </data>
-  <data name="menuItemDvbProvider.Size" type="System.Drawing.Size, System.Drawing">
-    <value>194, 22</value>
-  </data>
   <data name="menuItemDvbProvider.Text" xml:space="preserve">
     <value>&amp;Proveedor</value>
-  </data>
-  <data name="menuItemDvbPackages.Size" type="System.Drawing.Size, System.Drawing">
-    <value>194, 22</value>
   </data>
   <data name="menuItemDvbPackages.Text" xml:space="preserve">
     <value>P&amp;aquete</value>
   </data>
-  <data name="separatorDvb2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>191, 6</value>
-  </data>
-  <data name="menuItemDvbSettings.Size" type="System.Drawing.Size, System.Drawing">
-    <value>194, 22</value>
-  </data>
   <data name="menuItemDvbSettings.Text" xml:space="preserve">
     <value>Configuración...</value>
-  </data>
-  <data name="menuItemDvbExport.Size" type="System.Drawing.Size, System.Drawing">
-    <value>194, 22</value>
   </data>
   <data name="menuItemDvbExport.Text" xml:space="preserve">
     <value>Exportar información...</value>

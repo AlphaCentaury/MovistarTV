@@ -543,13 +543,13 @@ namespace IpTviewr.Tools.FirstTimeConfig
                 }
 
                 BasicGoogleTelemetry.SendScreenHit("FirewallForm: Exception");
-                return new InitializationResult(win32);
+                return new InitializationResult(win32, "Unable to execute Firewall configuration program.");
             }
             catch (Exception ex)
             {
                 BasicGoogleTelemetry.SendScreenHit("FirewallForm: Exception");
                 BasicGoogleTelemetry.SendExtendedExceptionHit(ex, true, "FirewallForm: Execute", "FirewallForm");
-                return new InitializationResult(ex);
+                return new InitializationResult(ex, "Unable to execute Firewall configuration program.");
             } // try-catch
 
             if (exitCode == 0)

@@ -5,19 +5,20 @@
 // 
 // http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
 
-using IpTviewr.Common;
-using IpTviewr.UiServices.Configuration;
-using IpTviewr.UiServices.Configuration.Settings.TvPlayers;
-using IpTviewr.UiServices.Discovery;
 using System;
 using System.Diagnostics;
 using System.IO;
 using System.Security.Permissions;
 using System.Windows.Forms;
+using IpTviewr.Common;
+using IpTviewr.Core.Properties;
 using IpTviewr.Native;
+using IpTviewr.UiServices.Configuration;
+using IpTviewr.UiServices.Configuration.Settings.TvPlayers;
+using IpTviewr.UiServices.Discovery;
 using Microsoft.SqlServer.MessageBox;
 
-namespace IpTviewr.Core.IpTvProvider
+namespace IpTviewr.Core
 {
     public static class ExternalTvPlayer
     {
@@ -35,7 +36,7 @@ namespace IpTviewr.Core.IpTvProvider
                 var box = new ExceptionMessageBox()
                 {
                     Caption = owner.Text,
-                    Text = string.Format(Properties.Texts.ShowTvChannelInactiveService, service.DisplayName),
+                    Text = string.Format(Texts.ShowTvChannelInactiveService, service.DisplayName),
                     Beep = true,
                     Symbol = ExceptionMessageBoxSymbol.Question,
                     Buttons = ExceptionMessageBoxButtons.YesNo,
@@ -122,7 +123,7 @@ namespace IpTviewr.Core.IpTvProvider
             {
                 TargetPath = player.Path,
                 Arguments = arguments,
-                Description = string.Format(Properties.Texts.ExternalPlayerShortcutDescription, player.Name, service.DisplayName),
+                Description = string.Format(Texts.ExternalPlayerShortcutDescription, player.Name, service.DisplayName),
                 IconLocation = iconLocation
             };
             shortcutPath = shortcut.CreateShortcut(shortcutPath);

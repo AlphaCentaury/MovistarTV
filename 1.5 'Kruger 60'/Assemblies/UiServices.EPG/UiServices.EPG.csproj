@@ -205,9 +205,13 @@
     <Content Include="Resources\ProgressBarFilled.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Core.IpTvProvider\Core.IpTvProvider.csproj">
+    <ProjectReference Include="..\..\Core\IpTViewr.Core\IpTViewr.Core.csproj">
+      <Project>{968C6EEB-1E79-446A-96AE-69CB225E1C37}</Project>
+      <Name>IpTViewr.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Core.IpTvProvider\Core.IpTvService.csproj">
       <Project>{36b8e0a1-f1b1-498d-8fe7-a39bb7fd68ca}</Project>
-      <Name>Core.IpTvProvider</Name>
+      <Name>Core.IpTvService</Name>
     </ProjectReference>
     <ProjectReference Include="..\Etsi.Ts102034\Etsi.Ts102034.csproj">
       <Project>{b91c438d-0333-4d06-86cd-74ce82df6f40}</Project>

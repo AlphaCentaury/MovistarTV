@@ -83,8 +83,8 @@
     <Folder Include="Redist\ESN\x86\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Assemblies\Core.IpTvProvider\Core.IpTvProvider.csproj">
-      <Name>Core.IpTvProvider</Name>
+    <ProjectReference Include="..\..\Assemblies\Core.IpTvProvider\Core.IpTvService.csproj">
+      <Name>Core.IpTvService</Name>
       <Project>{36b8e0a1-f1b1-498d-8fe7-a39bb7fd68ca}</Project>
       <Private>True</Private>
       <DoNotHarvest>True</DoNotHarvest>

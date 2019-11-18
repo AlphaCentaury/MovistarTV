@@ -7,8 +7,8 @@
     <ProjectGuid>{E1748F45-DD50-4479-96F6-F7EBA6F3E28B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>IpTviewr.MovistarPlus</RootNamespace>
-    <AssemblyName>IpTv.MovistarPlus</AssemblyName>
+    <RootNamespace>IpTviewr.IpTvServices.MovistarPlus</RootNamespace>
+    <AssemblyName>IpTViewr.MovistarPlus</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SccProjectName>SAK</SccProjectName>
@@ -49,7 +49,7 @@
     <Compile Include="..\..\AssemblySolutionInfo.cs">
       <Link>Properties\AssemblySolutionInfo.cs</Link>
     </Compile>
-    <Compile Include="IpTvProviderMovistarPlus.cs" />
+    <Compile Include="IpTvServiceMovistarPlus.cs" />
     <Compile Include="MovistarCrId.cs" />
     <Compile Include="MovistarJsonResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -58,21 +58,17 @@
     <Content Include="License.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Core.IpTvProvider\Core.IpTvProvider.csproj">
-      <Project>{36b8e0a1-f1b1-498d-8fe7-a39bb7fd68ca}</Project>
-      <Name>Core.IpTvProvider</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\UiServices.Config\UiServices.Config.csproj">
-      <Project>{a722de9d-ae51-479c-825f-a19f4c69bd75}</Project>
-      <Name>UiServices.Config</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\UiServices.Discovery\UiServices.Discovery.csproj">
-      <Project>{7e5e21b9-4bd6-4fb3-9055-9b09cc479c6c}</Project>
-      <Name>UiServices.Discovery</Name>
-    </ProjectReference>
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <ProjectReference Include="..\Core.IpTvProvider\Core.IpTvService.csproj">
+      <Project>{36b8e0a1-f1b1-498d-8fe7-a39bb7fd68ca}</Project>
+      <Name>Core.IpTvService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UiServices.Config\UiServices.Config.csproj">
+      <Project>{A722DE9D-AE51-479C-825F-A19F4C69BD75}</Project>
+      <Name>UiServices.Config</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -5,17 +5,20 @@
 // 
 // http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
 
+using IpTviewr.IpTvServices.EPG;
 using IpTviewr.UiServices.Configuration;
 
-namespace IpTviewr.MovistarPlus
+namespace IpTviewr.IpTvServices.MovistarPlus
 {
-    public class IpTvProviderMovistarPlus : Core.IpTvProvider.IpTvProvider
+    public class IpTvServiceMovistarPlus : IpTvService
     {
+        public override IEpgInfoProvider EpgInfo { get; }
+
         public override InitializationResult Initialize()
         {
             //EpgInfo = new EpgInfoProvider();
 
             return InitializationResult.Ok;
         } // Initialize
-    } // class IpTvProviderMovistarPlus
+    } // class IpTvServiceMovistarPlus
 } // namespace

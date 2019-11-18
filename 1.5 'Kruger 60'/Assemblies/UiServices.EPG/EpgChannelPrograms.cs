@@ -14,8 +14,8 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Threading;
 using System.Windows.Forms;
+using IpTviewr.Core;
 using IpTviewr.UiServices.Common.Forms;
-using IpTviewr.Core.IpTvProvider;
 
 namespace IpTviewr.UiServices.EPG
 {
