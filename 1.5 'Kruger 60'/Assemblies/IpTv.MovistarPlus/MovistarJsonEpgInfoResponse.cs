@@ -10,10 +10,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using IpTviewr.IpTvServices.MovistarPlus;
 
 namespace Project.IpTv.MovistarPlus
 {
-    public class MovistarJsonEpgInfoResponse: MovistarJsonResponse
+    internal class MovistarJsonEpgInfoResponse: MovistarJsonResponse
     {
         [JsonProperty("resultData")]
         public MovistarEpgInfo Data;

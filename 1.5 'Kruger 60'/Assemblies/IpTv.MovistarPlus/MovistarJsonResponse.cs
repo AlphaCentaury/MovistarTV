@@ -12,12 +12,12 @@ namespace IpTviewr.IpTvServices.MovistarPlus
     internal abstract class MovistarJsonResponse
     {
         [JsonProperty("resultCode")]
-        public int Code;
+        public int Code { get; set; }
 
         [JsonProperty("resultText")]
-        public string Text;
+        public string Text { get; set; }
 
         [JsonProperty("hashCode")]
-        public string HashCode;
+        public string HashCode { get; set; }
     } // abstract class MovistarJsonResponse
 } // namespace

@@ -6,17 +6,16 @@
 // http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
 
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Text;
+using IpTviewr.IpTvServices.EPG;
+using IpTviewr.IpTvServices.MovistarPlus;
 using Newtonsoft.Json;
-using Project.IpTv.Core.IpTvProvider.EPG;
-using Project.IpTv.Services.EPG;
-using Project.IpTv.UiServices.Discovery;
 
 namespace Project.IpTv.MovistarPlus
 {
+    /*
     internal class EpgInfoProvider: IEpgInfoProvider
     {
         #region IEpgInfoProvider Members
@@ -171,4 +170,5 @@ namespace Project.IpTv.MovistarPlus
             } // using client
         } // SendRequest
     } // class EpgInfoProvider
+    */
 } // namespace

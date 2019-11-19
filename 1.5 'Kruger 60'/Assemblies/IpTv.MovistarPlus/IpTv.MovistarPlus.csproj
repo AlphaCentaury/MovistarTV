@@ -41,6 +41,7 @@
       <HintPath>..\..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -49,10 +50,22 @@
     <Compile Include="..\..\AssemblySolutionInfo.cs">
       <Link>Properties\AssemblySolutionInfo.cs</Link>
     </Compile>
+    <Compile Include="EpgInfoProvider.cs" />
+    <Compile Include="Implementation\MovistarProviderTexts.cs" />
+    <Compile Include="Implementation\MovistarTexts.cs" />
     <Compile Include="IpTvServiceMovistarPlus.cs" />
     <Compile Include="MovistarCrId.cs" />
+    <Compile Include="MovistarEpgInfo.cs" />
+    <Compile Include="MovistarJsonEpgInfoResponse.cs" />
     <Compile Include="MovistarJsonResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Texts.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Texts.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Serialization\MovistarPlusConfig.cs" />
+    <Compile Include="Serialization\Opch.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="License.txt" />
@@ -70,7 +83,19 @@
       <Name>UiServices.Config</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Texts.es.resx" />
+    <EmbeddedResource Include="Properties\Texts.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Texts.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>cmd /C md "$(SolutionDir)ChannelList\bin\$(ConfigurationName)\modules\"
+cmd /C md "$(SolutionDir)ChannelList\bin\$(ConfigurationName)\modules\es\"
+copy /Y "$(TargetPath)" "$(SolutionDir)ChannelList\bin\$(ConfigurationName)\modules\"</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

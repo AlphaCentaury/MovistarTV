@@ -5,20 +5,32 @@
 // 
 // http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
 
-using IpTviewr.IpTvServices.EPG;
+using System.ComponentModel.Composition;
+using IpTviewr.IpTvServices.MovistarPlus.Implementation;
 using IpTviewr.UiServices.Configuration;
+using IpTviewr.UiServices.Configuration.IpTvService;
 
 namespace IpTviewr.IpTvServices.MovistarPlus
 {
+    [Export(typeof(ITvService))]
     public class IpTvServiceMovistarPlus : IpTvService
     {
+
+        #region IpTvService implementation
+
         public override IEpgInfoProvider EpgInfo { get; }
 
         public override InitializationResult Initialize()
         {
-            //EpgInfo = new EpgInfoProvider();
+            var result = base.Initialize();
+            return result.IsError ? result : InitializationResult.Ok;
 
-            return InitializationResult.Ok;
+            //EpgInfo = new EpgInfoProvider();
+            // return InitializationResult.Ok;
         } // Initialize
+
+        protected override ITvServiceTexts CreateServiceTexts() => new MovistarTexts();
+
+        #endregion
     } // class IpTvServiceMovistarPlus
 } // namespace
