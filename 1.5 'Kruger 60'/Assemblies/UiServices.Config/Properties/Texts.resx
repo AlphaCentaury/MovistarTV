@@ -112,10 +112,10 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AppConfigValidationBasePath" xml:space="preserve">
     <value>Unable to find the 'base' folder at '{0}'.</value>
@@ -299,5 +299,20 @@ Please install the application using the official installer or repair the instal
   </data>
   <data name="DvbServiceTypeDescription_25" xml:space="preserve">
     <value>HD TV</value>
+  </data>
+  <data name="LoadCompositionException" xml:space="preserve">
+    <value>Unable to load the application modules, probably due to the absence of one of them. Please reinstall the application.</value>
+  </data>
+  <data name="LoadCompositionExceptionCaption" xml:space="preserve">
+    <value>Missing application modules</value>
+  </data>
+  <data name="LoadMefCaption" xml:space="preserve">
+    <value>Unable to load application modules</value>
+  </data>
+  <data name="LoadMefException" xml:space="preserve">
+    <value>Unexpected error during load operation. See exception details (below) for detailed error information.</value>
+  </data>
+  <data name="LoadProgress_Mef" xml:space="preserve">
+    <value>Loading application modules...</value>
   </data>
 </root>

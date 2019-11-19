@@ -14,18 +14,23 @@ using IpTviewr.UiServices.Configuration.Schema2014.Config;
 using IpTviewr.UiServices.Configuration.Schema2014.ContentProvider;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.Composition;
+using System.ComponentModel.Composition.Hosting;
 using System.Globalization;
 using System.IO;
+using System.Reflection;
 using System.Text;
 using System.Xml;
+using IpTviewr.UiServices.Configuration.IpTvService;
 
 namespace IpTviewr.UiServices.Configuration
 {
-    public class AppUiConfiguration
+    public sealed class AppUiConfiguration
     {
         public const string IpTvProviderSettingsRegistrationGuid = "{1E8D4BC4-4D78-4B69-BB50-96BA921A7449}";
 
         private string _defaultSaveLocation;
+        private CompositionContainer _mefContainer;
         internal IDictionary<Guid, IConfigurationItemRegistration> ItemsRegistry;
         internal IDictionary<Guid, int> ItemsIndex;
         internal IList<IConfigurationItem> Items;
@@ -70,6 +75,10 @@ namespace IpTviewr.UiServices.Configuration
             result = config.ProcessXmlConfigurationItems();
             if (result.IsError) return result;
 
+            displayProgress?.Invoke(Texts.LoadProgress_Mef);
+            result = config.LoadModules();
+            if (result.IsError) return result;
+
             displayProgress?.Invoke(Texts.LoadProgress_ContentProvider);
             result = config.LoadIpTvProviderData();
             if (result.IsError) return result;
@@ -81,14 +90,10 @@ namespace IpTviewr.UiServices.Configuration
 
         public static AppUiConfiguration LoadRegistryAppConfiguration(out InitializationResult initializationResult)
         {
-            AppUiConfiguration config;
-
-            config = new AppUiConfiguration();
+            var config = new AppUiConfiguration();
 
             initializationResult = config.LoadRegistrySettings(null);
-            if (initializationResult.IsError) return null;
-
-            return config;
+            return initializationResult.IsError ? null : config;
         } // LoadRegistryAppConfiguration
 
         public static T CloneSettings<T>(IConfigurationItem settings) where T : class, IConfigurationItem
@@ -121,17 +126,12 @@ namespace IpTviewr.UiServices.Configuration
             Folders = new AppUiConfigurationFolders();
         } // constructor
 
-        public AppUiConfigurationFolders Folders
-        {
-            get;
-            protected set;
-        } // Folders
+        [Import]
+        public ITvService IpTvService { get; private set; }
 
-        public IList<string> Cultures
-        {
-            get;
-            protected set;
-        } // Cultures
+        public AppUiConfigurationFolders Folders { get; }
+
+        public IList<string> Cultures { get; private set; }
 
         public IDictionary<string, string> DescriptionServiceTypes
         {
@@ -307,7 +307,7 @@ namespace IpTviewr.UiServices.Configuration
 
         #region Registry settings
 
-        protected InitializationResult LoadRegistrySettings(string overrideBasePath)
+        private InitializationResult LoadRegistrySettings(string overrideBasePath)
         {
             try
             {
@@ -319,11 +319,9 @@ namespace IpTviewr.UiServices.Configuration
                         Caption = Texts.AppConfigRegistryCaption,
                         Message = string.Format(Texts.AppConfigRegistryText, result)
                     };
-                }
-                else
-                {
-                    return InitializationResult.Ok;
-                } // if-else
+                } // if
+
+                return InitializationResult.Ok;
             }
             catch (Exception ex)
             {
@@ -338,47 +336,39 @@ namespace IpTviewr.UiServices.Configuration
 
         private string LoadRegistrySettingsInternal(string overrideBasePath)
         {
-            string fullKeyPath;
+            using var keyCurrentUser = Registry.CurrentUser;
+            var fullKeyPath = InvariantTexts.RegistryKey_Root;
+            using var root = keyCurrentUser.OpenSubKey(InvariantTexts.RegistryKey_Root);
+            if (root == null) return string.Format(Texts.AppConfigRegistryMissingKey, fullKeyPath);
 
-            using (var hkcu = Registry.CurrentUser)
+            var isInstalled = root.GetValue(InvariantTexts.RegistryValue_Installed);
+            if (isInstalled == null) return string.Format(Texts.AppConfigRegistryMissingValue, fullKeyPath, InvariantTexts.RegistryValue_Installed);
+
+            var clientId = root.GetValue(InvariantTexts.RegistryValue_Analytics_ClientId) as string;
+            AnalyticsClientId = clientId;
+            if (string.IsNullOrEmpty(clientId))
             {
-                fullKeyPath = InvariantTexts.RegistryKey_Root;
-                using (var root = hkcu.OpenSubKey(InvariantTexts.RegistryKey_Root))
-                {
-                    if (root == null) return string.Format(Texts.AppConfigRegistryMissingKey, fullKeyPath);
+                AnalyticsClientId = Guid.NewGuid().ToString("D").ToUpperInvariant();
+                using var writableRoot = keyCurrentUser.OpenSubKey(InvariantTexts.RegistryKey_Root, true);
+                writableRoot.SetValue(InvariantTexts.RegistryValue_Analytics_ClientId, AnalyticsClientId);
+            } // if
 
-                    var isInstalled = root.GetValue(InvariantTexts.RegistryValue_Installed);
-                    if (isInstalled == null) return string.Format(Texts.AppConfigRegistryMissingValue, fullKeyPath, InvariantTexts.RegistryValue_Installed);
+            var baseFolder = root.GetValue(InvariantTexts.RegistryValue_Folder_Base);
+            if (baseFolder == null) return string.Format(Texts.AppConfigRegistryMissingValue, fullKeyPath, InvariantTexts.RegistryValue_Folder_Base);
+            Folders.Base = overrideBasePath ?? baseFolder as string;
 
-                    var clientId = root.GetValue(InvariantTexts.RegistryValue_Analytics_ClientId) as string;
-                    AnalyticsClientId = clientId;
-                    if (string.IsNullOrEmpty(clientId))
-                    {
-                        AnalyticsClientId = Guid.NewGuid().ToString("D").ToUpperInvariant();
-                        using (var writableRoot = hkcu.OpenSubKey(InvariantTexts.RegistryKey_Root, true))
-                        {
-                            writableRoot.SetValue(InvariantTexts.RegistryValue_Analytics_ClientId, AnalyticsClientId);
-                        } // using writableRoot
-                    } // if
-
-                    var baseFolder = root.GetValue(InvariantTexts.RegistryValue_Folder_Base);
-                    if (baseFolder == null) return string.Format(Texts.AppConfigRegistryMissingValue, fullKeyPath, InvariantTexts.RegistryValue_Folder_Base);
-                    Folders.Base = overrideBasePath ?? baseFolder as string;
-
-                    var installFolder = root.GetValue(InvariantTexts.RegistryValue_Folder_Install);
+            var installFolder = root.GetValue(InvariantTexts.RegistryValue_Folder_Install);
 #if (DEBUG == false)
                     if (installFolder == null) return string.Format(Texts.AppConfigRegistryMissingValue, fullKeyPath, InvariantTexts.RegistryValue_Folder_Install);
 #endif
-                    Folders.Install = installFolder as string;
-                } // using root
-            } // using hkcu
+            Folders.Install = installFolder as string;
 
             GetFolders();
 
             return null;
         } // LoadRegistrySettingsInternal
 
-        protected void GetFolders()
+        private void GetFolders()
         {
             // Record tasks
             Folders.RecordTasks = Path.Combine(Folders.Base, InvariantTexts.FolderRecordTasks);
@@ -392,11 +382,9 @@ namespace IpTviewr.UiServices.Configuration
 
         #endregion
 
-        protected InitializationResult Validate()
+        private InitializationResult Validate()
         {
-            InitializationResult result;
-
-            result = new InitializationResult
+            var result = new InitializationResult
             {
                 Caption = Texts.LoadConfigValidationCaption
             };
@@ -417,9 +405,71 @@ namespace IpTviewr.UiServices.Configuration
             return result;
         } // Validate
 
+        #region MEF
+
+        private InitializationResult LoadModules()
+        {
+            try
+            {
+                var catalog = new AggregateCatalog();
+                //catalog.Catalogs.Add(new DirectoryCatalog(Folders.Install));
+                catalog.Catalogs.Add(new DirectoryCatalog(Folders.Modules));
+
+                _mefContainer = new CompositionContainer(catalog, CompositionOptions.DisableSilentRejection);
+                _mefContainer.ComposeParts(this);
+
+                var result = InitializeIpTvService();
+                if (result.IsError) return result;
+            }
+            catch (CompositionException ex)
+            {
+                return new InitializationResult()
+                {
+                    Caption = Texts.LoadCompositionExceptionCaption,
+                    Message = Texts.LoadCompositionException,
+                    InnerException = ex
+                };
+            }
+            catch (ReflectionTypeLoadException ex)
+            {
+                return new InitializationResult()
+                {
+                    Caption = Texts.LoadCompositionExceptionCaption,
+                    Message = Texts.LoadCompositionException,
+                    InnerException = ex
+                };
+            }
+            catch (Exception ex)
+            {
+                return new InitializationResult()
+                {
+                    Caption = Texts.LoadMefCaption,
+                    Message = Texts.LoadMefException,
+                    InnerException = ex
+                };
+            } // try-catch
+
+            return InitializationResult.Ok;
+        } // LoadModules
+
+        private InitializationResult InitializeIpTvService()
+        {
+            try
+            {
+                return IpTvService.Initialize();
+            }
+            catch (Exception ex)
+            {
+                // TODO: proper message
+                return new InitializationResult(ex, "InitializeIpTvService");
+            } // try-catch
+        } // InitializeIpTvService
+
+        #endregion
+
         #region Content provider
 
-        protected InitializationResult LoadIpTvProviderData()
+        private InitializationResult LoadIpTvProviderData()
         {
             var xmlPath = Path.Combine(Folders.Base, "movistartv-config.xml");
 

@@ -112,10 +112,10 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AppConfigValidationBasePath" xml:space="preserve">
     <value>No se puede encontrar la carpeta 'base' en '{0}'.</value>
@@ -300,5 +300,21 @@ Por favor, instale la aplicación utilizando el instalador oficial o repare la i
   </data>
   <data name="DvbServiceTypeDescription_25" xml:space="preserve">
     <value>TV HD</value>
+  </data>
+  <data name="LoadCompositionException" xml:space="preserve">
+    <value>No se han podido cargar los módulos de la aplicación, seguramente por la ausencia de uno de ellos. Por favor, reinstale la aplicacion.</value>
+  </data>
+  <data name="LoadCompositionExceptionCaption" xml:space="preserve">
+    <value>Faltan módulos de la aplicación</value>
+  </data>
+  <data name="LoadMefCaption" xml:space="preserve">
+    <value>Imposible cargar los módulos de la aplicación</value>
+  </data>
+  <data name="LoadMefException" xml:space="preserve">
+    <value>Se ha producido un error inesperado al cargar los módulos de aplicación.
+Consulte los detalles de la excepción (más abajo) para obtener información detallada del problema.</value>
+  </data>
+  <data name="LoadProgress_Mef" xml:space="preserve">
+    <value>Cargando módulos de la aplicación...</value>
   </data>
 </root>

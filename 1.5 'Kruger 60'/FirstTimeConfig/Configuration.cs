@@ -87,10 +87,7 @@ namespace IpTviewr.Tools.FirstTimeConfig
                 } // foreach
 
                 var tvPlayers = GetTvPlayers(vlcPath);
-                var movistarPlusIpTvProviderSettings = new IpTvProviderSettings()
-                {
-                    ProviderClass = typeof(IpTvServiceMovistarPlus).AssemblyQualifiedName
-                };
+                var movistarPlusIpTvProviderSettings = new IpTvProviderSettings();
 
                 var config = AppUiConfiguration.CreateForUserConfig(user);
                 config.RegisterConfiguration(new UiBroadcastListSettingsRegistration(), null, true);

@@ -1,6 +1,7 @@
 ﻿using System;
 using IpTviewr.IpTvServices.EPG;
 using IpTviewr.UiServices.Configuration;
+using IpTviewr.UiServices.Configuration.IpTvService;
 
 namespace IpTviewr.IpTvServices.Implementation
 {

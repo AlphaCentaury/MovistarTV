@@ -6,35 +6,39 @@
 // http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
 
 using System;
-using IpTviewr.IpTvServices.EPG;
+using IpTviewr.IpTvServices.Implementation;
 using IpTviewr.UiServices.Configuration;
+using IpTviewr.UiServices.Configuration.IpTvService;
 
 namespace IpTviewr.IpTvServices
 {
-    public abstract class IpTvService
+    public abstract class IpTvService : ITvService
     {
-        private static IpTvService _current;
-
-        #region Static methods
-
-        public static IpTvService Current
-        {
-            get => _current;
-            set
-            {
-                if (_current != null) throw new InvalidOperationException();
-                _current = value ?? throw new ArgumentNullException(nameof(value));
-            } // set
-        } // Current
-
-        #endregion
-
-        #region IpTvService Members
+        #region ITvService implementation
 
         public abstract IEpgInfoProvider EpgInfo { get; }
 
-        public abstract InitializationResult Initialize();
+        public ITvServiceTexts Texts { get; private set; }
+
+        public virtual InitializationResult Initialize()
+        {
+            Texts = CreateServiceTexts();
+            if (Texts is ServiceTexts texts)
+            {
+                texts.Initialize();
+            } // if
+
+            return InitializationResult.Ok;
+        } // Initialize
 
         #endregion
+
+        protected virtual ITvServiceTexts CreateServiceTexts()
+        {
+            var result = new ServiceTexts();
+            result.Initialize();
+
+            return result;
+        } // CreateServiceTexts
     } // class IpTvService
 } // namespace

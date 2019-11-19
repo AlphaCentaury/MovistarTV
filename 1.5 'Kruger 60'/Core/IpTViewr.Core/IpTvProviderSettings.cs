@@ -17,43 +17,15 @@ namespace IpTviewr.Core
     [XmlRoot("IpTvProvider", Namespace = ConfigCommon.ConfigXmlNamespace)]
     public class IpTvProviderSettings : IConfigurationItem
     {
-        public string ProviderClass
-        {
-            get;
-            set;
-        } // ProviderClass
-
         #region IConfigurationItem Members
 
-        bool IConfigurationItem.SupportsInitialization => false;
+        public virtual bool SupportsInitialization => false;
 
-        bool IConfigurationItem.SupportsValidation => false;
+        public virtual bool SupportsValidation => false;
 
-        InitializationResult IConfigurationItem.Initialize()
-        {
-            try
-            {
-                if (IpTvService.Current != null) return InitializationResult.Ok;
+        public virtual InitializationResult Initialize() => throw new NotSupportedException();
 
-                var ipTvProviderType = Type.GetType(ProviderClass);
-                if (ipTvProviderType == null) throw new TypeLoadException();
-                var ipTvProvider = (IpTvService)Activator.CreateInstance(ipTvProviderType);
-
-                var result = ipTvProvider.Initialize();
-                IpTvService.Current = ipTvProvider;
-
-                return result;
-            }
-            catch (Exception ex)
-            {
-                return new InitializationResult(ex, $"Unable to create IpTvService '{ProviderClass}'.");
-            } // try-catch
-        } // Initialize
-
-        string IConfigurationItem.Validate(string ownerTag)
-        {
-            throw new NotSupportedException();
-        } // Validate
+        public virtual string Validate(string ownerTag) => throw new NotSupportedException();
 
         #endregion
     } // class IpTvProviderSettings

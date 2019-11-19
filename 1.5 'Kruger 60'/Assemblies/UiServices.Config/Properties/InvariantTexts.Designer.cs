@@ -151,6 +151,15 @@ namespace IpTviewr.UiServices.Configuration.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to modules.
+        /// </summary>
+        internal static string FolderModules {
+            get {
+                return ResourceManager.GetString("FolderModules", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to record-tasks.
         /// </summary>
         internal static string FolderRecordTasks {

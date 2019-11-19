@@ -26,6 +26,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
+    <LangVersion>8.0</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -35,9 +36,11 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
+    <LangVersion>8.0</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
@@ -52,6 +55,7 @@
     </Compile>
     <Compile Include="AppUiConfiguration.cs" />
     <Compile Include="AppUiConfigurationFolders.cs" />
+    <Compile Include="AppUiConfigurationFolders.FolderLogos.cs" />
     <Compile Include="Cache\CachedItemBase.cs" />
     <Compile Include="Cache\CachedXmlDocument.cs" />
     <Compile Include="CommonUiResources.Designer.cs">
@@ -87,6 +91,11 @@
     <Compile Include="IConfigurationItemRegistration.cs" />
     <Compile Include="InitializationResult.cs" />
     <Compile Include="IConfigurationItem.cs" />
+    <Compile Include="IpTvService\EpgProviderCapabilities.cs" />
+    <Compile Include="IpTvService\IEpgInfoProvider.cs" />
+    <Compile Include="IpTvService\ITvService.cs" />
+    <Compile Include="IpTvService\ITvServiceProviderTexts.cs" />
+    <Compile Include="IpTvService\ITvServiceTexts.cs" />
     <Compile Include="Logos\BaseLogo.cs" />
     <Compile Include="Cache\CacheManager.cs" />
     <Compile Include="Logos\ILogoMapping.cs" />

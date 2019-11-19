@@ -5,38 +5,27 @@
 // 
 // http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
 
+using System.Diagnostics;
 using System.IO;
+using IpTviewr.UiServices.Configuration.Properties;
 
 namespace IpTviewr.UiServices.Configuration
 {
-    public class AppUiConfigurationFolders
+    public partial class AppUiConfigurationFolders
     {
-        public class FolderLogos
+        internal AppUiConfigurationFolders()
         {
-            public string Root { get; }
-            public string Providers { get; }
-            public string Services { get; }
-            public string Cache { get; }
+            using var process = Process.GetCurrentProcess();
+            var exeFileName = process?.MainModule?.FileName;
+            if (exeFileName == null) throw new FileNotFoundException();
+            Modules = Path.Combine(Path.GetDirectoryName(exeFileName), InvariantTexts.FolderModules);
+        } // constructor
 
-            internal FolderLogos(string rootFolder, string cacheFolder)
-            {
-                Root = rootFolder;
-                Providers = Path.Combine(Root, Properties.InvariantTexts.FolderLogosProviders);
-                Services = Path.Combine(Root, Properties.InvariantTexts.FolderLogosServices);
-                Cache = Path.Combine(cacheFolder, Properties.InvariantTexts.FolderLogosCache);
-            } // constructor
-
-            public string FileProviderMappings => Path.Combine(Providers, Properties.InvariantTexts.FileLogoProviderMappings);
-
-            public string FileServiceDomainMappings => Path.Combine(Services, Properties.InvariantTexts.FileLogoDomainMappings);
-
-            public string FileServiceMappings => Path.Combine(Services, Properties.InvariantTexts.FileLogoServiceMappings);
-        } // FolderLogos
-
-        public string Install { get; internal protected set; }
-        public string Base { get; internal protected set; }
-        public string RecordTasks { get; internal protected set; }
-        public string Cache { get; internal protected set; }
-        public FolderLogos Logos { get; internal protected set; }
+        public string Install { get; protected internal set; }
+        public string Modules { get; }
+        public string Base { get; protected internal set; }
+        public string RecordTasks { get; protected internal set; }
+        public string Cache { get; protected internal set; }
+        public FolderLogos Logos { get; protected internal set; }
     } // class AppUiConfigurationFolders
 } // namespace

@@ -54,12 +54,17 @@
     <Compile Include="..\..\AssemblySolutionInfo.cs">
       <Link>Properties\AssemblySolutionInfo.cs</Link>
     </Compile>
-    <Compile Include="EPG\EpgProviderCapabilities.cs" />
-    <Compile Include="EPG\IEpgInfoProvider.cs" />
     <Compile Include="EPG\ProgramEpgInfo.cs" />
+    <Compile Include="Implementation\ServiceProviderTexts.cs" />
+    <Compile Include="Implementation\ServiceTexts.cs" />
     <Compile Include="IpTvService.cs" />
     <Compile Include="Implementation\DvbIpTvService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Texts.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Texts.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="License.txt" />
@@ -90,7 +95,13 @@
       <Name>UiServices.Discovery</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Texts.es.resx" />
+    <EmbeddedResource Include="Properties\Texts.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Texts.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
