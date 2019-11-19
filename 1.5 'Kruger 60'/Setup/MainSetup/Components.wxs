@@ -38,13 +38,12 @@ http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
       </Component>
     </ComponentGroup>
 
-    <ComponentGroup Id="CommonComponents">
-      <Component Id="CommonAssemblies" Directory="INSTALLFOLDER" Guid="$(var.Guid.Component.CommonAssemblies)">
+    <ComponentGroup Id="CommonComponents" Directory="INSTALLFOLDER">
+      <Component Id="CommonAssemblies" Guid="$(var.Guid.Component.CommonAssemblies)">
         <File Id="IpTViewr.Core.dll" Source="$(var.Core.IpTViewr.Core.TargetDir)IpTViewr.Core.dll" />
         <File Id="IpTViewr.IpTvService.dll" Source="$(var.Core.IpTvService.TargetDir)IpTViewr.IpTvService.dll" />
         <File Id="Etsi.Ts102034.dll" Source="$(var.Etsi.Ts102034.TargetDir)Etsi.Ts102034.dll" />
         <File Id="DvbStpClient.dll" Source="$(var.DvbStpClient.TargetDir)DvbStpClient.dll" />
-        <File Id="IpTviewr.MovistarPlus.dll" Source="$(var.IpTv.MovistarPlus.TargetDir)IpTviewr.MovistarPlus.dll" />
         <File Id="IpTviewr.Common.dll" Source="$(var.Project.Common.TargetDir)IpTviewr.Common.dll" />
         <File Id="IpTviewr.Native.dll" Source="$(var.Project.Native.TargetDir)IpTviewr.Native.dll" />
         <File Id="Services.SqlServerCE.dll" Source="$(var.Services.SqlServerCE.TargetDir)Services.SqlServerCE.dll" />
@@ -57,12 +56,11 @@ http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
         <File Id='license.rtf' Source='$(var.SolutionDir)!(loc.SourceFileLicenseAgreement).rtf' Name='!(loc.FileLicenseAgreement).rtf' />
       </Component>
 
-      <Component Id="CommonAssemblies.PDB" Directory="INSTALLFOLDER" Guid="$(var.Guid.Component.CommonAssemblies.PDB)">
+      <Component Id="CommonAssemblies.PDB" Guid="$(var.Guid.Component.CommonAssemblies.PDB)">
         <File Id="IpTViewr.Core.pdb" Source="$(var.Core.IpTviewr.Core.TargetDir)IpTViewr.Core.pdb" />
         <File Id="IpTViewr.IpTvService.pdb" Source="$(var.Core.IpTvService.TargetDir)IpTViewr.IpTvService.pdb" />
         <File Id="Etsi.Ts102034.pdb" Source="$(var.Etsi.Ts102034.TargetDir)Etsi.Ts102034.pdb" />
         <File Id="DvbStpClient.pdb" Source="$(var.DvbStpClient.TargetDir)DvbStpClient.pdb" />
-        <File Id="IpTViewr.MovistarPlus.pdb" Source="$(var.IpTv.MovistarPlus.TargetDir)IpTViewr.MovistarPlus.pdb" />
         <File Id="IpTViewr.Common.pdb" Source="$(var.Project.Common.TargetDir)IpTViewr.Common.pdb" />
         <File Id="IpTViewr.Native.pdb" Source="$(var.Project.Native.TargetDir)IpTViewr.Native.pdb" />
         <File Id="Services.SqlServerCE.pdb" Source="$(var.Services.SqlServerCE.TargetDir)Services.SqlServerCE.pdb" />
@@ -81,7 +79,6 @@ http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
         <File Id="IpTViewr.IpTvService.es.dll" Source="$(var.Core.IpTvProvider.TargetDir)es\IpTViewr.IpTvService.resources.dll" />
         <File Id="Etsi.Ts102034.es.dll" Source="$(var.Etsi.Ts102034.TargetDir)es\Etsi.Ts102034.resources.dll" />
         <File Id="DvbStpClient.es.dll" Source="$(var.DvbStpClient.TargetDir)es\DvbStpClient.resources.dll" />
-        <File Id="IpTViewr.MovistarPlus.es.dll" Source="$(var.IpTv.MovistarPlus.TargetDir)es\IpTViewr.MovistarPlus.resources.dll" />
         -->
         <File Id="IpTViewr.Common.es.dll" Source="$(var.Project.Common.TargetDir)es\IpTViewr.Common.resources.dll" />
         <File Id="IpTViewr.Native.es.dll" Source="$(var.Project.Native.TargetDir)es\IpTViewr.Native.resources.dll" />

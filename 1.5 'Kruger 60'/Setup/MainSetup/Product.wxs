@@ -79,6 +79,9 @@ http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
                 </Directory>
               </Directory>
               <Directory Id="InstallFolder.es" Name="es" />
+              <Directory Id="Modules" Name="modules">
+                <Directory Id ="Modules.Localization.es" Name="es" />
+              </Directory>
             </Directory>
             <Directory Id="Folder.Cache" Name="cache">
               <Directory Id="Folder.Cache.Logos" Name="logos" />

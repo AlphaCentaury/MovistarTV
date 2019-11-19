@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<Fragment>
+    <ComponentGroup Id="Modules" Directory="Modules">
+      <Component Id="ModulesAssemblies" Guid="$(var.Guid.Component.Modules)">
+        <File Id="IpTviewr.MovistarPlus.dll" Source="$(var.IpTv.MovistarPlus.TargetDir)IpTviewr.MovistarPlus.dll" />
+      </Component>
+
+      <Component Id="ModulesAssemblies.PDB" Guid="$(var.Guid.Component.CommonAssemblies.PDB)">
+        <File Id="IpTViewr.MovistarPlus.pdb" Source="$(var.IpTv.MovistarPlus.TargetDir)IpTViewr.MovistarPlus.pdb" />
+      </Component>
+    </ComponentGroup>
+
+    <ComponentGroup Id="Modules.Localization">
+      <Component Id="Modules.Localization.es" Directory="Modules.Localization.es" Guid="$(var.Guid.Component.Modules.Localization.es)">
+        <File Id="IpTViewr.MovistarPlus.es.dll" Source="$(var.IpTv.MovistarPlus.TargetDir)es\IpTViewr.MovistarPlus.resources.dll" />
+      </Component>
+    </ComponentGroup>
+	</Fragment>
+</Wix>
