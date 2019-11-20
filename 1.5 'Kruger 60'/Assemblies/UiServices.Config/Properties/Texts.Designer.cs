@@ -226,24 +226,6 @@ namespace IpTviewr.UiServices.Configuration.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unable to load provider logo file\r\n{0}.
-        /// </summary>
-        internal static string ExceptionLogosProviderImageLoadError {
-            get {
-                return ResourceManager.GetString("ExceptionLogosProviderImageLoadError", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Provider logo file not found.
-        /// </summary>
-        internal static string ExceptionLogosProviderImageNotFound {
-            get {
-                return ResourceManager.GetString("ExceptionLogosProviderImageNotFound", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Duplicated domain name &apos;{0}&apos; in &apos;logos/providers/provider-mappings.xml&apos;.
         /// </summary>
         internal static string ExceptionLogosProviderMappingsDuplicatedDomain {

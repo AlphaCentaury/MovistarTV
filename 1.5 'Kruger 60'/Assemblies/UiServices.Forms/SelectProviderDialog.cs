@@ -74,6 +74,7 @@ namespace IpTviewr.UiServices.Forms
         {
             BasicGoogleTelemetry.SendScreenHit(this);
 
+            Text = AppUiConfiguration.Current.IpTvService.Texts.Provider.SelectCaption;
             if (SelectedServiceProvider == null)
             {
                 SelectedIndexChanged();
@@ -90,16 +91,7 @@ namespace IpTviewr.UiServices.Forms
         {
             if (SelectedServiceProvider == null) return;
 
-            using (var dlg = new PropertiesDialog()
-            {
-                Caption = Properties.DiscoveryTexts.SPProperties,
-                ItemProperties = SelectedServiceProvider.DumpProperties(),
-                Description = SelectedServiceProvider.DisplayName,
-                ItemIcon = SelectedServiceProvider.Logo.GetImage(LogoSize.Size64),
-            })
-            {
-                dlg.ShowDialog(this);
-            } // using
+            DiscoveryDialogs.ShowServiceProviderDetails(this, SelectedServiceProvider);
         } // buttonProviderDetails_Click_Implementation
 
         #endregion
@@ -118,6 +110,7 @@ namespace IpTviewr.UiServices.Forms
 
         private bool LoadServiceProviderList(bool fromCache)
         {
+            var providerTexts = AppUiConfiguration.Current.IpTvService.Texts.Provider;
             try
             {
                 ProviderDiscoveryRoot discovery;
@@ -146,14 +139,14 @@ namespace IpTviewr.UiServices.Forms
                             SegmentId = null, // accept any segment
                             MulticastAddress = IPAddress.Parse(baseIpAddress),
                             MulticastPort = basePort,
-                            Description = Properties.DiscoveryTexts.SPObtainingList,
-                            DescriptionParsing = Properties.DiscoveryTexts.SPParsingList,
+                            Description = providerTexts.ObtainingList,
+                            DescriptionParsing = providerTexts.ParsingList,
                             PayloadDataType = typeof(ProviderDiscoveryRoot),
                             AllowXmlExtraWhitespace = false,
                             XmlNamespaceReplacer = NamespaceUnification.Replacer,
                         },
                         TextUserCancelled = Properties.DiscoveryTexts.UserCancelListRefresh,
-                        TextDownloadException = Properties.DiscoveryTexts.SPListUnableRefresh,
+                        TextDownloadException = providerTexts.ListRefreshError,
                     };
                     downloader.Download(this);
                     if (!downloader.IsOk) return false;
@@ -169,7 +162,7 @@ namespace IpTviewr.UiServices.Forms
             }
             catch (Exception ex)
             {
-                HandleException(new ExceptionEventData(Properties.DiscoveryTexts.SPListUnableRefresh, ex));
+                HandleException(new ExceptionEventData(providerTexts.ListRefreshError, ex));
                 return false;
             } // try-catch
         } // LoadServiceProviderList

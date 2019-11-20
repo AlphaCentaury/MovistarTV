@@ -478,8 +478,11 @@ namespace IpTviewr.UiServices.Configuration
                 var ipTvProviderSettingsRegistrationGuid = new Guid(IpTvProviderSettingsRegistrationGuid);
                 var ipTvProviderSettings = this[ipTvProviderSettingsRegistrationGuid];
 
-                var result = ipTvProviderSettings.Initialize();
-                if (!result.IsOk) return result;
+                if (ipTvProviderSettings.SupportsInitialization)
+                {
+                    var result = ipTvProviderSettings.Initialize();
+                    if (!result.IsOk) return result;
+                } // if
 
                 var xmlContentProvider = IpTvProviderData.Load(xmlPath);
 

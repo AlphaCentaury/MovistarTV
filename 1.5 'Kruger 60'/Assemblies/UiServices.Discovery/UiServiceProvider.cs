@@ -134,18 +134,19 @@ namespace IpTviewr.UiServices.Discovery
             var result = Data.Name.SafeGetLanguageValue(AppUiConfiguration.Current.User.PreferredLanguagesList, AppUiConfiguration.Current.DisplayPreferredOrFirst, null);
             if (result != null) return result;
 
+            var providerTexts = AppUiConfiguration.Current.IpTvService.Texts.Provider;
             if (AppUiConfiguration.Current.ContentProvider.FriendlyNames.ServiceProvider.TryGetValue(Data.DomainName, out var friendlyName))
             {
-                return string.Format(Properties.Texts.FormatProviderFriendlyDisplayName, friendlyName, Data.DomainName.ToLowerInvariant());
+                return string.Format(providerTexts.FormatFriendlyName, friendlyName, Data.DomainName.ToLowerInvariant());
             } // if
 
-            return string.Format(Properties.Texts.FormatProviderUnknownDisplayName, Data.DomainName.ToLowerInvariant());
+            return string.Format(providerTexts.FormatUnknownName, Data.DomainName.ToLowerInvariant());
         } // GetDisplayName
 
         private string GetDisplayDescription()
         {
             var result = Data.Description.SafeGetLanguageValue(AppUiConfiguration.Current.User.PreferredLanguagesList, AppUiConfiguration.Current.DisplayPreferredOrFirst, null);
-            return result ?? Properties.Texts.ProviderUnknownDisplayDescription;
+            return result ?? AppUiConfiguration.Current.IpTvService.Texts.Provider.UnknownDisplayDescription;
         } // GetDisplayDescription
 
         private ProviderLogo GetLogo()

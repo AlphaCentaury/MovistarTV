@@ -191,9 +191,6 @@ The application will now end.</value>
   <data name="NotProvidedValue" xml:space="preserve">
     <value>&lt;Not provided&gt;</value>
   </data>
-  <data name="NotSelectedServiceProvider" xml:space="preserve">
-    <value>No service provider has been selected</value>
-  </data>
   <data name="OpenUrlError" xml:space="preserve">
     <value>Unable to open browser for URL '{0}'.
 
@@ -202,21 +199,6 @@ The application will now end.</value>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="SolutionLicense" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\..\solution-license.txt;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
-  </data>
-  <data name="SPListUnableRefresh" xml:space="preserve">
-    <value>Unable to obtain the list of service providers</value>
-  </data>
-  <data name="SPObtainingList" xml:space="preserve">
-    <value>Obtaining the list of service providers...</value>
-  </data>
-  <data name="SPParsingList" xml:space="preserve">
-    <value>Parsing and extracting the list of providers...</value>
-  </data>
-  <data name="SPProperties" xml:space="preserve">
-    <value>Properties of the service provider</value>
-  </data>
-  <data name="UserCancelListRefresh" xml:space="preserve">
-    <value>The refreshing of the list has been cancelled by the user.</value>
   </data>
   <data name="SchedulerCreateTaskOk" xml:space="preserve">
     <value>The recording task has been sucessfully created.</value>

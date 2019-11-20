@@ -141,12 +141,6 @@
   <data name="FormatBroadcastUnknownDisplayName" xml:space="preserve">
     <value>Unknown: {0}.{1}</value>
   </data>
-  <data name="FormatProviderFriendlyDisplayName" xml:space="preserve">
-    <value>{0} (*)</value>
-  </data>
-  <data name="FormatProviderUnknownDisplayName" xml:space="preserve">
-    <value>(Name not provided) {0}</value>
-  </data>
   <data name="FormatServiceTypeIdUnknown" xml:space="preserve">
     <value>Unknown ({0})</value>
   </data>
@@ -191,9 +185,6 @@
   </data>
   <data name="Payload06DisplayName" xml:space="preserve">
     <value>EPG data source locations</value>
-  </data>
-  <data name="ProviderUnknownDisplayDescription" xml:space="preserve">
-    <value>No description is available for this service provider</value>
   </data>
   <data name="UserCancelListRefresh" xml:space="preserve">
     <value>The refreshing of the list has been cancelled by the user.</value>

@@ -133,24 +133,6 @@ namespace IpTviewr.UiServices.Discovery.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} (*).
-        /// </summary>
-        internal static string FormatProviderFriendlyDisplayName {
-            get {
-                return ResourceManager.GetString("FormatProviderFriendlyDisplayName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to (Name not provided) {0}.
-        /// </summary>
-        internal static string FormatProviderUnknownDisplayName {
-            get {
-                return ResourceManager.GetString("FormatProviderUnknownDisplayName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Unknown ({0}).
         /// </summary>
         internal static string FormatServiceTypeIdUnknown {
@@ -282,15 +264,6 @@ namespace IpTviewr.UiServices.Discovery.Properties {
         internal static string Payload06DisplayName {
             get {
                 return ResourceManager.GetString("Payload06DisplayName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to No description is available for this service provider.
-        /// </summary>
-        internal static string ProviderUnknownDisplayDescription {
-            get {
-                return ResourceManager.GetString("ProviderUnknownDisplayDescription", resourceCulture);
             }
         }
         

@@ -194,7 +194,12 @@
     <Content Include="Resources\DefaultAbout.png" />
     <Content Include="Resources\NotImplemented_200x200.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Project.Common\Project.Common.csproj">
+      <Project>{8da15060-5a78-4f89-a9f1-7aa56b0d622c}</Project>
+      <Name>Project.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Controls\ListEditor.es.resx">
       <DependentUpon>ListEditor.cs</DependentUpon>
@@ -272,12 +277,6 @@
     <EmbeddedResource Include="Start\SplashScreen.resx">
       <DependentUpon>SplashScreen.cs</DependentUpon>
     </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Project.Common\Project.Common.csproj">
-      <Project>{8da15060-5a78-4f89-a9f1-7aa56b0d622c}</Project>
-      <Name>Project.Common</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

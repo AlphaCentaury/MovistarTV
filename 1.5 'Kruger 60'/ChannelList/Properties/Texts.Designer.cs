@@ -363,15 +363,6 @@ namespace IpTviewr.ChannelList.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to No service provider has been selected.
-        /// </summary>
-        internal static string NotSelectedServiceProvider {
-            get {
-                return ResourceManager.GetString("NotSelectedServiceProvider", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Unable to open browser for URL &apos;{0}&apos;.
         ///
         ///{1}.
@@ -447,51 +438,6 @@ namespace IpTviewr.ChannelList.Properties {
         internal static string SolutionLicenseRtf {
             get {
                 return ResourceManager.GetString("SolutionLicenseRtf", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Unable to obtain the list of service providers.
-        /// </summary>
-        internal static string SPListUnableRefresh {
-            get {
-                return ResourceManager.GetString("SPListUnableRefresh", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Obtaining the list of service providers....
-        /// </summary>
-        internal static string SPObtainingList {
-            get {
-                return ResourceManager.GetString("SPObtainingList", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Parsing and extracting the list of providers....
-        /// </summary>
-        internal static string SPParsingList {
-            get {
-                return ResourceManager.GetString("SPParsingList", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Properties of the service provider.
-        /// </summary>
-        internal static string SPProperties {
-            get {
-                return ResourceManager.GetString("SPProperties", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The refreshing of the list has been cancelled by the user..
-        /// </summary>
-        internal static string UserCancelListRefresh {
-            get {
-                return ResourceManager.GetString("UserCancelListRefresh", resourceCulture);
             }
         }
     }

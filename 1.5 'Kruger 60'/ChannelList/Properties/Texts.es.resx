@@ -191,27 +191,9 @@ La aplicación no puede continuar y se terminará.</value>
   <data name="NotProvidedValue" xml:space="preserve">
     <value>&lt;No suministrado&gt;</value>
   </data>
-  <data name="NotSelectedServiceProvider" xml:space="preserve">
-    <value>No se ha seleccionado un proveedor de servicios</value>
-  </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="SolutionLicense" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\..\solution-license_es.txt;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
-  </data>
-  <data name="SPListUnableRefresh" xml:space="preserve">
-    <value>No ha sido posible obtener la lista de proveedores de servicios</value>
-  </data>
-  <data name="SPObtainingList" xml:space="preserve">
-    <value>Obteniendo la lista de proveedores de servicios...</value>
-  </data>
-  <data name="SPParsingList" xml:space="preserve">
-    <value>Analizando y extrayendo la lista de proveedores...</value>
-  </data>
-  <data name="SPProperties" xml:space="preserve">
-    <value>Propiedades del proveedor de servicios</value>
-  </data>
-  <data name="UserCancelListRefresh" xml:space="preserve">
-    <value>La actualización de la lista ha sido cancelada por el usuario.</value>
   </data>
   <data name="SchedulerCreateTaskOk" xml:space="preserve">
     <value>Se ha creado correctamente la tarea de grabación.</value>

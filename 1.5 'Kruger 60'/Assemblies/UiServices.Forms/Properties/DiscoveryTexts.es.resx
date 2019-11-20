@@ -112,23 +112,11 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="SPListUnableRefresh" xml:space="preserve">
-    <value>No ha sido posible obtener la lista de proveedores de servicios</value>
-  </data>
-  <data name="SPObtainingList" xml:space="preserve">
-    <value>Obteniendo la lista de proveedores de servicios...</value>
-  </data>
-  <data name="SPParsingList" xml:space="preserve">
-    <value>Analizando y extrayendo la lista de proveedores...</value>
-  </data>
-  <data name="SPProperties" xml:space="preserve">
-    <value>Propiedades del proveedor de servicios</value>
-  </data>
   <data name="UserCancelListRefresh" xml:space="preserve">
     <value>La actualización de la lista ha sido cancelada por el usuario.</value>
   </data>

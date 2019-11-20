@@ -44,9 +44,9 @@ namespace IpTviewr.ChannelList
         private int _epgDataCount;
 
         // disabled functionality
-        private const bool EnableMenuItemDvbRecent = false;
-        private const bool EnableMenuItemDvbPackages = false;
-        private const bool EnableMenuItemDvbExport = false;
+        private const bool EnableMenuItemIpTviewrRecent = false;
+        private const bool EnableMenuItemIpTviewrPackages = false;
+        private const bool EnableMenuItemIpTviewrExport = false;
         private const bool EnableMenuItemChannelFavorites = false;
         private const bool EnableMenuItemChannelEditList = false;
         private bool _enableEpg = false;
@@ -107,11 +107,12 @@ namespace IpTviewr.ChannelList
             BasicGoogleTelemetry.SendScreenHit(this, "Load");
 
             Text = Texts.AppCaption;
+            InitIpTviewrMenu();
 
             // disable functionality
-            menuItemDvbRecent.Enabled = EnableMenuItemDvbRecent;
-            menuItemDvbPackages.Enabled = EnableMenuItemDvbPackages;
-            menuItemDvbExport.Enabled = EnableMenuItemDvbExport;
+            menuItemIpTviewrRecent.Enabled = EnableMenuItemIpTviewrRecent;
+            menuItemIpTviewrPackages.Enabled = EnableMenuItemIpTviewrPackages;
+            menuItemIpTviewrExport.Enabled = EnableMenuItemIpTviewrExport;
 
             var settings = UiBroadcastListSettingsRegistration.Settings;
             _listManager = new UiBroadcastListManager(listViewChannelList, settings, imageListChannels, imageListChannelsLarge, true);
@@ -141,37 +142,9 @@ namespace IpTviewr.ChannelList
             _selectedServiceProvider = SelectProviderDialog.GetLastUserSelectedProvider(Settings.Default.LastSelectedServiceProvider);
             ServiceProviderChanged();
 
-            // notify Splash Screeen the form has finished loading and is about to be shown
+            // notify Splash Screen the form has finished loading and is about to be shown
             FormLoadCompleted?.Invoke(this, e);
         } // ChannelListForm_Load_Implementation
-
-        #endregion
-
-        #region 'IPTV > Package' menu event handlers
-
-        private void menuItemPackagesSelect_Click(object sender, EventArgs e)
-        {
-            SafeCall(Implementation_menuItemPackagesSelect_Click, sender, e);
-        } // menuItemPackagesSelect_Click
-
-        private void menuItemPackagesManage_Click(object sender, EventArgs e)
-        {
-            SafeCall(Implementation_menuItemPackagesManage_Click, sender, e);
-        } // menuItemPackagesManage_Click
-
-        #endregion
-
-        #region 'IPTV > Package' menu event handlers implementation
-
-        private void Implementation_menuItemPackagesSelect_Click(object sender, EventArgs e)
-        {
-            NotImplementedBox.ShowBox(this, "menuItemPackagesSelect");
-        } // Implementation_menuItemPackagesSelect_Click
-
-        private void Implementation_menuItemPackagesManage_Click(object sender, EventArgs e)
-        {
-            NotImplementedBox.ShowBox(this, "menuItemPackagesManage");
-        } // Implementation_menuItemPackagesManage_Click
 
         #endregion
 
