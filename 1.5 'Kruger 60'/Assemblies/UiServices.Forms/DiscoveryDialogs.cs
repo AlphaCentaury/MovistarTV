@@ -19,7 +19,7 @@ namespace IpTviewr.UiServices.Forms
 
             using var dlg = new PropertiesDialog
             {
-                Caption = AppUiConfiguration.Current.IpTvService.Texts.Provider.PropertiesCaption,
+                Caption = AppConfig.Current.IpTvService.Texts.Provider.PropertiesCaption,
                 ItemProperties = provider.DumpProperties(),
                 Description = provider.DisplayName,
                 ItemIcon = provider.Logo.GetImage(LogoSize.Size64),

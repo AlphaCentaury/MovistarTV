@@ -74,7 +74,7 @@ namespace IpTviewr.UiServices.Forms
         {
             BasicGoogleTelemetry.SendScreenHit(this);
 
-            Text = AppUiConfiguration.Current.IpTvService.Texts.Provider.SelectCaption;
+            Text = AppConfig.Current.IpTvService.Texts.Provider.SelectCaption;
             if (SelectedServiceProvider == null)
             {
                 SelectedIndexChanged();
@@ -101,8 +101,8 @@ namespace IpTviewr.UiServices.Forms
             var lastSelectedProvider = lastSelectedServiceProvider;
             if (lastSelectedProvider == null) return null;
 
-            var baseIpAddress = AppUiConfiguration.Current.ContentProvider.Bootstrap.MulticastAddress;
-            var discovery = AppUiConfiguration.Current.Cache.LoadXml<ProviderDiscoveryRoot>("ProviderDiscovery", baseIpAddress);
+            var baseIpAddress = AppConfig.Current.ContentProvider.Bootstrap.MulticastAddress;
+            var discovery = AppConfig.Current.Cache.LoadXml<ProviderDiscoveryRoot>("ProviderDiscovery", baseIpAddress);
             if (discovery == null) return null;
 
             return UiProviderDiscovery.GetUiServiceProviderFromKey(discovery, lastSelectedProvider);
@@ -110,17 +110,17 @@ namespace IpTviewr.UiServices.Forms
 
         private bool LoadServiceProviderList(bool fromCache)
         {
-            var providerTexts = AppUiConfiguration.Current.IpTvService.Texts.Provider;
+            var providerTexts = AppConfig.Current.IpTvService.Texts.Provider;
             try
             {
                 ProviderDiscoveryRoot discovery;
-                var baseIpAddress = AppUiConfiguration.Current.ContentProvider.Bootstrap.MulticastAddress;
+                var baseIpAddress = AppConfig.Current.ContentProvider.Bootstrap.MulticastAddress;
 
                 // can load from cache?
                 discovery = null;
                 if (fromCache)
                 {
-                    discovery = AppUiConfiguration.Current.Cache.LoadXml<ProviderDiscoveryRoot>("ProviderDiscovery", baseIpAddress);
+                    discovery = AppConfig.Current.Cache.LoadXml<ProviderDiscoveryRoot>("ProviderDiscovery", baseIpAddress);
                     if (discovery == null)
                     {
                         return false;
@@ -129,7 +129,7 @@ namespace IpTviewr.UiServices.Forms
 
                 if (discovery == null)
                 {
-                    var basePort = AppUiConfiguration.Current.ContentProvider.Bootstrap.MulticastPort;
+                    var basePort = AppConfig.Current.ContentProvider.Bootstrap.MulticastPort;
 
                     var downloader = new UiDvbStpSimpleDownloader()
                     {
@@ -152,7 +152,7 @@ namespace IpTviewr.UiServices.Forms
                     if (!downloader.IsOk) return false;
 
                     discovery = downloader.Response.DeserializedPayloadData as ProviderDiscoveryRoot;
-                    AppUiConfiguration.Current.Cache.SaveXml("ProviderDiscovery", baseIpAddress, downloader.Response.Version, discovery);
+                    AppConfig.Current.Cache.SaveXml("ProviderDiscovery", baseIpAddress, downloader.Response.Version, discovery);
                 } // if
 
                 _providersDiscovery = new UiProviderDiscovery(discovery);

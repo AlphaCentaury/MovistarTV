@@ -89,7 +89,7 @@ namespace IpTviewr.Tools.FirstTimeConfig
                 var tvPlayers = GetTvPlayers(vlcPath);
                 var movistarPlusIpTvProviderSettings = new IpTvProviderSettings();
 
-                var config = AppUiConfiguration.CreateForUserConfig(user);
+                var config = AppConfig.CreateForUserConfig(user);
                 config.RegisterConfiguration(new UiBroadcastListSettingsRegistration(), null, true);
                 config.RegisterConfiguration(new TvPlayersSettingsRegistration(), tvPlayers);
                 config.RegisterConfiguration(new NetworkSettingsRegistration(), null, true);

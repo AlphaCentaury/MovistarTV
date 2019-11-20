@@ -107,17 +107,17 @@ namespace IpTviewr.ChannelList
 
             try
             {
-                result = AppUiConfiguration.Load(null, ConfigLoadDisplayProgress);
+                result = AppConfig.Load(null, ConfigLoadDisplayProgress);
                 if (result.IsError) return result;
 
-                result = ValidateConfiguration(AppUiConfiguration.Current);
+                result = ValidateConfiguration(AppConfig.Current);
                 if (result.IsError) return result;
 
                 BasicGoogleTelemetry.Init(Properties.InvariantTexts.AnalyticsGoogleTrackingId,
-                    AppUiConfiguration.Current.AnalyticsClientId,
-                    AppUiConfiguration.Current.User.Telemetry.Enabled,
-                    AppUiConfiguration.Current.User.Telemetry.Usage,
-                    AppUiConfiguration.Current.User.Telemetry.Exceptions);
+                    AppConfig.Current.AnalyticsClientId,
+                    AppConfig.Current.User.Telemetry.Enabled,
+                    AppConfig.Current.User.Telemetry.Usage,
+                    AppConfig.Current.User.Telemetry.Exceptions);
 
                 BasicGoogleTelemetry.SendScreenHit("SplashScreen");
 
@@ -139,7 +139,7 @@ namespace IpTviewr.ChannelList
             DisplayProgress(text, true);
         } // ConfigLoadDisplayProgress
 
-        private static InitializationResult ValidateConfiguration(AppUiConfiguration config)
+        private static InitializationResult ValidateConfiguration(AppConfig config)
         {
             string recorderPath;
 

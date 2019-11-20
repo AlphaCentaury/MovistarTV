@@ -17,8 +17,8 @@ namespace IpTviewr.UiServices.Configuration.Settings.TvPlayers
 
         public static TvPlayersSettings Settings
         {
-            get => AppUiConfiguration.Current[_myDirectIndex] as TvPlayersSettings;
-            set => AppUiConfiguration.Current[_myDirectIndex] = value;
+            get => AppConfig.Current[_myDirectIndex] as TvPlayersSettings;
+            set => AppConfig.Current[_myDirectIndex] = value;
         } // Settings
 
         public Guid Id => new Guid(ConfigurationGuid);

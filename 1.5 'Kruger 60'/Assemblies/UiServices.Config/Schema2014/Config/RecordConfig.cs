@@ -40,7 +40,7 @@ namespace IpTviewr.UiServices.Configuration.Schema2014.Config
         } // Recorders
 
         [XmlIgnore]
-        public string RecorderLauncherPath=>Path.Combine(AppUiConfiguration.Current.Folders.Install, Properties.InvariantTexts.RecorderLauncher);
+        public string RecorderLauncherPath=>Path.Combine(AppConfig.Current.Folders.Install, Properties.InvariantTexts.RecorderLauncher);
 
         public string Validate(string ownerTag)
         {

@@ -41,7 +41,7 @@ namespace IpTviewr.UiServices.Record
             // task folder
             comboSchedulerFolder.DisplayMember = "Name";
             comboSchedulerFolder.ValueMember = "Path";
-            var folders = AppUiConfiguration.Current.User.Record.TaskSchedulerFolders;
+            var folders = AppConfig.Current.User.Record.TaskSchedulerFolders;
             if (folders != null)
             {
                 comboSchedulerFolder.Items.AddRange(folders);

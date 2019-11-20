@@ -27,10 +27,10 @@ namespace IpTviewr.Tools.FirstTimeConfig
 
         public static bool Is32BitWindows { get; set; }
 
-        public static AppUiConfiguration LoadRegistrySettings(out InitializationResult initializationResult)
+        public static AppConfig LoadRegistrySettings(out InitializationResult initializationResult)
         {
             Is32BitWindows = WindowsBitness.Is32BitWindows();
-            var result = AppUiConfiguration.LoadRegistryAppConfiguration(out initializationResult);
+            var result = AppConfig.LoadRegistryAppConfiguration(out initializationResult);
 #if DEBUG
             _redistFolder = Path.Combine(result.Folders.Base, "Bin\\Redist");
 #else

@@ -388,7 +388,7 @@ namespace IpTviewr.Tools.FirstTimeConfig
         private void buttonFirewall_Click(object sender, EventArgs e)
         {
             var result = Installation.RunSelfForFirewall(
-                checkBoxFirewallDecoder.Checked ? Program.AppUiConfig.Folders.Install : null,
+                checkBoxFirewallDecoder.Checked ? Program.AppConfig.Folders.Install : null,
                 checkBoxFirewallVlc.Checked ? textBoxVlc.Text : null);
 
             if (result.Message == null) return;
@@ -502,7 +502,7 @@ namespace IpTviewr.Tools.FirstTimeConfig
                 rootFolder = Path.Combine(rootFolder, subFolder);
             } // if
 
-            xmlConfigPath = Path.Combine(Program.AppUiConfig.Folders.Base, "user-config.xml");
+            xmlConfigPath = Path.Combine(Program.AppConfig.Folders.Base, "user-config.xml");
 
             if (File.Exists(xmlConfigPath))
             {

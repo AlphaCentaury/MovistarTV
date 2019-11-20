@@ -18,7 +18,7 @@ namespace IpTviewr.UiServices.Record
         private void InitGeneralData()
         {
             // service logo
-            var serviceLogo = AppUiConfiguration.Current.ServiceLogoMappings.FromServiceKey(Task.Channel.ServiceKey);
+            var serviceLogo = AppConfig.Current.ServiceLogoMappings.FromServiceKey(Task.Channel.ServiceKey);
             pictureChannelLogo.Image = serviceLogo.GetImage(LogoSize.Size64);
 
             // service name

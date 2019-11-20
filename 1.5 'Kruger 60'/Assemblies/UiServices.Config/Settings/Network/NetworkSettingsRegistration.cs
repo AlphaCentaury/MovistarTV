@@ -17,8 +17,8 @@ namespace IpTviewr.UiServices.Configuration.Settings.Network
 
         public static NetworkSettings Settings
         {
-            get => AppUiConfiguration.Current[_myDirectIndex] as NetworkSettings;
-            set => AppUiConfiguration.Current[_myDirectIndex] = value;
+            get => AppConfig.Current[_myDirectIndex] as NetworkSettings;
+            set => AppConfig.Current[_myDirectIndex] = value;
         } // Settings
 
         public Guid Id => new Guid(ConfigurationGuid);

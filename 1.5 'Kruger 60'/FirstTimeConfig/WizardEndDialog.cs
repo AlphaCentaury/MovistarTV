@@ -47,7 +47,7 @@ namespace IpTviewr.Tools.FirstTimeConfig
                     labelEndTitle.Text = Properties.Texts.WizardEndTitleOk;
                     labelEndText.Text = string.Format(labelEndText.Text, Properties.Texts.WizardEndTextOk);
                     checkRunMainProgram.Visible = true;
-                    checkRunMainProgram.Checked = !string.IsNullOrEmpty(Program.AppUiConfig.Folders.Install);
+                    checkRunMainProgram.Checked = !string.IsNullOrEmpty(Program.AppConfig.Folders.Install);
                     checkRunMainProgram.Enabled = checkRunMainProgram.Checked;
                     checkRunMainProgram.Text = string.Format(checkRunMainProgram.Text, Properties.Texts.ProductMainProgramName);
                     break;

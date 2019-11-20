@@ -25,7 +25,7 @@ namespace IpTviewr.ChannelList
             Properties.Settings.Default.LastSelectedServiceProvider = _selectedServiceProvider?.Key;
             Properties.Settings.Default.Save();
 
-            labelProviderName.Text = AppUiConfiguration.Current.IpTvService.Texts.Provider.NoSelection;
+            labelProviderName.Text = AppConfig.Current.IpTvService.Texts.Provider.NoSelection;
             labelProviderDescription.Text = null;
             pictureProviderLogo.Image = null;
             menuItemIpTviewrProviderDetails.Enabled = false;

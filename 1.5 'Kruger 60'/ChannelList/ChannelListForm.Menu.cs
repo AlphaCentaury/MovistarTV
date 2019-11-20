@@ -25,7 +25,7 @@ namespace IpTviewr.ChannelList
 
         private void InitIpTviewrMenu()
         {
-            var providerTexts = AppUiConfiguration.Current.IpTvService.Texts.Provider;
+            var providerTexts = AppConfig.Current.IpTvService.Texts.Provider;
 
             menuItemIpTviewrProvider.Text = providerTexts.MenuEntry;
             menuItemIpTviewrProviderSelect.Text = providerTexts.MenuSelect;

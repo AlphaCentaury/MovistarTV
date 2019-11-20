@@ -14,8 +14,8 @@ namespace IpTviewr.UiServices.Configuration.Logos
             // no-op
         } // constructor
 
-        protected override string ImageNotFoundExceptionText => AppUiConfiguration.Current.IpTvService.Texts.Provider.LogoNotFound;
+        protected override string ImageNotFoundExceptionText => AppConfig.Current.IpTvService.Texts.Provider.LogoNotFound;
 
-        protected override string ImageLoadExceptionText => AppUiConfiguration.Current.IpTvService.Texts.Provider.LogoLoadError;
+        protected override string ImageLoadExceptionText => AppConfig.Current.IpTvService.Texts.Provider.LogoLoadError;
     } // class ProviderLogo
 } // namespace

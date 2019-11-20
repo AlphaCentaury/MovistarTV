@@ -125,7 +125,7 @@ namespace IpTviewr.ChannelList
             Notify(null, null, -1);
 
             // set-up EPG functionality
-            _enableEpg = AppUiConfiguration.Current.User.Epg.Enabled;
+            _enableEpg = AppConfig.Current.User.Epg.Enabled;
             epgMiniGuide.Visible = false;
             epgMiniGuide.IsDisabled = !_enableEpg;
             statusLabelEpg.Text = _enableEpg ? Texts.EpgStatusNotStarted : Texts.EpgStatusDisabled;

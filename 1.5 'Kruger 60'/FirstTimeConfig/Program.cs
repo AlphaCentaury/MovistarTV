@@ -24,7 +24,7 @@ namespace IpTviewr.Tools.FirstTimeConfig
         internal static bool RunFirewallConfiguration;
         internal static string FirewallBinPath;
         internal static string FirewallVlcPath;
-        internal static AppUiConfiguration AppUiConfig;
+        internal static AppConfig AppConfig;
 
         private static DialogResult _wizardEndResult;
         private static string _wizardEndText;
@@ -78,13 +78,13 @@ namespace IpTviewr.Tools.FirstTimeConfig
 
             _wizardEndResult = DialogResult.Abort;
 
-            AppUiConfig = Installation.LoadRegistrySettings(out initResult);
-            if (AppUiConfig == null)
+            AppConfig = Installation.LoadRegistrySettings(out initResult);
+            if (AppConfig == null)
             {
                 SetWizardResult(DialogResult.Abort, $"{initResult.Caption}\r\n{initResult.Message}", initResult.InnerException);
                 goto End;
             } // if
-            BasicGoogleTelemetry.Init(Properties.Resources.AnalyticsGoogleTrackingId, AppUiConfig.AnalyticsClientId, true, true, true);
+            BasicGoogleTelemetry.Init(Properties.Resources.AnalyticsGoogleTrackingId, AppConfig.AnalyticsClientId, true, true, true);
 
             using (var dlg = new WizardWelcomeDialog())
             {
@@ -115,7 +115,7 @@ namespace IpTviewr.Tools.FirstTimeConfig
 
             if (launchMainProgram)
             {
-                var message = Installation.Launch(null, AppUiConfig.Folders.Install, Properties.Resources.SuccessExecuteProgram);
+                var message = Installation.Launch(null, AppConfig.Folders.Install, Properties.Resources.SuccessExecuteProgram);
                 if (message != null)
                 {
                     MessageBox.Show(message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Stop);

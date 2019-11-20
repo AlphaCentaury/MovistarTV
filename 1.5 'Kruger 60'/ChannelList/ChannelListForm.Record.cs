@@ -47,8 +47,8 @@ namespace IpTviewr.ChannelList
         {
             using (var dlg = new RecordTasksDialog())
             {
-                dlg.RecordTaskFolder = AppUiConfiguration.Current.Folders.RecordTasks;
-                dlg.SchedulerFolders = GetTaskSchedulerFolders(AppUiConfiguration.Current.User.Record.TaskSchedulerFolders);
+                dlg.RecordTaskFolder = AppConfig.Current.Folders.RecordTasks;
+                dlg.SchedulerFolders = GetTaskSchedulerFolders(AppConfig.Current.User.Record.TaskSchedulerFolders);
                 dlg.ShowDialog(this);
             } // using
         } // menuItemRecordingsManage_Click_Implementation

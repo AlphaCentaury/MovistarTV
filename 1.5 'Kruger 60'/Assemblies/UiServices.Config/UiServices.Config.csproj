@@ -53,7 +53,7 @@
     <Compile Include="..\..\AssemblySolutionInfo.cs">
       <Link>Properties\AssemblySolutionInfo.cs</Link>
     </Compile>
-    <Compile Include="AppUiConfiguration.cs" />
+    <Compile Include="AppConfig.cs" />
     <Compile Include="AppUiConfigurationFolders.cs" />
     <Compile Include="AppUiConfigurationFolders.FolderLogos.cs" />
     <Compile Include="Cache\CachedItemBase.cs" />

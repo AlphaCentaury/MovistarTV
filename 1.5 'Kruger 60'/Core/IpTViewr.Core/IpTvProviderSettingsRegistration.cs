@@ -17,13 +17,13 @@ namespace IpTviewr.Core
 
         public static IpTvProviderSettings Settings
         {
-            get => AppUiConfiguration.Current[_myDirectIndex] as IpTvProviderSettings;
-            set => AppUiConfiguration.Current[_myDirectIndex] = value;
+            get => AppConfig.Current[_myDirectIndex] as IpTvProviderSettings;
+            set => AppConfig.Current[_myDirectIndex] = value;
         } // Settings
 
         #region IConfigurationItemRegistration Members
 
-        public Guid Id => new Guid(AppUiConfiguration.IpTvProviderSettingsRegistrationGuid);
+        public Guid Id => new Guid(AppConfig.IpTvProviderSettingsRegistrationGuid);
 
         public bool HasEditor => false;
 

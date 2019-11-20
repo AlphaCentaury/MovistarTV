@@ -55,9 +55,9 @@ namespace IpTviewr.UiServices.Discovery
         {
             var properties = new List<Property>();
 
-            var text = Data.Name.SafeGetLanguageItem(AppUiConfiguration.Current.User.PreferredLanguagesList, true);
+            var text = Data.Name.SafeGetLanguageItem(AppConfig.Current.User.PreferredLanguagesList, true);
             properties.Add(Utils.GetLanguageProperty("Name (display)", text));
-            text = Data.Description.SafeGetLanguageItem(AppUiConfiguration.Current.User.PreferredLanguagesList, true);
+            text = Data.Description.SafeGetLanguageItem(AppConfig.Current.User.PreferredLanguagesList, true);
             properties.Add(Utils.GetLanguageProperty("Description (display)", text));
             properties.Add(new Property("Domain name", DomainName));
             properties.Add(new Property("Logo URI", Data.LogoUrl));
@@ -131,11 +131,11 @@ namespace IpTviewr.UiServices.Discovery
 
         private string GetDisplayName()
         {
-            var result = Data.Name.SafeGetLanguageValue(AppUiConfiguration.Current.User.PreferredLanguagesList, AppUiConfiguration.Current.DisplayPreferredOrFirst, null);
+            var result = Data.Name.SafeGetLanguageValue(AppConfig.Current.User.PreferredLanguagesList, AppConfig.Current.DisplayPreferredOrFirst, null);
             if (result != null) return result;
 
-            var providerTexts = AppUiConfiguration.Current.IpTvService.Texts.Provider;
-            if (AppUiConfiguration.Current.ContentProvider.FriendlyNames.ServiceProvider.TryGetValue(Data.DomainName, out var friendlyName))
+            var providerTexts = AppConfig.Current.IpTvService.Texts.Provider;
+            if (AppConfig.Current.ContentProvider.FriendlyNames.ServiceProvider.TryGetValue(Data.DomainName, out var friendlyName))
             {
                 return string.Format(providerTexts.FormatFriendlyName, friendlyName, Data.DomainName.ToLowerInvariant());
             } // if
@@ -145,13 +145,13 @@ namespace IpTviewr.UiServices.Discovery
 
         private string GetDisplayDescription()
         {
-            var result = Data.Description.SafeGetLanguageValue(AppUiConfiguration.Current.User.PreferredLanguagesList, AppUiConfiguration.Current.DisplayPreferredOrFirst, null);
-            return result ?? AppUiConfiguration.Current.IpTvService.Texts.Provider.UnknownDisplayDescription;
+            var result = Data.Description.SafeGetLanguageValue(AppConfig.Current.User.PreferredLanguagesList, AppConfig.Current.DisplayPreferredOrFirst, null);
+            return result ?? AppConfig.Current.IpTvService.Texts.Provider.UnknownDisplayDescription;
         } // GetDisplayDescription
 
         private ProviderLogo GetLogo()
         {
-            return AppUiConfiguration.Current.ProviderLogoMappings.Get(DomainName);
+            return AppConfig.Current.ProviderLogoMappings.Get(DomainName);
         } // GetLogo
     } // class UiServiceProvider
 } // namespace

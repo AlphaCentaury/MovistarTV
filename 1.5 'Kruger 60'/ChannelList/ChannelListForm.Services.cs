@@ -149,7 +149,7 @@ namespace IpTviewr.ChannelList
         private void MulticastScanner_ScanCompleted(object sender, MulticastScannerDialog.ScanCompletedEventArgs e)
         {
             // Save scan result in cache
-            AppUiConfiguration.Current.Cache.SaveXml("UiBroadcastDiscovery", _selectedServiceProvider.Key, _broadcastDiscovery.Version, _broadcastDiscovery);
+            AppConfig.Current.Cache.SaveXml("UiBroadcastDiscovery", _selectedServiceProvider.Key, _broadcastDiscovery.Version, _broadcastDiscovery);
 
             // Refresh list if needed
             if (e.IsListRefreshNeeded)

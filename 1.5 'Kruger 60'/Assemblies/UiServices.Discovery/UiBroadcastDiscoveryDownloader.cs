@@ -116,9 +116,9 @@ namespace IpTviewr.UiServices.Discovery
                 if (fromCache)
                 {
                     OnBeforeCacheLoad(this, EventArgs.Empty);
-                    var cachedPackageDiscovery = AppUiConfiguration.Current.Cache.LoadXmlDocument<PackageDiscoveryRoot>("PackageDiscovery", serviceProvider.Key);
-                    var cachedEpgDiscovery = AppUiConfiguration.Current.Cache.LoadXmlDocument<BroadcastContentGuideDiscoveryRoot>("BroadcastContentGuideDiscovery", serviceProvider.Key);
-                    var cachedBroadcastDiscovery = AppUiConfiguration.Current.Cache.LoadXmlDocument<UiBroadcastDiscovery>("UiBroadcastDiscovery", serviceProvider.Key);
+                    var cachedPackageDiscovery = AppConfig.Current.Cache.LoadXmlDocument<PackageDiscoveryRoot>("PackageDiscovery", serviceProvider.Key);
+                    var cachedEpgDiscovery = AppConfig.Current.Cache.LoadXmlDocument<BroadcastContentGuideDiscoveryRoot>("BroadcastContentGuideDiscovery", serviceProvider.Key);
+                    var cachedBroadcastDiscovery = AppConfig.Current.Cache.LoadXmlDocument<UiBroadcastDiscovery>("UiBroadcastDiscovery", serviceProvider.Key);
                     OnAfterCacheLoad(this, new CacheEventArgs(cachedBroadcastDiscovery));
 
                     BroadcastDiscovery = cachedBroadcastDiscovery?.Document;
@@ -147,7 +147,7 @@ namespace IpTviewr.UiServices.Discovery
                         AllowXmlExtraWhitespace = false,
                         XmlNamespaceReplacer = NamespaceUnification.Replacer,
 #if DEBUG
-                        DumpToFolder = AppUiConfiguration.Current.Folders.Cache
+                        DumpToFolder = AppConfig.Current.Folders.Cache
 #endif
                     },
                     TextUserCancelled = Properties.Texts.UserCancelListRefresh,
@@ -168,7 +168,7 @@ namespace IpTviewr.UiServices.Discovery
                 OnAfterMerge(this, new MergeEventArgs(BroadcastDiscovery, currentUiDiscovery));
 
                 PackageDiscovery = downloader.Request.Payloads[1].XmlDeserializedData as PackageDiscoveryRoot;
-                highDefinitionPriority = highDefinitionPriority ?? !AppUiConfiguration.Current.User.ChannelNumberStandardDefinitionPriority;
+                highDefinitionPriority = highDefinitionPriority ?? !AppConfig.Current.User.ChannelNumberStandardDefinitionPriority;
 
                 OnBeforeAssignNumbers(this, new AssignNumbersArgs(BroadcastDiscovery, PackageDiscovery, serviceProvider, highDefinitionPriority.Value));
                 UiServicesLogicalNumbers.AssignLogicalNumbers(BroadcastDiscovery, PackageDiscovery, serviceProvider.DomainName, highDefinitionPriority.Value);
@@ -176,9 +176,9 @@ namespace IpTviewr.UiServices.Discovery
 
                 EpgDiscovery = downloader.Request.Payloads[2].XmlDeserializedData as BroadcastContentGuideDiscoveryRoot;
 
-                AppUiConfiguration.Current.Cache.SaveXml("UiBroadcastDiscovery", serviceProvider.Key, BroadcastDiscovery.Version, BroadcastDiscovery);
-                AppUiConfiguration.Current.Cache.SaveXml("PackageDiscovery", serviceProvider.Key, 0, PackageDiscovery);
-                AppUiConfiguration.Current.Cache.SaveXml("BroadcastContentGuideDiscovery", serviceProvider.Key, 0, EpgDiscovery);
+                AppConfig.Current.Cache.SaveXml("UiBroadcastDiscovery", serviceProvider.Key, BroadcastDiscovery.Version, BroadcastDiscovery);
+                AppConfig.Current.Cache.SaveXml("PackageDiscovery", serviceProvider.Key, 0, PackageDiscovery);
+                AppConfig.Current.Cache.SaveXml("BroadcastContentGuideDiscovery", serviceProvider.Key, 0, EpgDiscovery);
 
                 return true;
             }

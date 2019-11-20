@@ -31,14 +31,14 @@ namespace IpTviewr.UiServices.Configuration
             DialogResult result;
             bool changed;
 
-            var q = from item in AppUiConfiguration.Current.ItemsRegistry
+            var q = from item in AppConfig.Current.ItemsRegistry
                     let registration = item.Value
                     where registration.HasEditor
                     orderby registration.EditorPriority
                     select new ConfigurationItem()
                     {
                         Registration = registration,
-                        ExistingData = AppUiConfiguration.Current[registration.DirectIndex]
+                        ExistingData = AppConfig.Current[registration.DirectIndex]
                     };
             var items = q.ToList();
 
@@ -61,13 +61,13 @@ namespace IpTviewr.UiServices.Configuration
                 if (newData == null) continue;
 
                 changed = true;
-                AppUiConfiguration.Current[item.Registration.DirectIndex] = newData;
+                AppConfig.Current[item.Registration.DirectIndex] = newData;
             } // foreach
 
             // autosave if settings changed
             if ((changed) && (autoSave))
             {
-                AppUiConfiguration.Current.Save();
+                AppConfig.Current.Save();
             } // if
 
             // apply changes
@@ -89,11 +89,11 @@ namespace IpTviewr.UiServices.Configuration
 
         public static T ShowConfigurationForm<T>(IWin32Window owner, string settingsGuid, T overrideSettings) where T : class, IConfigurationItem
         {
-            var registration = AppUiConfiguration.Current.ItemsRegistry[new Guid(settingsGuid)];
+            var registration = AppConfig.Current.ItemsRegistry[new Guid(settingsGuid)];
             var data = new ConfigurationItem()
             {
                 Registration = registration,
-                ExistingData = overrideSettings ?? AppUiConfiguration.Current[registration.DirectIndex]
+                ExistingData = overrideSettings ?? AppConfig.Current[registration.DirectIndex]
             };
             var items = new List<ConfigurationItem>(1);
             items.Add(data);
@@ -145,7 +145,7 @@ namespace IpTviewr.UiServices.Configuration
                     listViewConfigItems.LargeImageList.Images.Add(img);
                 } // using
 
-                configItem.Editor = registration.CreateEditor(AppUiConfiguration.CloneSettings<IConfigurationItem>(configItem.ExistingData));
+                configItem.Editor = registration.CreateEditor(AppConfig.CloneSettings<IConfigurationItem>(configItem.ExistingData));
 
                 var item = new ListViewItem(registration.EditorDisplayName)
                 {

@@ -454,7 +454,7 @@ namespace IpTviewr.UiServices.Discovery
                     Data.TextualIdentifier.ServiceName, DomainName);
             } // if
 
-            var text = Data.ServiceInformation.Name.SafeGetLanguageValue(AppUiConfiguration.Current.User.PreferredLanguagesList, true, null);
+            var text = Data.ServiceInformation.Name.SafeGetLanguageValue(AppConfig.Current.User.PreferredLanguagesList, true, null);
             return text ?? string.Format(Properties.Texts.FormatBroadcastUnknownDisplayName, Data.TextualIdentifier.ServiceName, DomainName);
         } // GetDisplayOriginalName
 
@@ -462,7 +462,7 @@ namespace IpTviewr.UiServices.Discovery
         {
             if (Data.ServiceInformation == null) return Properties.Texts.NotProvidedValue;
 
-            var text = Data.ServiceInformation.ProprietaryShortName.SafeGetLanguageValue(AppUiConfiguration.Current.User.PreferredLanguagesList, true, null);
+            var text = Data.ServiceInformation.ProprietaryShortName.SafeGetLanguageValue(AppConfig.Current.User.PreferredLanguagesList, true, null);
             return text ?? Properties.Texts.NotProvidedValue;
         } // GetDisplayShortName
 
@@ -470,7 +470,7 @@ namespace IpTviewr.UiServices.Discovery
         {
             if (Data.ServiceInformation == null) return Properties.Texts.BroadcastUnknownDisplayDescription;
 
-            var text = Data.ServiceInformation.Description.SafeGetLanguageValue(AppUiConfiguration.Current.User.PreferredLanguagesList, true, null);
+            var text = Data.ServiceInformation.Description.SafeGetLanguageValue(AppConfig.Current.User.PreferredLanguagesList, true, null);
             return text ?? Properties.Texts.BroadcastUnknownDisplayDescription;
         } // GetDisplayDescription
 
@@ -499,7 +499,7 @@ namespace IpTviewr.UiServices.Discovery
             } // if-else
 
             var serviceType = ServiceType;
-            if (!AppUiConfiguration.Current.DescriptionServiceTypes.TryGetValue(serviceType, out var serviceTypeDescription))
+            if (!AppConfig.Current.DescriptionServiceTypes.TryGetValue(serviceType, out var serviceTypeDescription))
             {
                 serviceTypeDescription = string.Format(Properties.Texts.FormatServiceTypeIdUnknown, serviceType);
             } // if
@@ -552,7 +552,7 @@ namespace IpTviewr.UiServices.Discovery
 
         private ServiceLogo GetLogo()
         {
-            return AppUiConfiguration.Current.ServiceLogoMappings.Get(Data.TextualIdentifier.DomainName,
+            return AppConfig.Current.ServiceLogoMappings.Get(Data.TextualIdentifier.DomainName,
                 DomainName,
                 Data.TextualIdentifier.ServiceName,
                 ServiceType);

@@ -205,7 +205,7 @@ namespace IpTviewr.UiServices.Record
             if (epgProgram == null) throw new ArgumentNullException(nameof(epgProgram));
 
             var action = RecordAction.CreateWithDefaultValues();
-            var defaultLocation = RecordSaveLocation.GetDefaultSaveLocation(AppUiConfiguration.Current.User.Record.SaveLocations);
+            var defaultLocation = RecordSaveLocation.GetDefaultSaveLocation(AppConfig.Current.User.Record.SaveLocations);
 
             action.Filename = $"{service.DisplayName} - {epgProgram.Title}";
             action.FileExtension = RecordChannelDialog.GetFilenameExtensions()[0];
@@ -220,7 +220,7 @@ namespace IpTviewr.UiServices.Record
         {
             var advanced = RecordAdvancedSettings.CreateWithDefaultValues();
 
-            var folders = AppUiConfiguration.Current.User.Record.TaskSchedulerFolders;
+            var folders = AppConfig.Current.User.Record.TaskSchedulerFolders;
             if (folders != null)
             {
                 advanced.TaskSchedulerFolder = folders[0].Path;
@@ -233,7 +233,7 @@ namespace IpTviewr.UiServices.Record
         {
             // schedule task
             var scheduler = new Scheduler(ownerForm.GetExceptionHandler(),
-                AppUiConfiguration.Current.Folders.RecordTasks, AppUiConfiguration.Current.User.Record.RecorderLauncherPath);
+                AppConfig.Current.Folders.RecordTasks, AppConfig.Current.User.Record.RecorderLauncherPath);
 
             if (scheduler.CreateTask(task))
             {
@@ -249,9 +249,9 @@ namespace IpTviewr.UiServices.Record
             // TODO: Should be user selectable
             var recorder = new RecordRecorder()
             {
-                Name = AppUiConfiguration.Current.User.Record.Recorders[0].Name,
-                Path = AppUiConfiguration.Current.User.Record.Recorders[0].Path,
-                Arguments = AppUiConfiguration.Current.User.Record.Recorders[0].Arguments
+                Name = AppConfig.Current.User.Record.Recorders[0].Name,
+                Path = AppConfig.Current.User.Record.Recorders[0].Path,
+                Arguments = AppConfig.Current.User.Record.Recorders[0].Arguments
             };
 
             return recorder;

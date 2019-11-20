@@ -25,7 +25,7 @@ using IpTviewr.UiServices.Configuration.IpTvService;
 
 namespace IpTviewr.UiServices.Configuration
 {
-    public sealed class AppUiConfiguration
+    public sealed class AppConfig
     {
         public const string IpTvProviderSettingsRegistrationGuid = "{1E8D4BC4-4D78-4B69-BB50-96BA921A7449}";
 
@@ -37,17 +37,15 @@ namespace IpTviewr.UiServices.Configuration
 
         #region Static methods
 
-        public static AppUiConfiguration Current
+        public static AppConfig Current
         {
             get;
             private set;
         } // Current
 
-        public static AppUiConfiguration CreateForUserConfig(UserConfig userConfig)
+        public static AppConfig CreateForUserConfig(UserConfig userConfig)
         {
-            AppUiConfiguration config;
-
-            config = new AppUiConfiguration
+            var config = new AppConfig
             {
                 User = userConfig
             };
@@ -57,12 +55,10 @@ namespace IpTviewr.UiServices.Configuration
 
         public static InitializationResult Load(string overrideBasePath, Action<string> displayProgress)
         {
-            AppUiConfiguration config;
-            InitializationResult result;
-
             displayProgress?.Invoke(Texts.LoadProgress_Start);
-            config = new AppUiConfiguration();
-            result = config.LoadBasicConfiguration(overrideBasePath);
+            var config = new AppConfig();
+
+            var result = config.LoadBasicConfiguration(overrideBasePath);
             if (result.IsError) return result;
 
             displayProgress?.Invoke(Texts.LoadProgress_UserConfig);
@@ -88,9 +84,9 @@ namespace IpTviewr.UiServices.Configuration
             return InitializationResult.Ok;
         } // Load
 
-        public static AppUiConfiguration LoadRegistryAppConfiguration(out InitializationResult initializationResult)
+        public static AppConfig LoadRegistryAppConfiguration(out InitializationResult initializationResult)
         {
-            var config = new AppUiConfiguration();
+            var config = new AppConfig();
 
             initializationResult = config.LoadRegistrySettings(null);
             return initializationResult.IsError ? null : config;
@@ -101,7 +97,7 @@ namespace IpTviewr.UiServices.Configuration
             return XmlSerialization.CloneObject(settings) as T;
         } // CloneSettings
 
-        protected static IList<string> GetUiCultures()
+        private static IList<string> GetUiCultures()
         {
             var culture = CultureInfo.CurrentUICulture;
             var tempList = new List<string>();
@@ -121,7 +117,7 @@ namespace IpTviewr.UiServices.Configuration
 
         #endregion
 
-        public AppUiConfiguration()
+        public AppConfig()
         {
             Folders = new AppUiConfigurationFolders();
         } // constructor
@@ -136,49 +132,49 @@ namespace IpTviewr.UiServices.Configuration
         public IDictionary<string, string> DescriptionServiceTypes
         {
             get;
-            protected set;
+            private set;
         } // FriendlyNamesServiceTypes
 
         public bool DisplayPreferredOrFirst
         {
             get;
-            protected set;
+            private set;
         } // DisplayPreferredOrFirst
 
         public CacheManager Cache
         {
             get;
-            protected set;
+            private set;
         } // Cache
 
         public ProviderLogoMappings ProviderLogoMappings
         {
             get;
-            protected set;
+            private set;
         } // ProviderLogoMappings
 
         public ServiceLogoMappings ServiceLogoMappings
         {
             get;
-            protected set;
+            private set;
         } // ServiceLogoMappings
 
         public UiContentProvider ContentProvider
         {
             get;
-            protected set;
+            private set;
         } // ContentProvider
 
         public string AnalyticsClientId
         {
             get;
-            protected set;
+            private set;
         } // AnalyticsClientId
 
         public UserConfig User
         {
             get;
-            protected set;
+            private set;
         } // User
 
         public IConfigurationItem this[Guid guid]
@@ -258,7 +254,7 @@ namespace IpTviewr.UiServices.Configuration
 
         #region Basic app configuration
 
-        protected InitializationResult LoadBasicConfiguration(string overrideBasePath)
+        private InitializationResult LoadBasicConfiguration(string overrideBasePath)
         {
             InitializationResult initResult;
 
@@ -514,7 +510,7 @@ namespace IpTviewr.UiServices.Configuration
 
         #region User configuration
 
-        protected InitializationResult LoadUserConfiguration()
+        private InitializationResult LoadUserConfiguration()
         {
             _defaultSaveLocation = Path.Combine(Folders.Base, "user-config.xml");
 
@@ -630,5 +626,5 @@ namespace IpTviewr.UiServices.Configuration
         } // ProcessXmlConfigurationItems
 
         #endregion
-    } // class AppUiConfiguration
+    } // class AppConfig
 } // namespace

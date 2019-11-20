@@ -80,7 +80,7 @@ namespace IpTviewr.UiServices.Configuration.Logos
 
             try
             {
-                var iconPath = Path.Combine(AppUiConfiguration.Current.Folders.Logos.Cache,
+                var iconPath = Path.Combine(AppConfig.Current.Folders.Logos.Cache,
                     $"{TextUtils.SanitizeFilename(Key, "~")}.ico");
 
                 var zipEntry = Mapping.GetIcon(MappingKey, MappingEntry, out var lastModifiedUtc);
@@ -96,7 +96,7 @@ namespace IpTviewr.UiServices.Configuration.Logos
                     if (lastModifiedUtc <= last) return iconPath;
                 } // if
 
-                Directory.CreateDirectory(AppUiConfiguration.Current.Folders.Logos.Cache);
+                Directory.CreateDirectory(AppConfig.Current.Folders.Logos.Cache);
                 using (var output = new FileStream(iconPath, FileMode.Create, FileAccess.Write, FileShare.None))
                 {
                     var buffer = new byte[1024];

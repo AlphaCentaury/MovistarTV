@@ -110,7 +110,7 @@ namespace IpTviewr.Core
         [PermissionSet(SecurityAction.Demand, Name = "FullTrust")]
         private static void LaunchShortcut(TvPlayer player, UiBroadcastService service, string arguments, string iconLocation)
         {
-            var shortcutPath = Path.Combine(AppUiConfiguration.Current.Folders.Cache, service.FullServiceName) + ".lnk";
+            var shortcutPath = Path.Combine(AppConfig.Current.Folders.Cache, service.FullServiceName) + ".lnk";
 
             // delete existing shortcut
             if (File.Exists(shortcutPath))

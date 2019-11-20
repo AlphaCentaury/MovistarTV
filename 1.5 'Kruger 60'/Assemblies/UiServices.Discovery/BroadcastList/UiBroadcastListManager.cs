@@ -520,7 +520,7 @@ namespace IpTviewr.UiServices.Discovery.BroadcastList
         private static void SaveSettings(UiBroadcastListSettings settings)
         {
             UiBroadcastListSettingsRegistration.Settings = settings;
-            AppUiConfiguration.Current.Save();
+            AppConfig.Current.Save();
         } // SaveSettings
 
         private void BuildListLayout()

@@ -120,7 +120,7 @@ namespace IpTviewr.ChannelList
                 // TODO: unify code with mini-bar code
 
                 // TODO: get dbFile from config
-                form.EpgDatabase = Path.Combine(AppUiConfiguration.Current.Folders.Cache, "EPG.sdf");
+                form.EpgDatabase = Path.Combine(AppConfig.Current.Folders.Cache, "EPG.sdf");
 
                 // TODO: do NOT assume .imagenio.es
                 form.FullServiceName = ListManager.SelectedService.ServiceName + ".imagenio.es";

@@ -18,8 +18,8 @@ namespace IpTviewr.UiServices.Discovery.BroadcastList
 
         public static UiBroadcastListSettings Settings
         {
-            get => AppUiConfiguration.Current[_myDirectIndex] as UiBroadcastListSettings;
-            set => AppUiConfiguration.Current[_myDirectIndex] = value;
+            get => AppConfig.Current[_myDirectIndex] as UiBroadcastListSettings;
+            set => AppConfig.Current[_myDirectIndex] = value;
         } // Settings
 
         public static Guid SettingsGuid => new Guid(RegistrationGuid);

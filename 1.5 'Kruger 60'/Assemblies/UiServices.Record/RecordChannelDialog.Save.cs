@@ -34,7 +34,7 @@ namespace IpTviewr.UiServices.Record
             comboFileExtension.Text = string.IsNullOrEmpty(Task.Action.FileExtension) ? comboFileExtension.Items[0] as string : Task.Action.FileExtension;
 
             // Save locations
-            var defaultItem = SetListLocations(AppUiConfiguration.Current.User.Record.SaveLocations);
+            var defaultItem = SetListLocations(AppConfig.Current.User.Record.SaveLocations);
             SelectSaveLocation(Task.Action.SaveLocationName, Task.Action.SaveLocationPath, defaultItem);
         } // InitSaveData
 
