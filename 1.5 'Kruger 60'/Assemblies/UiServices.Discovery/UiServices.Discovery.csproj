@@ -157,13 +157,13 @@
       <Project>{b91c438d-0333-4d06-86cd-74ce82df6f40}</Project>
       <Name>Etsi.Ts102034</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Project.Common\Project.Common.csproj">
+    <ProjectReference Include="..\Project.Common\IpTviewr.Common.csproj">
       <Project>{8da15060-5a78-4f89-a9f1-7aa56b0d622c}</Project>
-      <Name>Project.Common</Name>
+      <Name>IpTviewr.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Project.Native\Project.Native.csproj">
+    <ProjectReference Include="..\Project.Native\IpTviewr.Native.csproj">
       <Project>{8986CD52-0C65-42D6-9C47-20FF47CF87BB}</Project>
-      <Name>Project.Native</Name>
+      <Name>IpTviewr.Native</Name>
     </ProjectReference>
     <ProjectReference Include="..\UiServices.Common\UiServices.Common.csproj">
       <Project>{76346905-ac2f-4f01-ba99-bbffbb2a6fe9}</Project>

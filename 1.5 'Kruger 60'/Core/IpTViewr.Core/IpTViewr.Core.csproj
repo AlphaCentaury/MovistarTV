@@ -61,17 +61,17 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Assemblies\Core.IpTvProvider\Core.IpTvService.csproj">
+    <ProjectReference Include="..\..\Assemblies\Core.IpTvProvider\IpTviewr.IpTvServices.csproj">
       <Project>{36b8e0a1-f1b1-498d-8fe7-a39bb7fd68ca}</Project>
-      <Name>Core.IpTvService</Name>
+      <Name>IpTviewr.IpTvServices</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Assemblies\Project.Common\Project.Common.csproj">
+    <ProjectReference Include="..\..\Assemblies\Project.Common\IpTviewr.Common.csproj">
       <Project>{8da15060-5a78-4f89-a9f1-7aa56b0d622c}</Project>
-      <Name>Project.Common</Name>
+      <Name>IpTviewr.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Assemblies\Project.Native\Project.Native.csproj">
+    <ProjectReference Include="..\..\Assemblies\Project.Native\IpTviewr.Native.csproj">
       <Project>{8986cd52-0c65-42d6-9c47-20ff47cf87bb}</Project>
-      <Name>Project.Native</Name>
+      <Name>IpTviewr.Native</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Assemblies\UiServices.Config\UiServices.Config.csproj">
       <Project>{a722de9d-ae51-479c-825f-a19f4c69bd75}</Project>

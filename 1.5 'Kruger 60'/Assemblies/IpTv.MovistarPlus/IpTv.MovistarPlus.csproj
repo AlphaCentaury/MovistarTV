@@ -74,9 +74,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Core.IpTvProvider\Core.IpTvService.csproj">
+    <ProjectReference Include="..\Core.IpTvProvider\IpTviewr.IpTvServices.csproj">
       <Project>{36b8e0a1-f1b1-498d-8fe7-a39bb7fd68ca}</Project>
-      <Name>Core.IpTvService</Name>
+      <Name>IpTviewr.IpTvServices</Name>
     </ProjectReference>
     <ProjectReference Include="..\UiServices.Config\UiServices.Config.csproj">
       <Project>{A722DE9D-AE51-479C-825F-A19F4C69BD75}</Project>

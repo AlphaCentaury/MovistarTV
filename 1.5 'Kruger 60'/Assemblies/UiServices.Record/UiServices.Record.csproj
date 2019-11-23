@@ -238,9 +238,9 @@
     <EmbeddedResource Include="Properties\TasksTexts.es.resx" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Project.Common\Project.Common.csproj">
+    <ProjectReference Include="..\Project.Common\IpTviewr.Common.csproj">
       <Project>{8da15060-5a78-4f89-a9f1-7aa56b0d622c}</Project>
-      <Name>Project.Common</Name>
+      <Name>IpTviewr.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\Services.EpgDiscovery\Services.EpgDiscovery.csproj">
       <Project>{5a171dbb-855c-452b-93c6-229c7aa6c7a6}</Project>

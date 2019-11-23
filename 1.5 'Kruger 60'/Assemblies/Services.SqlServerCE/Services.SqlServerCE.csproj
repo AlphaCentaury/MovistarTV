@@ -59,9 +59,9 @@
     <Content Include="Properties\License.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Project.Common\Project.Common.csproj">
+    <ProjectReference Include="..\Project.Common\IpTviewr.Common.csproj">
       <Project>{8da15060-5a78-4f89-a9f1-7aa56b0d622c}</Project>
-      <Name>Project.Common</Name>
+      <Name>IpTviewr.Common</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

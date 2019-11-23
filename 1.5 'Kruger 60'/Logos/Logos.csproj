@@ -1961,13 +1961,13 @@
     <Reference Include="System.XML" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Assemblies\Project.Common\Project.Common.csproj">
+    <ProjectReference Include="..\Assemblies\Project.Common\IpTviewr.Common.csproj">
       <Project>{8da15060-5a78-4f89-a9f1-7aa56b0d622c}</Project>
-      <Name>Project.Common</Name>
+      <Name>IpTviewr.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Assemblies\Project.Native\Project.Native.csproj">
+    <ProjectReference Include="..\Assemblies\Project.Native\IpTviewr.Native.csproj">
       <Project>{8986CD52-0C65-42D6-9C47-20FF47CF87BB}</Project>
-      <Name>Project.Native</Name>
+      <Name>IpTviewr.Native</Name>
     </ProjectReference>
     <ProjectReference Include="..\Assemblies\UiServices.Discovery\UiServices.Discovery.csproj">
       <Project>{7e5e21b9-4bd6-4fb3-9055-9b09cc479c6c}</Project>

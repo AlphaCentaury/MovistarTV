@@ -335,9 +335,9 @@
     <Content Include="Resources\TvPlayersSettings_48.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Project.Common\Project.Common.csproj">
+    <ProjectReference Include="..\Project.Common\IpTviewr.Common.csproj">
       <Project>{8da15060-5a78-4f89-a9f1-7aa56b0d622c}</Project>
-      <Name>Project.Common</Name>
+      <Name>IpTviewr.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\UiServices.Common\UiServices.Common.csproj">
       <Project>{76346905-ac2f-4f01-ba99-bbffbb2a6fe9}</Project>

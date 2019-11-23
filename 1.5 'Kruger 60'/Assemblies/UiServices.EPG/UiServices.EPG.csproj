@@ -209,17 +209,17 @@
       <Project>{968C6EEB-1E79-446A-96AE-69CB225E1C37}</Project>
       <Name>IpTViewr.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Core.IpTvProvider\Core.IpTvService.csproj">
+    <ProjectReference Include="..\Core.IpTvProvider\IpTviewr.IpTvServices.csproj">
       <Project>{36b8e0a1-f1b1-498d-8fe7-a39bb7fd68ca}</Project>
-      <Name>Core.IpTvService</Name>
+      <Name>IpTviewr.IpTvServices</Name>
     </ProjectReference>
     <ProjectReference Include="..\Etsi.Ts102034\Etsi.Ts102034.csproj">
       <Project>{b91c438d-0333-4d06-86cd-74ce82df6f40}</Project>
       <Name>Etsi.Ts102034</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Project.Common\Project.Common.csproj">
+    <ProjectReference Include="..\Project.Common\IpTviewr.Common.csproj">
       <Project>{8da15060-5a78-4f89-a9f1-7aa56b0d622c}</Project>
-      <Name>Project.Common</Name>
+      <Name>IpTviewr.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\Services.EpgDiscovery\Services.EpgDiscovery.csproj">
       <Project>{5a171dbb-855c-452b-93c6-229c7aa6c7a6}</Project>

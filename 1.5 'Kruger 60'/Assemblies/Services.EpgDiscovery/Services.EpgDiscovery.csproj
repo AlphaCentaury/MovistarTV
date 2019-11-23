@@ -90,9 +90,9 @@
       <Project>{8ad3c34b-a1d3-4385-a8a9-c429bd9a37d3}</Project>
       <Name>DvbStpClient</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Project.Common\Project.Common.csproj">
+    <ProjectReference Include="..\Project.Common\IpTviewr.Common.csproj">
       <Project>{8DA15060-5A78-4F89-A9F1-7AA56B0D622C}</Project>
-      <Name>Project.Common</Name>
+      <Name>IpTviewr.Common</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

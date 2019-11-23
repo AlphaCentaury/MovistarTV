@@ -149,9 +149,9 @@
       <Project>{b91c438d-0333-4d06-86cd-74ce82df6f40}</Project>
       <Name>Etsi.Ts102034</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Project.Common\Project.Common.csproj">
+    <ProjectReference Include="..\Project.Common\IpTviewr.Common.csproj">
       <Project>{8da15060-5a78-4f89-a9f1-7aa56b0d622c}</Project>
-      <Name>Project.Common</Name>
+      <Name>IpTviewr.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\Services.Record.Serialization\Services.Record.Serialization.csproj">
       <Project>{074c14ed-c574-46d2-b9dc-c1b5f65d9a69}</Project>

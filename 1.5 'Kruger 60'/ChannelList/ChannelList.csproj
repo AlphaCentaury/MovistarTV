@@ -230,9 +230,9 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Assemblies\Core.IpTvProvider\Core.IpTvService.csproj">
+    <ProjectReference Include="..\Assemblies\Core.IpTvProvider\IpTviewr.IpTvServices.csproj">
       <Project>{36b8e0a1-f1b1-498d-8fe7-a39bb7fd68ca}</Project>
-      <Name>Core.IpTvService</Name>
+      <Name>IpTviewr.IpTvServices</Name>
     </ProjectReference>
     <ProjectReference Include="..\Assemblies\DvbStpClient\DvbStpClient.csproj">
       <Project>{8ad3c34b-a1d3-4385-a8a9-c429bd9a37d3}</Project>
@@ -246,9 +246,9 @@
       <Project>{e1748f45-dd50-4479-96f6-f7eba6f3e28b}</Project>
       <Name>IpTv.MovistarPlus</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Assemblies\Project.Common\Project.Common.csproj">
+    <ProjectReference Include="..\Assemblies\Project.Common\IpTviewr.Common.csproj">
       <Project>{8da15060-5a78-4f89-a9f1-7aa56b0d622c}</Project>
-      <Name>Project.Common</Name>
+      <Name>IpTviewr.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\Assemblies\Services.EpgDiscovery\Services.EpgDiscovery.csproj">
       <Project>{5a171dbb-855c-452b-93c6-229c7aa6c7a6}</Project>
