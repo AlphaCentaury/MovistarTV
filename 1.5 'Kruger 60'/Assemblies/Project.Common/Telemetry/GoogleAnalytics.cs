@@ -38,33 +38,34 @@ namespace IpTviewr.Common.Telemetry
 
         public void End()
         {
+            ManageSession(true);
             EnsureHitsSents();
         } // End
 
-        public void ScreenLoad(string name, string details = null)
+        public void ScreenLoad(string screen, string details = null)
         {
-            throw new NotImplementedException();
+            SendScreenHit(screen, details);
         } // ScreenLoad
 
-        public void ScreenEvent(string name, string eventName, IEnumerable<KeyValuePair<string, string>> properties = null)
+        public void ScreenEvent(string screen, string name, string data = null, IEnumerable<KeyValuePair<string, string>> properties = null)
         {
-            throw new NotImplementedException();
+            SendEventHit("formEvent", name, data, screen);
         } // ScreenEvent
 
         public void Exception(Exception ex)
         {
-            throw new NotImplementedException();
-        }
+            SendExceptionHit(ex);
+        } // Exception
 
-        public void ExceptionExtended(Exception ex, string location, string message = null, IEnumerable<KeyValuePair<string, string>> properties = null)
+        public void ExceptionExtended(Exception ex, string screen, string message = null, IEnumerable<KeyValuePair<string, string>> properties = null)
         {
-            throw new NotImplementedException();
-        }
+            SendExtendedExceptionHit(ex, true, message, screen);
+        } // ExceptionExtended
 
-        public void CustomEvent(string location, string category, string action, string data = null, IEnumerable<KeyValuePair<string, string>> properties = null)
+        public void CustomEvent(string screen, string category, string action, string data = null, IEnumerable<KeyValuePair<string, string>> properties = null)
         {
-            throw new NotImplementedException();
-        }
+            SendEventHit(category, action, data, screen);
+        } // CustomEvent
 
         #endregion
 
@@ -122,13 +123,17 @@ namespace IpTviewr.Common.Telemetry
             });
         } // End
 
-        private void SendScreenHit(string screenName)
+        private void SendScreenHit(string screenName, string status = null)
         {
             ThreadPool.QueueUserWorkItem((o) =>
             {
                 var bag = CreateProperyBag();
                 bag.Add("t", "screenview");
                 bag.Add("cd", screenName);
+                if (status != null)
+                {
+                    bag.Add("el", status);
+                } // if
                 Send(bag);
             });
         } // SendScreenHit

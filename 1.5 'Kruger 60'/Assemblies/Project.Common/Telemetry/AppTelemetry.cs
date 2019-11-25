@@ -76,24 +76,24 @@ namespace IpTviewr.Common.Telemetry
             ScreenLoad(form?.GetType().FullName, details);
         } // ScreenLoad
 
-        public static void ScreenEvent(string name, string eventName)
+        public static void ScreenEvent(string name, string eventName, string data = null)
         {
             if (!_enabled || !Usage) return;
 
-            ForEach(provider => provider.ScreenEvent(name, eventName));
+            ForEach(provider => provider.ScreenEvent(name, eventName, data));
         } // ScreenEvent
 
-        public static void FormEvent(Form form, string status)
+        public static void FormEvent(Form form, string status, string data = null)
         {
-            FormEvent(form, status, null);
+            FormEvent(form, status, data, null);
         } // ScreenEvent
 
-        public static void FormEvent(Form form, string status, IEnumerable<KeyValuePair<string, string>> properties)
+        public static void FormEvent(Form form, string status, string data, IEnumerable<KeyValuePair<string, string>> properties)
         {
             if (!_enabled || !Usage) return;
 
             var name = form.GetType().FullName;
-            ForEach(provider => provider.ScreenEvent(name, status, properties));
+            ForEach(provider => provider.ScreenEvent(name, status, data, properties));
         } // ScreenEvent
 
         public static void FormException(Exception ex, Form form, string message = null)
