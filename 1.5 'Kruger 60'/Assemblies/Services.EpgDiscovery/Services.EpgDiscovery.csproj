@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>IpTviewr.Services.EpgDiscovery</RootNamespace>
     <AssemblyName>Services.EpgDiscovery</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -91,7 +92,7 @@
       <Name>DvbStpClient</Name>
     </ProjectReference>
     <ProjectReference Include="..\Project.Common\IpTviewr.Common.csproj">
-      <Project>{8DA15060-5A78-4F89-A9F1-7AA56B0D622C}</Project>
+      <Project>{8da15060-5a78-4f89-a9f1-7aa56b0d622c}</Project>
       <Name>IpTviewr.Common</Name>
     </ProjectReference>
   </ItemGroup>
