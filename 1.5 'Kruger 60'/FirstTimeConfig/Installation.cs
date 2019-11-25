@@ -496,7 +496,7 @@ namespace IpTviewr.Tools.FirstTimeConfig
 
             try
             {
-                BasicGoogleTelemetry.SendScreenHit("FirewallForm");
+                AppTelemetry.ScreenLoad("FirewallForm");
 
                 var arguments = new StringBuilder();
                 arguments.AppendFormat("/ForceUiCulture:{0}", CultureInfo.CurrentUICulture.Name);
@@ -534,41 +534,29 @@ namespace IpTviewr.Tools.FirstTimeConfig
                     exitCode = process.ExitCode;
                 } // using process
             }
-            catch (Win32Exception win32)
+            catch (Win32Exception win32) when (win32.NativeErrorCode == 1223) // operation cancelled by user
             {
-                if (win32.NativeErrorCode == 1223) // operation cancelled by user
-                {
-                    BasicGoogleTelemetry.SendScreenHit("FirewallForm: UACancel");
-                    return new InitializationResult(Texts.FirewallUserCancel);
-                }
-
-                BasicGoogleTelemetry.SendScreenHit("FirewallForm: Exception");
-                return new InitializationResult(win32, "Unable to execute Firewall configuration program.");
+                AppTelemetry.ScreenEvent("FirewallForm", "UACancel");
+                return new InitializationResult(Texts.FirewallUserCancel);
             }
             catch (Exception ex)
             {
-                BasicGoogleTelemetry.SendScreenHit("FirewallForm: Exception");
-                BasicGoogleTelemetry.SendExtendedExceptionHit(ex, true, "FirewallForm: Execute", "FirewallForm");
+                AppTelemetry.ScreenEvent("FirewallForm", "Exception");
+                AppTelemetry.ExceptionExtended(ex, "FirewallForm", "process.Start()");
                 return new InitializationResult(ex, "Unable to execute Firewall configuration program.");
             } // try-catch
 
             if (exitCode == 0)
             {
-                BasicGoogleTelemetry.SendScreenHit("FirewallForm: Ok");
+                AppTelemetry.ScreenEvent("FirewallForm", "Ok");
                 return new InitializationResult(Texts.FirewallOk)
                 {
                     IsOk = true
                 };
             }
 
-            if (exitCode > 0)
-            {
-                BasicGoogleTelemetry.SendScreenHit("FirewallForm: Cancel");
-                return new InitializationResult(Texts.FirewallUserCancel);
-            }
-
-            BasicGoogleTelemetry.SendScreenHit("FirewallForm: " + exitCode);
-            return new InitializationResult((string) null);
+            AppTelemetry.ScreenEvent("FirewallForm", $"Cancel ({exitCode})");
+            return new InitializationResult(Texts.FirewallUserCancel);
         } // RunSelfForFirewall
 
         public static bool ConfigureFirewall(string binPath, string vlcPath, out string message)

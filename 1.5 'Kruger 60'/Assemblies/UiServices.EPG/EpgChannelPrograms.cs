@@ -19,7 +19,7 @@ using IpTviewr.UiServices.Common.Forms;
 
 namespace IpTviewr.UiServices.EPG
 {
-    public partial class EpgChannelPrograms : Form
+    public partial class EpgChannelPrograms : CommonBaseForm
     {
         DateTime _referenceTime;
         private Font _boldListFont, _italicListFont;
@@ -69,8 +69,6 @@ namespace IpTviewr.UiServices.EPG
 
         private void EpgChannelPrograms_Load(object sender, EventArgs e)
         {
-            BasicGoogleTelemetry.SendScreenHit(this);
-
             pictureChannelLogo.Image = Service.Logo.GetImage(LogoSize.Size48);
             labelChannelName.Text = $"{Service.DisplayLogicalNumber} - {Service.DisplayName}";
 

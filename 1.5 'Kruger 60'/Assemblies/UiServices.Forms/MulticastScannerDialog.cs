@@ -149,8 +149,6 @@ namespace IpTviewr.UiServices.Forms
 
         private void DialogMulticastServiceScanner_Load(object sender, EventArgs e)
         {
-            BasicGoogleTelemetry.SendScreenHit(this);
-
             _formatProgressPercentage = labelProgressPercentage.Text;
             _formatScanningProgress = labelScanning.Text;
             _formatEllapsedTime = labelEllapsedTime.Text;

@@ -50,8 +50,6 @@ namespace IpTviewr.UiServices.EPG
 
         private void EpgBasicGridDialog_Load(object sender, EventArgs e)
         {
-            BasicGoogleTelemetry.SendScreenHit(this);
-
             _epgPrograms = new IEpgLinkedList[_servicesList.Count];
             ChangeSelectedRow(-1);
 

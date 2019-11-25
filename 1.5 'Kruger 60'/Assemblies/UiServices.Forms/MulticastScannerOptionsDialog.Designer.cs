@@ -166,7 +166,6 @@ namespace IpTviewr.UiServices.Forms
             this.Name = "MulticastScannerOptionsDialog";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
-            this.Load += new System.EventHandler(this.MulticastScannerOptionsDialog_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numericTimeout)).EndInit();
             this.groupScanWhat.ResumeLayout(false);
             this.groupScanWhat.PerformLayout();

@@ -17,6 +17,7 @@ using System.Windows.Forms;
 
 namespace IpTviewr.UiServices.DvbStpClient
 {
+    // TODO: use CommonForm and adjust for exception handling
     public partial class DvbStpEnhancedDownloadDialog : Form
     {
         private string _formatProgressPercentage;
@@ -117,7 +118,8 @@ namespace IpTviewr.UiServices.DvbStpClient
 
         private void Dialog_Shown(object sender, EventArgs e)
         {
-            BasicGoogleTelemetry.SendScreenHit(TelemetryScreenName);
+            // TODO: user overload with extra data and get rid of TelemetryScreenName
+            AppTelemetry.ScreenLoad(TelemetryScreenName);
             StartDownload();
         } // Dialog_Shown
 

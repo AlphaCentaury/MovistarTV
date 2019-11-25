@@ -16,60 +16,79 @@ using System.Windows.Forms;
 
 namespace IpTviewr.Common.Telemetry
 {
-    public class BasicGoogleTelemetry
+    public sealed class GoogleAnalytics : ITelemetryProvider
     {
 #if DEBUG
         private static Uri _urlEndpoint = new Uri("https://www.google-analytics.com/debug/collect");
 #else
         private static Uri UrlEndpoint = new Uri("https://www.google-analytics.com/collect");
 #endif
-        private static string _userAgent;
-        private static string _applicationName;
+        private string _userAgent;
+        private string _applicationName;
 
-        public static bool Enabled
+        #region ITelemetryProvider implementation
+
+        public bool Enabled { get; set; }
+
+        public void Start()
         {
-            get;
-            private set;
-        } // Enabled
+            // no-op
+            // will initialize when Init() is called by AppTelemetry.HackInitGoogle()
+        } // Start
 
-        public static bool Usage
+        public void End()
         {
-            get;
-            private set;
-        } // Usage
+            EnsureHitsSents();
+        } // End
 
-        public static bool Exceptions
+        public void ScreenLoad(string name, string details = null)
         {
-            get;
-            private set;
-        } // Exceptions
+            throw new NotImplementedException();
+        } // ScreenLoad
 
-        public static string TrackingId
+        public void ScreenEvent(string name, string eventName, IEnumerable<KeyValuePair<string, string>> properties = null)
+        {
+            throw new NotImplementedException();
+        } // ScreenEvent
+
+        public void Exception(Exception ex)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void ExceptionExtended(Exception ex, string location, string message = null, IEnumerable<KeyValuePair<string, string>> properties = null)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void CustomEvent(string location, string category, string action, string data = null, IEnumerable<KeyValuePair<string, string>> properties = null)
+        {
+            throw new NotImplementedException();
+        }
+
+        #endregion
+
+        public string TrackingId
         {
             get;
             private set;
         } // TrackingId
 
-        public static string ClientId
+        public string ClientId
         {
             get;
             private set;
         } // ClientId
-
-        public static void Init(string trackingId, string clientId, bool enabled, bool usage, bool exceptions)
+        public void Init(string trackingId, string clientId)
         {
             _userAgent = BuildUserAgent();
             _applicationName = Path.GetFileNameWithoutExtension(Application.ExecutablePath);
             TrackingId = trackingId;
             ClientId = clientId;
-            Enabled = enabled;
-            Usage = usage & enabled;
-            Exceptions = exceptions & enabled;
             ManageSession(false);
-            //MessageBox.Show(string.Format("TrackingId: {0}\r\nClientId: {1}\r\nEnable: {2} {3} {4}", TrackingId, ClientId, Enabled, Usage, Exceptions), "Init Google Telemetry");
         } // Init
 
-        public static void EnsureHitsSents()
+        public void EnsureHitsSents()
         {
             // this is a nasty trick to give time to the ThreadPool to send any remaining hits
             // TODO: create a true queue
@@ -81,16 +100,14 @@ namespace IpTviewr.Common.Telemetry
 #endif
         } // EnsureHitsSents
 
-        public static void ManageSession(bool end)
+        private void ManageSession(bool end)
         {
-            if (!Usage) return;
-
             ThreadPool.QueueUserWorkItem((o) =>
             {
                 var bag = CreateProperyBag();
                 bag.Add("t", "event");
                 bag.Add("ec", "Session");
-                bag.Add("ea", end? "End" : "Start");
+                bag.Add("ea", end ? "End" : "Start");
                 bag.Add("sr", $"{Screen.PrimaryScreen.Bounds.Width}x{Screen.PrimaryScreen.Bounds.Height}");
                 bag.Add("vp", $"{SystemInformation.WorkingArea.Width}x{SystemInformation.WorkingArea.Height}");
                 bag.Add("sd", $"{Screen.PrimaryScreen.BitsPerPixel}-bits");
@@ -103,12 +120,10 @@ namespace IpTviewr.Common.Telemetry
                 bag.Add("ni", "1"); // non-interactive
                 Send(bag);
             });
-        } // EndSession
+        } // End
 
-        public static void SendScreenHit(string screenName)
+        private void SendScreenHit(string screenName)
         {
-            if (!Usage) return;
-
             ThreadPool.QueueUserWorkItem((o) =>
             {
                 var bag = CreateProperyBag();
@@ -118,10 +133,8 @@ namespace IpTviewr.Common.Telemetry
             });
         } // SendScreenHit
 
-        public static void SendScreenHit(Form form, string status = null)
+        private void SendScreenHit(Form form, string status = null)
         {
-            if (!Usage) return;
-
             ThreadPool.QueueUserWorkItem((o) =>
             {
                 var bag = CreateProperyBag();
@@ -138,10 +151,8 @@ namespace IpTviewr.Common.Telemetry
             });
         } // SendScreenHit
 
-        public static void SendExceptionHit(Exception ex)
+        private void SendExceptionHit(Exception ex)
         {
-            if (!Exceptions) return;
-
             ThreadPool.QueueUserWorkItem((o) =>
             {
                 var bag = CreateProperyBag();
@@ -152,10 +163,8 @@ namespace IpTviewr.Common.Telemetry
             });
         } // SendExceptionHit
 
-        public static void SendExtendedExceptionHit(Exception ex, bool sendBasic = true, string context = null, string screenName = null)
+        private void SendExtendedExceptionHit(Exception ex, bool sendBasic = true, string context = null, string screenName = null)
         {
-            if (!Exceptions) return;
-
             ThreadPool.QueueUserWorkItem((o) =>
             {
                 if (sendBasic)
@@ -188,10 +197,8 @@ namespace IpTviewr.Common.Telemetry
             });
         } // SendExtendedExceptionHit
 
-        public static void SendEventHit(string category, string action, string label = null, string screenName = null, int? value = null)
+        private void SendEventHit(string category, string action, string label = null, string screenName = null, int? value = null)
         {
-            if (!Usage) return;
-
             ThreadPool.QueueUserWorkItem((o) =>
             {
                 var bag = CreateProperyBag();
@@ -212,23 +219,24 @@ namespace IpTviewr.Common.Telemetry
                 } // if
                 Send(bag);
             });
-        } // SendEventHit
+        } // CustomEvent
 
-        private static IDictionary<string, string> CreateProperyBag()
+        private IDictionary<string, string> CreateProperyBag()
         {
-            var bag = new Dictionary<string, string>();
-
-            bag.Add("v", "1");
-            bag.Add("tid", TrackingId);
-            bag.Add("cid", ClientId);
-            bag.Add("ul", Thread.CurrentThread.CurrentUICulture.Name.ToLowerInvariant());
-            bag.Add("an", _applicationName);
-            bag.Add("av", SolutionVersion.AssemblyFileVersion);
+            var bag = new Dictionary<string, string>
+            {
+                { "v", "1" },
+                { "tid", TrackingId },
+                { "cid", ClientId },
+                { "ul", Thread.CurrentThread.CurrentUICulture.Name.ToLowerInvariant() },
+                { "an", _applicationName },
+                { "av", SolutionVersion.AssemblyFileVersion }
+            };
 
             return bag;
         } // CreateProperyBag
 
-        private static void Send(IDictionary<string, string> propertyBag)
+        private void Send(IDictionary<string, string> propertyBag)
         {
             try
             {
@@ -280,11 +288,11 @@ namespace IpTviewr.Common.Telemetry
                 case PlatformID.Win32Windows: osName = "Windows"; break;
                 case PlatformID.Win32S: osName = "Windows"; break;
                 case PlatformID.WinCE: osName = "Windows CE"; break;
-                default:
-                    osName = "Unknown"; break;
+                case PlatformID.Xbox: osName = "Xbox"; break;
+                default: osName = "Unknown"; break;
             } // switch
 
             return $"{"Mozilla/5.0"} ({osName} {osVersion})";
         } // BuildUserAgent
-    } // internal class BasicGoogleTelemetry
+    } // class GoogleAnalytics
 } // namespace

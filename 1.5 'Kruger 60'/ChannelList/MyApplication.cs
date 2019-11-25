@@ -26,7 +26,7 @@ namespace IpTviewr.ChannelList
 
         public static void HandleException(Form owner, Exception ex)
         {
-            BasicGoogleTelemetry.SendExtendedExceptionHit(ex);
+            AppTelemetry.FormException(ex, owner);
             AddExceptionAdvancedInformation(ex);
 
             var box = new ExceptionMessageBox()
@@ -59,7 +59,7 @@ namespace IpTviewr.ChannelList
 
         public static void HandleException(Form owner, string caption, string message, MessageBoxIcon icon, Exception ex)
         {
-            BasicGoogleTelemetry.SendExtendedExceptionHit(ex, true, message);
+            AppTelemetry.FormException(ex, owner, message);
             AddExceptionAdvancedInformation(ex);
 
             var box = new ExceptionMessageBox()

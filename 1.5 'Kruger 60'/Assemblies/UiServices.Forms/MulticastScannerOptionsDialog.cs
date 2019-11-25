@@ -7,11 +7,11 @@
 
 using IpTviewr.Common.Telemetry;
 using System;
-using System.Windows.Forms;
+using IpTviewr.UiServices.Common.Forms;
 
 namespace IpTviewr.UiServices.Forms
 {
-    public partial class MulticastScannerOptionsDialog : Form
+    public partial class MulticastScannerOptionsDialog : CommonBaseForm
     {
         public MulticastScannerOptionsDialog()
         {
@@ -39,11 +39,6 @@ namespace IpTviewr.UiServices.Forms
             get;
             private set;
         } // ScanList
-
-        private void MulticastScannerOptionsDialog_Load(object sender, EventArgs e)
-        {
-            BasicGoogleTelemetry.SendScreenHit(this);
-        } // MulticastScannerOptionsDialog_Load
 
         private void buttonStart_Click(object sender, EventArgs e)
         {

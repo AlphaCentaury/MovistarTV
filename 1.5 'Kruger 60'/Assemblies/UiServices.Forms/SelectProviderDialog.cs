@@ -72,8 +72,6 @@ namespace IpTviewr.UiServices.Forms
 
         private void SelectProviderDialog_Load_Implementation(object sender, EventArgs e)
         {
-            BasicGoogleTelemetry.SendScreenHit(this);
-
             Text = AppConfig.Current.IpTvService.Texts.Provider.SelectCaption;
             if (SelectedServiceProvider == null)
             {

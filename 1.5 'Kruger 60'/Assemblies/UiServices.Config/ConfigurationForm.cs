@@ -44,7 +44,7 @@ namespace IpTviewr.UiServices.Configuration
 
             using (var form = new ConfigurationForm())
             {
-                BasicGoogleTelemetry.SendScreenHit(form, "(default)");
+                AppTelemetry.FormEvent(form, "(default)");
                 form.ConfigurationItems = items;
                 result = form.ShowDialog(owner);
                 if (result != DialogResult.OK)
@@ -100,7 +100,7 @@ namespace IpTviewr.UiServices.Configuration
 
             using (var form = new ConfigurationForm())
             {
-                BasicGoogleTelemetry.SendScreenHit(form, data.Registration.ItemType.Name);
+                AppTelemetry.FormEvent(form, data.Registration.ItemType.Name);
                 form.ConfigurationItems = items;
                 var dialogResult = form.ShowDialog(owner);
                 if (dialogResult != DialogResult.OK)

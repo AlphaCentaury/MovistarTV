@@ -44,7 +44,7 @@ namespace IpTviewr.Tools.FirstTimeConfig
             if (!RunFirewallConfiguration)
             {
                 var result = LaunchWizard();
-                BasicGoogleTelemetry.EnsureHitsSents();
+                AppTelemetry.End();
 
                 return result;
             }
@@ -84,7 +84,10 @@ namespace IpTviewr.Tools.FirstTimeConfig
                 SetWizardResult(DialogResult.Abort, $"{initResult.Caption}\r\n{initResult.Message}", initResult.InnerException);
                 goto End;
             } // if
-            BasicGoogleTelemetry.Init(Properties.Resources.AnalyticsGoogleTrackingId, AppConfig.AnalyticsClientId, true, true, true);
+
+            // TODO: init on Wizard Start Dialog
+            AppTelemetry.Start(true, true, true);
+            AppTelemetry.HackInitGoogle(Properties.Resources.AnalyticsGoogleTrackingId, AppConfig.AnalyticsClientId);
 
             using (var dlg = new WizardWelcomeDialog())
             {

@@ -11,10 +11,11 @@ using IpTviewr.UiServices.Configuration.Logos;
 using IpTviewr.UiServices.Discovery;
 using System;
 using System.Windows.Forms;
+using IpTviewr.UiServices.Common.Forms;
 
 namespace IpTviewr.UiServices.EPG
 {
-    public partial class EpgNowThenDialog : Form
+    public partial class EpgNowThenDialog : CommonBaseForm
     {
         private UiBroadcastService _service;
         private EpgProgram[] _epgPrograms;
@@ -38,8 +39,6 @@ namespace IpTviewr.UiServices.EPG
 
         private void FormBasicEpgData_Load(object sender, EventArgs e)
         {
-            BasicGoogleTelemetry.SendScreenHit(this);
-
             pictureChannelLogo.Image = _service.Logo.GetImage(LogoSize.Size48);
             labelChannelName.Text = $"{_service.DisplayLogicalNumber}\r\n{_service.DisplayName}";
 

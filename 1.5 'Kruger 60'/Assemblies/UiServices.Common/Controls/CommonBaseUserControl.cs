@@ -61,7 +61,7 @@ namespace IpTviewr.UiServices.Common.Controls
         /// </remarks>
         protected virtual void ExceptionHandler(ExceptionEventData ex)
         {
-            BasicGoogleTelemetry.SendExtendedExceptionHit(ex.Exception, true, ex.Message, GetType().Name);
+            AppTelemetry.ExceptionExtended(ex.Exception, GetType().FullName, ex.Message);
 
             var box = new ExceptionMessageBox()
             {

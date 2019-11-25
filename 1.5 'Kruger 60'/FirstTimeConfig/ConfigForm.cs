@@ -15,7 +15,7 @@ using System.Windows.Forms;
 
 namespace IpTviewr.Tools.FirstTimeConfig
 {
-    public partial class ConfigForm : Form
+    public partial class ConfigForm : CommonBaseForm
     {
         private string _defaultRecordingsSavePath;
         private bool _isFormAllowedToClose;
@@ -32,8 +32,6 @@ namespace IpTviewr.Tools.FirstTimeConfig
 
         private void ConfigForm_Load(object sender, EventArgs e)
         {
-            BasicGoogleTelemetry.SendScreenHit(this);
-
             selectFolder.Description = Texts.SelectFolderSaveDescription;
             openFile.Title = Texts.OpenFileVlcTitle;
             openFile.Filter = Texts.OpenFileVlcFilter;

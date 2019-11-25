@@ -30,7 +30,7 @@ namespace IpTviewr.UiServices.Common.Forms
 
         private void PropertiesDialog_Load(object sender, EventArgs e)
         {
-            BasicGoogleTelemetry.SendScreenHit(this, Caption);
+            AppTelemetry.FormLoad(this, Caption);
             Text = Caption;
             labelDescription.Text = (Description ?? Properties.PropertiesDialog.CaptionDefault);
             pictureBoxItemIcon.Image = ItemIcon;

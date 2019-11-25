@@ -110,7 +110,7 @@ namespace IpTviewr.Tools.FirstTimeConfig
                 {
                     Initialization.Remove(e.TabPage.Name);
                     init();
-                    BasicGoogleTelemetry.SendScreenHit(FindForm(), e.TabPage.Text);
+                    AppTelemetry.FormEvent(FindForm(), e.TabPage.Text);
                 } // if
             } // if
         } // OnSelecting

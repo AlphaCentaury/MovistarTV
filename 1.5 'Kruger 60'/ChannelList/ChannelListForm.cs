@@ -85,7 +85,7 @@ namespace IpTviewr.ChannelList
 
         private void ChannelListForm_Shown(object sender, EventArgs e)
         {
-            BasicGoogleTelemetry.SendScreenHit(this, "Shown");
+            AppTelemetry.FormEvent(this, "Shown");
             if (_selectedServiceProvider == null)
             {
                 SafeCall(SelectProvider);
@@ -104,7 +104,7 @@ namespace IpTviewr.ChannelList
 
         private void ChannelListForm_Load_Implementation(object sender, EventArgs e)
         {
-            BasicGoogleTelemetry.SendScreenHit(this, "Load");
+            AppTelemetry.FormEvent(this, "Load");
 
             Text = Texts.AppCaption;
             InitIpTviewrMenu();

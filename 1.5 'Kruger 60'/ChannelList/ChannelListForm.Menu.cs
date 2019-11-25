@@ -124,7 +124,6 @@ namespace IpTviewr.ChannelList
             {
                 dialog.SelectedServiceProvider = _selectedServiceProvider;
                 var result = dialog.ShowDialog(this);
-                BasicGoogleTelemetry.SendScreenHit(this);
                 if (result != DialogResult.OK) return;
 
                 _selectedServiceProvider = dialog.SelectedServiceProvider;

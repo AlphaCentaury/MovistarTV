@@ -26,9 +26,11 @@ namespace IpTviewr.UiServices.Common.Forms
             set;
         } // ApplicationData
 
+        protected override bool SendLoadEvent => false;
+
         private void AboutBox_Load(object sender, EventArgs e)
         {
-            BasicGoogleTelemetry.SendScreenHit(this, Assembly.GetEntryAssembly().GetName().Name);
+            AppTelemetry.FormLoad(this, Assembly.GetEntryAssembly().GetName().Name);
             Text = string.Format(Text, Assembly.GetEntryAssembly().GetName().Name);
             if (ApplicationData != null)
             {

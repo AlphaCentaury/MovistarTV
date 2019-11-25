@@ -63,7 +63,8 @@
     <Compile Include="DateTimeExtensions.cs" />
     <Compile Include="ExceptionEventData.cs" />
     <Compile Include="HandleExceptionEventArgs.cs" />
-    <Compile Include="Telemetry\BasicGoogleTelemetry.cs" />
+    <Compile Include="Telemetry\AppTelemetry.cs" />
+    <Compile Include="Telemetry\GoogleAnalytics.cs" />
     <Compile Include="ArgumentsManager.cs" />
     <Compile Include="CommandLineArguments.cs" />
     <Compile Include="Launcher.cs" />
@@ -86,6 +87,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Texts.resx</DependentUpon>
     </Compile>
+    <Compile Include="Telemetry\ITelemetryProvider.cs" />
     <Compile Include="TextUtils.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -82,7 +82,7 @@ namespace IpTviewr.UiServices.DvbStpClient
         {
             string message;
 
-            BasicGoogleTelemetry.SendExtendedExceptionHit(ex, false, TelemetryScreenName, TelemetryScreenName);
+            AppTelemetry.ExceptionExtended(ex, TelemetryScreenName, TelemetryScreenName);
 
             var isSocket = ex as SocketException;
             var isTimeout = ex as TimeoutException;
@@ -104,7 +104,7 @@ namespace IpTviewr.UiServices.DvbStpClient
 
             if (box.CustomDialogResult == ExceptionMessageBoxDialogResult.Button2)
             {
-                BasicGoogleTelemetry.SendEventHit("ShowDialog", "UiServices.DvbStpClient.HelpDialog", TelemetryScreenName, TelemetryScreenName);
+                AppTelemetry.CustomEvent(TelemetryScreenName, "ShowDialog", "UiServices.DvbStpClient.HelpDialog", TelemetryScreenName);
                 HelpDialog.ShowRtfHelp(owner, Properties.Texts.RtfTroubleshootingGuide);
             } // if
         } // HandleException

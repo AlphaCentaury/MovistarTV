@@ -76,8 +76,6 @@ namespace IpTviewr.UiServices.Record
 
         private void DialogRecordChannel_Load_Implementation(object sender, EventArgs e)
         {
-            BasicGoogleTelemetry.SendScreenHit(this);
-
             // Initialize
             if (Task == null)
             {

@@ -15,6 +15,22 @@ namespace IpTviewr.UiServices.Common.Forms
 {
     public class CommonBaseForm : Form
     {
+        #region Telemetry
+
+        #region Overrides of Form
+
+        protected override void OnLoad(EventArgs e)
+        {
+            base.OnLoad(e);
+            if (SendLoadEvent) AppTelemetry.FormLoad(this);
+        } // OnLoad
+
+        protected virtual bool SendLoadEvent => true;
+
+        #endregion
+
+        #endregion
+
         #region Exceptions
 
         protected bool HandleOwnedFormsExceptions
@@ -61,7 +77,7 @@ namespace IpTviewr.UiServices.Common.Forms
         /// </remarks>
         protected virtual void ExceptionHandler(CommonBaseForm form, ExceptionEventData ex)
         {
-            BasicGoogleTelemetry.SendExtendedExceptionHit(ex.Exception, true, ex.Message, GetType().Name);
+            AppTelemetry.FormException(ex.Exception, this, ex.Message);
 
             var box = new ExceptionMessageBox()
             {
@@ -87,11 +103,6 @@ namespace IpTviewr.UiServices.Common.Forms
         #endregion
 
         #region 'Safe' functions
-
-        protected void SafeDispose(IDisposable disposable)
-        {
-            disposable?.Dispose();
-        } // SafeDispose
 
         protected bool SafeCall(Action callAction)
         {

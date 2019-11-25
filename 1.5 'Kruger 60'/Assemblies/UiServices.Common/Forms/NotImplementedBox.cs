@@ -21,9 +21,9 @@ namespace IpTviewr.UiServices.Common.Forms
         {
             using (var box = new NotImplementedBox())
             {
-                context = context == null ? owner.GetType().Name : $"{owner.GetType().Name}/{context}";
+                context = context == null ? owner.GetType().FullName : $"{owner.GetType().FullName}/{context}";
 
-                BasicGoogleTelemetry.SendScreenHit(box, context);
+                AppTelemetry.FormLoad(box, context);
                 box.ShowDialog(owner);
             } // using
         } // ShowBox

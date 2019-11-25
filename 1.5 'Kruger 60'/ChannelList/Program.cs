@@ -32,9 +32,7 @@ namespace IpTviewr.ChannelList
             var exitCode = appContext.ExitCode;
             appContext.Dispose();
 
-            BasicGoogleTelemetry.SendScreenHit("ChannelList_Main: End");
-            BasicGoogleTelemetry.ManageSession(true);
-            BasicGoogleTelemetry.EnsureHitsSents();
+            AppTelemetry.End();
 
             // Ensure all background threads end right now (like updating the EPG data with EpgDownloader)
             // TODO: Don't to this

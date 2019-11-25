@@ -64,8 +64,6 @@ namespace IpTviewr.UiServices.Record
 
         private void RecordTasksDialog_Shown(object sender, EventArgs e)
         {
-            BasicGoogleTelemetry.SendScreenHit(this);
-
             AsyncResult result;
 
             using (var worker = new BackgroundWorkerDialog())

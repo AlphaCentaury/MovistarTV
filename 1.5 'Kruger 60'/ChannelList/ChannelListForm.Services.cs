@@ -93,7 +93,6 @@ namespace IpTviewr.ChannelList
             using (var dialog = new MulticastScannerOptionsDialog())
             {
                 var result = dialog.ShowDialog(this);
-                BasicGoogleTelemetry.SendScreenHit(this);
                 if (result != DialogResult.OK) return;
                 timeout = dialog.Timeout;
                 list = dialog.ScanList;
