@@ -22,7 +22,7 @@ namespace IpTviewr.UiServices.Common.Forms
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
-            if (SendLoadEvent) AppTelemetry.FormLoad(this);
+            if (SendLoadEvent) AppTelemetry.FormEvent(AppTelemetry.LoadEvent, this);
         } // OnLoad
 
         protected virtual bool SendLoadEvent => true;
@@ -77,7 +77,7 @@ namespace IpTviewr.UiServices.Common.Forms
         /// </remarks>
         protected virtual void ExceptionHandler(CommonBaseForm form, ExceptionEventData ex)
         {
-            AppTelemetry.FormException(ex.Exception, this, ex.Message);
+            AppTelemetry.FormException(ex.Exception, this);
 
             var box = new ExceptionMessageBox()
             {

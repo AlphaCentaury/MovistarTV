@@ -29,6 +29,12 @@ namespace IpTviewr.ChannelList
             AppTelemetry.FormException(ex, owner);
             AddExceptionAdvancedInformation(ex);
 
+            if (!Application.MessageLoop)
+            {
+                //MessageBox.Show(ex.ToString(), Properties.Texts.MyAppHandleExceptionDefaultCaption, MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                //return;
+            } // if
+
             var box = new ExceptionMessageBox()
             {
                 Caption = Properties.Texts.MyAppHandleExceptionDefaultCaption,
@@ -36,6 +42,7 @@ namespace IpTviewr.ChannelList
                 Beep = true,
                 Symbol = ExceptionMessageBoxSymbol.Error,
             };
+
             box.Show(owner);
         } // HandleException
 

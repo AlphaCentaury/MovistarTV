@@ -113,13 +113,13 @@ namespace IpTviewr.ChannelList
                 result = ValidateConfiguration(AppConfig.Current);
                 if (result.IsError) return result;
 
-                AppTelemetry.Start(AppConfig.Current.User.Telemetry.Enabled,
+                AppTelemetry.Enable(AppConfig.Current.User.Telemetry.Enabled,
                     AppConfig.Current.User.Telemetry.Usage,
                     AppConfig.Current.User.Telemetry.Exceptions);
                 AppTelemetry.HackInitGoogle(Properties.InvariantTexts.AnalyticsGoogleTrackingId,
                     AppConfig.Current.AnalyticsClientId);
 
-                AppTelemetry.ScreenLoad("SplashScreen");
+                AppTelemetry.ScreenEvent(AppTelemetry.LoadEvent, "SplashScreen");
 
                 return InitializationResult.Ok;
             }

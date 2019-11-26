@@ -496,7 +496,7 @@ namespace IpTviewr.Tools.FirstTimeConfig
 
             try
             {
-                AppTelemetry.ScreenLoad("FirewallForm");
+                AppTelemetry.ScreenEvent(AppTelemetry.LoadEvent, "FirewallForm");
 
                 var arguments = new StringBuilder();
                 arguments.AppendFormat("/ForceUiCulture:{0}", CultureInfo.CurrentUICulture.Name);
@@ -536,26 +536,26 @@ namespace IpTviewr.Tools.FirstTimeConfig
             }
             catch (Win32Exception win32) when (win32.NativeErrorCode == 1223) // operation cancelled by user
             {
-                AppTelemetry.ScreenEvent("FirewallForm", "UACancel");
+                AppTelemetry.ScreenEvent("UACancel", "FirewallForm");
                 return new InitializationResult(Texts.FirewallUserCancel);
             }
             catch (Exception ex)
             {
-                AppTelemetry.ScreenEvent("FirewallForm", "Exception");
-                AppTelemetry.ExceptionExtended(ex, "FirewallForm", "process.Start()");
+                AppTelemetry.ScreenEvent("Exception", "FirewallForm");
+                AppTelemetry.ScreenException(ex, "FirewallForm", "process.Start()");
                 return new InitializationResult(ex, "Unable to execute Firewall configuration program.");
             } // try-catch
 
             if (exitCode == 0)
             {
-                AppTelemetry.ScreenEvent("FirewallForm", "Ok");
+                AppTelemetry.ScreenEvent("Ok", "FirewallForm");
                 return new InitializationResult(Texts.FirewallOk)
                 {
                     IsOk = true
                 };
             }
 
-            AppTelemetry.ScreenEvent("FirewallForm", $"Cancel ({exitCode})");
+            AppTelemetry.ScreenEvent($"Cancel ({exitCode})", "FirewallForm");
             return new InitializationResult(Texts.FirewallUserCancel);
         } // RunSelfForFirewall
 

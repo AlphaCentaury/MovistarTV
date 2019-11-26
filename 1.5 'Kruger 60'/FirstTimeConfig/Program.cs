@@ -86,7 +86,7 @@ namespace IpTviewr.Tools.FirstTimeConfig
             } // if
 
             // TODO: init on Wizard Start Dialog
-            AppTelemetry.Start(true, true, true);
+            AppTelemetry.Start();
             AppTelemetry.HackInitGoogle(Properties.Resources.AnalyticsGoogleTrackingId, AppConfig.AnalyticsClientId);
 
             using (var dlg = new WizardWelcomeDialog())

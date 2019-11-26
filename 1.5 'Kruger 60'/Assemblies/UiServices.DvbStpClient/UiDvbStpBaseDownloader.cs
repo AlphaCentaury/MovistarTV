@@ -80,16 +80,18 @@ namespace IpTviewr.UiServices.DvbStpClient
 
         private void HandleException(IWin32Window owner, Exception ex)
         {
-            string message;
+            var message = TextDownloadException ?? Properties.Texts.HelperExceptionText;
+            AppTelemetry.ScreenException(ex, TelemetryScreenName, message);
 
-            AppTelemetry.ExceptionExtended(ex, TelemetryScreenName, TelemetryScreenName);
-
-            var isSocket = ex as SocketException;
-            var isTimeout = ex as TimeoutException;
-
-            message = TextDownloadException ?? Properties.Texts.HelperExceptionText;
-            if (isSocket != null) message = string.Format(Properties.Texts.SocketException, message, isSocket.SocketErrorCode);
-            else if (isTimeout != null) message = string.Format(Properties.Texts.TimeoutException, message);
+            switch (ex)
+            {
+                case SocketException isSocket:
+                    message = string.Format(Properties.Texts.SocketException, message, isSocket.SocketErrorCode);
+                    break;
+                case TimeoutException _:
+                    message = string.Format(Properties.Texts.TimeoutException, message);
+                    break;
+            } // switch
 
             var box = new ExceptionMessageBox()
             {

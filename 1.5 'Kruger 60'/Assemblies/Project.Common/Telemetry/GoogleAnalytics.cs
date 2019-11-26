@@ -42,29 +42,35 @@ namespace IpTviewr.Common.Telemetry
             EnsureHitsSents();
         } // End
 
-        public void ScreenLoad(string screen, string details = null)
+        public void AppReady()
         {
-            SendScreenHit(screen, details);
-        } // ScreenLoad
+            // if GoogleAnalytics was implemented as a MEF 'module'
+            // this will be the place to obtain the TrackingId and UserId
+        } // AppReady
 
-        public void ScreenEvent(string screen, string name, string data = null, IEnumerable<KeyValuePair<string, string>> properties = null)
+        // ScreenLoad
+
+        public void ScreenEvent(string eventName, string screenName, string data = null, IEnumerable<KeyValuePair<string, string>> properties = null)
         {
-            SendEventHit("formEvent", name, data, screen);
+            if (eventName == AppTelemetry.LoadEvent)
+            {
+                SendScreenHit(screenName, data);
+            }
+            else
+            {
+
+                SendEventHit("formEvent", eventName, data, screenName);
+            } // if
         } // ScreenEvent
 
-        public void Exception(Exception ex)
+        public void Exception(Exception ex, string screenName, string message = null, IEnumerable<KeyValuePair<string, string>> properties = null)
         {
-            SendExceptionHit(ex);
-        } // Exception
-
-        public void ExceptionExtended(Exception ex, string screen, string message = null, IEnumerable<KeyValuePair<string, string>> properties = null)
-        {
-            SendExtendedExceptionHit(ex, true, message, screen);
+            SendExtendedExceptionHit(ex, true, message, screenName);
         } // ExceptionExtended
 
-        public void CustomEvent(string screen, string category, string action, string data = null, IEnumerable<KeyValuePair<string, string>> properties = null)
+        public void CustomEvent(string eventName, string action, string screenName, string data = null, IEnumerable<KeyValuePair<string, string>> properties = null)
         {
-            SendEventHit(category, action, data, screen);
+            SendEventHit(eventName, action, data, screenName);
         } // CustomEvent
 
         #endregion

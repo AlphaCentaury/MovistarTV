@@ -30,8 +30,8 @@ namespace IpTviewr.UiServices.Common.Forms
 
         private void AboutBox_Load(object sender, EventArgs e)
         {
-            AppTelemetry.FormLoad(this, Assembly.GetEntryAssembly().GetName().Name);
-            Text = string.Format(Text, Assembly.GetEntryAssembly().GetName().Name);
+            AppTelemetry.FormEvent(AppTelemetry.LoadEvent, this, Application.ProductName);
+            Text = string.Format(Text, Application.ProductName);
             if (ApplicationData != null)
             {
                 if (ApplicationData.LargeIcon != null)

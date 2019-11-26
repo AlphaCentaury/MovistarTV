@@ -85,7 +85,7 @@ namespace IpTviewr.ChannelList
 
         private void ChannelListForm_Shown(object sender, EventArgs e)
         {
-            AppTelemetry.FormEvent(this, "Shown");
+            AppTelemetry.FormEvent("Shown", this);
             if (_selectedServiceProvider == null)
             {
                 SafeCall(SelectProvider);
@@ -104,7 +104,7 @@ namespace IpTviewr.ChannelList
 
         private void ChannelListForm_Load_Implementation(object sender, EventArgs e)
         {
-            AppTelemetry.FormEvent(this, "Load");
+            AppTelemetry.FormEvent(AppTelemetry.LoadEvent, this);
 
             Text = Texts.AppCaption;
             InitIpTviewrMenu();

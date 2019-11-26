@@ -17,7 +17,7 @@ namespace IpTviewr.UiServices.Common.Forms
         {
             using (var dialog = new HelpDialog())
             {
-                AppTelemetry.FormLoad(dialog, caption);
+                AppTelemetry.FormEvent(AppTelemetry.LoadEvent, dialog, caption);
                 dialog.richTextHelp.Rtf = rtfHelpText;
                 if (caption != null) dialog.Text = caption;
                 return dialog.ShowDialog(owner);
@@ -28,7 +28,7 @@ namespace IpTviewr.UiServices.Common.Forms
         {
             using (var dialog = new HelpDialog())
             {
-                AppTelemetry.FormLoad(dialog, caption);
+                AppTelemetry.FormEvent(AppTelemetry.LoadEvent, dialog, caption);
                 dialog.richTextHelp.Text = helpText;
                 if (caption != null) dialog.Text = caption;
                 return dialog.ShowDialog(owner);

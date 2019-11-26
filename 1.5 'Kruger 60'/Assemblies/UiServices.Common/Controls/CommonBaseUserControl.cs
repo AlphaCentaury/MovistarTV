@@ -61,7 +61,7 @@ namespace IpTviewr.UiServices.Common.Controls
         /// </remarks>
         protected virtual void ExceptionHandler(ExceptionEventData ex)
         {
-            AppTelemetry.ExceptionExtended(ex.Exception, GetType().FullName, ex.Message);
+            AppTelemetry.ScreenException(ex.Exception, GetType().FullName, ex.Message);
 
             var box = new ExceptionMessageBox()
             {

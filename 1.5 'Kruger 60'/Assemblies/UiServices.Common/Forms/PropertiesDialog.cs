@@ -30,7 +30,7 @@ namespace IpTviewr.UiServices.Common.Forms
 
         private void PropertiesDialog_Load(object sender, EventArgs e)
         {
-            AppTelemetry.FormLoad(this, Caption);
+            AppTelemetry.FormEvent(AppTelemetry.LoadEvent, this, Caption);
             Text = Caption;
             labelDescription.Text = (Description ?? Properties.PropertiesDialog.CaptionDefault);
             pictureBoxItemIcon.Image = ItemIcon;

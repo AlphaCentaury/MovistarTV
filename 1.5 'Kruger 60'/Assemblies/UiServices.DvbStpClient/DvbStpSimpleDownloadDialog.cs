@@ -88,7 +88,7 @@ namespace IpTviewr.UiServices.DvbStpClient
         private void DownloadDlg_Shown(object sender, EventArgs e)
         {
             // TODO: user overload with extra data and get rid of TelemetryScreenName
-            AppTelemetry.ScreenLoad(TelemetryScreenName);
+            AppTelemetry.ScreenEvent(AppTelemetry.LoadEvent, TelemetryScreenName);
             StartDownload();
         } // DownloadDlg_Shown
 

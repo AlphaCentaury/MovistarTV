@@ -23,7 +23,7 @@ namespace IpTviewr.UiServices.Common.Forms
             {
                 context = context == null ? owner.GetType().FullName : $"{owner.GetType().FullName}/{context}";
 
-                AppTelemetry.FormLoad(box, context);
+                AppTelemetry.FormEvent(AppTelemetry.LoadEvent, box, context);
                 box.ShowDialog(owner);
             } // using
         } // ShowBox

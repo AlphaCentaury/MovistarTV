@@ -42,7 +42,7 @@ namespace IpTviewr.Tools.FirstTimeConfig
             switch (EndResult)
             {
                 case DialogResult.OK:
-                    AppTelemetry.FormEvent(this, "Ok");
+                    AppTelemetry.FormEvent("Ok", this);
                     pictureEndIcon.Image = Properties.Resources.Success_48x48;
                     labelEndTitle.Text = Properties.Texts.WizardEndTitleOk;
                     labelEndText.Text = string.Format(labelEndText.Text, Properties.Texts.WizardEndTextOk);
@@ -52,13 +52,13 @@ namespace IpTviewr.Tools.FirstTimeConfig
                     checkRunMainProgram.Text = string.Format(checkRunMainProgram.Text, Properties.Texts.ProductMainProgramName);
                     break;
                 case DialogResult.Cancel:
-                    AppTelemetry.FormEvent(this, "Cancel");
+                    AppTelemetry.FormEvent("Cancel", this);
                     pictureEndIcon.Image = Properties.Resources.Warning_48x48;
                     labelEndTitle.Text = Properties.Texts.WizardEndTitleCancel;
                     labelEndText.Text = string.Format(labelEndText.Text, Properties.Texts.WizardEndTextCancel);
                     break;
                 default:
-                    AppTelemetry.FormEvent(this, "Abort");
+                    AppTelemetry.FormEvent("Abort", this);
                     pictureEndIcon.Image = Properties.Resources.Exclamation_48x48;
                     labelEndTitle.Text = Properties.Texts.WizardEndTitleAbort;
                     labelEndText.Text = string.Format(labelEndText.Text, Properties.Texts.WizardEndTextAbort);

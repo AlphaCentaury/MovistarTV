@@ -2,20 +2,25 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Windows.Forms;
+using JetBrains.Annotations;
 
 namespace IpTviewr.Common.Telemetry
 {
     public static class AppTelemetry
     {
+        public const string LoadEvent = "Load";
+        public const string UnloadEvent = "Unload";
+
         private static readonly Lazy<List<ITelemetryProvider>> LazyProviders = new Lazy<List<ITelemetryProvider>>(GetProviders, LazyThreadSafetyMode.ExecutionAndPublication);
         private static bool _enabled;
 
         public static bool Enabled
         {
             get => _enabled;
-            set
+            private set
             {
                 _enabled = value;
                 LazyProviders.Value.ForEach(provider => provider.Enabled = value);
@@ -25,25 +30,32 @@ namespace IpTviewr.Common.Telemetry
         public static bool Usage
         {
             get;
-            set;
+            private set;
         } // Usage
 
         public static bool Exceptions
         {
             get;
-            set;
+            private set;
         } // Exceptions
 
         public static IReadOnlyList<ITelemetryProvider> Providers => LazyProviders.Value;
 
-        public static void Start(bool enabled, bool usage, bool exceptions)
+        public static void Start()
         {
             if (LazyProviders.IsValueCreated) return;
             _ = LazyProviders.Value;
-            Enabled = enabled;
-            Usage = usage;
-            Exceptions = exceptions;
+            Enabled = true; //enabled;
+            Usage = true; // usage;
+            Exceptions = true; // exceptions;
         } // Start
+
+        public static void Enable(bool? enable, bool? usage, bool? exceptions)
+        {
+            if (usage != null) Usage = usage.Value;
+            if (exceptions != null) Exceptions = exceptions.Value;
+            if (enable != null) Enabled = enable.Value;
+        } // Enable
 
         public static void HackInitGoogle(string trackingId, string clientId)
         {
@@ -62,68 +74,117 @@ namespace IpTviewr.Common.Telemetry
             LazyProviders.Value.ForEach(provider => provider.End());
         } // End
 
-        #region Events
+        #region Screen/Form event
 
-        public static void ScreenLoad(string name, string details = null)
+        public static void ScreenEvent(string eventName, string screenName, string data = null)
         {
             if (!_enabled || !Usage) return;
 
-            ForEach(provider => provider.ScreenLoad(name, details));
-        } // ScreenLoad
+            ForEach(provider => provider.ScreenEvent(eventName, screenName, data));
+        } // ScreenEvent
 
-        public static void FormLoad(Form form, string details = null)
-        {
-            ScreenLoad(form?.GetType().FullName, details);
-        } // ScreenLoad
-
-        public static void ScreenEvent(string name, string eventName, string data = null)
+        public static void ScreenEvent(string eventName, string screenName, string data, IEnumerable<KeyValuePair<string, string>> properties)
         {
             if (!_enabled || !Usage) return;
 
-            ForEach(provider => provider.ScreenEvent(name, eventName, data));
+            ForEach(provider => provider.ScreenEvent(eventName, screenName, data, properties));
         } // ScreenEvent
 
-        public static void FormEvent(Form form, string status, string data = null)
+        public static void FormEvent(string eventName, Form form, string data = null)
         {
-            FormEvent(form, status, data, null);
+            ScreenEvent(eventName, form?.GetType().FullName, data);
         } // ScreenEvent
 
-        public static void FormEvent(Form form, string status, string data, IEnumerable<KeyValuePair<string, string>> properties)
+        [PublicAPI]
+        public static void FormEvent(string eventName, Form form, string data, IEnumerable<KeyValuePair<string, string>> properties)
         {
-            if (!_enabled || !Usage) return;
-
-            var name = form.GetType().FullName;
-            ForEach(provider => provider.ScreenEvent(name, status, data, properties));
+            ScreenEvent(eventName, form?.GetType().FullName, data, properties);
         } // ScreenEvent
+
+        #endregion
+
+        #region Screen/Form exception
+
+        public static void ScreenException(Exception ex, string screenName, string message = null)
+        {
+            if (!_enabled || !Exceptions) return;
+
+            ForEach(provider => provider.Exception(ex, screenName, message));
+        } // FormException
 
         public static void FormException(Exception ex, Form form, string message = null)
         {
-            if (!_enabled || !Exceptions) return;
-
-            var location = form?.GetType().FullName;
-            LazyProviders.Value[0].ExceptionExtended(ex, location, message);
+            ScreenException(ex, form?.GetType().FullName, message);
         } // FormException
 
-        public static void ExceptionExtended(Exception ex, string screenName, string message = null)
+        public static void ScreenException(Exception ex, string screenName, string message, IEnumerable<KeyValuePair<string, string>> properties)
         {
             if (!_enabled || !Exceptions) return;
 
-            LazyProviders.Value[0].ExceptionExtended(ex, screenName, message);
-        } // ExceptionExtended
+            ForEach(provider => provider.Exception(ex, screenName, message, properties));
+        } // FormException
+
+        [PublicAPI]
+        public static void FormException(Exception ex, Form form, string message, IEnumerable<KeyValuePair<string, string>> properties)
+        {
+            ScreenException(ex, form?.GetType().FullName, message, properties);
+        } // FormException
+
+        #endregion
+
+        #region Screen/Form custom event
 
         public static void CustomEvent(string screenName, string category, string action, string data = null)
         {
             if (!_enabled || !Usage) return;
-            LazyProviders.Value[0].CustomEvent(screenName, category, action, data);
+
+            ForEach(provider => provider.CustomEvent(category, action, screenName, data));
+        } // CustomEvent
+
+        [PublicAPI]
+        public static void FormCustomEvent(Form form, string category, string action, string data = null)
+        {
+            CustomEvent(form?.GetType().FullName, category, action, data);
+        } // CustomEvent
+
+        public static void CustomEvent(string screenName, string category, string action, string data, IEnumerable<KeyValuePair<string, string>> properties)
+        {
+            if (!_enabled || !Usage) return;
+
+            ForEach(provider => provider.CustomEvent(category, action, screenName, data, properties));
+        } // CustomEvent
+
+        [PublicAPI]
+        public static void FormCustomEvent(Form form, string category, string action, string data, IEnumerable<KeyValuePair<string, string>> properties)
+        {
+            CustomEvent(form?.GetType().FullName, category, action, data, properties);
         } // CustomEvent
 
         #endregion
 
         #region Auxiliary methods
 
+        private static List<ITelemetryProvider> GetProviders()
+        {
+            var providers = new List<ITelemetryProvider>(1)
+            {
+                new VsAppCenter()
+            };
+
+            SafeForEach(providers, provider => provider.Start());
+
+            return providers;
+        } // GetProviders
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private static void ForEach(Action<ITelemetryProvider> action)
         {
-            foreach (var provider in LazyProviders.Value)
+            SafeForEach(LazyProviders.Value, action);
+        } // ForEach
+
+        private static void SafeForEach<T>(IEnumerable<T> providers, Action<T> action)
+        {
+            foreach (var provider in providers)
             {
                 try
                 {
@@ -134,19 +195,7 @@ namespace IpTviewr.Common.Telemetry
                     // ignore all exceptions
                 } // try-catch
             } // foreach
-        } // ForEach
-
-        private static List<ITelemetryProvider> GetProviders()
-        {
-            var providers = new List<ITelemetryProvider>(1)
-            {
-                new GoogleAnalytics()
-            };
-
-            ForEach(provider => provider.Start());
-
-            return providers;
-        } // GetProviders
+        } // SafeForEach
 
         #endregion
     } // class AppTelemetry

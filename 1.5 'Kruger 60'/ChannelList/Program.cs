@@ -14,16 +14,23 @@ namespace IpTviewr.ChannelList
 {
     static class Program
     {
+        private static Thread _mainThread;
+
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
         static int Main(string[] arguments)
         {
+            _mainThread = Thread.CurrentThread;
+            Application.ThreadException += ApplicationOnThreadException;
+            Application.SetUnhandledExceptionMode(UnhandledExceptionMode.CatchException);
+            AppDomain.CurrentDomain.UnhandledException += AppDomainCurrentOnUnhandledException;
+            AppTelemetry.Start();
+
             // set thread name for debugging
             Thread.CurrentThread.Name = "Program main thread";
 
-            //Application.ThreadException += Application_ThreadException;
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
@@ -42,9 +49,23 @@ namespace IpTviewr.ChannelList
             return exitCode;
         } // Main
 
-        static void Application_ThreadException(object sender, ThreadExceptionEventArgs e)
+        private static void ApplicationOnThreadException(object sender, ThreadExceptionEventArgs e)
         {
             MyApplication.HandleException(null, e.Exception);
-        } // Application_ThreadException
+        } // ApplicationOnThreadException
+
+        private static void AppDomainCurrentOnUnhandledException(object sender, UnhandledExceptionEventArgs e)
+        {
+            if (!(e.ExceptionObject is Exception ex)) return;
+
+            if (Application.MessageLoop || (Thread.CurrentThread == _mainThread))
+            {
+                MyApplication.HandleException(null, ex);
+            }
+            else
+            {
+                AppTelemetry.ScreenException(ex, null, "Non-UI thread");
+            } // if-else
+        } // AppDomainCurrentOnUnhandledException
     } // class Program
 } // namespace

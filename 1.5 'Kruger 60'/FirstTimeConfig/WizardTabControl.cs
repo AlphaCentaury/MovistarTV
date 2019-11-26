@@ -110,7 +110,7 @@ namespace IpTviewr.Tools.FirstTimeConfig
                 {
                     Initialization.Remove(e.TabPage.Name);
                     init();
-                    AppTelemetry.FormEvent(FindForm(), e.TabPage.Text);
+                    AppTelemetry.FormEvent(e.TabPage.Text, FindForm());
                 } // if
             } // if
         } // OnSelecting
