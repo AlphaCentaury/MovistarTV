@@ -103,9 +103,11 @@ namespace IpTviewr.ChannelList
 
         private InitializationResult LoadConfiguration()
         {
+            InitializationResult result;
+
             try
             {
-                var result = AppConfig.Load(null, ConfigLoadDisplayProgress);
+                result = AppConfig.Load(null, ConfigLoadDisplayProgress);
                 if (result.IsError) return result;
 
                 result = ValidateConfiguration(AppConfig.Current);
@@ -114,7 +116,8 @@ namespace IpTviewr.ChannelList
                 AppTelemetry.Enable(AppConfig.Current.User.Telemetry.Enabled,
                     AppConfig.Current.User.Telemetry.Usage,
                     AppConfig.Current.User.Telemetry.Exceptions);
-                AppTelemetry.HackInitGoogle(AppConfig.Current.AnalyticsClientId);
+                AppTelemetry.HackInitGoogle(Properties.InvariantTexts.AnalyticsGoogleTrackingId,
+                    AppConfig.Current.AnalyticsClientId);
 
                 AppTelemetry.ScreenEvent(AppTelemetry.LoadEvent, "SplashScreen");
 
