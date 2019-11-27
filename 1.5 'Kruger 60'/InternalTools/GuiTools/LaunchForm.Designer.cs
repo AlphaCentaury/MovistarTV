@@ -36,13 +36,14 @@ namespace IpTviewr.Internal.Tools.GuiTools
         private void InitializeComponent()
         {
             this.groupBoxTools = new System.Windows.Forms.GroupBox();
+            this.radioIconBuilder = new System.Windows.Forms.RadioButton();
             this.radioBinaryEditor = new System.Windows.Forms.RadioButton();
             this.radioDvbStpExplorer = new System.Windows.Forms.RadioButton();
             this.radioOpchExplorer = new System.Windows.Forms.RadioButton();
             this.radioMulticastExplorer = new System.Windows.Forms.RadioButton();
             this.radioSimpleDownload = new System.Windows.Forms.RadioButton();
+            this.radioRibbon = new System.Windows.Forms.RadioButton();
             this.buttonExecute = new System.Windows.Forms.Button();
-            this.radioIconBuilder = new System.Windows.Forms.RadioButton();
             this.groupBoxTools.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -54,12 +55,25 @@ namespace IpTviewr.Internal.Tools.GuiTools
             this.groupBoxTools.Controls.Add(this.radioOpchExplorer);
             this.groupBoxTools.Controls.Add(this.radioMulticastExplorer);
             this.groupBoxTools.Controls.Add(this.radioSimpleDownload);
+            this.groupBoxTools.Controls.Add(this.radioRibbon);
             this.groupBoxTools.Location = new System.Drawing.Point(12, 12);
             this.groupBoxTools.Name = "groupBoxTools";
             this.groupBoxTools.Size = new System.Drawing.Size(393, 207);
             this.groupBoxTools.TabIndex = 0;
             this.groupBoxTools.TabStop = false;
             this.groupBoxTools.Text = "Select tool";
+            this.groupBoxTools.Enter += new System.EventHandler(this.groupBoxTools_Enter);
+            // 
+            // radioIconBuilder
+            // 
+            this.radioIconBuilder.AutoSize = true;
+            this.radioIconBuilder.Location = new System.Drawing.Point(6, 135);
+            this.radioIconBuilder.Name = "radioIconBuilder";
+            this.radioIconBuilder.Size = new System.Drawing.Size(80, 17);
+            this.radioIconBuilder.TabIndex = 5;
+            this.radioIconBuilder.TabStop = true;
+            this.radioIconBuilder.Text = "Icon builder";
+            this.radioIconBuilder.UseVisualStyleBackColor = true;
             // 
             // radioBinaryEditor
             // 
@@ -121,6 +135,17 @@ namespace IpTviewr.Internal.Tools.GuiTools
             this.radioSimpleDownload.UseVisualStyleBackColor = true;
             this.radioSimpleDownload.CheckedChanged += new System.EventHandler(this.radioOption_CheckedChanged);
             // 
+            // radioRibbon
+            // 
+            this.radioRibbon.AutoSize = true;
+            this.radioRibbon.Location = new System.Drawing.Point(6, 184);
+            this.radioRibbon.Name = "radioRibbon";
+            this.radioRibbon.Size = new System.Drawing.Size(106, 17);
+            this.radioRibbon.TabIndex = 6;
+            this.radioRibbon.TabStop = true;
+            this.radioRibbon.Text = "Ribbon prototype";
+            this.radioRibbon.UseVisualStyleBackColor = true;
+            // 
             // buttonExecute
             // 
             this.buttonExecute.Location = new System.Drawing.Point(305, 225);
@@ -130,17 +155,6 @@ namespace IpTviewr.Internal.Tools.GuiTools
             this.buttonExecute.Text = "Execute";
             this.buttonExecute.UseVisualStyleBackColor = true;
             this.buttonExecute.Click += new System.EventHandler(this.buttonExecute_Click);
-            // 
-            // radioIconBuilder
-            // 
-            this.radioIconBuilder.AutoSize = true;
-            this.radioIconBuilder.Location = new System.Drawing.Point(6, 135);
-            this.radioIconBuilder.Name = "radioIconBuilder";
-            this.radioIconBuilder.Size = new System.Drawing.Size(80, 17);
-            this.radioIconBuilder.TabIndex = 5;
-            this.radioIconBuilder.TabStop = true;
-            this.radioIconBuilder.Text = "Icon builder";
-            this.radioIconBuilder.UseVisualStyleBackColor = true;
             // 
             // LaunchForm
             // 
@@ -169,5 +183,6 @@ namespace IpTviewr.Internal.Tools.GuiTools
         private System.Windows.Forms.RadioButton radioDvbStpExplorer;
         private System.Windows.Forms.RadioButton radioBinaryEditor;
         private System.Windows.Forms.RadioButton radioIconBuilder;
+        private System.Windows.Forms.RadioButton radioRibbon;
     }
 }

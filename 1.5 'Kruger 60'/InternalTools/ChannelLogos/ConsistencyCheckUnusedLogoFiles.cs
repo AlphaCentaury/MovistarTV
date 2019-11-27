@@ -58,7 +58,7 @@ namespace IpTviewr.Internal.Tools.ChannelLogos
 
         private static IEnumerable<Domain> GetMappings()
         {
-            var serviceMappings = LogosCommon.ParseServiceMappingsXml(AppUiConfiguration.Current.Folders.Logos.FileServiceMappings);
+            var serviceMappings = LogosCommon.ParseServiceMappingsXml(AppConfig.Current.Folders.Logos.FileServiceMappings);
 
             var result = from collection in serviceMappings.Collections
                          from domain in collection.Domains

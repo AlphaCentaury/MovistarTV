@@ -30,7 +30,7 @@ namespace IpTviewr.Internal.Tools.ConsoleExperiments
 
         protected override int Run(string[] args)
         {
-            var config = AppUiConfiguration.LoadRegistryAppConfiguration(out _);
+            var config = AppConfig.LoadRegistryAppConfiguration(out _);
             Console.WriteLine(config.Folders.Base);
 
             var imageWidth = 8192; // pixels

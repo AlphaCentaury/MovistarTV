@@ -43,14 +43,14 @@ namespace IpTviewr.Internal.Tools.ChannelLogos
 
         protected IEnumerable<UiServiceProvider> GetProviders()
         {
-            var baseIpAddress = AppUiConfiguration.Current.ContentProvider.Bootstrap.MulticastAddress;
-            var discoveryXml = AppUiConfiguration.Current.Cache.LoadXml<ProviderDiscoveryRoot>("ProviderDiscovery", baseIpAddress);
+            var baseIpAddress = AppConfig.Current.ContentProvider.Bootstrap.MulticastAddress;
+            var discoveryXml = AppConfig.Current.Cache.LoadXml<ProviderDiscoveryRoot>("ProviderDiscovery", baseIpAddress);
             if (discoveryXml == null)
             {
                 using (var dialog = new SelectProviderDialog())
                 {
                     dialog.ShowDialog(Owner);
-                    discoveryXml = AppUiConfiguration.Current.Cache.LoadXml<ProviderDiscoveryRoot>("ProviderDiscovery", baseIpAddress);
+                    discoveryXml = AppConfig.Current.Cache.LoadXml<ProviderDiscoveryRoot>("ProviderDiscovery", baseIpAddress);
                     if (discoveryXml == null) return null;
                 } // using dialog
             } // if
@@ -93,14 +93,14 @@ namespace IpTviewr.Internal.Tools.ChannelLogos
 
         protected IDictionary<string, ServiceLogoMappings.ReplacementDomain> GetDomainMappings()
         {
-            var xmlMappings = LogosCommon.ParseDomainMappingsXml(AppUiConfiguration.Current.Folders.Logos.FileServiceDomainMappings);
+            var xmlMappings = LogosCommon.ParseDomainMappingsXml(AppConfig.Current.Folders.Logos.FileServiceDomainMappings);
 
             return ServiceLogoMappings.BuildMapping(xmlMappings);
         } // GetDomainMappings
 
         protected IDictionary<string, MappedService> GetMappedServices()
         {
-            var serviceMappings = LogosCommon.ParseServiceMappingsXml(AppUiConfiguration.Current.Folders.Logos.FileServiceMappings);
+            var serviceMappings = LogosCommon.ParseServiceMappingsXml(AppConfig.Current.Folders.Logos.FileServiceMappings);
 
             var q = from collection in serviceMappings.Collections
                     where collection.Name != "<default>"

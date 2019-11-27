@@ -150,7 +150,7 @@ namespace IpTviewr.Internal.Tools.ChannelLogosEditor
             if (IsOpen) return;
 
             if (!LoadConfiguration()) return;
-            _serviceMappingsXml = LogosCommon.ParseServiceMappingsXml(AppUiConfiguration.Current.Folders.Logos.FileServiceMappings);
+            _serviceMappingsXml = LogosCommon.ParseServiceMappingsXml(AppConfig.Current.Folders.Logos.FileServiceMappings);
 
             IsOpen = true;
         } // Open
@@ -182,7 +182,7 @@ namespace IpTviewr.Internal.Tools.ChannelLogosEditor
         {
             try
             {
-                var result = AppUiConfiguration.Load(null, LoadConfigurationDisplayProgress);
+                var result = AppConfig.Load(null, LoadConfigurationDisplayProgress);
                 return result.IsError ? result : InitializationResult.Ok;
             }
             catch (Exception ex)

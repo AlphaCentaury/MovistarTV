@@ -23,7 +23,7 @@ namespace IpTviewr.Internal.Tools.ChannelLogos
         {
             Form form;
 
-            if (AppUiConfiguration.Current == null)
+            if (AppConfig.Current == null)
             {
                 labelLoadingConfiguration.Text = "Loading configuration...";
                 labelLoadingConfiguration.Visible = true;
@@ -55,7 +55,7 @@ namespace IpTviewr.Internal.Tools.ChannelLogos
         {
             try
             {
-                var result = AppUiConfiguration.Load(null, LoadDisplayProgress);
+                var result = AppConfig.Load(null, LoadDisplayProgress);
                 return result.IsError ? result : InitializationResult.Ok;
             }
             catch (Exception ex)

@@ -112,17 +112,13 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Assemblies\Core.IpTvProvider\Core.IpTvProvider.csproj">
-      <Project>{36b8e0a1-f1b1-498d-8fe7-a39bb7fd68ca}</Project>
-      <Name>Core.IpTvProvider</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Assemblies\IpTv.MovistarPlus\IpTv.MovistarPlus.csproj">
       <Project>{e1748f45-dd50-4479-96f6-f7eba6f3e28b}</Project>
       <Name>IpTv.MovistarPlus</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Assemblies\Project.Common\Project.Common.csproj">
-      <Project>{8DA15060-5A78-4F89-A9F1-7AA56B0D622C}</Project>
-      <Name>Project.Common</Name>
+    <ProjectReference Include="..\..\Assemblies\Project.Common\IpTviewr.Common.csproj">
+      <Project>{8da15060-5a78-4f89-a9f1-7aa56b0d622c}</Project>
+      <Name>IpTviewr.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Assemblies\UiServices.Common\UiServices.Common.csproj">
       <Project>{76346905-ac2f-4f01-ba99-bbffbb2a6fe9}</Project>

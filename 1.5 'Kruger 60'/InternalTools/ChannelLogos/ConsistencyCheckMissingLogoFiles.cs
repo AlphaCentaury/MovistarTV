@@ -181,7 +181,7 @@ namespace IpTviewr.Internal.Tools.ChannelLogos
 
         internal static IEnumerable<Folder> GetLogosFiles()
         {
-            var folders = Directory.GetDirectories(AppUiConfiguration.Current.Folders.Logos.Services, "*.*", SearchOption.TopDirectoryOnly);
+            var folders = Directory.GetDirectories(AppConfig.Current.Folders.Logos.Services, "*.*", SearchOption.TopDirectoryOnly);
             var result = new Folder[folders.Length];
 
             for (var index = 0; index < folders.Length; index++)
@@ -234,7 +234,7 @@ namespace IpTviewr.Internal.Tools.ChannelLogos
 
         private static IEnumerable<Domain> GetReferencedFiles()
         {
-            var serviceMappings = LogosCommon.ParseServiceMappingsXml(AppUiConfiguration.Current.Folders.Logos.FileServiceMappings);
+            var serviceMappings = LogosCommon.ParseServiceMappingsXml(AppConfig.Current.Folders.Logos.FileServiceMappings);
 
             var q = from collection in serviceMappings.Collections
                     from domain in collection.Domains
@@ -271,7 +271,7 @@ namespace IpTviewr.Internal.Tools.ChannelLogos
                 foreach (var file in domain.Files)
                 {
                     var filename =
-                        $"{AppUiConfiguration.Current.Folders.Logos.Services}\\{domain.DomainName}\\{file.File}.ico";
+                        $"{AppConfig.Current.Folders.Logos.Services}\\{domain.DomainName}\\{file.File}.ico";
                     if (File.Exists(filename)) continue;
 
                     AddResult(Severity.Error, "Missing logo", file.File, domain.DomainName);

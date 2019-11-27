@@ -216,7 +216,7 @@ namespace IpTviewr.Internal.Tools.GuiTools
             {
                 string.Format("p{0:X2}s{1:X4}v{2:X2}", section.Header.PayloadId, section.Header.SegmentId, section.Header.SegmentVersion),
                 string.Format("{0,7:N0}", section.BytesReceived),
-                string.Format(section.Header.HasCRC? "yes" : "no"),
+                string.Format(section.Header.HasCrc? "yes" : "no"),
                 string.Format("{0,7:N0}", section.Payload.Length),
                 string.Format("{0,7:N0}", section.Header.SectionNumber),
                 string.Format("{0,7:N0}", section.Header.LastSectionNumber),

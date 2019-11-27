@@ -17,15 +17,15 @@ namespace IpTviewr.Internal.Tools.GuiTools
         public LaunchForm()
         {
             InitializeComponent();
-            this.Icon = Properties.Resources.GuiTools;
+            Icon = Properties.Resources.GuiTools;
         } // constructor
 
         private void buttonExecute_Click(object sender, EventArgs e)
         {
-            var form = Activator.CreateInstance(SelectedForm) as Form;
-            if (form != null)
+            if (Activator.CreateInstance(SelectedForm) is Form form)
             {
                 form.Show();
+                form.Dispose();
             } // if
         } // buttonExecute_Click
 
@@ -38,12 +38,18 @@ namespace IpTviewr.Internal.Tools.GuiTools
         private Type GetSelectedForm()
         {
             if (radioSimpleDownload.Checked) return typeof(SimpleDvbStpDownloadForm);
-            else if (radioDvbStpExplorer.Checked) return typeof(DvbStpStreamExplorerForm);
-            else if (radioMulticastExplorer.Checked) return typeof(MulticastStreamExplorerForm);
-            else if (radioOpchExplorer.Checked) return typeof(OpchExplorerForm);
-            else if (radioBinaryEditor.Checked) return typeof(BinaryEditorForm);
-            else if (radioIconBuilder.Checked) return typeof(IconBuilder);
-            else return null;
+            if (radioDvbStpExplorer.Checked) return typeof(DvbStpStreamExplorerForm);
+            if (radioMulticastExplorer.Checked) return typeof(MulticastStreamExplorerForm);
+            if (radioOpchExplorer.Checked) return typeof(OpchExplorerForm);
+            if (radioBinaryEditor.Checked) return typeof(BinaryEditorForm);
+            if (radioIconBuilder.Checked) return typeof(IconBuilder);
+            //if (radioRibbon.Checked) return typeof(RibbonForm);
+            return null;
         } // GetSelectedForm
+
+        private void groupBoxTools_Enter(object sender, EventArgs e)
+        {
+
+        }
     } // class LaunchForm
 } // namespace

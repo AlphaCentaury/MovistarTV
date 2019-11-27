@@ -47,7 +47,7 @@ namespace IpTviewr.Internal.Tools.ChannelLogos
         private void FormLogos_Load(object sender, EventArgs e)
         {
             splitContainer1.Enabled = false;
-            checkHighDefPriority.Checked = !AppUiConfiguration.Current.User.ChannelNumberStandardDefinitionPriority;
+            checkHighDefPriority.Checked = !AppConfig.Current.User.ChannelNumberStandardDefinitionPriority;
             comboLogoSize.DisplayMember = "Value";
             comboLogoSize.ValueMember = "Key";
             comboLogoSize.DataSource = BaseLogo.GetListLogoSizes(true);
@@ -233,7 +233,7 @@ namespace IpTviewr.Internal.Tools.ChannelLogos
                 } // foreach service
             } // foreach package
 
-            var filename = $"{AppUiConfiguration.Current.Folders.Cache}\\channels-numbers.csv";
+            var filename = $"{AppConfig.Current.Folders.Cache}\\channels-numbers.csv";
             using (var file = new System.IO.StreamWriter(filename))
             {
                 foreach (var entry in data)
@@ -265,7 +265,7 @@ namespace IpTviewr.Internal.Tools.ChannelLogos
                 } // foreach service
             } // foreach package
 
-            filename = $"{AppUiConfiguration.Current.Folders.Cache}\\numbers-channels.csv";
+            filename = $"{AppConfig.Current.Folders.Cache}\\numbers-channels.csv";
             using (var file = new System.IO.StreamWriter(filename))
             {
                 file.WriteLine("\"Logical\";");
