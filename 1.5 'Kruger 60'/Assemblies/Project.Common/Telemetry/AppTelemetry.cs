@@ -1,13 +1,9 @@
-﻿using System;
-using System.CodeDom;
-using System.Collections;
+﻿using JetBrains.Annotations;
+using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Threading;
 using System.Windows.Forms;
-using JetBrains.Annotations;
 
 namespace IpTviewr.Common.Telemetry
 {
@@ -16,8 +12,7 @@ namespace IpTviewr.Common.Telemetry
         public const string LoadEvent = "Load";
         public const string UnloadEvent = "Unload";
 
-
-        private static object _sync = new object();
+        private static readonly object Sync = new object();
         private static List<ITelemetryProvider> _providers;
         private static bool _enabled;
 
@@ -45,12 +40,12 @@ namespace IpTviewr.Common.Telemetry
 
         public static IReadOnlyList<ITelemetryProvider> Providers => _providers;
 
-        public static void Start(ITelemetryFactory factory, IEnumerable<KeyValuePair<string, string>> initData)
+        public static void Start(ITelemetryFactory factory, IReadOnlyDictionary<string, IReadOnlyDictionary<string, string>> providersProperties)
         {
             if (factory == null) throw new ArgumentNullException(nameof(factory));
-            if (initData == null) throw new ArgumentNullException(nameof(initData));
+            if (providersProperties == null) throw new ArgumentNullException(nameof(providersProperties));
 
-            lock (_sync)
+            lock (Sync)
             {
                 if (_providers != null) return;
             } // lock
@@ -58,12 +53,16 @@ namespace IpTviewr.Common.Telemetry
             _providers = factory.GetProviders();
             if (_providers == null) throw new NullReferenceException();
 
-            ForEach(provider => provider.Start());
+            foreach (var provider in _providers)
+            {
+                // ReSharper disable once AssignNullToNotNullAttribute
+                provider.Start(providersProperties.TryGetValue(provider.GetType().FullName, out var properties) ? properties : null);
+            } // foreach
         } // Start
 
         public static void Enable(bool? enable, bool? usage, bool? exceptions)
         {
-            lock (_sync)
+            lock (Sync)
             {
                 if (_providers == null) throw new InvalidOperationException();
                 if (usage != null) Usage = usage.Value;
@@ -72,22 +71,29 @@ namespace IpTviewr.Common.Telemetry
             } // lock
         } // Enable
 
-        public static void HackInitGoogle(string trackingId, string clientId)
+        public static void HackInitGoogle(string clientId)
         {
             var q = from provider in _providers
-                where (provider.GetType().FullName == "IpTviewr.GoogleAnalytics")
-                select provider;
+                    where (provider.GetType().FullName == "IpTviewr.Telemetry.GoogleAnalytics")
+                    select provider;
 
             dynamic google = q.FirstOrDefault();
             if (google == null) return;
 
-            google.Init(trackingId, clientId);
+            google.Init(clientId);
         } // HackInitGoogle
 
         public static void End()
         {
-            if (!LazyProviders.IsValueCreated) return;
-            LazyProviders.Value.ForEach(provider => provider.End());
+            lock (Sync)
+            {
+                if (_providers == null) return;
+                ForEach(provider => provider.End());
+                _providers = null;
+                _enabled = false;
+                Usage = false;
+                Exceptions = false;
+            } // lock
         } // End
 
         #region Screen/Form event

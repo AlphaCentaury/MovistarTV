@@ -29,10 +29,11 @@ namespace IpTviewr.Telemetry
 
         public bool Enabled { get; set; }
 
-        public void Start()
+        public void Start(IReadOnlyDictionary<string, string> properties)
         {
-            // no-op
-            // will initialize when Init() is called by AppTelemetry.HackInitGoogle()
+            if (properties == null) throw new InvalidOperationException();
+            TrackingId = properties["TrackingId"];
+            // will really start when Init() is called by AppTelemetry.HackInitGoogle()
         } // Start
 
         public void End()
@@ -40,12 +41,6 @@ namespace IpTviewr.Telemetry
             ManageSession(true);
             EnsureHitsSents();
         } // End
-
-        public void AppReady()
-        {
-            // if GoogleAnalytics was implemented as a MEF 'module'
-            // this will be the place to obtain the TrackingId and UserId
-        } // AppReady
 
         // ScreenLoad
 
@@ -85,11 +80,10 @@ namespace IpTviewr.Telemetry
             get;
             private set;
         } // ClientId
-        public void Init(string trackingId, string clientId)
+        public void Init(string clientId)
         {
             _userAgent = BuildUserAgent();
             _applicationName = Path.GetFileNameWithoutExtension(Application.ExecutablePath);
-            TrackingId = trackingId;
             ClientId = clientId;
             ManageSession(false);
         } // Init

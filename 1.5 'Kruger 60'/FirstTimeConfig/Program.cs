@@ -6,11 +6,14 @@
 // http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
 
 using IpTviewr.Common.Telemetry;
+using IpTviewr.Telemetry;
 using IpTviewr.UiServices.Configuration;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Threading;
 using System.Windows.Forms;
+using IpTviewr.Tools.FirstTimeConfig.Properties;
 
 namespace IpTviewr.Tools.FirstTimeConfig
 {
@@ -86,8 +89,23 @@ namespace IpTviewr.Tools.FirstTimeConfig
             } // if
 
             // TODO: init on Wizard Start Dialog
-            AppTelemetry.Start();
-            AppTelemetry.HackInitGoogle(Properties.Resources.AnalyticsGoogleTrackingId, AppConfig.AnalyticsClientId);
+            AppTelemetry.Start(new TelemetryFactory(), new Dictionary<string, IReadOnlyDictionary<string, string>>
+            {
+                {
+                    "IpTviewr.Telemetry.VsAppCenter", new Dictionary<string, string>
+                    {
+                        {"AppSecret", Resources.TelemetryAppCenter_AppSecret}
+                    }
+
+                },
+                {
+                    "IpTviewr.Telemetry.GoogleAnalytics", new Dictionary<string, string>
+                    {
+                        {"TrackingId", Resources.TelemetryGoogleAnalytics_TrackingId}
+                    }
+                }
+            });
+            AppTelemetry.HackInitGoogle(AppConfig.AnalyticsClientId);
 
             using (var dlg = new WizardWelcomeDialog())
             {

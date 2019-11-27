@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.Windows;
 using System.Windows.Forms;
+using IpTviewr.Common.Telemetry;
 using IpTviewr.Native;
 using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
 
-namespace IpTviewr.Common.Telemetry
+namespace IpTviewr.Telemetry
 {
     public sealed class VsAppCenter : ITelemetryProvider
     {
@@ -21,12 +21,11 @@ namespace IpTviewr.Common.Telemetry
             set => AppCenter.SetEnabledAsync(value);
         } // Enabled
 
-        public void Start()
+        public void Start(IReadOnlyDictionary<string, string> properties)
         {
             var countryCode = RegionInfo.CurrentRegion.TwoLetterISORegionName;
             WindowsDesktop.GetDpi(out var dpiX, out var dpiY);
 
-            AppCenter.LogLevel = LogLevel.Verbose;
             AppCenter.SetCountryCode(countryCode);
             AppCenter.Start("13fb25ea-ccce-4909-9080-5fe029694e7e", typeof(Analytics), typeof(Crashes));
             Analytics.TrackEvent("App:Start", new Dictionary<string, string>
@@ -39,11 +38,6 @@ namespace IpTviewr.Common.Telemetry
                 {"DpiY", dpiY.ToString(CultureInfo.InvariantCulture) },
             });
         } // Start
-
-        public void AppReady()
-        {
-            // no-op
-        } // AppReady
 
         public void End()
         {

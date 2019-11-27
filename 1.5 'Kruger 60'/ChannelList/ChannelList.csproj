@@ -59,6 +59,9 @@
   <PropertyGroup>
     <ApplicationIcon>Resources\IPTV.ico</ApplicationIcon>
   </PropertyGroup>
+  <PropertyGroup>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.ExceptionMessageBox, Version=9.0.242.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\..\..\..\..\..\..\Program Files (x86)\Microsoft SQL Server\90\SDK\Assemblies\Microsoft.ExceptionMessageBox.dll</HintPath>
@@ -298,6 +301,10 @@
     <ProjectReference Include="..\Core\IpTViewr.Core\IpTViewr.Core.csproj">
       <Project>{968C6EEB-1E79-446A-96AE-69CB225E1C37}</Project>
       <Name>IpTViewr.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Core\IpTviewr.Telemetry\IpTviewr.Telemetry.csproj">
+      <Project>{8C3814BF-9482-41C2-BA1A-CBA59F5C2ED4}</Project>
+      <Name>IpTviewr.Telemetry</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

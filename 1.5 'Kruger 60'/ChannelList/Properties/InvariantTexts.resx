@@ -117,10 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AnalyticsGoogleTrackingId" xml:space="preserve">
-    <value>UA-66146192-4</value>
-    <comment>Get new property for every new major version or new phase!</comment>
-  </data>
   <data name="DebugLocationPath" xml:space="preserve">
     <value>\bin\debug</value>
   </data>
@@ -153,5 +149,13 @@ Verifique el valor de  la propiedad 'ForceUICulture' del archivo '.config'</valu
   </data>
   <data name="UrlReportIssue" xml:space="preserve">
     <value>https://github.com/AlphaCentaury/MovistarTV/issues</value>
+  </data>
+  <data name="TelemetryAppCenter_AppSecret" xml:space="preserve">
+    <value>13fb25ea-ccce-4909-9080-5fe029694e7e</value>
+    <comment>Get new secret for every new major version or new phase!</comment>
+  </data>
+  <data name="TelemetryGoogleAnalytics_TrackingId" xml:space="preserve">
+    <value>UA-66146192-4</value>
+    <comment>Get new property for every new major version or new phase!</comment>
   </data>
 </root>
