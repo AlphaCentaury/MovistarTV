@@ -80,11 +80,6 @@ namespace IpTviewr.Services.EpgDiscovery
 
             try
             {
-                _processor = new SegmentsProcessor();
-                _processor.ScheduleReceived += (sender, args) =>
-                    ProgramReceived?.BeginInvoke(this, EventArgs.Empty, null, null);
-                _processor.ParseError += (sender, args) => ParseError?.BeginInvoke(this, EventArgs.Empty, null, null);
-
                 while (retryTime <= maxRetryTime)
                 {
                     // initialize DVB-STP client
@@ -99,6 +94,12 @@ namespace IpTviewr.Services.EpgDiscovery
                     var retry = false;
                     try
                     {
+                        _processor?.Dispose();
+                        _processor = new SegmentsProcessor();
+                        _processor.ScheduleReceived += (sender, args) =>
+                            ProgramReceived?.BeginInvoke(this, EventArgs.Empty, null, null);
+                        _processor.ParseError += (sender, args) => ParseError?.BeginInvoke(this, EventArgs.Empty, null, null);
+
                         _processor.Start(DataStore);
                         _streamClient.DownloadStream();
                         break;
