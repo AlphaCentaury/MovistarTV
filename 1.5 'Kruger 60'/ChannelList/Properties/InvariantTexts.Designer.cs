@@ -61,15 +61,6 @@ namespace IpTviewr.ChannelList.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to UA-66146192-4.
-        /// </summary>
-        internal static string AnalyticsGoogleTrackingId {
-            get {
-                return ResourceManager.GetString("AnalyticsGoogleTrackingId", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to \bin\debug.
         /// </summary>
         internal static string DebugLocationPath {
@@ -117,6 +108,24 @@ namespace IpTviewr.ChannelList.Properties {
         internal static string SplashScreenDefaultStatus {
             get {
                 return ResourceManager.GetString("SplashScreenDefaultStatus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 13fb25ea-ccce-4909-9080-5fe029694e7e.
+        /// </summary>
+        internal static string TelemetryAppCenter_AppSecret {
+            get {
+                return ResourceManager.GetString("TelemetryAppCenter_AppSecret", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to UA-66146192-4.
+        /// </summary>
+        internal static string TelemetryGoogleAnalytics_TrackingId {
+            get {
+                return ResourceManager.GetString("TelemetryGoogleAnalytics_TrackingId", resourceCulture);
             }
         }
         

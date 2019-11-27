@@ -7,8 +7,11 @@
 
 using IpTviewr.Common.Telemetry;
 using System;
+using System.Collections.Generic;
 using System.Threading;
 using System.Windows.Forms;
+using IpTviewr.ChannelList.Properties;
+using IpTviewr.Telemetry;
 
 namespace IpTviewr.ChannelList
 {
@@ -26,7 +29,22 @@ namespace IpTviewr.ChannelList
             Application.ThreadException += ApplicationOnThreadException;
             Application.SetUnhandledExceptionMode(UnhandledExceptionMode.CatchException);
             AppDomain.CurrentDomain.UnhandledException += AppDomainCurrentOnUnhandledException;
-            AppTelemetry.Start();
+            AppTelemetry.Start(new TelemetryFactory(), new Dictionary<string, IReadOnlyDictionary<string, string>>
+            {
+                {
+                    "IpTviewr.Telemetry.VsAppCenter", new Dictionary<string, string>
+                    {
+                        {"AppSecret", InvariantTexts.TelemetryAppCenter_AppSecret}
+                    }
+
+                },
+                {
+                    "IpTviewr.Telemetry.GoogleAnalytics", new Dictionary<string, string>
+                    {
+                        {"TrackingId", InvariantTexts.TelemetryGoogleAnalytics_TrackingId}
+                    }
+                }
+            });
 
             // set thread name for debugging
             Thread.CurrentThread.Name = "Program main thread";

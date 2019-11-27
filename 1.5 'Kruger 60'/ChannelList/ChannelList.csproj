@@ -299,6 +299,10 @@
       <Project>{968C6EEB-1E79-446A-96AE-69CB225E1C37}</Project>
       <Name>IpTViewr.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Core\IpTviewr.Telemetry\IpTviewr.Telemetry.csproj">
+      <Project>{8c3814bf-9482-41c2-ba1a-cba59f5c2ed4}</Project>
+      <Name>IpTviewr.Telemetry</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
