@@ -5,6 +5,7 @@
 // 
 // http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
 
+using IpTviewr.Common.Telemetry;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -14,14 +15,12 @@ using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 
-namespace IpTviewr.Common.Telemetry
+namespace IpTviewr.Telemetry
 {
     public sealed class GoogleAnalytics : ITelemetryProvider
     {
-#if DEBUG
-        private static Uri _urlEndpoint = new Uri("https://www.google-analytics.com/debug/collect");
-#else
-        private static Uri UrlEndpoint = new Uri("https://www.google-analytics.com/collect");
+#if !DEBUG
+        private static readonly Uri UrlEndpoint = new Uri("https://www.google-analytics.com/collect");
 #endif
         private string _userAgent;
         private string _applicationName;
@@ -258,8 +257,6 @@ namespace IpTviewr.Common.Telemetry
                 var binPostData = Encoding.UTF8.GetBytes(postData);
 #if DEBUG
                 // Do NOT send hits in debug mode
-                // var result = client.UploadData(UrlEndpoint, binPostData);
-                // var json = Encoding.UTF8.GetString(result);
 #else
                 //MessageBox.Show(UrlEndpoint.ToString() + "\r\n" + postData, "Basic Google Telemetry");
                 client.UploadDataAsync(UrlEndpoint, binPostData);

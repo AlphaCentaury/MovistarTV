@@ -1,7 +1,9 @@
 ﻿using System;
+using System.CodeDom;
 using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Windows.Forms;
@@ -14,7 +16,9 @@ namespace IpTviewr.Common.Telemetry
         public const string LoadEvent = "Load";
         public const string UnloadEvent = "Unload";
 
-        private static readonly Lazy<List<ITelemetryProvider>> LazyProviders = new Lazy<List<ITelemetryProvider>>(GetProviders, LazyThreadSafetyMode.ExecutionAndPublication);
+
+        private static object _sync = new object();
+        private static List<ITelemetryProvider> _providers;
         private static bool _enabled;
 
         public static bool Enabled
@@ -23,7 +27,7 @@ namespace IpTviewr.Common.Telemetry
             private set
             {
                 _enabled = value;
-                LazyProviders.Value.ForEach(provider => provider.Enabled = value);
+                ForEach(provider => provider.Enabled = value);
             } // set
         } // Enabled
 
@@ -39,33 +43,45 @@ namespace IpTviewr.Common.Telemetry
             private set;
         } // Exceptions
 
-        public static IReadOnlyList<ITelemetryProvider> Providers => LazyProviders.Value;
+        public static IReadOnlyList<ITelemetryProvider> Providers => _providers;
 
-        public static void Start()
+        public static void Start(ITelemetryFactory factory, IEnumerable<KeyValuePair<string, string>> initData)
         {
-            if (LazyProviders.IsValueCreated) return;
-            _ = LazyProviders.Value;
-            Enabled = true; //enabled;
-            Usage = true; // usage;
-            Exceptions = true; // exceptions;
+            if (factory == null) throw new ArgumentNullException(nameof(factory));
+            if (initData == null) throw new ArgumentNullException(nameof(initData));
+
+            lock (_sync)
+            {
+                if (_providers != null) return;
+            } // lock
+
+            _providers = factory.GetProviders();
+            if (_providers == null) throw new NullReferenceException();
+
+            ForEach(provider => provider.Start());
         } // Start
 
         public static void Enable(bool? enable, bool? usage, bool? exceptions)
         {
-            if (usage != null) Usage = usage.Value;
-            if (exceptions != null) Exceptions = exceptions.Value;
-            if (enable != null) Enabled = enable.Value;
+            lock (_sync)
+            {
+                if (_providers == null) throw new InvalidOperationException();
+                if (usage != null) Usage = usage.Value;
+                if (exceptions != null) Exceptions = exceptions.Value;
+                if (enable != null) Enabled = enable.Value;
+            } // lock
         } // Enable
 
         public static void HackInitGoogle(string trackingId, string clientId)
         {
-            foreach (var telemetryProvider in LazyProviders.Value)
-            {
-                if (telemetryProvider is GoogleAnalytics google)
-                {
-                    google.Init(trackingId, clientId);
-                } // if
-            } // foreach
+            var q = from provider in _providers
+                where (provider.GetType().FullName == "IpTviewr.GoogleAnalytics")
+                select provider;
+
+            dynamic google = q.FirstOrDefault();
+            if (google == null) return;
+
+            google.Init(trackingId, clientId);
         } // HackInitGoogle
 
         public static void End()
@@ -164,27 +180,17 @@ namespace IpTviewr.Common.Telemetry
 
         #region Auxiliary methods
 
-        private static List<ITelemetryProvider> GetProviders()
-        {
-            var providers = new List<ITelemetryProvider>(1)
-            {
-                new VsAppCenter()
-            };
-
-            SafeForEach(providers, provider => provider.Start());
-
-            return providers;
-        } // GetProviders
-
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private static void ForEach(Action<ITelemetryProvider> action)
         {
-            SafeForEach(LazyProviders.Value, action);
+            SafeForEach(_providers, action);
         } // ForEach
 
-        private static void SafeForEach<T>(IEnumerable<T> providers, Action<T> action)
+        private static void SafeForEach<T>(IEnumerable<T> list, Action<T> action)
         {
-            foreach (var provider in providers)
+            if (list == null) return;
+
+            foreach (var provider in list)
             {
                 try
                 {
