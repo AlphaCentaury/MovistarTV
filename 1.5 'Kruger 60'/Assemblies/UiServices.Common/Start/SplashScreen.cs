@@ -5,7 +5,9 @@
 // 
 // http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
 
+using System;
 using System.IO;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace IpTviewr.UiServices.Common.Start
@@ -15,7 +17,11 @@ namespace IpTviewr.UiServices.Common.Start
         public SplashScreen()
         {
             InitializeComponent();
-            Text = Path.GetFileName(Application.ExecutablePath);
         }  // constructor
+
+        private void SplashScreen_Load(object sender, System.EventArgs e)
+        {
+            Text = Application.ProductName;
+        } // SplashScreen_Load
     } // class SplashScreen
 } // namespace

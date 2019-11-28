@@ -158,8 +158,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Splash.resx</DependentUpon>
     </Compile>
+    <Compile Include="Start\ISplashAwareForm.cs" />
+    <Compile Include="Start\ISplashScreen.cs" />
     <Compile Include="Start\ISplashScreenAwareForm.cs" />
+    <Compile Include="Start\ISplashAppInitializer.cs" />
     <Compile Include="Start\SplashApplicationContext.cs" />
+    <Compile Include="Start\SplashAppContext.cs" />
     <Compile Include="Start\SplashScreen.cs">
       <SubType>Form</SubType>
     </Compile>

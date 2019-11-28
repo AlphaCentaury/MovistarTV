@@ -15,13 +15,11 @@ namespace IpTviewr.UiServices.Common.Start
 {
     public abstract class SplashApplicationContext : ApplicationContext
     {
-        private delegate void Action<T1, T2, T3, T4, T5, T6>(T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5, T6 arg6);
-
         private SplashScreen _splashScreen;
         private BackgroundWorker _worker;
 
         /// <remarks>Descendants MUST NOT perform any work on the constructor; instead all constructor-related initialization (if any) MUST BE done in InitializeContext</remarks>
-        public SplashApplicationContext()
+        protected SplashApplicationContext()
         {
             InitializeContext();
             SetThingsInMotion();
