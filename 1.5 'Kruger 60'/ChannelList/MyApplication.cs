@@ -27,23 +27,7 @@ namespace IpTviewr.ChannelList
         public static void HandleException(Form owner, Exception ex)
         {
             AppTelemetry.FormException(ex, owner);
-            AddExceptionAdvancedInformation(ex);
-
-            if (!Application.MessageLoop)
-            {
-                //MessageBox.Show(ex.ToString(), Properties.Texts.MyAppHandleExceptionDefaultCaption, MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                //return;
-            } // if
-
-            var box = new ExceptionMessageBox()
-            {
-                Caption = Properties.Texts.MyAppHandleExceptionDefaultCaption,
-                Message = ex,
-                Beep = true,
-                Symbol = ExceptionMessageBoxSymbol.Error,
-            };
-
-            box.Show(owner);
+            BaseProgram.HandleException(owner, Properties.Texts.MyAppHandleExceptionDefaultCaption, null, ex);
         } // HandleException
 
         public static void HandleException(Form owner, string message, Exception ex)
@@ -67,17 +51,7 @@ namespace IpTviewr.ChannelList
         public static void HandleException(Form owner, string caption, string message, MessageBoxIcon icon, Exception ex)
         {
             AppTelemetry.FormException(ex, owner, message);
-            AddExceptionAdvancedInformation(ex);
-
-            var box = new ExceptionMessageBox()
-            {
-                Caption = caption ?? Properties.Texts.MyAppHandleExceptionDefaultCaption,
-                Text = message ?? Properties.Texts.MyAppHandleExceptionDefaultMessage,
-                InnerException = ex,
-                Beep = true,
-                Symbol = TranslateIconToSymbol(icon),
-            };
-            box.Show(owner);
+            BaseProgram.HandleException(owner, caption, message, icon, ex);
         } // HandleException
 
         internal static void HandleException(Form form, ExceptionEventData ex)
@@ -91,33 +65,6 @@ namespace IpTviewr.ChannelList
         } // HandleException
 
         #endregion
-
-        private static ExceptionMessageBoxSymbol TranslateIconToSymbol(MessageBoxIcon icon)
-        {
-            switch (icon)
-            {
-                case MessageBoxIcon.Asterisk: return ExceptionMessageBoxSymbol.Asterisk;
-                case MessageBoxIcon.Error: return ExceptionMessageBoxSymbol.Error;
-                case MessageBoxIcon.Exclamation: return ExceptionMessageBoxSymbol.Exclamation;
-                //case MessageBoxIcon.Hand: return ExceptionMessageBoxSymbol.Hand;
-                //case MessageBoxIcon.Information: return ExceptionMessageBoxSymbol.Information;
-                case MessageBoxIcon.Question: return ExceptionMessageBoxSymbol.Question;
-                //case MessageBoxIcon.Stop: return ExceptionMessageBoxSymbol.Stop;
-                //case MessageBoxIcon.Warning: return ExceptionMessageBoxSymbol.Warning;
-                default:
-                    return ExceptionMessageBoxSymbol.None;
-            } // switch
-        } // TranslateIconToSymbol
-
-        private static void AddExceptionAdvancedInformation(Exception ex)
-        {
-            while (ex != null)
-            {
-                ex.Data["AdvancedInformation.Exception.Type"] = ex.GetType().FullName;
-                ex.Data["AdvancedInformation.Exception.Assembly"] = ex.GetType().Assembly.ToString();
-                ex = ex.InnerException;
-            } // while
-        } // AddExceptionAdvancedInformation
 
         private const string ForceUiCultureArgument = "/forceuiculture:";
 

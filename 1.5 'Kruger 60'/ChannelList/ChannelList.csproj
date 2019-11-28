@@ -84,6 +84,7 @@
     <Compile Include="..\AssemblySolutionInfo.cs">
       <Link>Properties\AssemblySolutionInfo.cs</Link>
     </Compile>
+    <Compile Include="AppInitializer.cs" />
     <Compile Include="ChannelListForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -110,7 +111,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CommonUiResources.resx</DependentUpon>
     </Compile>
-    <Compile Include="MyApplicationContext.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

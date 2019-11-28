@@ -23,7 +23,7 @@ using IpTviewr.Services.EpgDiscovery;
 
 namespace IpTviewr.ChannelList
 {
-    public sealed partial class ChannelListForm : CommonBaseForm, ISplashScreenAwareForm
+    public sealed partial class ChannelListForm : CommonBaseForm, ISplashAwareForm
     {
         private class Notification
         {
@@ -42,6 +42,7 @@ namespace IpTviewr.ChannelList
         private EpgDataStore _epgDataStore;
         private CancellationTokenSource _tokenSource;
         private int _epgDataCount;
+        private ISplashScreen _splashScreen;
 
         // disabled functionality
         private const bool EnableMenuItemIpTviewrRecent = false;
@@ -58,9 +59,12 @@ namespace IpTviewr.ChannelList
             _notifications = new Stack<Notification>();
         } // constructor
 
-        #region ISplashScreenAwareForm implementation
+        #region ISplashAwareForm
 
-        public event EventHandler FormLoadCompleted;
+        ISplashScreen ISplashAwareForm.SplashScreen
+        {
+            set => _splashScreen = value;
+        } // ISplashAwareForm.SplashScreen
 
         #endregion
 
@@ -104,8 +108,7 @@ namespace IpTviewr.ChannelList
 
         private void ChannelListForm_Load_Implementation(object sender, EventArgs e)
         {
-            AppTelemetry.FormEvent(AppTelemetry.LoadEvent, this);
-
+            //_splashScreen.DisplayProgress(Texts.MyAppCtxStarting);
             Text = Texts.AppCaption;
             InitIpTviewrMenu();
 
@@ -143,7 +146,8 @@ namespace IpTviewr.ChannelList
             ServiceProviderChanged();
 
             // notify Splash Screen the form has finished loading and is about to be shown
-            FormLoadCompleted?.Invoke(this, e);
+            _splashScreen?.Ready(this);
+            _splashScreen = null;
         } // ChannelListForm_Load_Implementation
 
         #endregion

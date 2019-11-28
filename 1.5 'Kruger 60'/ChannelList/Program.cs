@@ -11,11 +11,13 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Windows.Forms;
 using IpTviewr.ChannelList.Properties;
+using IpTviewr.Common;
 using IpTviewr.Telemetry;
+using IpTviewr.UiServices.Common.Start;
 
 namespace IpTviewr.ChannelList
 {
-    static class Program
+    internal sealed class Program: BaseProgram
     {
         private static Thread _mainThread;
 
@@ -46,22 +48,20 @@ namespace IpTviewr.ChannelList
                 }
             });
 
-            // set thread name for debugging
-            Thread.CurrentThread.Name = "Program main thread";
-
+            var appInitializer = new AppInitializer();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            var appContext = new MyApplicationContext();
-            Application.Run(appContext);
-            var exitCode = appContext.ExitCode;
-            appContext.Dispose();
+            SplashAppContext.Run(appInitializer);
+            var exitCode = appInitializer.ExitCode;
+            SplashAppContext.Current.Dispose();
 
             AppTelemetry.End();
 
             // Ensure all background threads end right now (like updating the EPG data with EpgDownloader)
             // TODO: Don't to this
             Thread.Sleep(1000);
+            // Necessary to force all thread to exit
             Environment.Exit(exitCode);
 
             return exitCode;
