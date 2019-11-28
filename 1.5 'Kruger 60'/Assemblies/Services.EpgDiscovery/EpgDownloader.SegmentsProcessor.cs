@@ -44,9 +44,6 @@ namespace IpTviewr.Services.EpgDiscovery
             {
                 if (_segmentsQueue == null) throw new ObjectDisposedException(nameof(SegmentsProcessor));
 
-#if DEBUG
-                Console.WriteLine("Enqueue");
-#endif
                 _segmentsQueue.Enqueue(segmentPayload);
                 _enqueuedSegments.Set();
             } // AddSegment
@@ -105,20 +102,13 @@ namespace IpTviewr.Services.EpgDiscovery
             {
                 while (true)
                 {
-#if DEBUG
-                    Console.WriteLine("Queue: {0} items", _segmentsQueue.Count);
-#endif
                     if (_segmentsQueue.TryDequeue(out var payload))
                     {
-#if DEBUG
-                        Console.WriteLine("Dequeue.Ok");
-#endif
                         return payload;
                     } // if
 
                     if (_noMoreSegments) return null;
 
-                    Console.WriteLine("Dequeue.Wait");
                     _enqueuedSegments.WaitOne();
                 } // while
             } // GetNextPayload

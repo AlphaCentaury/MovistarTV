@@ -60,7 +60,7 @@ namespace IpTviewr.Services.EpgDiscovery
 
         protected override void AddEpgService(EpgService epgService)
         {
-            Console.WriteLine("Store.Add: {0} with {1} programs", epgService.ServiceIdReference, epgService.Programs?.Count ?? 0);
+            // Console.WriteLine("Store.Add: {0} with {1} programs", epgService.ServiceIdReference, epgService.Programs?.Count ?? 0);
             if (epgService.Programs == null) return;
 
             switch (StorageMethod)

@@ -111,7 +111,7 @@ namespace IpTviewr.Services.EpgDiscovery
                     catch (TimeoutException) // reception timeout
                     {
                         // took too much time to process the stream
-                    }// try-catch
+                    } // try-catch
 
                     // Safety check. If we asked to stop the download, but an exception is thrown in between,
                     // we can ignore it and end the reception;
@@ -121,14 +121,16 @@ namespace IpTviewr.Services.EpgDiscovery
                     retryTime += retryIncrement;
                     Thread.Sleep(retryTime);
                 } // while
-
+            }
+            catch
+            {
                 FatalError?.BeginInvoke(this, EventArgs.Empty, null, null);
-                _processor.WaitCompletion();
             }
             finally
             {
                 _streamClient?.Close();
                 _streamClient = null;
+                _processor?.WaitCompletion();
                 _processor?.Dispose();
                 _processor = null;
                 DataStore = null;
@@ -137,7 +139,7 @@ namespace IpTviewr.Services.EpgDiscovery
 
         private void SegmentPayloadReceived(object sender, PayloadStorage.SegmentPayloadReceivedEventArgs e)
         {
-            Console.WriteLine($@"{e.SegmentIdentity}:{e.Payload.Length} ({_streamClient.DatagramCount} received)");
+            //Console.WriteLine($@"{e.SegmentIdentity}:{e.Payload.Length} ({_streamClient.DatagramCount} received)");
             _processor.AddSegment(e.Payload);
 
             // TODO: stop when EPG is complete
