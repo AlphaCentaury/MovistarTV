@@ -1,6 +1,14 @@
-﻿using System;
+// Copyright (C) 2014-2019, GitHub/Codeplex user AlphaCentaury
+// 
+// All rights reserved, except those granted by the governing license of this software.
+// See 'license.txt' file in the project root for complete license information.
+// 
+// http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
+
+using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
 using System.Windows.Forms;
 using IpTviewr.Common.Telemetry;
 using IpTviewr.Native;
@@ -23,12 +31,22 @@ namespace IpTviewr.Telemetry
 
         public void Start(IReadOnlyDictionary<string, string> properties)
         {
+            if (properties == null) throw new InvalidOperationException();
+
             var countryCode = RegionInfo.CurrentRegion.TwoLetterISORegionName;
+            var exe = Path.GetFileNameWithoutExtension(Application.ExecutablePath);
             WindowsDesktop.GetDpi(out var dpiX, out var dpiY);
 
+#if DEBUG
+            AppCenter.LogLevel = LogLevel.Verbose;
+#endif
+            AppCenter.SetEnabledAsync(AppTelemetry.Enabled).Wait();
+            Analytics.SetEnabledAsync(AppTelemetry.Enabled).Wait();
+            Crashes.SetEnabledAsync(AppTelemetry.Enabled).Wait();
+
             AppCenter.SetCountryCode(countryCode);
-            AppCenter.Start("13fb25ea-ccce-4909-9080-5fe029694e7e", typeof(Analytics), typeof(Crashes));
-            Analytics.TrackEvent("App:Start", new Dictionary<string, string>
+            AppCenter.Start(properties["AppSecret"], typeof(Analytics), typeof(Crashes));
+            Analytics.TrackEvent($"{exe}:Start", new Dictionary<string, string>
             {
                 {"CurrentCulture", CultureInfo.CurrentCulture.Name},
                 {"CurrentUICulture", CultureInfo.CurrentUICulture.Name},
@@ -41,7 +59,8 @@ namespace IpTviewr.Telemetry
 
         public void End()
         {
-            // no-op
+            var exe = Path.GetFileNameWithoutExtension(Application.ExecutablePath);
+            Analytics.TrackEvent($"{exe}:End");
         } // End
 
         public void ScreenEvent(string eventName, string screenName, string data = null, IEnumerable<KeyValuePair<string, string>> properties = null)
