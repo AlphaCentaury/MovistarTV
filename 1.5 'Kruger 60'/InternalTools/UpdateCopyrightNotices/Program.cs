@@ -9,6 +9,7 @@ using IpTviewr.Common;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 
 namespace AlphaCentaury.IPTViewr.Internal.UpdateCopyrightNotices
@@ -50,9 +51,6 @@ namespace AlphaCentaury.IPTViewr.Internal.UpdateCopyrightNotices
 
             foreach (var path in arguments.Arguments)
             {
-                Func<TextReader, bool> locateCopyrightHeaderFunc;
-                Action<TextWriter> writeCopyrightHeaderAction;
-
                 if (!Directory.Exists(path))
                 {
                     Console.Error.WriteLine("Path not found: {0}", path);
@@ -64,11 +62,14 @@ namespace AlphaCentaury.IPTViewr.Internal.UpdateCopyrightNotices
                 var lastPath = (string)null;
                 foreach (var filename in Directory.EnumerateFiles(path, "*", searchOptions))
                 {
-                    // Is path excluded?
+                    // is path excluded?
                     var currentPath = Path.GetDirectoryName(filename);
                     if (IsPathExcluded(currentPath)) continue;
 
+                    Func<TextReader, bool> locateCopyrightHeaderFunc;
+                    Action<TextWriter> writeCopyrightHeaderAction;
                     var extension = Path.GetExtension(filename).ToLowerInvariant();
+
                     switch (extension)
                     {
                         case ".cs":
@@ -109,18 +110,10 @@ namespace AlphaCentaury.IPTViewr.Internal.UpdateCopyrightNotices
         {
             if (ExcludedPaths == null) return false;
 
-            foreach (var excluded in ExcludedPaths)
-            {
-                if (path.StartsWith(excluded))
-                {
-                    Console.Write("(Excluded) ");
-                    Console.WriteLine(path);
+            if (!ExcludedPaths.Any(path.StartsWith)) return false;
 
-                    return true;
-                } // if
-            } // foreach
-
-            return false;
+            Console.WriteLine($"(Excluded) {path}");
+            return true;
         } // IsPathExcluded
 
         private static void ProcessFile(string filename, Func<TextReader, bool> locateCopyrightHeaderFunc, Action<TextWriter> writeCopyrightHeaderAction)
@@ -197,7 +190,7 @@ namespace AlphaCentaury.IPTViewr.Internal.UpdateCopyrightNotices
             {
                 using (var reader = new FileStream(tempFilename, FileMode.Open, FileAccess.Read))
                 {
-                    var readBytes = 0;
+                    int readBytes;
 
                     while ((readBytes = reader.Read(buffer, 0, buffer.Length)) != 0)
                     {

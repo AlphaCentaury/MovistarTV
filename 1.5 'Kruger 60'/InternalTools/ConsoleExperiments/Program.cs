@@ -37,9 +37,10 @@ namespace IpTviewr.Internal.Tools.ConsoleExperiments
             //experiment = new CachedLogos();
             //experiment = new WindowsIconTest();
             //experiment = new Find();
-            experiment = new ExceptionMsgBoxExperiment();
+            //experiment = new ExceptionMsgBoxExperiment();
             //experiment = new PlayingWithLogos();
             //experiment = new ReorganizeLogos();
+            experiment = new Licensing();
 
             return experiment.Execute(args);
         } // Main

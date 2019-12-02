@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>IpTviewr.Internal.Tools.ConsoleExperiments</RootNamespace>
     <AssemblyName>ConsoleExperiments</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SccProjectName>SAK</SccProjectName>
     <SccLocalPath>SAK</SccLocalPath>
@@ -42,6 +42,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
+    <LangVersion>8</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -52,6 +53,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
+    <LangVersion>8</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.ExceptionMessageBox, Version=9.0.242.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
@@ -83,6 +85,7 @@
     <Compile Include="ExceptionMsgBoxExperiment.cs" />
     <Compile Include="Experiment.cs" />
     <Compile Include="Find.cs" />
+    <Compile Include="Licensing.cs" />
     <Compile Include="PlayingWithLogos.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -93,6 +96,10 @@
     <ProjectReference Include="..\..\Assemblies\Etsi.Ts102034\Etsi.Ts102034.csproj">
       <Project>{b91c438d-0333-4d06-86cd-74ce82df6f40}</Project>
       <Name>Etsi.Ts102034</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Assemblies\AlphaCentaury.Licensing.Data\AlphaCentaury.Licensing.Data.csproj">
+      <Project>{42B71DB3-2E34-43BB-BF87-88F422BCF861}</Project>
+      <Name>Licensing</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Assemblies\Project.Common\IpTviewr.Common.csproj">
       <Project>{8da15060-5a78-4f89-a9f1-7aa56b0d622c}</Project>
