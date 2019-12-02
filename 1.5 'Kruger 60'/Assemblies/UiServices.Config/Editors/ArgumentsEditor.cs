@@ -11,14 +11,11 @@ using IpTviewr.UiServices.Common.Controls;
 
 namespace IpTviewr.UiServices.Configuration.Editors
 {
-    public partial class ArgumentsEditor : ListEditor
+    public partial class ArgumentsEditor : StringListEditor
     {
-        private readonly ListItemsManager<string> _manager;
-
         public ArgumentsEditor()
         {
             InitializeComponent();
-            _manager = new ListItemsManager<string>(listItems, buttonRemove, buttonMoveUp, buttonMoveDown);
         } // constructor
 
         public string OpenBraceText
@@ -41,77 +38,31 @@ namespace IpTviewr.UiServices.Configuration.Editors
 
         public string[] Arguments
         {
-            get
-            {
-                var arguments = new string[listItems.Items.Count];
-                for (var index = 0; index < arguments.Length; index++)
-                {
-                    arguments[index] = listItems.Items[index].ToString();
-                } // for
-
-                return arguments;
-            }
-            set
-            {
-                if (value != null)
-                {
-                    listItems.Items.AddRange(value);
-                }
-                else
-                {
-                    listItems.Items.Clear();
-                } // if-else
-            } // set
+            get => Items;
+            set => Items = value;
         } // Arguments
 
-        protected override void ButtonEdit_Click(object sender, EventArgs e)
+        #region Overrides of StringListEditor
+
+        protected override bool GetNewItem(out string newItem)
         {
-            using (var dialog = GetArgumentEditorDialog())
-            {
-                dialog.Parameter = listItems.SelectedItem.ToString();
-                if (dialog.ShowDialog(this) != DialogResult.OK)
-                {
-                    return;
-                } // if
+            using var dialog = GetArgumentEditorDialog();
+            dialog.Parameter = null;
+            var ok = dialog.ShowDialog(this) != DialogResult.OK;
+            newItem = dialog.Parameter;
+            return ok;
+        } // GetNewItem
 
-                var index = listItems.SelectedIndex;
-                listItems.Items[index] = dialog.Parameter;
-                IsDataChanged = true;
-            } // using
-        } // ButtonEdit_Click
-
-        protected override void ButtonRemove_Click(object sender, EventArgs e)
+        protected override bool EditItem(string item, out string newItem)
         {
-            _manager.RemoveSelection();
-            IsDataChanged = true;
-        } // ButtonRemove_Click
+            using var dialog = GetArgumentEditorDialog();
+            dialog.Parameter = listItems.SelectedItem.ToString();
+            var ok = dialog.ShowDialog(this) != DialogResult.OK;
+            newItem = dialog.Parameter;
+            return ok;
+        } // EditItem
 
-        protected override void ButtonAdd_Click(object sender, EventArgs e)
-        {
-            using (var dialog = GetArgumentEditorDialog())
-            {
-                dialog.Parameter = null;
-                if (dialog.ShowDialog(this) != DialogResult.OK)
-                {
-                    return;
-                } // if
-
-                listItems.SelectedIndex = listItems.Items.Add(dialog.Parameter);
-                IsDataChanged = true;
-            } // using
-        } // ButtonAdd_Click
-
-        protected override void ButtonMoveUp_Click(object sender, EventArgs e)
-        {
-            _manager.MoveSelectionUp();
-            IsDataChanged = true;
-        } // ButtonMoveUp_Click
-
-        protected override void ButtonMoveDown_Click(object sender, EventArgs e)
-        {
-            _manager.MoveSelectionDown();
-            IsDataChanged = true;
-        } // ButtonMoveDown_Click
+        #endregion
 
         private ArgumentEditorDialog GetArgumentEditorDialog()
         {

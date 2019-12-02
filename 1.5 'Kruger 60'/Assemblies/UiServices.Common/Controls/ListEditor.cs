@@ -10,18 +10,42 @@ using System.Windows.Forms;
 
 namespace IpTviewr.UiServices.Common.Controls
 {
-    public partial class ListEditor : UserControl
+    public partial class ListEditor : CommonBaseUserControl
     {
+        private bool _isDataChanged;
+
+        public event EventHandler DataChanged;
+
         public ListEditor()
         {
             InitializeComponent();
         } // constructor
 
+        public string ListName
+        {
+            get => groupBoxData.Text;
+            set => groupBoxData.Text = value;
+        } // ListName
+
         public bool IsDataChanged
         {
-            get;
-            protected set;
+            get => _isDataChanged;
+            protected set
+            {
+                _isDataChanged = value;
+                OnDataChanged(this, EventArgs.Empty);
+            } // set
         } // IsDataChanged
+
+        public virtual bool IsReadOnly { get; set; }
+
+        public virtual bool CanEdit => !IsReadOnly;
+
+        public virtual bool CanRemove => !IsReadOnly;
+
+        public virtual bool CanAdd => !IsReadOnly;
+
+        public virtual bool CanMove => !IsReadOnly;
 
         private void ListEditor_Load(object sender, EventArgs e)
         {
@@ -34,15 +58,10 @@ namespace IpTviewr.UiServices.Common.Controls
             buttonMoveDown.Enabled = false;
         } // ListEditor_Load
 
-        public virtual bool IsReadOnly { get; set; }
-
-        public virtual bool CanEdit => !IsReadOnly;
-
-        public virtual bool CanRemove => !IsReadOnly;
-
-        public virtual bool CanAdd => !IsReadOnly;
-
-        public virtual bool CanMove => !IsReadOnly;
+        protected virtual void OnDataChanged(object sender, EventArgs e)
+        {
+            DataChanged?.Invoke(sender, e);
+        } // OnDataChanged
 
         protected virtual void ListItems_SelectedIndexChanged(object sender, EventArgs e)
         {

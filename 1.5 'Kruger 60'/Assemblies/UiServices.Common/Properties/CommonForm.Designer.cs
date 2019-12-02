@@ -61,6 +61,24 @@ namespace IpTviewr.UiServices.Common.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &amp;Edit item text:.
+        /// </summary>
+        internal static string StringListEditorEditItem {
+            get {
+                return ResourceManager.GetString("StringListEditorEditItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &amp;Enter new item text:.
+        /// </summary>
+        internal static string StringListEditorNewItem {
+            get {
+                return ResourceManager.GetString("StringListEditorNewItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Unexpected exception in program.
         /// </summary>
         internal static string UncaughtExceptionCaption {

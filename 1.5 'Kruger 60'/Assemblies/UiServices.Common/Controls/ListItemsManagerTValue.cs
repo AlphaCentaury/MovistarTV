@@ -13,12 +13,13 @@ using System.Windows.Forms;
 
 namespace IpTviewr.UiServices.Common.Controls
 {
-    public class ListItemsManager
+    public class ListItemsManager<TValue>
     {
         private readonly ListBox _listBox;
         private readonly Control _removeControl;
         private readonly Control _upControl;
         private readonly Control _downControl;
+        private IDictionary<TValue, string> _dictionary;
 
         public ListItemsManager(ListBox listBox, Control removeControl, Control upControl, Control downControl)
         {
@@ -48,8 +49,29 @@ namespace IpTviewr.UiServices.Common.Controls
 
         public bool IsReadOnly { get; set; }
 
+        public void SetValueDictionary(IList<KeyValuePair<TValue, string>> items, IEqualityComparer<TValue> comparer)
+        {
+            if (items == null) throw new ArgumentNullException(nameof(items));
+
+            _dictionary = new Dictionary<TValue, string>(items.Count, comparer);
+            foreach (var item in items)
+            {
+                _dictionary.Add(item);
+            } // if
+        } // SetValueDictionary
+
         [PublicAPI]
-        public int Add(string item)
+        public void SetItemsDictionary(IDictionary<TValue, string> dictionary)
+        {
+            _dictionary = dictionary ?? throw new ArgumentNullException(nameof(dictionary));
+        } // SetItemsDictionary
+
+        public int Add(TValue key, string text)
+        {
+            return Add(new KeyValuePair<TValue, string>(key, text));
+        } // Add
+
+        public int Add(KeyValuePair<TValue, string> item)
         {
             var index = _listBox.Items.Add(item);
             _listBox.SelectedIndex = index;
@@ -57,14 +79,12 @@ namespace IpTviewr.UiServices.Common.Controls
             return index;
         } // Add
 
-        [PublicAPI]
-        public void Add(IEnumerable<string> items)
+        public void Add(IEnumerable<KeyValuePair<TValue, string>> items)
         {
             Add(items.ToArray());
         } // Add
 
-        [PublicAPI]
-        public void Add(IList<string> items)
+        public void Add(IList<KeyValuePair<TValue, string>> items)
         {
             var add = new object[items.Count];
             for (var index = 0; index < items.Count; index++)
@@ -74,22 +94,53 @@ namespace IpTviewr.UiServices.Common.Controls
             AddItems(add);
         } // Add
 
-        [PublicAPI]
-        public void Add(string[] items)
+        public void Add(KeyValuePair<TValue, string>[] items)
         {
             var add = new object[items.Length];
             Array.Copy(items, add, items.Length);
             AddItems(add);
         } // Add
 
-        [PublicAPI]
-        public List<string> GetListItems()
+        public int Add(TValue key)
         {
-            return (from item in _listBox.Items.Cast<string>()
+            if (_dictionary == null) throw new InvalidOperationException();
+
+            return Add(key, _dictionary[key]);
+        } // Add
+
+        public void Add(IList<TValue> values)
+        {
+            if (_dictionary == null) throw new InvalidOperationException();
+
+            var add = new object[values.Count];
+            for (var index = 0; index < values.Count; index++)
+            {
+                var value = values[index];
+                add[index] = new KeyValuePair<TValue, string>(value, _dictionary[value]);
+            } // for
+            AddItems(add);
+        } // Add
+
+        public List<TValue> GetListValues()
+        {
+            return (from item in _listBox.Items.Cast<KeyValuePair<TValue, string>>()
+                    select item.Key).ToList();
+        } // GetListValues
+
+        [PublicAPI]
+        public List<string> GetListKeys()
+        {
+            return (from item in _listBox.Items.Cast<KeyValuePair<TValue, string>>()
+                select item.Value).ToList();
+        } // GetListValues
+
+        [PublicAPI]
+        public IList<KeyValuePair<TValue, string>> GetListItems()
+        {
+            return (from item in _listBox.Items.Cast<KeyValuePair<TValue, string>>()
                     select item).ToList();
         } // GetListItems
 
-        [PublicAPI]
         public void RemoveSelection()
         {
             if (IsReadOnly) return;
@@ -103,7 +154,6 @@ namespace IpTviewr.UiServices.Common.Controls
             _listBox.SelectedIndex = index;
         } // RemoveSelection
 
-        [PublicAPI]
         public void MoveSelectionUp()
         {
             if (IsReadOnly) return;
@@ -119,8 +169,7 @@ namespace IpTviewr.UiServices.Common.Controls
 
             _listBox.SelectedIndex = index - 1;
         } // MoveUp
-        
-        [PublicAPI]
+
         public void MoveSelectionDown()
         {
             if (IsReadOnly) return;
@@ -137,7 +186,6 @@ namespace IpTviewr.UiServices.Common.Controls
             _listBox.SelectedIndex = index + 1;
         } // MoveDown
 
-        [PublicAPI]
         private void ListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             var index = _listBox.SelectedIndex;
@@ -152,5 +200,5 @@ namespace IpTviewr.UiServices.Common.Controls
             _listBox.Items.AddRange(items);
             _listBox.SelectedIndex = index;
         } // AddItems
-    } // class ListItemsManager
+    } // class ListItemsManager<TValue>
 } // namespace
