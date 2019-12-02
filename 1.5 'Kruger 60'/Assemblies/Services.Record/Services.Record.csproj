@@ -95,6 +95,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="License.txt" />
+    <Content Include="licensing.xml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

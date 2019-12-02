@@ -174,6 +174,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IpTViewr.Core", "Core\IpTVi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IpTviewr.Telemetry", "Core\IpTviewr.Telemetry\IpTviewr.Telemetry.csproj", "{8C3814BF-9482-41C2-BA1A-CBA59F5C2ED4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlphaCentaury.Licensing.Data", "Assemblies\AlphaCentaury.Licensing.Data\AlphaCentaury.Licensing.Data.csproj", "{42B71DB3-2E34-43BB-BF87-88F422BCF861}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -556,6 +558,24 @@ Global
 		{8C3814BF-9482-41C2-BA1A-CBA59F5C2ED4}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{8C3814BF-9482-41C2-BA1A-CBA59F5C2ED4}.Release|x86.ActiveCfg = Release|Any CPU
 		{8C3814BF-9482-41C2-BA1A-CBA59F5C2ED4}.Release|x86.Build.0 = Release|Any CPU
+		{42B71DB3-2E34-43BB-BF87-88F422BCF861}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42B71DB3-2E34-43BB-BF87-88F422BCF861}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42B71DB3-2E34-43BB-BF87-88F422BCF861}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{42B71DB3-2E34-43BB-BF87-88F422BCF861}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{42B71DB3-2E34-43BB-BF87-88F422BCF861}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{42B71DB3-2E34-43BB-BF87-88F422BCF861}.Debug|x86.Build.0 = Debug|Any CPU
+		{42B71DB3-2E34-43BB-BF87-88F422BCF861}.Release + Setup|Any CPU.ActiveCfg = Release|Any CPU
+		{42B71DB3-2E34-43BB-BF87-88F422BCF861}.Release + Setup|Any CPU.Build.0 = Release|Any CPU
+		{42B71DB3-2E34-43BB-BF87-88F422BCF861}.Release + Setup|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{42B71DB3-2E34-43BB-BF87-88F422BCF861}.Release + Setup|Mixed Platforms.Build.0 = Release|Any CPU
+		{42B71DB3-2E34-43BB-BF87-88F422BCF861}.Release + Setup|x86.ActiveCfg = Release|Any CPU
+		{42B71DB3-2E34-43BB-BF87-88F422BCF861}.Release + Setup|x86.Build.0 = Release|Any CPU
+		{42B71DB3-2E34-43BB-BF87-88F422BCF861}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42B71DB3-2E34-43BB-BF87-88F422BCF861}.Release|Any CPU.Build.0 = Release|Any CPU
+		{42B71DB3-2E34-43BB-BF87-88F422BCF861}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{42B71DB3-2E34-43BB-BF87-88F422BCF861}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{42B71DB3-2E34-43BB-BF87-88F422BCF861}.Release|x86.ActiveCfg = Release|Any CPU
+		{42B71DB3-2E34-43BB-BF87-88F422BCF861}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -584,6 +604,7 @@ Global
 		{004C3829-FED4-4084-B23B-871193AFA8C7} = {F477374C-E179-4991-BD4A-CAFCC42C69DC}
 		{968C6EEB-1E79-446A-96AE-69CB225E1C37} = {2E731243-64FA-4810-A67F-03538F9A4954}
 		{8C3814BF-9482-41C2-BA1A-CBA59F5C2ED4} = {2E731243-64FA-4810-A67F-03538F9A4954}
+		{42B71DB3-2E34-43BB-BF87-88F422BCF861} = {8C20CFC3-5D3F-4176-989D-BE4E472200FE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {BD4FB631-D51C-4C53-8362-486D4851FCDE}
