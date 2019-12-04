@@ -23,16 +23,26 @@ namespace IpTviewr.Common
 
         public bool IsOk { get; private set; }
 
-        public IList<string> Arguments{get;private set;}
+        public IList<string> Arguments { get; private set; }
 
-        public IDictionary<string, string> Switches{get;private set;}
+        public IDictionary<string, string> Switches { get; private set; }
 
         public void Parse(string[] args, int startIndex = 0)
         {
+            Parse((IReadOnlyCollection<string>)args, startIndex);
+        } // Parse
+
+        public void Parse(IReadOnlyList<string> args, int startIndex = 0)
+        {
+            Parse((IReadOnlyCollection<string>)args, startIndex);
+        } // Parse
+
+        public void Parse(IReadOnlyCollection<string> args, int startIndex = 0)
+        {
             IsOk = false;
 
-            var arguments = new List<string>(args.Length);
-            var switches = new Dictionary<string, string>(args.Length, StringComparer.InvariantCultureIgnoreCase);
+            var arguments = new List<string>(args.Count);
+            var switches = new Dictionary<string, string>(args.Count, StringComparer.InvariantCultureIgnoreCase);
 
             foreach (var arg in args.Skip(startIndex))
             {

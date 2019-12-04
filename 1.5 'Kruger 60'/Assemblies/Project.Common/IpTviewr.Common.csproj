@@ -64,6 +64,7 @@
     <Compile Include="DateTimeExtensions.cs" />
     <Compile Include="ExceptionEventData.cs" />
     <Compile Include="HandleExceptionEventArgs.cs" />
+    <Compile Include="Serialization\XmlCDataText.cs" />
     <Compile Include="Telemetry\AppTelemetry.cs" />
     <Compile Include="ArgumentsManager.cs" />
     <Compile Include="CommandLineArguments.cs" />
