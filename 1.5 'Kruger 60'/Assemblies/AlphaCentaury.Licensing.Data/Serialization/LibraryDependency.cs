@@ -12,7 +12,7 @@ using System.Xml.Serialization;
 namespace AlphaCentaury.Licensing.Data.Serialization
 {
     [Serializable]
-    public class DependencyLibrary
+    public class LibraryDependency
     {
         [XmlAttribute("name")]
         public string Name { get; set; }
@@ -27,9 +27,13 @@ namespace AlphaCentaury.Licensing.Data.Serialization
         [DefaultValue(true)]
         public bool IsDirectDependency { get; set; }
 
+        [XmlAttribute("dynamic")]
+        [DefaultValue(true)]
+        public bool IsDynamicDependency { get; set; }
+
         public override string ToString()
         {
             return IsDirectDependency ? Name : "+" + Name;
         } // ToString
-    } // class DependencyLibrary
+    } // class LibraryDependency
 } // namespace

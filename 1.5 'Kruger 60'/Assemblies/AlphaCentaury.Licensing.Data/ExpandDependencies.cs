@@ -55,7 +55,7 @@ namespace AlphaCentaury.Licensing.Data
             // clear indirect dependencies
             _files.Where(file => file.Dependencies != null).ForEach(file =>
             {
-                file.Dependencies.Libraries?.RemoveAll(library => !library.IsDirectDependency);
+                file.Dependencies.Libraries?.RemoveAll(library => !library.IsDirectDependency || !library.IsDynamicDependency);
                 file.Dependencies.ThirdParty = null;
             });
 
@@ -71,7 +71,7 @@ namespace AlphaCentaury.Licensing.Data
 
         public void SortDirectThirdParty()
         {
-            var comparer = new ThirdPartyLibraryComparer();
+            var comparer = new ThirdPartyDependencyComparer();
             _files.Where(file => file.Licensing.ThirdParty != null).ForEach(file =>
             {
                 file.Dependencies.ThirdParty?.Sort(comparer);
@@ -135,7 +135,7 @@ namespace AlphaCentaury.Licensing.Data
             {
                 if (added.Contains(dependency.Name)) return;
 
-                file.Dependencies.Libraries.Add(new DependencyLibrary
+                file.Dependencies.Libraries.Add(new LibraryDependency
                 {
                     Name = dependency.Name,
                     AssemblyName = dependency.AssemblyName,
@@ -160,13 +160,13 @@ namespace AlphaCentaury.Licensing.Data
             q.ForEach(library =>
             {
                 if (added.Contains(library.Name)) return;
-                if (file.Dependencies.ThirdParty == null) file.Dependencies.ThirdParty = new List<ThirdPartyLibrary>();
+                if (file.Dependencies.ThirdParty == null) file.Dependencies.ThirdParty = new List<ThirdPartyDependency>();
 
                 file.Dependencies.ThirdParty.Add(library);
                 added.Add(library.Name);
             });
 
-            file.Dependencies.ThirdParty.Sort(new ThirdPartyLibraryComparer());
+            file.Dependencies.ThirdParty.Sort(new ThirdPartyDependencyComparer());
         } // AddIndirectThirdParty
     } // class ExpandDependencies
 } // namespace

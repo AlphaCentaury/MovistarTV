@@ -56,25 +56,25 @@ namespace AlphaCentaury.Licensing.Data
             return clone;
         } // Clone:List<License>
 
-        public static List<DependencyLibrary> Clone(this List<DependencyLibrary> list)
+        public static List<LibraryDependency> Clone(this List<LibraryDependency> list)
         {
-            var clone = new List<DependencyLibrary>(list.Count);
+            var clone = new List<LibraryDependency>(list.Count);
             clone.AddRange(list.Select(item => item.Clone()));
 
             return clone;
         } // Clone:List<License>
 
-        public static List<ThirdPartyLibrary> Clone(this List<ThirdPartyLibrary> list)
+        public static List<ThirdPartyDependency> Clone(this List<ThirdPartyDependency> list)
         {
-            var clone = new List<ThirdPartyLibrary>(list.Count);
+            var clone = new List<ThirdPartyDependency>(list.Count);
             clone.AddRange(list.Select(item => item.Clone()));
 
             return clone;
         } // Clone:List<ThirdPartyLibrary>
 
-        public static DependencyLibrary Clone(this DependencyLibrary item)
+        public static LibraryDependency Clone(this LibraryDependency item)
         {
-            var clone = new DependencyLibrary
+            var clone = new LibraryDependency
             {
                 Name = item.Name,
                 AssemblyName = item.AssemblyName,
@@ -134,9 +134,9 @@ namespace AlphaCentaury.Licensing.Data
             return clone;
         } // Clone:TermsAndConditions
 
-        public static ThirdPartyLibrary Clone(this ThirdPartyLibrary item)
+        public static ThirdPartyDependency Clone(this ThirdPartyDependency item)
         {
-            var clone = new ThirdPartyLibrary
+            var clone = new ThirdPartyDependency
             {
                 Description = item.Description
             };

@@ -10,7 +10,7 @@ using System;
 namespace AlphaCentaury.Licensing.Data.Serialization
 {
     [Serializable]
-    public class LicensedLibrary: LicensedItem
+    public sealed class LicensedLibrary: LicensedItem
     {
         public override string Type => "Library";
     } // class LicensedLibrary

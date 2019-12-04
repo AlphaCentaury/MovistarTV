@@ -18,8 +18,8 @@ namespace AlphaCentaury.Licensing.Data.Serialization
         [XmlElement("Program", typeof(LicensedProgram))]
         public LicensedItem Licensed { get; set; }
 
-        [XmlArrayItem("Library")]
-        public List<ThirdPartyLibrary> ThirdParty { get; set; }
+        [XmlArrayItem("Component")]
+        public List<ThirdPartyDependency> ThirdParty { get; set; }
 
         public override string ToString()
         {

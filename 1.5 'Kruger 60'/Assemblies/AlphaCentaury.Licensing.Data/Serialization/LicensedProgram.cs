@@ -5,10 +5,19 @@
 // 
 // http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
 
+using System;
+using System.ComponentModel;
+using System.Xml.Serialization;
+
 namespace AlphaCentaury.Licensing.Data.Serialization
 {
+    [Serializable]
     public sealed class LicensedProgram: LicensedItem
     {
+        [XmlAttribute("consoleApp")]
+        [DefaultValue(false)]
+        public bool IsConsoleApp { get; set; }
+
         public override string Type => "Program";
     } // class LicensedProgram
 }

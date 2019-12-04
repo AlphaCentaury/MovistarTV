@@ -6,18 +6,18 @@
 // http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
 
 using System;
-using System.Collections.Generic;
+using System.ComponentModel;
 using System.Xml.Serialization;
 
 namespace AlphaCentaury.Licensing.Data.Serialization
 {
     [Serializable]
-    public class Dependencies
+    public class ThirdPartyDependency: BaseLibrary
     {
-        [XmlArrayItem("Library")]
-        public List<LibraryDependency> Libraries { get; set; }
+        [XmlAttribute("type")]
+        [DefaultValue(ThirdPartyDependencyType.Other)]
+        public ThirdPartyDependencyType Type { get; set; }
 
-        [XmlArrayItem("Component")]
-        public List<ThirdPartyDependency> ThirdParty { get; set; }
-    } // class Dependencies
+        public string Description { get; set; }
+    } // class ThirdPartyDependency
 } // namespace

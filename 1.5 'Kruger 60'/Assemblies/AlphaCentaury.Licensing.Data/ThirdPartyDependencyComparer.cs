@@ -11,16 +11,16 @@ using AlphaCentaury.Licensing.Data.Serialization;
 
 namespace AlphaCentaury.Licensing.Data
 {
-    public class ThirdPartyLibraryComparer: IEqualityComparer<ThirdPartyLibrary>, IComparer<ThirdPartyLibrary>
+    public class ThirdPartyDependencyComparer: IEqualityComparer<ThirdPartyDependency>, IComparer<ThirdPartyDependency>
     {
         #region Implementation of IEqualityComparer<in ThirdPartyLibrary>
 
-        public bool Equals(ThirdPartyLibrary x, ThirdPartyLibrary y)
+        public bool Equals(ThirdPartyDependency x, ThirdPartyDependency y)
         {
             return string.Equals(x?.Name, y?.Name, StringComparison.InvariantCulture);
         } // Equals
 
-        public int GetHashCode(ThirdPartyLibrary obj)
+        public int GetHashCode(ThirdPartyDependency obj)
         {
             return obj.Name.GetHashCode();
         } // GetHashCode
@@ -29,7 +29,7 @@ namespace AlphaCentaury.Licensing.Data
 
         #region Implementation of IComparer<in ThirdPartyLibrary>
 
-        public int Compare(ThirdPartyLibrary x, ThirdPartyLibrary y)
+        public int Compare(ThirdPartyDependency x, ThirdPartyDependency y)
         {
             return string.Compare(x?.Name, y?.Name, StringComparison.InvariantCulture);
         } // Compare

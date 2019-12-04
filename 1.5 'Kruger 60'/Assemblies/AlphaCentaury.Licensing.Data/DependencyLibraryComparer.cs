@@ -11,16 +11,16 @@ using AlphaCentaury.Licensing.Data.Serialization;
 
 namespace AlphaCentaury.Licensing.Data
 {
-    public class DependencyLibraryComparer : IEqualityComparer<DependencyLibrary>, IComparer<DependencyLibrary>
+    public class DependencyLibraryComparer : IEqualityComparer<LibraryDependency>, IComparer<LibraryDependency>
     {
         #region IEqualityComparer<in DependencyLibrary> implementation
 
-        public bool Equals(DependencyLibrary x, DependencyLibrary y)
+        public bool Equals(LibraryDependency x, LibraryDependency y)
         {
             return string.Equals(x?.Name, y?.Name, StringComparison.InvariantCulture);
         } // Equals
 
-        public int GetHashCode(DependencyLibrary obj)
+        public int GetHashCode(LibraryDependency obj)
         {
             return obj.Name.GetHashCode();
         } // GetHashCode
@@ -29,7 +29,7 @@ namespace AlphaCentaury.Licensing.Data
 
         #region IComparable<in DependencyLibrary> implementation
 
-        public int Compare(DependencyLibrary first, DependencyLibrary other)
+        public int Compare(LibraryDependency first, LibraryDependency other)
         {
             if (other == null) return 1; // first goes after other
             if (first == null) return -1; // first goes before other
