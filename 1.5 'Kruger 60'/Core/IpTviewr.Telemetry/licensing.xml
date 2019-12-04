@@ -30,274 +30,274 @@ Its use in the context of this product does not constitute endorsement nor suppo
       </TermsAndConditions>
     </Library>
     <ThirdParty>
-      <Library name="Microsoft.AppCenter">
+      <Component name="Microsoft.AppCenter" type="nuget">
         <License>MIT</License>
         <Authors>Microsoft</Authors>
         <Description>This package contains the basic functionalities that all App Center services use to communicate with the backend.</Description>
-      </Library>
-      <Library name="Microsoft.AppCenter.Analytics">
+      </Component>
+      <Component name="Microsoft.AppCenter.Analytics" type="nuget">
         <License>MIT</License>
         <Authors>Microsoft</Authors>
         <Description>This package contains functionalities to collect session, device properties, events etc… for your application.</Description>
-      </Library>
-      <Library name="Microsoft.AppCenter.Crashes">
+      </Component>
+      <Component name="Microsoft.AppCenter.Crashes" type="nuget">
         <License>MIT</License>
         <Authors>Microsoft</Authors>
         <Description>This package contains functionalities to collect crash reports for your application.</Description>
-      </Library>
-      <Library name="Microsoft.NETCore.Platforms">
+      </Component>
+      <Component name="Microsoft.NETCore.Platforms" type="nuget">
         <License>MIT</License>
         <Authors>Microsoft</Authors>
         <Copyright>Copyright (c) .NET Foundation and Contributors</Copyright>
         <Description>Provides runtime information required to resolve target framework, platform, and runtime specific implementations of .NETCore packages.</Description>
-      </Library>
-      <Library name="Microsoft.Win32.Primitives">
+      </Component>
+      <Component name="Microsoft.Win32.Primitives" type="nuget">
         <License>.NET</License>
         <Authors>Microsoft</Authors>
         <Description>Provides common types for Win32-based libraries.</Description>
-      </Library>
-      <Library name="NETStandard.Library">
+      </Component>
+      <Component name="NETStandard.Library" type="nuget">
         <License>MIT</License>
         <Authors>Microsoft</Authors>
         <Copyright>Copyright (c) .NET Foundation and Contributors</Copyright>
         <Description>A set of standard .NET APIs that are prescribed to be used and supported together.</Description>
-      </Library>
-      <Library name="Newtonsoft.Json">
+      </Component>
+      <Component name="Newtonsoft.Json" type="nuget">
         <License>MIT</License>
         <Authors>James Newton-King</Authors>
         <Description>Json.NET is a popular high-performance JSON framework for .NET</Description>
-      </Library>
-      <Library name="sqlite-net-pcl">
+      </Component>
+      <Component name="sqlite-net-pcl" type="nuget">
         <License>MIT</License>
         <Authors>Frank A. Krueger</Authors>
         <Copyright>Copyright (c) Krueger Systems, Inc.</Copyright>
         <Description>SQLite-net is an open source and light weight library providing easy SQLite database storage for .NET, Mono, and Xamarin applications. This version uses SQLitePCLRaw to provide platform independent versions of SQLite.</Description>
-      </Library>
-      <Library name="SQLitePCLRaw.bundle_green">
+      </Component>
+      <Component name="SQLitePCLRaw.bundle_green" type="nuget">
         <License>Apache-2.0</License>
         <Authors>Eric Sink</Authors>
         <Description>This 'batteries-included' bundle brings in SQLitePCLRaw.core and the necessary stuff for certain common use cases.</Description>
-      </Library>
-      <Library name="SQLitePCLRaw.core">
+      </Component>
+      <Component name="SQLitePCLRaw.core" type="nuget">
         <License>Apache-2.0</License>
         <Authors>Eric Sink, et al</Authors>
         <Description>SQLitePCL.raw is a Portable Class Library (PCL) for low-level (raw) access to SQLite.</Description>
-      </Library>
-      <Library name="SQLitePCLRaw.lib.e_sqlite3.linux">
+      </Component>
+      <Component name="SQLitePCLRaw.lib.e_sqlite3.linux" type="nuget">
         <License>Apache-2.0</License>
         <Authors>Eric Sink, D. Richard Hipp, et al</Authors>
         <Description>This package contains a platform-specific native code build of SQLite for use with SQLitePCL.raw.</Description>
-      </Library>
-      <Library name="SQLitePCLRaw.lib.e_sqlite3.osx">
+      </Component>
+      <Component name="SQLitePCLRaw.lib.e_sqlite3.osx" type="nuget">
         <License>Apache-2.0</License>
         <Authors>Eric Sink, D. Richard Hipp, et al</Authors>
         <Description>This package contains a platform-specific native code build of SQLite for use with SQLitePCL.raw.</Description>
-      </Library>
-      <Library name="SQLitePCLRaw.lib.e_sqlite3.v110_xp">
+      </Component>
+      <Component name="SQLitePCLRaw.lib.e_sqlite3.v110_xp" type="nuget">
         <License>Apache-2.0</License>
         <Authors>Eric Sink, D. Richard Hipp, et al</Authors>
         <Description>This package contains a platform-specific native code build of SQLite for use with SQLitePCL.raw.</Description>
-      </Library>
-      <Library name="SQLitePCLRaw.provider.e_sqlite3.net45">
+      </Component>
+      <Component name="SQLitePCLRaw.provider.e_sqlite3.net45" type="nuget">
         <License>Apache-2.0</License>
         <Authors>Eric Sink et al</Authors>
         <Description>A SQLitePCL.raw 'provider' bridges the gap between SQLitePCLRaw.core and a particular instance of the native SQLite library.</Description>
-      </Library>
-      <Library name="System.AppContext">
+      </Component>
+      <Component name="System.AppContext" type="nuget">
         <License>.NET</License>
         <Authors>Microsoft</Authors>
         <Description>Provides the System.AppContext class, which allows access to the BaseDirectory property and other application specific data.</Description>
-      </Library>
-      <Library name="System.Collections">
+      </Component>
+      <Component name="System.Collections" type="nuget">
         <License>.NET</License>
         <Authors>Microsoft</Authors>
         <Description>Provides classes that define generic collections, which allow developers to create strongly typed collections that provide better type safety and performance than non-generic strongly typed collections.</Description>
-      </Library>
-      <Library name="System.Collections.Concurrent">
+      </Component>
+      <Component name="System.Collections.Concurrent" type="nuget">
         <License>.NET</License>
         <Authors>Microsoft</Authors>
         <Description>Provides several thread-safe collection classes that should be used in place of the corresponding types in the System.Collections.NonGeneric and System.Collections packages whenever multiple threads are accessing the collection concurrently.</Description>
-      </Library>
-      <Library name="System.Console">
+      </Component>
+      <Component name="System.Console" type="nuget">
         <License>.NET</License>
         <Authors>Microsoft</Authors>
         <Description>Provides the System.Console class, which represents the standard input, output and error streams for console applications.</Description>
-      </Library>
-      <Library name="System.Diagnostics.Debug">
+      </Component>
+      <Component name="System.Diagnostics.Debug" type="nuget">
         <License>.NET</License>
         <Authors>Microsoft</Authors>
         <Description>Provides classes and attributes that allows basic interaction with a debugger.</Description>
-      </Library>
-      <Library name="System.Diagnostics.DiagnosticSource">
+      </Component>
+      <Component name="System.Diagnostics.DiagnosticSource" type="nuget">
         <License>.NET</License>
         <Authors>Microsoft</Authors>
         <Description>Provides Classes that allow you to decouple code logging rich (unserializable) diagnostics/telemetry (e.g. framework) from code that consumes it (e.g. tools).</Description>
-      </Library>
-      <Library name="System.Diagnostics.Tools">
+      </Component>
+      <Component name="System.Diagnostics.Tools" type="nuget">
         <License>.NET</License>
         <Authors>Microsoft</Authors>
         <Description>Provides attributes, such as GeneratedCodeAttribute and SuppresMessageAttribute, that are emitted or consumed by analysis tools.</Description>
-      </Library>
-      <Library name="System.Diagnostics.Tracing">
+      </Component>
+      <Component name="System.Diagnostics.Tracing" type="nuget">
         <License>.NET</License>
         <Authors>Microsoft</Authors>
         <Description>Provides class that enable you to create high performance tracing events to be captured by event tracing for Windows (ETW).</Description>
-      </Library>
-      <Library name="System.Globalization">
+      </Component>
+      <Component name="System.Globalization" type="nuget">
         <License>.NET</License>
         <Authors>Microsoft</Authors>
         <Description>Provides classes that define culture-related information, including language, country/region, calendars in use, format patterns for dates, currency, and numbers, and sort order for strings.</Description>
-      </Library>
-      <Library name="System.Globalization.Calendars">
+      </Component>
+      <Component name="System.Globalization.Calendars" type="nuget">
         <License>.NET</License>
         <Authors>Microsoft</Authors>
         <Description>Provides classes for performing date calculations using specific calendars, including the Gregorian, Julian, Hijri and Korean calendars.</Description>
-      </Library>
-      <Library name="System.IO">
+      </Component>
+      <Component name="System.IO" type="nuget">
         <License>.NET</License>
         <Authors>Microsoft</Authors>
         <Description>Provides base input and output (I/O) types, including System.IO.Stream, System.IO.StreamReader and System.IO.StreamWriter, that allow reading and writing to data streams.</Description>
-      </Library>
-      <Library name="System.IO.Compression">
+      </Component>
+      <Component name="System.IO.Compression" type="nuget">
         <License>.NET</License>
         <Authors>Microsoft</Authors>
         <Description></Description>
-      </Library>
-      <Library name="System.IO.Compression.ZipFile">
+      </Component>
+      <Component name="System.IO.Compression.ZipFile" type="nuget">
         <License>.NET</License>
         <Authors>Microsoft</Authors>
         <Description>Provides classes that support the compression and decompression of streams using file system paths.</Description>
-      </Library>
-      <Library name="System.IO.FileSystem">
+      </Component>
+      <Component name="System.IO.FileSystem" type="nuget">
         <License>.NET</License>
         <Authors>Microsoft</Authors>
         <Description>Provides types that allow reading and writing to files and types that provide basic file and directory support.</Description>
-      </Library>
-      <Library name="System.IO.FileSystem.Primitives">
+      </Component>
+      <Component name="System.IO.FileSystem.Primitives" type="nuget">
         <License>.NET</License>
         <Authors>Microsoft</Authors>
         <Description>Provides common enumerations and exceptions for path-based I/O libraries.</Description>
-      </Library>
-      <Library name="System.Linq">
+      </Component>
+      <Component name="System.Linq" type="nuget">
         <License>.NET</License>
         <Authors>Microsoft</Authors>
         <Description>Provides classes and interfaces that supports queries that use Language-Integrated Query (LINQ).</Description>
-      </Library>
-      <Library name="System.Linq.Expressions">
+      </Component>
+      <Component name="System.Linq.Expressions" type="nuget">
         <License>.NET</License>
         <Authors>Microsoft</Authors>
         <Description>Provides classes, interfaces and enumerations that enable language-level code expressions to be represented as objects in the form of expression trees.</Description>
-      </Library>
-      <Library name="System.Net.Http">
+      </Component>
+      <Component name="System.Net.Http" type="nuget">
         <License>.NET</License>
         <Authors>Microsoft</Authors>
         <Description>Provides a programming interface for modern HTTP applications, including HTTP client components that allow applications to consume web services over HTTP and HTTP components that can be used by both clients and servers for parsing HTTP headers.</Description>
-      </Library>
-      <Library name="System.Net.Primitives">
+      </Component>
+      <Component name="System.Net.Primitives" type="nuget">
         <License>.NET</License>
         <Authors>Microsoft</Authors>
         <Description>Provides common types for network-based libraries, including System.Net.IPAddress, System.Net.IPEndPoint, and System.Net.CookieContainer.</Description>
-      </Library>
-      <Library name="System.Net.Sockets">
+      </Component>
+      <Component name="System.Net.Sockets" type="nuget">
         <License>.NET</License>
         <Authors>Microsoft</Authors>
         <Description>Provides classes such as Socket, TcpClient and UdpClient, which enable developers to send and receive data over the network.</Description>
-      </Library>
-      <Library name="System.ObjectModel">
+      </Component>
+      <Component name="System.ObjectModel" type="nuget">
         <License>.NET</License>
         <Authors>Microsoft</Authors>
         <Description>Provides types and interfaces that allow the creation of observable types that provide notifications to clients when changes are made to it.</Description>
-      </Library>
-      <Library name="System.Reflection">
+      </Component>
+      <Component name="System.Reflection" type="nuget">
         <License>.NET</License>
         <Authors>Microsoft</Authors>
         <Description>Provides types that retrieve information about assemblies, modules, members, parameters, and other entities in managed code by examining their metadata. These types also can be used to manipulate instances of loaded types, for example to hook up events or to invoke methods.</Description>
-      </Library>
-      <Library name="System.Reflection.Extensions">
+      </Component>
+      <Component name="System.Reflection.Extensions" type="nuget">
         <License>.NET</License>
         <Authors>Microsoft</Authors>
         <Description>Provides custom attribute extension methods for System.Reflection types.</Description>
-      </Library>
-      <Library name="System.Runtime.Handles">
+      </Component>
+      <Component name="System.Runtime.Handles" type="nuget">
         <License>.NET</License>
         <Authors>Microsoft</Authors>
         <Description>Provides base classes, including System.Runtime.InteropServices.CriticalHandle and System.Runtime.InteropServices.SafeHandle, for types that represent operating system handles.</Description>
-      </Library>
-      <Library name="System.Runtime.InteropServices">
+      </Component>
+      <Component name="System.Runtime.InteropServices" type="nuget">
         <License>.NET</License>
         <Authors>Microsoft</Authors>
         <Description>Provides types that support COM interop and platform invoke services.</Description>
-      </Library>
-      <Library name="System.Runtime.InteropServices.RuntimeInformation">
+      </Component>
+      <Component name="System.Runtime.InteropServices.RuntimeInformation" type="nuget">
         <License>.NET</License>
         <Authors>Microsoft</Authors>
         <Description>Provides APIs to query about runtime and OS information.</Description>
-      </Library>
-      <Library name="System.Runtime.Numerics">
+      </Component>
+      <Component name="System.Runtime.Numerics" type="nuget">
         <License>.NET</License>
         <Authors>Microsoft</Authors>
         <Description>Provides the numeric types System.Numerics.BigInteger and System.Numerics.Complex, which complement the numeric primitives, such as System.Byte, System.Double and System.Int32.</Description>
-      </Library>
-      <Library name="System.Security.Cryptography.Algorithms">
+      </Component>
+      <Component name="System.Security.Cryptography.Algorithms" type="nuget">
         <License>.NET</License>
         <Authors>Microsoft</Authors>
         <Description>Provides base types for cryptographic algorithms, including hashing, encryption, and signing operations.</Description>
-      </Library>
-      <Library name="System.Security.Cryptography.Encoding">
+      </Component>
+      <Component name="System.Security.Cryptography.Encoding" type="nuget">
         <License>.NET</License>
         <Authors>Microsoft</Authors>
         <Description>Provides types for representing Abstract Syntax Notation One (ASN.1)-encoded data.</Description>
-      </Library>
-      <Library name="System.Security.Cryptography.Primitives">
+      </Component>
+      <Component name="System.Security.Cryptography.Primitives" type="nuget">
         <License>.NET</License>
         <Authors>Microsoft</Authors>
         <Description>Provides common types for the cryptographic libraries.</Description>
-      </Library>
-      <Library name="System.Security.Cryptography.X509Certificates">
+      </Component>
+      <Component name="System.Security.Cryptography.X509Certificates" type="nuget">
         <License>.NET</License>
         <Authors>Microsoft</Authors>
         <Description>Provides types for reading, exporting and verifying Authenticode X.509 v3 certificates. These certificates are signed with a private key that uniquely and positively identifies the holder of the certificate.</Description>
-      </Library>
-      <Library name="System.Text.Encoding">
+      </Component>
+      <Component name="System.Text.Encoding" type="nuget">
         <License>.NET</License>
         <Authors>Microsoft</Authors>
         <Description>Provides base abstract encoding classes for converting blocks of characters to and from blocks of bytes.</Description>
-      </Library>
-      <Library name="System.Text.Encoding.Extensions">
+      </Component>
+      <Component name="System.Text.Encoding.Extensions" type="nuget">
         <License>.NET</License>
         <Authors>Microsoft</Authors>
         <Description>Provides support for specific encodings, including ASCII, UTF-7, UTF-8, UTF-16, and UTF-32.</Description>
-      </Library>
-      <Library name="System.Text.RegularExpressions">
+      </Component>
+      <Component name="System.Text.RegularExpressions" type="nuget">
         <License>.NET</License>
         <Authors>Microsoft</Authors>
         <Description>Provides the System.Text.RegularExpressions.Regex class, an implementation of a regular expression engine.</Description>
-      </Library>
-      <Library name="System.Threading">
+      </Component>
+      <Component name="System.Threading" type="nuget">
         <License>.NET</License>
         <Authors>Microsoft</Authors>
         <Description>Provides the fundamental synchronization primitives, including System.Threading.Monitor and System.Threading.Mutex, that are required when writing asynchronous code.</Description>
-      </Library>
-      <Library name="System.Threading.Tasks">
+      </Component>
+      <Component name="System.Threading.Tasks" type="nuget">
         <License>.NET</License>
         <Authors>Microsoft</Authors>
         <Description>Provides types that simplify the work of writing concurrent and asynchronous code.</Description>
-      </Library>
-      <Library name="System.Threading.Timer">
+      </Component>
+      <Component name="System.Threading.Timer" type="nuget">
         <License>.NET</License>
         <Authors>Microsoft</Authors>
         <Description>Provides the System.Threading.Timer class, which is a mechanism for executing a method at specified intervals.</Description>
-      </Library>
-      <Library name="System.Xml.ReaderWriter">
+      </Component>
+      <Component name="System.Xml.ReaderWriter" type="nuget">
         <License>.NET</License>
         <Authors>Microsoft</Authors>
         <Description>Provides provides a fast, non-cached, forward-only way to read and write Extensible Markup Language (XML) data.</Description>
-      </Library>
-      <Library name="System.Xml.XDocument">
+      </Component>
+      <Component name="System.Xml.XDocument" type="nuget">
         <License>.NET</License>
         <Authors>Microsoft</Authors>
         <Description>Provides the classes for Language-Integrated Query (LINQ) to Extensible Markup Language (XML). LINQ to XML is an in-memory XML programming interface that enables you to modify XML documents efficiently and easily.</Description>
-      </Library>
+      </Component>
     </ThirdParty>
   </Licensing>
   <Dependencies>

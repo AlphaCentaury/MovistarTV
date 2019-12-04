@@ -19,7 +19,7 @@ internal static class SolutionVersion
     public const string AssemblyInformationalVersion = "1.5.1010.0";
     public const string AssemblyProduct = "IPTViewr: virtual decoder for movistar+" + " (v" + ProductVersion + ")";
     public const string ProductVersion = "1.5 \"Kruger 60\" Beta 1";
-    public const string DefaultCopyright = "Copyright (C) 2014-2019, AlphaCentaury and contributors";
+    public const string DefaultCopyright = "Copyright (C) 2014-2019, GitHub/Codeplex user AlphaCentaury and contributors";
     public const string AssemblyCompany = "www.alphacentaury.org";
 
     public static string[] CopyrightHeaderLines =
