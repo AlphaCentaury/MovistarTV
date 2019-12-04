@@ -11,9 +11,13 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance
 {
     public interface IMaintenanceToolMetadata
     {
+        string Guid { get; }
+
         string Name { get; }
 
-        string Guid { get; }
+        [DefaultValue(null)]
+        string CliName { get; }
+
         [DefaultValue(false)]
         bool HasParameters { get; }
 
@@ -25,7 +29,5 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance
 
         [DefaultValue(false)]
         bool HasUsage { get; }
-
-        string CliName { get; }
     } // interface IMaintenanceToolMetadata
 } // namespace

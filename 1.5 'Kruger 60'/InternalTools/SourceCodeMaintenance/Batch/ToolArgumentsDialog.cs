@@ -16,13 +16,14 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using JetBrains.Annotations;
 
-namespace AlphaCentaury.Tools.SourceCodeMaintenance
+namespace AlphaCentaury.Tools.SourceCodeMaintenance.Batch
 {
     public partial class ToolArgumentsDialog : Form
     {
         public ToolArgumentsDialog()
         {
             InitializeComponent();
+            buttonOk.Enabled = false;
         } // constructor
 
         [PublicAPI]
@@ -36,7 +37,11 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance
         public string[] Arguments
         {
             get => argumentsListEditor.Items;
-            set => argumentsListEditor.Items = value;
+            set
+            {
+                argumentsListEditor.Items = value;
+                buttonOk.Enabled = (argumentsListEditor.ItemsCount > 0);
+            } // set
         } // Arguments
 
         [PublicAPI]
@@ -45,5 +50,10 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance
             get => argumentsListEditor.SelectFileAction;
             set => argumentsListEditor.SelectFileAction = value;
         } // SelectFileAction
+
+        private void argumentsListEditor_DataChanged(object sender, EventArgs e)
+        {
+            buttonOk.Enabled = (argumentsListEditor.ItemsCount > 0);
+        } // argumentsListEditor_DataChanged
     } // ToolArgumentsDialog
 } // namespace

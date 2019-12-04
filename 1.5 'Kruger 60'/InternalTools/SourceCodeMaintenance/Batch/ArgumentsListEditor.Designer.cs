@@ -60,7 +60,7 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Batch
             // 
             this.buttonAdd.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlDark;
             this.buttonAdd.Image = global::AlphaCentaury.Tools.SourceCodeMaintenance.Properties.Resources.Action_Add_16xM;
-            this.buttonAdd.Location = new System.Drawing.Point(244, 19);
+            this.buttonAdd.Location = new System.Drawing.Point(213, 19);
             this.toolTip.SetToolTip(this.buttonAdd, "Add new...");
             // 
             // buttonMoveDown
@@ -101,14 +101,14 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Batch
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxArgument.Location = new System.Drawing.Point(6, 22);
             this.textBoxArgument.Name = "textBoxArgument";
-            this.textBoxArgument.Size = new System.Drawing.Size(201, 20);
+            this.textBoxArgument.Size = new System.Drawing.Size(170, 20);
             this.textBoxArgument.TabIndex = 6;
             // 
             // buttonSelectFile
             // 
             this.buttonSelectFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonSelectFile.FlatAppearance.BorderSize = 0;
-            this.buttonSelectFile.Location = new System.Drawing.Point(213, 19);
+            this.buttonSelectFile.Location = new System.Drawing.Point(182, 19);
             this.buttonSelectFile.Name = "buttonSelectFile";
             this.buttonSelectFile.Size = new System.Drawing.Size(25, 25);
             this.buttonSelectFile.TabIndex = 7;
@@ -123,6 +123,7 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Batch
             this.ListName = "Tool execution arguments";
             this.Name = "ArgumentsListEditor";
             this.Size = new System.Drawing.Size(275, 270);
+            this.Load += new System.EventHandler(this.ArgumentsListEditor_Load);
             this.groupBoxData.ResumeLayout(false);
             this.groupBoxData.PerformLayout();
             this.ResumeLayout(false);

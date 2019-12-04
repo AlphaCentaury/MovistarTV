@@ -7,10 +7,8 @@
 
 using System;
 using System.Collections.Generic;
-using System.Text;
-using AlphaCentaury.Licensing;
-using AlphaCentaury.Licensing.Serialization;
-using IpTviewr.Common.Serialization;
+using AlphaCentaury.Licensing.Data;
+using AlphaCentaury.Licensing.Data.Serialization;
 
 namespace IpTviewr.Internal.Tools.ConsoleExperiments
 {
@@ -37,7 +35,7 @@ namespace IpTviewr.Internal.Tools.ConsoleExperiments
                 CreateDummy("F", "L2", new [] {"D" }, new[]{"1","3"}, new []{"L2", "L5"})
             };
 
-            files.FirstPass();
+            files.ExpandDependencies();
 
             return 0;
         } // Run
@@ -46,7 +44,7 @@ namespace IpTviewr.Internal.Tools.ConsoleExperiments
         {
             var dummy = new LicensingFile
             {
-                Licensing = new AlphaCentaury.Licensing.Serialization.Licensing
+                Licensing = new AlphaCentaury.Licensing.Data.Serialization.Licensing
                 {
                     Licensed = new LicensedLibrary { Name = name, LicenseId = licenseId }
                 },
@@ -59,20 +57,20 @@ namespace IpTviewr.Internal.Tools.ConsoleExperiments
             if (dependencies != null)
             {
                 if (dummy.Dependencies == null) dummy.Dependencies = new Dependencies();
-                dummy.Dependencies.Libraries = new List<DependencyLibrary>(dependencies.Length);
+                dummy.Dependencies.Libraries = new List<LibraryDependency>(dependencies.Length);
                 foreach (var dependency in dependencies)
                 {
-                    dummy.Dependencies.Libraries.Add(new DependencyLibrary { Name = dependency, IsDirectDependency = true });
+                    dummy.Dependencies.Libraries.Add(new LibraryDependency { Name = dependency, IsDirectDependency = true });
                 } // foreach
             } // if
 
             if (thirdParty == null) return dummy;
 
             if (dummy.Dependencies == null) dummy.Dependencies = new Dependencies();
-            dummy.Licensing.ThirdParty = new List<ThirdPartyLibrary>(thirdParty.Length);
+            dummy.Licensing.ThirdParty = new List<ThirdPartyDependency>(thirdParty.Length);
             foreach (var third in thirdParty)
             {
-                dummy.Licensing.ThirdParty.Add(new ThirdPartyLibrary { Name = third });
+                dummy.Licensing.ThirdParty.Add(new ThirdPartyDependency { Name = third });
             } // foreach
 
             if (licenses == null) return dummy;

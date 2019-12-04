@@ -24,11 +24,19 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing.VisualStudio
             if (string.IsNullOrEmpty(type)) throw new ArgumentNullException(nameof(type));
             if (!string.Equals(type, ".csproj", StringComparison.InvariantCultureIgnoreCase)) throw new ArgumentOutOfRangeException(nameof(type), type, null);
 
-            var project = new VsProject();
+            var project = new VsProject
+            {
+                Language = "C#"
+            };
             var xmlProj = XElement.Load(stream);
+            var ns = XNamespace.Get("http://schemas.microsoft.com/developer/msbuild/2003");
+
+            var propertyItems = from propGroup in xmlProj.Elements(ns + "PropertyGroup")
+                                from item in propGroup.Elements()
+                                select item;
 
             // project properties
-            foreach (var item in xmlProj.Elements("PropertyGroup"))
+            foreach (var item in propertyItems)
             {
                 switch (item.Name.LocalName)
                 {
@@ -55,11 +63,11 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing.VisualStudio
             } // foreach
 
             // project references
-            var q2 = from itemGroup in xmlProj.Elements("ItemGroup")
-                    from reference in itemGroup.Elements("ProjectReference")
-                    let guid = reference.Element("Project")
-                    where guid != null
-                    select Guid.Parse(guid.Value);
+            var q2 = from itemGroup in xmlProj.Elements(ns + "ItemGroup")
+                     from reference in itemGroup.Elements(ns + "ProjectReference")
+                     let guid = reference.Element(ns + "Project")
+                     where guid != null
+                     select Guid.Parse(guid.Value);
 
             project.ReferencedProjects = q2.ToList();
             if (project.ReferencedProjects.Count == 0)

@@ -17,7 +17,7 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance
 {
     public interface IMaintenanceTool
     {
-        void Execute([NotNull] string[] arguments, [NotNull] Action<string> writeLine);
+        void Execute([NotNull] IReadOnlyList<string> arguments, [NotNull] Action<string> writeLine);
         void ShowUsage([NotNull] Action<string> writeLine);
         Form GetUi();
         string SelectFileFilter { get; }

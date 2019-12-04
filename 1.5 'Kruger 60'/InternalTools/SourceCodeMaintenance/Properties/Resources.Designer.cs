@@ -110,6 +110,16 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Action_FullView_16x16 {
+            get {
+                object obj = ResourceManager.GetObject("Action_FullView_16x16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Action_Go_16x16 {
             get {
                 object obj = ResourceManager.GetObject("Action_Go_16x16", resourceCulture);
@@ -150,9 +160,139 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Action_Open_16x {
+            get {
+                object obj = ResourceManager.GetObject("Action_Open_16x", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Action_Property_Add_16x16 {
             get {
                 object obj = ResourceManager.GetObject("Action_Property_Add_16x16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Folder_16x {
+            get {
+                object obj = ResourceManager.GetObject("Folder_16x", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Folder_24x {
+            get {
+                object obj = ResourceManager.GetObject("Folder_24x", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Folder_32x {
+            get {
+                object obj = ResourceManager.GetObject("Folder_32x", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap FolderOpen_16x {
+            get {
+                object obj = ResourceManager.GetObject("FolderOpen_16x", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap FolderOpen_24x {
+            get {
+                object obj = ResourceManager.GetObject("FolderOpen_24x", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap FolderOpen_32x {
+            get {
+                object obj = ResourceManager.GetObject("FolderOpen_32x", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap MaintenanceTool_Cli_16x {
+            get {
+                object obj = ResourceManager.GetObject("MaintenanceTool_Cli_16x", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap MaintenanceTool_Cli_24x {
+            get {
+                object obj = ResourceManager.GetObject("MaintenanceTool_Cli_24x", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap MaintenanceTool_Cli_32x {
+            get {
+                object obj = ResourceManager.GetObject("MaintenanceTool_Cli_32x", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap MaintenanceTool_Gui_16x {
+            get {
+                object obj = ResourceManager.GetObject("MaintenanceTool_Gui_16x", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap MaintenanceTool_Gui_24x {
+            get {
+                object obj = ResourceManager.GetObject("MaintenanceTool_Gui_24x", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap MaintenanceTool_Gui_32x {
+            get {
+                object obj = ResourceManager.GetObject("MaintenanceTool_Gui_32x", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -11,6 +11,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -78,5 +79,18 @@ namespace SourceCodeMaintenance
             arrangeToolStripMenuItem.Enabled = enabled;
             closeAllToolStripMenuItem.Enabled = enabled;
         } // windowsToolStripMenuItem_DropDownOpening
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using var box = new AboutBox
+            {
+                ApplicationData = new AboutBoxApplicationData
+                {
+                    Name = Assembly.GetEntryAssembly()?.GetCustomAttribute<AssemblyTitleAttribute>()?.Title
+                }
+            };
+
+            box.ShowDialog(this);
+        } // aboutToolStripMenuItem_Click
     } // class MainForm
 } // namespace

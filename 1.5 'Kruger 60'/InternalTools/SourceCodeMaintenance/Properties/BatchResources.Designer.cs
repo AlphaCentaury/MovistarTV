@@ -19,14 +19,14 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Properties {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Batch_Texts {
+    internal class BatchResources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Batch_Texts() {
+        internal BatchResources() {
         }
         
         /// <summary>
@@ -36,7 +36,7 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("AlphaCentaury.Tools.SourceCodeMaintenance.Properties.Batch.Texts", typeof(Batch_Texts).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("AlphaCentaury.Tools.SourceCodeMaintenance.Properties.BatchResources", typeof(BatchResources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -123,6 +123,15 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Properties {
         internal static string SaveIfDirty {
             get {
                 return ResourceManager.GetString("SaveIfDirty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to All files|*.*.
+        /// </summary>
+        internal static string SelectAllFilesFilter {
+            get {
+                return ResourceManager.GetString("SelectAllFilesFilter", resourceCulture);
             }
         }
         

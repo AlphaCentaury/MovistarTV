@@ -149,4 +149,7 @@ Cancel = Keep current batch and don't open a new batch</value>
     <comment>{0} = Save changes
       {1} = Buttons explanation</comment>
   </data>
+  <data name="SelectAllFilesFilter" xml:space="preserve">
+    <value>All files|*.*</value>
+  </data>
 </root>

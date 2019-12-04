@@ -6,6 +6,7 @@
 // http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
 
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Windows.Forms;
 using JetBrains.Annotations;
@@ -15,14 +16,13 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing
     [Export(typeof(IMaintenanceTool))]
     [ExportMetadata("Name", "Licensing maintenance")]
     [ExportMetadata("Guid", "{13B1F04C-F4E9-4C13-832F-8FCBC5673098}")]
-    [ExportMetadata("HasParameters", true)]
+    [ExportMetadata("HasParameters", false)]
     [ExportMetadata("HasUi", true)]
-    [ExportMetadata("CliName", "Licensing")]
     public class LicensingMaintenance : IMaintenanceTool
     {
         #region Implementation of IMaintenanceTool
 
-        public void Execute([NotNull] string[] arguments, [NotNull] Action<string> writeLine)
+        public void Execute([NotNull] IReadOnlyList<string> arguments, [NotNull] Action<string> writeLine)
         {
             throw new NotImplementedException();
         } // Execute

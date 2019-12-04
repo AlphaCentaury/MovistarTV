@@ -13,11 +13,17 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing.VisualStudio
     public class VsProject
     {
         public Guid Guid { get; set; }
+        public string Language { get; set; }
         public string Name { get; set; }
         public string Path { get; set; }
         public string AssemblyName { get; set; }
         public string Namespace { get; set; }
         public List<Guid> ReferencedProjects { get; set; }
         public string Type { get; set; }
+
+        public override string ToString()
+        {
+            return $"{Type}:{Namespace}";
+        } // ToString
     } // VsProject
 }

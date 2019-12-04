@@ -5,7 +5,7 @@
 // 
 // http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
 
-namespace AlphaCentaury.Tools.SourceCodeMaintenance
+namespace AlphaCentaury.Tools.SourceCodeMaintenance.Batch
 {
     partial class ToolArgumentsDialog
     {
@@ -54,6 +54,7 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance
             this.argumentsListEditor.SelectFileButtonImage = null;
             this.argumentsListEditor.Size = new System.Drawing.Size(360, 280);
             this.argumentsListEditor.TabIndex = 3;
+            this.argumentsListEditor.DataChanged += new System.EventHandler(this.argumentsListEditor_DataChanged);
             // 
             // buttonOk
             // 

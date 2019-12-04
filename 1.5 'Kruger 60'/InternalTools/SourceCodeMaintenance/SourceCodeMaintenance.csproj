@@ -42,6 +42,9 @@
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
     <Reference Include="System.IO.Compression" />
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.ValueTuple.4.5.0\lib\net461\System.ValueTuple.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -56,6 +59,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\..\AssemblySolutionInfo.cs">
+      <Link>Properties\AssemblySolutionInfo.cs</Link>
+    </Compile>
     <Compile Include="Batch\ArgumentsListEditor.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -69,10 +75,18 @@
       <DependentUpon>BatchDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Batch\BatchExecution.cs" />
-    <Compile Include="Properties\Batch.Texts.Designer.cs">
+    <Compile Include="CopyrightNotices\UpdateCopyrightNotices.cs" />
+    <Compile Include="Licensing\LicensingFileNode.cs" />
+    <Compile Include="Licensing\VisualStudio\VsSolutionFolder.cs" />
+    <Compile Include="Properties\LicensingResources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Batch.Texts.resx</DependentUpon>
+      <DependentUpon>LicensingResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\BatchResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BatchResources.resx</DependentUpon>
     </Compile>
     <Compile Include="SelectToolDialog.cs">
       <SubType>Form</SubType>
@@ -116,9 +130,14 @@
     <EmbeddedResource Include="Batch\BatchDialog.resx">
       <DependentUpon>BatchDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Batch.Texts.resx">
+    <EmbeddedResource Include="Properties\LicensingResources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Batch.Texts.Designer.cs</LastGenOutput>
+      <LastGenOutput>LicensingResources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\BatchResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>BatchResources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="SelectToolDialog.resx">
@@ -158,6 +177,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Assemblies\AlphaCentaury.Licensing.Data.Ui\AlphaCentaury.Licensing.Data.Ui.csproj">
+      <Project>{1293a5c4-478f-4efd-8e53-d283b35e1a06}</Project>
+      <Name>AlphaCentaury.Licensing.Data.Ui</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Assemblies\AlphaCentaury.Licensing.Data\AlphaCentaury.Licensing.Data.csproj">
       <Project>{42b71db3-2e34-43bb-bf87-88f422bcf861}</Project>
       <Name>Licensing</Name>
@@ -187,9 +210,6 @@
     <None Include="Resources\Action_Add_16xM.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Action_Delete_16x161.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\Action_GoPreviousUp_16x16.png" />
   </ItemGroup>
   <ItemGroup>
@@ -207,5 +227,86 @@
   <ItemGroup>
     <None Include="Resources\Action_Cancel_16x16.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Licensing\Resources\Dependencies_32x.png" />
+    <None Include="Licensing\Resources\Dependencies_16x.png" />
+    <None Include="Licensing\Resources\Dependencies_24x.png" />
+    <Content Include="Resources\Action_FullView_16x16.png" />
+    <None Include="Resources\Action_Open_16x.png" />
+    <Content Include="Licensing\Resources\CertificateError_16x.png" />
+    <Content Include="Licensing\Resources\CertificateError_16x.svg" />
+    <Content Include="Licensing\Resources\CertificateError_24x.png" />
+    <Content Include="Licensing\Resources\CertificateError_32x.png" />
+    <Content Include="Licensing\Resources\CertificateWarning_16x.svg" />
+    <Content Include="Licensing\Resources\Certificate_16x.png" />
+    <Content Include="Licensing\Resources\Certificate_16x.svg" />
+    <Content Include="Licensing\Resources\Certificate_24x.png" />
+    <Content Include="Licensing\Resources\Certificate_32x.png" />
+    <Content Include="Resources\cogs.ico" />
+    <Content Include="Resources\cogs_24x24.png" />
+    <Content Include="Resources\cogs_32x32.png" />
+    <Content Include="Resources\cog_16x16.png" />
+    <Content Include="Resources\cog_24x24.png" />
+    <Content Include="Resources\cog_32x32.png" />
+    <Content Include="Licensing\Resources\Component_16x.svg" />
+    <Content Include="Licensing\Resources\Component_Black_16x.svg" />
+    <Content Include="Licensing\Resources\CSharp_Exe.ico" />
+    <Content Include="Licensing\Resources\CSharp_Exe_16x.png" />
+    <Content Include="Licensing\Resources\CSharp_Exe_24x.png" />
+    <Content Include="Licensing\Resources\CSharp_Exe_256x.png" />
+    <Content Include="Licensing\Resources\CSharp_Exe_32x.png" />
+    <Content Include="Licensing\Resources\CSharp_Exe_48x.png" />
+    <Content Include="Licensing\Resources\CSharp_Exe_64x.png" />
+    <Content Include="Licensing\Resources\CSharp_Lib.ico" />
+    <Content Include="Licensing\Resources\CSharp_Lib_16x.png" />
+    <Content Include="Licensing\Resources\CSharp_Lib_24x.png" />
+    <Content Include="Licensing\Resources\CSharp_Lib_256x.png" />
+    <Content Include="Licensing\Resources\CSharp_Lib_32x.png" />
+    <Content Include="Licensing\Resources\CSharp_Lib_48x.png" />
+    <Content Include="Licensing\Resources\CSharp_Lib_64x.png" />
+    <Content Include="Licensing\Resources\CSharp_WinExe.ico" />
+    <Content Include="Licensing\Resources\CSharp_WinExe_16x.png" />
+    <Content Include="Licensing\Resources\CSharp_WinExe_24x.png" />
+    <Content Include="Licensing\Resources\CSharp_WinExe_256x.png" />
+    <Content Include="Licensing\Resources\CSharp_WinExe_32x.png" />
+    <Content Include="Licensing\Resources\CSharp_WinExe_48x.png" />
+    <Content Include="Licensing\Resources\CSharp_WinExe_64x.png" />
+    <Content Include="Resources\FolderOpen_16x.png" />
+    <Content Include="Resources\FolderOpen_16x.svg" />
+    <Content Include="Resources\FolderOpen_24x.png" />
+    <Content Include="Resources\FolderOpen_32x.png" />
+    <Content Include="Resources\Folder_16x.png" />
+    <Content Include="Resources\Folder_16x.svg" />
+    <Content Include="Resources\Folder_24x.png" />
+    <Content Include="Resources\Folder_32x.png" />
+    <Content Include="Resources\idr_dll.ico" />
+    <Content Include="Resources\MaintenanceTool_Cli_16x.png" />
+    <Content Include="Resources\MaintenanceTool_Cli_16x.svg" />
+    <Content Include="Resources\MaintenanceTool_Cli_24x.png" />
+    <Content Include="Resources\MaintenanceTool_Cli_32x.png" />
+    <Content Include="Resources\MaintenanceTool_Gui_16x.png" />
+    <Content Include="Resources\MaintenanceTool_Gui_16x.svg" />
+    <Content Include="Resources\MaintenanceTool_Gui_24x.png" />
+    <Content Include="Resources\MaintenanceTool_Gui_32x.png" />
+    <Content Include="Licensing\Resources\VS_Project_Unknown_16x.png" />
+    <Content Include="Licensing\Resources\VS_Project_Unknown_16x.svg" />
+    <Content Include="Licensing\Resources\VS_Project_Unknown_24x.png" />
+    <Content Include="Licensing\Resources\VS_Project_Unknown_32x.png" />
+    <Content Include="Licensing\Resources\VS_Solution.ico" />
+    <Content Include="Licensing\Resources\VS_Solution_16x.png" />
+    <Content Include="Licensing\Resources\VS_Solution_24x.png" />
+    <Content Include="Licensing\Resources\VS_Solution_256x.png" />
+    <Content Include="Licensing\Resources\VS_Solution_32x.png" />
+    <Content Include="Licensing\Resources\VS_Solution_48x.png" />
+    <Content Include="Licensing\Resources\VS_Solution_64x.png" />
+    <Content Include="Licensing\Resources\VS_Solution_File.ico" />
+    <Content Include="Licensing\Resources\VS_Solution_File_16x.png" />
+    <Content Include="Licensing\Resources\VS_Solution_File_24x.png" />
+    <Content Include="Licensing\Resources\VS_Solution_File_256x.png" />
+    <Content Include="Licensing\Resources\VS_Solution_File_32x.png" />
+    <Content Include="Licensing\Resources\VS_Solution_File_48x.png" />
+    <Content Include="Licensing\Resources\VS_Solution_File_64x.png" />
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

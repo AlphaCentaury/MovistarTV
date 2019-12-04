@@ -54,6 +54,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IpTviewr.IpTvServices", "As
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SourceCodeMaintenance", "InternalTools\SourceCodeMaintenance\SourceCodeMaintenance.csproj", "{DE019D79-3699-4D17-8545-74B79C32FEF6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlphaCentaury.Licensing.Data.Ui", "Assemblies\AlphaCentaury.Licensing.Data.Ui\AlphaCentaury.Licensing.Data.Ui.csproj", "{1293A5C4-478F-4EFD-8E53-D283B35E1A06}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -152,6 +154,10 @@ Global
 		{DE019D79-3699-4D17-8545-74B79C32FEF6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DE019D79-3699-4D17-8545-74B79C32FEF6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DE019D79-3699-4D17-8545-74B79C32FEF6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1293A5C4-478F-4EFD-8E53-D283B35E1A06}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1293A5C4-478F-4EFD-8E53-D283B35E1A06}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1293A5C4-478F-4EFD-8E53-D283B35E1A06}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1293A5C4-478F-4EFD-8E53-D283B35E1A06}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -174,6 +180,7 @@ Global
 		{8986CD52-0C65-42D6-9C47-20FF47CF87BB} = {6087F00C-436D-45AC-B792-805A1BBB4F59}
 		{42B71DB3-2E34-43BB-BF87-88F422BCF861} = {6087F00C-436D-45AC-B792-805A1BBB4F59}
 		{36B8E0A1-F1B1-498D-8FE7-A39BB7FD68CA} = {6087F00C-436D-45AC-B792-805A1BBB4F59}
+		{1293A5C4-478F-4EFD-8E53-D283B35E1A06} = {6087F00C-436D-45AC-B792-805A1BBB4F59}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {291C735C-6BD5-4497-9F0C-500489DF7581}

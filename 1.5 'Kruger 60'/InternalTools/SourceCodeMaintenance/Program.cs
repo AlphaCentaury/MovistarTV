@@ -29,12 +29,14 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance
                 CompositionContainer.ComposeParts(this);
                 if (ToolsComponents == null) return;
 
-                Tools = ToolsComponents.OrderBy(tool => tool.Metadata.CliName).ToArray();
-                ToolsNames = Tools.Select(lazy => lazy.Metadata.Name).ToList();
-                ToolsUi = ToolsComponents.Where(tool => tool.Metadata.HasUi).OrderBy(tool => tool.Metadata.CliName).ToArray();
-                ToolsUiNames = ToolsUi.Select(lazy => lazy.Metadata.Name).ToList();
-                GuidTools = Tools.ToDictionary(lazy => Guid.Parse(lazy.Metadata.Guid));
-                CliTools = Tools.ToDictionary(lazy => lazy.Metadata.CliName);
+                Tools = ToolsComponents.OrderBy(tool => tool.Metadata.Name).ToArray();
+                ToolsNames = Tools.Select(tool => tool.Metadata.Name).ToList();
+                ToolsUi = ToolsComponents.Where(tool => tool.Metadata.HasUi).OrderBy(tool => tool.Metadata.Name).ToArray();
+                ToolsUiNames = ToolsUi.Select(tool => tool.Metadata.Name).ToList();
+                ToolsCli = ToolsComponents.Where(tool => tool.Metadata.CliName != null).OrderBy(tool => tool.Metadata.CliName).ToArray();
+                ToolsCliNames = ToolsCli.Select(tool => tool.Metadata.Name).ToList();
+                GuidTools = Tools.ToDictionary(tool => Guid.Parse(tool.Metadata.Guid));
+                CliTools = ToolsCli.ToDictionary(lazy => lazy.Metadata.CliName);
             } // constructor
 
             public CompositionContainer CompositionContainer { get; }
@@ -60,6 +62,9 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance
 
         public static Lazy<IMaintenanceTool, IMaintenanceToolMetadata>[] ToolsUi { get; private set; }
         public static List<string> ToolsUiNames { get; private set; }
+
+        public static Lazy<IMaintenanceTool, IMaintenanceToolMetadata>[] ToolsCli { get; private set; }
+        public static List<string> ToolsCliNames { get; private set; }
 
         /// <summary>
         /// The main entry point for the application.

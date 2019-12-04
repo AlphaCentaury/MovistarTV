@@ -5,18 +5,14 @@
 // 
 // http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
 
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using AlphaCentaury.Tools.SourceCodeMaintenance.Properties;
 using IpTviewr.UiServices.Common.Controls;
 using JetBrains.Annotations;
+using System;
+using System.Collections.Specialized;
+using System.ComponentModel;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace AlphaCentaury.Tools.SourceCodeMaintenance.Batch
 {
@@ -47,6 +43,15 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Batch
             } // set
         } // SelectFileAction
 
+        private void ArgumentsListEditor_Load(object sender, EventArgs e)
+        {
+            if (SelectFileAction == null)
+            {
+                buttonSelectFile.Visible = false;
+                textBoxArgument.Width = buttonSelectFile.Right - textBoxArgument.Left;
+            } // if
+        } // ArgumentsListEditor_Load
+
         private void buttonSelectFile_Click(object sender, EventArgs e)
         {
             SelectFileAction?.Invoke(textBoxArgument);
@@ -59,24 +64,13 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Batch
             newItem = textBoxArgument.Text.Trim();
             if (newItem.Length == 0)
             {
-                MessageBox.Show(this, Batch_Texts.ArgumentsNotOptional, Batch_Texts.ArgumentsNotOptionalCaption, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(this, BatchResources.ArgumentsNotOptional, BatchResources.ArgumentsNotOptionalCaption, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             } // if
-            if (newItem.IndexOf(' ') >= 0) newItem = '"' + newItem + '"';
 
+            textBoxArgument.Text = null;
             return true;
         } // GetNewItem
-
-        protected override bool EditItem(string item, out string newItem)
-        {
-            var ok = base.EditItem(item, out newItem);
-            if (ok && (newItem.IndexOf(' ') >= 0))
-            {
-                newItem = '"' + newItem + '"';
-            } // if
-
-            return ok;
-        } // EditItem
 
         #endregion
     }

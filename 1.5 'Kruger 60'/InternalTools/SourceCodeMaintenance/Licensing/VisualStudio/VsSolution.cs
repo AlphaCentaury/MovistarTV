@@ -9,19 +9,26 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing.VisualStudio
 {
     public class VsSolution
     {
-        public VsSolution(IEnumerable<VsProject> projects)
+        public VsSolution(string path, VsSolutionFolder rootFolder, IReadOnlyList<VsProject> allProjects)
         {
-            Projects = projects.ToList();
-            GuidDictionary = Projects.ToDictionary(project => project.Guid);
-            NamespaceDictionary = Projects.ToDictionary(project => project.Namespace);
+            Name = Path.GetFileName(path);
+            SolutionPath = path;
+            RootFolder = rootFolder;
+            AllProjects = allProjects;
+            GuidDictionary = AllProjects.ToDictionary(project => project.Guid);
+            NamespaceDictionary = AllProjects.ToDictionary(project => project.Namespace);
         } // constructor
 
-        public IReadOnlyList<VsProject> Projects;
+        public string Name { get; }
+        public string SolutionPath { get; }
+        public VsSolutionFolder RootFolder;
+        public IReadOnlyList<VsProject> AllProjects;
         public IReadOnlyDictionary<Guid, VsProject> GuidDictionary;
         public IReadOnlyDictionary<string, VsProject> NamespaceDictionary;
 
@@ -31,10 +38,14 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing.VisualStudio
         public bool TryGetValue(Guid guid, out VsProject project) => GuidDictionary.TryGetValue(guid, out project);
         public bool TryGetValue(string @namespace, out VsProject project) => NamespaceDictionary.TryGetValue(@namespace, out project);
 
-        public static VsSolution FromFolder(string folder, IEnumerable<IVsProjectReader> readers)
+        public override string ToString() => SolutionPath;
+
+        #region Static methods
+
+        public static VsSolution FromFolder(string solutionFolder, IEnumerable<IVsProjectReader> readers)
         {
-            if (folder == null) throw new ArgumentNullException(nameof(folder));
-            if (!Directory.Exists(folder)) throw new DirectoryNotFoundException($"Directory not found exception: {folder}");
+            if (solutionFolder == null) throw new ArgumentNullException(nameof(solutionFolder));
+            if (!Directory.Exists(solutionFolder)) throw new DirectoryNotFoundException($"Directory not found exception: {solutionFolder}");
             if (readers == null) throw new ArgumentNullException(nameof(readers));
 
             var q = from reader in readers
@@ -43,18 +54,52 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing.VisualStudio
                     from extension in supported
                     select new { Extension = extension, Reader = reader };
 
-            var extensions = q.ToDictionary(item => item.Extension, item => item.Reader);
-            var search = string.Join(";", extensions.Keys);
+            var projectReaders = q.ToDictionary(item => item.Extension, item => item.Reader);
+            var extensions = projectReaders.Keys.ToArray();
 
-            var projects = from file in Directory.EnumerateFiles(folder, search, SearchOption.AllDirectories)
-                           let ext = Path.GetExtension(file)
-                           select ReadVsProject(file, ext, extensions[ext]);
+            var allProjects = new List<VsProject>();
+            var rootFolder = GetVsSolutionFolder(solutionFolder);
+            var solution = new VsSolution(solutionFolder, rootFolder, allProjects);
 
-            var solution = new VsSolution(projects.ToList());
             return solution;
+
+            VsSolutionFolder GetVsSolutionFolder(string fromFolder)
+            {
+                var projects = from file in Directory.EnumerateFiles(fromFolder)
+                               let ext = Path.GetExtension(file)
+                               let extension = extensions.FirstOrDefault(extension => extension == ext)
+                               where extension != null
+                               select ReadVsProject(projectReaders[ext], file, ext);
+                var projectsList = projects.ToList();
+
+                var folders = from folder in Directory.EnumerateDirectories(fromFolder)
+                              let vsFolder = GetVsSolutionFolder(folder)
+                              where vsFolder != null
+                              select vsFolder;
+
+                var foldersList = folders.ToList();
+
+                if (projectsList.Count == 0) projectsList = null;
+                if (foldersList.Count == 0) foldersList = null;
+                if ((projectsList == null) && (foldersList == null))
+                {
+                    return null;
+                } // if
+                if (projectsList != null)
+                {
+                    allProjects.AddRange(projectsList);
+                } // if
+
+                return new VsSolutionFolder(Path.GetFileName(fromFolder), projectsList, foldersList);
+            } // function GetVsSolutionFolder
         } // FromFolder
 
-        private static VsProject ReadVsProject(string file, string extension, IVsProjectReader reader)
+        public static Task<VsSolution> FromFolderAsync(string solutionFolder, IEnumerable<IVsProjectReader> readers)
+        {
+            return Task.Run(() => FromFolder(solutionFolder, readers));
+        } // FromFolderAsync
+
+        private static VsProject ReadVsProject(IVsProjectReader reader, string file, string extension)
         {
             using var stream = new FileStream(file, FileMode.Open, FileAccess.Read, FileShare.Read);
             var project = reader.Read(stream, extension);
@@ -63,5 +108,7 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing.VisualStudio
 
             return project;
         } // ReadVsProject
+
+        #endregion
     } // class VsSolution
 } // namespace
