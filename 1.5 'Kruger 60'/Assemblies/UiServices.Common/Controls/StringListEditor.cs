@@ -5,17 +5,19 @@
 // 
 // http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
 
-using System;
-using System.Windows.Forms;
-using IpTviewr.UiServices.Common.Controls;
 using IpTviewr.UiServices.Common.Forms;
 using IpTviewr.UiServices.Common.Properties;
+using System;
+//using System.Collections.Specialized;
 
 namespace IpTviewr.UiServices.Common.Controls
 {
     public partial class StringListEditor : ListEditor
     {
         private readonly ListItemsManager _manager;
+
+        // TODO: implement
+        // public event NotifyCollectionChangedEventHandler ItemsChanged;
 
         public StringListEditor()
         {

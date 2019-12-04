@@ -126,7 +126,7 @@
     <value>44, 9</value>
   </data>
   <data name="labelInput.Size" type="System.Drawing.Size, System.Drawing">
-    <value>303, 26</value>
+    <value>378, 26</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="labelInput.TabIndex" type="System.Int32, mscorlib">
@@ -157,7 +157,7 @@
     <value>12, 38</value>
   </data>
   <data name="textBoxValue.Size" type="System.Drawing.Size, System.Drawing">
-    <value>335, 20</value>
+    <value>410, 20</value>
   </data>
   <data name="textBoxValue.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -181,7 +181,7 @@
     <value>MiddleLeft</value>
   </data>
   <data name="buttonCancel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>247, 64</value>
+    <value>322, 64</value>
   </data>
   <data name="buttonCancel.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 25</value>
@@ -211,7 +211,7 @@
     <value>MiddleLeft</value>
   </data>
   <data name="buttonOk.Location" type="System.Drawing.Point, System.Drawing">
-    <value>141, 64</value>
+    <value>216, 64</value>
   </data>
   <data name="buttonOk.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 25</value>
@@ -322,14 +322,14 @@
   <data name="&gt;&gt;pictureBox1.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="$this.Localizable" type="System.Boolean, mscorlib">
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
-  </data>
+  </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>6, 13</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>359, 101</value>
+    <value>434, 101</value>
   </data>
   <data name="$this.MaximumSize" type="System.Drawing.Size, System.Drawing">
     <value>1024, 140</value>

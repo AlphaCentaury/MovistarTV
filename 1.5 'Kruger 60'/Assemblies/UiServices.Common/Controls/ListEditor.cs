@@ -37,6 +37,8 @@ namespace IpTviewr.UiServices.Common.Controls
             } // set
         } // IsDataChanged
 
+        public virtual int ItemsCount => listItems.Items.Count;
+
         public virtual bool IsReadOnly { get; set; }
 
         public virtual bool CanEdit => !IsReadOnly;
