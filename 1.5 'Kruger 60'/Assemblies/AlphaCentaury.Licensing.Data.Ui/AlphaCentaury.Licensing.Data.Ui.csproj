@@ -1,0 +1,138 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{1293A5C4-478F-4EFD-8E53-D283B35E1A06}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AlphaCentaury.Licensing.Data.Ui</RootNamespace>
+    <AssemblyName>AlphaCentaury.Licensing.Data.Ui</AssemblyName>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <LangVersion>8</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <LangVersion>8</LangVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="JetBrains.Annotations, Version=2019.1.3.0, Culture=neutral, PublicKeyToken=1010a0d8d6380325, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JetBrains.Annotations.2019.1.3\lib\net20\JetBrains.Annotations.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="LicensingDataUi.cs" />
+    <Compile Include="LicensingUiImages.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\ApplicationCli.svg" />
+    <Content Include="Resources\ApplicationCli_16x.png" />
+    <Content Include="Resources\ApplicationCli_24x.png" />
+    <Content Include="Resources\ApplicationCli_32x.png" />
+    <Content Include="Resources\ApplicationCli_48x.png" />
+    <Content Include="Resources\ApplicationGui.svg" />
+    <Content Include="Resources\ApplicationGui_16x.png" />
+    <Content Include="Resources\ApplicationGui_24x.png" />
+    <Content Include="Resources\ApplicationGui_32x.png" />
+    <Content Include="Resources\ApplicationGui_48x.png" />
+    <Content Include="Resources\Certificate_16x.png" />
+    <Content Include="Resources\Certificate.svg" />
+    <Content Include="Resources\Certificate_24x.png" />
+    <Content Include="Resources\Certificate_32x.png" />
+    <Content Include="Resources\Dependencies.svg" />
+    <Content Include="Resources\Dependencies_16x.png" />
+    <Content Include="Resources\Dependencies_24x.png" />
+    <Content Include="Resources\Dependencies_32x.png" />
+    <Content Include="Resources\Folder.svg" />
+    <Content Include="Resources\FolderOpen.svg" />
+    <Content Include="Resources\FolderOpen_16x.png" />
+    <Content Include="Resources\FolderOpen_24x.png" />
+    <Content Include="Resources\FolderOpen_32x.png" />
+    <Content Include="Resources\Folder_16x.png" />
+    <Content Include="Resources\Folder_24x.png" />
+    <Content Include="Resources\Folder_32x.png" />
+    <Content Include="Resources\ImageLibrary.svg" />
+    <Content Include="Resources\ImageLibrary_16x.png" />
+    <Content Include="Resources\ImageLibrary_24x.png" />
+    <Content Include="Resources\ImageLibrary_32x.png" />
+    <Content Include="Resources\Library.svg" />
+    <Content Include="Resources\Library_16x.png" />
+    <Content Include="Resources\Library_24x.png" />
+    <Content Include="Resources\Library_32x.png" />
+    <Content Include="Resources\LicenseFile_16x.png" />
+    <Content Include="Resources\LicenseFile.svg" />
+    <Content Include="Resources\LicenseFile_24x.png" />
+    <Content Include="Resources\LicenseFile_32x.png" />
+    <Content Include="Resources\LicenseFile_48x.png" />
+    <Content Include="Resources\Link.svg" />
+    <Content Include="Resources\Link_16x.png" />
+    <Content Include="Resources\Link_24x.png" />
+    <Content Include="Resources\Link_32x.png" />
+    <Content Include="Resources\Link_48x.png" />
+    <Content Include="Resources\nuget.svg" />
+    <Content Include="Resources\nuget_16x.png" />
+    <Content Include="Resources\nuget_24x.png" />
+    <Content Include="Resources\nuget_32x.png" />
+    <Content Include="Resources\SourceCode.svg" />
+    <Content Include="Resources\SourceCode_16x.png" />
+    <Content Include="Resources\SourceCode_24x.png" />
+    <Content Include="Resources\SourceCode_32x.png" />
+    <Content Include="Resources\ThirdParty.svg" />
+    <Content Include="Resources\ThirdParty_16x.png" />
+    <Content Include="Resources\ThirdParty_24x.png" />
+    <Content Include="Resources\ThirdParty_32x.png" />
+    <Content Include="Resources\Unknown_16x.png" />
+    <Content Include="Resources\Unknown.svg" />
+    <Content Include="Resources\Unknown_24x.png" />
+    <Content Include="Resources\Unknown_32x.png" />
+    <Content Include="Resources\Unknown_48x.png" />
+    <Content Include="Resources\LicensedUnknown_16x.png" />
+    <Content Include="Resources\LicensedUnknown.svg" />
+    <Content Include="Resources\LicensedUnknown_24x.png" />
+    <Content Include="Resources\LicensedUnknown_32x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AlphaCentaury.Licensing.Data\AlphaCentaury.Licensing.Data.csproj">
+      <Project>{42b71db3-2e34-43bb-bf87-88f422bcf861}</Project>
+      <Name>AlphaCentaury.Licensing.Data</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
