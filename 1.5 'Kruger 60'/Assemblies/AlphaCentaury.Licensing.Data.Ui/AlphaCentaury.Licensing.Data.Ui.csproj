@@ -37,6 +37,7 @@
       <HintPath>..\..\packages\JetBrains.Annotations.2019.1.3\lib\net20\JetBrains.Annotations.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
@@ -50,12 +51,25 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="ReversedLicensingFileViewer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ReversedLicensingFileViewer.Designer.cs">
+      <DependentUpon>ReversedLicensingFileViewer.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.es.resx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReversedLicensingFileViewer.es.resx">
+      <DependentUpon>ReversedLicensingFileViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReversedLicensingFileViewer.resx">
+      <DependentUpon>ReversedLicensingFileViewer.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

@@ -11,13 +11,27 @@ using AlphaCentaury.Licensing.Data.Serialization;
 
 namespace AlphaCentaury.Licensing.Data
 {
-    public class ThirdPartyDependencyComparer: IEqualityComparer<ThirdPartyDependency>, IComparer<ThirdPartyDependency>
+    public class ThirdPartyDependencyComparer : IEqualityComparer<ThirdPartyDependency>, IComparer<ThirdPartyDependency>
     {
+        private readonly StringComparison _comparisonType;
+
+        public ThirdPartyDependencyComparer()
+        {
+            _comparisonType = StringComparison.InvariantCulture;
+        } // constructor
+
+        public ThirdPartyDependencyComparer(StringComparison comparisonType)
+        {
+            _comparisonType = comparisonType;
+        } // constructor
+
         #region Implementation of IEqualityComparer<in ThirdPartyLibrary>
 
         public bool Equals(ThirdPartyDependency x, ThirdPartyDependency y)
         {
-            return string.Equals(x?.Name, y?.Name, StringComparison.InvariantCulture);
+            if (x.Type != y.Type) return false;
+            if (x.LicenseId != x.LicenseId) return false;
+            return string.Equals(x?.Name, y?.Name, _comparisonType);
         } // Equals
 
         public int GetHashCode(ThirdPartyDependency obj)
@@ -31,7 +45,10 @@ namespace AlphaCentaury.Licensing.Data
 
         public int Compare(ThirdPartyDependency x, ThirdPartyDependency y)
         {
-            return string.Compare(x?.Name, y?.Name, StringComparison.InvariantCulture);
+            if (x.Type != x.Type) return (int)(x.Type - y.Type);
+            var compare = string.Compare(x?.LicenseId, y?.LicenseId, _comparisonType);
+            if (compare != 0) return compare;
+            return string.Compare(x?.Name, y?.Name, _comparisonType);
         } // Compare
 
         #endregion

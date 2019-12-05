@@ -14,9 +14,9 @@ namespace AlphaCentaury.Licensing.Data
 {
     public static class LicensingDataExtensions
     {
-        public static LicensingFile Clone(this LicensingFile item)
+        public static LicensingData Clone(this LicensingData item)
         {
-            var clone = new LicensingFile
+            var clone = new LicensingData
             {
                 Dependencies = item.Dependencies.Clone(),
                 Licensing = item.Licensing.Clone(),
@@ -76,8 +76,8 @@ namespace AlphaCentaury.Licensing.Data
         {
             var clone = new LibraryDependency
             {
-                Name = item.Name,
-                AssemblyName = item.AssemblyName,
+                Namespace = item.Namespace,
+                Assembly = item.Assembly,
                 LicenseId = item.LicenseId
             };
 

@@ -13,7 +13,7 @@ namespace AlphaCentaury.Licensing.Data.Serialization
     [Serializable]
     public abstract class LicensedItem: BaseLibrary
     {
-        [XmlAttribute("assembly")]
+        [XmlAttribute("file")]
         public string Assembly { get; set; }
 
         public string Product { get; set; }

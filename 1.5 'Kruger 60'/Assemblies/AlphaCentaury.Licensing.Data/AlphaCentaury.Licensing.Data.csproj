@@ -43,21 +43,26 @@
   <ItemGroup>
     <Compile Include="DependencyLibraryComparer.cs" />
     <Compile Include="LicensingDataExtensions.cs" />
-    <Compile Include="LicenseFileUtils.cs" />
+    <Compile Include="LicensingDataTools.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReverseFile.cs" />
     <Compile Include="Serialization\BaseLibrary.cs" />
     <Compile Include="Serialization\Dependencies.cs" />
     <Compile Include="Serialization\LibraryDependency.cs" />
     <Compile Include="Serialization\License.cs" />
     <Compile Include="Serialization\LicensedLibrary.cs" />
     <Compile Include="Serialization\LicensedProgram.cs" />
+    <Compile Include="Serialization\LicenseExpanded.cs" />
+    <Compile Include="Serialization\LicenseUsedBy.cs" />
     <Compile Include="Serialization\Licensing.cs" />
-    <Compile Include="Serialization\LicensingFile.cs" />
+    <Compile Include="Serialization\LicensingDefaults.cs" />
+    <Compile Include="Serialization\LicensingData.cs" />
     <Compile Include="Serialization\LicensedItem.cs" />
+    <Compile Include="Serialization\MultilineText.cs" />
+    <Compile Include="Serialization\ReversedLicensingFile.cs" />
     <Compile Include="Serialization\TermsAndConditions.cs" />
     <Compile Include="Serialization\ThirdPartyDependencyType.cs" />
     <Compile Include="Serialization\ThirdPartyDependency.cs" />
-    <Compile Include="Serialization\XmlText.cs" />
     <Compile Include="ThirdPartyDependencyComparer.cs" />
     <Compile Include="ExpandDependencies.cs" />
   </ItemGroup>

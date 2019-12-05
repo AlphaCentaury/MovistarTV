@@ -6,10 +6,7 @@
 // http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
 
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Schema;
 using System.Xml.Serialization;
@@ -17,14 +14,14 @@ using System.Xml.Serialization;
 namespace AlphaCentaury.Licensing.Data.Serialization
 {
     [Serializable]
-    public class XmlText : IXmlSerializable
+    public class MultilineText : IXmlSerializable
     {
-        public XmlText()
+        public MultilineText()
         {
             // no-op
         } // constructor
 
-        public XmlText(string text)
+        public MultilineText(string text)
         {
             Text = text;
         } // constructor
@@ -57,7 +54,7 @@ namespace AlphaCentaury.Licensing.Data.Serialization
             } // if-else
         } // IXmlSerializable.WriteXml
 
-        public static implicit operator XmlText(string text) => new XmlText(text);
-        public static implicit operator string(XmlText xmlCData) => xmlCData.Text;
-    } // class XmlCDataText
+        public static implicit operator MultilineText(string text) => new MultilineText(text);
+        public static implicit operator string(MultilineText multiline) => multiline.Text;
+    } // class MultilineText
 } // namespace

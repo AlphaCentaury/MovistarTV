@@ -6,7 +6,6 @@
 // http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
 
 using System;
-using System.Linq;
 using System.Xml;
 using System.Xml.Schema;
 using System.Xml.Serialization;
@@ -100,7 +99,7 @@ namespace AlphaCentaury.Licensing.Data.Serialization
             if (Format != null) writer.WriteAttributeString("format", Format);
 
             if (Text == null) return;
-            if (Text.Contains('\r') || Text.Contains('\n'))
+            if (Text.Contains("'\r") || Text.Contains("\n"))
             {
                 writer.WriteCData(Text);
             }

@@ -14,10 +14,10 @@ namespace AlphaCentaury.Licensing.Data
 {
     internal class ExpandDependencies
     {
-        private readonly List<LicensingFile> _files;
-        private readonly Dictionary<string, LicensingFile> _libraries;
+        private readonly List<LicensingData> _files;
+        private readonly Dictionary<string, LicensingData> _libraries;
 
-        public ExpandDependencies(List<LicensingFile> files)
+        public ExpandDependencies(List<LicensingData> files)
         {
             // validate arguments
             if (files == null) throw new ArgumentNullException(nameof(files));
@@ -106,7 +106,7 @@ namespace AlphaCentaury.Licensing.Data
             });
         } // AddMissingLicenses
 
-        private void AddIndirectLibraryDependencies(LicensingFile file, HashSet<string> visited)
+        private void AddIndirectLibraryDependencies(LicensingData file, HashSet<string> visited)
         {
             if (file.Dependencies?.Libraries == null) return;
 
@@ -116,15 +116,15 @@ namespace AlphaCentaury.Licensing.Data
 
             // add indirect library dependencies
             var q = from dependency in file.Dependencies.Libraries
-                    select _libraries[dependency.Name];
+                    select _libraries[dependency.Namespace];
             q.ForEach(AddIndirectLibraryDependencies, visited);
 
             // create hashset to avoid adding duplicated dependencies
             var added = new HashSet<string>();
-            file.Dependencies.Libraries.ForEach(lib => added.Add(lib.Name ?? throw new ArgumentException()));
+            file.Dependencies.Libraries.ForEach(lib => added.Add(lib.Namespace ?? throw new ArgumentException()));
 
             var libraries = (from dependency in file.Dependencies.Libraries
-                             select _libraries[dependency.Name]).ToArray();
+                             select _libraries[dependency.Namespace]).ToArray();
 
             var dependencies = from library in libraries
                                where library.Dependencies.Libraries != null
@@ -133,26 +133,26 @@ namespace AlphaCentaury.Licensing.Data
 
             dependencies.ForEach(dependency =>
             {
-                if (added.Contains(dependency.Name)) return;
+                if (added.Contains(dependency.Namespace)) return;
 
                 file.Dependencies.Libraries.Add(new LibraryDependency
                 {
-                    Name = dependency.Name,
-                    AssemblyName = dependency.AssemblyName,
+                    Namespace = dependency.Namespace,
+                    Assembly = dependency.Assembly,
                     LicenseId = dependency.LicenseId,
                     IsDirectDependency = false
                 });
-                added.Add(dependency.Name);
+                added.Add(dependency.Namespace);
             });
         } // AddIndirectLibraryDependencies
 
-        private void AddIndirectThirdParty(LicensingFile file)
+        private void AddIndirectThirdParty(LicensingData file)
         {
             var added = new HashSet<string>();
             file.Licensing.ThirdParty?.ForEach(library => added.Add(library.Name));
 
             var q = from dependency in file.Dependencies.Libraries
-                    let library = _libraries[dependency.Name]
+                    let library = _libraries[dependency.Namespace]
                     where library.Licensing?.ThirdParty != null
                     from thirdParty in library.Licensing.ThirdParty
                     select thirdParty;

@@ -13,7 +13,7 @@ namespace AlphaCentaury.Licensing.Data.Ui
 {
     public class LicensingUiImages
     {
-        public const string KeyLicensingFile = "LicensingFile";
+        public const string KeyLicensingData = "LicensingData";
         public const string KeyLicensedProgramCli = "ApplicationCli";
         public const string KeyLicensedProgramGui = "ApplicationGui";
         public const string KeyLicensedLibrary = "LicensedLibrary";
@@ -32,7 +32,7 @@ namespace AlphaCentaury.Licensing.Data.Ui
 
         public LicensingUiImages(ImageList.ImageCollection images)
         {
-            LicensingFile = images.IndexOfKey(KeyLicensingFile);
+            LicensingData = images.IndexOfKey(KeyLicensingData);
             LicensedProgramCli = images.IndexOfKey(KeyLicensedProgramCli);
             LicensedProgramGui = images.IndexOfKey(KeyLicensedProgramGui);
             LicensedLibrary = images.IndexOfKey(KeyLicensedLibrary);
@@ -50,7 +50,7 @@ namespace AlphaCentaury.Licensing.Data.Ui
             License = images.IndexOfKey(KeyLicense);
         } // constructor
 
-        public int LicensingFile { get; }
+        public int LicensingData { get; }
         public int LicensedProgramCli { get; }
         public int LicensedProgramGui { get; }
         public int LicensedLibrary { get; }
@@ -73,7 +73,7 @@ namespace AlphaCentaury.Licensing.Data.Ui
             list.Images.Clear();
             list.ColorDepth = ColorDepth.Depth32Bit;
             list.ImageSize = new Size(16, 16);
-            list.Images.Add(KeyLicensingFile, Resources.Certificate_16x);
+            list.Images.Add(KeyLicensingData, Resources.Certificate_16x);
             list.Images.Add(KeyLicensedProgramCli, Resources.ApplicationCli_16x);
             list.Images.Add(KeyLicensedProgramGui, Resources.ApplicationGui_16x);
             list.Images.Add(KeyLicensedLibrary, Resources.Library_16x);
@@ -96,7 +96,7 @@ namespace AlphaCentaury.Licensing.Data.Ui
             list.Images.Clear();
             list.ColorDepth = ColorDepth.Depth32Bit;
             list.ImageSize = new Size(24, 24);
-            list.Images.Add(KeyLicensingFile, Resources.Certificate_24x);
+            list.Images.Add(KeyLicensingData, Resources.Certificate_24x);
             list.Images.Add(KeyLicensedProgramCli, Resources.ApplicationCli_24x);
             list.Images.Add(KeyLicensedProgramGui, Resources.ApplicationGui_24x);
             list.Images.Add(KeyLicensedLibrary, Resources.Library_24x);
@@ -119,7 +119,7 @@ namespace AlphaCentaury.Licensing.Data.Ui
             list.Images.Clear();
             list.ColorDepth = ColorDepth.Depth32Bit;
             list.ImageSize = new Size(32, 32);
-            list.Images.Add(KeyLicensingFile, Resources.Certificate_32x);
+            list.Images.Add(KeyLicensingData, Resources.Certificate_32x);
             list.Images.Add(KeyLicensedProgramCli, Resources.ApplicationCli_32x);
             list.Images.Add(KeyLicensedProgramGui, Resources.ApplicationGui_32x);
             list.Images.Add(KeyLicensedLibrary, Resources.Library_32x);

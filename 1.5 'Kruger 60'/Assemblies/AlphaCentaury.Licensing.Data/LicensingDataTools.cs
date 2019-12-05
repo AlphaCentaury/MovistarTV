@@ -14,10 +14,16 @@ namespace AlphaCentaury.Licensing.Data
 {
     public static class LicensingDataTools
     {
-        public static void ExpandDependencies(this List<LicensingFile> files)
+        public static void ExpandDependencies(this List<LicensingData> files)
         {
             var expander = new ExpandDependencies(files);
             expander.Expand();
-        } // FirstPass
-    } // class LicenseFileUtils
+        } // ExpandDependencies
+
+        public static ReversedLicensingFile Reverse(LicensingData file)
+        {
+            var transformer = new ReverseFile(file);
+            return transformer.Reverse();
+        } // Reverse
+    } // class LicensingDataTools
 } // namespace

@@ -15,10 +15,10 @@ namespace AlphaCentaury.Licensing.Data.Serialization
     public class LibraryDependency
     {
         [XmlAttribute("name")]
-        public string Name { get; set; }
+        public string Namespace { get; set; }
 
-        [XmlAttribute("assembly")]
-        public string AssemblyName { get; set; }
+        [XmlAttribute("file")]
+        public string Assembly { get; set; }
 
         [XmlAttribute("license")]
         public string LicenseId { get; set; }
@@ -33,7 +33,7 @@ namespace AlphaCentaury.Licensing.Data.Serialization
 
         public override string ToString()
         {
-            return IsDirectDependency ? Name : "+" + Name;
+            return IsDirectDependency ? Namespace : "+" + Namespace;
         } // ToString
     } // class LibraryDependency
 } // namespace

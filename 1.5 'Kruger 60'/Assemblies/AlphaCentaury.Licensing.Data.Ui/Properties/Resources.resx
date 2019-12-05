@@ -145,6 +145,15 @@
   <data name="Certificate_32x" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\certificate_32x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="DependenciesLibrariesNode" xml:space="preserve">
+    <value>Libraries</value>
+  </data>
+  <data name="DependenciesNode" xml:space="preserve">
+    <value>Indirect dependencies</value>
+  </data>
+  <data name="DependenciesThirdPartyNode" xml:space="preserve">
+    <value>Third-party</value>
+  </data>
   <data name="Dependencies_16x" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\dependencies_16x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -153,6 +162,12 @@
   </data>
   <data name="Dependencies_32x" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\dependencies_32x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="GroupLibrariesName" xml:space="preserve">
+    <value>Libraries</value>
+  </data>
+  <data name="GroupThirdPartyName" xml:space="preserve">
+    <value>Third-party components</value>
   </data>
   <data name="ImageLibrary_16x" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\imagelibrary_16x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -190,6 +205,9 @@
   <data name="LicenseFile_32x" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\licensefile_32x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="LicensesNode" xml:space="preserve">
+    <value>Licenses</value>
+  </data>
   <data name="Link_16x" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\link_16x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -201,6 +219,12 @@
   </data>
   <data name="Link_48x" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\link_48x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ListThirdPartyNode" xml:space="preserve">
+    <value>Third-party components</value>
+  </data>
+  <data name="NoName" xml:space="preserve">
+    <value>&lt;no name&gt;</value>
   </data>
   <data name="nuget_16x" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\nuget_16x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>

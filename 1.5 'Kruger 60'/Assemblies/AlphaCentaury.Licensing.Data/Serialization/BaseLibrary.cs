@@ -23,7 +23,7 @@ namespace AlphaCentaury.Licensing.Data.Serialization
 
         public string Copyright { get; set; }
 
-        public string Remarks { get; set; }
+        public MultilineText Remarks { get; set; }
 
         public override string ToString()
         {

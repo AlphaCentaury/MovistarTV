@@ -12,9 +12,11 @@ using System.Xml.Serialization;
 namespace AlphaCentaury.Licensing.Data.Serialization
 {
     [Serializable]
-    [XmlRoot("AlphaCentaury")]
-    public class LicensingFile
+    [XmlRoot("Data", Namespace = Namespace)]
+    public class LicensingData
     {
+        public const string Namespace = "AlphaCentaury.Licensing.Data.v1";
+
         public Licensing Licensing { get; set; }
 
         public Dependencies Dependencies { get; set; }
@@ -25,5 +27,5 @@ namespace AlphaCentaury.Licensing.Data.Serialization
         {
             return Licensing?.Licensed?.ToString() ?? "<null>";
         } // ToString
-    } // class Root
+    } // class LicensingData
 } // namespace
