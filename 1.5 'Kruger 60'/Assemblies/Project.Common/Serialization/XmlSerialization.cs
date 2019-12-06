@@ -15,6 +15,8 @@ namespace IpTviewr.Common.Serialization
 {
     public static class XmlSerialization
     {
+        public static Lazy<Encoding> DefaultEncoding = new Lazy<Encoding>(CreateDefaultEncoding);
+
         #region Serialize
 
         public static object CloneObject(object data)
@@ -47,7 +49,7 @@ namespace IpTviewr.Common.Serialization
         {
             using (var output = new FileStream(filename, FileMode.Create, FileAccess.ReadWrite))
             {
-                Serialize<T>(output, o);
+                Serialize(output, DefaultEncoding.Value, o);
             } // using output
         } // Serialize<T>
 
@@ -55,14 +57,13 @@ namespace IpTviewr.Common.Serialization
         {
             using (var output = new FileStream(filename, FileMode.Create, FileAccess.ReadWrite))
             {
-                Serialize<T>(output, encoding, o);
+                Serialize(output, encoding, o);
             } // using output
         } // Serialize<T>
 
         public static void Serialize<T>(Stream output, T o)
         {
-            var serializer = new XmlSerializer(typeof(T));
-            serializer.Serialize(output, o);
+            Serialize(output, DefaultEncoding.Value, o);
         } // Serialize<T>
 
         public static void Serialize<T>(Stream output, Encoding encoding, T o)
@@ -156,22 +157,23 @@ namespace IpTviewr.Common.Serialization
 
         public static XmlReader CreateXmlReader(TextReader input, bool trimExtraWhitespace, Func<string, string> namespaceReplacer)
         {
-            if (trimExtraWhitespace)
+            if (!trimExtraWhitespace) return XmlReader.Create(input);
+            
+            var readerSettings = new XmlReaderSettings
             {
-                var readerSettings = new XmlReaderSettings()
-                {
-                    IgnoreComments = true,
-                    IgnoreWhitespace = true,
-                };
+                IgnoreComments = true,
+                IgnoreWhitespace = true,
+            };
 
-                return new XmlTextReaderTrimExtraWhitespace(input, readerSettings, namespaceReplacer);
-            }
-            else
-            {
-                return XmlReader.Create(input);
-            } // if-else
+            return new XmlTextReaderTrimExtraWhitespace(input, readerSettings, namespaceReplacer);
+
         } // CreateXmlReader
 
         #endregion
+
+        private static Encoding CreateDefaultEncoding()
+        {
+            return new UTF8Encoding(false);
+        } // CreateDefaultEncoding
     } // class XmlSerialization
 } // namespace
