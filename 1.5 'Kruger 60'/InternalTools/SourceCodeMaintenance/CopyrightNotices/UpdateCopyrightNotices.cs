@@ -14,6 +14,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using AlphaCentaury.Tools.SourceCodeMaintenance.Interfaces;
 
 namespace AlphaCentaury.Tools.SourceCodeMaintenance.CopyrightNotices
 {
@@ -29,23 +30,23 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.CopyrightNotices
         private readonly string[] CopyrightHeaderLines = SolutionVersion.CopyrightHeaderLines;
         private string[] ExcludedPaths;
         private IList<string> FileHeaderLines;
-        private Action<string> WriteLine;
+        private IToolOutputWriter Writer;
         private string CurrentLine;
 
         public string SelectFileFilter => "";
 
-        public void Execute([NotNull] IReadOnlyList<string> args, [NotNull] Action<string> writeLine)
+        public void Execute([NotNull] IReadOnlyList<string> args, [NotNull] IToolOutputWriter writer)
         {
-            WriteLine = writeLine;
+            Writer = writer;
 
-            WriteLine("Update/add copyright notices to project code");
-            WriteLine("Copyright (C) 2014-2019, GitHub user AlphaCentaury");
-            WriteLine("https://github.com/AlphaCentaury");
-            WriteLine("");
+            Writer.WriteLine("Update/add copyright notices to project code");
+            Writer.WriteLine("Copyright (C) 2014-2019, GitHub user AlphaCentaury");
+            Writer.WriteLine("https://github.com/AlphaCentaury");
+            Writer.WriteLine();
 
             if (args.Count == 0)
             {
-                writeLine("Error: arguments not specified");
+                Writer.WriteLine("Error: arguments not specified");
                 return;
             } // if
 
@@ -53,9 +54,9 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.CopyrightNotices
             arguments.Parse(args);
             if (!arguments.IsOk)
             {
-                WriteLine("Error: unable to parse arguments");
+                Writer.WriteLine("Error: unable to parse arguments");
                 return;
-            } // WriteLine
+            } // Writer.WriteLine
 
             if (arguments.Switches.ContainsKey("exclude"))
             {
@@ -68,14 +69,13 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.CopyrightNotices
 
             ExcludedPaths = null;
             FileHeaderLines = null;
-            WriteLine = null;
+            Writer = null;
             CurrentLine = null;
         } // Execute
 
-
         public Form GetUi() => throw new NotSupportedException();
 
-        public void ShowUsage([NotNull] Action<string> writeLine) => throw new NotSupportedException();
+        public void ShowUsage(IToolOutputWriter writer) => throw new NotSupportedException();
 
         #region Implementation
 
@@ -85,7 +85,7 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.CopyrightNotices
             {
                 if (!Directory.Exists(path))
                 {
-                    WriteLine($"Path not found: {path}");
+                    Writer.WriteLine($"Path not found: {path}");
                     continue;
                 } // if
 
@@ -98,6 +98,7 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.CopyrightNotices
         private void ProcessPath(SearchOption searchOptions, string path)
         {
             var lastPath = (string)null;
+            Writer.IncreaseIndent();
             foreach (var filename in Directory.EnumerateFiles(path, "*", searchOptions))
             {
                 // is path excluded?
@@ -113,13 +114,14 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.CopyrightNotices
                 // new path?
                 if (currentPath != lastPath)
                 {
-                    WriteLine(currentPath);
+                    Writer.WriteLine(currentPath);
                     lastPath = currentPath;
                 } // if
 
                 // Process file
                 ProcessFile(filename, locateFunc, writeAction);
             } // foreach file
+            Writer.DecreaseIndent();
         } // ProcessPath
 
         private (Func<TextReader, bool> LocateFunc, Action<TextWriter> WriteAction) GetFromExtension(string extension)
@@ -155,7 +157,7 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.CopyrightNotices
 
             if (!ExcludedPaths.Any(path.StartsWith)) return false;
 
-            WriteLine($"(Excluded) {path}");
+            Writer.WriteLine($"(Excluded) {path}");
             return true;
         } // IsPathExcluded
 
@@ -164,13 +166,11 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.CopyrightNotices
             try
             {
                 var result = UpdateHeaders(filename, locateFunc, writeAction);
-                WriteLine($"\t{Path.GetFileName(filename)}{(result ? ": Ok" : ": not needed")}");
+                Writer.WriteLine($"{Path.GetFileName(filename)}{(result ? ": Ok" : ": not needed")}");
             }
             catch (Exception ex)
             {
-                WriteLine($"Exception: {ex.GetType().Name}");
-                WriteLine($">> {ex.Message}");
-                WriteLine($">> {filename}");
+                Writer.WriteException(ex, filename);
             } // tryHeader
         } // ProcessFile
 
@@ -184,7 +184,7 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.CopyrightNotices
 
                 if (!locateFunc(reader))
                 {
-                    tempFilename = filename + "~";
+                    tempFilename = Path.GetTempFileName();
                     using var writer = new StreamWriter(tempFilename, false, new UTF8Encoding(false, true), short.MaxValue);
                     if (FileHeaderLines != null)
                     {

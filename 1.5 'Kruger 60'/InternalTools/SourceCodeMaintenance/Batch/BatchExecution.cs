@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using AlphaCentaury.Tools.SourceCodeMaintenance.Interfaces;
 using AlphaCentaury.Tools.SourceCodeMaintenance.Properties;
 using IpTviewr.Common.Serialization;
 using JetBrains.Annotations;
@@ -23,41 +24,42 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Batch
     [ExportMetadata("HasFileParameters", true)]
     [ExportMetadata("HasUi", true)]
     [ExportMetadata("CliName", "Batch")]
-    public class BatchExecution : IMaintenanceTool
+    public sealed class BatchExecution : IMaintenanceTool
     {
         #region Implementation of IMaintenanceTool
 
-        public void Execute([NotNull] IReadOnlyList<string> arguments, [NotNull] Action<string> writeLine)
+        public void Execute([NotNull] IReadOnlyList<string> arguments, [NotNull] IToolOutputWriter writer)
         {
             if (arguments.Count == 0)
             {
-                ShowUsage(writeLine);
+                ShowUsage(writer);
                 return;
             } // if
 
             foreach (var argument in arguments)
             {
-                writeLine("**********************************************************************");
-                writeLine($"Executing '{argument}'");
-                writeLine("**********************************************************************");
-                writeLine("");
+                writer.WriteLine("**********************************************************************");
+                writer.WriteLine($"Executing '{argument}'");
+                writer.WriteLine("**********************************************************************");
+                writer.WriteLine();
 
                 var batch = XmlSerialization.Deserialize<Serialization.Batch>(argument);
                 if (batch == null) throw new System.IO.InvalidDataException();
 
-                DoExecute(batch, writeLine);
+                DoExecute(batch, writer);
             } // foreach
         } // Execute
 
-        public void Execute(Serialization.Batch batch, Action<string> writeLine)
+        [PublicAPI]
+        public void Execute(Serialization.Batch batch, IToolOutputWriter writer)
         {
             if (batch == null) throw new ArgumentNullException(nameof(batch));
-            if (writeLine == null) throw new ArgumentNullException(nameof(writeLine));
+            if (writer == null) throw new ArgumentNullException(nameof(writer));
 
-            DoExecute(batch, writeLine);
+            DoExecute(batch, writer);
         } // Execute
 
-        public void ShowUsage([NotNull] Action<string> writeLine)
+        public void ShowUsage(IToolOutputWriter writer)
         {
             throw new NotImplementedException();
         } // ShowUsage
@@ -68,18 +70,18 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Batch
 
         #endregion
 
-        public static Task ExecuteBatchAsync(Serialization.Batch batch, Action<string> writeLine)
+        public static Task ExecuteBatchAsync(Serialization.Batch batch, IToolOutputWriter writer)
         {
             if (batch == null) throw new ArgumentNullException(nameof(batch));
-            if (writeLine == null) throw new ArgumentNullException(nameof(writeLine));
+            if (writer == null) throw new ArgumentNullException(nameof(writer));
 
-            var task = new Task(() => DoExecute(batch, writeLine), TaskCreationOptions.LongRunning);
+            var task = new Task(() => DoExecute(batch, writer), TaskCreationOptions.LongRunning);
             task.Start();
 
             return task;
         } // ExecuteBatchAsync
 
-        private static void DoExecute([NotNull] Serialization.Batch batch, [NotNull] Action<string> writeLine)
+        private static void DoExecute([NotNull] Serialization.Batch batch, [NotNull] IToolOutputWriter writer)
         {
             foreach (var line in batch.Lines)
             {
@@ -89,32 +91,28 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Batch
                     continue;
                 } // if
 
-                writeLine("======================================================================");
-                writeLine($"Executing {tool.Metadata.CliName}");
+                writer.WriteLine("======================================================================");
+                writer.WriteLine($"Executing {tool.Metadata.CliName}");
+                writer.IncreaseIndent();
                 foreach (var argument in line.Arguments)
                 {
-                    writeLine($"\t{argument}");
+                    writer.WriteLine(argument);
                 } // foreach
-                writeLine("======================================================================");
-                writeLine("");
+                writer.DecreaseIndent();
+                writer.WriteLine();
+
                 try
                 {
-                    tool.Value.Execute(line.Arguments, writeLine);
+                    tool.Value.Execute(line.Arguments, writer);
                 }
                 catch (Exception e)
                 {
-                    while (e != null)
-                    {
-                        writeLine($">>>>>  {e.GetType().Name}  <<<<<");
-                        writeLine(e.Message);
-                        var trace = e.StackTrace.Split(new string[] { Environment.NewLine }, StringSplitOptions.None);
-                        foreach (var traceLine in trace)
-                        {
-                            writeLine(traceLine);
-                        } // foreach
-                        e = e.InnerException;
-                    } // while
+                    writer.WriteException(e);
                 } // catch
+
+                writer.WriteLine($"Execution ended: {writer.ElapsedTime}");
+                writer.WriteLine("======================================================================");
+                writer.WriteLine();
             } // foreach
         } // DoExecute
     } // class BatchExecution

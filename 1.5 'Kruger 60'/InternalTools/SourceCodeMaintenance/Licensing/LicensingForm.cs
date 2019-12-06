@@ -1,344 +1,181 @@
-// Copyright (C) 2014-2019, GitHub/Codeplex user AlphaCentaury
-// 
-// All rights reserved, except those granted by the governing license of this software.
-// See 'license.txt' file in the project root for complete license information.
-// 
-// http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
-
-using AlphaCentaury.Tools.SourceCodeMaintenance.Licensing.VisualStudio;
-using AlphaCentaury.Tools.SourceCodeMaintenance.Properties;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
 using System.Drawing;
 using System.Globalization;
 using System.IO;
-using System.Net;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
+using AlphaCentaury.Licensing.Data.Serialization;
 using AlphaCentaury.Licensing.Data.Ui;
+using AlphaCentaury.Tools.SourceCodeMaintenance.Helpers;
+using AlphaCentaury.Tools.SourceCodeMaintenance.Interfaces;
+using AlphaCentaury.Tools.SourceCodeMaintenance.Licensing.VisualStudio;
+using IpTviewr.Common.Serialization;
 
 namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing
 {
-    public partial class LicensingForm : Form
+    public sealed partial class LicensingForm : LicensingFormDocumentView
     {
-        private class SolutionTreeImages
-        {
-            private const string KeyFolder = @"Folder";
-            private const string KeyFolderOpen = @"FolderOpen";
-            private const string KeyVsSolution = @"VS_Solution";
-            private const string KeyVsSolutionFile = @"VS_Solution_File";
-            private const string KeyVsProjectUnknown = @"VS_Project_Unknown";
-            private const string KeyCsExe = @"CSharp_Exe";
-            private const string KeyCsLib = @"CSharp_Lib";
-            private const string KeyCsWinExe = @"CSharp_WinExe";
-            private const string KeyCertificate = @"Certificate";
-            private const string KeyCertificateError = @"Certificate_Error";
-            private const string KeyReferences = @"References";
-
-            public SolutionTreeImages(ImageList.ImageCollection images)
-            {
-                Folder = images.IndexOfKey(KeyFolder);
-                FolderOpen = images.IndexOfKey(KeyFolderOpen);
-                VsSolution = images.IndexOfKey(KeyVsSolution);
-                VsSolutionFile = images.IndexOfKey(KeyVsSolutionFile);
-                VsProjectUnknown = images.IndexOfKey(KeyVsProjectUnknown);
-                CsExe = images.IndexOfKey(KeyCsExe);
-                CsLib = images.IndexOfKey(KeyCsLib);
-                CsWinExe = images.IndexOfKey(KeyCsWinExe);
-                Certificate = images.IndexOfKey(KeyCertificate);
-                CertificateError = images.IndexOfKey(KeyCertificateError);
-                References = images.IndexOfKey(KeyReferences);
-            } // constructor
-
-            public static void InitializeImageList16(ImageList list)
-            {
-                list.ColorDepth = ColorDepth.Depth32Bit;
-                list.ImageSize = new Size(16, 16);
-                list.Images.Add(KeyFolder, Resources.Folder_16x);
-                list.Images.Add(KeyFolderOpen, Resources.FolderOpen_16x);
-                list.Images.Add(KeyVsSolution, LicensingResources.VS_Solution_16x);
-                list.Images.Add(KeyVsSolutionFile, LicensingResources.VS_Solution_File_16x);
-                list.Images.Add(KeyVsProjectUnknown, LicensingResources.VS_Project_Unknown_16x);
-                list.Images.Add(KeyCsExe, LicensingResources.CSharp_Exe_16x);
-                list.Images.Add(KeyCsLib, LicensingResources.CSharp_Lib_16x);
-                list.Images.Add(KeyCsWinExe, LicensingResources.CSharp_WinExe_16x);
-                list.Images.Add(KeyCertificate, LicensingResources.Certificate_16x);
-                list.Images.Add(KeyCertificateError, LicensingResources.CertificateError_16x);
-                list.Images.Add(KeyReferences, LicensingResources.Dependencies_16x);
-            } // InitializeImageList16
-
-            public static void InitializeImageList24(ImageList list)
-            {
-                list.ColorDepth = ColorDepth.Depth32Bit;
-                list.ImageSize = new Size(24, 24);
-                list.Images.Add(KeyFolder, Resources.Folder_24x);
-                list.Images.Add(KeyFolderOpen, Resources.FolderOpen_24x);
-                list.Images.Add(KeyVsSolution, LicensingResources.VS_Solution_24x);
-                list.Images.Add(KeyVsSolutionFile, LicensingResources.VS_Solution_File_24x);
-                list.Images.Add(KeyVsProjectUnknown, LicensingResources.VS_Project_Unknown_24x);
-                list.Images.Add(KeyCsExe, LicensingResources.CSharp_Exe_24x);
-                list.Images.Add(KeyCsLib, LicensingResources.CSharp_Lib_24x);
-                list.Images.Add(KeyCsWinExe, LicensingResources.CSharp_WinExe_24x);
-                list.Images.Add(KeyCertificate, LicensingResources.Certificate_24x);
-                list.Images.Add(KeyCertificateError, LicensingResources.CertificateError_24x);
-                list.Images.Add(KeyReferences, LicensingResources.Dependencies_32x);
-            } // InitializeImageList24
-
-            public int Folder { get; }
-            public int FolderOpen { get; }
-            public int VsSolution { get; }
-            public int VsSolutionFile { get; }
-            public int VsProjectUnknown { get; }
-            public int CsExe { get; }
-            public int CsLib { get; }
-            public int CsWinExe { get; }
-            public int Certificate { get; }
-            public int CertificateError { get; }
-            public int References { get; }
-        } // SolutionTreeImages
-
-        private readonly IVsProjectReader[] _projectReaders;
-        private readonly SolutionTreeImages _solutionImages;
-        private readonly LicensingUiImages _licensingImages;
-        private readonly ImageList _licensingImageList;
-
-        private VsSolution _currentSolution;
+        private readonly TextBoxOutputWriter _outputWriter;
 
         public LicensingForm()
         {
             InitializeComponent();
-            InitializeImageLists();
-            _projectReaders = new IVsProjectReader[] { new VsCsProjectReader() };
-            _solutionImages = new SolutionTreeImages(imageListSolutionTreeSmall.Images);
-            _licensingImageList = new ImageList();
-            LicensingUiImages.GetImageListMedium(_licensingImageList);
-            _licensingImages = new LicensingUiImages(_licensingImageList.Images);
+            _outputWriter = new TextBoxOutputWriter(textBoxOutput, timerRefreshOutput, 4);
         } // constructor
 
-        private void LicensingForm_Load(object sender, EventArgs e)
+        #region Overrides of LicensingFormDocumentView
+
+        protected override void openStripSplitButton_ButtonClick(object sender, EventArgs e)
         {
-            treeViewLicensingFile.ImageList = _licensingImageList;
-        } // LicensingForm_Load
+            SafeCall(LoadSolutionFolder);
+        } // openStripSplitButton_ButtonClick
 
-        private async void solutionFolderToolStripMenuItem_Click(object sender, EventArgs e)
+        protected override void openSolutionFolderToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            treeViewSolution.Nodes.Clear();
-            treeViewSolution.Nodes.Add(new TreeNode("Loading solution. Please wait...", _solutionImages.VsSolution, _solutionImages.VsSolution));
-            openStripSplitButton.Enabled = false;
-            UseWaitCursor = true;
+            SafeCall(LoadSolutionFolder);
+        } // openSolutionFolderToolStripMenuItem_Click
 
-            _currentSolution = await VsSolution.FromFolderAsync(@"C:\Users\Developer\Source\Repos\AlphaCentaury\MovistarTV\1.5 'Kruger 60'", _projectReaders);
-
-            UseWaitCursor = false;
-            Cursor.Current = Cursors.Default;
-            openStripSplitButton.Enabled = true;
-            treeViewSolution.Nodes.Clear();
-            treeViewSolution.Nodes.Add(ToTree(_currentSolution, _solutionImages));
-        } // solutionFolderToolStripMenuItem_Click
-
-        #region Solution Tree
-
-        private void ClearProperties()
+        protected override async void createStripButton_Click(object sender, EventArgs e)
         {
-            treeView1.Nodes.Clear();
-            treeView1.ImageList = null;
-            textBox1.Text = null;
-        }
+            if (CurrentSolution == null) return;
 
-        private void ShowProperties(VsSolution solution)
+            try
+            {
+                _outputWriter.Clear();
+                _outputWriter.Start();
+                BeginAsyncOperation();
+
+                await LicensingMaintenance.CreateMissingLicensingFilesAsync(CurrentSolution, _outputWriter, GetCancellationToken());
+            }
+            catch (OperationCanceledException)
+            {
+                // ignore
+            } // catch
+            catch (Exception ex)
+            {
+                _outputWriter.WriteException(ex);
+            } // try-catch
+
+            EndAsyncOperation();
+            _outputWriter.Stop();
+        } // createStripButton_Click
+
+        protected override void checkStripButton_Click(object sender, EventArgs e)
         {
-            ClearProperties();
-        } // ShowProperties
+        } // checkStripButton_Click
 
-        private static TreeNode ToTree(VsSolution solution, SolutionTreeImages solutionImage)
+        protected override void updateStripButton_Click(object sender, EventArgs e)
         {
-            var image = solutionImage.VsSolution;
-            var root = new TreeNode($"Solution <{solution.Name}> ({solution.AllProjects.Count} projects)", image, image)
-            {
-                Tag = solution
-            };
-
-            root.Expand();
-            AddVsSolution(root, solution.RootFolder, solutionImage);
-
-            return root;
-        } // ToTreeNode
-
-        private static TreeNode ToTreeNode(VsProject project, SolutionTreeImages solutionImage)
-        {
-            var image = project.Language switch
-            {
-                "C#" => project.Type switch
-                {
-                    "Exe" => solutionImage.CsExe,
-                    "Library" => solutionImage.CsLib,
-                    "WinExe" => solutionImage.CsWinExe,
-                    _ => solutionImage.VsProjectUnknown,
-                },
-                _ => solutionImage.VsProjectUnknown,
-            };
-
-            return new TreeNode(project.Namespace, image, image)
-            {
-                Tag = project
-            };
-        } // ToTreeNode
-
-        private static void AddVsSolution(TreeNode treeNode, VsSolutionFolder vsFolder, SolutionTreeImages solutionImage)
-        {
-            if ((vsFolder == null) || (treeNode == null)) return;
-            if (vsFolder.Folders != null)
-            {
-                var folderImage = solutionImage.Folder;
-                foreach (var folder in vsFolder.Folders)
-                {
-                    var node = new TreeNode(folder.Name, folderImage, folderImage);
-                    AddVsSolution(node, folder, solutionImage);
-                    treeNode.Nodes.Add(node);
-                } // foreach
-            } // if
-
-            if (vsFolder.Projects == null) return;
-
-            foreach (var project in vsFolder.Projects)
-            {
-                AddVsProject(treeNode, vsFolder, project, solutionImage);
-            } // foreach
-        }  // AddVsSolution
-
-        private static void AddVsProject(TreeNode treeNode, VsSolutionFolder vsFolder, VsProject project, SolutionTreeImages solutionImage)
-        {
-            treeNode.Nodes.Add(ToTreeNode(project, solutionImage));
-
-            var projectFolder = Path.GetDirectoryName(project.Path) ?? "";
-            var licensing = vsFolder.Projects.Count switch
-            {
-                1 => Path.Combine(projectFolder, "licensing.xml"),
-                _ => Path.Combine(projectFolder, project.Name + ".licensing.xml")
-            };
-
-            var exists = File.Exists(licensing);
-            var image = exists switch
-            {
-                true => solutionImage.Certificate,
-                false => solutionImage.CertificateError
-            };
-
-            treeNode.Nodes.Add(new TreeNode(Path.GetFileName(licensing), image, image)
-            {
-                Tag = new LicensingFileNode(licensing, exists)
-            });
-        } // AddVsProject
+        } // updateStripButton_Click
 
         #endregion
 
-        #region Project Tree
-
-        private void ShowProperties(VsProject vsProject)
+        protected override void OnVsSolutionSelected(VsSolution solution)
         {
-            ClearProperties();
-            treeView1.ImageList = imageListSolutionTreeSmall;
-            treeView1.Nodes.Add(ToTree(_currentSolution, vsProject, _solutionImages));
-        } // ShowProperties
+            DetailsMode = DetailsModeEnum.None;
 
-        private static TreeNode ToTree(VsSolution solution, VsProject project, SolutionTreeImages solutionImage)
-        {
-            var root = ToTreeNode(project, solutionImage);
-            AddProjectReferences(root, solution, project.ReferencedProjects, solutionImage);
-
-            return root;
-        } // ToTree
-
-        private static void AddProjectReferences(TreeNode treeNode, VsSolution solution, List<Guid> referencedProjects, SolutionTreeImages solutionImage)
-        {
-            if (referencedProjects == null) return;
-            if (referencedProjects.Count == 0) return;
-
-            var node = new TreeNode("Referenced projects", solutionImage.References, solutionImage.References);
-            foreach (var guid in referencedProjects)
+            var prefix = solution.SolutionPath.Length + 1;
+            var root = new TreeNode("Licensing files", SolutionImages.Certificate, SolutionImages.Certificate);
+            root.Expand();
+            foreach (var (licensing, treeNode) in LicensingNodes.OrderBy(ln => ln.Licensing.FilePath))
             {
-                if (solution.TryGetValue(guid, out var project))
+                var node = new TreeNode(licensing.FilePath.Substring(prefix), treeNode.ImageIndex, treeNode.SelectedImageIndex) { Tag = licensing };
+                root.Nodes.Add(node);
+            } // foreach
+
+            treeViewDetails.ImageList = imageListSolutionTreeMedium;
+            treeViewDetails.Nodes.Add(root);
+            DetailsMode = DetailsModeEnum.LicensingDataCollection;
+        } // OnVsProjectSelected
+
+        protected override void OnVsProjectSelected(VsProject vsProject)
+        {
+            DetailsMode = DetailsModeEnum.None;
+
+            treeViewDetails.ImageList = imageListSolutionTreeSmall;
+            treeViewDetails.Nodes.Add(LicensingVsUi.GetProjectTree(vsProject, CurrentSolution));
+            DetailsMode = DetailsModeEnum.VsProject;
+        } // OnVsProjectSelected
+
+        private protected override void OnLicensingNodeSelected(LicensingDataNode node)
+        {
+            treeViewDetails.Nodes.Clear();
+            if (!node.Exists) return;
+
+            treeViewDetails.ImageList = LicensingImageList;
+            treeViewDetails.Nodes.Add(LicensingUi.FileToTreeAlt(Path.GetFileName(node.FilePath), node.Value));
+
+            treeViewLicensingData.Nodes.Clear();
+            treeViewLicensingData.ImageList = LicensingImageList;
+            treeViewLicensingData.Nodes.Add(LicensingUi.FileToTreeAlt(Path.GetFileName(node.FilePath), node.Value));
+        } // OnLicensingNodeSelected
+
+        private protected override void OnDetailsLicensingNodeSelected(LicensingDataNode node)
+        {
+            var details = new StringBuilder();
+            details.AppendLine($"File exists: {node.Exists}");
+            if (node.Exists)
+            {
+                var licensing = node.Value;
+                details.AppendLine($"{licensing}");
+
+                var thirdParty = licensing.Licensing?.ThirdParty?.Count ?? -1;
+                details.AppendLine($"    Third party components: {(thirdParty >= 0 ? thirdParty.ToString(CultureInfo.DefaultThreadCurrentCulture) : "none")}");
+                
+                if (licensing.Dependencies == null)
                 {
-                    node.Nodes.Add(ToTree(solution, project, solutionImage));
+                    details.AppendLine("No dependencies");
                 }
                 else
                 {
-                    var image = solutionImage.VsProjectUnknown;
-                    node.Nodes.Add(new TreeNode($"<Unknown project> {guid.ToString("B", CultureInfo.InvariantCulture)}", image, image));
+                    details.AppendLine("Dependencies:");
+                    var libraries = licensing.Dependencies.Libraries?.Count ?? -1;
+                    details.AppendLine($"    Library dependencies: {(libraries >= 0 ? libraries.ToString(CultureInfo.DefaultThreadCurrentCulture) : "none")}");
+                    var dependencies = licensing.Dependencies.ThirdParty?.Count ?? -1;
+                    details.AppendLine($"    Third-party dependencies: {(dependencies >= 0 ? dependencies.ToString(CultureInfo.DefaultThreadCurrentCulture) : "none")}");
                 } // if-else
-            } // foreach
 
-            treeNode.Nodes.Add(node);
-        } // AddProjectReferences
+                if (licensing.Licenses == null)
+                {
+                    details.AppendLine("Licenses: none");
+                }
+                else
+                {
+                    details.AppendLine($"Licenses: {licensing.Licenses.Count} ");
+                    foreach (var license in licensing.Licenses)
+                    {
+                        details.AppendLine($"    {license.Id}: {license.Name}");
+                    } // foreach
+                } // if-else
+            } // if
+
+            textBoxDetails.Text = details.ToString();
+            textBoxDetails.Enabled = true;
+        } // OnDetailsLicensingNodeSelected
+
+        private void LoadSolutionFolder()
+        {
+#if DEBUG
+            selectFolderDialog.SelectedPath = Path.GetFullPath(Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), "..\\..\\..\\.."));
+#else
+            selectFolderDialog.SelectedPath = Application.ExecutablePath;
+#endif
+            if (selectFolderDialog.ShowDialog(this) != DialogResult.OK) return;
+
+            LoadSolutionFolderAsync(selectFolderDialog.SelectedPath);
+        } // LoadSolutionFolder
+
+        #region
+
+        private void CreateMissingLicensingFiles()
+        {
+        } // CreateMissingLicensingFiles
 
         #endregion
-
-        #region Licensing file
-
-        private void ShowProperties(LicensingFileNode file)
-        {
-            treeView1.Nodes.Clear();
-            if (!file.Exists) return;
-
-            treeView1.ImageList = _licensingImageList;
-            treeView1.Nodes.Add(LicensingDataUi.ToTreeAlt(Path.GetFileName(file.FilePath), file.Value, _licensingImages));
-
-            treeViewLicensingFile.Nodes.Clear();
-            treeViewLicensingFile.ImageList = _licensingImageList;
-            treeViewLicensingFile.Nodes.Add(LicensingDataUi.ToTreeAlt(Path.GetFileName(file.FilePath), file.Value, _licensingImages));
-        } // ShowProperties
-
-        #endregion
-
-        public void InitializeImageLists()
-        {
-            SolutionTreeImages.InitializeImageList16(imageListSolutionTreeSmall);
-            SolutionTreeImages.InitializeImageList24(imageListSolutionTreeMedium);
-        } // InitializeImageLists
-
-        private void treeViewSolution_AfterSelect(object sender, TreeViewEventArgs e)
-        {
-            switch (e.Node.Tag)
-            {
-                case VsSolution vsSolution:
-                    ShowProperties(vsSolution);
-                    break;
-                case VsProject vsProject:
-                    ShowProperties(vsProject);
-                    break;
-                case LicensingFileNode file:
-                    ShowProperties(file);
-                    break;
-                default:
-                    ClearProperties();
-                    break;
-            }
-        } // treeViewSolution_AfterSelect
-
-        private void treeViewSolution_BeforeCollapse(object sender, TreeViewCancelEventArgs e)
-        {
-            if (e.Node.ImageIndex != _solutionImages.FolderOpen) return;
-
-            e.Node.ImageIndex = _solutionImages.Folder;
-            e.Node.SelectedImageIndex = _solutionImages.Folder;
-        } // treeViewSolution_BeforeCollapse
-
-        private void treeViewSolution_BeforeExpand(object sender, TreeViewCancelEventArgs e)
-        {
-            if (e.Node.ImageIndex != _solutionImages.Folder) return;
-
-            e.Node.ImageIndex = _solutionImages.FolderOpen;
-            e.Node.SelectedImageIndex = _solutionImages.FolderOpen;
-        } // treeViewSolution_BeforeExpand
-
-        private void treeViewLicensingFile_AfterSelect(object sender, TreeViewEventArgs e)
-        {
-            propertyGrid1.SelectedObject = e.Node.Tag;
-        }
-
-        private void openStripSplitButton_ButtonClick(object sender, EventArgs e)
-        {
-            selectFolderDialog.ShowDialog(this);
-        }
     } // class LicensingForm
 } // namespace
-

@@ -6,29 +6,25 @@
 // http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
 
 using System;
+using AlphaCentaury.Tools.SourceCodeMaintenance.Interfaces;
 
 namespace AlphaCentaury.Tools.SourceCodeMaintenance
 {
     public class Execute
     {
-        public static void ExecuteToolConsole(IMaintenanceTool tool, string[] arguments)
-        {
-            ExecuteTool(tool, arguments, Console.WriteLine);
-        } // ExecuteConsole
-
-        public static void ExecuteTool(IMaintenanceTool tool, string[] arguments, Action<string> writeLine)
+        public static void ExecuteTool(IMaintenanceTool tool, string[] arguments, IToolOutputWriter writer)
         {
             if (tool == null) throw new ArgumentNullException(nameof(tool));
             if (arguments == null) throw new ArgumentNullException(nameof(arguments));
-            if (writeLine == null) throw new ArgumentNullException(nameof(writeLine));
+            if (writer == null) throw new ArgumentNullException(nameof(writer));
 
             try
             {
-                tool.Execute(arguments, writeLine);
+                tool.Execute(arguments, writer);
             }
             catch (Exception e)
             {
-                writeLine(e.ToString());
+                writer.WriteException(e);
             } // catch
         } // Execute
     }

@@ -14,6 +14,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using AlphaCentaury.Tools.SourceCodeMaintenance.Interfaces;
 
 namespace AlphaCentaury.Tools.SourceCodeMaintenance
 {
@@ -73,14 +74,15 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance
 
         private void buttonUsage_Click(object sender, EventArgs e)
         {
-            var buffer = new StringBuilder();
-            SelectedTool.Value.ShowUsage(line => buffer.AppendLine());
-            textBoxInfo.Text = buffer.ToString();
+            var writer = new Helpers.TextBoxOutputWriter(textBoxInfo);
+            writer.Start();
+            SelectedTool.Value.ShowUsage(writer);
+            writer.Stop();
         } // buttonUsage_Click
 
         private void listViewTools_Resize(object sender, EventArgs e)
         {
-            columnHeader1.Width = listViewTools.ClientSize.Width;
-        }
+            columnHeaderToolName.Width = listViewTools.ClientSize.Width;
+        } // listViewTools_Resize
     } // class SelectToolDialog
 } // namespace

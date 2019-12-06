@@ -15,16 +15,18 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing.VisualStudio
 {
     public class VsSolutionFolder
     {
-        public VsSolutionFolder(string name, IReadOnlyList<VsProject> projects, IReadOnlyList<VsSolutionFolder> folders)
+        public VsSolutionFolder(string name, IReadOnlyList<VsProject> projects, IReadOnlyList<VsSolutionFolder> folders, string licensingDefaultsKey = null)
         {
             Name = name;
             Projects = projects;
             Folders = folders;
+            LicensingDefaultsKey = licensingDefaultsKey;
         } // constructor
 
         public string Name { get; }
         public IReadOnlyList<VsProject> Projects;
         public IReadOnlyList<VsSolutionFolder> Folders;
+        public string LicensingDefaultsKey { get; internal set; }
 
         public override string ToString() => Name;
     } // VsSolutionFolder

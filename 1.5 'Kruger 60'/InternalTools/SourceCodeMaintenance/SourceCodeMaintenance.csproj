@@ -76,7 +76,24 @@
     </Compile>
     <Compile Include="Batch\BatchExecution.cs" />
     <Compile Include="CopyrightNotices\UpdateCopyrightNotices.cs" />
+    <Compile Include="Helpers\BaseOutputWriter.cs" />
+    <Compile Include="Helpers\ConsoleOutputWriter.cs" />
+    <Compile Include="Helpers\TextBoxOutputWriter.cs" />
+    <Compile Include="Interfaces\IMaintenanceTool.cs" />
+    <Compile Include="Interfaces\IMaintenanceToolMetadata.cs" />
+    <Compile Include="Interfaces\IToolOutputWriter.cs" />
     <Compile Include="Licensing\LicensingFileNode.cs" />
+    <Compile Include="Licensing\LicensingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Licensing\LicensingForm.Designer.cs">
+      <DependentUpon>LicensingForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Licensing\LicensingMaintenance.CreatorData.cs" />
+    <Compile Include="Licensing\LicensingMaintenance.OperationData.cs" />
+    <Compile Include="Licensing\LicensingMaintenance.Helper.cs" />
+    <Compile Include="Licensing\SolutionImages.cs" />
+    <Compile Include="Licensing\LicensingVsUi.cs" />
     <Compile Include="Licensing\VisualStudio\VsSolutionFolder.cs" />
     <Compile Include="Properties\LicensingResources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -95,11 +112,11 @@
       <DependentUpon>SelectToolDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Execute.cs" />
-    <Compile Include="Licensing\LicensingForm.cs">
+    <Compile Include="Licensing\LicensingFormDocumentView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Licensing\LicensingForm.Designer.cs">
-      <DependentUpon>LicensingForm.cs</DependentUpon>
+    <Compile Include="Licensing\LicensingFormDocumentView.Designer.cs">
+      <DependentUpon>LicensingFormDocumentView.cs</DependentUpon>
     </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
@@ -107,8 +124,6 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="IMaintenanceTool.cs" />
-    <Compile Include="IMaintenanceToolMetadata.cs" />
     <Compile Include="Licensing\LicensingMaintenance.cs" />
     <Compile Include="Licensing\VisualStudio\IVsProjectReader.cs" />
     <Compile Include="Licensing\VisualStudio\VsCsProjectReader.cs" />
@@ -130,6 +145,9 @@
     <EmbeddedResource Include="Batch\BatchDialog.resx">
       <DependentUpon>BatchDialog.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Licensing\LicensingForm.resx">
+      <DependentUpon>LicensingForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\LicensingResources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>LicensingResources.Designer.cs</LastGenOutput>
@@ -143,8 +161,8 @@
     <EmbeddedResource Include="SelectToolDialog.resx">
       <DependentUpon>SelectToolDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Licensing\LicensingForm.resx">
-      <DependentUpon>LicensingForm.cs</DependentUpon>
+    <EmbeddedResource Include="Licensing\LicensingFormDocumentView.resx">
+      <DependentUpon>LicensingFormDocumentView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
@@ -172,6 +190,9 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="UpdateCopyrightHeaders.batch">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -228,6 +249,15 @@
     <None Include="Resources\Action_Cancel_16x16.png" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="internal.licensing.defaults.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="licensing.defaults.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SourceCodeMaintenance.csproj.DotSettings.user" />
+    <None Include="Resources\RefreshBlue_16x16.png" />
+    <None Include="Resources\Status_Ok_SmallCircle_16x16.png" />
     <None Include="Licensing\Resources\Dependencies_32x.png" />
     <None Include="Licensing\Resources\Dependencies_16x.png" />
     <None Include="Licensing\Resources\Dependencies_24x.png" />

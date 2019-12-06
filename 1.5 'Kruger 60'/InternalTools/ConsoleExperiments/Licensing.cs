@@ -7,8 +7,12 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.InteropServices;
+using System.Windows.Forms.VisualStyles;
 using AlphaCentaury.Licensing.Data;
 using AlphaCentaury.Licensing.Data.Serialization;
+using IpTviewr.Common.Serialization;
 
 namespace IpTviewr.Internal.Tools.ConsoleExperiments
 {
@@ -16,16 +20,51 @@ namespace IpTviewr.Internal.Tools.ConsoleExperiments
     {
         protected override int Run(string[] args)
         {
-            /*
-            var file = XmlSerialization.Deserialize<LicensingFile>(@"C:\Users\Developer\source\repos\AlphaCentaury\MovistarTV\1.5 'Kruger 60'\Core\IpTviewr.Telemetry\licensing.xml");
-
-            using var output = Console.OpenStandardOutput();
-            XmlSerialization.Serialize(@"C:\Users\Developer\source\repos\AlphaCentaury\MovistarTV\1.5 'Kruger 60'\Core\IpTviewr.Telemetry\licensing.xml", file);
-
+            CreateDefaults();
             return 0;
-            */
+        } // Run
 
-            var files = new List<LicensingFile>
+        private static void CreateDefaults()
+        {
+            var file = XmlSerialization.Deserialize<LicensingData>(@"C:\Users\Developer\source\repos\AlphaCentaury\MovistarTV\1.5 'Kruger 60'\Core\IpTviewr.Telemetry\licensing.xml");
+
+            var library = file.Licensing.Licensed;
+            var defaults = new LicensingDefaults
+            {
+                Libraries = new LicensedLibrary()
+                {
+                    Authors = library.Authors,
+                    Copyright = library.Copyright,
+                    LicenseId = library.LicenseId,
+                    Product = library.Product,
+                    Remarks = library.Remarks,
+                    Terms = library.Terms
+                },
+                Programs = new LicensedProgram
+                {
+                    Authors = library.Authors,
+                    Copyright = library.Copyright,
+                    LicenseId = library.LicenseId,
+                    Product = library.Product,
+                    Remarks = library.Remarks,
+                    Terms = library.Terms
+                },
+                Licenses = new List<License>()
+            };
+
+            defaults.Licenses.Add(file.Licenses.FirstOrDefault(license => license.Id == defaults.Libraries.LicenseId));
+            if (defaults.Licenses[0].Id != defaults.Programs.LicenseId)
+            {
+                defaults.Licenses.Add(file.Licenses.FirstOrDefault(license => license.Id == defaults.Programs.LicenseId));
+            } // if
+
+            XmlSerialization.Serialize("licensing.defaults.xml", defaults);
+            XmlSerialization.Serialize("licensing.internal.defaults.xml", defaults);
+        } // CreateDefaults
+
+        private static void TestExpandDependencies()
+        {
+            var files = new List<LicensingData>
             {
                 CreateDummy("A", "L1", new [] {"B", "D"}, new []{"1"}, new []{"L5"}),
                 CreateDummy("B", "L2", new [] {"C", "F", "E"}, new []{"4", "6", "2"}, new []{"L2", "L1", "L4"}),
@@ -36,13 +75,11 @@ namespace IpTviewr.Internal.Tools.ConsoleExperiments
             };
 
             files.ExpandDependencies();
+        } // TestExpandDependencies
 
-            return 0;
-        } // Run
-
-        private static LicensingFile CreateDummy(string name, string licenseId, string[] dependencies, string[] thirdParty, string[] licenses)
+        private static LicensingData CreateDummy(string name, string licenseId, string[] dependencies, string[] thirdParty, string[] licenses)
         {
-            var dummy = new LicensingFile
+            var dummy = new LicensingData
             {
                 Licensing = new AlphaCentaury.Licensing.Data.Serialization.Licensing
                 {
@@ -60,7 +97,7 @@ namespace IpTviewr.Internal.Tools.ConsoleExperiments
                 dummy.Dependencies.Libraries = new List<LibraryDependency>(dependencies.Length);
                 foreach (var dependency in dependencies)
                 {
-                    dummy.Dependencies.Libraries.Add(new LibraryDependency { Name = dependency, IsDirectDependency = true });
+                    dummy.Dependencies.Libraries.Add(new LibraryDependency { Namespace = dependency, IsDirectDependency = true });
                 } // foreach
             } // if
 
@@ -78,7 +115,7 @@ namespace IpTviewr.Internal.Tools.ConsoleExperiments
             for (var index = 0; index < licenses.Length; index++)
             {
                 var id = licenses[index];
-                var license = new License {Id = licenses[index]};
+                var license = new License { Id = licenses[index] };
                 dummy.Licensing.ThirdParty[index].LicenseId = id;
                 if (!dummy.Licenses.Contains(license))
                 {

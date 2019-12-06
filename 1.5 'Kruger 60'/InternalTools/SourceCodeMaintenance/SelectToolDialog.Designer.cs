@@ -42,7 +42,7 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance
             this.buttonCancel = new System.Windows.Forms.Button();
             this.splitContainer = new System.Windows.Forms.SplitContainer();
             this.listViewTools = new System.Windows.Forms.ListView();
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeaderToolName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.imageListLarge = new System.Windows.Forms.ImageList(this.components);
             this.imageListSmall = new System.Windows.Forms.ImageList(this.components);
             this.textBoxInfo = new System.Windows.Forms.TextBox();
@@ -121,7 +121,7 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.listViewTools.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader1});
+            this.columnHeaderToolName});
             this.listViewTools.FullRowSelect = true;
             this.listViewTools.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.listViewTools.HideSelection = false;
@@ -139,10 +139,10 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance
             this.listViewTools.DoubleClick += new System.EventHandler(this.listViewTools_DoubleClick);
             this.listViewTools.Resize += new System.EventHandler(this.listViewTools_Resize);
             // 
-            // columnHeader1
+            // columnHeaderToolName
             // 
-            this.columnHeader1.Text = "Tool name";
-            this.columnHeader1.Width = 300;
+            this.columnHeaderToolName.Text = "Tool name";
+            this.columnHeaderToolName.Width = 300;
             // 
             // imageListLarge
             // 
@@ -207,7 +207,7 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance
         private System.Windows.Forms.SplitContainer splitContainer;
         private System.Windows.Forms.TextBox textBoxInfo;
         private System.Windows.Forms.ListView listViewTools;
-        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.ColumnHeader columnHeaderToolName;
         private System.Windows.Forms.ImageList imageListLarge;
         private System.Windows.Forms.ImageList imageListSmall;
     }

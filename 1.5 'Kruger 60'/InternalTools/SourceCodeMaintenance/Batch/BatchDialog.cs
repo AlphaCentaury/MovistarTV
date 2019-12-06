@@ -6,14 +6,15 @@
 // http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
 
 using AlphaCentaury.Tools.SourceCodeMaintenance.Batch.Serialization;
+using AlphaCentaury.Tools.SourceCodeMaintenance.Helpers;
+using AlphaCentaury.Tools.SourceCodeMaintenance.Interfaces;
+using AlphaCentaury.Tools.SourceCodeMaintenance.Properties;
 using IpTviewr.Common.Serialization;
 using IpTviewr.UiServices.Common.Forms;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
-using AlphaCentaury.Tools.SourceCodeMaintenance.Properties;
 
 namespace AlphaCentaury.Tools.SourceCodeMaintenance.Batch
 {
@@ -23,11 +24,12 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Batch
         private bool _hasResults;
         private bool _hasLines;
         private Lazy<IMaintenanceTool, IMaintenanceToolMetadata> _selectedTool;
-        private StringBuilder ResultsBuffer;
+        private readonly Helpers.TextBoxOutputWriter _outputWriter;
 
         public BatchDialog()
         {
             InitializeComponent();
+            _outputWriter = new TextBoxOutputWriter(textBoxResults, timerRefreshOutput, 4);
         } // constructor
 
         private bool IsDirty
@@ -124,11 +126,6 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Batch
             } // if-else
         } // BatchDialog_Load
 
-        private void timerRefreshOutput_Tick(object sender, EventArgs e)
-        {
-            DumpResultsBuffer();
-        } // timerRefreshOutput_Tick
-
         private void newToolStripButton_Click(object sender, EventArgs e)
         {
             SafeCall(NewBatch);
@@ -171,9 +168,10 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Batch
 
         private void buttonUsage_Click(object sender, EventArgs e)
         {
-            var buffer = new StringBuilder();
-            SelectedTool.Value.ShowUsage(line => buffer.AppendLine());
-            textBoxResults.Text = buffer.ToString();
+            var writer = new Helpers.TextBoxOutputWriter(textBoxResults, null, 4);
+            writer.Start();
+            SelectedTool.Value.ShowUsage(writer);
+            writer.Stop();
             HasResults = true;
         } //buttonUsage_Click
 
@@ -324,15 +322,13 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Batch
         {
             HasResults = false;
             var batch = GetBatch();
-            ResultsBuffer = new StringBuilder();
             executeStripButton.Enabled = false;
-            timerRefreshOutput.Start();
+            _outputWriter.Start();
             
-            await BatchExecution.ExecuteBatchAsync(batch, WriteToOutput);
+            await BatchExecution.ExecuteBatchAsync(batch, _outputWriter);
 
-            timerRefreshOutput.Stop();
+            _outputWriter.Stop();
             executeStripButton.Enabled = true;
-            DumpResultsBuffer();
         } // ExecuteBatch
 
         private void AddToBatch(Lazy<IMaintenanceTool, IMaintenanceToolMetadata> tool, string arguments)
@@ -462,22 +458,5 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Batch
             if ((arguments == null) || (arguments.Count == 0)) return "(No arguments)";
             return arguments.Count == 1 ? arguments[0] : $"({arguments.Count} arguments)";
         } // GetArgumentsForDisplay
-
-        private void WriteToOutput(string line)
-        {
-            ResultsBuffer.AppendLine(line);
-        } // WriteToOutput
-
-        private void DumpResultsBuffer()
-        {
-            if ((ResultsBuffer == null) || (ResultsBuffer.Length == 0)) return;
-
-            textBoxResults.Text += ResultsBuffer.ToString();
-            ResultsBuffer.Clear();
-            HasResults = true;
-            textBoxResults.SelectionStart = textBoxResults.Text.Length;
-            textBoxResults.SelectionLength = 0;
-            textBoxResults.ScrollToCaret();
-        } // DumpResultsBuffer
     } // class BatchDialog
 } // namespace

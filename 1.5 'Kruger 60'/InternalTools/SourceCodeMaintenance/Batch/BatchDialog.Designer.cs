@@ -335,7 +335,6 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Batch
             // timerRefreshOutput
             // 
             this.timerRefreshOutput.Interval = 1500;
-            this.timerRefreshOutput.Tick += new System.EventHandler(this.timerRefreshOutput_Tick);
             // 
             // BatchDialog
             // 

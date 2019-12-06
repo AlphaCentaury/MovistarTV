@@ -5,21 +5,16 @@
 // 
 // http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using AlphaCentaury.Licensing.Data.Serialization;
 using IpTviewr.Common.Serialization;
 
 namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing
 {
-    internal class LicensingFileNode
+    internal class LicensingDataNode
     {
-        private LicensingFile _file;
+        private LicensingData _file;
 
-        public LicensingFileNode(string filePath, bool exists)
+        public LicensingDataNode(string filePath, bool exists)
         {
             FilePath = filePath;
             Exists = exists;
@@ -30,16 +25,16 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing
 
         public bool IsValueCreated => _file != null;
 
-        public LicensingFile Value
+        public LicensingData Value
         {
             get
             {
                 if (!Exists) return null;
                 if (IsValueCreated) return _file;
 
-                _file = XmlSerialization.Deserialize<LicensingFile>(FilePath);
+                _file = XmlSerialization.Deserialize<LicensingData>(FilePath);
                 return _file;
             } // get
         } // Value
-    } // LicensingFileNode
+    } // LicensingDataNode
 } // namespace

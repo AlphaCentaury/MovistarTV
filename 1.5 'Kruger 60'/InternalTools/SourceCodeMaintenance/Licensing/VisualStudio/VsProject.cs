@@ -15,15 +15,30 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing.VisualStudio
         public Guid Guid { get; set; }
         public string Language { get; set; }
         public string Name { get; set; }
-        public string Path { get; set; }
+        public string Filename { get; set; }
         public string AssemblyName { get; set; }
         public string Namespace { get; set; }
         public List<Guid> ReferencedProjects { get; set; }
         public string Type { get; set; }
+        public string LicensingDefaultsKey { get; set; }
 
         public override string ToString()
         {
             return $"{Type}:{Namespace}";
         } // ToString
+
+        public bool IsLibrary
+        {
+            get
+            {
+                return Type switch
+                {
+                    "Library" => true,
+                    "Exe" => false,
+                    "WinExe" => false,
+                    _ => true // we will assume all kinds of projects are libraries (.dll) and not executables (.exe)
+                };
+            } // get
+        }  // IsLibrary
     } // VsProject
 }

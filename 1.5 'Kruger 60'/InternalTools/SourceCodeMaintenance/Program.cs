@@ -13,6 +13,7 @@ using System.ComponentModel.Composition.Primitives;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Windows.Forms;
+using AlphaCentaury.Tools.SourceCodeMaintenance.Interfaces;
 using IpTviewr.Common;
 using JetBrains.Annotations;
 using SourceCodeMaintenance;

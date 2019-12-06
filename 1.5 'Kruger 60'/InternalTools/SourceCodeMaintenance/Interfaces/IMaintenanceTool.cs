@@ -5,20 +5,18 @@
 // 
 // http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
 
-using JetBrains.Annotations;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using JetBrains.Annotations;
 
-namespace AlphaCentaury.Tools.SourceCodeMaintenance
+namespace AlphaCentaury.Tools.SourceCodeMaintenance.Interfaces
 {
+    [PublicAPI]
     public interface IMaintenanceTool
     {
-        void Execute([NotNull] IReadOnlyList<string> arguments, [NotNull] Action<string> writeLine);
-        void ShowUsage([NotNull] Action<string> writeLine);
+        void Execute([NotNull] IReadOnlyList<string> arguments, [NotNull] IToolOutputWriter writer);
+        void ShowUsage([NotNull] IToolOutputWriter writer);
         Form GetUi();
         string SelectFileFilter { get; }
     } // interface IMaintenanceTool

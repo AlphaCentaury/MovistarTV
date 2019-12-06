@@ -6,9 +6,11 @@
 // http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
 
 using System.ComponentModel;
+using JetBrains.Annotations;
 
-namespace AlphaCentaury.Tools.SourceCodeMaintenance
+namespace AlphaCentaury.Tools.SourceCodeMaintenance.Interfaces
 {
+    [PublicAPI]
     public interface IMaintenanceToolMetadata
     {
         string Guid { get; }
