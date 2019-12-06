@@ -7,11 +7,12 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 
 namespace IpTviewr.Common
 {
-    public class CommandLineArguments
+    public partial class CommandLineArguments
     {
         public bool SpecialHelpArgument
         {
@@ -27,6 +28,8 @@ namespace IpTviewr.Common
 
         public IDictionary<string, string> Switches { get; private set; }
 
+        public IDictionary<string, IList<string>> MultiValueSwitches { get; private set; }
+
         public void Parse(string[] args, int startIndex = 0)
         {
             Parse((IReadOnlyCollection<string>)args, startIndex);
@@ -41,8 +44,9 @@ namespace IpTviewr.Common
         {
             IsOk = false;
 
-            var arguments = new List<string>(args.Count);
-            var switches = new Dictionary<string, string>(args.Count, StringComparer.InvariantCultureIgnoreCase);
+            Arguments = new List<string>(args.Count);
+            Switches = new Dictionary<string, string>(args.Count, StringComparer.InvariantCultureIgnoreCase);
+            MultiValueSwitches = new Dictionary<string, IList<string>>(args.Count, StringComparer.InvariantCulture);
 
             foreach (var arg in args.Skip(startIndex))
             {
@@ -58,7 +62,7 @@ namespace IpTviewr.Common
                         var partialArg = arg.Substring(1, 1).ToLower();
                         if ((partialArg.StartsWith("h")) || (partialArg.StartsWith("?")))
                         {
-                            switches.Add("help", null);
+                            Switches.Add("help", null);
                             break;
                         } // if
                     } // if
@@ -79,17 +83,38 @@ namespace IpTviewr.Common
                         argName = arg.Substring(1, pos - 1);
                         argValue = arg.Substring(pos + 1);
                     } // if-else
-                    switches[argName] = argValue;
+                    AddToSwitches(argName, argValue);
                 }
                 else
                 {
-                    arguments.Add(arg);
+                    Arguments.Add(arg);
                 } // if-else
             } // foreach arg
 
             IsOk = true;
-            Arguments = arguments;
-            Switches = switches;
+            if (Switches.Count == 0) Switches = new EmptyDictionary<string, string>();
+            if (MultiValueSwitches.Count == 0) MultiValueSwitches = new EmptyDictionary<string, IList<string>>();
         } // Parse
+
+        private void AddToSwitches(string argName, string argValue)
+        {
+            if (MultiValueSwitches.ContainsKey(argName))
+            {
+                MultiValueSwitches[argName].Add(argValue);
+            }
+            else
+            {
+                MultiValueSwitches.Add(argName, new List<string>
+                {
+                    argValue
+                });
+
+                // keep first value; do not override with later values
+                if (!Switches.ContainsKey(argName))
+                {
+                    Switches[argName] = argValue;
+                } // if
+            } // if-else
+        } // AddToSwitches
     } // class CommandLineArguments
 } // namespace

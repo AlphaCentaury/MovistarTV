@@ -62,6 +62,7 @@
     </Compile>
     <Compile Include="BaseProgram.cs" />
     <Compile Include="DateTimeExtensions.cs" />
+    <Compile Include="EmptyDictionary.cs" />
     <Compile Include="ExceptionEventData.cs" />
     <Compile Include="HandleExceptionEventArgs.cs" />
     <Compile Include="Serialization\XmlCDataText.cs" />
