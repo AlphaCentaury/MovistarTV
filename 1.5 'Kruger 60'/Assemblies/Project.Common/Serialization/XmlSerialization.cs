@@ -69,7 +69,7 @@ namespace IpTviewr.Common.Serialization
         public static void Serialize<T>(Stream output, Encoding encoding, T o)
         {
             var serializer = new XmlSerializer(typeof(T));
-            using (var outputWriter = new StreamWriter(output, encoding))
+            using (var outputWriter = new StreamWriter(output, encoding, 4096, true))
             {
                 serializer.Serialize(outputWriter, o);
             } // using outputWriter
