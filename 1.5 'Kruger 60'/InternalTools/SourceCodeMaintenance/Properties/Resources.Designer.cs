@@ -183,6 +183,16 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Action_Settings_16x16 {
+            get {
+                object obj = ResourceManager.GetObject("Action_Settings_16x16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Folder_16x {
             get {
                 object obj = ResourceManager.GetObject("Folder_16x", resourceCulture);
@@ -326,6 +336,16 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Properties {
         internal static System.Drawing.Bitmap Status_Unknown_16x616 {
             get {
                 object obj = ResourceManager.GetObject("Status_Unknown_16x616", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap TextFile_16x {
+            get {
+                object obj = ResourceManager.GetObject("TextFile_16x", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

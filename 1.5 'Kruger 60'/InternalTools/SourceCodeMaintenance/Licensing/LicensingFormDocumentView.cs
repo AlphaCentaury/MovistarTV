@@ -129,6 +129,7 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing
                 checkStripButton.Enabled = (value != null);
                 createStripButton.Enabled = (value != null);
                 updateStripButton.Enabled = (value != null);
+                licensingWriteStripButton.Enabled = (value != null);
 
                 _currentSolutionField = value;
             } // set
@@ -250,6 +251,18 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing
             throw new NotSupportedException();
         } // updateStripButton_Click
 
+        protected virtual void licensingWriteStripButton_Click(object sender, EventArgs e)
+        {
+            // must be overriden in descendant
+            throw new NotSupportedException();
+        } // licensingWriteStripButton_Click
+
+        protected virtual void licensingOptionsStripButton_Click(object sender, EventArgs e)
+        {
+            // must be overriden in descendant
+            throw new NotSupportedException();
+        } // licensingOptionsStripButton_Click
+
         protected virtual void cancelStripButton_Click(object sender, EventArgs e)
         {
             CancelAsyncOperation();
@@ -366,8 +379,9 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing
             try
             {
                 BeginAsyncOperation();
-                CurrentSolution = await VsSolution.FromFolderAsync(path, _projectReaders, GetCancellationToken());
+                var solution = await VsSolution.FromFolderAsync(path, _projectReaders, GetCancellationToken());
                 EndAsyncOperation();
+                CurrentSolution = solution;
             }
             catch (OperationCanceledException e)
             {

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Defaults xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="AlphaCentaury.Licensing.Data.v1" appliesTo="InternalTools">
+<Defaults xmlns="urn:AlphaCentaury.Licensing.Data.v1" appliesTo="InternalTools">
   <Libraries>
     <License>Ms-RL</License>
     <Authors>Codeplex/GitHub user AlphaCentaury</Authors>
@@ -22,7 +22,7 @@ Its use in the context of this product does not constitute endorsement nor suppo
     <Copyright>Copyright (C) 2014-2019, Codeplex/GitHub user AlphaCentaury and its contributors</Copyright>
     <Product>Internal tools for IPTViewr</Product>
     <TermsAndConditions format="MD"><![CDATA[
-This PROGEAM, either in binary or source code form, is licensed under the terms of the **Microsoft Reciprocal License (Ms-RL)** except for “THIRD-PARTY” components.
+This PROGRAM, either in binary or source code form, is licensed under the terms of the **Microsoft Reciprocal License (Ms-RL)** except for “THIRD-PARTY” components.
 All other rights are reserved by the author(s) of the software.
 
 _**THIS SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND**_, express or implied, including but not limited to the warranties of merchantability, fitness for a particular purpose and non-infringement.  
@@ -30,8 +30,7 @@ In no event shall the authors or the copyright holders be liable for any claim, 
 
 All trademarks, service marks, trade names, product names and logos are the property of their respective owners.
 Its use in the context of this product does not constitute endorsement nor support by their respective owners.
-]]>
-    </TermsAndConditions>
+]]></TermsAndConditions>
   </Programs>
   <Licenses>
     <License id="Ms-RL" name="Microsoft Reciprocal License (Ms-RL)"><![CDATA[

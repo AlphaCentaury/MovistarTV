@@ -1,31 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using AlphaCentaury.Tools.SourceCodeMaintenance.Helpers;
+using AlphaCentaury.Tools.SourceCodeMaintenance.Licensing.VisualStudio;
+using System;
 using System.Data;
-using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using AlphaCentaury.Licensing.Data.Serialization;
-using AlphaCentaury.Licensing.Data.Ui;
-using AlphaCentaury.Tools.SourceCodeMaintenance.Helpers;
-using AlphaCentaury.Tools.SourceCodeMaintenance.Interfaces;
-using AlphaCentaury.Tools.SourceCodeMaintenance.Licensing.VisualStudio;
-using IpTviewr.Common.Serialization;
 
 namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing
 {
     public sealed partial class LicensingForm : LicensingFormDocumentView
     {
         private readonly TextBoxOutputWriter _outputWriter;
+        private readonly CheckerOptions _checkerOptions;
 
         public LicensingForm()
         {
             InitializeComponent();
             _outputWriter = new TextBoxOutputWriter(textBoxOutput, timerRefreshOutput, 4);
+            _checkerOptions = new CheckerOptions();
         } // constructor
 
         #region Overrides of LicensingFormDocumentView
@@ -40,38 +36,40 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing
             SafeCall(LoadSolutionFolder);
         } // openSolutionFolderToolStripMenuItem_Click
 
-        protected override async void createStripButton_Click(object sender, EventArgs e)
+        protected override void createStripButton_Click(object sender, EventArgs e)
         {
-            if (CurrentSolution == null) return;
-
-            try
+            ExecuteAsync((token) =>
             {
-                _outputWriter.Clear();
-                _outputWriter.Start();
-                BeginAsyncOperation();
-
-                await LicensingMaintenance.CreateMissingLicensingFilesAsync(CurrentSolution, _outputWriter, GetCancellationToken());
-            }
-            catch (OperationCanceledException)
-            {
-                // ignore
-            } // catch
-            catch (Exception ex)
-            {
-                _outputWriter.WriteException(ex);
-            } // try-catch
-
-            EndAsyncOperation();
-            _outputWriter.Stop();
+                var defaultsPath = Path.GetDirectoryName(Application.ExecutablePath);
+                return LicensingMaintenance.CreateMissingLicensingFilesAsync(CurrentSolution, _outputWriter, defaultsPath, token);
+            });
         } // createStripButton_Click
 
         protected override void checkStripButton_Click(object sender, EventArgs e)
         {
+            ExecuteAsync((token) =>
+            {
+                var defaultsPath = Path.GetDirectoryName(Application.ExecutablePath);
+                return LicensingMaintenance.CheckLicensingFilesAsync(CurrentSolution, _outputWriter, _checkerOptions, defaultsPath, token);
+            });
         } // checkStripButton_Click
 
         protected override void updateStripButton_Click(object sender, EventArgs e)
         {
+            ExecuteAsync((token) => LicensingMaintenance.UpdateLicensingFilesAsync(CurrentSolution, _outputWriter, token));
         } // updateStripButton_Click
+
+        protected override void licensingWriteStripButton_Click(object sender, EventArgs e)
+        {
+            ExecuteAsync((token) => LicensingMaintenance.WriteLicenseFilesAsync(CurrentSolution, _outputWriter, token));
+        } // licensingWriteStripButton_Click
+
+        protected override void licensingOptionsStripButton_Click(object sender, EventArgs e)
+        {
+            using var dlg = new LicensingToolOptionsDialog();
+            dlg.CheckerOptions = _checkerOptions;
+            dlg.ShowDialog(this);
+        } // licensingOptionsStripButton_Click
 
         #endregion
 
@@ -124,7 +122,7 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing
                 var licensing = node.Value;
                 details.AppendLine($"{licensing}");
 
-                var thirdParty = licensing.Licensing?.ThirdParty?.Count ?? -1;
+                var thirdParty = licensing.ThirdParty?.Count ?? -1;
                 details.AppendLine($"    Third party components: {(thirdParty >= 0 ? thirdParty.ToString(CultureInfo.DefaultThreadCurrentCulture) : "none")}");
                 
                 if (licensing.Dependencies == null)
@@ -175,6 +173,32 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing
         private void CreateMissingLicensingFiles()
         {
         } // CreateMissingLicensingFiles
+
+        private async void ExecuteAsync(Func<CancellationToken, Task> asyncAction)
+        {
+            if (CurrentSolution == null) return;
+
+            try
+            {
+                tabControlSolution.SelectedTab = tabPageOutput;
+                _outputWriter.Clear();
+                _outputWriter.Start();
+                BeginAsyncOperation();
+
+                await asyncAction(GetCancellationToken());
+            }
+            catch (OperationCanceledException)
+            {
+                // ignore
+            } // catch
+            catch (Exception ex)
+            {
+                _outputWriter.WriteException(ex);
+            } // try-catch
+
+            EndAsyncOperation();
+            _outputWriter.Stop();
+        } // ExecuteAsync
 
         #endregion
     } // class LicensingForm

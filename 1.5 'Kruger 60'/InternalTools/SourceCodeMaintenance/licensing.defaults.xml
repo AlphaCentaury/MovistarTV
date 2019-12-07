@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Defaults xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="AlphaCentaury.Licensing.Data.v1">
+<Defaults xmlns="urn:AlphaCentaury.Licensing.Data.v1">
   <Libraries>
     <License>Ms-RL</License>
     <Authors>Codeplex/GitHub user AlphaCentaury</Authors>
@@ -14,8 +14,7 @@ In no event shall the authors or the copyright holders be liable for any claim, 
 
 All trademarks, service marks, trade names, product names and logos are the property of their respective owners.
 Its use in the context of this product does not constitute endorsement nor support by their respective owners.
-]]>
-    </TermsAndConditions>
+]]></TermsAndConditions>
   </Libraries>
   <Programs>
     <License>Ms-RL</License>
@@ -31,12 +30,10 @@ In no event shall the authors or the copyright holders be liable for any claim, 
 
 All trademarks, service marks, trade names, product names and logos are the property of their respective owners.
 Its use in the context of this product does not constitute endorsement nor support by their respective owners.
-]]>
-    </TermsAndConditions>
+]]></TermsAndConditions>
   </Programs>
   <Licenses>
     <License id="Ms-RL" name="Microsoft Reciprocal License (Ms-RL)"><![CDATA[
-      
 **Microsoft Reciprocal License (Ms-RL)**
 
 This license governs use of the accompanying software. If you use the software, you accept this license. If you do not accept the license, do not use the software.
@@ -56,7 +53,6 @@ This license governs use of the accompanying software. If you use the software, 
   - (D) If you distribute any portion of the software, you must retain all copyright, patent, trademark, and attribution notices that are present in the software.
   - (E) If you distribute any portion of the software in source code form, you may do so only under this license by including a complete copy of this license with your distribution. If you distribute any portion of the software in compiled or object code form, you may only do so under a license that complies with this license.
   - (F) The software is licensed “as-is.” You bear the risk of using it. The contributors give no express warranties, guarantees or conditions. You may have additional consumer rights under your local laws which this license cannot change. To the extent permitted under your local laws, the contributors exclude the implied warranties of merchantability, fitness for a particular purpose and non-infringement.      
-      
-    ]]></License>
+]]></License>
   </Licenses>
 </Defaults>

@@ -27,10 +27,15 @@ namespace SourceCodeMaintenance
             InitializeComponent();
         } // constructor
 
-        private void MainForm_Load(object sender, EventArgs e)
-        {
+        #region Overrides of Form
 
-        } // MainForm_Load
+        protected override void OnShown(EventArgs e)
+        {
+            base.OnShown(e);
+            newStripMenuItem.PerformClick();
+        } // OnShow
+
+        #endregion
 
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
         {

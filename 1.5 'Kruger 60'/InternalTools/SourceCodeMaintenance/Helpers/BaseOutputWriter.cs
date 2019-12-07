@@ -9,8 +9,8 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Helpers
     public abstract class BaseOutputWriter
     {
         private readonly string[] _indents;
-        protected bool _writeTimestamps;
-        protected bool _absoluteTimestamps;
+        private bool _writeTimestamps;
+        private bool _absoluteTimestamps;
         private bool _started;
 
         protected BaseOutputWriter(int indentSize)
@@ -22,7 +22,7 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Helpers
 
             for (var indent = 0; indent < _indents.Length; indent++)
             {
-                _indents[indent] = new string(' ', (indent + 1) * indentSize);
+                _indents[indent] = new string(' ', indent * indentSize);
             } // for indent
         } // constructor
 
@@ -119,10 +119,10 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Helpers
         {
             if (!_writeTimestamps) return string.Empty;
 
-            if (!_absoluteTimestamps) return $"[{ElapsedTime:g}]{(IndentLevel > 0 ? "" : " ")}";
+            if (!_absoluteTimestamps) return $"[{ElapsedTime:g}]{(IndentLevel != 0 ? "" : " ")}";
 
             var now = DateTime.UtcNow;
-            return $"[{now.ToShortDateString()} {now:HH:mm:ss.ff tt zz}]{(IndentLevel > 0 ? "" : " ")}";
+            return $"[{now.ToShortDateString()} {now:HH:mm:ss.ff zz}]{(IndentLevel != 0 ? "" : " ")}";
         } // GetTimestamp
 
         protected string GetIndent()
@@ -134,19 +134,19 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Helpers
         {
             if (!_writeTimestamps)
             {
-                buffer.AppendFormat("{0}{1}", (IndentLevel > 0) ? "" : " ", GetIndent());
-                buffer.AppendLine(text);
+                buffer.Append(GetIndent());
+                if (text != null) buffer.AppendLine(text);
                 return;
             } // if
 
             if (_absoluteTimestamps)
             {
                 var now = DateTime.UtcNow;
-                buffer.AppendFormat("[{0} {1:HH:mm:ss.ff tt zz}]{2}{3}", now.ToShortDateString(), DateTime.UtcNow, (IndentLevel > 0) ? "" : " ", GetIndent());
+                buffer.AppendFormat("[{0} {1:HH:mm:ss.ff zz}]{2}{3}", now.ToShortDateString(), DateTime.UtcNow, (IndentLevel != 0) ? "" : " ", GetIndent());
             }
             else
             {
-                buffer.AppendFormat("[{0:g}{1}{2}", ElapsedTime, (IndentLevel > 0) ? "" : " ", GetIndent());
+                buffer.AppendFormat("[{0:g}{1}{2}", ElapsedTime, (IndentLevel != 0) ? "" : " ", GetIndent());
             } // if
 
             if (text != null) buffer.AppendLine(text);

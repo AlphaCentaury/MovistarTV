@@ -19,8 +19,8 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing
         protected void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Solution");
-            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Licensing file", -2, -2);
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Solution");
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Licensing file", -2, -2);
             this.tabControlSolution = new System.Windows.Forms.TabControl();
             this.tabPageSolution = new System.Windows.Forms.TabPage();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
@@ -31,6 +31,8 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing
             this.tabPageLicensing = new System.Windows.Forms.TabPage();
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
             this.treeViewLicensingData = new System.Windows.Forms.TreeView();
+            this.tabPageOutput = new System.Windows.Forms.TabPage();
+            this.textBoxOutput = new System.Windows.Forms.TextBox();
             this.imageListSolutionTreeMedium = new System.Windows.Forms.ImageList(this.components);
             this.toolStripMain = new System.Windows.Forms.ToolStrip();
             this.openStripSplitButton = new System.Windows.Forms.ToolStripSplitButton();
@@ -39,16 +41,16 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing
             this.openLicensingDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
-            this.checkStripButton = new System.Windows.Forms.ToolStripButton();
             this.createStripButton = new System.Windows.Forms.ToolStripButton();
+            this.checkStripButton = new System.Windows.Forms.ToolStripButton();
             this.updateStripButton = new System.Windows.Forms.ToolStripButton();
+            this.licensingWriteStripButton = new System.Windows.Forms.ToolStripButton();
+            this.licensingOptionsStripButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.cancelStripButton = new System.Windows.Forms.ToolStripButton();
             this.imageListSolutionTreeSmall = new System.Windows.Forms.ImageList(this.components);
             this.selectFolderDialog = new IpTviewr.UiServices.Common.Controls.SelectFolderDialog();
             this.timerRefreshOutput = new System.Windows.Forms.Timer(this.components);
-            this.tabPageOutput = new System.Windows.Forms.TabPage();
-            this.textBoxOutput = new System.Windows.Forms.TextBox();
             this.tabControlSolution.SuspendLayout();
             this.tabPageSolution.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -63,8 +65,8 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).BeginInit();
             this.splitContainer3.Panel1.SuspendLayout();
             this.splitContainer3.SuspendLayout();
-            this.toolStripMain.SuspendLayout();
             this.tabPageOutput.SuspendLayout();
+            this.toolStripMain.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControlSolution
@@ -118,10 +120,10 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing
             this.treeViewSolution.HideSelection = false;
             this.treeViewSolution.Location = new System.Drawing.Point(0, 0);
             this.treeViewSolution.Name = "treeViewSolution";
-            treeNode3.Name = "Node0";
-            treeNode3.Text = "Solution";
+            treeNode1.Name = "Node0";
+            treeNode1.Text = "Solution";
             this.treeViewSolution.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode3});
+            treeNode1});
             this.treeViewSolution.Size = new System.Drawing.Size(350, 489);
             this.treeViewSolution.TabIndex = 0;
             this.treeViewSolution.BeforeCollapse += new System.Windows.Forms.TreeViewCancelEventHandler(this.treeViewSolution_BeforeCollapse);
@@ -199,14 +201,38 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing
             this.treeViewLicensingData.HideSelection = false;
             this.treeViewLicensingData.Location = new System.Drawing.Point(0, 0);
             this.treeViewLicensingData.Name = "treeViewLicensingData";
-            treeNode4.ImageIndex = -2;
-            treeNode4.Name = "DummySolutionNode";
-            treeNode4.SelectedImageIndex = -2;
-            treeNode4.Text = "Licensing file";
+            treeNode2.ImageIndex = -2;
+            treeNode2.Name = "DummySolutionNode";
+            treeNode2.SelectedImageIndex = -2;
+            treeNode2.Text = "Licensing file";
             this.treeViewLicensingData.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode4});
+            treeNode2});
             this.treeViewLicensingData.Size = new System.Drawing.Size(347, 489);
             this.treeViewLicensingData.TabIndex = 0;
+            // 
+            // tabPageOutput
+            // 
+            this.tabPageOutput.Controls.Add(this.textBoxOutput);
+            this.tabPageOutput.Location = new System.Drawing.Point(4, 22);
+            this.tabPageOutput.Name = "tabPageOutput";
+            this.tabPageOutput.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageOutput.Size = new System.Drawing.Size(752, 495);
+            this.tabPageOutput.TabIndex = 2;
+            this.tabPageOutput.Text = "Action output";
+            this.tabPageOutput.UseVisualStyleBackColor = true;
+            // 
+            // textBoxOutput
+            // 
+            this.textBoxOutput.BackColor = System.Drawing.SystemColors.Window;
+            this.textBoxOutput.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxOutput.Location = new System.Drawing.Point(6, 6);
+            this.textBoxOutput.Multiline = true;
+            this.textBoxOutput.Name = "textBoxOutput";
+            this.textBoxOutput.ReadOnly = true;
+            this.textBoxOutput.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.textBoxOutput.Size = new System.Drawing.Size(740, 483);
+            this.textBoxOutput.TabIndex = 0;
+            this.textBoxOutput.WordWrap = false;
             // 
             // imageListSolutionTreeMedium
             // 
@@ -223,6 +249,8 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing
             this.createStripButton,
             this.checkStripButton,
             this.updateStripButton,
+            this.licensingWriteStripButton,
+            this.licensingOptionsStripButton,
             this.toolStripSeparator2,
             this.cancelStripButton});
             this.toolStripMain.Location = new System.Drawing.Point(0, 0);
@@ -281,15 +309,6 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing
             this.toolStripLabel1.Size = new System.Drawing.Size(60, 22);
             this.toolStripLabel1.Text = "Licensing:";
             // 
-            // checkStripButton
-            // 
-            this.checkStripButton.Image = global::AlphaCentaury.Tools.SourceCodeMaintenance.Properties.Resources.Status_Ok_SmallCircle_16x16;
-            this.checkStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.checkStripButton.Name = "checkStripButton";
-            this.checkStripButton.Size = new System.Drawing.Size(60, 22);
-            this.checkStripButton.Text = "Check";
-            this.checkStripButton.Click += new System.EventHandler(this.checkStripButton_Click);
-            // 
             // createStripButton
             // 
             this.createStripButton.Image = global::AlphaCentaury.Tools.SourceCodeMaintenance.Properties.Resources.Action_Add_16xM;
@@ -300,6 +319,15 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing
             this.createStripButton.ToolTipText = "Create missing licensing files";
             this.createStripButton.Click += new System.EventHandler(this.createStripButton_Click);
             // 
+            // checkStripButton
+            // 
+            this.checkStripButton.Image = global::AlphaCentaury.Tools.SourceCodeMaintenance.Properties.Resources.Status_Ok_SmallCircle_16x16;
+            this.checkStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.checkStripButton.Name = "checkStripButton";
+            this.checkStripButton.Size = new System.Drawing.Size(60, 22);
+            this.checkStripButton.Text = "Check";
+            this.checkStripButton.Click += new System.EventHandler(this.checkStripButton_Click);
+            // 
             // updateStripButton
             // 
             this.updateStripButton.Image = global::AlphaCentaury.Tools.SourceCodeMaintenance.Properties.Resources.RefreshBlue_16x16;
@@ -308,6 +336,25 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing
             this.updateStripButton.Size = new System.Drawing.Size(65, 22);
             this.updateStripButton.Text = "Update";
             this.updateStripButton.Click += new System.EventHandler(this.updateStripButton_Click);
+            // 
+            // licensingWriteStripButton
+            // 
+            this.licensingWriteStripButton.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.licensingWriteStripButton.Image = global::AlphaCentaury.Tools.SourceCodeMaintenance.Properties.Resources.TextFile_16x;
+            this.licensingWriteStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.licensingWriteStripButton.Name = "licensingWriteStripButton";
+            this.licensingWriteStripButton.Size = new System.Drawing.Size(55, 22);
+            this.licensingWriteStripButton.Text = "Write";
+            this.licensingWriteStripButton.Click += new System.EventHandler(this.licensingWriteStripButton_Click);
+            // 
+            // licensingOptionsStripButton
+            // 
+            this.licensingOptionsStripButton.Image = global::AlphaCentaury.Tools.SourceCodeMaintenance.Properties.Resources.Action_Settings_16x16;
+            this.licensingOptionsStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.licensingOptionsStripButton.Name = "licensingOptionsStripButton";
+            this.licensingOptionsStripButton.Size = new System.Drawing.Size(69, 22);
+            this.licensingOptionsStripButton.Text = "Options";
+            this.licensingOptionsStripButton.Click += new System.EventHandler(this.licensingOptionsStripButton_Click);
             // 
             // toolStripSeparator2
             // 
@@ -339,29 +386,6 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing
             // 
             this.timerRefreshOutput.Interval = 1500;
             // 
-            // tabPageOutput
-            // 
-            this.tabPageOutput.Controls.Add(this.textBoxOutput);
-            this.tabPageOutput.Location = new System.Drawing.Point(4, 22);
-            this.tabPageOutput.Name = "tabPageOutput";
-            this.tabPageOutput.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageOutput.Size = new System.Drawing.Size(752, 495);
-            this.tabPageOutput.TabIndex = 2;
-            this.tabPageOutput.Text = "Action output";
-            this.tabPageOutput.UseVisualStyleBackColor = true;
-            // 
-            // textBoxOutput
-            // 
-            this.textBoxOutput.BackColor = System.Drawing.SystemColors.Window;
-            this.textBoxOutput.Location = new System.Drawing.Point(6, 6);
-            this.textBoxOutput.Multiline = true;
-            this.textBoxOutput.Name = "textBoxOutput";
-            this.textBoxOutput.ReadOnly = true;
-            this.textBoxOutput.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.textBoxOutput.Size = new System.Drawing.Size(740, 483);
-            this.textBoxOutput.TabIndex = 0;
-            this.textBoxOutput.WordWrap = false;
-            // 
             // LicensingFormDocumentView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -386,10 +410,10 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing
             this.splitContainer3.Panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).EndInit();
             this.splitContainer3.ResumeLayout(false);
-            this.toolStripMain.ResumeLayout(false);
-            this.toolStripMain.PerformLayout();
             this.tabPageOutput.ResumeLayout(false);
             this.tabPageOutput.PerformLayout();
+            this.toolStripMain.ResumeLayout(false);
+            this.toolStripMain.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -417,14 +441,16 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing
         protected IpTviewr.UiServices.Common.Controls.SelectFolderDialog selectFolderDialog;
         protected System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         protected System.Windows.Forms.ToolStripLabel toolStripLabel1;
-        protected System.Windows.Forms.ToolStripButton checkStripButton;
         protected System.Windows.Forms.ToolStripButton createStripButton;
         protected System.Windows.Forms.ToolStripButton updateStripButton;
         protected System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         protected System.Windows.Forms.ToolStripButton cancelStripButton;
         private System.ComponentModel.IContainer components;
-        private System.Windows.Forms.TabPage tabPageOutput;
         protected System.Windows.Forms.TextBox textBoxOutput;
         protected System.Windows.Forms.Timer timerRefreshOutput;
+        protected System.Windows.Forms.TabPage tabPageOutput;
+        protected System.Windows.Forms.ToolStripButton checkStripButton;
+        private System.Windows.Forms.ToolStripButton licensingWriteStripButton;
+        private System.Windows.Forms.ToolStripButton licensingOptionsStripButton;
     }
 }

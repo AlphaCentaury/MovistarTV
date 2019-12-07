@@ -118,85 +118,91 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="MaintenanceTool_Gui_16x" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\maintenancetool_gui_16x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="MaintenanceTool_Gui_24x" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\maintenancetool_gui_24x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Action_Settings_16x16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Action_Settings_16x16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Action_GoNextDown_16x16" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Action_GoNextDown_16x16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="FolderOpen_32x" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\folderopen_32x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Action_Ok_16x16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Action_Ok_16x16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="MaintenanceTool_Cli_16x" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\maintenancetool_cli_16x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="MaintenanceTool_Cli_24x" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\maintenancetool_cli_24x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="MaintenanceTool_Gui_32x" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\maintenancetool_gui_32x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Status_Unknown_16x616" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Status_Unknown_16x616.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Action_GoPreviousUp_16x16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Action_GoPreviousUp_16x16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Folder_32x" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\folder_32x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="MaintenanceTool_Gui_24x" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\maintenancetool_gui_24x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Action_Go_16x16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Action_Go_16x16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="MaintenanceTool_Cli_32x" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\maintenancetool_cli_32x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Action_Close_16x16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Action_Close_16x16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Action_Add_16xM" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Action_Add_16xM.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="Folder_16x" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\folder_16x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Folder_24x" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\folder_24x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Action_Open_16x" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Action_Open_16x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Status_Ok_SmallCircle_16x16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Status_Ok_SmallCircle_16x16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="FolderOpen_24x" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\folderopen_24x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="FolderOpen_16x" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\folderopen_16x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Action_Edit_16x16" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Action_Edit_16x16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Action_Cancel_16x16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Action_Cancel_16x16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Action_GoPreviousUp_16x16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Action_GoPreviousUp_16x16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Action_Delete_16x16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Action_Delete_16x16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="MaintenanceTool_Gui_32x" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\maintenancetool_gui_32x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Action_Property_Add_16x16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Action_Property_Add_16x16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="MaintenanceTool_Cli_16x" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\maintenancetool_cli_16x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Action_Ok_16x16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Action_Ok_16x16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Action_FullView_16x16" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Action_FullView_16x16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Action_Delete_16x16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Action_Delete_16x16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MaintenanceTool_Cli_24x" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\maintenancetool_cli_24x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Action_Close_16x16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Action_Close_16x16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Action_Open_16x" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Action_Open_16x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Folder_24x" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\folder_24x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Action_Property_Add_16x16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Action_Property_Add_16x16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Status_Ok_SmallCircle_16x16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Status_Ok_SmallCircle_16x16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Action_Go_16x16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Action_Go_16x16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="RefreshBlue_16x16" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\RefreshBlue_16x16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Folder_32x" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\folder_32x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="FolderOpen_24x" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\folderopen_24x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MaintenanceTool_Gui_16x" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\maintenancetool_gui_16x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="FolderOpen_16x" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\folderopen_16x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Action_Cancel_16x16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Action_Cancel_16x16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Status_Unknown_16x616" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Status_Unknown_16x616.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="FolderOpen_32x" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\folderopen_32x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MaintenanceTool_Cli_32x" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\maintenancetool_cli_32x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Action_Add_16xM" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Action_Add_16xM.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="TextFile_16x" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\TextFile_16x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

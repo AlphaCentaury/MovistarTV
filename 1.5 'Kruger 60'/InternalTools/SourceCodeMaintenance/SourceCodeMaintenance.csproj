@@ -82,6 +82,7 @@
     <Compile Include="Interfaces\IMaintenanceTool.cs" />
     <Compile Include="Interfaces\IMaintenanceToolMetadata.cs" />
     <Compile Include="Interfaces\IToolOutputWriter.cs" />
+    <Compile Include="Licensing\CheckerOptions.cs" />
     <Compile Include="Licensing\LicensingFileNode.cs" />
     <Compile Include="Licensing\LicensingForm.cs">
       <SubType>Form</SubType>
@@ -89,9 +90,18 @@
     <Compile Include="Licensing\LicensingForm.Designer.cs">
       <DependentUpon>LicensingForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Licensing\LicensingMaintenance.CreatorData.cs" />
-    <Compile Include="Licensing\LicensingMaintenance.OperationData.cs" />
+    <Compile Include="Licensing\LicensingMaintenance.Checker.cs" />
+    <Compile Include="Licensing\LicensingMaintenance.Creator.cs" />
+    <Compile Include="Licensing\LicensingMaintenance.ProjectAction.cs" />
     <Compile Include="Licensing\LicensingMaintenance.Helper.cs" />
+    <Compile Include="Licensing\LicensingMaintenance.Updater.cs" />
+    <Compile Include="Licensing\LicensingMaintenance.LicensesWriter.cs" />
+    <Compile Include="Licensing\LicensingToolOptionsDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Licensing\LicensingToolOptionsDialog.Designer.cs">
+      <DependentUpon>LicensingToolOptionsDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Licensing\SolutionImages.cs" />
     <Compile Include="Licensing\LicensingVsUi.cs" />
     <Compile Include="Licensing\VisualStudio\VsSolutionFolder.cs" />
@@ -147,6 +157,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Licensing\LicensingForm.resx">
       <DependentUpon>LicensingForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Licensing\LicensingToolOptionsDialog.resx">
+      <DependentUpon>LicensingToolOptionsDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\LicensingResources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -252,10 +265,13 @@
     <Content Include="internal.licensing.defaults.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="licenses.pool.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="licensing.defaults.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="SourceCodeMaintenance.csproj.DotSettings.user" />
+    <None Include="Resources\TextFile_16x.png" />
     <None Include="Resources\RefreshBlue_16x16.png" />
     <None Include="Resources\Status_Ok_SmallCircle_16x16.png" />
     <None Include="Licensing\Resources\Dependencies_32x.png" />
@@ -272,6 +288,7 @@
     <Content Include="Licensing\Resources\Certificate_16x.svg" />
     <Content Include="Licensing\Resources\Certificate_24x.png" />
     <Content Include="Licensing\Resources\Certificate_32x.png" />
+    <None Include="Resources\Action_Settings_16x16.png" />
     <Content Include="Resources\cogs.ico" />
     <Content Include="Resources\cogs_24x24.png" />
     <Content Include="Resources\cogs_32x32.png" />

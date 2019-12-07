@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using AlphaCentaury.Licensing.Data.Serialization;
@@ -26,107 +28,80 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing
                 };
             } // GetLicensingFilename
 
+            public static IReadOnlyDictionary<string, LicensingDefaults> ReadLicensingDefaults(string path)
+            {
+                var defaultsFiles = from file in Directory.EnumerateFiles(path, "*licensing.defaults.xml", SearchOption.TopDirectoryOnly)
+                                    select XmlSerialization.Deserialize<LicensingDefaults>(file);
+
+                return defaultsFiles.ToDictionary(@default => @default.AppliesTo ?? "", StringComparer.InvariantCulture);
+            } // ReadLicensingDefaults
+
+            public static IReadOnlyDictionary<string, License> ReadLicensesPool(string path)
+            {
+                var poolFile = Path.Combine(path, "licenses.pool.xml");
+                if (!File.Exists(poolFile)) return new Dictionary<string, License>();
+
+                var pool = XmlSerialization.Deserialize<LicensesPool>(poolFile);
+                return pool.Licenses == null ? new Dictionary<string, License>() : pool.Licenses.ToDictionary(license => license.Id, StringComparer.InvariantCulture);
+            } // ReadLicensesPool
+
             #region ForEach
 
-            public static void ForEachProject<TData>(TData data, Action<TData, VsProject, bool> projectAction, Action<TData> init = null) where TData : OperationData
+            public static void ForEachProject<TAction>(TAction action) where TAction : ProjectAction
             {
-                if (data == null) throw new ArgumentNullException(nameof(data));
-                if (projectAction == null) throw new ArgumentNullException(nameof(projectAction));
-                if (data.Solution == null) throw new ArgumentException();
-                if (data.Writer == null) throw new ArgumentException();
+                if (action == null) throw new ArgumentNullException(nameof(action));
+                if (action.Solution == null) throw new ArgumentException();
+                if (action.Writer == null) throw new ArgumentException();
 
-                init?.Invoke(data);
-                if (data.Solution.RootFolder == null)
+                if (action.Solution.RootFolder == null)
                 {
-                    data.Writer.WriteLine("Solution has no root folder. Aborting execution.");
+                    action.Writer.WriteLine("Solution has no root folder. Aborting execution.");
                     return;
                 } // if
 
-                ForEachProject(data, data.Solution.RootFolder, projectAction);
+                var where = "action.Init()";
+                try
+                {
+                    action.Init();
+                    
+                    ForEachProject(action, action.Solution.RootFolder);
+                    
+                    where = "action.End()";
+                    action.End();
+                }
+                catch (Exception e)
+                {
+                    action.Writer.WriteException(e, where);
+                } // try-catch
             } // ForEachProject
 
-            public static void ForEachProject<TData>(TData data, VsSolutionFolder solutionFolder, Action<TData, VsProject, bool> projectAction) where TData : OperationData
+            public static void ForEachProject<TAction>(TAction action, VsSolutionFolder solutionFolder) where TAction : ProjectAction
             {
                 if ((solutionFolder.Projects?.Count ?? 0) > 0)
                 {
+                    action.Writer.WriteLine("Solution folder: {0}", solutionFolder.Name);
+                    action.Writer.IncreaseIndent();
                     foreach (var project in solutionFolder.Projects)
                     {
                         try
                         {
-                            projectAction(data, project, solutionFolder.Projects.Count == 1);
+                            action.Do(project, solutionFolder.Projects.Count == 1);
                         }
                         catch (Exception e)
                         {
-                            data.Writer.WriteException(e, project.Filename);
+                            action.Writer.WriteException(e, project.Filename);
                         } // try-catch
                     } // foreach
+                    action.Writer.DecreaseIndent();
                 } // if
 
                 if ((solutionFolder.Folders?.Count ?? 0) == 0) return;
 
                 foreach (var folder in solutionFolder.Folders)
                 {
-                    ForEachProject(data, folder, projectAction);
+                    ForEachProject(action, folder);
                 } // foreach
             } // ForEachProject
-
-            #endregion
-
-            #region Operation: CreateMissingLicensingFiles
-
-            public static void CreateLicensingFile(CreatorData data, VsProject project, bool standalone)
-            {
-                data.Token.ThrowIfCancellationRequested();
-
-                data.Writer.WriteLine("Project {0}: <{1}>", project.Name, project.Filename);
-                var filename = LicensingMaintenance.Helper.GetLicensingFilename(project, standalone);
-
-                data.Writer.IncreaseIndent();
-                if (File.Exists(filename))
-                {
-                    data.Writer.WriteLine("<{0}> not needed", Path.GetFileName(filename));
-                }
-                else
-                {
-                    data.Writer.WriteLine("Creating <{0}>", Path.GetFileName(filename));
-                    var licensingData = GetLicensingData(data, project);
-                    XmlSerialization.Serialize(filename, licensingData);
-                } // if-else
-                data.Writer.DecreaseIndent();
-            } // CreateLicensingFile
-
-            private static LicensingData GetLicensingData(CreatorData data, VsProject project)
-            {
-                var defaults = data.Defaults[project.LicensingDefaultsKey ?? ""];
-                var licensed = project.IsLibrary switch
-                {
-                    true => (LicensedItem)new LicensedLibrary(),
-                    false => new LicensedProgram { IsConsoleApp = (project.Type != "WinExe") }
-                };
-
-                var licensingData = new LicensingData
-                {
-                    Licensing = new AlphaCentaury.Licensing.Data.Serialization.Licensing
-                    {
-                        Licensed = licensed
-                    },
-                    Licenses = defaults.Licenses
-                };
-
-                var licensedDefaults = project.IsLibrary ? defaults.Libraries : defaults.Programs;
-                licensed.Product = licensedDefaults.Product;
-                licensed.Terms = licensedDefaults.Terms;
-                licensed.Authors = licensedDefaults.Authors;
-                licensed.Copyright = licensedDefaults.Copyright;
-                licensed.LicenseId = licensedDefaults.LicenseId;
-                licensed.Remarks = licensedDefaults.Remarks;
-
-                return licensingData;
-            } // GetLicensingData
-
-            #endregion
-
-            #region Operation: CheckLicensingFiles
 
             #endregion
         } // class Helper
