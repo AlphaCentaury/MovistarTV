@@ -53,8 +53,8 @@
     <Compile Include="Serialization\LicensedLibrary.cs" />
     <Compile Include="Serialization\LicensedProgram.cs" />
     <Compile Include="Serialization\LicenseExpanded.cs" />
+    <Compile Include="Serialization\LicensesPool.cs" />
     <Compile Include="Serialization\LicenseUsedBy.cs" />
-    <Compile Include="Serialization\Licensing.cs" />
     <Compile Include="Serialization\LicensingDefaults.cs" />
     <Compile Include="Serialization\LicensingData.cs" />
     <Compile Include="Serialization\LicensedItem.cs" />

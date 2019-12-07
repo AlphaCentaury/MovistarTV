@@ -10,8 +10,14 @@ namespace AlphaCentaury.Licensing.Data.Serialization
     {
         [XmlAttribute("appliesTo")]
         public string AppliesTo { get; set; }
+
+        [XmlElement("Libraries", typeof(LicensedLibrary))]
         public LicensedItem Libraries { get; set; }
+
+        [XmlElement("Programs", typeof(LicensedProgram))]
         public LicensedItem Programs { get; set; }
+
+        [XmlArrayItem("License")]
         public List<License> Licenses { get; set; }
     } // class LicensingDefaults
 } // class LicensingDefaults

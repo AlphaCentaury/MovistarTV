@@ -27,11 +27,13 @@ namespace AlphaCentaury.Licensing.Data.Ui
         public TreeNode FileToTree(string name, LicensingData file)
         {
             var root = new TreeNode(name, _images.LicensingData, _images.LicensingData) { Tag = file };
-            AddLicensingNodes(root, file.Licensing);
-            AddDependenciesNodes(root, file.Dependencies);
-            var node = new TreeNode(Resources.LicensesNode, _images.Licenses, _images.Licenses);
+            var node = LicensedItemToNode(file.Licensed);
             root.Nodes.Add(node);
-            AddLicensesNodes(node, file.Licenses);
+            AddThirdPartyDependenciesNodes(node, file.ThirdParty);
+
+            AddDependenciesNodes(root, file.Dependencies);
+
+            AddLicensesNodes(root, file.Licenses);
 
             root.Expand();
             return root;
@@ -42,26 +44,17 @@ namespace AlphaCentaury.Licensing.Data.Ui
         {
             var root = new TreeNode(name, _images.LicensingData, _images.LicensingData) { Tag = file };
 
-            var licensing = LicensedItemToNode(file.Licensing.Licensed);
-            root.Nodes.Add(licensing);
-            AddDependenciesNodes(licensing, file.Dependencies);
+            var licensed = LicensedItemToNode(file.Licensed);
+            root.Nodes.Add(licensed);
+            AddDependenciesNodes(licensed, file.Dependencies);
 
-            AddThirdPartyDependenciesNodes(root, file.Licensing.ThirdParty);
+            AddThirdPartyDependenciesNodes(root, file.ThirdParty);
 
             AddLicensesNodes(root, file.Licenses);
 
             root.Expand();
             return root;
         } // FileToTreeAlt
-
-        public void AddLicensingNodes(TreeNode treeNode, Serialization.Licensing licensing)
-        {
-            if (licensing == null) return;
-
-            var node = LicensedItemToNode(licensing.Licensed);
-            treeNode.Nodes.Add(node);
-            AddThirdPartyDependenciesNodes(node, licensing.ThirdParty);
-        } // AddLicensingNodes
 
         public void AddDependenciesNodes(TreeNode treeNode, Dependencies dependencies)
         {
@@ -129,7 +122,7 @@ namespace AlphaCentaury.Licensing.Data.Ui
             var image = item switch
             {
                 LicensedLibrary _ => _images.LicensedLibrary,
-                LicensedProgram program => program.IsConsoleApp ? _images.LicensedProgramCli : _images.LicensedProgramGui,
+                LicensedProgram program => program.IsGuiApp ? _images.LicensedProgramCli : _images.LicensedProgramGui,
                 _ => _images.LicensedUnknown
             };
 

@@ -14,9 +14,9 @@ namespace AlphaCentaury.Licensing.Data.Serialization
     [Serializable]
     public sealed class LicensedProgram: LicensedItem
     {
-        [XmlAttribute("consoleApp")]
-        [DefaultValue(false)]
-        public bool IsConsoleApp { get; set; }
+        [XmlAttribute("interactive")]
+        [DefaultValue(true)]
+        public bool IsGuiApp { get; set; }
 
         public override string Type => "Program";
     } // class LicensedProgram

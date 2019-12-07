@@ -18,24 +18,14 @@ namespace AlphaCentaury.Licensing.Data
         {
             var clone = new LicensingData
             {
+                Licensed = item.Licensed.Clone(),
+                ThirdParty = item.ThirdParty.Clone(),
                 Dependencies = item.Dependencies.Clone(),
-                Licensing = item.Licensing.Clone(),
                 Licenses  = item.Licenses.Clone()
             };
 
             return clone;
-        } // Clone:LicensingFile
-
-        public static Serialization.Licensing Clone(this Serialization.Licensing item)
-        {
-            var clone = new Serialization.Licensing
-            {
-                Licensed  = item.Licensed.Clone(),
-                ThirdParty  = item.ThirdParty.Clone()
-            };
-
-            return clone;
-        } // Clone:Licensing
+        } // Clone:LicensingData
 
         public static Dependencies Clone(this Dependencies item)
         {
@@ -173,5 +163,36 @@ namespace AlphaCentaury.Licensing.Data
                 action(item, data);
             } // foreach
         } // ForEach
+
+        public static LicensedProgram Morph(this LicensedLibrary library)
+        {
+            return new LicensedProgram
+            {
+                Name = library.Name,
+                LicenseId = library.LicenseId,
+                Copyright = library.Copyright,
+                Authors = library.Authors,
+                Remarks = library.Remarks,
+                Terms = library.Terms,
+                Product = library.Product,
+                Assembly = library.Assembly,
+                IsGuiApp = true
+            };
+        } // Morph LicensedLibrary
+
+        public static LicensedLibrary Morph(this LicensedProgram program)
+        {
+            return new LicensedLibrary
+            {
+                Name = program.Name,
+                LicenseId = program.LicenseId,
+                Copyright = program.Copyright,
+                Authors = program.Authors,
+                Remarks = program.Remarks,
+                Terms = program.Terms,
+                Product = program.Product,
+                Assembly = program.Assembly,
+            };
+        } // Morph LicensedProgram
     } // class LicenseFileUtils
 } // namespace

@@ -37,8 +37,8 @@ namespace AlphaCentaury.Licensing.Data
                 _thirdParty.Add(license.Id, new HashSet<string>(StringComparer.InvariantCulture));
             } // foreach
 
-            AddLicensed(_file.Licensing.Licensed);
-            AddThirdParty(_file.Licensing.ThirdParty);
+            AddLicensed(_file.Licensed);
+            AddThirdParty(_file.ThirdParty);
             AddLibraries(_file.Dependencies.Libraries);
             AddThirdParty(_file.Dependencies.ThirdParty);
             Sort();

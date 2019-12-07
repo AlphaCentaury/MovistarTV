@@ -54,6 +54,7 @@ namespace AlphaCentaury.Licensing.Data.Serialization
 
         public static bool operator ==(License left, License right)
         {
+            if (ReferenceEquals(left, right)) return true;
             return left?.Equals(right) ?? false;
         } // operator ==
 

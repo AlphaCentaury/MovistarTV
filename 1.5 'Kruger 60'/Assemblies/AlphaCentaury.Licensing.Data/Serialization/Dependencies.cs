@@ -19,5 +19,10 @@ namespace AlphaCentaury.Licensing.Data.Serialization
 
         [XmlArrayItem("Component")]
         public List<ThirdPartyDependency> ThirdParty { get; set; }
+
+        // avoid serializing empty lists
+        public bool LibrariesSpecified => (Libraries != null) && (Libraries.Count > 0);
+
+        public bool ThirdPartySpecified => (ThirdParty != null) && (ThirdParty.Count > 0);
     } // class Dependencies
 } // namespace

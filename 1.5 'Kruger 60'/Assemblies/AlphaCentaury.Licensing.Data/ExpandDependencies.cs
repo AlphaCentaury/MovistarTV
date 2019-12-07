@@ -7,42 +7,52 @@
 
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net;
 using AlphaCentaury.Licensing.Data.Serialization;
 
 namespace AlphaCentaury.Licensing.Data
 {
     internal class ExpandDependencies
     {
-        private readonly List<LicensingData> _files;
+        private readonly List<LicensingData> _allData;
         private readonly Dictionary<string, LicensingData> _libraries;
+        private readonly Dictionary<string, License> _allLicenses;
 
-        public ExpandDependencies(List<LicensingData> files)
+        public ExpandDependencies(List<LicensingData> allData)
         {
             // validate arguments
-            if (files == null) throw new ArgumentNullException(nameof(files));
-            if (files.Count == 0) return;
-            _files = files;
-
-            // validate files
-            var q = from file in files
-                    where (file.Licensing?.Licensed == null)
-                    select file;
-            if (q.FirstOrDefault() != null) throw new ArgumentException();
+            if (allData == null) throw new ArgumentNullException(nameof(allData));
+            if (allData.Count == 0) return;
+            _allData = allData;
 
             // create dictionary of libraries
-            var q2 = from file in files
-                     where file.Licensing.Licensed is LicensedLibrary
-                     select file;
-            _libraries = q2.ToDictionary(file => file.Licensing.Licensed.Name);
+            var q = from file in allData
+                    where file?.Licensed is LicensedLibrary
+                    select file;
+            _libraries = q.ToDictionary(file => file.Licensed.Name);
 
-            // create empty visited 'list'
-            
+            // create dictionary of licenses
+            _allLicenses = new Dictionary<string, License>(StringComparer.InvariantCultureIgnoreCase);
         } // constructor
 
         public void Expand()
         {
-            if (_files.Count == 0) return;
+            if (_allData.Count == 0) return;
+
+            // validate data
+            var q = from data in _allData
+                    where (data.Licensed == null)
+                    select data;
+            if (q.FirstOrDefault() != null) throw new ArgumentException();
+
+            // create dictionary of licenses
+            var licenses = from data in _allData
+                           where data.LicensesSpecified
+                           from license in data.Licenses
+                           select license;
+            licenses.ForEach(license => _allLicenses[license.Id] = license);
 
             AddIndirectLibraryDependencies();
             SortDirectThirdParty();
@@ -53,81 +63,58 @@ namespace AlphaCentaury.Licensing.Data
         private void AddIndirectLibraryDependencies()
         {
             // clear indirect dependencies
-            _files.Where(file => file.Dependencies != null).ForEach(file =>
+            _allData.Where(data => data.Dependencies != null).ForEach(data =>
             {
-                file.Dependencies.Libraries?.RemoveAll(library => !library.IsDirectDependency || !library.IsDynamicDependency);
-                file.Dependencies.ThirdParty = null;
+                data.Dependencies.Libraries?.RemoveAll(library => !library.IsDirectDependency && !library.IsDynamicDependency);
+                data.Dependencies.ThirdParty = null;
             });
 
             // re-add indirect dependencies
             var comparer = new DependencyLibraryComparer();
             var visited = new HashSet<string>(StringComparer.InvariantCulture);
-            _files.ForEach(file =>
+            _allData.ForEach(data =>
             {
-                AddIndirectLibraryDependencies(file, visited);
-                file.Dependencies.Libraries?.Sort(comparer);
+                AddIndirectLibraryDependencies(data, visited);
+                data.Dependencies?.Libraries?.Sort(comparer);
             });
         } // AddIndirectLibraryDependencies
 
-        public void SortDirectThirdParty()
+        private void SortDirectThirdParty()
         {
             var comparer = new ThirdPartyDependencyComparer();
-            _files.Where(file => file.Licensing.ThirdParty != null).ForEach(file =>
+            _allData.Where(data => data.ThirdParty != null).ForEach(data =>
             {
-                file.Dependencies.ThirdParty?.Sort(comparer);
+                data.Dependencies?.ThirdParty?.Sort(comparer);
             });
         } // ShortThirdParty
 
-        public void AddIndirectThirdParty()
+        private void AddIndirectThirdParty()
         {
-            _files.Where(file => file.Dependencies?.Libraries != null).ForEach(AddIndirectThirdParty);
+            _allData.Where(data => data.Dependencies?.Libraries != null).ForEach(AddIndirectThirdParty);
         } // AddIndirectThirdParty
 
-        public void AddMissingLicenses()
+        private void AddIndirectLibraryDependencies(LicensingData data, HashSet<string> visited)
         {
-            var q = from file in _files
-                    where (file.Licenses != null) && (file.Licenses.Count > 0)
-                    from license in file.Licenses
-                    select license;
-
-            var licenses = new Dictionary<string, License>();
-            q.ForEach(license => licenses[license.Id] = license);
-
-            _files.Where(file => file.Dependencies?.ThirdParty != null).ForEach(file =>
-            {
-                file.Dependencies.ThirdParty.ForEach(library =>
-                {
-                    var license = licenses[library.LicenseId];
-                    if (!file.Licenses.Contains(license))
-                    { 
-                        file.Licenses.Add(license);
-                    } // if
-                });
-            });
-        } // AddMissingLicenses
-
-        private void AddIndirectLibraryDependencies(LicensingData file, HashSet<string> visited)
-        {
-            if (file.Dependencies?.Libraries == null) return;
+            if (data.Dependencies?.Libraries == null) return;
 
             // avoid circular references
-            if (visited.Contains(file.Licensing.Licensed.Name)) return;
-            visited.Add(file.Licensing.Licensed.Name);
+            if (visited.Contains(data.Licensed.Name)) return;
+            visited.Add(data.Licensed.Name);
 
             // add indirect library dependencies
-            var q = from dependency in file.Dependencies.Libraries
+            var q = from dependency in data.Dependencies.Libraries
                     select _libraries[dependency.Namespace];
             q.ForEach(AddIndirectLibraryDependencies, visited);
 
             // create hashset to avoid adding duplicated dependencies
             var added = new HashSet<string>();
-            file.Dependencies.Libraries.ForEach(lib => added.Add(lib.Namespace ?? throw new ArgumentException()));
+            data.Dependencies.Libraries.ForEach(lib => added.Add(lib.Namespace ?? throw new ArgumentException()));
 
-            var libraries = (from dependency in file.Dependencies.Libraries
+            var libraries = (from dependency in data.Dependencies.Libraries
                              select _libraries[dependency.Namespace]).ToArray();
 
             var dependencies = from library in libraries
-                               where library.Dependencies.Libraries != null
+                               where library.Dependencies?.Libraries != null
                                from dependency in library.Dependencies.Libraries
                                select dependency;
 
@@ -135,7 +122,7 @@ namespace AlphaCentaury.Licensing.Data
             {
                 if (added.Contains(dependency.Namespace)) return;
 
-                file.Dependencies.Libraries.Add(new LibraryDependency
+                data.Dependencies.Libraries.Add(new LibraryDependency
                 {
                     Namespace = dependency.Namespace,
                     Assembly = dependency.Assembly,
@@ -146,27 +133,42 @@ namespace AlphaCentaury.Licensing.Data
             });
         } // AddIndirectLibraryDependencies
 
-        private void AddIndirectThirdParty(LicensingData file)
+        private void AddIndirectThirdParty(LicensingData data)
         {
             var added = new HashSet<string>();
-            file.Licensing.ThirdParty?.ForEach(library => added.Add(library.Name));
+            data.ThirdParty?.ForEach(library => added.Add(library.Name));
 
-            var q = from dependency in file.Dependencies.Libraries
+            var q = from dependency in data.Dependencies.Libraries
                     let library = _libraries[dependency.Namespace]
-                    where library.Licensing?.ThirdParty != null
-                    from thirdParty in library.Licensing.ThirdParty
+                    where library.ThirdParty != null
+                    from thirdParty in library.ThirdParty
                     select thirdParty;
 
             q.ForEach(library =>
             {
                 if (added.Contains(library.Name)) return;
-                if (file.Dependencies.ThirdParty == null) file.Dependencies.ThirdParty = new List<ThirdPartyDependency>();
+                if (data.Dependencies.ThirdParty == null) data.Dependencies.ThirdParty = new List<ThirdPartyDependency>();
 
-                file.Dependencies.ThirdParty.Add(library);
+                data.Dependencies.ThirdParty.Add(library);
                 added.Add(library.Name);
             });
 
-            file.Dependencies.ThirdParty.Sort(new ThirdPartyDependencyComparer());
+            data.Dependencies.ThirdParty?.Sort(new ThirdPartyDependencyComparer());
         } // AddIndirectThirdParty
+
+        private void AddMissingLicenses()
+        {
+            _allData.Where(data => data.Dependencies?.ThirdParty != null).ForEach(data =>
+            {
+                data.Dependencies.ThirdParty.ForEach(library =>
+                {
+                    var license = _allLicenses[library.LicenseId];
+                    if (data.GetLicense(license.Id) == null)
+                    {
+                        data.Licenses.Add(license);
+                    } // if
+                });
+            });
+        } // AddMissingLicenses
     } // class ExpandDependencies
 } // namespace
