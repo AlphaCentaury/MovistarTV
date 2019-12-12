@@ -6,34 +6,27 @@
 // http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
 
 using System;
-using System.ComponentModel;
 using System.Xml.Serialization;
 
 namespace AlphaCentaury.Licensing.Data.Serialization
 {
     [Serializable]
-    public class LibraryDependency
+    public sealed class LibraryDependency : LicensedComponentDependency
     {
-        [XmlAttribute("name")]
-        public string Namespace { get; set; }
-
-        [XmlAttribute("file")]
+        [XmlElement("File")]
         public string Assembly { get; set; }
 
-        [XmlAttribute("license")]
-        public string LicenseId { get; set; }
+        public override string ToString() => $"{DependencyTypeMark}{Name}";
 
-        [XmlAttribute("direct")]
-        [DefaultValue(true)]
-        public bool IsDirectDependency { get; set; }
-
-        [XmlAttribute("dynamic")]
-        [DefaultValue(true)]
-        public bool IsDynamicDependency { get; set; }
-
-        public override string ToString()
+        public LibraryDependency Clone()
         {
-            return IsDirectDependency ? Namespace : "+" + Namespace;
-        } // ToString
+            var clone = new LibraryDependency
+            {
+                Assembly = Assembly
+            };
+            CopyToDependency(clone);
+
+            return clone;
+        } // Clone
     } // class LibraryDependency
 } // namespace

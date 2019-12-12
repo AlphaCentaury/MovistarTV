@@ -190,7 +190,7 @@ namespace AlphaCentaury.Licensing.Data.Ui.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Indirect dependencies.
+        ///   Looks up a localized string similar to Dependencias.
         /// </summary>
         internal static string DependenciesNode {
             get {
@@ -251,6 +251,36 @@ namespace AlphaCentaury.Licensing.Data.Ui.Properties {
         internal static System.Drawing.Bitmap ImageLibrary_32x {
             get {
                 object obj = ResourceManager.GetObject("ImageLibrary_32x", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Installer_16x {
+            get {
+                object obj = ResourceManager.GetObject("Installer_16x", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Installer_24x {
+            get {
+                object obj = ResourceManager.GetObject("Installer_24x", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Installer_32x {
+            get {
+                object obj = ResourceManager.GetObject("Installer_32x", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -391,15 +421,6 @@ namespace AlphaCentaury.Licensing.Data.Ui.Properties {
             get {
                 object obj = ResourceManager.GetObject("Link_48x", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Third-party components.
-        /// </summary>
-        internal static string ListThirdPartyNode {
-            get {
-                return ResourceManager.GetString("ListThirdPartyNode", resourceCulture);
             }
         }
         

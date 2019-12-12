@@ -11,7 +11,7 @@ using System.Xml.Serialization;
 namespace AlphaCentaury.Licensing.Data.Serialization
 {
     [Serializable]
-    public abstract class BaseLibrary
+    public abstract class LicensedComponent
     {
         [XmlAttribute("name")]
         public string Name { get; set; }
@@ -23,11 +23,17 @@ namespace AlphaCentaury.Licensing.Data.Serialization
 
         public string Copyright { get; set; }
 
-        public MultilineText Remarks { get; set; }
+        public FormattedMultilineText Remarks { get; set; }
 
-        public override string ToString()
+        public override string ToString() => Name;
+
+        protected void CopyToComponent(LicensedComponent other)
         {
-            return Name;
-        } // ToString
-    } // class BaseLibrary
-} // class BaseLibrary
+            other.Name = Name;
+            other.LicenseId = LicenseId;
+            other.Authors = Authors;
+            other.Copyright = Copyright;
+            other.Remarks = Remarks?.Clone();
+        } // CopyToComponent
+    } // class Component
+} // namespace

@@ -7,9 +7,9 @@ using System.Windows.Forms;
 
 namespace AlphaCentaury.Licensing.Data.Ui
 {
-    public partial class ReversedLicensingFileViewer : UserControl
+    internal partial class ReversedLicensingFileViewer : UserControl
     {
-        private ReversedLicensingFile _file;
+        private LicensingUsage _usage;
         private LicensingUiImages _licensingImages;
         private bool _isLoaded;
 
@@ -18,18 +18,18 @@ namespace AlphaCentaury.Licensing.Data.Ui
             InitializeComponent();
         }
 
-        public ReversedLicensingFile File
+        public LicensingUsage Usage
         {
-            get => _file;
+            get => _usage;
             set
             {
                 if (!_isLoaded)
                 {
-                    _file = value;
+                    _usage = value;
                 }
                 else
                 {
-                    _file = value;
+                    _usage = value;
                     OnFileChanged();
                 } // if-else
             } // set
@@ -61,7 +61,7 @@ namespace AlphaCentaury.Licensing.Data.Ui
             splitContainerVerticalBottom.Panel2Collapsed = true;
             richTextBoxLicense.Text = null;
 
-            if (_file == null)
+            if (_usage == null)
             {
                 listViewLicenses.Enabled = false;
                 return;
@@ -72,9 +72,9 @@ namespace AlphaCentaury.Licensing.Data.Ui
 
         private void FillLicenses()
         {
-            foreach (var license in _file.Licenses.Where(license => license != null))
+            foreach (var license in _usage.Usage.Where(license => license != null))
             {
-                listViewLicenses.Items.Add(license.Text?.Name ?? Resources.NoName, 0);
+                listViewLicenses.Items.Add(license.License?.Name ?? Resources.NoName, 0);
             } // foreach
         } // FillLicenses
     }

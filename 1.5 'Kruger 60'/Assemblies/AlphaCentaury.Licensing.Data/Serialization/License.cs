@@ -13,19 +13,30 @@ using System.Xml.Serialization;
 namespace AlphaCentaury.Licensing.Data.Serialization
 {
     [Serializable]
-    public class License : IXmlSerializable, IEquatable<License>
+    public sealed class License : IXmlSerializable, IEquatable<License>
     {
-        //[XmlAttribute("id")]
         public string Id { get; set; }
 
-        //[XmlAttribute("name")]
         public string Name { get; set; }
 
-        //[XmlAttribute("format")]
         public string Format { get; set; }
 
-        [XmlIgnore]
         public string Text { get; set; }
+
+        public override string ToString() => Id;
+
+        public License Clone()
+        {
+            return new License
+            {
+                Id = Id,
+                Name = Name,
+                Format = Format,
+                Text = Text
+            };
+        } // Clone
+
+        #region IEquatable<License>
 
         public bool Equals(License other)
         {
@@ -47,11 +58,6 @@ namespace AlphaCentaury.Licensing.Data.Serialization
             return Equals(other);
         } // Equals
 
-        public override string ToString()
-        {
-            return Id;
-        } // ToString
-
         public static bool operator ==(License left, License right)
         {
             if (ReferenceEquals(left, right)) return true;
@@ -62,6 +68,8 @@ namespace AlphaCentaury.Licensing.Data.Serialization
         {
             return !(left == right);
         } // operator !=
+
+        #endregion
 
         #region IXmlSerializable
 

@@ -8,19 +8,21 @@
 using System;
 using System.Collections.Generic;
 using AlphaCentaury.Licensing.Data.Serialization;
+using JetBrains.Annotations;
 
 namespace AlphaCentaury.Licensing.Data
 {
-    public sealed class DependencyLibraryComparer : IEqualityComparer<LibraryDependency>, IComparer<LibraryDependency>
+    public sealed class DependencyLibraryNameComparer : IEqualityComparer<LibraryDependency>, IComparer<LibraryDependency>
     {
         private readonly StringComparison _comparisonType;
 
-        public DependencyLibraryComparer()
+        public DependencyLibraryNameComparer()
         {
             _comparisonType = StringComparison.InvariantCulture;
         } // constructor
 
-        public DependencyLibraryComparer(StringComparison comparisonType)
+        [PublicAPI]
+        public DependencyLibraryNameComparer(StringComparison comparisonType)
         {
             _comparisonType = comparisonType;
         } // constructor
@@ -29,32 +31,36 @@ namespace AlphaCentaury.Licensing.Data
 
         public bool Equals(LibraryDependency x, LibraryDependency y)
         {
-            if (!string.Equals(x?.Namespace, y?.Namespace, _comparisonType)) return false;
-            return string.Equals(x?.Assembly, y?.Assembly, _comparisonType);
+            if (ReferenceEquals(x, y)) return true;
+            if (x == null) return false;
+
+            if (!string.Equals(x.Name, y?.Name, _comparisonType)) return false;
+            return string.Equals(x.Assembly, y?.Assembly, _comparisonType);
         } // Equals
 
         public int GetHashCode(LibraryDependency obj)
         {
-            return obj.Namespace.GetHashCode();
+            return obj.Name.GetHashCode();
         } // GetHashCode
 
         #endregion
 
         #region IComparable<in DependencyLibrary> implementation
 
-        public int Compare(LibraryDependency first, LibraryDependency other)
+        public int Compare(LibraryDependency x, LibraryDependency y)
         {
-            if (other == null) return 1; // first goes after other
-            if (first == null) return -1; // first goes before other
+            if (ReferenceEquals(x, y)) return 0;
+            if (y == null) return 1; // x goes after y
+            if (x == null) return -1; // x goes before y
 
-            if (first.IsDirectDependency && !other.IsDirectDependency) return -1; // first goes before other
-            if (!first.IsDirectDependency && other.IsDirectDependency) return 1; // first goes after other
+            var diffType = x.DependencyType - y.DependencyType;
+            if (diffType != 0) return diffType;
 
-            var compare = string.Compare(first?.Namespace, other?.Namespace, _comparisonType);
+            var compare = string.Compare(x.Name, y.Name, _comparisonType);
             if (compare != 0) return compare;
-            return string.Compare(first?.Assembly, other?.Assembly, _comparisonType);
+            return string.Compare(x.Assembly, y.Assembly, _comparisonType);
         } // Compare
 
         #endregion
-    } // DependencyLibraryComparer
+    } // DependencyLibraryNameComparer
 } // namespace

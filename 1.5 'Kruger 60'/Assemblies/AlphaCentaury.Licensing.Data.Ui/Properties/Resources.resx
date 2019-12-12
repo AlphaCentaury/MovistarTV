@@ -149,7 +149,7 @@
     <value>Libraries</value>
   </data>
   <data name="DependenciesNode" xml:space="preserve">
-    <value>Indirect dependencies</value>
+    <value>Dependencias</value>
   </data>
   <data name="DependenciesThirdPartyNode" xml:space="preserve">
     <value>Third-party</value>
@@ -177,6 +177,15 @@
   </data>
   <data name="ImageLibrary_32x" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\imagelibrary_32x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Installer_16x" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\installer_16x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Installer_24x" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\installer_24x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Installer_32x" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\installer_32x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Library_16x" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\library_16x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -219,9 +228,6 @@
   </data>
   <data name="Link_48x" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\link_48x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="ListThirdPartyNode" xml:space="preserve">
-    <value>Third-party components</value>
   </data>
   <data name="NoName" xml:space="preserve">
     <value>&lt;no name&gt;</value>

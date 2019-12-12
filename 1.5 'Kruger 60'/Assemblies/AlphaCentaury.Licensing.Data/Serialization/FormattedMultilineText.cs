@@ -7,45 +7,70 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Xml;
 using System.Xml.Schema;
 using System.Xml.Serialization;
+using JetBrains.Annotations;
 
 namespace AlphaCentaury.Licensing.Data.Serialization
 {
     [Serializable]
-    public class MultilineText : IXmlSerializable, IEquatable<MultilineText>, IEquatable<string>, IComparable<MultilineText>, IComparable<string>, IComparable
+    public class FormattedMultilineText : IXmlSerializable, IEquatable<FormattedMultilineText>, IEquatable<string>, IComparable<FormattedMultilineText>, IComparable<string>, IComparable
     {
-        public MultilineText()
+        public FormattedMultilineText()
         {
             // no-op
         } // constructor
 
-        public MultilineText(string text)
+        public FormattedMultilineText(string text, string format = null)
         {
             Text = text;
+            Format = null;
         } // constructor
 
-        [XmlIgnore]
+        public string Format { get; set; }
+
         public string Text { get; set; }
 
         public override string ToString() => Text;
+
+        public FormattedMultilineText Clone()
+        {
+            return new FormattedMultilineText(Text);
+        } // Clone
+
+        protected void CopyTo(FormattedMultilineText other)
+        {
+            other.Text = Text;
+            other.Format = Format;
+        } // CopyTo
 
         XmlSchema IXmlSerializable.GetSchema()
         {
             return null;
         } // IXmlSerializable.GetSchema
 
-        void IXmlSerializable.ReadXml(XmlReader reader)
-        {
-            Text = reader.ReadElementContentAsString();
-        } // IXmlSerializable.ReadXml
+        void IXmlSerializable.ReadXml(XmlReader reader) => ReadXml(reader);
 
-        void IXmlSerializable.WriteXml(XmlWriter writer)
+        void IXmlSerializable.WriteXml(XmlWriter writer) => WriteXml(writer);
+
+        protected virtual void ReadXml([NotNull] XmlReader reader)
         {
-            if (Text == null) return;
-            if (Text.Contains('\r') || Text.Contains('\n'))
+            if (reader.MoveToAttribute("format"))
+            {
+                Format = reader.Value;
+                reader.MoveToElement();
+            } // if
+
+            Text = reader.ReadElementContentAsString();
+        } // ReadXml
+
+        protected virtual void WriteXml([NotNull] XmlWriter writer)
+        {
+            if (string.IsNullOrWhiteSpace(Text)) return;
+            if (Format != null) writer.WriteAttributeString("format", Format);
+
+            if (Text.Contains("\r") || Text.Contains("\n"))
             {
                 writer.WriteCData(Text);
             }
@@ -53,14 +78,15 @@ namespace AlphaCentaury.Licensing.Data.Serialization
             {
                 writer.WriteString(Text);
             } // if-else
-        } // IXmlSerializable.WriteXml
+        } // WriteXml
 
-        public static implicit operator MultilineText(string text) => new MultilineText(text);
-        public static implicit operator string(MultilineText multiline) => multiline?.Text;
+
+        public static implicit operator FormattedMultilineText(string text) => new FormattedMultilineText(text);
+        public static implicit operator string(FormattedMultilineText multiline) => multiline?.Text;
 
         #region Equality members
 
-        public bool Equals(MultilineText other)
+        public bool Equals(FormattedMultilineText other)
         {
             if (other is null) return false;
             if (ReferenceEquals(this, other)) return true;
@@ -75,7 +101,7 @@ namespace AlphaCentaury.Licensing.Data.Serialization
 
         public override bool Equals(object obj)
         {
-            return ReferenceEquals(this, obj) || (obj is MultilineText other && Equals(other)) || (obj is string text && Equals(text));
+            return ReferenceEquals(this, obj) || (obj is FormattedMultilineText other && Equals(other)) || (obj is string text && Equals(text));
         } // Equals
 
         public override int GetHashCode()
@@ -83,33 +109,33 @@ namespace AlphaCentaury.Licensing.Data.Serialization
             return (Text != null ? StringComparer.CurrentCulture.GetHashCode(Text) : 0);
         } // GetHashCode
 
-        public static bool operator ==(MultilineText left, MultilineText right)
+        public static bool operator ==(FormattedMultilineText left, FormattedMultilineText right)
         {
             if (ReferenceEquals(left, right)) return true;
             return !(left is null) && left.Equals(right);
         } // operator ==
 
-        public static bool operator !=(MultilineText left, MultilineText right)
+        public static bool operator !=(FormattedMultilineText left, FormattedMultilineText right)
         {
             return !(left == right);
         } // operator !=
 
-        public static bool operator ==(MultilineText left, string right)
+        public static bool operator ==(FormattedMultilineText left, string right)
         {
             return !(left is null) && left.Equals(right);
         } // operator ==
 
-        public static bool operator !=(MultilineText left, string right)
+        public static bool operator !=(FormattedMultilineText left, string right)
         {
             return !(left == right);
         } // operator !=
 
-        public static bool operator ==(string left, MultilineText right)
+        public static bool operator ==(string left, FormattedMultilineText right)
         {
             return !(right is null) && right.Equals(left);
         } // operator ==
 
-        public static bool operator !=(string left, MultilineText right)
+        public static bool operator !=(string left, FormattedMultilineText right)
         {
             return !(left == right);
         } // operator !=
@@ -118,7 +144,7 @@ namespace AlphaCentaury.Licensing.Data.Serialization
 
         #region Relational members: MultilineText
 
-        public int CompareTo(MultilineText other)
+        public int CompareTo(FormattedMultilineText other)
         {
             if (ReferenceEquals(this, other)) return 0;
             if (other is null) return 1;
@@ -131,33 +157,33 @@ namespace AlphaCentaury.Licensing.Data.Serialization
             if (ReferenceEquals(this, obj)) return 0;
             switch (obj)
             {
-                case MultilineText other:
+                case FormattedMultilineText other:
                     return CompareTo(other);
                 case string text:
                     return CompareTo(text);
                 default:
-                    throw new ArgumentException($"CompareTo: Object must be of type {nameof(MultilineText)} -or- {nameof(String)}");
+                    throw new ArgumentException($"CompareTo: Object must be of type {nameof(FormattedMultilineText)} -or- {nameof(String)}");
             } // switch
         } // CompareTo
 
-        public static bool operator <(MultilineText left, MultilineText right)
+        public static bool operator <(FormattedMultilineText left, FormattedMultilineText right)
         {
-            return Comparer<MultilineText>.Default.Compare(left, right) < 0;
+            return Comparer<FormattedMultilineText>.Default.Compare(left, right) < 0;
         } // operator <
 
-        public static bool operator >(MultilineText left, MultilineText right)
+        public static bool operator >(FormattedMultilineText left, FormattedMultilineText right)
         {
-            return Comparer<MultilineText>.Default.Compare(left, right) > 0;
+            return Comparer<FormattedMultilineText>.Default.Compare(left, right) > 0;
         } // operator >
 
-        public static bool operator <=(MultilineText left, MultilineText right)
+        public static bool operator <=(FormattedMultilineText left, FormattedMultilineText right)
         {
-            return Comparer<MultilineText>.Default.Compare(left, right) <= 0;
+            return Comparer<FormattedMultilineText>.Default.Compare(left, right) <= 0;
         } // operator <=
 
-        public static bool operator >=(MultilineText left, MultilineText right)
+        public static bool operator >=(FormattedMultilineText left, FormattedMultilineText right)
         {
-            return Comparer<MultilineText>.Default.Compare(left, right) >= 0;
+            return Comparer<FormattedMultilineText>.Default.Compare(left, right) >= 0;
         } // operator >=
 
         #endregion

@@ -7,9 +7,7 @@
 
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
-using System.Xml;
 using System.Xml.Serialization;
 
 namespace AlphaCentaury.Licensing.Data.Serialization
@@ -18,16 +16,14 @@ namespace AlphaCentaury.Licensing.Data.Serialization
     [XmlRoot("Licensing", Namespace = Namespace, IsNullable = false)]
     public class LicensingData
     {
-        public const string Namespace = "urn:AlphaCentaury.Licensing.Data.v1";
+        public const string Namespace = "http://alphacentaury.org/Licensing.Data/v1";
 
         [XmlElement("Library", typeof(LicensedLibrary))]
         [XmlElement("Program", typeof(LicensedProgram))]
+        [XmlElement("Installer", typeof(LicensedInstaller))]
         public LicensedItem Licensed { get; set; }
 
-        [XmlArrayItem("Component")]
-        public List<ThirdPartyDependency> ThirdParty { get; set; }
-
-        public Dependencies Dependencies { get; set; }
+        public LicensingDependencies Dependencies { get; set; }
 
         public List<License> Licenses { get; set; }
 
@@ -45,8 +41,21 @@ namespace AlphaCentaury.Licensing.Data.Serialization
             return Licenses.FirstOrDefault(license => string.Equals(license.Id, licenseId, StringComparison.InvariantCultureIgnoreCase));
         } // GetLicense
 
+        public LicensingData Clone()
+        {
+            var clone = new LicensingData
+            {
+                Licensed = Licensed.Clone(),
+                Dependencies = Dependencies.Clone(),
+                Licenses = Licenses.Clone()
+            };
+
+            return clone;
+        } // Clone
+
+        public bool DependenciesSpecified => (Dependencies != null) && Dependencies.LibrariesSpecified && Dependencies.ThirdPartySpecified;
+
         // avoid serializing empty lists
-        public bool ThirdPartySpecified => (ThirdParty != null) && (ThirdParty.Count > 0);
         public bool LicensesSpecified => (Licenses != null) && (Licenses.Count > 0);
     } // class LicensingData
 } // namespace

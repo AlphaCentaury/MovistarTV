@@ -12,6 +12,8 @@ namespace AlphaCentaury.Licensing.Data.Serialization
     [Serializable]
     public sealed class LicensedLibrary: LicensedItem
     {
-        public override string Type => "Library";
+        public override LicensedItemType Type => LicensedItemType.Library;
+
+        protected override LicensedItem CreateNewForCloning() => new LicensedLibrary();
     } // class LicensedLibrary
 } // namespace

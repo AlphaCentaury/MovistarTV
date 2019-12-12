@@ -8,7 +8,6 @@
 using AlphaCentaury.Licensing.Data.Serialization;
 using JetBrains.Annotations;
 using System.Collections.Generic;
-using System.Linq;
 using System.Windows.Forms;
 using AlphaCentaury.Licensing.Data.Ui.Properties;
 
@@ -24,54 +23,35 @@ namespace AlphaCentaury.Licensing.Data.Ui
         } // constructor
 
         [PublicAPI]
-        public TreeNode FileToTree(string name, LicensingData file)
+        public TreeNode DataToTree(string name, LicensingData data)
         {
-            var root = new TreeNode(name, _images.LicensingData, _images.LicensingData) { Tag = file };
-            var node = LicensedItemToNode(file.Licensed);
+            var root = new TreeNode(name, _images.LicensingData, _images.LicensingData) { Tag = data };
+            var node = LicensedItemToNode(data.Licensed);
             root.Nodes.Add(node);
-            AddThirdPartyDependenciesNodes(node, file.ThirdParty);
 
-            AddDependenciesNodes(root, file.Dependencies);
-
-            AddLicensesNodes(root, file.Licenses);
+            AddDependenciesNodes(root, data.Dependencies);
+            AddLicensesNodes(root, data.Licenses);
 
             root.Expand();
             return root;
-        } // FileToTree
+        } // DataToTree
 
-        [PublicAPI]
-        public TreeNode FileToTreeAlt(string name, LicensingData file)
-        {
-            var root = new TreeNode(name, _images.LicensingData, _images.LicensingData) { Tag = file };
-
-            var licensed = LicensedItemToNode(file.Licensed);
-            root.Nodes.Add(licensed);
-            AddDependenciesNodes(licensed, file.Dependencies);
-
-            AddThirdPartyDependenciesNodes(root, file.ThirdParty);
-
-            AddLicensesNodes(root, file.Licenses);
-
-            root.Expand();
-            return root;
-        } // FileToTreeAlt
-
-        public void AddDependenciesNodes(TreeNode treeNode, Dependencies dependencies)
+        public void AddDependenciesNodes(TreeNode treeNode, LicensingDependencies dependencies)
         {
             if (dependencies == null) return;
-            if (((dependencies.Libraries?.Count ?? 0) == 0) && ((dependencies.ThirdParty?.Count ?? 0) == 0)) return;
+            if (!dependencies.LibrariesSpecified && !dependencies.ThirdPartySpecified) return;
 
             var root = new TreeNode(Resources.DependenciesNode, _images.Dependencies, _images.Dependencies);
             treeNode.Nodes.Add(root);
 
-            if ((dependencies.Libraries != null) && (dependencies.Libraries.Count > 0))
+            if (dependencies.LibrariesSpecified)
             {
                 var nodeLibraries = new TreeNode( Resources.DependenciesLibrariesNode, _images.DependenciesLibraries, _images.DependenciesLibraries);
                 root.Nodes.Add(nodeLibraries);
                 AddLibraryDependenciesNodes(nodeLibraries, dependencies.Libraries);
             } // if
 
-            if ((dependencies.ThirdParty == null) || (dependencies.ThirdParty.Count == 0)) return;
+            if (!dependencies.ThirdPartySpecified) return;
 
             var nodeThirdParty = new TreeNode(Resources.DependenciesThirdPartyNode, _images.DependenciesThirdParty, _images.DependenciesThirdParty);
             root.Nodes.Add(nodeThirdParty);
@@ -91,24 +71,12 @@ namespace AlphaCentaury.Licensing.Data.Ui
             } // foreach
         } // AddLibraryDependenciesNodes
 
-        public void AddThirdPartyDependenciesNodes(TreeNode treeNode, ICollection<ThirdPartyDependency> list)
-        {
-            if ((list == null) || (list.Count == 0)) return;
-
-            var node = new TreeNode(Resources.ListThirdPartyNode, _images.Dependencies, _images.Dependencies);
-            treeNode.Nodes.Add(node);
-
-            foreach (var dependency in list)
-            {
-                node.Nodes.Add(ThirdPartyDependencyToNode(dependency));
-            } // foreach
-        } // AddThirdPartyDependenciesNodes
-
         public void AddLicensesNodes(TreeNode treeNode, ICollection<License> licenses)
         {
             if ((licenses == null) || (licenses.Count == 0)) return;
 
             var node = new TreeNode(Resources.LicensesNode, _images.Licenses, _images.Licenses);
+            node.Expand();
             treeNode.Nodes.Add(node);
 
             foreach (var license in licenses)
@@ -123,6 +91,7 @@ namespace AlphaCentaury.Licensing.Data.Ui
             {
                 LicensedLibrary _ => _images.LicensedLibrary,
                 LicensedProgram program => program.IsGuiApp ? _images.LicensedProgramCli : _images.LicensedProgramGui,
+                LicensedInstaller _ => _images.LicensedInstaller,
                 _ => _images.LicensedUnknown
             };
 
@@ -146,7 +115,7 @@ namespace AlphaCentaury.Licensing.Data.Ui
 
         public TreeNode LibraryDependencyToNode(LibraryDependency library)
         {
-            return new TreeNode(library.Namespace, _images.DependencyProject, _images.DependencyProject);
+            return new TreeNode(library.Name, _images.DependencyProject, _images.DependencyProject);
         } // LicenseToNode
 
         public TreeNode LicenseToNode(License license)

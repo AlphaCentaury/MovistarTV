@@ -17,6 +17,7 @@ namespace AlphaCentaury.Licensing.Data.Ui
         public const string KeyLicensedProgramCli = "ApplicationCli";
         public const string KeyLicensedProgramGui = "ApplicationGui";
         public const string KeyLicensedLibrary = "LicensedLibrary";
+        public const string KeyLicensedInstaller = "LicensedInstaller";
         public const string KeyLicensedUnknown = "LicensedUnknown";
         public const string KeyDependencies = "Dependencies";
         public const string KeyDependenciesLibraries = "DependenciesLibraries";
@@ -36,6 +37,7 @@ namespace AlphaCentaury.Licensing.Data.Ui
             LicensedProgramCli = images.IndexOfKey(KeyLicensedProgramCli);
             LicensedProgramGui = images.IndexOfKey(KeyLicensedProgramGui);
             LicensedLibrary = images.IndexOfKey(KeyLicensedLibrary);
+            LicensedInstaller = images.IndexOfKey(KeyLicensedInstaller);
             LicensedUnknown = images.IndexOfKey(KeyLicensedUnknown);
             Dependencies = images.IndexOfKey(KeyDependencies);
             DependenciesLibraries = images.IndexOfKey(KeyDependenciesLibraries);
@@ -54,6 +56,7 @@ namespace AlphaCentaury.Licensing.Data.Ui
         public int LicensedProgramCli { get; }
         public int LicensedProgramGui { get; }
         public int LicensedLibrary { get; }
+        public int LicensedInstaller { get; }
         public int LicensedUnknown { get; }
         public int Dependencies { get; }
         public int DependenciesLibraries { get; }
@@ -77,6 +80,7 @@ namespace AlphaCentaury.Licensing.Data.Ui
             list.Images.Add(KeyLicensedProgramCli, Resources.ApplicationCli_16x);
             list.Images.Add(KeyLicensedProgramGui, Resources.ApplicationGui_16x);
             list.Images.Add(KeyLicensedLibrary, Resources.Library_16x);
+            list.Images.Add(KeyLicensedInstaller, Resources.Installer_16x);
             list.Images.Add(KeyLicensedUnknown, Resources.LicensedUnknown_16x);
             list.Images.Add(KeyDependencies, Resources.Dependencies_16x);
             list.Images.Add(KeyDependenciesLibraries, Resources.Library_16x);
@@ -100,6 +104,7 @@ namespace AlphaCentaury.Licensing.Data.Ui
             list.Images.Add(KeyLicensedProgramCli, Resources.ApplicationCli_24x);
             list.Images.Add(KeyLicensedProgramGui, Resources.ApplicationGui_24x);
             list.Images.Add(KeyLicensedLibrary, Resources.Library_24x);
+            list.Images.Add(KeyLicensedInstaller, Resources.Installer_24x);
             list.Images.Add(KeyLicensedUnknown, Resources.LicensedUnknown_24x);
             list.Images.Add(KeyDependencies, Resources.Dependencies_24x);
             list.Images.Add(KeyDependenciesLibraries, Resources.Library_24x);
@@ -123,6 +128,7 @@ namespace AlphaCentaury.Licensing.Data.Ui
             list.Images.Add(KeyLicensedProgramCli, Resources.ApplicationCli_32x);
             list.Images.Add(KeyLicensedProgramGui, Resources.ApplicationGui_32x);
             list.Images.Add(KeyLicensedLibrary, Resources.Library_32x);
+            list.Images.Add(KeyLicensedInstaller, Resources.Installer_32x);
             list.Images.Add(KeyLicensedUnknown, Resources.LicensedUnknown_32x);
             list.Images.Add(KeyDependencies, Resources.Dependencies_32x);
             list.Images.Add(KeyDependenciesLibraries, Resources.Library_32x);

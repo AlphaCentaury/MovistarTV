@@ -5,30 +5,30 @@ using AlphaCentaury.Licensing.Data.Serialization;
 
 namespace AlphaCentaury.Licensing.Data
 {
-    internal class ReverseFile
+    internal class GetLicensingUsage
     {
-        private LicensingData _file;
-        private Dictionary<string, LicenseUsedBy> _licenses;
+        private readonly LicensingData _data;
+        private Dictionary<string, LicenseAppliesTo> _licenses;
         private Dictionary<string, HashSet<string>> _libraries;
         private Dictionary<string, HashSet<string>> _thirdParty;
 
-        public ReverseFile(LicensingData file)
+        public GetLicensingUsage(LicensingData data)
         {
-            _file = file;
+            _data = data;
         } // constructor
 
-        public ReversedLicensingFile Reverse()
+        public LicensingUsage Get()
         {
-            if (_file.Licenses == null) throw new InvalidDataException();
-            if (_file.Licenses.Count == 0) throw new InvalidDataException();
+            if (_data.Licenses == null) throw new InvalidDataException();
+            if (_data.Licenses.Count == 0) throw new InvalidDataException();
 
-            _licenses = new Dictionary<string, LicenseUsedBy>(_file.Licenses.Count, StringComparer.InvariantCulture);
-            _libraries = new Dictionary<string, HashSet<string>>(StringComparer.InvariantCulture);
-            _thirdParty = new Dictionary<string, HashSet<string>>(StringComparer.InvariantCulture);
+            _licenses = new Dictionary<string, LicenseAppliesTo>(_data.Licenses.Count, StringComparer.InvariantCultureIgnoreCase);
+            _libraries = new Dictionary<string, HashSet<string>>(StringComparer.InvariantCultureIgnoreCase);
+            _thirdParty = new Dictionary<string, HashSet<string>>(StringComparer.InvariantCultureIgnoreCase);
 
-            foreach (var license in _file.Licenses)
+            foreach (var license in _data.Licenses)
             {
-                _licenses.Add(license.Id, new LicenseUsedBy
+                _licenses.Add(license.Id, new LicenseAppliesTo
                 {
                     Libraries = new List<LibraryDependency>(),
                     ThirdParty = new List<ThirdPartyDependency>()
@@ -37,52 +37,39 @@ namespace AlphaCentaury.Licensing.Data
                 _thirdParty.Add(license.Id, new HashSet<string>(StringComparer.InvariantCulture));
             } // foreach
 
-            AddLicensed(_file.Licensed);
-            AddThirdParty(_file.ThirdParty);
-            AddLibraries(_file.Dependencies.Libraries);
-            AddThirdParty(_file.Dependencies.ThirdParty);
+            AddLibrary(_data.Licensed.ConvertToLibraryDependency());
+            AddLibraries(_data.Dependencies?.Libraries);
+            AddThirdParty(_data.Dependencies?.ThirdParty);
             Sort();
 
-            var result = new ReversedLicensingFile
+            var result = new LicensingUsage
             {
-                Licenses = new List<LicenseExpanded>(_file.Licenses.Count)
+                Licensed = _data.Licensed,
+                Usage = new List<LicenseUsage>(_data.Licenses.Count)
             };
 
-            for (var index = 0; index < _file.Licenses.Count;index++)
+            foreach (var license in _data.Licenses)
             {
-                var license = _file.Licenses[index];
-                var expanded = result.Licenses[index];
-                expanded.Text = license;
-                expanded.UsedBy = _licenses[license.Id];
-                if ((expanded.UsedBy.Libraries == null) && (expanded.UsedBy.ThirdParty == null))
+                var expanded = new LicenseUsage {License = license, AppliesTo = _licenses[license.Id]};
+                if (!expanded.AppliesTo.LibrariesSpecified && !expanded.AppliesTo.ThirdPartySpecified)
                 {
-                    expanded.UsedBy = null;
+                    expanded.AppliesTo = null;
                 } // if
-            } // for index
+
+                result.Usage.Add(expanded);
+            } // foreach license
 
             return result;
-        } // Reverse
-
-        private void AddLicensed(LicensedItem item)
-        {
-            var library = new LibraryDependency
-            {
-                Namespace = item.Name,
-                Assembly = item.Assembly + (item is LicensedProgram? ".exe" : ""),
-                IsDirectDependency = true,
-                LicenseId = item.LicenseId,
-            };
-            AddLibrary(library);
-        } // AddLicensed
+        } // Get
 
         private void AddLibraries(IEnumerable<LibraryDependency> libraries)
         {
-            libraries.ForEach(AddLibrary);
+            libraries?.ForEach(AddLibrary);
         } // AddLibraries
 
         private void AddLibrary(LibraryDependency library)
         {
-            var key = $"{library.Namespace}:{library.Assembly}";
+            var key = $"{library.Name}:{library.Assembly}";
             var set = _libraries[library.LicenseId];
 
             if (set.Contains(key)) return;
@@ -93,6 +80,7 @@ namespace AlphaCentaury.Licensing.Data
 
         private void AddThirdParty(IEnumerable<ThirdPartyDependency> licensingThirdParty)
         {
+            if (licensingThirdParty == null) return;
             foreach (var dependency in licensingThirdParty)
             {
                 var key = $"{dependency.Type}:{dependency.Name}";
@@ -107,8 +95,8 @@ namespace AlphaCentaury.Licensing.Data
 
         private void Sort()
         {
-            var libraryComparer = new DependencyLibraryComparer();
-            var thirdPartyComparer = new ThirdPartyDependencyComparer();
+            var libraryComparer = new DependencyLibraryNameComparer();
+            var thirdPartyComparer = new ThirdPartyDependencyNameComparer();
 
             foreach (var item in _licenses)
             {
@@ -132,5 +120,5 @@ namespace AlphaCentaury.Licensing.Data
                 } // if-else
             } // foreach
         } // Sort
-    } // class ReverseFile
+    } // class GetLicensingUsage
 } // namespace

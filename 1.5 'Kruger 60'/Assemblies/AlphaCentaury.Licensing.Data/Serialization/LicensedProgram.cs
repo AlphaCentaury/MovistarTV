@@ -18,6 +18,11 @@ namespace AlphaCentaury.Licensing.Data.Serialization
         [DefaultValue(true)]
         public bool IsGuiApp { get; set; }
 
-        public override string Type => "Program";
+        public override LicensedItemType Type => LicensedItemType.Program;
+
+        protected override LicensedItem CreateNewForCloning() => new LicensedProgram
+        {
+            IsGuiApp = IsGuiApp
+        };
     } // class LicensedProgram
-}
+} // namespace

@@ -11,16 +11,16 @@ using AlphaCentaury.Licensing.Data.Serialization;
 
 namespace AlphaCentaury.Licensing.Data
 {
-    public class ThirdPartyDependencyComparer : IEqualityComparer<ThirdPartyDependency>, IComparer<ThirdPartyDependency>
+    public class ThirdPartyDependencyNameComparer : IEqualityComparer<ThirdPartyDependency>, IComparer<ThirdPartyDependency>
     {
         private readonly StringComparison _comparisonType;
 
-        public ThirdPartyDependencyComparer()
+        public ThirdPartyDependencyNameComparer()
         {
             _comparisonType = StringComparison.InvariantCulture;
         } // constructor
 
-        public ThirdPartyDependencyComparer(StringComparison comparisonType)
+        public ThirdPartyDependencyNameComparer(StringComparison comparisonType)
         {
             _comparisonType = comparisonType;
         } // constructor
@@ -29,8 +29,12 @@ namespace AlphaCentaury.Licensing.Data
 
         public bool Equals(ThirdPartyDependency x, ThirdPartyDependency y)
         {
+            if (ReferenceEquals(x, y)) return true;
+            if (x == null) return false;
+            if (y == null) return false;
+
             if (x.Type != y.Type) return false;
-            if (x.LicenseId != x.LicenseId) return false;
+            if (!string.Equals(x.LicenseId, y.LicenseId, StringComparison.InvariantCultureIgnoreCase)) return false;
             return string.Equals(x?.Name, y?.Name, _comparisonType);
         } // Equals
 
@@ -45,10 +49,13 @@ namespace AlphaCentaury.Licensing.Data
 
         public int Compare(ThirdPartyDependency x, ThirdPartyDependency y)
         {
-            if (x.Type != x.Type) return (int)(x.Type - y.Type);
-            var compare = string.Compare(x?.LicenseId, y?.LicenseId, _comparisonType);
-            if (compare != 0) return compare;
-            return string.Compare(x?.Name, y?.Name, _comparisonType);
+            if (ReferenceEquals(x, y)) return 0;
+            if (x == null) return -1;
+            if (y == null) return 1;
+
+            if (x.Type != y.Type) return (int)(x.Type - y.Type);
+            var compare = string.Compare(x.LicenseId, y.LicenseId, StringComparison.InvariantCultureIgnoreCase);
+            return compare != 0 ? compare : string.Compare(x.Name, y.Name, _comparisonType);
         } // Compare
 
         #endregion

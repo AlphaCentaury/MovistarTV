@@ -6,12 +6,14 @@
 // http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
 
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Xml.Serialization;
 
 namespace AlphaCentaury.Licensing.Data.Serialization
 {
     [Serializable]
-    public abstract class LicensedItem: BaseLibrary
+    public abstract class LicensedItem: LicensedComponent
     {
         [XmlAttribute("file")]
         public string Assembly { get; set; }
@@ -19,14 +21,51 @@ namespace AlphaCentaury.Licensing.Data.Serialization
         public string Product { get; set; }
 
         [XmlElement("TermsAndConditions")]
-        public TermsAndConditions Terms { get; set; }
+        public List<TermsAndConditions> TermsConditions { get; set; }
 
         [XmlIgnore]
-        public abstract string Type { get; }
+        public abstract LicensedItemType Type { get; }
 
         public  override string ToString()
         {
-            return $"{Type}: {Name}";
+            return $"{Type}:{Name}";
         } // ToString
+
+        public LicensedItem Clone()
+        {
+            var clone = CreateNewForCloning();
+            clone.Assembly = Assembly;
+            clone.Product = Product;
+            if (TermsConditionsSpecified)
+            {
+                clone.TermsConditions = TermsConditions.Select(term => term.Clone()).ToList();
+            } // if
+
+            return clone;
+        } // Clone
+
+        public void CopyTo(LibraryDependency item) => CopyToLibraryDependency(item);
+
+        public LibraryDependency ConvertToLibraryDependency(string language = null)
+        {
+            var item = new LibraryDependency();
+            CopyToLibraryDependency(item);
+
+            return item;
+        } // ConvertTo
+
+        public bool TermsConditionsSpecified => (TermsConditions != null) && (TermsConditions.Count > 0);
+
+        protected abstract LicensedItem CreateNewForCloning();
+
+        protected virtual void CopyToLibraryDependency(LibraryDependency item)
+        {
+            item.Name = Name;
+            item.Assembly = Assembly;
+            item.LicenseId = LicenseId;
+            item.Authors = Authors;
+            item.Copyright = Copyright;
+            item.Remarks = Remarks?.Clone();
+        } // CopyToLibraryDependency
     } // class LicensedItem
 } // namespace

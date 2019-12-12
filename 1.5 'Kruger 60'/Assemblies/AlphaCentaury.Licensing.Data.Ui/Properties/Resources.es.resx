@@ -121,7 +121,7 @@
     <value>Bibliotecas</value>
   </data>
   <data name="DependenciesNode" xml:space="preserve">
-    <value>Dependencias indirectas</value>
+    <value>Dependencias</value>
   </data>
   <data name="DependenciesThirdPartyNode" xml:space="preserve">
     <value>Terceras partes</value>
@@ -134,9 +134,6 @@
   </data>
   <data name="LicensesNode" xml:space="preserve">
     <value>Licencias</value>
-  </data>
-  <data name="ListThirdPartyNode" xml:space="preserve">
-    <value>Componentes de terceras partes</value>
   </data>
   <data name="NoName" xml:space="preserve">
     <value>&lt;sin nombre&gt;</value>

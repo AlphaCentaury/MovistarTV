@@ -6,7 +6,7 @@ using System.Xml.Serialization;
 namespace AlphaCentaury.Licensing.Data.Serialization
 {
     [Serializable]
-    [XmlRoot("Licenses", Namespace = LicensingData.Namespace)]
+    [XmlRoot("Licenses.Pool", Namespace = LicensingData.Namespace)]
     public class LicensesPool
     {
         [XmlElement("License")]
