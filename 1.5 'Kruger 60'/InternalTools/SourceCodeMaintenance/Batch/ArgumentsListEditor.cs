@@ -9,8 +9,6 @@ using AlphaCentaury.Tools.SourceCodeMaintenance.Properties;
 using IpTviewr.UiServices.Common.Controls;
 using JetBrains.Annotations;
 using System;
-using System.Collections.Specialized;
-using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 

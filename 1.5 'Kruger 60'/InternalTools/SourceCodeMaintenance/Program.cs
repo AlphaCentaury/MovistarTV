@@ -22,7 +22,7 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance
 {
     public static class Program
     {
-        private class ToolsContainer
+        public class ToolsContainer
         {
             public ToolsContainer(ComposablePartCatalog catalog)
             {
@@ -52,11 +52,11 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance
             internal Lazy<IMaintenanceTool, IMaintenanceToolMetadata>[] ToolsComponents;
 #pragma warning restore 00649
 
-            public IReadOnlyDictionary<Guid, Lazy<IMaintenanceTool, IMaintenanceToolMetadata>> GuidTools { get; internal set; }
-            public IReadOnlyDictionary<string, Lazy<IMaintenanceTool, IMaintenanceToolMetadata>> CliTools { get; internal set; }
+            public IReadOnlyDictionary<Guid, Lazy<IMaintenanceTool, IMaintenanceToolMetadata>> GuidTools { get; }
+            public IReadOnlyDictionary<string, Lazy<IMaintenanceTool, IMaintenanceToolMetadata>> CliTools { get; }
         } // class
 
-        private static ToolsContainer Container;
+        public static ToolsContainer Container;
 
         public static Lazy<IMaintenanceTool, IMaintenanceToolMetadata>[] Tools { get; private set; }
         public static List<string> ToolsNames { get; private set; }

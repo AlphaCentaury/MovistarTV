@@ -12,7 +12,8 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Interfaces
         void WriteException(Exception ex, string message = null);
         int IncreaseIndent();
         int DecreaseIndent();
-        void WriteTimestamps(bool enable, bool absolute);
+        bool WriteTimestamps { get; set; }
+        bool AbsoluteTimestamps { get; set; }
         TimeSpan ElapsedTime { get; }
         DateTime UtcStartTime { get; }
         int IndentLevel { get; }

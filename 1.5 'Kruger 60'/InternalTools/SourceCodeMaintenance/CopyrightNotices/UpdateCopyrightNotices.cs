@@ -13,6 +13,7 @@ using System.ComponentModel.Composition;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Windows.Forms;
 using AlphaCentaury.Tools.SourceCodeMaintenance.Interfaces;
 
@@ -35,13 +36,13 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.CopyrightNotices
 
         public string SelectFileFilter => "";
 
-        public void Execute([NotNull] IReadOnlyList<string> args, [NotNull] IToolOutputWriter writer)
+        public void Execute([NotNull] IReadOnlyList<string> args, [NotNull] IToolOutputWriter writer, CancellationToken token)
         {
             Writer = writer;
 
             Writer.WriteLine("Update/add copyright notices to project code");
-            Writer.WriteLine("Copyright (C) 2014-2019, GitHub user AlphaCentaury");
-            Writer.WriteLine("https://github.com/AlphaCentaury");
+            Writer.WriteLine(SolutionVersion.DefaultCopyright);
+            Writer.WriteLine(SolutionVersion.AssemblyCompany);
             Writer.WriteLine();
 
             if (args.Count == 0)

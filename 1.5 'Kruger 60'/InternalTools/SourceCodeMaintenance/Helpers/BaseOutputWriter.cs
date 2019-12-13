@@ -1,16 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace AlphaCentaury.Tools.SourceCodeMaintenance.Helpers
 {
     public abstract class BaseOutputWriter
     {
         private readonly string[] _indents;
-        private bool _writeTimestamps;
-        private bool _absoluteTimestamps;
         private bool _started;
 
         protected BaseOutputWriter(int indentSize)
@@ -92,11 +87,8 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Helpers
             IndentLevel = level;
         } // WriteException
 
-        public void WriteTimestamps(bool enable, bool absolute)
-        {
-            _writeTimestamps = enable;
-            _absoluteTimestamps = absolute;
-        } // WriteTimestamps
+        public bool WriteTimestamps { get; set; }
+        public bool AbsoluteTimestamps { get; set; }
 
         public int IncreaseIndent()
         {
@@ -115,13 +107,18 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Helpers
             return IndentLevel;
         } // DecreaseIndent
 
+        protected void Reset()
+        {
+            IndentLevel = 0;
+        } // Reset
+
         protected string GetTimestamp()
         {
-            if (!_writeTimestamps) return string.Empty;
+            if (!WriteTimestamps) return string.Empty;
 
-            if (!_absoluteTimestamps) return $"[{ElapsedTime:g}]{(IndentLevel != 0 ? "" : " ")}";
+            if (!AbsoluteTimestamps) return $"[{ElapsedTime:g}]{(IndentLevel != 0 ? "" : " ")}";
 
-            var now = DateTime.UtcNow;
+            var now = DateTime.Now;
             return $"[{now.ToShortDateString()} {now:HH:mm:ss.ff zz}]{(IndentLevel != 0 ? "" : " ")}";
         } // GetTimestamp
 
@@ -132,21 +129,21 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Helpers
 
         protected void AppendText(StringBuilder buffer, string text)
         {
-            if (!_writeTimestamps)
+            if (!WriteTimestamps)
             {
                 buffer.Append(GetIndent());
                 if (text != null) buffer.AppendLine(text);
                 return;
             } // if
 
-            if (_absoluteTimestamps)
+            if (AbsoluteTimestamps)
             {
-                var now = DateTime.UtcNow;
-                buffer.AppendFormat("[{0} {1:HH:mm:ss.ff zz}]{2}{3}", now.ToShortDateString(), DateTime.UtcNow, (IndentLevel != 0) ? "" : " ", GetIndent());
+                var now = DateTime.Now;
+                buffer.AppendFormat("[{0} {1:HH:mm:ss.ff zz}]{2}{3}", now.ToShortDateString(), now, (IndentLevel != 0) ? "" : " ", GetIndent());
             }
             else
             {
-                buffer.AppendFormat("[{0:g}{1}{2}", ElapsedTime, (IndentLevel != 0) ? "" : " ", GetIndent());
+                buffer.AppendFormat("[{0:g}]{1}{2}", ElapsedTime, (IndentLevel != 0) ? "" : " ", GetIndent());
             } // if
 
             if (text != null) buffer.AppendLine(text);

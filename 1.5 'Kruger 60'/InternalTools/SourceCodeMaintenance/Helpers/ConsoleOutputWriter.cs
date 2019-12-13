@@ -8,6 +8,11 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Helpers
         {
         } // constructor
 
+        public new void Reset()
+        {
+            base.Reset();
+        } // Reset
+
         public void WriteLine()
         {
             Console.WriteLine();

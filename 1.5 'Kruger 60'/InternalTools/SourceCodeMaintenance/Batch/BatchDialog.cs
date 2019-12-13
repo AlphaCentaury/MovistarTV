@@ -20,6 +20,7 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Batch
 {
     public sealed partial class BatchDialog : CommonBaseForm
     {
+        private readonly Helpers.AsyncHelper _asyncHelper;
         private bool _isDirty;
         private bool _hasResults;
         private bool _hasLines;
@@ -30,6 +31,7 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Batch
         {
             InitializeComponent();
             _outputWriter = new TextBoxOutputWriter(textBoxResults, timerRefreshOutput, 4);
+            _asyncHelper = new AsyncHelper(this, toolStripForm, closeStripButton);
         } // constructor
 
         private bool IsDirty
@@ -66,6 +68,7 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Batch
                 listBatch.Enabled = value;
                 if (value) return;
 
+                buttonEdit.Enabled = false;
                 buttonRemove.Enabled = false;
                 buttonMoveUp.Enabled = false;
                 buttonMoveDown.Enabled = false;
@@ -81,7 +84,7 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Batch
                 var enable = (value != null);
                 var hasArguments = enable && value.Metadata.HasParameters;
                 buttonUsage.Enabled = enable && value.Metadata.HasUsage;
-                buttonAdd.Enabled = enable;
+                buttonAdd.Enabled = hasArguments;
             } // set;
         } // SelectedTools
 
@@ -156,14 +159,9 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Batch
             SafeCall(ClearResults);
         } // cutToolStripButton_Click
 
-        private void closeStripButton_Click(object sender, EventArgs e)
-        {
-            Close();
-        } // closeStripButton_Click
-
         private void comboBoxTools_SelectedIndexChanged(object sender, EventArgs e)
         {
-            SelectedTool = (comboBoxTools.SelectedIndex >= 0) ? Program.Tools[comboBoxTools.SelectedIndex] : null;
+            SelectedTool = (comboBoxTools.SelectedIndex >= 0) ? Program.ToolsCli[comboBoxTools.SelectedIndex] : null;
         } // comboBoxTools_SelectedIndexChanged
 
         private void buttonUsage_Click(object sender, EventArgs e)
@@ -193,7 +191,7 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Batch
 
         private void buttonAdd_Click(object sender, EventArgs e)
         {
-            BatchExecute line;
+            List<string> arguments;
 
             if (SelectedTool.Metadata.HasParameters)
             {
@@ -205,14 +203,14 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Batch
                 };
                 
                 if (dialog.ShowDialog(this) != DialogResult.OK) return;
-                line = new BatchExecute {Arguments = new List<string>(dialog.Arguments)};
+                arguments = new List<string>(dialog.Arguments);
             }
             else
             {
-                line = new BatchExecute();
+                arguments = null;
             } // if-else
 
-            AddToBatch(SelectedTool, line);
+            AddToBatch(SelectedTool, arguments);
         } // buttonAdd_Click
 
         private void buttonEdit_Click(object sender, EventArgs e)
@@ -286,7 +284,7 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Batch
                 listBatch.BeginUpdate();
                 foreach (var item in batch.Lines)
                 {
-                    AddToBatch(Program.GetTool(item.Guid), item);
+                    AddToBatch(item);
                 } // foreach
                 listBatch.EndUpdate();
 
@@ -318,38 +316,35 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Batch
             return true;
         } // SaveBatch
 
-        private async void ExecuteBatchAsync()
+        private void ExecuteBatchAsync()
         {
             HasResults = false;
             var batch = GetBatch();
-            executeStripButton.Enabled = false;
-            _outputWriter.Start();
-            
-            await BatchExecution.ExecuteBatchAsync(batch, _outputWriter);
-
-            _outputWriter.Stop();
-            executeStripButton.Enabled = true;
+            _asyncHelper.ExecuteAsync(_outputWriter, (token) => BatchExecution.ExecuteBatchAsync(batch, _outputWriter, token));
+            HasResults = true;
         } // ExecuteBatch
 
-        private void AddToBatch(Lazy<IMaintenanceTool, IMaintenanceToolMetadata> tool, string arguments)
+        private void AddToBatch(Lazy<IMaintenanceTool, IMaintenanceToolMetadata> tool, List<string> arguments)
         {
-            AddToBatch(tool, new BatchExecute
+            AddToBatch(new BatchExecute
             {
                 Guid = Guid.Parse(tool.Metadata.Guid),
-                Name = tool.Metadata.CliName,
-                Arguments = SplitArguments(arguments)
+                Arguments = arguments
             });
         } // AddToBatch
 
-        private void AddToBatch(Lazy<IMaintenanceTool, IMaintenanceToolMetadata> tool, BatchExecute line)
+        private void AddToBatch(BatchExecute line)
         {
+            var tool = Program.GetTool(line.Guid);
+            line.Name = tool.Metadata.CliName; // update tool CLI name, just in case it has changed
+
             var item = new ListViewItem(tool.Metadata.Name);
             item.SubItems.Add(GetArgumentsForDisplay(line.Arguments));
             item.Tag = line;
             item.Selected = true;
+
             listBatch.SelectedItems.Clear();
             listBatch.Items.Add(item);
-            listBatch.Enabled = true;
 
             HasLines = true;
             IsDirty = true;
@@ -373,7 +368,9 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Batch
 
         private void SelectFile(TextBox textBox)
         {
-            openFileDialog.Filter = string.Join("|", SelectedTool.Value.SelectFileFilter, BatchResources.SelectAllFilesFilter);
+            var toolFilter = SelectedTool.Value.SelectFileFilter;
+            var filter = (toolFilter != null) ? string.Join("|", toolFilter, BatchResources.SelectAllFilesFilter) : BatchResources.SelectAllFilesFilter;
+            openFileDialog.Filter = filter;
             if (openFileDialog.ShowDialog(this) != DialogResult.OK) return;
 
             var file = openFileDialog.FileName;

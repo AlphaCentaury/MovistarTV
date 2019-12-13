@@ -237,10 +237,9 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Batch
             // 
             this.closeStripButton.Image = global::AlphaCentaury.Tools.SourceCodeMaintenance.Properties.Resources.Action_Close_16x16;
             this.closeStripButton.Name = "closeStripButton";
-            this.closeStripButton.Size = new System.Drawing.Size(56, 22);
-            this.closeStripButton.Text = "Clos&e";
-            this.closeStripButton.ToolTipText = "Close window";
-            this.closeStripButton.Click += new System.EventHandler(this.closeStripButton_Click);
+            this.closeStripButton.Size = new System.Drawing.Size(72, 22);
+            this.closeStripButton.Text = "CANCEL";
+            this.closeStripButton.ToolTipText = "Cancels current execution";
             // 
             // openBatchDialog
             // 

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 
@@ -21,6 +20,7 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Helpers
         public void Clear()
         {
             _textBox.Text = null;
+            Reset();
         } // Clear
 
         public void Start(bool buffered = true)
