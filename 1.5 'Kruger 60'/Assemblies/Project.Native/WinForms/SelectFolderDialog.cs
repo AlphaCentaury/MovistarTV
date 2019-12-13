@@ -17,539 +17,112 @@ using JetBrains.Annotations;
 
 namespace IpTviewr.Native.WinForms
 {
-    /*
-    <ThirdParty>
-      <Component name="DotNetZip FolderBrowserDialogEx" type="source">
-        <License>Ms-PL</License>
-        <Authors>Dino Chiesa</Authors>
-        <Copyright>Copyright © Dino Chiesa 2006 - 2011</Copyright>
-        <Description>DotNetZip is a FAST, FREE class library and toolset for manipulating zip files. Use VB, C# or any .NET language to easily create, extract, or update zip files.</Description>
-        <Remarks>Code has been refactored and modified to fix bugs and use Vista or later SH functions</Remarks>
-      </Component>
-    </ThirdParty>
-    */
+    /// <summary>Displays a dialog box from which the user can select a folder.</summary>
+    /// <remarks>Requires Windows Vista or better.</remarks>
 
-    /*
-    The following code has been copied verbatim from the http://dotnetzip.codeplex.com project.
-
-    It has been modified where needed to changed the class name from FolderBrowserDialogEx to
-    SelectFolderDialog. http://dotnetzip.codeplex.com/SourceControl/changeset/view/29832#432677, 
-    address Code Analysis issues,
-    add C# 8.0 language constructs,
-    organize the code in regions for legibility and
-    use Vista or later SH functions.
-
-    The code is licensed under the Ms-PL license (http://dotnetzip.codeplex.com/license)
-    */
-
-    // FolderBrowserDialogEx.cs
-    //
-    // A replacement for the builtin System.Windows.Forms.FolderBrowserDialog class.
-    // This one includes an edit box, and also displays the full path in the edit box. 
-    //
-    // based on code from http://support.microsoft.com/default.aspx?scid=kb;[LN];306285 
-    // 
-    // 20 Feb 2009
-    //
-    // ========================================================================================
-    // Example usage:
-    // 
-    // string _folderName = "c:\\dinoch";
-    // private void button1_Click(object sender, EventArgs e)
-    // {
-    //     _folderName = (System.IO.Directory.Exists(_folderName)) ? _folderName : "";
-    //     var dlg1 = new Ionic.Utils.FolderBrowserDialogEx
-    //     {
-    //         Description = "Select a folder for the extracted files:",
-    //         ShowNewFolderButton = true,
-    //         ShowEditBox = true,
-    //         //NewStyle = false,
-    //         SelectedPath = _folderName,
-    //         ShowFullPathInEditBox= false,
-    //     };
-    //     dlg1.RootFolder = System.Environment.SpecialFolder.MyComputer;
-    // 
-    //     var result = dlg1.ShowDialog();
-    // 
-    //     if (result == DialogResult.OK)
-    //     {
-    //         _folderName = dlg1.SelectedPath;
-    //         this.label1.Text = "The folder selected was: ";
-    //         this.label2.Text = _folderName;
-    //     }
-    // }
-    //
-
-    [Designer("System.Windows.Forms.Design.FolderBrowserDialogDesigner, System.Design, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
-    [DefaultEvent("HelpRequest")]
-    [DefaultProperty("SelectedPath")]
-    [ToolboxBitmap(typeof(FolderBrowserDialog))]
     public class SelectFolderDialog : CommonDialog
     {
-        //private static readonly int MaxPath = 260;
-        private const int PathSize = 1024;
+        private OpenFileDialog x;
 
-        // Fields
-        private string _descriptionText;
-        private Environment.SpecialFolder _rootFolder;
-        private string _selectedPath;
-        private bool _selectedPathNeedsCheck;
-        private int _uiFlags;
-        private IntPtr _hwndEdit;
-        private IntPtr _rootFolderLocation;
-
-        // Events
-        [Browsable(false), EditorBrowsable(EditorBrowsableState.Never)]
-        public new event EventHandler HelpRequest
-        {
-            add => base.HelpRequest += value;
-            remove => base.HelpRequest -= value;
-        } // HelpRequest
-
-        // ctor
         public SelectFolderDialog()
         {
             SetDefaultValues();
-        } // SelectFolderDialog
+        } // constructor
 
-        // Factory Methods
-        public static SelectFolderDialog PrinterBrowser()
-        {
-            var dialog = new SelectFolderDialog();
-            // avoid MBRO compiler warning when passing _rootFolderLocation as a ref:
-            dialog.BecomePrinterBrowser();
-            return dialog;
-        } // PrinterBrowser
+        #region Basic properties
 
-        public static SelectFolderDialog ComputerBrowser()
-        {
-            var dialog = new SelectFolderDialog();
-            // avoid MBRO compiler warning when passing _rootFolderLocation as a ref:
-            dialog.BecomeComputerBrowser();
-            return dialog;
-        } // ComputerBrowser
-
-        #region Properties
-
-        /// <summary>
-        /// This description appears near the top of the dialog box, providing direction to the user.
-        /// </summary>
+        /// <summary>Gets or sets the initial directory displayed by the folder dialog box.</summary>
+        /// <returns>The initial directory displayed by the folder dialog box. The default is an empty string ("").</returns>
         [DefaultValue("")]
-        public string Description
-        {
-            get => _descriptionText;
-            set => _descriptionText = value ?? string.Empty;
-        } // Description
+        public string InitialDirectory { get; set; }
 
-        [DefaultValue(0)]
-        public Environment.SpecialFolder RootFolder
-        {
-            get => _rootFolder;
-            set
-            {
-                if (!Enum.IsDefined(typeof(Environment.SpecialFolder), value))
-                {
-                    throw new InvalidEnumArgumentException(nameof(value), (int)value, typeof(Environment.SpecialFolder));
-                }
-                _rootFolder = value;
-            }
-        } // RootFolder
+        /// <summary>Gets or sets a string containing the folder name selected in the dialog box.</summary>
+        /// <returns>The folder name selected in the dialog box. The default value is an empty string ("").</returns>
+        [DefaultValue("")]
+        public string SelectedPath { get; set; }
 
-        /// <summary>
-        /// Set or get the selected path.  
-        /// </summary>
-        public string SelectedPath
-        {
-            get
-            {
-                if (string.IsNullOrEmpty(_selectedPath) || !_selectedPathNeedsCheck) return _selectedPath;
-
-                new FileIOPermission(FileIOPermissionAccess.PathDiscovery, _selectedPath).Demand();
-                _selectedPathNeedsCheck = false;
-                return _selectedPath;
-            } // get
-            set
-            {
-                _selectedPath = value ?? string.Empty;
-                _selectedPathNeedsCheck = true;
-            } // set
-        } // SelectedPath
-
-        /// <summary>
-        /// Enable or disable the "New Folder" button in the browser dialog.
-        /// </summary>
+        /// <summary>Gets or sets a value indicating whether the dialog box displays a warning if the user specifies a path that does not exist.</summary>
+        /// <returns>
+        /// <see langword="true" /> if the dialog box displays a warning when the user specifies a path that does not exist; otherwise, <see langword="false" />. The default value is <see langword="true" />.</returns>
         [DefaultValue(true)]
-        public bool ShowNewFolderButton { get; set; }
-
-        /// <summary>
-        /// Show an "edit box" in the folder browser.
-        /// </summary>
-        /// <remarks>
-        /// The "edit box" normally shows the name of the selected folder.  
-        /// The user may also type a pathname directly into the edit box.  
-        /// </remarks>
-        /// <seealso cref="ShowFullPathInEditBox"/>
-        [DefaultValue(true)]
-        public bool ShowEditBox { get; set; }
-
-        /// <summary>
-        /// Set whether to use the New Folder Browser dialog style.
-        /// </summary>
-        /// <remarks>
-        /// The new style is resizable and includes a "New Folder" button.
-        /// </remarks>
-        [DefaultValue(true)]
-        public bool NewStyle { get; set; } = true; // NewStyle
-
-        [DefaultValue(false)]
-        public bool DontIncludeNetworkFoldersBelowDomainLevel { get; set; }
-
-        /// <summary>
-        /// Show the full path in the edit box as the user selects it. 
-        /// </summary>
-        /// <remarks>
-        /// This works only if ShowEditBox is also set to true. 
-        /// </remarks>
-        [DefaultValue(true)]
-        public bool ShowFullPathInEditBox { get; set; } = true;
-
-        [DefaultValue(false)]
-        public bool ShowBothFilesAndFolders { get; set; }
+        public bool CheckPathExists { get; set; }
 
         #endregion
 
-        private int FolderBrowserCallback(IntPtr hwnd, uint msg, IntPtr lParam, IntPtr lpData)
-        {
-            switch (msg)
-            {
-                case BrowseForFolderMessages.BffmInitialized:
-                    BffmInitialized();
-                    break;
-
-                case BrowseForFolderMessages.BffmSelChanged:
-                    BffmSelChanged();
-                    break;
-            }
-            return 0;
-
-            void BffmInitialized()
-            {
-                // @AlphaCentaury: get handle to the edit box whether there's an initial path or not
-                if (ShowEditBox && ShowFullPathInEditBox)
-                {
-                    // get handle to the Edit box inside the Folder Browser Dialog
-                    _hwndEdit = UnsafeNativeMethods.User32.FindWindowExW(new HandleRef(null, hwnd), IntPtr.Zero, "Edit", null);
-                    UnsafeNativeMethods.User32.SetWindowTextW(_hwndEdit, _selectedPath);
-                } // if
-
-                if (_selectedPath.Length != 0)
-                {
-                    UnsafeNativeMethods.User32.SendMessage(new HandleRef(null, hwnd), BrowseForFolderMessages.BffmSetSelectionW, (IntPtr)1, _selectedPath);
-                    // @AlphaCentaury: moved to top to get handle to the edit box whether there's an initial path or not
-                    //if (_showEditBox && _showFullPathInEditBox)
-                    //{
-                    //    // get handle to the Edit box inside the Folder Browser Dialog
-                    //    _hwndEdit = UnsafeNativeMethods.User32.FindWindowExW(new HandleRef(null, hwnd), IntPtr.Zero, "Edit", null);
-                    //    UnsafeNativeMethods.User32.SetWindowTextW(_hwndEdit, _selectedPath);
-                    //}
-                } // if
-            } // BffmInitialized
-
-            void BffmSelChanged()
-            {
-                var pidl = lParam;
-                if (pidl == IntPtr.Zero) return;
-
-                if (((_uiFlags & BrowseFlags.BifBrowseForPrinter) == BrowseFlags.BifBrowseForPrinter) ||
-                    ((_uiFlags & BrowseFlags.BifBrowseForComputer) == BrowseFlags.BifBrowseForComputer))
-                {
-                    // we're browsing for a printer or computer, enable the OK button unconditionally.
-                    UnsafeNativeMethods.User32.SendMessage(new HandleRef(null, hwnd), BrowseForFolderMessages.BffmEnableOk, (IntPtr)0, (IntPtr)1);
-                    return;
-                } // if
-
-                //var pszPath = Marshal.AllocHGlobal(MaxPath * Marshal.SystemDefaultCharSize);
-                var pszPath = Marshal.AllocHGlobal((PathSize + 1) * Marshal.SystemDefaultCharSize);
-
-                // @AlphaCentaury: allows to get paths longer than MAX_PATH (260 chars)
-                //var haveValidPath = UnsafeNativeMethods.Shell32.SHGetPathFromIDList(pidl, pszPath);
-                var haveValidPath = UnsafeNativeMethods.Shell32.SHGetPathFromIDListEx(pidl, pszPath, PathSize, 0);
-                var displayedPath = Marshal.PtrToStringAuto(pszPath);
-                Marshal.FreeHGlobal(pszPath);
-
-                // whether to enable the OK button or not. (if file is valid)
-                UnsafeNativeMethods.User32.SendMessage(new HandleRef(null, hwnd), BrowseForFolderMessages.BffmEnableOk, (IntPtr)0, (IntPtr)(haveValidPath ? 1 : 0));
-
-                // Maybe set the Edit Box text to the Full Folder path
-                if (!haveValidPath || string.IsNullOrEmpty(displayedPath)) return;
-
-                if (ShowEditBox && ShowFullPathInEditBox && ((_hwndEdit != IntPtr.Zero)))
-                {
-                    UnsafeNativeMethods.User32.SetWindowTextW(_hwndEdit, displayedPath);
-                } // if
-
-                if ((_uiFlags & BrowseFlags.BifStatusText) == BrowseFlags.BifStatusText)
-                {
-                    UnsafeNativeMethods.User32.SendMessage(new HandleRef(null, hwnd), BrowseForFolderMessages.BffmSetStatusText, (IntPtr)0, displayedPath);
-                } // if
-            } // BffmSelChanged
-        } // FolderBrowserCallback
-
-        private void SetDefaultValues()
-        {
-            _rootFolder = 0;
-            _descriptionText = string.Empty;
-            _selectedPath = string.Empty;
-            _selectedPathNeedsCheck = false;
-            ShowNewFolderButton = true;
-            ShowEditBox = true;
-            NewStyle = true;
-            DontIncludeNetworkFoldersBelowDomainLevel = false;
-            _hwndEdit = IntPtr.Zero;
-            _rootFolderLocation = IntPtr.Zero;
-        } // SetDefaultValues
-
-        #region CommonDialog implementation
+        #region Overrides of CommonDialog
 
         public override void Reset()
         {
             SetDefaultValues();
         } // Reset
 
-        [PermissionSet(SecurityAction.Demand, Name = "FullTrust")]
-        protected override bool RunDialog(IntPtr hWndOwner)
+        protected override bool RunDialog(IntPtr hwndOwner)
         {
-            var result = false;
-            var pidl = IntPtr.Zero;
-            var hGlobal = IntPtr.Zero;
-            var pszPath = IntPtr.Zero;
-
-            PrepareDialogInitialization(hWndOwner);
+            Win32Shell.IFileOpenDialog dialog = null;
 
             try
             {
-                hGlobal = Marshal.AllocHGlobal((PathSize + 1) * Marshal.SystemDefaultCharSize);
-                pszPath = Marshal.AllocHGlobal((PathSize + 1) * Marshal.SystemDefaultCharSize);
+                dialog = CreateDialog();
 
-                var browseInfo = new UnsafeNativeMethods.BrowseInfo
-                {
-                    pidlRoot = _rootFolderLocation,
-                    Owner = hWndOwner,
-                    pszDisplayName = hGlobal,
-                    Title = _descriptionText,
-                    Flags = _uiFlags,
-                    callback = FolderBrowserCallback,
-                    lParam = IntPtr.Zero,
-                    iImage = 0
-                };
+                var result = dialog.Show(hwndOwner);
+                if (result != 0) return false;
 
-                // display dialog
-                pidl = UnsafeNativeMethods.Shell32.SHBrowseForFolderW(browseInfo);
+                dialog.GetResult(out var item);
+                item.GetDisplayName(Win32Shell.GetDisplayName.FILESYSPATH, out var path);
+                Marshal.ReleaseComObject(item);
+                SelectedPath = path;
 
-                result = GetDialogResult(browseInfo, pidl, pszPath);
+                return true;
+            }
+            catch
+            {
+                return false;
             }
             finally
             {
-                var sHMalloc = UnsafeNativeMethods.GetShMalloc();
-                sHMalloc.Free(_rootFolderLocation);
-                _rootFolderLocation = IntPtr.Zero;
-                if (pidl != IntPtr.Zero) sHMalloc.Free(pidl);
-                if (pszPath != IntPtr.Zero) Marshal.FreeHGlobal(pszPath);
-                if (hGlobal != IntPtr.Zero) Marshal.FreeHGlobal(hGlobal);
-            } // try-finally
-
-            return result;
+                if (dialog != null) Marshal.ReleaseComObject(dialog);
+            } // finally
         } // RunDialog
 
-        private void PrepareDialogInitialization(IntPtr hWndOwner)
-        {
-            if (Control.CheckForIllegalCrossThreadCalls && (Application.OleRequired() != ApartmentState.STA))
-            {
-                throw new ThreadStateException("DebuggingException: ThreadMustBeSTA");
-            } // if
+        #endregion
 
-            if (_rootFolderLocation == IntPtr.Zero)
+        private void SetDefaultValues()
+        {
+            InitialDirectory = string.Empty;
+            SelectedPath = string.Empty;
+            CheckPathExists = true;
+        } // SetDefaultValues
+
+        private Win32Shell.IFileOpenDialog CreateDialog()
+        {
+            // ReSharper disable once SuspiciousTypeConversion.Global
+            // COM type cast
+            var dialog = (Win32Shell.IFileOpenDialog)new Win32Shell.FileOpenDialog();
+
+            var options = Win32Shell.FileOpenDialogOptions.PICKFOLDERS |
+                          Win32Shell.FileOpenDialogOptions.FORCEFILESYSTEM |
+                          Win32Shell.FileOpenDialogOptions.DONTADDTORECENT;
+            if (CheckPathExists) options |= Win32Shell.FileOpenDialogOptions.PATHMUSTEXIST;
+            dialog.SetOptions(options);
+
+            SetPath(SelectedPath, dialog.SetFolder);
+            SetPath(InitialDirectory, dialog.SetDefaultFolder);
+
+            return dialog;
+
+            void SetPath(string path, Action<Win32Shell.IShellItem> action)
             {
-                UnsafeNativeMethods.Shell32.SHGetSpecialFolderLocation(hWndOwner, (int)_rootFolder, ref _rootFolderLocation);
-                if (_rootFolderLocation == IntPtr.Zero)
+                if (string.IsNullOrEmpty(path)) return;
+
+                uint attributes = 0;
+                if ((Win32Shell.SHILCreateFromPath(SelectedPath, out var idl, ref attributes) == 0) &&
+                    (Win32Shell.SHCreateShellItem(IntPtr.Zero, IntPtr.Zero, idl, out var item) == 0))
                 {
-                    UnsafeNativeMethods.Shell32.SHGetSpecialFolderLocation(hWndOwner, 0, ref _rootFolderLocation);
-                    if (_rootFolderLocation == IntPtr.Zero)
-                    {
-                        throw new InvalidOperationException("FolderBrowserDialogNoRootFolder");
-                    } // if
+                    action(item);
                 } // if
-            } // if
 
-            // get uiFlags according to user display choices
-            _hwndEdit = IntPtr.Zero;
-            _uiFlags = 0;
-            if (DontIncludeNetworkFoldersBelowDomainLevel) _uiFlags += BrowseFlags.BifDontGoBelowDomain;
-            if (NewStyle) _uiFlags += BrowseFlags.BifNewDialogStyle;
-            if (!ShowNewFolderButton) _uiFlags += BrowseFlags.BifNoNewFolderButton;
-            if (ShowEditBox) _uiFlags += BrowseFlags.BifEditBox;
-            if (ShowBothFilesAndFolders) _uiFlags += BrowseFlags.BifBrowseIncludeFiles;
-        } // PrepareDialogInitialization
-
-        private bool GetDialogResult(UnsafeNativeMethods.BrowseInfo browseInfo, IntPtr pidl, IntPtr pszPath)
-        {
-            if (((_uiFlags & BrowseFlags.BifBrowseForPrinter) == BrowseFlags.BifBrowseForPrinter) ||
-                ((_uiFlags & BrowseFlags.BifBrowseForComputer) == BrowseFlags.BifBrowseForComputer))
-            {
-                _selectedPath = Marshal.PtrToStringAuto(browseInfo.pszDisplayName);
-                return true;
-            } // if
-
-            if (pidl == IntPtr.Zero) return false;
-
-            // @AlphaCentaury: allows to get paths longer than MAX_PATH (260 chars)
-            //UnsafeNativeMethods.Shell32.SHGetPathFromIDList(pidl, pszPath);
-            UnsafeNativeMethods.Shell32.SHGetPathFromIDListEx(pidl, pszPath, PathSize, 0);
-            _selectedPathNeedsCheck = true;
-            _selectedPath = Marshal.PtrToStringAuto(pszPath);
-            return true;
-        } // GetDialogResult
-
-        #endregion
-
-        #region Helpers
-
-        private void BecomePrinterBrowser()
-        {
-            _uiFlags += BrowseFlags.BifBrowseForPrinter;
-            Description = "Select a printer:";
-            UnsafeNativeMethods.Shell32.SHGetSpecialFolderLocation(IntPtr.Zero, CsIdl.Printers, ref _rootFolderLocation);
-            ShowNewFolderButton = false;
-            ShowEditBox = false;
-        } // BecomePrinterBrowser
-
-        private void BecomeComputerBrowser()
-        {
-            _uiFlags += BrowseFlags.BifBrowseForComputer;
-            Description = "Select a computer:";
-            UnsafeNativeMethods.Shell32.SHGetSpecialFolderLocation(IntPtr.Zero, CsIdl.Network, ref _rootFolderLocation);
-            ShowNewFolderButton = false;
-            ShowEditBox = false;
-        } // BecomeComputerBrowser
-
-        private static class CsIdl
-        {
-            public const int Printers = 4;
-            public const int Network = 0x12;
-        } // class CsIdl
-
-        [PublicAPI]
-        private static class BrowseFlags
-        {
-            public const int BifDefault = 0x0000;
-            public const int BifBrowseForComputer = 0x1000;
-            public const int BifBrowseForPrinter = 0x2000;
-            public const int BifBrowseIncludeFiles = 0x4000;
-            public const int BifBrowseIncludeUrls = 0x0080;
-            public const int BifDontGoBelowDomain = 0x0002;
-            public const int BifEditBox = 0x0010;
-            public const int BifNewDialogStyle = 0x0040;
-            public const int BifNoNewFolderButton = 0x0200;
-            public const int BifReturnFsAncestors = 0x0008;
-            public const int BifReturnOnlyFsDirs = 0x0001;
-            public const int BifShareable = 0x8000;
-            public const int BifStatusText = 0x0004;
-            public const int BifUaHint = 0x0100;
-            public const int BifValidate = 0x0020;
-            public const int BifNoTranslateTargets = 0x0400;
-        } // class BrowseFlags
-
-        [PublicAPI]
-        private static class BrowseForFolderMessages
-        {
-            // messages FROM the folder browser
-            public const int BffmInitialized = 1;
-            public const int BffmSelChanged = 2;
-            public const int BffmValidateFailedA = 3;
-            public const int BffmValidateFailedW = 4;
-            public const int BffmIunknown = 5;
-
-            // messages TO the folder browser
-            public const int BffmSetStatusText = 0x464;
-            public const int BffmEnableOk = 0x465;
-            public const int BffmSetSelectionA = 0x466;
-            public const int BffmSetSelectionW = 0x467;
-        } // class BrowseForFolderMessages
-
-        #endregion
+                if (idl != IntPtr.Zero) Marshal.FreeCoTaskMem(idl);
+            } // local SetPath
+        } // CreateDialog
     } // class SelectFolderDialog
-
-    internal static class UnsafeNativeMethods
-    {
-        public delegate int BrowseFolderCallbackProc(IntPtr hwnd, uint msg, IntPtr lParam, IntPtr lpData);
-
-        public static IMalloc GetShMalloc()
-        {
-            var ppMalloc = new UnsafeNativeMethods.IMalloc[1];
-            Shell32.SHGetMalloc(ppMalloc);
-            return ppMalloc[0];
-        } // GetSHMalloc
-
-        internal static class User32
-        {
-            [DllImport("user32.dll", CharSet = CharSet.Unicode)]
-            public static extern IntPtr SendMessage(HandleRef hWnd, uint msg, IntPtr wParam, string lParam);
-
-            [DllImport("user32.dll")]
-            public static extern IntPtr SendMessage(HandleRef hWnd, uint msg, IntPtr wParam, IntPtr lParam);
-
-            [DllImport("user32.dll", SetLastError = true, CharSet = CharSet.Unicode)]
-            public static extern IntPtr FindWindowExW(HandleRef hwndParent, IntPtr hwndChildAfter, string lpszClass, string lpszWindow);
-
-            [DllImport("user32.dll", CharSet = CharSet.Unicode, SetLastError = true)]
-            public static extern bool SetWindowTextW(IntPtr hWnd, string text);
-        } // class User32
-
-        [ComImport, Guid("00000002-0000-0000-c000-000000000046"), SuppressUnmanagedCodeSecurity, InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-        public interface IMalloc
-        {
-            [PreserveSig]
-            IntPtr Alloc(int cb);
-            [PreserveSig]
-            IntPtr Realloc(IntPtr pv, int cb);
-            [PreserveSig]
-            void Free(IntPtr pv);
-            [PreserveSig]
-            int GetSize(IntPtr pv);
-            [PreserveSig]
-            int DidAlloc(IntPtr pv);
-            [PreserveSig]
-            void HeapMinimize();
-        } // interface IMalloc
-
-        [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Unicode)]
-        public class BrowseInfo
-        {
-            public IntPtr Owner;
-            public IntPtr pidlRoot;
-            public IntPtr pszDisplayName;
-            [MarshalAs(UnmanagedType.LPWStr)]
-            public string Title;
-            public int Flags;
-            public BrowseFolderCallbackProc callback;
-            public IntPtr lParam;
-            public int iImage;
-        } // class RunDialog
-
-        [SuppressUnmanagedCodeSecurity]
-        internal static class Shell32
-        {
-            // Methods
-            [DllImport("shell32.dll", CharSet = CharSet.Unicode)]
-            public static extern IntPtr SHBrowseForFolderW([In] BrowseInfo lpbi);
-            [DllImport("shell32.dll")]
-            public static extern int SHGetMalloc([Out, MarshalAs(UnmanagedType.LPArray)] IMalloc[] ppMalloc);
-            [DllImport("shell32.dll", CharSet = CharSet.Auto)]
-            public static extern bool SHGetPathFromIDList(IntPtr pidl, IntPtr pszPath);
-            [DllImport("shell32.dll", CharSet = CharSet.Auto)]
-            public static extern bool SHGetPathFromIDListEx(IntPtr pidl, IntPtr pszPath, int cchPath, int uOpts);
-            [DllImport("shell32.dll")]
-            public static extern int SHGetSpecialFolderLocation(IntPtr hwnd, int csidl, ref IntPtr ppidl);
-        } // internal static class Shell32
-    } // class UnsafeNativeMethods
 } // namespace
