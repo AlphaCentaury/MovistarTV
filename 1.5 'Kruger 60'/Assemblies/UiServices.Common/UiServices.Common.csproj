@@ -47,13 +47,8 @@
       <HintPath>..\..\..\..\..\..\..\..\..\..\Program Files (x86)\Microsoft SQL Server\90\SDK\Assemblies\Microsoft.ExceptionMessageBox.dll</HintPath>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\..\AssemblySolutionInfo.cs">
@@ -95,9 +90,6 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Controls\PictureBoxEx.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Controls\SelectFolderDialog.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Controls\TabControlEx.cs">
@@ -218,6 +210,7 @@
     <None Include="Resources\Action_Edit_16x16.png" />
     <None Include="Resources\Action_Ok_16x161.png" />
     <None Include="Resources\Action_Cancel_16x16.png" />
+    <Content Include="licensing.xml" />
     <Content Include="Resources\DefaultAbout.png" />
     <Content Include="Resources\NotImplemented_200x200.png" />
   </ItemGroup>

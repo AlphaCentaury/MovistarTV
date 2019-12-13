@@ -120,6 +120,7 @@
     <None Include="Resources\IconException96.png" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="licensing.xml" />
     <Content Include="Resources\ArrowDetails.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

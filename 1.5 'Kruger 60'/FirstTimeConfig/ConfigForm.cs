@@ -32,7 +32,9 @@ namespace IpTviewr.Tools.FirstTimeConfig
 
         private void ConfigForm_Load(object sender, EventArgs e)
         {
-            selectFolder.Description = Texts.SelectFolderSaveDescription;
+            // Description is no longer available in new SelectFolderDialog
+            // TODO: change text and set as caption
+            // selectFolder.Description = Texts.SelectFolderSaveDescription;
             openFile.Title = Texts.OpenFileVlcTitle;
             openFile.Filter = Texts.OpenFileVlcFilter;
 
@@ -469,9 +471,7 @@ namespace IpTviewr.Tools.FirstTimeConfig
 
         private void buttonBrowseSave_Click(object sender, EventArgs e)
         {
-            selectFolder.NewStyle = true;
             selectFolder.SelectedPath = string.IsNullOrEmpty(textBoxSave.Text) ? _defaultRecordingsSavePath : textBoxSave.Text;
-            selectFolder.RootFolder = Environment.SpecialFolder.Desktop;
             if (selectFolder.ShowDialog(this) != DialogResult.OK) return;
 
             textBoxSave.Text = selectFolder.SelectedPath;

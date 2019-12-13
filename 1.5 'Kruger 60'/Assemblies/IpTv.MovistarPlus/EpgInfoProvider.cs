@@ -5,15 +5,7 @@
 // 
 // http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
 
-using System;
-using System.Linq;
-using System.Net;
-using System.Text;
-using IpTviewr.IpTvServices.EPG;
-using IpTviewr.IpTvServices.MovistarPlus;
-using Newtonsoft.Json;
-
-namespace Project.IpTv.MovistarPlus
+namespace IpTviewr.IpTvServices.MovistarPlus
 {
     /*
     internal class EpgInfoProvider: IEpgInfoProvider

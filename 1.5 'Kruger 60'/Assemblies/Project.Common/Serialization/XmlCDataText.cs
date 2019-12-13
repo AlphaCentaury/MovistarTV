@@ -86,13 +86,12 @@ namespace IpTviewr.Common.Serialization
         public static bool operator ==(XmlCDataText left, XmlCDataText right)
         {
             if (ReferenceEquals(left, right)) return true;
-            if (left is null) return false;
-            return left.Equals(right);
+            return !(left is null) && left.Equals(right);
         } // operator ==
 
         public static bool operator !=(XmlCDataText left, XmlCDataText right)
         {
-            return left != right;
+            return !(left == right);
         } // operator !=
 
         public static bool operator ==(XmlCDataText left, string right)
@@ -102,7 +101,7 @@ namespace IpTviewr.Common.Serialization
 
         public static bool operator !=(XmlCDataText left, string right)
         {
-            return left != right;
+            return !(left == right);
         } // operator !=
 
         public static bool operator ==(string left, XmlCDataText right)
@@ -112,7 +111,7 @@ namespace IpTviewr.Common.Serialization
 
         public static bool operator !=(string left, XmlCDataText right)
         {
-            return left != right;
+            return !(left == right);
         } // operator !=
 
         #endregion

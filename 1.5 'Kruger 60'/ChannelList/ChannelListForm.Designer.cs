@@ -22,15 +22,12 @@ namespace IpTviewr.ChannelList
         {
             if (disposing)
             {
-                _listManager.Dispose();
+                _listManager?.Dispose();
+                components?.Dispose();
             } // if
 
-            if (disposing && (components != null))
-            {
-                components.Dispose();
-            }
             base.Dispose(disposing);
-        }
+        } // Dispose
 
         #region Windows Form Designer generated code
 

@@ -63,19 +63,8 @@
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.ExceptionMessageBox, Version=9.0.242.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\..\..\..\..\..\..\Program Files (x86)\Microsoft SQL Server\90\SDK\Assemblies\Microsoft.ExceptionMessageBox.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Data.SqlServerCe, Version=4.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\..\..\..\..\Program Files\Microsoft SQL Server Compact Edition\v4.0\Desktop\System.Data.SqlServerCe.dll</HintPath>
-    </Reference>
     <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
@@ -206,6 +195,7 @@
     <None Include="Resources\Info_24x24.png" />
     <None Include="Resources\DownloadWeb_16x16.png" />
     <None Include="Resources\DownloadWebSettings_16x16.png" />
+    <Content Include="licensing.xml" />
     <Content Include="Resources\AboutIcon.png" />
     <Content Include="Resources\IPTV.ico" />
     <None Include="Resources\Splash.png" />
@@ -264,11 +254,6 @@
     <ProjectReference Include="..\Assemblies\Services.Record\Services.Record.csproj">
       <Project>{a4172cdd-c8fd-4c91-9aaf-54a948f26273}</Project>
       <Name>Services.Record</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Assemblies\Services.SqlServerCE\Services.SqlServerCE.csproj">
-      <Project>{3a053f34-4edf-4071-b966-923255a0ae14}</Project>
-      <Name>Services.SqlServerCE</Name>
-      <Private>True</Private>
     </ProjectReference>
     <ProjectReference Include="..\Assemblies\UiServices.Common\UiServices.Common.csproj">
       <Project>{76346905-ac2f-4f01-ba99-bbffbb2a6fe9}</Project>

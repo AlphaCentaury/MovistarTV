@@ -5,9 +5,6 @@
 // 
 // http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
 
-using System;
-using System.IO;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace IpTviewr.UiServices.Common.Start

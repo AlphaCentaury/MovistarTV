@@ -5,6 +5,8 @@
 // 
 // http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
 
+using IpTviewr.Native.WinForms;
+
 namespace IpTviewr.Tools.FirstTimeConfig
 {
     partial class ConfigForm
@@ -42,7 +44,7 @@ namespace IpTviewr.Tools.FirstTimeConfig
             this.buttonPreviousPage = new System.Windows.Forms.Button();
             this.buttonNextPage = new System.Windows.Forms.Button();
             this.buttonCancel = new System.Windows.Forms.Button();
-            this.selectFolder = new IpTviewr.UiServices.Common.Controls.SelectFolderDialog();
+            this.selectFolder = new SelectFolderDialog();
             this.wizardControl = new IpTviewr.Tools.FirstTimeConfig.WizardTabControl();
             this.wizardPageReadme = new System.Windows.Forms.TabPage();
             this.checkReadmeAck = new System.Windows.Forms.CheckBox();
@@ -169,18 +171,6 @@ namespace IpTviewr.Tools.FirstTimeConfig
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.UseVisualStyleBackColor = true;
             this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
-            // 
-            // selectFolder
-            // 
-            this.selectFolder.Description = "";
-            this.selectFolder.DontIncludeNetworkFoldersBelowDomainLevel = false;
-            this.selectFolder.NewStyle = true;
-            this.selectFolder.RootFolder = System.Environment.SpecialFolder.MyComputer;
-            this.selectFolder.SelectedPath = "";
-            this.selectFolder.ShowBothFilesAndFolders = false;
-            this.selectFolder.ShowEditBox = true;
-            this.selectFolder.ShowFullPathInEditBox = true;
-            this.selectFolder.ShowNewFolderButton = true;
             // 
             // wizardControl
             // 
@@ -681,7 +671,7 @@ namespace IpTviewr.Tools.FirstTimeConfig
 
         #endregion
 
-        private IpTviewr.UiServices.Common.Controls.SelectFolderDialog selectFolder;
+        private SelectFolderDialog selectFolder;
         private System.Windows.Forms.OpenFileDialog openFile;
         private WizardTabControl wizardControl;
         private System.Windows.Forms.TabPage wizardPagePrerequisites;

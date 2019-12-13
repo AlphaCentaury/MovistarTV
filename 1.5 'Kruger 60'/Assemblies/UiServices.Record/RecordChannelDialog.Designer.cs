@@ -78,7 +78,7 @@ namespace IpTviewr.UiServices.Record
             this.checkSchedulerASAP = new System.Windows.Forms.CheckBox();
             this.comboSchedulerFolder = new System.Windows.Forms.ComboBox();
             this.labelSchedulerFolder = new System.Windows.Forms.Label();
-            this.selectFolder = new IpTviewr.UiServices.Common.Controls.SelectFolderDialog();
+            this.selectFolder = new IpTviewr.Native.WinForms.SelectFolderDialog();
             this.labelProgramSchedule = new System.Windows.Forms.Label();
             this.labelProgramDescription = new System.Windows.Forms.Label();
             this.labelChannelName = new System.Windows.Forms.Label();
@@ -413,18 +413,6 @@ namespace IpTviewr.UiServices.Record
             resources.ApplyResources(this.labelSchedulerFolder, "labelSchedulerFolder");
             this.labelSchedulerFolder.Name = "labelSchedulerFolder";
             // 
-            // selectFolder
-            // 
-            this.selectFolder.Description = "";
-            this.selectFolder.DontIncludeNetworkFoldersBelowDomainLevel = true;
-            this.selectFolder.NewStyle = true;
-            this.selectFolder.RootFolder = System.Environment.SpecialFolder.Desktop;
-            this.selectFolder.SelectedPath = "";
-            this.selectFolder.ShowBothFilesAndFolders = false;
-            this.selectFolder.ShowEditBox = true;
-            this.selectFolder.ShowFullPathInEditBox = true;
-            this.selectFolder.ShowNewFolderButton = true;
-            // 
             // labelProgramSchedule
             // 
             resources.ApplyResources(this.labelProgramSchedule, "labelProgramSchedule");
@@ -528,7 +516,7 @@ namespace IpTviewr.UiServices.Record
         private System.Windows.Forms.CheckBox checkBoxExpiryDate;
         private IpTviewr.UiServices.Common.Controls.TimeSpanUpDown timeSpanSchedulerRetry;
         private IpTviewr.UiServices.Common.Controls.TimeSpanUpDown timeSpanSchedulerDeleteTaskAfter;
-        private IpTviewr.UiServices.Common.Controls.SelectFolderDialog selectFolder;
+        private IpTviewr.Native.WinForms.SelectFolderDialog selectFolder;
         private System.Windows.Forms.CheckBox checkAddTaskPrefix;
         private System.Windows.Forms.Label labelTaskName;
         private Common.Controls.FilenameTextBox textTaskName;

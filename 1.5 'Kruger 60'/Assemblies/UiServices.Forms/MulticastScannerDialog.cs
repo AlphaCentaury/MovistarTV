@@ -6,7 +6,6 @@
 // http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
 
 using IpTviewr.Common;
-using IpTviewr.Common.Telemetry;
 using IpTviewr.UiServices.Common.Forms;
 using IpTviewr.UiServices.Configuration.Logos;
 using IpTviewr.UiServices.Discovery;

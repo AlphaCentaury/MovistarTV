@@ -107,14 +107,14 @@ namespace IpTviewr.UiServices.Configuration
 
         public static bool operator == (StringPair a, StringPair b)
         {
+            if (ReferenceEquals(a, b)) return true;
             if ((a == null) || (b == null)) return false;
             return ((a.Item1 == b.Item1) && (a.Item2 == b.Item2));
         } // operator ==
 
         public static bool operator !=(StringPair a, StringPair b)
         {
-            if ((a == null) || (b == null)) return true;
-            return ((a.Item1 != b.Item1) || (a.Item2 != b.Item2));
+            return !(a == b);
         } // operator !=
 
         private void CalcHashCode()

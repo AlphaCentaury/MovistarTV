@@ -212,6 +212,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="License.txt" />
+    <Content Include="licensing.xml" />
     <Content Include="Resources\Ribbon\CloseApp%4024.png" />
     <Content Include="Resources\Ribbon\CloseApp%4032.png" />
     <Content Include="Resources\Ribbon\CloseApp%4048.png" />

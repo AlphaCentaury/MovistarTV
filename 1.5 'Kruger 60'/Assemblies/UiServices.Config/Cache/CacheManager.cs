@@ -35,7 +35,7 @@ namespace IpTviewr.UiServices.Configuration.Cache
         public void SaveXml<T>(string documentType, string name, int version, T xmlTree) where T: class
         {
             var path = Path.Combine(_baseDirectory, GetSafeDocumentName(documentType, name, ".xml"));
-            XmlSerialization.Serialize(path, Encoding.UTF8, xmlTree);
+            XmlSerialization.Serialize(path, xmlTree);
         } // SaveXml
 
         public T LoadXml<T>(string documentType, string name) where T : class

@@ -8,7 +8,6 @@
 using Etsi.Ts102034.v010501.XmlSerialization;
 using Etsi.Ts102034.v010501.XmlSerialization.ProviderDiscovery;
 using IpTviewr.Common;
-using IpTviewr.Common.Telemetry;
 using IpTviewr.UiServices.Common.Forms;
 using IpTviewr.UiServices.Configuration;
 using IpTviewr.UiServices.Configuration.Logos;

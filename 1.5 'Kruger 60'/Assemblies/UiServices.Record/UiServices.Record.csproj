@@ -42,12 +42,8 @@
       <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Microsoft SQL Server\90\SDK\Assemblies\Microsoft.ExceptionMessageBox.dll</HintPath>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
@@ -242,6 +238,10 @@
       <Project>{8da15060-5a78-4f89-a9f1-7aa56b0d622c}</Project>
       <Name>IpTviewr.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Project.Native\IpTviewr.Native.csproj">
+      <Project>{8986CD52-0C65-42D6-9C47-20FF47CF87BB}</Project>
+      <Name>IpTviewr.Native</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Services.EpgDiscovery\Services.EpgDiscovery.csproj">
       <Project>{5a171dbb-855c-452b-93c6-229c7aa6c7a6}</Project>
       <Name>Services.EpgDiscovery</Name>
@@ -288,6 +288,7 @@
       <Link>Resources\Action_Play_LG_16x16.png</Link>
     </Content>
     <Content Include="License.txt" />
+    <Content Include="licensing.xml" />
     <Content Include="Resources\Action_RecordButton_16x16.png" />
     <Content Include="Resources\Action_Record_16x16.png" />
     <Content Include="Resources\Icon_Record_48x48.png" />

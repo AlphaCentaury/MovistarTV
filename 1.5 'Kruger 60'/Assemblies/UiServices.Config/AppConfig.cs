@@ -19,7 +19,6 @@ using System.ComponentModel.Composition.Hosting;
 using System.Globalization;
 using System.IO;
 using System.Reflection;
-using System.Text;
 using System.Xml;
 using IpTviewr.UiServices.Configuration.IpTvService;
 
@@ -225,7 +224,7 @@ namespace IpTviewr.UiServices.Configuration
             } // foreach
 
             var configFilename = overrideSaveLocation ?? _defaultSaveLocation;
-            XmlSerialization.Serialize(configFilename, Encoding.UTF8, User);
+            XmlSerialization.Serialize(configFilename, User);
 
             // save memory
             // the serialized configuration items are not needed for normal operation, as they are accessed using this[Guid]

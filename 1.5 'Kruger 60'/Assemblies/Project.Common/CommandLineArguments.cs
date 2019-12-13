@@ -7,13 +7,24 @@
 
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 
 namespace IpTviewr.Common
 {
-    public partial class CommandLineArguments
+    public class CommandLineArguments
     {
+        private IEqualityComparer<string> _comparer;
+
+        public CommandLineArguments()
+        {
+            _comparer = StringComparer.InvariantCultureIgnoreCase;
+        } // constructor
+
+        public CommandLineArguments(IEqualityComparer<string> comparer)
+        {
+            _comparer = comparer ?? StringComparer.InvariantCultureIgnoreCase;
+        } // constructor
+
         public bool SpecialHelpArgument
         {
             get;
@@ -45,8 +56,8 @@ namespace IpTviewr.Common
             IsOk = false;
 
             Arguments = new List<string>(args.Count);
-            Switches = new Dictionary<string, string>(args.Count, StringComparer.InvariantCultureIgnoreCase);
-            MultiValueSwitches = new Dictionary<string, IList<string>>(args.Count, StringComparer.InvariantCulture);
+            Switches = new Dictionary<string, string>(args.Count, _comparer);
+            MultiValueSwitches = new Dictionary<string, IList<string>>(args.Count, _comparer);
 
             foreach (var arg in args.Skip(startIndex))
             {

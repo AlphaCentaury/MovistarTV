@@ -6,7 +6,6 @@
 // http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
 
 using System;
-using System.Windows.Forms;
 
 namespace IpTviewr.UiServices.Common.Controls
 {

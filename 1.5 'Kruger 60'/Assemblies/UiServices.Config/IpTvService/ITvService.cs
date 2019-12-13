@@ -5,8 +5,6 @@
 // 
 // http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
 
-using System.Windows.Forms;
-
 namespace IpTviewr.UiServices.Configuration.IpTvService
 {
     public interface ITvService

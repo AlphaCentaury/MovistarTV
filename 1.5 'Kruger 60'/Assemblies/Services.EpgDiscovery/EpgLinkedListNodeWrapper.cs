@@ -76,14 +76,14 @@ namespace IpTviewr.Services.EpgDiscovery
 
         public static bool operator ==(EpgLinkedListNodeWrapper a, EpgLinkedListNodeWrapper b)
         {
+            if (ReferenceEquals(a, b)) return true;
             if ((a == null) || (b == null)) return false;
             return (a._node == b._node);
         } // operator ==
 
         public static bool operator !=(EpgLinkedListNodeWrapper a, EpgLinkedListNodeWrapper b)
         {
-            if ((a == null) || (b == null)) return true;
-            return (a._node != b._node);
+            return !(a == b);
         } // operator !=
     } // class EpgLinkedListNodeWrapper
 } // namespace

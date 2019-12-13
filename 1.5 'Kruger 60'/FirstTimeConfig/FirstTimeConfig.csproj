@@ -46,11 +46,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
@@ -176,6 +172,7 @@
       <Link>Resources\Status_Wait_16x16.png</Link>
     </Content>
     <Content Include="License.txt" />
+    <Content Include="licensing.xml" />
     <Content Include="Resources\ActionBack_Medium_16.png" />
     <Content Include="Resources\ActionForward_Medium_16.png" />
     <Content Include="Resources\Error_16x16.png" />
@@ -204,10 +201,6 @@
     <ProjectReference Include="..\Assemblies\Project.Native\IpTviewr.Native.csproj">
       <Project>{8986CD52-0C65-42D6-9C47-20FF47CF87BB}</Project>
       <Name>IpTviewr.Native</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Assemblies\Services.Record.Serialization\Services.Record.Serialization.csproj">
-      <Project>{074c14ed-c574-46d2-b9dc-c1b5f65d9a69}</Project>
-      <Name>Services.Record.Serialization</Name>
     </ProjectReference>
     <ProjectReference Include="..\Assemblies\UiServices.Common\UiServices.Common.csproj">
       <Project>{76346905-ac2f-4f01-ba99-bbffbb2a6fe9}</Project>

@@ -6,14 +6,9 @@
 // http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
 
 using System;
-using System.Windows.Forms;
-using System.Runtime.InteropServices;
 using System.ComponentModel;
-using System.Security.Permissions;
-using System.Security;
-using System.Threading;
-using System.Drawing;
-using JetBrains.Annotations;
+using System.Runtime.InteropServices;
+using System.Windows.Forms;
 
 namespace IpTviewr.Native.WinForms
 {
@@ -22,8 +17,6 @@ namespace IpTviewr.Native.WinForms
 
     public class SelectFolderDialog : CommonDialog
     {
-        private OpenFileDialog x;
-
         public SelectFolderDialog()
         {
             SetDefaultValues();

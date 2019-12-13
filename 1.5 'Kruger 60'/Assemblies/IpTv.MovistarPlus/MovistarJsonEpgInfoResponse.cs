@@ -6,13 +6,8 @@
 // http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
 
 using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using IpTviewr.IpTvServices.MovistarPlus;
 
-namespace Project.IpTv.MovistarPlus
+namespace IpTviewr.IpTvServices.MovistarPlus
 {
     internal class MovistarJsonEpgInfoResponse: MovistarJsonResponse
     {

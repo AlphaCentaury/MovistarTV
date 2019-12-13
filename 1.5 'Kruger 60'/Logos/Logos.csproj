@@ -46,6 +46,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Content Include="License.txt" />
+    <Content Include="licensing.xml" />
     <Content Include="Providers\%28default%29\DVB-IPTV\128.png" />
     <Content Include="Providers\%28default%29\DVB-IPTV\256.png" />
     <Content Include="Providers\%28default%29\DVB-IPTV\32.png" />

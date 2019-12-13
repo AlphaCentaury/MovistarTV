@@ -5,7 +5,6 @@
 // 
 // http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
 
-using Microsoft.SqlServer.MessageBox;
 using IpTviewr.Common.Telemetry;
 using System;
 using System.Threading;
