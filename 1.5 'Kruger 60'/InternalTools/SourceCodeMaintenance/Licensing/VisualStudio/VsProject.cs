@@ -7,7 +7,6 @@
 
 using System;
 using System.Collections.Generic;
-using AlphaCentaury.Licensing.Data.Serialization;
 
 namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing.VisualStudio
 {
@@ -22,14 +21,6 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing.VisualStudio
         public List<Guid> ReferencedProjects { get; set; }
         public string Type { get; set; }
         public string LicensingDefaultsKey { get; set; }
-
-        public LibraryDependency Dependency => new LibraryDependency
-        {
-            IsDirectDependency = true,
-            Namespace = Namespace,
-            Assembly = AssemblyName,
-            
-        };
 
         public override string ToString()
         {

@@ -16,6 +16,8 @@ namespace AlphaCentaury.Licensing.Data.Serialization
         [XmlElement("File")]
         public string Assembly { get; set; }
 
+        public LicensedItemType Type { get; set; }
+
         public override string ToString() => $"{DependencyTypeMark}{Name}";
 
         public LibraryDependency Clone()

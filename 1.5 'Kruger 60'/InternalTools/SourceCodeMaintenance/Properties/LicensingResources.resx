@@ -172,6 +172,15 @@
   <data name="Dependencies_32x" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Licensing\Resources\Dependencies_32x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Installer_16x" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\licensing\resources\installer_16x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Installer_24x" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\licensing\resources\installer_24x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Installer_32x" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\licensing\resources\installer_32x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="NoLicensingSelected" xml:space="preserve">
     <value>No licensing file has been selected</value>
   </data>
@@ -210,5 +219,101 @@
   </data>
   <data name="VS_Solution_File_32x" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\licensing\resources\vs_solution_file_32x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="WriteAppliesToLibrariesFormat" xml:space="preserve">
+    <value>&gt;&gt;&gt; '{0}' applies to the following components: &lt;&lt;&lt;</value>
+    <comment>{0} = license name</comment>
+  </data>
+  <data name="WriteAppliesToLibrariesFormatMd" xml:space="preserve">
+    <value>&gt; **'{0}'** applies to the following components:</value>
+    <comment>{0} = license name</comment>
+  </data>
+  <data name="WriteAppliesToThirdPartyFormat" xml:space="preserve">
+    <value>&gt;&gt;&gt; '{0}' applies to the following THIRD-PARTY components: &lt;&lt;&lt;</value>
+    <comment>{0} = license name</comment>
+  </data>
+  <data name="WriteAppliesToThirdPartyFormatMd" xml:space="preserve">
+    <value>&gt; **'{0}'** applies to the following **third-party components:***</value>
+    <comment>{0} = license name</comment>
+  </data>
+  <data name="WriteAuthorsFormat" xml:space="preserve">
+    <value>## by {0}</value>
+  </data>
+  <data name="WriteAuthorsFormatMd" xml:space="preserve">
+    <value>_by {0}_</value>
+  </data>
+  <data name="WriteDependencyAuthorsFormat" xml:space="preserve">
+    <value>by {0}</value>
+  </data>
+  <data name="WriteHtmlCss" xml:space="preserve">
+    <value>&lt;style&gt;
+body {font-family: "Calibri", "Tahoma", "Arial", Sans-serif; font-size:12pt}
+h1 {border-bottom: solid 3px #A0A0A0}
+h2 {border-bottom: solid 2px #A0A0A0}
+h3 {border-bottom: solid 1px #A0A0A0}
+p {text-align: justify}
+&lt;/style&gt;</value>
+  </data>
+  <data name="WriteHtmlHead" xml:space="preserve">
+    <value>&lt;html&gt;
+&lt;head&gt;
+&lt;meta charset="UTF-8"&gt;
+&lt;meta http-equiv="Content-Type" content="text/html; charset=UTF-8"&gt;</value>
+  </data>
+  <data name="WriteHtmlTitle" xml:space="preserve">
+    <value>&lt;title&gt;{0} '{1}'&lt;/title&gt;</value>
+    <comment>{0} = licensed type; {1} = licensed name</comment>
+  </data>
+  <data name="WriteLicensedFormat" xml:space="preserve">
+    <value>## {0} '{1}'</value>
+    <comment>{0} = licensed type; {1} = licensed name</comment>
+  </data>
+  <data name="WriteLicensedFormatMd" xml:space="preserve">
+    <value># {0} '{1}'</value>
+    <comment>{0} = licensed type; {1} = licensed name</comment>
+  </data>
+  <data name="WriteListLicenses" xml:space="preserve">
+    <value>Licenses</value>
+  </data>
+  <data name="WriteSeeLicensingXml" xml:space="preserve">
+    <value>Additional details might be available at machine-readable 'licensing.xml' file.</value>
+  </data>
+  <data name="WriteTermsAndCondition" xml:space="preserve">
+    <value>Terms and conditions</value>
+  </data>
+  <data name="WriteTypeDependencyAuthorsFormat" xml:space="preserve">
+    <value>{0} by {1}</value>
+    <comment>{0} = component type, {1} = author</comment>
+  </data>
+  <data name="WriteTypeDependencyAuthorsFormatMd" xml:space="preserve">
+    <value>_{0} by {1}_</value>
+    <comment>{0} = component type, {1} = author</comment>
+  </data>
+  <data name="WriteTypeImageLibrary" xml:space="preserve">
+    <value>Image library</value>
+  </data>
+  <data name="WriteTypeInstaller" xml:space="preserve">
+    <value>Installer</value>
+  </data>
+  <data name="WriteTypeLibrary" xml:space="preserve">
+    <value>Library</value>
+  </data>
+  <data name="WriteTypeNugetPackage" xml:space="preserve">
+    <value>'nuget' package</value>
+  </data>
+  <data name="WriteTypeOtherThirdParty" xml:space="preserve">
+    <value />
+  </data>
+  <data name="WriteTypeProgram" xml:space="preserve">
+    <value>Program</value>
+  </data>
+  <data name="WriteTypeSourceCode" xml:space="preserve">
+    <value>Source code</value>
+  </data>
+  <data name="WriteTypeThirdPartyLibrary" xml:space="preserve">
+    <value>Library</value>
+  </data>
+  <data name="WriteUnknown" xml:space="preserve">
+    <value>Component</value>
   </data>
 </root>

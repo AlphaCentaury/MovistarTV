@@ -6,12 +6,14 @@
 // http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
 
 using System;
+using System.ComponentModel.Composition;
 using System.IO;
 using System.Linq;
 using System.Xml.Linq;
 
 namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing.VisualStudio
 {
+    [Export(typeof(IVsProjectReader))]
     public class VsCsProjectReader : IVsProjectReader
     {
         #region Implementation of IVsProjectReader

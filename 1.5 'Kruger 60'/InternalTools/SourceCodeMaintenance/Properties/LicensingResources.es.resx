@@ -117,16 +117,77 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="toolTip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
-  <metadata name="toolTip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
-  <metadata name="openFileDialog.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>107, 17</value>
-  </metadata>
-  <metadata name="saveFileDialog.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>240, 17</value>
-  </metadata>
+  <data name="WriteAppliesToLibrariesFormat" xml:space="preserve">
+    <value>&gt;&gt;&gt; '{0}' aplica a los siguientes componentes: &lt;&lt;&lt;</value>
+    <comment>{0} = license name</comment>
+  </data>
+  <data name="WriteAppliesToLibrariesFormatMd" xml:space="preserve">
+    <value>&gt; **'{0}'** aplica a los siguientes componentes:</value>
+    <comment>{0} = license name</comment>
+  </data>
+  <data name="WriteAppliesToThirdPartyFormat" xml:space="preserve">
+    <value>&gt;&gt;&gt; '{0}' aplica a los siguientes componentes de terceros (“THIRD-PARTY”): &lt;&lt;&lt;</value>
+    <comment>{0} = license name</comment>
+  </data>
+  <data name="WriteAppliesToThirdPartyFormatMd" xml:space="preserve">
+    <value>&gt; **'{0}'** aplica a los siguientes **componentes de terceros _(“THIRD-PARTY”)_:**</value>
+    <comment>{0} = license name</comment>
+  </data>
+  <data name="WriteAuthorsFormat" xml:space="preserve">
+    <value>== por {0}</value>
+  </data>
+  <data name="WriteAuthorsFormatMd" xml:space="preserve">
+    <value>_por {0}_</value>
+  </data>
+  <data name="WriteDependencyAuthorsFormat" xml:space="preserve">
+    <value>por {0}</value>
+  </data>
+  <data name="WriteLicensedFormatMd" xml:space="preserve">
+    <value># {0} '{1}'</value>
+    <comment>{0} = licensed type; {1} = licensed name</comment>
+  </data>
+  <data name="WriteListLicenses" xml:space="preserve">
+    <value>Licencias de uso</value>
+  </data>
+  <data name="WriteSeeLicensingXml" xml:space="preserve">
+    <value>Detalles adicionales pueden estar disponibles en el archivo legible por máquina 'licensing.xml'.</value>
+  </data>
+  <data name="WriteTermsAndCondition" xml:space="preserve">
+    <value>Términos y condiciones de uso</value>
+  </data>
+  <data name="WriteTypeDependencyAuthorsFormat" xml:space="preserve">
+    <value>{0} por {1}</value>
+    <comment>{0} = component type, {1} = author</comment>
+  </data>
+  <data name="WriteTypeDependencyAuthorsFormatMd" xml:space="preserve">
+    <value>_{0} por {1}_</value>
+    <comment>{0} = component type, {1} = authore</comment>
+  </data>
+  <data name="WriteTypeImageLibrary" xml:space="preserve">
+    <value>Biblioteca de imágenes</value>
+  </data>
+  <data name="WriteTypeInstaller" xml:space="preserve">
+    <value>Instalador</value>
+  </data>
+  <data name="WriteTypeLibrary" xml:space="preserve">
+    <value>Biblioteca</value>
+  </data>
+  <data name="WriteTypeNugetPackage" xml:space="preserve">
+    <value>Paquete 'nuget'</value>
+  </data>
+  <data name="WriteTypeOtherThirdParty" xml:space="preserve">
+    <value />
+  </data>
+  <data name="WriteTypeProgram" xml:space="preserve">
+    <value>Programa</value>
+  </data>
+  <data name="WriteTypeSourceCode" xml:space="preserve">
+    <value>Código fuente</value>
+  </data>
+  <data name="WriteTypeThirdPartyLibrary" xml:space="preserve">
+    <value>Biblioteca</value>
+  </data>
+  <data name="WriteUnknown" xml:space="preserve">
+    <value>Componente</value>
+  </data>
 </root>

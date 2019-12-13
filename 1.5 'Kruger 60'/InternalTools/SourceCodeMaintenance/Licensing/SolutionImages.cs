@@ -14,6 +14,7 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing
         private const string KeyCsExe = @"CSharp_Exe";
         private const string KeyCsLib = @"CSharp_Lib";
         private const string KeyCsWinExe = @"CSharp_WinExe";
+        private const string KeyInstaller = @"CSharp_Installer";
         private const string KeyCertificate = @"Certificate";
         private const string KeyCertificateError = @"Certificate_Error";
         private const string KeyReferences = @"References";
@@ -28,6 +29,7 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing
             CsExe = images.IndexOfKey(KeyCsExe);
             CsLib = images.IndexOfKey(KeyCsLib);
             CsWinExe = images.IndexOfKey(KeyCsWinExe);
+            Installer = images.IndexOfKey(KeyInstaller);
             Certificate = images.IndexOfKey(KeyCertificate);
             CertificateError = images.IndexOfKey(KeyCertificateError);
             References = images.IndexOfKey(KeyReferences);
@@ -45,6 +47,7 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing
             list.Images.Add(KeyCsExe, LicensingResources.CSharp_Exe_16x);
             list.Images.Add(KeyCsLib, LicensingResources.CSharp_Lib_16x);
             list.Images.Add(KeyCsWinExe, LicensingResources.CSharp_WinExe_16x);
+            list.Images.Add(KeyInstaller, LicensingResources.Installer_16x);
             list.Images.Add(KeyCertificate, LicensingResources.Certificate_16x);
             list.Images.Add(KeyCertificateError, LicensingResources.CertificateError_16x);
             list.Images.Add(KeyReferences, LicensingResources.Dependencies_16x);
@@ -62,6 +65,7 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing
             list.Images.Add(KeyCsExe, LicensingResources.CSharp_Exe_24x);
             list.Images.Add(KeyCsLib, LicensingResources.CSharp_Lib_24x);
             list.Images.Add(KeyCsWinExe, LicensingResources.CSharp_WinExe_24x);
+            list.Images.Add(KeyInstaller, LicensingResources.Installer_24x);
             list.Images.Add(KeyCertificate, LicensingResources.Certificate_24x);
             list.Images.Add(KeyCertificateError, LicensingResources.CertificateError_24x);
             list.Images.Add(KeyReferences, LicensingResources.Dependencies_32x);
@@ -75,6 +79,7 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing
         public int CsExe { get; }
         public int CsLib { get; }
         public int CsWinExe { get; }
+        public int Installer { get; }
         public int Certificate { get; }
         public int CertificateError { get; }
         public int References { get; }

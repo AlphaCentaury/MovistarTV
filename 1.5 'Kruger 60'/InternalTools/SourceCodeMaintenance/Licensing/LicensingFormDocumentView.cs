@@ -11,11 +11,11 @@ using AlphaCentaury.Tools.SourceCodeMaintenance.Licensing.VisualStudio;
 using IpTviewr.UiServices.Common.Forms;
 using System;
 using System.Collections.Generic;
-using System.Globalization;
-using System.IO;
 using System.Linq;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
+using AlphaCentaury.Tools.SourceCodeMaintenance.Helpers;
 using AlphaCentaury.Tools.SourceCodeMaintenance.Properties;
 using IpTviewr.Common;
 
@@ -23,14 +23,12 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing
 {
     public partial class LicensingFormDocumentView : CommonBaseForm
     {
-        private readonly IVsProjectReader[] _projectReaders;
         private readonly List<(LicensingDataNode Licensing, TreeNode Node)> _licensingNodes;
-        private readonly List<bool> _toolStripItemsEnabled;
         private DetailsModeEnum _detailsMode;
         private LicensingData _currentLicensingData;
         private VsSolution _currentSolutionField;
         private bool _formLoaded;
-        private CancellationTokenSource _cancellationTokenSource;
+        private readonly Helpers.AsyncHelper _asyncHelper;
 
         protected enum DetailsModeEnum
         {
@@ -54,8 +52,7 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing
             LicensingImages = new LicensingUiImages(LicensingImageList.Images);
             LicensingUi = new LicensingDataUi(LicensingImages);
 
-            _projectReaders = new IVsProjectReader[] { new VsCsProjectReader() };
-            _toolStripItemsEnabled = new List<bool>(toolStripMain.Items.Count);
+            _asyncHelper = new AsyncHelper(this, toolStripMain, cancelStripButton);
             _licensingNodes = new List<(LicensingDataNode Licensing, TreeNode node)>();
         } // constructor
 
@@ -68,7 +65,7 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing
             if (disposing)
             {
                 components?.Dispose();
-                _cancellationTokenSource?.Dispose();
+                _asyncHelper?.Dispose();
             } // if
 
             base.Dispose(disposing);
@@ -80,33 +77,6 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing
         protected ImageList LicensingImageList { get; }
         protected LicensingDataUi LicensingUi { get; }
         private protected IReadOnlyList<(LicensingDataNode Licensing, TreeNode node)> LicensingNodes => _licensingNodes;
-
-        protected bool IsToolStripEnabled
-        {
-            get => _toolStripItemsEnabled.Count == 0;
-            set
-            {
-                if (value && IsToolStripEnabled) return;
-                if (value)
-                {
-                    // restore controls enabled state
-                    for (var index = 0; index < _toolStripItemsEnabled.Count; index++)
-                    {
-                        toolStripMain.Items[index].Enabled = _toolStripItemsEnabled[index];
-                    } // for index
-                    _toolStripItemsEnabled.Clear();
-                }
-                else
-                {
-                    // saved controls enabled state
-                    foreach (var item in toolStripMain.Items.Cast<ToolStripItem>())
-                    {
-                        _toolStripItemsEnabled.Add(item.Enabled);
-                        item.Enabled = (string)item.Tag == "CANCEL";
-                    } // foreach
-                } // if-else
-            } // set
-        } // IsToolStripEnabled
 
         protected VsSolution CurrentSolution
         {
@@ -150,7 +120,7 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing
                 var root = (value == null) switch
                 {
                     true => new TreeNode(LicensingResources.NoLicensingSelected, LicensingImages.LicensingData, LicensingImages.LicensingData),
-                    false => LicensingUi.FileToTreeAlt("", value)
+                    false => LicensingUi.DataToTree("", value)
                 };
 
                 treeViewLicensingData.Nodes.Add(root);
@@ -263,12 +233,6 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing
             throw new NotSupportedException();
         } // licensingOptionsStripButton_Click
 
-        protected virtual void cancelStripButton_Click(object sender, EventArgs e)
-        {
-            CancelAsyncOperation();
-            cancelStripButton.Enabled = false;
-        } // cancelStripButton_Click
-
         #endregion
 
         #region Solution tree event handlers
@@ -334,40 +298,6 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing
 
         #endregion
 
-        #region Async operations
-
-        protected void BeginAsyncOperation()
-        {
-            IsToolStripEnabled = false;
-            UseWaitCursor = true;
-            toolStripMain.UseWaitCursor = false;
-            toolStripMain.Cursor = Cursors.Arrow;
-            _cancellationTokenSource = new CancellationTokenSource();
-        } // BeginAsyncOperation
-
-        protected CancellationToken GetCancellationToken()
-        {
-            if (_cancellationTokenSource == null) throw new NotSupportedException();
-            return _cancellationTokenSource.Token;
-        } // if
-
-        protected void CancelAsyncOperation()
-        {
-            _cancellationTokenSource?.Cancel();
-        } // CancelAsyncOperation
-
-        protected void EndAsyncOperation()
-        {
-            _cancellationTokenSource.Dispose();
-            _cancellationTokenSource = null;
-            UseWaitCursor = false;
-            toolStripMain.Cursor = Cursors.Default;
-            Cursor.Current = Cursors.Default;
-            IsToolStripEnabled = true;
-        } // EndAsyncOperation
-
-        #endregion
-
         #region Solution
 
         protected async void LoadSolutionFolderAsync(string path)
@@ -378,20 +308,20 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing
 
             try
             {
-                BeginAsyncOperation();
-                var solution = await VsSolution.FromFolderAsync(path, _projectReaders, GetCancellationToken());
-                EndAsyncOperation();
+                _asyncHelper.BeginAsyncOperation();
+                var solution = await VsSolution.FromFolderAsync(path, LicensingMaintenance.ProjectReaders, _asyncHelper.GetCancellationToken());
+                _asyncHelper.EndAsyncOperation();
                 CurrentSolution = solution;
             }
             catch (OperationCanceledException e)
             {
-                EndAsyncOperation();
+                _asyncHelper.EndAsyncOperation();
                 CurrentSolution = null;
                 MessageBox.Show(this, e.Message, LicensingResources.SolutionLoadCancelCaption, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception e)
             {
-                EndAsyncOperation();
+                _asyncHelper.EndAsyncOperation();
                 BaseProgram.HandleException(this, e.Message, e);
                 CurrentSolution = null;
             } // try-catch
@@ -442,6 +372,33 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing
         } // OnDetailsLicensingNodeSelected
 
         #endregion
+
+        protected async void ExecuteAsync(TextBoxOutputWriter writer, Func<CancellationToken, Task> asyncAction)
+        {
+            if (CurrentSolution == null) return;
+
+            try
+            {
+                tabControlSolution.SelectedTab = tabPageOutput;
+                writer.Clear();
+                writer.Start();
+                _asyncHelper.BeginAsyncOperation();
+
+                await asyncAction(_asyncHelper.GetCancellationToken());
+            }
+            catch (OperationCanceledException)
+            {
+                // ignore
+            } // catch
+            catch (Exception ex)
+            {
+                writer.WriteException(ex);
+            } // try-catch
+
+            _asyncHelper.EndAsyncOperation();
+            writer.Stop();
+        } // ExecuteAsync
+
     } // class LicensingFormDocumentView
 } // namespace
 

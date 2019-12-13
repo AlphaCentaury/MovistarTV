@@ -79,7 +79,7 @@ namespace AlphaCentaury.Licensing.Data
         private void SortThirdParty()
         {
             var comparer = new ThirdPartyDependencyNameComparer();
-            _dataList.Where(data => data.Dependencies.ThirdPartySpecified).ForEach(data =>
+            _dataList.Where(data => data.Dependencies?.ThirdPartySpecified ?? false).ForEach(data =>
             {
                 data.Dependencies.ThirdParty.Sort(comparer);
             });

@@ -23,6 +23,8 @@ namespace AlphaCentaury.Licensing.Data.Serialization
         [XmlElement("TermsAndConditions")]
         public List<TermsAndConditions> TermsConditions { get; set; }
 
+        public FormattedMultilineText Notes { get; set; }
+
         [XmlIgnore]
         public abstract LicensedItemType Type { get; }
 
@@ -36,6 +38,7 @@ namespace AlphaCentaury.Licensing.Data.Serialization
             var clone = CreateNewForCloning();
             clone.Assembly = Assembly;
             clone.Product = Product;
+            clone.Notes = Notes?.Clone();
             if (TermsConditionsSpecified)
             {
                 clone.TermsConditions = TermsConditions.Select(term => term.Clone()).ToList();
@@ -60,6 +63,7 @@ namespace AlphaCentaury.Licensing.Data.Serialization
 
         protected virtual void CopyToLibraryDependency(LibraryDependency item)
         {
+            item.Type = Type;
             item.Name = Name;
             item.Assembly = Assembly;
             item.LicenseId = LicenseId;

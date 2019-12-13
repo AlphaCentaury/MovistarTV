@@ -8,10 +8,12 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using AlphaCentaury.Tools.SourceCodeMaintenance.Interfaces;
+using AlphaCentaury.Tools.SourceCodeMaintenance.Licensing.Actions;
 using AlphaCentaury.Tools.SourceCodeMaintenance.Licensing.VisualStudio;
 using JetBrains.Annotations;
 
@@ -20,15 +22,56 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing
     [Export(typeof(IMaintenanceTool))]
     [ExportMetadata("Name", "Licensing maintenance")]
     [ExportMetadata("Guid", "{13B1F04C-F4E9-4C13-832F-8FCBC5673098}")]
-    [ExportMetadata("HasParameters", false)]
+    [ExportMetadata("CliName", "Licensing")]
+    [ExportMetadata("HasParameters", true)]
+    [ExportMetadata("HasFileParameters", true)]
     [ExportMetadata("HasUi", true)]
     public sealed partial class LicensingMaintenance : IMaintenanceTool
     {
+        public LicensingMaintenance()
+        {
+            ProjectReaders = Program.Container.CompositionContainer.GetExports<IVsProjectReader>().Select(lazy => lazy.Value).ToList();
+        } // constructor
+
+        [ImportMany(typeof(IVsProjectReader))]
+        internal static IReadOnlyList<IVsProjectReader> ProjectReaders { get; private set; }
+
         #region Implementation of IMaintenanceTool
 
-        public void Execute([NotNull] IReadOnlyList<string> arguments, IToolOutputWriter writer)
+        public void Execute([NotNull] IReadOnlyList<string> arguments, IToolOutputWriter writer, CancellationToken token)
         {
-            throw new NotImplementedException();
+            var args = Helper.GetCliArguments(arguments, writer, out var solution, out var options, out var defaultsPath);
+            if (args == null) return;
+
+            foreach (var value in args.MultiValueSwitches["Action"])
+            {
+                if (string.Equals(value, "Create", StringComparison.InvariantCultureIgnoreCase))
+                {
+                    CreateMissingLicensingFiles(solution, writer, defaultsPath, token);
+                    continue;
+                } // if Create
+
+                if (string.Equals(value, "Check", StringComparison.InvariantCultureIgnoreCase))
+                {
+                    CheckLicensingFiles(solution, writer, options.Checker, defaultsPath, token);
+                    continue;
+                } // if Check
+
+                if (string.Equals(value, "Update", StringComparison.InvariantCultureIgnoreCase))
+                {
+                    UpdateLicensingFiles(solution, writer, token);
+                    continue;
+                } // if Update
+
+                if (string.Equals(value, "Write", StringComparison.InvariantCultureIgnoreCase))
+                {
+                    WriteLicenseFiles(solution, writer, options.Writer, token);
+                    continue;
+                } // if Write
+
+                writer.WriteLine("WARNING: /Action:{0} is not a valid switch", value);
+            } // foreach
+
         } // Execute
 
         public void ShowUsage(IToolOutputWriter writer)
@@ -38,7 +81,7 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing
 
         public Form GetUi() => new LicensingForm();
 
-        public string SelectFileFilter => throw new NotSupportedException();
+        public string SelectFileFilter => null;
 
         #endregion
 
@@ -54,7 +97,7 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing
             try
             {
                 var action = new Creator(solution, writer, defaultsPath, token);
-                Helper.ForEachProject(action);
+                Helper.ForEachProject(action, "Create missing licensing file");
             }
             catch (Exception e)
             {
@@ -79,7 +122,7 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing
             try
             {
                 var action = new Checker(solution, writer, defaultsPath, options, token);
-                Helper.ForEachProject(action);
+                Helper.ForEachProject(action, "Check licensing files");
             }
             catch (Exception e)
             {
@@ -104,7 +147,7 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing
             try
             {
                 var action = new Updater(solution, writer, token);
-                Helper.ForEachProject(action);
+                Helper.ForEachProject(action, "Update licensing files");
             }
             catch (Exception e)
             {
@@ -124,12 +167,12 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing
 
         #region Operations: Write
 
-        public static void WriteLicenseFiles(VsSolution solution, IToolOutputWriter writer, CancellationToken token)
+        public static void WriteLicenseFiles(VsSolution solution, IToolOutputWriter writer, WriterOptions options, CancellationToken token)
         {
             try
             {
-                var action = new LicensesWriter(solution, writer, token);
-                Helper.ForEachProject(action);
+                var action = new LicensesWriter(solution, writer, options, token);
+                Helper.ForEachProject(action, "Write licenses readme files");
             }
             catch (Exception e)
             {
@@ -137,9 +180,9 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing
             } // try-catch
         } // WriteLicenseFiles
 
-        public static Task WriteLicenseFilesAsync(VsSolution solution, IToolOutputWriter writer, CancellationToken token)
+        public static Task WriteLicenseFilesAsync(VsSolution solution, IToolOutputWriter writer, WriterOptions options, CancellationToken token)
         {
-            var task = new Task(() => WriteLicenseFiles(solution, writer, token), token, TaskCreationOptions.LongRunning);
+            var task = new Task(() => WriteLicenseFiles(solution, writer, options, token), token, TaskCreationOptions.LongRunning);
             task.Start();
 
             return task;

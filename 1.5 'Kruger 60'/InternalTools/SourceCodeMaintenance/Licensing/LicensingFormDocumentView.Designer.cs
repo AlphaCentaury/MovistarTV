@@ -49,7 +49,7 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.cancelStripButton = new System.Windows.Forms.ToolStripButton();
             this.imageListSolutionTreeSmall = new System.Windows.Forms.ImageList(this.components);
-            this.selectFolderDialog = new IpTviewr.UiServices.Common.Controls.SelectFolderDialog();
+            this.selectFolderDialog = new IpTviewr.Native.WinForms.SelectFolderDialog();
             this.timerRefreshOutput = new System.Windows.Forms.Timer(this.components);
             this.tabControlSolution.SuspendLayout();
             this.tabPageSolution.SuspendLayout();
@@ -364,13 +364,11 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing
             // cancelStripButton
             // 
             this.cancelStripButton.Enabled = false;
-            this.cancelStripButton.Image = global::AlphaCentaury.Tools.SourceCodeMaintenance.Properties.Resources.Action_Delete_16x16;
+            this.cancelStripButton.Image = global::AlphaCentaury.Tools.SourceCodeMaintenance.Properties.Resources.Action_Close_16x16;
             this.cancelStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.cancelStripButton.Name = "cancelStripButton";
             this.cancelStripButton.Size = new System.Drawing.Size(72, 22);
-            this.cancelStripButton.Tag = "CANCEL";
             this.cancelStripButton.Text = "CANCEL";
-            this.cancelStripButton.Click += new System.EventHandler(this.cancelStripButton_Click);
             // 
             // imageListSolutionTreeSmall
             // 
@@ -438,7 +436,7 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing
         protected System.Windows.Forms.TextBox textBoxDetails;
         protected System.Windows.Forms.SplitContainer splitContainer3;
         protected System.Windows.Forms.TreeView treeViewLicensingData;
-        protected IpTviewr.UiServices.Common.Controls.SelectFolderDialog selectFolderDialog;
+        protected IpTviewr.Native.WinForms.SelectFolderDialog selectFolderDialog;
         protected System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         protected System.Windows.Forms.ToolStripLabel toolStripLabel1;
         protected System.Windows.Forms.ToolStripButton createStripButton;

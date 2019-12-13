@@ -2,9 +2,6 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using AlphaCentaury.Tools.SourceCodeMaintenance.Licensing.VisualStudio;
 
@@ -126,7 +123,11 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing
                     "WinExe" => SolutionImages.CsWinExe,
                     _ => SolutionImages.VsProjectUnknown,
                 },
-                _ => SolutionImages.VsProjectUnknown,
+                _ => project.Type switch
+                {
+                    "Package" => SolutionImages.Installer,
+                    _ => SolutionImages.VsProjectUnknown,
+                }
             };
 
             return new TreeNode(project.Namespace, image, image)

@@ -241,6 +241,36 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Installer_16x {
+            get {
+                object obj = ResourceManager.GetObject("Installer_16x", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Installer_24x {
+            get {
+                object obj = ResourceManager.GetObject("Installer_24x", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Installer_32x {
+            get {
+                object obj = ResourceManager.GetObject("Installer_32x", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No licensing file has been selected.
         /// </summary>
         internal static string NoLicensingSelected {
@@ -363,6 +393,249 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Properties {
             get {
                 object obj = ResourceManager.GetObject("VS_Solution_File_32x", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &gt;&gt;&gt; &apos;{0}&apos; applies to the following components: &lt;&lt;&lt;.
+        /// </summary>
+        internal static string WriteAppliesToLibrariesFormat {
+            get {
+                return ResourceManager.GetString("WriteAppliesToLibrariesFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &gt; **&apos;{0}&apos;** applies to the following components:.
+        /// </summary>
+        internal static string WriteAppliesToLibrariesFormatMd {
+            get {
+                return ResourceManager.GetString("WriteAppliesToLibrariesFormatMd", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &gt;&gt;&gt; &apos;{0}&apos; applies to the following THIRD-PARTY components: &lt;&lt;&lt;.
+        /// </summary>
+        internal static string WriteAppliesToThirdPartyFormat {
+            get {
+                return ResourceManager.GetString("WriteAppliesToThirdPartyFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &gt; **&apos;{0}&apos;** applies to the following **third-party components:***.
+        /// </summary>
+        internal static string WriteAppliesToThirdPartyFormatMd {
+            get {
+                return ResourceManager.GetString("WriteAppliesToThirdPartyFormatMd", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ## by {0}.
+        /// </summary>
+        internal static string WriteAuthorsFormat {
+            get {
+                return ResourceManager.GetString("WriteAuthorsFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to _by {0}_.
+        /// </summary>
+        internal static string WriteAuthorsFormatMd {
+            get {
+                return ResourceManager.GetString("WriteAuthorsFormatMd", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to by {0}.
+        /// </summary>
+        internal static string WriteDependencyAuthorsFormat {
+            get {
+                return ResourceManager.GetString("WriteDependencyAuthorsFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;style&gt;
+        ///body {font-family: &quot;Calibri&quot;, &quot;Tahoma&quot;, &quot;Arial&quot;, Sans-serif; font-size:12pt}
+        ///h1 {border-bottom: solid 3px #A0A0A0}
+        ///h2 {border-bottom: solid 2px #A0A0A0}
+        ///h3 {border-bottom: solid 1px #A0A0A0}
+        ///p {text-align: justify}
+        ///&lt;/style&gt;.
+        /// </summary>
+        internal static string WriteHtmlCss {
+            get {
+                return ResourceManager.GetString("WriteHtmlCss", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;html&gt;
+        ///&lt;head&gt;
+        ///&lt;meta charset=&quot;UTF-8&quot;&gt;
+        ///&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot;&gt;.
+        /// </summary>
+        internal static string WriteHtmlHead {
+            get {
+                return ResourceManager.GetString("WriteHtmlHead", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;title&gt;{0} &apos;{1}&apos;&lt;/title&gt;.
+        /// </summary>
+        internal static string WriteHtmlTitle {
+            get {
+                return ResourceManager.GetString("WriteHtmlTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ## {0} &apos;{1}&apos;.
+        /// </summary>
+        internal static string WriteLicensedFormat {
+            get {
+                return ResourceManager.GetString("WriteLicensedFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to # {0} &apos;{1}&apos;.
+        /// </summary>
+        internal static string WriteLicensedFormatMd {
+            get {
+                return ResourceManager.GetString("WriteLicensedFormatMd", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Licenses.
+        /// </summary>
+        internal static string WriteListLicenses {
+            get {
+                return ResourceManager.GetString("WriteListLicenses", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Additional details might be available at machine-readable &apos;licensing.xml&apos; file..
+        /// </summary>
+        internal static string WriteSeeLicensingXml {
+            get {
+                return ResourceManager.GetString("WriteSeeLicensingXml", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Terms and conditions.
+        /// </summary>
+        internal static string WriteTermsAndCondition {
+            get {
+                return ResourceManager.GetString("WriteTermsAndCondition", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} by {1}.
+        /// </summary>
+        internal static string WriteTypeDependencyAuthorsFormat {
+            get {
+                return ResourceManager.GetString("WriteTypeDependencyAuthorsFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to _{0} by {1}_.
+        /// </summary>
+        internal static string WriteTypeDependencyAuthorsFormatMd {
+            get {
+                return ResourceManager.GetString("WriteTypeDependencyAuthorsFormatMd", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Image library.
+        /// </summary>
+        internal static string WriteTypeImageLibrary {
+            get {
+                return ResourceManager.GetString("WriteTypeImageLibrary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Installer.
+        /// </summary>
+        internal static string WriteTypeInstaller {
+            get {
+                return ResourceManager.GetString("WriteTypeInstaller", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Library.
+        /// </summary>
+        internal static string WriteTypeLibrary {
+            get {
+                return ResourceManager.GetString("WriteTypeLibrary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &apos;nuget&apos; package.
+        /// </summary>
+        internal static string WriteTypeNugetPackage {
+            get {
+                return ResourceManager.GetString("WriteTypeNugetPackage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string WriteTypeOtherThirdParty {
+            get {
+                return ResourceManager.GetString("WriteTypeOtherThirdParty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Program.
+        /// </summary>
+        internal static string WriteTypeProgram {
+            get {
+                return ResourceManager.GetString("WriteTypeProgram", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Source code.
+        /// </summary>
+        internal static string WriteTypeSourceCode {
+            get {
+                return ResourceManager.GetString("WriteTypeSourceCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Library.
+        /// </summary>
+        internal static string WriteTypeThirdPartyLibrary {
+            get {
+                return ResourceManager.GetString("WriteTypeThirdPartyLibrary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Component.
+        /// </summary>
+        internal static string WriteUnknown {
+            get {
+                return ResourceManager.GetString("WriteUnknown", resourceCulture);
             }
         }
     }
