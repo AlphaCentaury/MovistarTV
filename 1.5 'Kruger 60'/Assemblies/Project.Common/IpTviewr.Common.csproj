@@ -63,6 +63,7 @@
       <Link>Properties\AssemblySolutionInfo.cs</Link>
     </Compile>
     <Compile Include="BaseProgram.cs" />
+    <Compile Include="Configuration\InitializationResult.cs" />
     <Compile Include="DateTimeExtensions.cs" />
     <Compile Include="EmptyDictionary.cs" />
     <Compile Include="ExceptionEventData.cs" />
@@ -93,6 +94,7 @@
     </Compile>
     <Compile Include="Telemetry\ITelemetryFactory.cs" />
     <Compile Include="Telemetry\ITelemetryProvider.cs" />
+    <Compile Include="Telemetry\TelemetryConfiguration.cs" />
     <Compile Include="TextUtils.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -119,6 +121,7 @@
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\..\packages\NETStandard.Library.2.0.3\build\netstandard2.0\NETStandard.Library.targets" Condition="Exists('..\..\packages\NETStandard.Library.2.0.3\build\netstandard2.0\NETStandard.Library.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

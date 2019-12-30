@@ -19,8 +19,11 @@ using System.ComponentModel.Composition.Hosting;
 using System.Globalization;
 using System.IO;
 using System.Reflection;
+using System.Windows.Forms;
 using System.Xml;
-using IpTviewr.UiServices.Configuration.IpTvService;
+using IpTviewr.Common.Configuration;
+using IpTviewr.IpTvServices;
+using IpTviewr.IpTvServices.Implementation;
 
 namespace IpTviewr.UiServices.Configuration
 {
@@ -83,13 +86,13 @@ namespace IpTviewr.UiServices.Configuration
             return InitializationResult.Ok;
         } // Load
 
-        public static AppConfig LoadRegistryAppConfiguration(out InitializationResult initializationResult)
+        public static AppUiConfigurationFolders LoadFoldersConfiguration(out InitializationResult initializationResult)
         {
             var config = new AppConfig();
-
             initializationResult = config.LoadRegistrySettings(null);
-            return initializationResult.IsError ? null : config;
-        } // LoadRegistryAppConfiguration
+
+            return initializationResult.IsError ? null : config.Folders;
+        } // LoadFoldersConfiguration
 
         public static T CloneSettings<T>(IConfigurationItem settings) where T : class, IConfigurationItem
         {
@@ -121,7 +124,7 @@ namespace IpTviewr.UiServices.Configuration
             Folders = new AppUiConfigurationFolders();
         } // constructor
 
-        [Import]
+        [Import(AllowDefault = true)]
         public ITvService IpTvService { get; private set; }
 
         public AppUiConfigurationFolders Folders { get; }
@@ -255,26 +258,26 @@ namespace IpTviewr.UiServices.Configuration
 
         private InitializationResult LoadBasicConfiguration(string overrideBasePath)
         {
-            InitializationResult initResult;
-
-            initResult = LoadRegistrySettings(overrideBasePath);
+            var initResult = LoadRegistrySettings(overrideBasePath);
             if (initResult.IsError) return initResult;
 
             // Cultures
             Cultures = GetUiCultures();
 
-            var descriptionServiceType = new Dictionary<string, string>();
-            descriptionServiceType.Add("1", Texts.DvbServiceTypeDescription_01); // SD TV
-            descriptionServiceType.Add("2", Texts.DvbServiceTypeDescription_02); // Radio (MPEG-1)
-            descriptionServiceType.Add("3", Texts.DvbServiceTypeDescription_03); // Teletext
-            descriptionServiceType.Add("6", Texts.DvbServiceTypeDescription_06); // Mosaic
-            descriptionServiceType.Add("10", Texts.DvbServiceTypeDescription_10); // Radio (AAC)
-            descriptionServiceType.Add("11", Texts.DvbServiceTypeDescription_11); // Mosaic (AAC)
-            descriptionServiceType.Add("12", Texts.DvbServiceTypeDescription_12); // Data
-            descriptionServiceType.Add("16", Texts.DvbServiceTypeDescription_16); // DVB MHP
-            descriptionServiceType.Add("17", Texts.DvbServiceTypeDescription_17); // HD TV (MPEG-2)
-            descriptionServiceType.Add("22", Texts.DvbServiceTypeDescription_22); // SD TV (AVC)
-            descriptionServiceType.Add("25", Texts.DvbServiceTypeDescription_25); // "HD TV
+            var descriptionServiceType = new Dictionary<string, string>
+            {
+                { "1", Texts.DvbServiceTypeDescription_01 }, // SD TV
+                { "2", Texts.DvbServiceTypeDescription_02 }, // Radio (MPEG-1)
+                { "3", Texts.DvbServiceTypeDescription_03 }, // Teletext
+                { "6", Texts.DvbServiceTypeDescription_06 }, // Mosaic
+                { "10", Texts.DvbServiceTypeDescription_10 }, // Radio (AAC)
+                { "11", Texts.DvbServiceTypeDescription_11 }, // Mosaic (AAC)
+                { "12", Texts.DvbServiceTypeDescription_12 }, // Data
+                { "16", Texts.DvbServiceTypeDescription_16 }, // DVB MHP
+                { "17", Texts.DvbServiceTypeDescription_17 }, // HD TV (MPEG-2)
+                { "22", Texts.DvbServiceTypeDescription_22 }, // SD TV (AVC)
+                { "25", Texts.DvbServiceTypeDescription_25 } // "HD TV
+            };
             DescriptionServiceTypes = descriptionServiceType;
 
             // TODO: load from user config
@@ -333,28 +336,20 @@ namespace IpTviewr.UiServices.Configuration
         {
             using var keyCurrentUser = Registry.CurrentUser;
             var fullKeyPath = InvariantTexts.RegistryKey_Root;
-            using var root = keyCurrentUser.OpenSubKey(InvariantTexts.RegistryKey_Root);
+            var rootKey = string.Format(InvariantTexts.RegistryKey_Root, Application.ProductVersion);
+            using var root = keyCurrentUser.OpenSubKey(rootKey);
             if (root == null) return string.Format(Texts.AppConfigRegistryMissingKey, fullKeyPath);
 
             var isInstalled = root.GetValue(InvariantTexts.RegistryValue_Installed);
             if (isInstalled == null) return string.Format(Texts.AppConfigRegistryMissingValue, fullKeyPath, InvariantTexts.RegistryValue_Installed);
-
-            var clientId = root.GetValue(InvariantTexts.RegistryValue_Analytics_ClientId) as string;
-            AnalyticsClientId = clientId;
-            if (string.IsNullOrEmpty(clientId))
-            {
-                AnalyticsClientId = Guid.NewGuid().ToString("D").ToUpperInvariant();
-                using var writableRoot = keyCurrentUser.OpenSubKey(InvariantTexts.RegistryKey_Root, true);
-                writableRoot.SetValue(InvariantTexts.RegistryValue_Analytics_ClientId, AnalyticsClientId);
-            } // if
 
             var baseFolder = root.GetValue(InvariantTexts.RegistryValue_Folder_Base);
             if (baseFolder == null) return string.Format(Texts.AppConfigRegistryMissingValue, fullKeyPath, InvariantTexts.RegistryValue_Folder_Base);
             Folders.Base = overrideBasePath ?? baseFolder as string;
 
             var installFolder = root.GetValue(InvariantTexts.RegistryValue_Folder_Install);
-#if (DEBUG == false)
-                    if (installFolder == null) return string.Format(Texts.AppConfigRegistryMissingValue, fullKeyPath, InvariantTexts.RegistryValue_Folder_Install);
+#if !DEBUG
+            if (installFolder == null) return string.Format(Texts.AppConfigRegistryMissingValue, fullKeyPath, InvariantTexts.RegistryValue_Folder_Install);
 #endif
             Folders.Install = installFolder as string;
 
@@ -365,6 +360,9 @@ namespace IpTviewr.UiServices.Configuration
 
         private void GetFolders()
         {
+            // User configuration
+            Folders.UserConfiguration = Folders.Base;
+
             // Record tasks
             Folders.RecordTasks = Path.Combine(Folders.Base, InvariantTexts.FolderRecordTasks);
 
@@ -407,8 +405,13 @@ namespace IpTviewr.UiServices.Configuration
             try
             {
                 var catalog = new AggregateCatalog();
-                //catalog.Catalogs.Add(new DirectoryCatalog(Folders.Install));
-                catalog.Catalogs.Add(new DirectoryCatalog(Folders.Modules));
+                catalog.Catalogs.Add(new ApplicationCatalog());
+                /*
+                if (Directory.Exists(Folders.Modules))
+                {
+                    catalog.Catalogs.Add(new DirectoryCatalog(Folders.Modules));
+                } // if
+                */
 
                 _mefContainer = new CompositionContainer(catalog, CompositionOptions.DisableSilentRejection);
                 _mefContainer.ComposeParts(this);
@@ -451,6 +454,7 @@ namespace IpTviewr.UiServices.Configuration
         {
             try
             {
+                if (IpTvService == null) IpTvService = new DvbIpTvService();
                 return IpTvService.Initialize();
             }
             catch (Exception ex)
@@ -555,7 +559,7 @@ namespace IpTviewr.UiServices.Configuration
                 {
                     regType = registerType;
                     var type = Type.GetType(registerType);
-                    if (type == null) throw new TypeLoadException();
+                    if (type == null) throw new TypeLoadException($"Unable to load type '{registerType}'");
                     var registration = (IConfigurationItemRegistration)Activator.CreateInstance(type);
                     ItemsRegistry.Add(registration.Id, registration);
                 } // foreach

@@ -5,6 +5,8 @@
 // 
 // http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
 
+using IpTviewr.Common.Configuration;
+
 namespace IpTviewr.UiServices.Configuration
 {
     // interface for marking configuration items

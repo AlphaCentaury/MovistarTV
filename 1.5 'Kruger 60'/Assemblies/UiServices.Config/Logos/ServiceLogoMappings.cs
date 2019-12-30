@@ -117,12 +117,11 @@ namespace IpTviewr.UiServices.Configuration.Logos
 
         private ServiceLogo GetLogo(string domain, string logoFile)
         {
-            if ((domain == null) || (logoFile == null))
+            if ((domain == null) || (logoFile == null) || !_collections.TryGetValue(domain, out var collection))
             {
                 return new ServiceLogo(this, "", "", @"/services/<unknown>");
             } // if
 
-            var collection = _collections[domain];
             if (logoFile.StartsWith("hd_"))
             {
                 logoFile = $@"HD/{logoFile.Substring(3)}";

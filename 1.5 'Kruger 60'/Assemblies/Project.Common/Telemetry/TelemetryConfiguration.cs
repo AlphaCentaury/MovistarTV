@@ -8,10 +8,9 @@
 using System;
 using System.Xml.Serialization;
 
-namespace IpTviewr.UiServices.Configuration.Schema2014.Config
+namespace IpTviewr.Common.Telemetry
 {
     [Serializable]
-    [XmlType(TypeName = "TelemetryConfiguration", Namespace = ConfigCommon.ConfigXmlNamespace)]
     public class TelemetryConfiguration
     {
         public TelemetryConfiguration()
@@ -42,5 +41,5 @@ namespace IpTviewr.UiServices.Configuration.Schema2014.Config
             get;
             set;
         } // Exceptions
-    } // class AnalyticsConfig
+    } // class TelemetryConfiguration
 } // namespace

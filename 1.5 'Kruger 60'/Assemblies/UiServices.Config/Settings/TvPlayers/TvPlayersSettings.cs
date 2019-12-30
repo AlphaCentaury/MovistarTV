@@ -10,6 +10,7 @@ using System;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Xml.Serialization;
+using IpTviewr.Common.Configuration;
 
 namespace IpTviewr.UiServices.Configuration.Settings.TvPlayers
 {

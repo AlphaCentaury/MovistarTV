@@ -7,16 +7,14 @@
 
 using System;
 
-namespace IpTviewr.UiServices.Configuration
+namespace IpTviewr.Common.Configuration
 {
     public sealed class InitializationResult
     {
-        private static readonly InitializationResult OkSingleton = new InitializationResult() { IsOk = true };
-
         /// <summary>
         /// Gets an <see cref="InitializationResult"/> with IsOk set to <see cref="true"/> and all remaining fields set to <see cref="null"/>
         /// </summary>
-        public static InitializationResult Ok => OkSingleton;
+        public static InitializationResult Ok { get; } = new InitializationResult() { IsOk = true };
 
         public bool IsOk { get; set; }
 
@@ -40,7 +38,7 @@ namespace IpTviewr.UiServices.Configuration
 
         public InitializationResult(Exception exception, string message)
         {
-            Message = message;
+            Message = message ?? exception.Message;
             InnerException = exception;
         } // InitializationResult
     } // InitializationResult

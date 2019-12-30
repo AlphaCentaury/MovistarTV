@@ -47,10 +47,11 @@ namespace IpTviewr.Common.Telemetry
 
         public static IReadOnlyList<ITelemetryProvider> Providers => _providers;
 
-        public static void Start(ITelemetryFactory factory, IReadOnlyDictionary<string, IReadOnlyDictionary<string, string>> providersProperties)
+        public static void Start([NotNull] ITelemetryFactory factory, [NotNull] TelemetryConfiguration configuration, [NotNull] IReadOnlyDictionary<string, IReadOnlyDictionary<string, string>> providersProperties)
         {
             if (factory == null) throw new ArgumentNullException(nameof(factory));
             if (providersProperties == null) throw new ArgumentNullException(nameof(providersProperties));
+            if (configuration == null) throw new ArgumentNullException(nameof(configuration));
 
             lock (Sync)
             {
@@ -62,6 +63,7 @@ namespace IpTviewr.Common.Telemetry
 
             foreach (var provider in _providers)
             {
+                provider.Enabled = configuration.Enabled;
                 // ReSharper disable once AssignNullToNotNullAttribute
                 provider.Start(providersProperties.TryGetValue(provider.GetType().FullName, out var properties) ? properties : null);
             } // foreach
@@ -76,18 +78,6 @@ namespace IpTviewr.Common.Telemetry
                 if (enable != null) Enabled = enable.Value;
             } // lock
         } // Enable
-
-        public static void HackInitGoogle(string clientId)
-        {
-            var q = from provider in _providers
-                    where (provider.GetType().FullName == "IpTviewr.Telemetry.GoogleAnalytics")
-                    select provider;
-
-            dynamic google = q.FirstOrDefault();
-            if (google == null) return;
-
-            google.Init(clientId);
-        } // HackInitGoogle
 
         public static void End()
         {

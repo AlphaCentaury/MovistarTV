@@ -8,6 +8,7 @@
 using IpTviewr.UiServices.Configuration.Schema2014.Config;
 using System;
 using System.Xml.Serialization;
+using IpTviewr.Common.Configuration;
 
 namespace IpTviewr.UiServices.Configuration.Settings.Network
 {

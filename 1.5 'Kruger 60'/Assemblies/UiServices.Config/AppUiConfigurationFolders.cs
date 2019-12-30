@@ -7,6 +7,7 @@
 
 using System.Diagnostics;
 using System.IO;
+using System.Windows.Forms;
 using IpTviewr.UiServices.Configuration.Properties;
 
 namespace IpTviewr.UiServices.Configuration
@@ -15,17 +16,21 @@ namespace IpTviewr.UiServices.Configuration
     {
         internal AppUiConfigurationFolders()
         {
-            using var process = Process.GetCurrentProcess();
-            var exeFileName = process?.MainModule?.FileName;
-            if (exeFileName == null) throw new FileNotFoundException();
-            Modules = Path.Combine(Path.GetDirectoryName(exeFileName), InvariantTexts.FolderModules);
+            Modules = Path.Combine(Application.StartupPath, InvariantTexts.FolderModules);
         } // constructor
-
+        
         public string Install { get; protected internal set; }
+
         public string Modules { get; }
+
         public string Base { get; protected internal set; }
+
         public string RecordTasks { get; protected internal set; }
+        
         public string Cache { get; protected internal set; }
+
+        public string UserConfiguration { get; internal set; }
+
         public FolderLogos Logos { get; protected internal set; }
     } // class AppUiConfigurationFolders
 } // namespace

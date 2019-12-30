@@ -16,13 +16,6 @@ namespace IpTviewr.UiServices.Configuration.Schema2014.Config
     {
         private string[] _preferredLanguagesList;
 
-        [XmlElement("Telemetry")]
-        public TelemetryConfiguration Telemetry
-        {
-            get;
-            set;
-        } // Telemetry
-
         [XmlElement("PreferredLanguages")]
         public string PreferredLanguages
         {
