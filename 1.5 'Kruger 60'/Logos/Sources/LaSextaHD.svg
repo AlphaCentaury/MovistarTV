@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 23.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" [
+	<!ENTITY ns_extend "http://ns.adobe.com/Extensibility/1.0/">
+	<!ENTITY ns_ai "http://ns.adobe.com/AdobeIllustrator/10.0/">
+	<!ENTITY ns_graphs "http://ns.adobe.com/Graphs/1.0/">
+	<!ENTITY ns_vars "http://ns.adobe.com/Variables/1.0/">
+	<!ENTITY ns_imrep "http://ns.adobe.com/ImageReplacement/1.0/">
+	<!ENTITY ns_sfw "http://ns.adobe.com/SaveForWeb/1.0/">
+	<!ENTITY ns_custom "http://ns.adobe.com/GenericCustomNamespace/1.0/">
+	<!ENTITY ns_adobe_xpath "http://ns.adobe.com/XPath/1.0/">
+]>
+<svg version="1.1" id="Livello_1" xmlns:x="&ns_extend;" xmlns:i="&ns_ai;" xmlns:graph="&ns_graphs;"
+	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 1558.9 1303"
+	 style="enable-background:new 0 0 1558.9 1303;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#44DD3A;}
+	.st1{fill:#3BB33B;}
+	.st2{fill:#338A3B;}
+</style>
+<metadata>
+	<sfw  xmlns="&ns_sfw;">
+		<slices></slices>
+		<sliceSourceBounds  bottomLeftOrigin="true" height="1303" width="1558.9" x="19.9" y="6"></sliceSourceBounds>
+	</sfw>
+</metadata>
+<g id="layer101">
+	<path d="M1190.1,895v-14h9h9v-69v-69h-9h-9v-14.5V714h37h37v14.5V743h-9.5h-9.5v25v25h33h33v-25v-25h-9h-9v-14.5V714h37h37v14.5
+		V743h-9h-9v69v69h9h9v14v14h-37h-37v-14v-14h9h9v-29.5V822h-33h-33v29.5V881h9.5h9.5v14v14h-37h-37V895z"/>
+	<path d="M1398.1,895v-14h8.5h8.5v-69v-69h-8.5h-8.5v-14.5V714h30.3c35.6,0,74.9,2.5,78.2,5c0.6,0.4,2.6,1.1,4.5,1.5
+		c11.5,2.4,25.5,13.9,33.4,27.5c12.5,21.7,17.4,56.7,12.6,90.4c-1.9,13.7-7.1,30.7-11.2,36.8c-1,1.4-1.8,2.9-1.8,3.2
+		c0,1.9-14.8,16.7-18.5,18.6c-1.7,0.8-3.7,1.9-4.5,2.5c-2.1,1.6-12.5,5.3-18.5,6.6c-11.3,2.4-20,2.8-61.2,2.8l-43.3,0.1V895z
+		 M1491.4,878c13-4.9,21.5-17.5,27-39.5c2.8-11.7,3.1-38.4,0.4-51c-4.9-22.4-11.8-33.6-24.5-39.6c-5.6-2.7-8.3-3.3-17.6-4
+		c-6.1-0.4-14.1-0.8-17.8-0.8l-6.8-0.1v69.1v69.2l16.8-0.5C1482.9,880.3,1486.5,879.9,1491.4,878z"/>
+</g>
+<g>
+	<polygon class="st0" points="1126.1,819.9 843.5,336.8 676.3,336.8 875.5,0 478.6,0 282.2,336.8 282.2,336.8 478.6,677.6 
+		647,677.6 733.2,819.9 1126.1,819.9 1126.1,819.9 	"/>
+	<polygon class="st1" points="733.2,819.9 647,966.2 478.6,966.2 282.2,1303 843.5,1303 1126.1,819.9 	"/>
+	<path id="path4399" class="st2" d="M282.2,1303L0,820l282.2-483.2l196.5,340.8L393.4,820l85.3,146.2L282.2,1303z"/>
+</g>
+</svg>

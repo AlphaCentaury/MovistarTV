@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="180mm"
+   height="55mm"
+   viewBox="0 0 180 55"
+   version="1.1"
+   id="svg833"
+   inkscape:version="0.92.4 (5da689c313, 2019-01-14)"
+   sodipodi:docname="dibujo.svg">
+  <defs
+     id="defs827">
+    <clipPath
+       id="SVGID_2_">
+      <use
+         xlink:href="#SVGID_1_"
+         overflow="visible"
+         id="use853"
+         style="overflow:visible"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+    </clipPath>
+    <clipPath
+       id="SVGID_4_">
+      <use
+         xlink:href="#SVGID_3_"
+         overflow="visible"
+         id="use859"
+         style="overflow:visible"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+    </clipPath>
+    <clipPath
+       id="clipPath1392">
+      <use
+         xlink:href="#SVGID_3_"
+         overflow="visible"
+         id="use1390"
+         style="overflow:visible"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+    </clipPath>
+    <clipPath
+       id="clipPath1396">
+      <use
+         xlink:href="#SVGID_3_"
+         overflow="visible"
+         id="use1394"
+         style="overflow:visible"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+    </clipPath>
+    <clipPath
+       id="clipPath1400">
+      <use
+         xlink:href="#SVGID_3_"
+         overflow="visible"
+         id="use1398"
+         style="overflow:visible"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+    </clipPath>
+    <rect
+       id="SVGID_1_"
+       x="-9"
+       y="-108.008"
+       width="169.245"
+       height="239.35899" />
+    <rect
+       id="SVGID_3_"
+       x="-9"
+       y="-108.008"
+       width="169.245"
+       height="239.35899" />
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.7"
+     inkscape:cx="346.96015"
+     inkscape:cy="274.28571"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1280"
+     inkscape:window-height="962"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata830">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Capa 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-242)">
+    <g
+       id="g874"
+       transform="matrix(1.3215249,0,0,1.3215249,-12.094525,243.09659)">
+      <g
+         id="g872">
+        <defs
+           id="defs851">
+          <rect
+             id="rect1462"
+             x="-9"
+             y="-108.008"
+             width="169.245"
+             height="239.35899" />
+        </defs>
+        <clipPath
+           id="clipPath1406">
+          <use
+             xlink:href="#SVGID_1_"
+             overflow="visible"
+             id="use1404"
+             style="overflow:visible"
+             x="0"
+             y="0"
+             width="100%"
+             height="100%" />
+        </clipPath>
+        <g
+           clip-path="url(#SVGID_2_)"
+           id="g870">
+          <defs
+             id="defs857">
+            <rect
+               id="rect1467"
+               x="-9"
+               y="-108.008"
+               width="169.245"
+               height="239.35899" />
+          </defs>
+          <clipPath
+             id="clipPath1412">
+            <use
+               xlink:href="#SVGID_3_"
+               overflow="visible"
+               id="use1410"
+               style="overflow:visible"
+               x="0"
+               y="0"
+               width="100%"
+               height="100%" />
+          </clipPath>
+          <path
+             clip-path="url(#SVGID_4_)"
+             d="m 25.737,2.476 c -4.089,0 -7.442,0.806 -10.393,3.219 C 14.365,4.662 12.796,3.885 10.18,3.08 v 34.469 h 7.644 v -20.72 c 0,-4.628 2.885,-7.244 7.444,-7.244 4.225,0 6.035,2.75 6.035,6.974 v 20.99 h 7.645 l 0.068,-0.201 V 16.358 C 39.016,8.109 34.657,2.476 25.737,2.476"
+             id="path862"
+             inkscape:connector-curvature="0"
+             style="fill:#fd3a4b" />
+          <path
+             clip-path="url(#SVGID_4_)"
+             d="m 61.059,37.548 c 7.98,0 14.485,-5.029 14.485,-13.479 v -0.09 -9.03 -0.09 C 75.544,7.013 69.576,1.38 60.926,1.38 c -7.98,0 -14.485,5.03 -14.485,13.479 v 9.12 c 0,8.055 5.841,13.568 14.567,13.568 h 0.051 z M 54.153,14.859 c 0,-4.56 2.75,-6.504 6.773,-6.504 4.272,0 6.88,2.127 6.904,6.445 0.001,0.048 0.002,0.095 0.002,0.144 v 8.871 c 0,0.106 -0.009,0.204 -0.012,0.308 -0.22,3.836 -2.369,5.877 -5.542,6.373 -0.393,0.049 -0.797,0.079 -1.219,0.079 -3.855,0 -6.418,-2.511 -6.889,-6.034 -0.008,-0.185 -0.018,-0.368 -0.018,-0.561 v -9.121 z"
+             id="path864"
+             inkscape:connector-curvature="0"
+             style="fill:#fd3a4b" />
+          <path
+             clip-path="url(#SVGID_4_)"
+             d="M 103.619,2.906 95.58,25.696 87.631,2.978 87.608,2.907 h -8.273 l 12.541,34.252 0.044,0.019 c 1.158,0.477 2.487,0.477 3.659,0.477 1.298,0 2.637,0 3.796,-0.477 L 99.418,37.159 111.89,2.906 Z"
+             id="path866"
+             inkscape:connector-curvature="0"
+             style="fill:#fd3a4b" />
+          <path
+             clip-path="url(#SVGID_4_)"
+             d="m 144.766,37.248 -0.011,-22.189 c 0,-1.938 -0.359,-3.767 -1.07,-5.437 -0.696,-1.635 -1.71,-3.077 -3.013,-4.286 -1.307,-1.214 -2.868,-2.157 -4.638,-2.806 -1.821,-0.667 -3.821,-1.006 -5.946,-1.006 h -0.002 c -0.002,0 -0.005,0 -0.008,0 -0.002,0 -0.005,0 -0.008,0 0.003,0 0.004,0 0.007,0 -2.747,10e-4 -5.327,0.603 -7.521,1.729 -0.999,0.512 -1.918,1.133 -2.737,1.855 -2.793,2.463 -4.269,5.903 -4.269,9.95 v 9.087 c 0,3.858 1.354,7.18 3.915,9.608 0.459,0.435 0.95,0.835 1.475,1.2 0.35,0.244 0.713,0.473 1.091,0.685 0.188,0.106 0.381,0.208 0.576,0.307 0.391,0.195 0.795,0.376 1.211,0.539 1.231,0.483 2.551,0.813 3.94,0.986 0.464,0.058 0.935,0.098 1.412,0.121 0,0 0.008,0 0.019,0 0.112,0.005 0.751,0.028 1.092,0.018 0.773,-0.007 1.555,-0.063 2.32,-0.166 2.104,-0.257 3.88,-0.821 5.426,-1.724 0.56,-0.302 1.098,-0.641 1.6,-1.012 0.009,0.011 0.017,0.022 0.025,0.033 1.04,0.968 2.579,1.73 4.964,2.465 l 0.136,0.042 v -0.005 z m -9.023,-9.282 c -0.702,0.998 -1.665,1.737 -2.856,2.194 -0.026,0.01 -0.348,0.122 -0.363,0.126 -0.813,0.245 -1.722,0.369 -2.704,0.369 -4.231,0 -6.375,-2.189 -6.375,-6.509 v -9.087 c 0,-5.271 3.611,-6.377 6.643,-6.377 4.241,0 6.626,2.14 6.764,6.023 0,0.227 -0.002,0.354 -0.002,0.354 v 9.02 l 0.002,0.062 c 0,0.062 0.001,0.12 0.002,0.181 -0.091,1.438 -0.462,2.666 -1.111,3.644"
+             id="path868"
+             inkscape:connector-curvature="0"
+             style="fill:#fd3a4b" />
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>
