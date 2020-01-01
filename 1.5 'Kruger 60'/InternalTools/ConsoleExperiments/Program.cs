@@ -16,31 +16,8 @@ namespace IpTviewr.Internal.Tools.ConsoleExperiments
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            Experiment experiment;
-
-            /*
-            var root = @"C:\Users\Developer\source\repos\AlphaCentaury\MovistarTV\1.5 'Kruger 60'";
-            var x = XmlSerialization.Deserialize<IpTvProviderData>(root + @"\movistartv-config.xml", true);
-            var y = JsonConvert.SerializeObject(x, Formatting.Indented, new JsonSerializerSettings()
-            {
-                ContractResolver = new CamelCasePropertyNamesContractResolver(),
-                NullValueHandling = NullValueHandling.Ignore,
-                Converters = new JsonConverter[]
-                {
-                    new StringEnumConverter() 
-                }
-            });
-
-            return 0;
-            */
-
-            //experiment = new CachedLogos();
-            //experiment = new WindowsIconTest();
-            //experiment = new Find();
-            //experiment = new ExceptionMsgBoxExperiment();
-            //experiment = new PlayingWithLogos();
-            //experiment = new ReorganizeLogos();
-            experiment = new Licensing();
+            //var experiment = new Find();
+            var experiment = new Playground();
 
             return experiment.Execute(args);
         } // Main

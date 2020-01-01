@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{A51CC220-48C4-46F6-BF5D-3178CC317426}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>IpTviewr.Internal.Tools.ChannelLogos</RootNamespace>
     <AssemblyName>ChannelLogos</AssemblyName>
@@ -16,7 +16,7 @@
     </TargetFrameworkProfile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>x86</PlatformTarget>
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -39,12 +39,16 @@
   <PropertyGroup>
     <ApplicationIcon>Resources\IPTViewr_Tool.ico</ApplicationIcon>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.ExceptionMessageBox, Version=9.0.242.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\..\..\..\Program Files (x86)\Microsoft SQL Server\90\SDK\Assemblies\Microsoft.ExceptionMessageBox.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
@@ -83,6 +87,8 @@
     <Compile Include="FormStart.Designer.cs">
       <DependentUpon>FormStart.cs</DependentUpon>
     </Compile>
+    <Compile Include="LogosConsistenceTool.cs" />
+    <Compile Include="LogosTool.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WebClientEx.cs">
@@ -121,17 +127,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Assemblies\DvbStpClient\DvbStpClient.csproj">
-      <Project>{8ad3c34b-a1d3-4385-a8a9-c429bd9a37d3}</Project>
-      <Name>DvbStpClient</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Assemblies\Etsi.Ts102034\Etsi.Ts102034.csproj">
-      <Project>{b91c438d-0333-4d06-86cd-74ce82df6f40}</Project>
+      <Project>{B91C438D-0333-4D06-86CD-74CE82DF6F40}</Project>
       <Name>Etsi.Ts102034</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Assemblies\IpTv.MovistarPlus\IpTv.MovistarPlus.csproj">
-      <Project>{e1748f45-dd50-4479-96f6-f7eba6f3e28b}</Project>
-      <Name>IpTv.MovistarPlus</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Assemblies\Project.Common\IpTviewr.Common.csproj">
       <Project>{8da15060-5a78-4f89-a9f1-7aa56b0d622c}</Project>
@@ -146,16 +144,16 @@
       <Name>UiServices.Config</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Assemblies\UiServices.Discovery\UiServices.Discovery.csproj">
-      <Project>{7e5e21b9-4bd6-4fb3-9055-9b09cc479c6c}</Project>
+      <Project>{7E5E21B9-4BD6-4FB3-9055-9B09CC479C6C}</Project>
       <Name>UiServices.Discovery</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Assemblies\UiServices.DvbStpClient\UiServices.DvbStpClient.csproj">
-      <Project>{ba481e42-f570-4d2c-94d4-21c4cce27762}</Project>
-      <Name>UiServices.DvbStpClient</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Assemblies\UiServices.Forms\UiServices.Forms.csproj">
-      <Project>{90f750b3-64db-493f-96a6-e68de5ea60a1}</Project>
+      <Project>{90F750B3-64DB-493F-96A6-E68DE5EA60A1}</Project>
       <Name>UiServices.Forms</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ToolsUiFramework\ToolsUiFramework.csproj">
+      <Project>{63482f69-c5de-430d-86e7-e2a4eac59a51}</Project>
+      <Name>ToolsUiFramework</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

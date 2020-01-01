@@ -60,20 +60,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\..\..\..\Program Files (x86)\Microsoft SQL Server\90\SDK\Assemblies\Microsoft.ExceptionMessageBox.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Data.SqlServerCe, Version=4.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\..\..\..\..\..\Program Files\Microsoft SQL Server Compact Edition\v4.0\Desktop\System.Data.SqlServerCe.dll</HintPath>
-    </Reference>
     <Reference Include="System.Drawing" />
-    <Reference Include="System.IO.Compression" />
     <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
@@ -81,40 +71,20 @@
     <Compile Include="..\..\AssemblySolutionInfo.cs">
       <Link>Properties\AssemblySolutionInfo.cs</Link>
     </Compile>
-    <Compile Include="CachedLogos.cs" />
     <Compile Include="ExceptionMsgBoxExperiment.cs" />
     <Compile Include="Experiment.cs" />
     <Compile Include="Find.cs" />
-    <Compile Include="Licensing.cs" />
-    <Compile Include="PlayingWithLogos.cs" />
+    <Compile Include="Playground.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ReorganizeLogos.cs" />
-    <Compile Include="WindowsIconTest.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Assemblies\Etsi.Ts102034\Etsi.Ts102034.csproj">
-      <Project>{b91c438d-0333-4d06-86cd-74ce82df6f40}</Project>
-      <Name>Etsi.Ts102034</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Assemblies\AlphaCentaury.Licensing.Data\AlphaCentaury.Licensing.Data.csproj">
-      <Project>{42B71DB3-2E34-43BB-BF87-88F422BCF861}</Project>
-      <Name>Licensing</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Assemblies\Project.Common\IpTviewr.Common.csproj">
-      <Project>{8da15060-5a78-4f89-a9f1-7aa56b0d622c}</Project>
+      <Project>{8DA15060-5A78-4F89-A9F1-7AA56B0D622C}</Project>
       <Name>IpTviewr.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Assemblies\Project.Native\IpTviewr.Native.csproj">
-      <Project>{8986cd52-0c65-42d6-9c47-20ff47cf87bb}</Project>
-      <Name>IpTviewr.Native</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Assemblies\Services.SqlServerCE\Services.SqlServerCE.csproj">
-      <Project>{3a053f34-4edf-4071-b966-923255a0ae14}</Project>
-      <Name>Services.SqlServerCE</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Assemblies\UiServices.Config\UiServices.Config.csproj">
-      <Project>{a722de9d-ae51-479c-825f-a19f4c69bd75}</Project>
+      <Project>{A722DE9D-AE51-479C-825F-A19F4C69BD75}</Project>
       <Name>UiServices.Config</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Assemblies\Winforms.MsgBoxEx\Winforms.MsgBoxEx.csproj">
@@ -128,7 +98,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">

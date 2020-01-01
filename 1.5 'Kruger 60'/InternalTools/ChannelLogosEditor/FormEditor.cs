@@ -7,6 +7,7 @@
 
 using System;
 using System.Windows.Forms;
+using IpTviewr.Common.Configuration;
 using IpTviewr.Internal.Tools.ChannelLogosEditor.Properties;
 using IpTviewr.UiServices.Common.Forms;
 using IpTviewr.UiServices.Configuration;

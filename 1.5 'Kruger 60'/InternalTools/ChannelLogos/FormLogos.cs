@@ -17,10 +17,11 @@ using System.Drawing;
 using System.Linq;
 using System.Net;
 using System.Windows.Forms;
+using IpTviewr.Internal.Tools.UiFramework;
 
 namespace IpTviewr.Internal.Tools.ChannelLogos
 {
-    public partial class FormLogos : Form
+    public partial class FormLogos : MdiRibbonChildForm
     {
         private UiServiceProvider _selectedServiceProvider;
         private UiBroadcastDiscovery _broadcastDiscovery;
@@ -44,8 +45,17 @@ namespace IpTviewr.Internal.Tools.ChannelLogos
             _imgListWebLogos?.Dispose();
         } // DoDispose
 
-        private void FormLogos_Load(object sender, EventArgs e)
+        protected override void OnLoad(EventArgs e)
         {
+            base.OnLoad(e);
+
+            if (AppConfig.Current == null)
+            {
+                RibbonMdiForm.SetStatusText("Loading configuration...");
+                AppConfig.Load(null, RibbonMdiForm.SetStatusText);
+                RibbonMdiForm.SetStatusText("Configuration loaded");
+            } // if
+
             splitContainer1.Enabled = false;
             checkHighDefPriority.Checked = !AppConfig.Current.User.ChannelNumberStandardDefinitionPriority;
             comboLogoSize.DisplayMember = "Value";
@@ -53,7 +63,7 @@ namespace IpTviewr.Internal.Tools.ChannelLogos
             comboLogoSize.DataSource = BaseLogo.GetListLogoSizes(true);
             comboLogoSize.SelectedIndex = 2;
             comboTheme.SelectedIndex = 0;
-        } // FormLogo_Load
+        } // OnLoad
 
         private void buttonLoad_Click(object sender, EventArgs e)
         {
@@ -469,5 +479,11 @@ namespace IpTviewr.Internal.Tools.ChannelLogos
                 LoadDisplayProgress("Ready");
             } // if
         } // WebWorker_RunWorkerCompleted
+
+        #region Implementation of IRibbonMdiChild
+
+        public override Guid TypeGuid => Guid.Parse(LogosTool.ToolGuid);
+
+        #endregion
     } // class FormLogos
 } // namespace

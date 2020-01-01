@@ -44,11 +44,13 @@ namespace IpTviewr.Internal.Tools.GuiTools
             this.radioSimpleDownload = new System.Windows.Forms.RadioButton();
             this.radioRibbon = new System.Windows.Forms.RadioButton();
             this.buttonExecute = new System.Windows.Forms.Button();
+            this.radioRtf = new System.Windows.Forms.RadioButton();
             this.groupBoxTools.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBoxTools
             // 
+            this.groupBoxTools.Controls.Add(this.radioRtf);
             this.groupBoxTools.Controls.Add(this.radioIconBuilder);
             this.groupBoxTools.Controls.Add(this.radioBinaryEditor);
             this.groupBoxTools.Controls.Add(this.radioDvbStpExplorer);
@@ -62,7 +64,6 @@ namespace IpTviewr.Internal.Tools.GuiTools
             this.groupBoxTools.TabIndex = 0;
             this.groupBoxTools.TabStop = false;
             this.groupBoxTools.Text = "Select tool";
-            this.groupBoxTools.Enter += new System.EventHandler(this.groupBoxTools_Enter);
             // 
             // radioIconBuilder
             // 
@@ -141,7 +142,7 @@ namespace IpTviewr.Internal.Tools.GuiTools
             this.radioRibbon.Location = new System.Drawing.Point(6, 184);
             this.radioRibbon.Name = "radioRibbon";
             this.radioRibbon.Size = new System.Drawing.Size(106, 17);
-            this.radioRibbon.TabIndex = 6;
+            this.radioRibbon.TabIndex = 7;
             this.radioRibbon.TabStop = true;
             this.radioRibbon.Text = "Ribbon prototype";
             this.radioRibbon.UseVisualStyleBackColor = true;
@@ -155,6 +156,17 @@ namespace IpTviewr.Internal.Tools.GuiTools
             this.buttonExecute.Text = "Execute";
             this.buttonExecute.UseVisualStyleBackColor = true;
             this.buttonExecute.Click += new System.EventHandler(this.buttonExecute_Click);
+            // 
+            // radioRtf
+            // 
+            this.radioRtf.AutoSize = true;
+            this.radioRtf.Location = new System.Drawing.Point(6, 158);
+            this.radioRtf.Name = "radioRtf";
+            this.radioRtf.Size = new System.Drawing.Size(80, 17);
+            this.radioRtf.TabIndex = 6;
+            this.radioRtf.TabStop = true;
+            this.radioRtf.Text = "RTF viewer";
+            this.radioRtf.UseVisualStyleBackColor = true;
             // 
             // LaunchForm
             // 
@@ -184,5 +196,6 @@ namespace IpTviewr.Internal.Tools.GuiTools
         private System.Windows.Forms.RadioButton radioBinaryEditor;
         private System.Windows.Forms.RadioButton radioIconBuilder;
         private System.Windows.Forms.RadioButton radioRibbon;
+        private System.Windows.Forms.RadioButton radioRtf;
     }
 }

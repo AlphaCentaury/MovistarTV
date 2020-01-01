@@ -9,10 +9,12 @@ using System;
 using System.ComponentModel;
 using System.Text;
 using System.Windows.Forms;
+using IpTviewr.Internal.Tools.UiFramework;
+using IpTviewr.UiServices.Configuration;
 
 namespace IpTviewr.Internal.Tools.ChannelLogos
 {
-    public partial class FormConsistency : Form
+    public partial class FormConsistency : MdiRibbonChildForm
     {
         public FormConsistency()
         {
@@ -20,6 +22,18 @@ namespace IpTviewr.Internal.Tools.ChannelLogos
             Icon = Properties.Resources.IPTViewr_Tool;
             buttonRun.Enabled = false;
         } // constructor
+
+        protected override void OnLoad(EventArgs e)
+        {
+            base.OnLoad(e);
+
+            if (AppConfig.Current == null)
+            {
+                RibbonMdiForm.SetStatusText("Loading configuration...");
+                AppConfig.Load(null, RibbonMdiForm.SetStatusText);
+                RibbonMdiForm.SetStatusText("Configuration loaded");
+            } // if
+        } // OnLoad
 
         private void comboCheck_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -162,5 +176,11 @@ namespace IpTviewr.Internal.Tools.ChannelLogos
 
             listViewResults.EndUpdate();
         } // ShowResults
+
+        #region Implementation of IRibbonMdiChild
+
+        public override Guid TypeGuid => Guid.Parse(LogosConsistenceTool.ToolGuid);
+
+        #endregion
     } // class FormConsistency
 } // namespace

@@ -8,6 +8,7 @@
 using IpTviewr.UiServices.Configuration;
 using System;
 using System.Windows.Forms;
+using IpTviewr.Common.Configuration;
 
 namespace IpTviewr.Internal.Tools.ChannelLogos
 {

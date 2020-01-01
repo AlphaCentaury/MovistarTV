@@ -116,6 +116,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>RibbonResources.resx</DependentUpon>
     </Compile>
+    <Compile Include="RtfViewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RtfViewer.Designer.cs">
+      <DependentUpon>RtfViewer.cs</DependentUpon>
+    </Compile>
     <Compile Include="SimpleDvbStpDownloadForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -158,6 +164,9 @@
     <EmbeddedResource Include="RibbonForm.resx">
       <DependentUpon>RibbonForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="RtfViewer.resx">
+      <DependentUpon>RtfViewer.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SimpleDvbStpDownloadForm.resx">
       <DependentUpon>SimpleDvbStpDownloadForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -177,7 +186,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Assemblies\DvbStpClient\DvbStpClient.csproj">
-      <Project>{8ad3c34b-a1d3-4385-a8a9-c429bd9a37d3}</Project>
+      <Project>{8AD3C34B-A1D3-4385-A8A9-C429BD9A37D3}</Project>
       <Name>DvbStpClient</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Assemblies\Project.Common\IpTviewr.Common.csproj">
@@ -185,7 +194,7 @@
       <Name>IpTviewr.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Assemblies\Project.Native\IpTviewr.Native.csproj">
-      <Project>{8986cd52-0c65-42d6-9c47-20ff47cf87bb}</Project>
+      <Project>{8986CD52-0C65-42D6-9C47-20FF47CF87BB}</Project>
       <Name>IpTviewr.Native</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Assemblies\UiServices.Common\UiServices.Common.csproj">
@@ -193,12 +202,8 @@
       <Name>UiServices.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Assemblies\UiServices.DvbStpClient\UiServices.DvbStpClient.csproj">
-      <Project>{ba481e42-f570-4d2c-94d4-21c4cce27762}</Project>
+      <Project>{BA481E42-F570-4D2C-94D4-21C4CCE27762}</Project>
       <Name>UiServices.DvbStpClient</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Core\IpTViewr.Core\IpTViewr.Core.csproj">
-      <Project>{968c6eeb-1e79-446a-96ae-69cb225e1c37}</Project>
-      <Name>IpTViewr.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

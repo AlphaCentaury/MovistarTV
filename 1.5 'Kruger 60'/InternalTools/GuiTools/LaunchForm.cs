@@ -22,12 +22,18 @@ namespace IpTviewr.Internal.Tools.GuiTools
 
         private void buttonExecute_Click(object sender, EventArgs e)
         {
-            if (Activator.CreateInstance(SelectedForm) is Form form)
-            {
-                form.Show();
-                form.Dispose();
-            } // if
+            if (!(Activator.CreateInstance(SelectedForm) is Form form)) return;
+
+            form.Show();
+            form.FormClosed += FormOnFormClosed;
         } // buttonExecute_Click
+
+        private void FormOnFormClosed(object sender, FormClosedEventArgs e)
+        {
+            var form = (Form) sender;
+            form.FormClosed -= FormOnFormClosed;
+            form.Dispose();
+        } // FormOnFormClosed
 
         private void radioOption_CheckedChanged(object sender, EventArgs e)
         {
@@ -43,13 +49,9 @@ namespace IpTviewr.Internal.Tools.GuiTools
             if (radioOpchExplorer.Checked) return typeof(OpchExplorerForm);
             if (radioBinaryEditor.Checked) return typeof(BinaryEditorForm);
             if (radioIconBuilder.Checked) return typeof(IconBuilder);
-            //if (radioRibbon.Checked) return typeof(RibbonForm);
+            if (radioRtf.Checked) return typeof(RtfViewer);
+            if (radioRibbon.Checked) return typeof(RibbonForm);
             return null;
         } // GetSelectedForm
-
-        private void groupBoxTools_Enter(object sender, EventArgs e)
-        {
-
-        }
     } // class LaunchForm
 } // namespace

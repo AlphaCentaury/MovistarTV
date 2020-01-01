@@ -94,7 +94,7 @@ namespace IpTviewr.Internal.Tools.GuiTools
                 {
                     task.Execute();
                 }
-                catch (Exception ex)
+                catch
                 {
                     if (AbortOnError)
                     {
