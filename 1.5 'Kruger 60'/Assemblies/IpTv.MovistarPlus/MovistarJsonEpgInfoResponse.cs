@@ -9,9 +9,11 @@ using Newtonsoft.Json;
 
 namespace IpTviewr.IpTvServices.MovistarPlus
 {
+    /*
     internal class MovistarJsonEpgInfoResponse: MovistarJsonResponse
     {
         [JsonProperty("resultData")]
         public MovistarEpgInfo Data;
     } // class MovistarJsonEpgInfoResponse
+    */
 } // namespace

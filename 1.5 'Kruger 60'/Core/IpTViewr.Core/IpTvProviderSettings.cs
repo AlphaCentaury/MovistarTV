@@ -7,6 +7,7 @@
 
 using System;
 using System.Xml.Serialization;
+using IpTviewr.Common.Configuration;
 using IpTviewr.UiServices.Configuration;
 using IpTviewr.UiServices.Configuration.Schema2014.Config;
 

@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows.Forms;
 using System.Xml.Serialization;
+using IpTviewr.Common.Configuration;
 
 namespace IpTviewr.UiServices.Discovery.BroadcastList
 {

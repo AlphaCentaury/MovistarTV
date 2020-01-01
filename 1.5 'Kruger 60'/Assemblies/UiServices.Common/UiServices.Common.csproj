@@ -54,6 +54,13 @@
     <Compile Include="..\..\AssemblySolutionInfo.cs">
       <Link>Properties\AssemblySolutionInfo.cs</Link>
     </Compile>
+    <Compile Include="Controls\PropertiesViewer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\PropertiesViewer.Designer.cs">
+      <DependentUpon>PropertiesViewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\PropertySelectedEventArgs.cs" />
     <Compile Include="Controls\StringListEditor.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -215,6 +222,13 @@
     <Content Include="Resources\NotImplemented_200x200.png" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Controls\PropertiesViewer.es.resx">
+      <DependentUpon>PropertiesViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\PropertiesViewer.resx">
+      <DependentUpon>PropertiesViewer.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\StringListEditor.es.resx">
       <DependentUpon>StringListEditor.cs</DependentUpon>
     </EmbeddedResource>

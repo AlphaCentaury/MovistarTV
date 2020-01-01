@@ -5,10 +5,9 @@
 // 
 // http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
 
-using System.ComponentModel.Composition;
 using IpTviewr.IpTvServices.MovistarPlus.Implementation;
-using IpTviewr.UiServices.Configuration;
-using IpTviewr.UiServices.Configuration.IpTvService;
+using System.ComponentModel.Composition;
+using IpTviewr.Common.Configuration;
 
 namespace IpTviewr.IpTvServices.MovistarPlus
 {

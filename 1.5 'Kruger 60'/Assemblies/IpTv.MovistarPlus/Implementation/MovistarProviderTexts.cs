@@ -7,8 +7,6 @@
 
 using IpTviewr.IpTvServices.MovistarPlus.Properties;
 
-using IpTviewr.UiServices.Configuration.IpTvService;
-
 namespace IpTviewr.IpTvServices.MovistarPlus.Implementation
 {
     internal class MovistarProviderTexts : ITvServiceProviderTexts

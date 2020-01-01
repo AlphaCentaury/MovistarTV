@@ -5,17 +5,10 @@
 // 
 // http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
 
-namespace IpTviewr.IpTvServices.Implementation
+namespace IpTviewr.IpTvServices
 {
-    public sealed class DvbIpTvService : IpTvService
+    public interface ITvServiceTexts
     {
-        public override IEpgInfoProvider EpgInfo => null;
-
-        /*
-        public override InitializationResult Initialize()
-        {
-            throw new NotImplementedException();
-        }
-        */
-    }
-}
+        ITvServiceProviderTexts Provider { get; }
+    } // interface ITvServiceTexts
+} // namespace

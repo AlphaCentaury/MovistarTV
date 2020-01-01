@@ -174,51 +174,35 @@ namespace IpTviewr.UiServices.Common.Controls
 
         protected override void OnDrawColumnHeader(DrawListViewColumnHeaderEventArgs e)
         {
-            VisualStyleRenderer renderer;
-            VisualStyleElement style;
-            Size arrowSize;
             TextFormatFlags format;
-            Rectangle bounds;
 
-            // render background
-            if (e.State == ListViewItemStates.Hot)
-                style = VisualStyleElement.Header.Item.Hot;
-            else if (e.State == ListViewItemStates.Selected)
-                style = VisualStyleElement.Header.Item.Pressed;
-            else
-                style = VisualStyleElement.Header.Item.Normal;
+            var style = e.State switch
+            {
+                // render background
+                ListViewItemStates.Hot => VisualStyleElement.Header.Item.Hot,
+                ListViewItemStates.Selected => VisualStyleElement.Header.Item.Pressed,
+                _ => VisualStyleElement.Header.Item.Normal
+            };
 
-            renderer = new VisualStyleRenderer(style);
+            var renderer = new VisualStyleRenderer(style);
             renderer.DrawBackground(e.Graphics, e.Bounds);
 
             // build text style
             if (HeaderUsesCustomTextAlignment)
             {
-                format = TextFormatFlags.Default;
-                switch (HeaderCustomTextAlignment)
+                format = HeaderCustomTextAlignment switch
                 {
-                    case System.Drawing.ContentAlignment.TopLeft:
-                        format = TextFormatFlags.Left | TextFormatFlags.Top; break;
-                    case System.Drawing.ContentAlignment.TopCenter:
-                        format = TextFormatFlags.HorizontalCenter | TextFormatFlags.Top; break;
-                    case System.Drawing.ContentAlignment.TopRight:
-                        format = TextFormatFlags.Right | TextFormatFlags.Top; break;
-                    case System.Drawing.ContentAlignment.MiddleLeft:
-                        format = TextFormatFlags.Left | TextFormatFlags.VerticalCenter; break;
-                    case System.Drawing.ContentAlignment.MiddleCenter:
-                        format = TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter; break;
-                    case System.Drawing.ContentAlignment.MiddleRight:
-                        format = TextFormatFlags.Right | TextFormatFlags.VerticalCenter; break;
-                    case System.Drawing.ContentAlignment.BottomLeft:
-                        format = TextFormatFlags.Left | TextFormatFlags.Bottom; break;
-                    case System.Drawing.ContentAlignment.BottomCenter:
-                        format = TextFormatFlags.HorizontalCenter | TextFormatFlags.Bottom; break;
-                    case System.Drawing.ContentAlignment.BottomRight:
-                        format = TextFormatFlags.Right | TextFormatFlags.Bottom; break;
-                    default:
-                        format = TextFormatFlags.Default; break;
-                } // case
-
+                    System.Drawing.ContentAlignment.TopLeft => TextFormatFlags.Left | TextFormatFlags.Top,
+                    System.Drawing.ContentAlignment.TopCenter => TextFormatFlags.HorizontalCenter | TextFormatFlags.Top,
+                    System.Drawing.ContentAlignment.TopRight => TextFormatFlags.Right | TextFormatFlags.Top,
+                    System.Drawing.ContentAlignment.MiddleLeft => TextFormatFlags.Left | TextFormatFlags.VerticalCenter,
+                    System.Drawing.ContentAlignment.MiddleCenter => TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter,
+                    System.Drawing.ContentAlignment.MiddleRight => TextFormatFlags.Right | TextFormatFlags.VerticalCenter,
+                    System.Drawing.ContentAlignment.BottomLeft => TextFormatFlags.Left | TextFormatFlags.Bottom,
+                    System.Drawing.ContentAlignment.BottomCenter => TextFormatFlags.HorizontalCenter | TextFormatFlags.Bottom,
+                    System.Drawing.ContentAlignment.BottomRight => TextFormatFlags.Right | TextFormatFlags.Bottom,
+                    _ => TextFormatFlags.Default,
+                };
                 switch (HeaderCustomEllipsis)
                 {
                     case EllipsisStyle.None: break;
@@ -239,15 +223,15 @@ namespace IpTviewr.UiServices.Common.Controls
                 format |= TextFormatFlags.SingleLine;
             } // if-else
 
-            // select text drawing attributtes
+            // select text drawing attributes
             var font = HeaderUsesCustomFont ? HeaderCustomFont : e.Font;
             var foreColor = HeaderUsesCustomForeColor ? HeaderCustomForeColor : e.ForeColor;
 
             // measure sort arrow size
             style = (CurrentSortIsDescending) ? VisualStyleElement.Header.SortArrow.SortedUp : VisualStyleElement.Header.SortArrow.SortedDown;
             renderer = new VisualStyleRenderer(style);
-            arrowSize = renderer.GetPartSize(e.Graphics, ThemeSizeType.True);
-            bounds = new Rectangle(e.Bounds.Left, e.Bounds.Top, e.Bounds.Width - arrowSize.Width - 3, e.Bounds.Height); // -3 = give extra right space
+            var arrowSize = renderer.GetPartSize(e.Graphics, ThemeSizeType.True);
+            var bounds = new Rectangle(e.Bounds.Left, e.Bounds.Top, e.Bounds.Width - arrowSize.Width - 3, e.Bounds.Height);
 
             // render text
             TextRenderer.DrawText(e.Graphics, e.Header.Text, font, bounds, foreColor, format);

@@ -18,7 +18,7 @@ namespace IpTviewr.UiServices.Common.Forms
 {
     public partial class PropertiesDialog : Form
     {
-        public IEnumerable<Property> ItemProperties { get; set; }
+        public ICollection<Property> ItemProperties { get; set; }
         public string Caption { get; set; }
         public string Description { get; set; }
         public Image ItemIcon { get; set; }
@@ -34,80 +34,7 @@ namespace IpTviewr.UiServices.Common.Forms
             Text = Caption;
             labelDescription.Text = (Description ?? Properties.PropertiesDialog.CaptionDefault);
             pictureBoxItemIcon.Image = ItemIcon;
+            propertiesViewer1.Properties = ItemProperties;
         } // PropertiesDialog_Load
-
-        private void PropertiesDialog_Shown(object sender, EventArgs e)
-        {
-            foreach (var property in ItemProperties)
-            {
-                AddProperty(property.Key, property.Value);
-            } // foreach
-        } // PropertiesDialog_Shown
-
-        private void AddProperty(string name, string value)
-        {
-            ListViewItem item;
-
-            item = listViewProperties.Items.Add(name ?? Properties.PropertiesDialog.NameNull);
-            item.UseItemStyleForSubItems = false;
-            if (value != null)
-            {
-                item.SubItems.Add(value);
-            }
-            else
-            {
-                item.SubItems.Add(Properties.PropertiesDialog.ValueNull);
-                item.SubItems[1].BackColor = Color.LightYellow;
-            } // if-else
-        }  // AddProperty
-
-        #region List context menu
-
-        private void contextMenuList_Opening(object sender, CancelEventArgs e)
-        {
-            var selection = (listViewProperties.SelectedItems.Count > 0);
-            contextMenuListCopyValue.Enabled = selection;
-            contextMenuListCopyName.Enabled = selection;
-            contextMenuListCopyRow.Enabled = selection;
-        } // contextMenuList_Opening
-
-        private void contextMenuListCopyValue_Click(object sender, EventArgs e)
-        {
-            var selectedRow = (listViewProperties.SelectedItems.Count > 0) ? listViewProperties.SelectedItems[0] : null;
-            if (selectedRow == null) return;
-
-            Clipboard.SetText(selectedRow.SubItems[1].Text, TextDataFormat.UnicodeText);
-        } // contextMenuListCopyValue_Click
-
-        private void contextMenuListCopyName_Click(object sender, EventArgs e)
-        {
-            var selectedRow = (listViewProperties.SelectedItems.Count > 0) ? listViewProperties.SelectedItems[0] : null;
-            if (selectedRow == null) return;
-
-            Clipboard.SetText(selectedRow.SubItems[0].Text, TextDataFormat.UnicodeText);
-        } // contextMenuListCopyName_Click
-
-        private void contextMenuListCopyRow_Click(object sender, EventArgs e)
-        {
-            var selectedRow = (listViewProperties.SelectedItems.Count > 0) ? listViewProperties.SelectedItems[0] : null;
-            if (selectedRow == null) return;
-
-            Clipboard.SetText($"{selectedRow.SubItems[0].Text}\t{selectedRow.SubItems[1].Text}", TextDataFormat.UnicodeText);
-        } // contextMenuListCopyRow_Click
-
-        private void contextMenuListCopyAll_Click(object sender, EventArgs e)
-        {
-            StringBuilder buffer;
-
-            buffer = new StringBuilder();
-            foreach (ListViewItem item in listViewProperties.Items)
-            {
-                buffer.AppendFormat("{0}\t{1}\r\n", item.SubItems[0].Text, item.SubItems[1].Text);
-            } // foreach item
-
-            Clipboard.SetText(buffer.ToString(), TextDataFormat.UnicodeText);
-        } // contextMenuListCopyAll_Click
-
-        #endregion
     } // class PropertiesDlg
 } // namespace

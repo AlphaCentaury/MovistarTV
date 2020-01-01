@@ -277,7 +277,7 @@ namespace IpTviewr.UiServices.Discovery
 
         // v1.0 RC 0: code moved from ChannelList > ChanneListForm.cs > DumpProperties(UiBroadcastService)
 
-        public IEnumerable<Property> DumpProperties()
+        public IList<Property> DumpProperties()
         {
             var properties = new List<Property>
             {

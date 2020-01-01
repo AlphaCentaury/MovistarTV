@@ -42,16 +42,15 @@ namespace IpTviewr.UiServices.Discovery
 
         public ProviderOffering Offering => Data.Offering;
 
-        public string DisplayName => _displayName ?? (_displayName = GetDisplayName());
+        public string DisplayName => _displayName ??= GetDisplayName();
 
-        public string DisplayDescription => _displayDescription ?? (_displayDescription = GetDisplayDescription());
+        public string DisplayDescription => _displayDescription ??= GetDisplayDescription();
 
-
-        public ProviderLogo Logo => _logo ?? (_logo = GetLogo());
+        public ProviderLogo Logo => _logo ??= GetLogo();
 
         // v1.0 RC 0: code moved from ChannelList > ChanneListForm.cs > DumpProperties(UiServiceProvider)
 
-        public IEnumerable<Property> DumpProperties()
+        public IList<Property> DumpProperties()
         {
             var properties = new List<Property>();
 

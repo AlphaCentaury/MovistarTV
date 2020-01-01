@@ -5,14 +5,14 @@
 // 
 // http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
 
+using Etsi.Ts102034.v010501.XmlSerialization.BroadcastDiscovery;
 using IpTviewr.Services.EpgDiscovery;
-using IpTviewr.UiServices.Discovery;
 
 namespace IpTviewr.IpTvServices.EPG
 {
     public class ProgramEpgInfo
     {
-        public UiBroadcastService Service
+        public BroadcastDiscoveryRoot Service
         {
             get;
             set;

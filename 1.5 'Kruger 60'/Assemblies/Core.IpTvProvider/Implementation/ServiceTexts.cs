@@ -5,8 +5,6 @@
 // 
 // http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
 
-using IpTviewr.UiServices.Configuration.IpTvService;
-
 namespace IpTviewr.IpTvServices.Implementation
 {
     public class ServiceTexts: ITvServiceTexts
