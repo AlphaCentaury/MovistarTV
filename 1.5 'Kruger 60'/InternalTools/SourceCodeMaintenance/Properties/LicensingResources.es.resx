@@ -134,7 +134,7 @@
     <comment>{0} = license name</comment>
   </data>
   <data name="WriteAuthorsFormat" xml:space="preserve">
-    <value>== por {0}</value>
+    <value>## por {0}</value>
   </data>
   <data name="WriteAuthorsFormatMd" xml:space="preserve">
     <value>_por {0}_</value>
@@ -148,9 +148,6 @@
   </data>
   <data name="WriteListLicenses" xml:space="preserve">
     <value>Licencias de uso</value>
-  </data>
-  <data name="WriteSeeLicensingXml" xml:space="preserve">
-    <value>Detalles adicionales pueden estar disponibles en el archivo legible por máquina 'licensing.xml'.</value>
   </data>
   <data name="WriteTermsAndCondition" xml:space="preserve">
     <value>Términos y condiciones de uso</value>
@@ -180,6 +177,9 @@
   </data>
   <data name="WriteTypeProgram" xml:space="preserve">
     <value>Programa</value>
+  </data>
+  <data name="WriteTypeSolution" xml:space="preserve">
+    <value>Solución VS</value>
   </data>
   <data name="WriteTypeSourceCode" xml:space="preserve">
     <value>Código fuente</value>

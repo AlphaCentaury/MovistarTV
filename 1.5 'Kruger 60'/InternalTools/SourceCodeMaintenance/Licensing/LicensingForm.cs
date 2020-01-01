@@ -1,4 +1,17 @@
-﻿using AlphaCentaury.Tools.SourceCodeMaintenance.Helpers;
+// ==============================================================================
+// 
+//   Copyright (C) 2014-2020, GitHub/Codeplex user AlphaCentaury
+//   All rights reserved.
+// 
+//     See 'LICENSE.MD' file (or 'license.txt' if missing) in the project root
+//     for complete license information.
+// 
+//   http://www.alphacentaury.org/movistartv
+//   https://github.com/AlphaCentaury
+// 
+// ==============================================================================
+
+using AlphaCentaury.Tools.SourceCodeMaintenance.Helpers;
 using AlphaCentaury.Tools.SourceCodeMaintenance.Licensing.VisualStudio;
 using System;
 using System.Globalization;
@@ -6,14 +19,16 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using AlphaCentaury.Licensing.Data.Serialization;
 using AlphaCentaury.Tools.SourceCodeMaintenance.Licensing.Actions;
+using IpTviewr.Common.Serialization;
 
 namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing
 {
     public sealed partial class LicensingForm : LicensingFormDocumentView
     {
         private readonly TextBoxOutputWriter _outputWriter;
-        private readonly LicensingToolOptions _options;
+        private LicensingToolOptions _options;
 
         public LicensingForm()
         {
@@ -34,11 +49,21 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing
             SafeCall(LoadSolutionFolder);
         } // openSolutionFolderToolStripMenuItem_Click
 
+        protected override void openSolutionFileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SafeCall(LoadSolutionFile);
+        } // SafeCall
+
+        protected override void openLicensingDataToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SafeCall(LoadLicensingData);
+        } // openLicensingDataToolStripMenuItem_Click
+
         protected override void createStripButton_Click(object sender, EventArgs e)
         {
             ExecuteAsync(_outputWriter, (token) => LicensingMaintenance.CreateMissingLicensingFilesAsync(CurrentSolution,
                 _outputWriter,
-                LicensingMaintenance.Helper.GetImplicitDefaultsPath(),
+                LicensingMaintenance.Helper.GetImplicitDefaultsPath(CurrentSolution),
                 token));
         } // createStripButton_Click
 
@@ -47,7 +72,7 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing
             ExecuteAsync(_outputWriter, (token) => LicensingMaintenance.CheckLicensingFilesAsync(CurrentSolution,
                 _outputWriter,
                 _options.Checker,
-                LicensingMaintenance.Helper.GetImplicitDefaultsPath(),
+                LicensingMaintenance.Helper.GetImplicitDefaultsPath(CurrentSolution),
                 token));
         } // checkStripButton_Click
 
@@ -58,7 +83,9 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing
 
         protected override void licensingWriteStripButton_Click(object sender, EventArgs e)
         {
-            ExecuteAsync(_outputWriter, token => LicensingMaintenance.WriteLicenseFilesAsync(CurrentSolution, _outputWriter, _options.Writer, token));
+            ExecuteAsync(_outputWriter, 
+                asyncAction: token => LicensingMaintenance.WriteLicenseFilesAsync(CurrentSolution, _outputWriter,
+                    _options.Writer, _options.SolutionWriter, token));
         } // licensingWriteStripButton_Click
 
         protected override void licensingOptionsStripButton_Click(object sender, EventArgs e)
@@ -67,7 +94,11 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing
             {
                 Options = _options
             };
-            dlg.ShowDialog(this);
+
+            if (dlg.ShowDialog(this) == DialogResult.OK)
+            {
+                _options = dlg.Options;
+            } // if
         } // licensingOptionsStripButton_Click
 
         #endregion
@@ -95,7 +126,10 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing
             DetailsMode = DetailsModeEnum.None;
 
             treeViewDetails.ImageList = imageListSolutionTreeSmall;
-            treeViewDetails.Nodes.Add(LicensingVsUi.GetProjectTree(vsProject, CurrentSolution));
+            var root = LicensingVsUi.GetProjectTree(vsProject, CurrentSolution);
+            root.Expand();
+            root.Nodes[0].Expand();
+            treeViewDetails.Nodes.Add(root);
             DetailsMode = DetailsModeEnum.VsProject;
         } // OnVsProjectSelected
 
@@ -104,12 +138,14 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing
             treeViewDetails.Nodes.Clear();
             if (!node.Exists) return;
 
-            treeViewDetails.ImageList = LicensingImageList;
-            treeViewDetails.Nodes.Add(LicensingUi.DataToTree(Path.GetFileName(node.FilePath), node.Value));
+            DetailsMode = DetailsModeEnum.LicensingData;
 
-            treeViewLicensingData.Nodes.Clear();
-            treeViewLicensingData.ImageList = LicensingImageList;
-            treeViewLicensingData.Nodes.Add(LicensingUi.DataToTree(Path.GetFileName(node.FilePath), node.Value));
+            var name = node.FilePath.Substring(CurrentSolution.SolutionPath.Length + 1);
+            treeViewDetails.ImageList = licensingDataViewer.ImageList;
+            treeViewDetails.Nodes.Add(licensingDataViewer.Ui.DataToTree(name, node.Value));
+
+            licensingDataViewer.LicensingDataName = name;
+            licensingDataViewer.LicensingData = node.Value;
         } // OnLicensingNodeSelected
 
         private protected override void OnDetailsLicensingNodeSelected(LicensingDataNode node)
@@ -146,6 +182,9 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing
                         details.AppendLine($"    {license.Id}: {license.Name}");
                     } // foreach
                 } // if-else
+
+                licensingDataViewer.LicensingData = node.Value;
+                licensingDataViewer.LicensingDataName = node.FilePath.Substring(CurrentSolution.SolutionPath.Length + 1);
             } // if
 
             textBoxDetails.Text = details.ToString();
@@ -165,7 +204,38 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing
 
             if (selectFolderDialog.ShowDialog(this) != DialogResult.OK) return;
 
+            tabControlSolution.SelectedTab = tabPageSolution;
             LoadSolutionFolderAsync(selectFolderDialog.SelectedPath);
         } // LoadSolutionFolder
+
+        private void LoadSolutionFile()
+        {
+            openFileDialog.Filter = "Solution files|*.sln|All files|*.*";
+            openFileDialog.Title = "Open VisualStudio solution file";
+            openFileDialog.FileName = null;
+
+            if (openFileDialog.ShowDialog(this) != DialogResult.OK) return;
+
+            tabControlSolution.SelectedTab = tabPageSolution;
+            LoadSolutionFileAsync(openFileDialog.FileName);
+        } // LoadSolutionFile
+
+        private void LoadLicensingData()
+        {
+            openFileDialog.Filter = "Licensing data files|*.xml|All files|*.*";
+            openFileDialog.Title = "Open licensing data file";
+            openFileDialog.FileName = null;
+            if (openFileDialog.ShowDialog(this) != DialogResult.OK) return;
+
+            var data = XmlSerialization.Deserialize<LicensingData>(openFileDialog.FileName);
+            var name = openFileDialog.FileName;
+            if ((CurrentSolution != null) && name.StartsWith(CurrentSolution.SolutionPath))
+            {
+                name = name.Substring(CurrentSolution.SolutionPath.Length + 1);
+            } // if
+            licensingDataViewer.LicensingData = data;
+            licensingDataViewer.LicensingDataName = name;
+            tabControlSolution.SelectedTab = tabPageLicensing;
+        } // LoadLicensingData
     } // class LicensingForm
 } // namespace

@@ -42,6 +42,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\..\AssemblySolutionInfo.cs">
+      <Link>Properties\AssemblySolutionInfo.cs</Link>
+    </Compile>
     <Compile Include="LicensingDataUi.cs" />
     <Compile Include="LicensingUiImages.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -50,12 +53,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="ReversedLicensingFileViewer.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="ReversedLicensingFileViewer.Designer.cs">
-      <DependentUpon>ReversedLicensingFileViewer.cs</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.es.resx" />
@@ -63,12 +60,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ReversedLicensingFileViewer.es.resx">
-      <DependentUpon>ReversedLicensingFileViewer.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ReversedLicensingFileViewer.resx">
-      <DependentUpon>ReversedLicensingFileViewer.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -130,6 +121,16 @@
     <Content Include="Resources\SourceCode_16x.png" />
     <Content Include="Resources\SourceCode_24x.png" />
     <Content Include="Resources\SourceCode_32x.png" />
+    <Content Include="Resources\TermsConditions.svg" />
+    <Content Include="Resources\TermsConditionsList.svg" />
+    <Content Include="Resources\TermsConditionsList_16x.png" />
+    <Content Include="Resources\TermsConditionsList_24x.png" />
+    <Content Include="Resources\TermsConditionsList_32x.png" />
+    <Content Include="Resources\TermsConditionsList_48x.png" />
+    <Content Include="Resources\TermsConditions_16x.png" />
+    <Content Include="Resources\TermsConditions_24x.png" />
+    <Content Include="Resources\TermsConditions_32x.png" />
+    <Content Include="Resources\TermsConditions_48x.png" />
     <Content Include="Resources\ThirdParty.svg" />
     <Content Include="Resources\ThirdParty_16x.png" />
     <Content Include="Resources\ThirdParty_24x.png" />
@@ -138,7 +139,6 @@
     <Content Include="Resources\Unknown.svg" />
     <Content Include="Resources\Unknown_24x.png" />
     <Content Include="Resources\Unknown_32x.png" />
-    <Content Include="Resources\Unknown_48x.png" />
     <Content Include="Resources\LicensedUnknown_16x.png" />
     <Content Include="Resources\LicensedUnknown.svg" />
     <Content Include="Resources\LicensedUnknown_24x.png" />

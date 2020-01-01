@@ -1,9 +1,15 @@
-// Copyright (C) 2014-2019, GitHub/Codeplex user AlphaCentaury
+// ==============================================================================
 // 
-// All rights reserved, except those granted by the governing license of this software.
-// See 'license.txt' file in the project root for complete license information.
+//   Copyright (C) 2014-2020, GitHub/Codeplex user AlphaCentaury
+//   All rights reserved.
 // 
-// http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
+//     See 'LICENSE.MD' file (or 'license.txt' if missing) in the project root
+//     for complete license information.
+// 
+//   http://www.alphacentaury.org/movistartv
+//   https://github.com/AlphaCentaury
+// 
+// ==============================================================================
 
 using System;
 using System.Collections.Generic;
@@ -15,17 +21,17 @@ using JetBrains.Annotations;
 namespace AlphaCentaury.Licensing.Data.Serialization
 {
     [Serializable]
-    public class FormattedMultilineText : IXmlSerializable, IEquatable<FormattedMultilineText>, IEquatable<string>, IComparable<FormattedMultilineText>, IComparable<string>, IComparable
+    public class FormattedMultilineText : IXmlSerializable, ICloneable<FormattedMultilineText>, IEquatable<FormattedMultilineText>, IEquatable<string>, IComparable<FormattedMultilineText>, IComparable<string>, IComparable
     {
         public FormattedMultilineText()
         {
             // no-op
         } // constructor
 
-        public FormattedMultilineText(string text, string format = null)
+        public FormattedMultilineText(string text, string format)
         {
             Text = text;
-            Format = null;
+            Format = format;
         } // constructor
 
         public string Format { get; set; }
@@ -36,8 +42,10 @@ namespace AlphaCentaury.Licensing.Data.Serialization
 
         public FormattedMultilineText Clone()
         {
-            return new FormattedMultilineText(Text);
+            return new FormattedMultilineText(Text, Format);
         } // Clone
+
+        object ICloneable.Clone() => Clone();
 
         protected void CopyTo(FormattedMultilineText other)
         {
@@ -80,8 +88,8 @@ namespace AlphaCentaury.Licensing.Data.Serialization
             } // if-else
         } // WriteXml
 
+        public static implicit operator FormattedMultilineText(string text) => new FormattedMultilineText(text, null);
 
-        public static implicit operator FormattedMultilineText(string text) => new FormattedMultilineText(text);
         public static implicit operator string(FormattedMultilineText multiline) => multiline?.Text;
 
         #region Equality members

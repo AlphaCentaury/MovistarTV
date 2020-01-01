@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+==============================================================================
+
+  Copyright (C) 2014-2020, GitHub/Codeplex user AlphaCentaury
+  All rights reserved.
+
+    See 'LICENSE.MD' file (or 'license.txt' if missing) in the project root
+    for complete license information.
+
+  http://www.alphacentaury.org/movistartv
+  https://github.com/AlphaCentaury
+
+==============================================================================
+-->
+<Licensing.Defaults xmlns="http://alphacentaury.org/Licensing.Data/v1">
+  <Common>
+    <License>Ms-RL</License>
+    <Authors>Codeplex/GitHub user AlphaCentaury</Authors>
+    <Copyright>Copyright (C) 2014-2020, Codeplex/GitHub user AlphaCentaury and its contributors</Copyright>
+    <Product>IPTViewr: Virtual Decoder for movistar+ version 1.5 “Kruger 60” Beta 1</Product>
+    <Notes><![CDATA[
+http://www.alphacentaury.org/movistartv
+https://github.com/AlphaCentaury
+]]></Notes>
+  </Common>
+  <Libraries>
+    <TermsAndConditions format="MD"><![CDATA[
+This COMPONENT (“SOFWARE”), either in binary or source code form, is **licensed under the terms of the _Microsoft Reciprocal License (Ms-RL)_** except for “THIRD-PARTY” components.  \
+All other rights are reserved by the author(s) of the software.
+
+_**THIS SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND**_, express or implied, including but not limited to the warranties of merchantability, fitness for a particular purpose and non-infringement.  \
+In no event shall the authors or the copyright holders be liable for any claim, damages or other liability, whether in action of contract, tort or otherwise, arising from, out of or in connection with the software or the use or other dealings in the software.
+
+All trademarks, service marks, trade names, product names and logos are the property of their respective owners.  \
+Its use in the context of this product does not constitute endorsement nor support by their respective owners.
+]]></TermsAndConditions>
+    <TermsAndConditions format="MD" language="ES">
+  <![CDATA[
+Este COMPONENTE (el “SOFTWARE”), ya sea en forma de código binario o fuente, está **sujeto a los términos de la Licencia Recíproca de Microsoft _“Microsoft Reciprocal License” (Ms-RL)_**, excepto en lo relativo a componentes de terceras partes (“THIRD-PARTY”).  \
+Todos los demás derechos están reservados por el/los autor(es) del software.
+
+**EL SOFTWARE SE PROPORCIONA “TAL CUAL”, SIN GARANTÍA DE NINGÚN TIPO**, expresa o implícita, incluyendo (pero no limitándose a) las garantías de comerciabilidad, idoneidad para un propósito particular y no infracción.  \
+En ningún caso, los autores o titulares del Copyright serán responsables de ninguna reclamación, daños o cualquier otra responsabilidad, ya sea en una acción de contrato, agravio o cualquier otro motivo, con o sin relación con el software o el uso u otros aspectos del software.
+
+Todas las marcas comerciales, marcas de servicio, nombres comerciales, nombres de productos y logotipos son propiedad de sus respectivos propietarios.
+Su uso en el contexto de este software no constituye un respaldo ni apoyo por parte de sus respectivos propietarios.
+
+----------------------------------------------------------------------
+
+### “Microsoft Reciprocal License” (_Licencia recíproca de Microsoft_) (Ms-RL)
+
+_A continuación se proporciona una traducción aproximada de la **Licencia recíproca de Microsoft (Ms-RL)** al español. Esta traducción carece de cualquier validez legal._
+
+Esta licencia rige el uso del software que lo acompaña. Si utiliza el software, usted acepta esta licencia. Si no acepta la licencia, no use el software.
+
+1. **Definiciones**
+
+   - Los términos “reproducir”, “reproducción”, “obras derivadas” y “distribución” tienen el mismo significado en este acuerdo de licencia que en la Ley de Derechos de Autor de EE. UU.
+   - Una “contribución” es el software original, o cualquier adición o cambio al software.
+   - Un “colaborador” es cualquier persona que distribuye su contribución bajo esta licencia.
+   - Las “patentes licenciadas” son declaraciones de patente de un contribuyente y que aplican directamente sobre su contribución.
+
+2. **Concesión de derechos**
+
+   - (A) _Concesión de derechos de autor:_ Sujeto a los términos de esta licencia, incluidas las condiciones y limitaciones de la licencia en la sección 3, cada colaborador le otorga una licencia de copyright no exclusiva, mundial y libre de regalías para reproducir su contribución, preparar crear trabajos derivados de su contribución, y distribuir su contribución o cualquier trabajo derivado que usted cree.
+   - (B) _Concesión de patentes:_ Sujeto a los términos de esta licencia, incluidas las condiciones y limitaciones de la licencia en la sección 3, cada colaborador le concede una licencia no exclusiva, mundial y libre de regalías bajo sus patentes autorizadas para realizar, haber realizado, usar, vender, ofrecer para la venta, importar y/o disponer de su contribución en el software o trabajos derivados de la contribución en el software.
+
+3. **Condiciones y limitaciones**
+
+   - (A) _Derechos recíprocos:_ Para cualquier archivo que distribuya que contenga código del software (en código fuente o formato binario), debe proporcionar a los destinatarios el código fuente de ese archivo junto con una copia de esta licencia, que será la licencia que regirá sobre el archivo. Puede licenciar otros archivos que son totalmente de su propiedad y que no contengan código alguno del software en los términos de licenciamiento que usted elija.
+   - (B) _Sin licencia de marca comercial:_ esta licencia no le concede el derecho a utilizar el nombre, el logotipo o las marcas comerciales de ningún colaborador.
+   - (C) Si presenta una reclamación de patente contra un contribuyente por patentes que usted alega son infringidas por el software, la licencia de patente sobre el software que dicho colaborador le proporcionó finaliza automáticamente.
+   - (D) Si distribuye cualquier parte del software, debe conservar todos los avisos de copyright, patente, marca comercial y atribución que están presentes en el software.
+   - (E) Si distribuye cualquier porción del software en forma de código fuente, puede hacerlo solo bajo esta licencia incluyendo una copia completa de esta licencia con su distribución. Si distribuye cualquier porción del software en forma de código compilado u objeto, solo puede hacerlo bajo una licencia que cumpla con esta licencia.
+   - (F) El software se proporciona “tal cual está”. Usted asume los riesgos derivados de su uso. Los colaboradores no proporcionan expresamente garantías o condiciones. Es posible que tenga derechos adicionales como consumidor bajo las leyes locales que esta licencia no puede cambiar. En la medida permitida por las leyes locales, los contribuyentes excluyen las garantías implícitas de comerciabilidad, idoneidad para un propósito particular y no infracción.
+]]></TermsAndConditions>
+  </Libraries>
+  <Programs>
+    <TermsAndConditions format="MD"><![CDATA[
+This PROGRAM (“SOFWARE”), either in binary or source code form, is **licensed under the terms of the _Microsoft Reciprocal License (Ms-RL)_** except for “THIRD-PARTY” components.  \
+All other rights are reserved by the author(s) of the software.
+
+_**THIS SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND**_, express or implied, including but not limited to the warranties of merchantability, fitness for a particular purpose and non-infringement.  \
+In no event shall the authors or the copyright holders be liable for any claim, damages or other liability, whether in action of contract, tort or otherwise, arising from, out of or in connection with the software or the use or other dealings in the software.
+
+All trademarks, service marks, trade names, product names and logos are the property of their respective owners, including, in some instances, Grupo Telefónica.  \
+Its use in the context of this product does not constitute endorsement nor support by their respective owners.
+
+Logos of movistar+ channels might be provided with this software. These logos are the property of the respective channels and businesses.  \
+Logos are provided in “good faith”, in order to identify the different channels and no copyright infringement is intended.
+]]></TermsAndConditions>
+    <TermsAndConditions format="MD" language="ES"><![CDATA[
+Este PROGRAMA (el “SOFTWARE”), ya sea en forma de código binario o fuente, está **sujeto a los términos de la Licencia Recíproca de Microsoft _“Microsoft Reciprocal License” (Ms-RL)_**, excepto en lo relativo a componentes de terceras partes (“THIRD-PARTY”).  \
+Todos los demás derechos están reservados por el/los autor(es) del software.
+
+**EL SOFTWARE SE PROPORCIONA “TAL CUAL”, SIN GARANTÍA DE NINGÚN TIPO**, expresa o implícita, incluyendo (pero no limitándose a) las garantías de comerciabilidad, idoneidad para un propósito particular y no infracción.  \
+En ningún caso, los autores o titulares del Copyright serán responsables de ninguna reclamación, daños o cualquier otra responsabilidad, ya sea en una acción de contrato, agravio o cualquier otro motivo, con o sin relación con el software o el uso u otros aspectos del software.
+
+Todas las marcas comerciales, marcas de servicio, nombres comerciales, nombres de productos y logotipos son propiedad de sus respectivos propietarios, incluyendo, en su caso, al Grupo Teléfonica.  \
+Su uso en el contexto de este software no constituye un respaldo ni apoyo por parte de sus respectivos propietarios.
+
+Los logotipos de los canales de movistar+ pueden estar incluídos con el software. Estos logotipos son propiedad de los diferentes canales y sus compañías propietarias.  \
+Los logos se suministran de “buena fe”, para poder identificar adecuadamente los diferentes canales, sin ánimo de infringir ningún derecho de copyright.
+
+----------------------------------------------------------------------
+
+_A continuación se proporciona una traducción aproximada de la **Licencia recíproca de Microsoft (Ms-RL)** al español. Esta traducción carece de cualquier validez legal._
+
+Esta licencia rige el uso del software que lo acompaña. Si utiliza el software, usted acepta esta licencia. Si no acepta la licencia, no use el software.
+
+1. **Definiciones**
+
+   - Los términos “reproducir”, “reproducción”, “obras derivadas” y “distribución” tienen el mismo significado en este acuerdo de licencia que en la Ley de Derechos de Autor de EE. UU.
+   - Una “contribución” es el software original, o cualquier adición o cambio al software.
+   - Un “colaborador” es cualquier persona que distribuye su contribución bajo esta licencia.
+   - Las “patentes licenciadas” son declaraciones de patente de un contribuyente y que aplican directamente sobre su contribución.
+
+2. **Concesión de derechos**
+
+   - (A) _Concesión de derechos de autor:_ Sujeto a los términos de esta licencia, incluidas las condiciones y limitaciones de la licencia en la sección 3, cada colaborador le otorga una licencia de copyright no exclusiva, mundial y libre de regalías para reproducir su contribución, preparar crear trabajos derivados de su contribución, y distribuir su contribución o cualquier trabajo derivado que usted cree.
+   - (B) _Concesión de patentes:_ Sujeto a los términos de esta licencia, incluidas las condiciones y limitaciones de la licencia en la sección 3, cada colaborador le concede una licencia no exclusiva, mundial y libre de regalías bajo sus patentes autorizadas para realizar, haber realizado, usar, vender, ofrecer para la venta, importar y/o disponer de su contribución en el software o trabajos derivados de la contribución en el software.
+
+3. **Condiciones y limitaciones**
+
+   - (A) _Derechos recíprocos:_ Para cualquier archivo que distribuya que contenga código del software (en código fuente o formato binario), debe proporcionar a los destinatarios el código fuente de ese archivo junto con una copia de esta licencia, que será la licencia que regirá sobre el archivo. Puede licenciar otros archivos que son totalmente de su propiedad y que no contengan código alguno del software en los términos de licenciamiento que usted elija.
+   - (B) _Sin licencia de marca comercial:_ esta licencia no le concede el derecho a utilizar el nombre, el logotipo o las marcas comerciales de ningún colaborador.
+   - (C) Si presenta una reclamación de patente contra un contribuyente por patentes que usted alega son infringidas por el software, la licencia de patente sobre el software que dicho colaborador le proporcionó finaliza automáticamente.
+   - (D) Si distribuye cualquier parte del software, debe conservar todos los avisos de copyright, patente, marca comercial y atribución que están presentes en el software.
+   - (E) Si distribuye cualquier porción del software en forma de código fuente, puede hacerlo solo bajo esta licencia incluyendo una copia completa de esta licencia con su distribución. Si distribuye cualquier porción del software en forma de código compilado u objeto, solo puede hacerlo bajo una licencia que cumpla con esta licencia.
+   - (F) El software se proporciona “tal cual está”. Usted asume los riesgos derivados de su uso. Los colaboradores no proporcionan expresamente garantías o condiciones. Es posible que tenga derechos adicionales como consumidor bajo las leyes locales que esta licencia no puede cambiar. En la medida permitida por las leyes locales, los contribuyentes excluyen las garantías implícitas de comerciabilidad, idoneidad para un propósito particular y no infracción.
+]]></TermsAndConditions>
+    <Notes><![CDATA[
+http://www.alphacentaury.org/movistartv
+https://github.com/AlphaCentaury
+]]></Notes>
+  </Programs>
+</Licensing.Defaults>

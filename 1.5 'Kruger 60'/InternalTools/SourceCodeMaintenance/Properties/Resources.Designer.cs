@@ -253,6 +253,66 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap LinkedFolder_16x {
+            get {
+                object obj = ResourceManager.GetObject("LinkedFolder_16x", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap LinkedFolder_24x {
+            get {
+                object obj = ResourceManager.GetObject("LinkedFolder_24x", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap LinkedFolder_32x {
+            get {
+                object obj = ResourceManager.GetObject("LinkedFolder_32x", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap LinkedFolderOpen_16x {
+            get {
+                object obj = ResourceManager.GetObject("LinkedFolderOpen_16x", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap LinkedFolderOpen_24x {
+            get {
+                object obj = ResourceManager.GetObject("LinkedFolderOpen_24x", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap LinkedFolderOpen_32x {
+            get {
+                object obj = ResourceManager.GetObject("LinkedFolderOpen_32x", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap MaintenanceTool_Cli_16x {
             get {
                 object obj = ResourceManager.GetObject("MaintenanceTool_Cli_16x", resourceCulture);

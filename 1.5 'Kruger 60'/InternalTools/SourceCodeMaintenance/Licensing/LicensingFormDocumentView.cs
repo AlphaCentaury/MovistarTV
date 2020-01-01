@@ -1,13 +1,21 @@
-// Copyright (C) 2014-2019, GitHub/Codeplex user AlphaCentaury
+// ==============================================================================
 // 
-// All rights reserved, except those granted by the governing license of this software.
-// See 'license.txt' file in the project root for complete license information.
+//   Copyright (C) 2014-2020, GitHub/Codeplex user AlphaCentaury
+//   All rights reserved.
 // 
-// http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
+//     See 'LICENSE.MD' file (or 'license.txt' if missing) in the project root
+//     for complete license information.
+// 
+//   http://www.alphacentaury.org/movistartv
+//   https://github.com/AlphaCentaury
+// 
+// ==============================================================================
 
 using AlphaCentaury.Licensing.Data.Serialization;
-using AlphaCentaury.Licensing.Data.Ui;
+using AlphaCentaury.Tools.SourceCodeMaintenance.Helpers;
 using AlphaCentaury.Tools.SourceCodeMaintenance.Licensing.VisualStudio;
+using AlphaCentaury.Tools.SourceCodeMaintenance.Properties;
+using IpTviewr.Common;
 using IpTviewr.UiServices.Common.Forms;
 using System;
 using System.Collections.Generic;
@@ -15,9 +23,6 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using AlphaCentaury.Tools.SourceCodeMaintenance.Helpers;
-using AlphaCentaury.Tools.SourceCodeMaintenance.Properties;
-using IpTviewr.Common;
 
 namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing
 {
@@ -28,7 +33,7 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing
         private LicensingData _currentLicensingData;
         private VsSolution _currentSolutionField;
         private bool _formLoaded;
-        private readonly Helpers.AsyncHelper _asyncHelper;
+        private readonly AsyncHelper _asyncHelper;
 
         protected enum DetailsModeEnum
         {
@@ -44,13 +49,9 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing
 
             SolutionImages.InitializeImageListSmall(imageListSolutionTreeSmall);
             SolutionImages.InitializeImageListMedium(imageListSolutionTreeMedium);
-            LicensingImageList = new ImageList(components);
-            LicensingUiImages.GetImageListMedium(LicensingImageList);
 
-            SolutionImages = new SolutionImages(imageListSolutionTreeSmall.Images);
+            SolutionImages = new SolutionImages(imageListSolutionTreeSmall);
             LicensingVsUi = new LicensingVsUi(SolutionImages);
-            LicensingImages = new LicensingUiImages(LicensingImageList.Images);
-            LicensingUi = new LicensingDataUi(LicensingImages);
 
             _asyncHelper = new AsyncHelper(this, toolStripMain, cancelStripButton);
             _licensingNodes = new List<(LicensingDataNode Licensing, TreeNode node)>();
@@ -73,9 +74,6 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing
 
         private protected SolutionImages SolutionImages { get; }
         private protected LicensingVsUi LicensingVsUi { get; }
-        protected LicensingUiImages LicensingImages { get; }
-        protected ImageList LicensingImageList { get; }
-        protected LicensingDataUi LicensingUi { get; }
         private protected IReadOnlyList<(LicensingDataNode Licensing, TreeNode node)> LicensingNodes => _licensingNodes;
 
         protected VsSolution CurrentSolution
@@ -115,24 +113,10 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing
                     if (_formLoaded) return;
                 } // if
 
-                treeViewLicensingData.Nodes.Clear();
-
-                var root = (value == null) switch
-                {
-                    true => new TreeNode(LicensingResources.NoLicensingSelected, LicensingImages.LicensingData, LicensingImages.LicensingData),
-                    false => LicensingUi.DataToTree("", value)
-                };
-
-                treeViewLicensingData.Nodes.Add(root);
+                licensingDataViewer.LicensingData = value;
                 _currentLicensingData = value;
             } // set
         } // CurrentLicensingData
-
-        protected string SelectedLicensingDataName
-        {
-            get => treeViewLicensingData.Nodes[0].Text;
-            set => treeViewLicensingData.Nodes[0].Text = value;
-        } // SelectedLicensingDataName
 
         protected DetailsModeEnum DetailsMode
         {
@@ -151,6 +135,7 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing
                         treeViewDetails.Nodes.Clear();
                         treeViewDetails.ImageList = null;
                         treeViewDetails.Enabled = false;
+                        licensingDataViewer.LicensingData = null;
                         break;
                 } // switch
 
@@ -165,9 +150,6 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing
         {
             treeViewSolution.ImageList = imageListSolutionTreeMedium;
             CurrentSolution = null;
-
-            treeViewLicensingData.ImageList = LicensingImageList;
-            CurrentLicensingData = null;
 
             DetailsMode = DetailsModeEnum.None;
             _formLoaded = true;
@@ -256,21 +238,33 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing
             } // switch
         } // treeViewSolution_AfterSelect
 
-        protected virtual void treeViewSolution_BeforeCollapse(object sender, TreeViewCancelEventArgs e)
-        {
-            if (e.Node.ImageIndex != SolutionImages.FolderOpen) return;
-
-            e.Node.ImageIndex = SolutionImages.Folder;
-            e.Node.SelectedImageIndex = SolutionImages.Folder;
-        } // treeViewSolution_BeforeCollapse
-
         protected virtual void treeViewSolution_BeforeExpand(object sender, TreeViewCancelEventArgs e)
         {
-            if (e.Node.ImageIndex != SolutionImages.Folder) return;
-
-            e.Node.ImageIndex = SolutionImages.FolderOpen;
-            e.Node.SelectedImageIndex = SolutionImages.FolderOpen;
+            if (e.Node.ImageIndex == SolutionImages.Folder)
+            {
+                e.Node.ImageIndex = SolutionImages.FolderOpen;
+                e.Node.SelectedImageIndex = SolutionImages.FolderOpen;
+            }
+            else if (e.Node.ImageIndex == SolutionImages.LinkedFolder)
+            {
+                e.Node.ImageIndex = SolutionImages.LinkedFolderOpen;
+                e.Node.SelectedImageIndex = SolutionImages.LinkedFolderOpen;
+            } // if-else if
         } // treeViewSolution_BeforeExpand
+
+        protected virtual void treeViewSolution_BeforeCollapse(object sender, TreeViewCancelEventArgs e)
+        {
+            if (e.Node.ImageIndex == SolutionImages.FolderOpen)
+            {
+                e.Node.ImageIndex = SolutionImages.Folder;
+                e.Node.SelectedImageIndex = SolutionImages.Folder;
+            }
+            else if (e.Node.ImageIndex == SolutionImages.LinkedFolderOpen)
+            {
+                e.Node.ImageIndex = SolutionImages.LinkedFolder;
+                e.Node.SelectedImageIndex = SolutionImages.LinkedFolder;
+            } // if-else if
+        } // treeViewSolution_BeforeCollapse
 
         #endregion
 
@@ -300,7 +294,17 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing
 
         #region Solution
 
-        protected async void LoadSolutionFolderAsync(string path)
+        protected void LoadSolutionFolderAsync(string solutionFolder)
+        {
+            LoadSolution(solutionFolder, VsSolution.FromFolderAsync);
+        } // LoadSolutionFolderAsync
+
+        protected void LoadSolutionFileAsync(string solutionFile)
+        {
+            LoadSolution(solutionFile, VsSolution.FromFileAsync);
+        } // LoadSolutionFile
+
+        private async void LoadSolution(string path, Func<string, IEnumerable<IVsProjectReader>, CancellationToken, Task<VsSolution>> asyncLoader)
         {
             treeViewSolution.Nodes.Clear();
             DetailsMode = DetailsModeEnum.None;
@@ -309,7 +313,7 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing
             try
             {
                 _asyncHelper.BeginAsyncOperation();
-                var solution = await VsSolution.FromFolderAsync(path, LicensingMaintenance.ProjectReaders, _asyncHelper.GetCancellationToken());
+                var solution = await asyncLoader(path, LicensingMaintenance.ProjectReaders, _asyncHelper.GetCancellationToken());
                 _asyncHelper.EndAsyncOperation();
                 CurrentSolution = solution;
             }
@@ -325,7 +329,7 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing
                 BaseProgram.HandleException(this, e.Message, e);
                 CurrentSolution = null;
             } // try-catch
-        } // LoadSolutionFolder
+        } // LoadSolution
 
         private void ExtractLicensingData(TreeNode treeNode)
         {
@@ -351,7 +355,6 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing
             // must be overriden in descendant
             throw new NotSupportedException();
         } // OnVsSolutionSelected
-
 
         protected virtual void OnVsProjectSelected(VsProject vsProject)
         {
@@ -398,7 +401,6 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing
             _asyncHelper.EndAsyncOperation();
             writer.Stop();
         } // ExecuteAsync
-
     } // class LicensingFormDocumentView
 } // namespace
 

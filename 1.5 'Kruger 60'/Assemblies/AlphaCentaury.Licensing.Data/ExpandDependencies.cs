@@ -1,13 +1,21 @@
-// Copyright (C) 2014-2019, GitHub/Codeplex user AlphaCentaury
+// ==============================================================================
 // 
-// All rights reserved, except those granted by the governing license of this software.
-// See 'license.txt' file in the project root for complete license information.
+//   Copyright (C) 2014-2020, GitHub/Codeplex user AlphaCentaury
+//   All rights reserved.
 // 
-// http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
+//     See 'LICENSE.MD' file (or 'license.txt' if missing) in the project root
+//     for complete license information.
+// 
+//   http://www.alphacentaury.org/movistartv
+//   https://github.com/AlphaCentaury
+// 
+// ==============================================================================
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using System.Net.Sockets;
 using AlphaCentaury.Licensing.Data.Serialization;
 
 namespace AlphaCentaury.Licensing.Data
@@ -26,10 +34,7 @@ namespace AlphaCentaury.Licensing.Data
             _dataList = list;
 
             // create dictionary of libraries
-            var q = from data in list
-                    where data?.Licensed is LicensedLibrary
-                    select data;
-            _libraries = q.ToDictionary(data => data.Licensed.Name);
+            _libraries = list.ToDictionary(data => data.Licensed.Name);
 
             // create dictionary of licenses
             _allLicenses = new Dictionary<string, License>(StringComparer.InvariantCultureIgnoreCase);
@@ -142,9 +147,9 @@ namespace AlphaCentaury.Licensing.Data
             q.ForEach(dependency =>
             {
                 if (added.Contains(dependency.Name)) return;
-                if (data.Dependencies.ThirdParty == null) data.Dependencies.ThirdParty = new List<ThirdPartyDependency>();
 
                 dependency.DependencyType = LicensedDependencyType.Indirect;
+                data.Dependencies.ThirdParty ??= new List<ThirdPartyDependency>();
                 data.Dependencies.ThirdParty.Add(dependency);
                 added.Add(dependency.Name);
             });
@@ -154,17 +159,35 @@ namespace AlphaCentaury.Licensing.Data
 
         private void AddMissingLicenses()
         {
-            _dataList.Where(data => data.Dependencies?.ThirdParty != null).ForEach(data =>
+            var q = from data in _dataList
+                    where data.DependenciesSpecified
+                    select data.Dependencies;
+
+            _dataList.Where(data => data.DependenciesSpecified).ForEach(data =>
             {
-                data.Dependencies.ThirdParty.ForEach(library =>
-                {
-                    var license = _allLicenses[library.LicenseId];
-                    if (data.GetLicense(license.Id) == null)
-                    {
-                        data.Licenses.Add(license);
-                    } // if
-                });
+                var missingFromLibraries = MissingLicenses(data, data.Dependencies.Libraries);
+                var missingFromThirdParty = MissingLicenses(data, data.Dependencies.ThirdParty);
+                var missing = missingFromLibraries.Concat(missingFromThirdParty);
+
+                data.Licenses.AddRange(missing);
             });
+
+            IEnumerable<License> MissingLicenses(LicensingData data, IEnumerable<LicensedComponentDependency> list)
+            {
+                if (list == null) return Enumerable.Empty<License>();
+
+                return from dependency in list
+                       where !string.IsNullOrEmpty(dependency.LicenseId)
+                       where data.GetLicense(dependency.LicenseId) == null
+                       let license = GetLicenseFromPool(dependency.LicenseId)
+                       where license != null
+                       select license;
+            } // local MissingLicenses
+
+            License GetLicenseFromPool(string licenseId)
+            {
+                return _allLicenses.TryGetValue(licenseId, out var license) ? license : null;
+            } // local GetLicenseFromPool
         } // AddMissingLicenses
     } // class ExpandDependencies
 } // namespace

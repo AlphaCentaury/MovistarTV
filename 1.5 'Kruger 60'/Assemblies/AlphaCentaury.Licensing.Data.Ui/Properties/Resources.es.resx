@@ -138,4 +138,7 @@
   <data name="NoName" xml:space="preserve">
     <value>&lt;sin nombre&gt;</value>
   </data>
+  <data name="TermsAndConditionsNode" xml:space="preserve">
+    <value>Términos y condiciones de uso</value>
+  </data>
 </root>

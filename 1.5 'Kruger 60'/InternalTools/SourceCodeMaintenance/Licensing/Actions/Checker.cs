@@ -1,4 +1,17 @@
-﻿using System;
+// ==============================================================================
+// 
+//   Copyright (C) 2014-2020, GitHub/Codeplex user AlphaCentaury
+//   All rights reserved.
+// 
+//     See 'LICENSE.MD' file (or 'license.txt' if missing) in the project root
+//     for complete license information.
+// 
+//   http://www.alphacentaury.org/movistartv
+//   https://github.com/AlphaCentaury
+// 
+// ==============================================================================
+
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -13,7 +26,7 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing.Actions
 {
     internal sealed class Checker : ProjectAction
     {
-        private readonly IReadOnlyDictionary<string, LicensingDefaults> Defaults;
+        private readonly LicensingDefaultsPool Defaults;
         private readonly IReadOnlyDictionary<string, License> LicensesPool;
         private readonly LicensingThirdPartyPool ThirdPartyPool;
         private readonly CheckerOptions _options;
@@ -29,7 +42,7 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing.Actions
             _options = options;
             _usedLicenses = new HashSet<string>(StringComparer.InvariantCultureIgnoreCase);
             writer.WriteLine("Reading licensing defaults...");
-            Defaults = LicensingMaintenance.Helper.ReadLicensingDefaults(defaultsPath);
+            Defaults = LicensingMaintenance.Helper.ReadLicensingDefaultsPool(defaultsPath, writer);
             writer.WriteLine("Reading licenses pool...");
             LicensesPool = LicensingMaintenance.Helper.ReadLicensesPool(defaultsPath);
             writer.WriteLine("Reading third-party pool...");
@@ -45,16 +58,16 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing.Actions
 
             void CheckDefaults()
             {
-                if (Defaults.Count == 0)
+                if (Defaults.Pool.Count == 0)
                 {
                     Writer.WriteLine("WARNING: no licensing defaults have been specified");
                 } // if
 
-                foreach (var defaults in Defaults.Values)
+                foreach (var defaults in Defaults.Pool.Values)
                 {
-                    if ((defaults.ForLibraries == null) || (defaults.ForPrograms == null) || !defaults.LicensesSpecified)
+                    if ((defaults.ForLibraries == null) || (defaults.ForPrograms == null))
                     {
-                        Writer.WriteLine("WARNING: missing data for licensing type '{0}'", defaults.AppliesTo ?? "<default>");
+                        Writer.WriteLine("WARNING: missing data for defaults '{0}'", defaults.AppliesTo ?? "<default>");
                     } // if
                 } // foreach
             } // local CheckDefaults
@@ -110,12 +123,12 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing.Actions
             CheckLicensed();
 
             // check third-party
+            CheckNuGetPackages();
             CheckThirdParty(_data.Dependencies?.ThirdParty, "<Dependencies><ThirdParty>");
 
             // check licenses
             _data.Dependencies?.Libraries?.ForEach(library => SetLicenseUsed(library.LicenseId));
             var ids = CheckDuplicatedLicenses();
-            if (ids == null) return;
             CheckLicensesReferences(ids);
             CheckLicensesText();
             CheckUnusedLicenses();
@@ -131,7 +144,8 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing.Actions
         private bool CheckProjectLicensedItem()
         {
             var licensed = _data.Licensed;
-            if (!Defaults.TryGetValue(_project.LicensingDefaultsKey ?? "", out _projectDefaults))
+            _projectDefaults = Creator.GetLicensingDefaults(Defaults, _project, false);
+            if (_projectDefaults == null)
             {
                 Writer.WriteLine("ERROR: licensing defaults key '{0}' not found", _project.LicensingDefaultsKey ?? "<default>");
                 return false;
@@ -139,26 +153,15 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing.Actions
 
             switch (_data.Licensed)
             {
-                case LicensedProgram program:
-                    if (_project.IsLibrary)
-                    {
-                        Writer.WriteLine("WARNING: licensed item is marked as '{0}', but the project is a library", licensed.Type);
-                        _data.Licensed = program.Morph();
-                        _changed = true;
-                        _projectLicensedDefaults = _projectDefaults.ForLibraries;
-                    }
-                    else
-                    {
-                        _projectLicensedDefaults = _projectDefaults.ForPrograms;
-                    } // if-else
-
+                case LicensedSolution _:
+                    _projectLicensedDefaults = _projectDefaults.ForLibraries;
                     return true;
 
                 case LicensedLibrary library:
                     if (!_project.IsLibrary)
                     {
                         Writer.WriteLine("WARNING: licensed item is marked as '{0}', but the project is not a library", licensed.Type);
-                        _data.Licensed = library.Morph();
+                        _data.Licensed = library.MorphToProgram(_project.IsGui);
                         _changed = true;
                         _projectLicensedDefaults = _projectDefaults.ForPrograms;
                     }
@@ -171,6 +174,27 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing.Actions
 
                 case LicensedInstaller _:
                     _projectLicensedDefaults = _projectDefaults.ForLibraries;
+
+                    return true;
+
+                case LicensedProgram program:
+                    if (_project.IsLibrary)
+                    {
+                        Writer.WriteLine("WARNING: licensed item is marked as '{0}', but the project is a library", licensed.Type);
+                        _data.Licensed = program.MorphToLibrary();
+                        _changed = true;
+                        _projectLicensedDefaults = _projectDefaults.ForLibraries;
+                    }
+                    else
+                    {
+                        _projectLicensedDefaults = _projectDefaults.ForPrograms;
+                        if (program.IsGuiApp != _project.IsGui)
+                        {
+                            Writer.WriteLine($"Info: replacing wrong IsGuiApp '{program.IsGuiApp}' with '{_project.IsGui}'");
+                            program.IsGuiApp = _project.IsGui;
+                            _changed = true;
+                        } // if
+                    } // if-else
 
                     return true;
 
@@ -338,7 +362,7 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing.Actions
         {
             if ((thirdParty == null) || (thirdParty.Count == 0)) return;
 
-            for (var index=0;index<thirdParty.Count;index++)
+            for (var index = 0; index < thirdParty.Count; index++)
             {
                 var component = thirdParty[index];
 
@@ -388,6 +412,88 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing.Actions
             } // for index
         } // CheckThirdParty
 
+        private void CheckNuGetPackages()
+        {
+            if (string.IsNullOrEmpty(_project.Filename)) return;
+
+            var configFile = Path.Combine(Path.GetDirectoryName(_project.Filename) ?? Path.GetPathRoot(_project.Filename), "packages.config");
+            if (!File.Exists(configFile)) return;
+
+            var config = XmlSerialization.Deserialize<PackagesConfig>(configFile);
+            if (!config.PackagesSpecified) return;
+
+            var thirdParty = _data.Dependencies?.ThirdParty;
+            thirdParty ??= new List<ThirdPartyDependency>();
+
+            var q = from component in thirdParty
+                    where component.Type == ThirdPartyDependencyType.NugetPackage
+                    where component.DependencyType == LicensedDependencyType.Direct
+                    select component;
+            var third = q.ToDictionary(component => component.Name, StringComparer.InvariantCultureIgnoreCase);
+
+            // check missing packages
+
+            foreach (var package in config.Packages)
+            {
+                if (!third.TryGetValue(package.Id, out var component))
+                {
+                    Writer.WriteLine("WARNING: nuget package '{0}' is missing in third party dependencies", package.Id);
+                    Writer.WriteLine("Adding incomplete dependency");
+                    thirdParty.Add(new ThirdPartyDependency
+                    {
+                        Name = package.Id,
+                        Type = ThirdPartyDependencyType.NugetPackage,
+                        DependencyType = LicensedDependencyType.Direct,
+                        Version = package.Version
+                    });
+                    _changed = true;
+                }
+                else
+                {
+                    if (string.Equals(component.Version, package.Version, StringComparison.InvariantCultureIgnoreCase)) continue;
+
+                    if (string.IsNullOrEmpty(component.Version))
+                    {
+                        Writer.WriteLine("Info: adding missing version '{0}' to nuget dependency '{1}'", package.Version, component.Name);
+                        component.Version = package.Version;
+                        _changed = true;
+                    }
+                    else
+                    {
+                        Writer.WriteLine("WARNING: version mismatch ('{0}' vs '{1}') in nuget dependency '{2}'", package.Version, component.Version, component.Name);
+                    } // if-else
+                } // if-else
+            } // foreach package
+
+            // check extra packages
+            var nuget = new HashSet<string>(StringComparer.InvariantCultureIgnoreCase);
+            foreach (var package in config.Packages)
+            {
+                nuget.Add(package.Id);
+            } // foreach
+
+            var extra = from component in third.Values
+                        where !nuget.Contains(component.Name)
+                        select component;
+            foreach (var component in extra)
+            {
+                Writer.WriteLine("Info: removing extra nuget dependency '{0}", component.Name);
+                thirdParty.Remove(component);
+                _changed = true;
+            } // foreach
+
+            if (thirdParty.Count == 0) thirdParty = null;
+            if (thirdParty != null)
+            {
+                _data.Dependencies ??= new LicensingDependencies();
+                _data.Dependencies.ThirdParty = thirdParty;
+            }
+            else if (_data.Dependencies != null)
+            {
+                _data.Dependencies.ThirdParty = null;
+            } // if-else
+        } // CheckNuGetPackages
+
         #endregion
 
         #region Licenses
@@ -397,7 +503,7 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing.Actions
             if (!_data.LicensesSpecified)
             {
                 Writer.WriteLine("WARNING: <Licenses> is null or empty");
-                return null;
+                return new HashSet<string>();
             } // if
 
             var ids = new HashSet<string>(StringComparer.InvariantCultureIgnoreCase);
@@ -443,8 +549,8 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing.Actions
             {
                 if (allIds.Contains(id)) return;
 
-                Writer.WriteLine("WARNING: license id '{0}' referenced in {1} not found", id, @from);
-                if (LicensesPool.TryGetValue(id, out var license))
+                Writer.WriteLine("WARNING: license id '{0}' referenced in {1} not found", id ?? "<null>", @from);
+                if ((id != null) && (LicensesPool.TryGetValue(id, out var license)))
                 {
                     Writer.WriteLine("INFO: adding license '{0}' ({1}) from pool to <Licenses>", id, license.Name);
                     _data.Licenses.Add(license);
@@ -453,7 +559,7 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing.Actions
                 }
                 else
                 {
-                    Writer.WriteLine("ERROR: license id '{0}' not found in licenses pool", id);
+                    Writer.WriteLine("ERROR: license id '{0}' not found in licenses pool", id ?? "<null>");
                 } // if
             } // CheckLicenseId
         } // CheckLicensesReferences

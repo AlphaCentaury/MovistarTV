@@ -1,9 +1,15 @@
-// Copyright (C) 2014-2019, GitHub/Codeplex user AlphaCentaury
+// ==============================================================================
 // 
-// All rights reserved, except those granted by the governing license of this software.
-// See 'license.txt' file in the project root for complete license information.
+//   Copyright (C) 2014-2020, GitHub/Codeplex user AlphaCentaury
+//   All rights reserved.
 // 
-// http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
+//     See 'LICENSE.MD' file (or 'license.txt' if missing) in the project root
+//     for complete license information.
+// 
+//   http://www.alphacentaury.org/movistartv
+//   https://github.com/AlphaCentaury
+// 
+// ==============================================================================
 
 using System;
 using System.Collections.Generic;
@@ -11,43 +17,109 @@ using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using JetBrains.Annotations;
 
 namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing.VisualStudio
 {
-    public class VsSolution
+    public partial class VsSolution
     {
-        public VsSolution(string path, VsSolutionFolder rootFolder, IReadOnlyList<VsProject> allProjects)
+        public VsSolution(bool isFolderSolution, string path, VsFolder rootFolder, IReadOnlyList<VsProject> allProjects, Guid guid, IReadOnlyList<VsSolution> subSolutions = null)
         {
+            if (string.IsNullOrEmpty(path)) throw new ArgumentNullException(nameof(path));
+            if (allProjects == null) throw new ArgumentNullException(nameof(allProjects));
+
+            RootFolder = rootFolder ?? throw new ArgumentNullException(nameof(rootFolder));
             Name = Path.GetFileName(path);
-            SolutionPath = path;
-            RootFolder = rootFolder;
-            AllProjects = allProjects;
+            SolutionPath = isFolderSolution ? path : Path.GetDirectoryName(path) ?? Path.GetPathRoot(path);
+            SolutionFile = isFolderSolution ? null : path;
+            Guid = guid;
+
+            if (subSolutions == null)
+            {
+                AllProjects = allProjects;
+            }
+            else
+            {
+                AllProjects = allProjects;
+                var solutionProjects = new List<VsProject>(subSolutions.Count + 1)
+                {
+                    new VsSolutionProject(this)
+                };
+                solutionProjects.AddRange(subSolutions.Select(subSolution => new VsSolutionProject(subSolution)));
+
+
+                var all = new List<VsProject>(allProjects.Count + solutionProjects.Count);
+                all.AddRange(allProjects);
+                all.AddRange(solutionProjects);
+
+                AllProjects = all;
+                SubSolutions = subSolutions;
+
+                rootFolder.AddFolder(new VsFolder("<Solutions>", solutionProjects, null));
+            } // if-else
+
             GuidDictionary = AllProjects.ToDictionary(project => project.Guid);
             NamespaceDictionary = AllProjects.ToDictionary(project => project.Namespace);
         } // constructor
 
+        [NotNull]
         public string Name { get; }
+
+        [NotNull]
         public string SolutionPath { get; }
-        public VsSolutionFolder RootFolder;
+
+        public string SolutionFile { get; }
+
+        public Guid Guid { get; }
+
+        [NotNull]
+        public VsFolder RootFolder;
+
+        [NotNull]
         public IReadOnlyList<VsProject> AllProjects;
+
+        [NotNull]
         public IReadOnlyDictionary<Guid, VsProject> GuidDictionary;
+
+        [NotNull]
         public IReadOnlyDictionary<string, VsProject> NamespaceDictionary;
-        public string LicensingDefaultsKey { get; private set; }
+
+        [CanBeNull]
+        public IReadOnlyList<VsSolution> SubSolutions { get; }
+
+        public string LicensingDefaultsScope { get; private set; }
 
         public VsProject this[Guid guid] => GuidDictionary[guid];
+
         public VsProject this[string @namespace] => NamespaceDictionary[@namespace];
 
         public bool TryGetValue(Guid guid, out VsProject project) => GuidDictionary.TryGetValue(guid, out project);
+
         public bool TryGetValue(string @namespace, out VsProject project) => NamespaceDictionary.TryGetValue(@namespace, out project);
 
         public override string ToString() => SolutionPath;
 
         #region Static methods
 
+        public static VsSolution FromFile(string solutionFile, IEnumerable<IVsProjectReader> readers)
+        {
+            return FromFile(solutionFile, readers, CancellationToken.None);
+        } // FromFile
+
         public static VsSolution FromFolder(string solutionFolder, IEnumerable<IVsProjectReader> readers)
         {
             return FromFolder(solutionFolder, readers, CancellationToken.None);
         } // FromFolder
+
+        public static VsSolution FromFile(string solutionFile, IEnumerable<IVsProjectReader> readers, CancellationToken token)
+        {
+            if (solutionFile == null) throw new ArgumentNullException(nameof(solutionFile));
+            if (!File.Exists(solutionFile)) throw new FileNotFoundException($"File not found: {solutionFile}");
+            if (readers == null) throw new ArgumentNullException(nameof(readers));
+
+            var loader = new Loader(readers, token);
+            return loader.FromFile(solutionFile);
+        } // FromFile
 
         public static VsSolution FromFolder(string solutionFolder, IEnumerable<IVsProjectReader> readers, CancellationToken token)
         {
@@ -55,58 +127,14 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing.VisualStudio
             if (!Directory.Exists(solutionFolder)) throw new DirectoryNotFoundException($"Directory not found exception: {solutionFolder}");
             if (readers == null) throw new ArgumentNullException(nameof(readers));
 
-            var q = from reader in readers
-                    let supported = reader.SupportedExtensions
-                    where supported != null
-                    from extension in supported
-                    select new { Extension = extension, Reader = reader };
-
-            var projectReaders = q.ToDictionary(item => item.Extension, item => item.Reader);
-            var extensions = projectReaders.Keys.ToArray();
-
-            var allProjects = new List<VsProject>();
-            var rootFolder = GetVsSolutionFolder(solutionFolder);
-            var solution = new VsSolution(solutionFolder, rootFolder, allProjects)
-            {
-                LicensingDefaultsKey = GetLicensingDefaultsKey(solutionFolder)
-            };
-
-            PropagateLicensingDefaultsKey(solution);
-
-            return solution;
-
-            VsSolutionFolder GetVsSolutionFolder(string fromFolder)
-            {
-                token.ThrowIfCancellationRequested();
-
-                var projects = from file in Directory.EnumerateFiles(fromFolder)
-                               let ext = Path.GetExtension(file)
-                               let extension = extensions.FirstOrDefault(extension => extension == ext)
-                               where extension != null
-                               select ReadVsProject(projectReaders[ext], file, ext, token);
-                var projectsList = projects.ToList();
-
-                token.ThrowIfCancellationRequested();
-                var folders = from folder in Directory.EnumerateDirectories(fromFolder)
-                              let vsFolder = GetVsSolutionFolder(folder)
-                              where vsFolder != null
-                              select vsFolder;
-                var foldersList = folders.ToList();
-
-                if (projectsList.Count == 0) projectsList = null;
-                if (foldersList.Count == 0) foldersList = null;
-                if ((projectsList == null) && (foldersList == null))
-                {
-                    return null;
-                } // if
-                if (projectsList != null)
-                {
-                    allProjects.AddRange(projectsList);
-                } // if
-
-                return new VsSolutionFolder(Path.GetFileName(fromFolder), projectsList, foldersList, GetLicensingDefaultsKey(fromFolder));
-            } // function GetVsSolutionFolder
+            var loader = new Loader(readers, token);
+            return loader.FromFolder(solutionFolder);
         } // FromFolder
+
+        public static Task<VsSolution> FromFileAsync(string solutionFile, IEnumerable<IVsProjectReader> readers, CancellationToken token)
+        {
+            return Task.Run(() => FromFile(solutionFile, readers, token), token);
+        } // FromFileAsync
 
         public static Task<VsSolution> FromFolderAsync(string solutionFolder, IEnumerable<IVsProjectReader> readers, CancellationToken token)
         {
@@ -118,27 +146,15 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing.VisualStudio
             const string markerFilename = "licensing.data.default";
 
             var filename = Path.Combine(path, markerFilename);
-            return File.Exists(filename) ? File.ReadAllText(filename) : null;
+            return File.Exists(filename) ? File.ReadAllText(filename).Trim() : null;
         } // GetLicensingDefaultsKey
-
-        private static VsProject ReadVsProject(IVsProjectReader reader, string file, string extension, CancellationToken token)
-        {
-            token.ThrowIfCancellationRequested();
-
-            using var stream = new FileStream(file, FileMode.Open, FileAccess.Read, FileShare.Read);
-            var project = reader.Read(stream, extension);
-            project.Name = Path.GetFileNameWithoutExtension(file);
-            project.Filename = file;
-
-            return project;
-        } // ReadVsProject
 
         private static void PropagateLicensingDefaultsKey(VsSolution solution)
         {
-            PropagateLicensingDefaultsKey(solution.RootFolder, solution.LicensingDefaultsKey);
+            PropagateLicensingDefaultsKey(solution.RootFolder, solution.LicensingDefaultsScope);
         } // PropagateLicensingDefaultsKey
 
-        private static void PropagateLicensingDefaultsKey(VsSolutionFolder vsFolder, string licensingDefaultsKey)
+        private static void PropagateLicensingDefaultsKey(VsFolder vsFolder, string licensingDefaultsKey)
         {
             if (vsFolder.LicensingDefaultsKey == null) vsFolder.LicensingDefaultsKey = licensingDefaultsKey;
             if (vsFolder.Projects != null)

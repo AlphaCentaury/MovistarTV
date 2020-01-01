@@ -1,9 +1,15 @@
-// Copyright (C) 2014-2019, GitHub/Codeplex user AlphaCentaury
+// ==============================================================================
 // 
-// All rights reserved, except those granted by the governing license of this software.
-// See 'license.txt' file in the project root for complete license information.
+//   Copyright (C) 2014-2020, GitHub/Codeplex user AlphaCentaury
+//   All rights reserved.
 // 
-// http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
+//     See 'LICENSE.MD' file (or 'license.txt' if missing) in the project root
+//     for complete license information.
+// 
+//   http://www.alphacentaury.org/movistartv
+//   https://github.com/AlphaCentaury
+// 
+// ==============================================================================
 
 using System;
 using System.ComponentModel.Composition;
@@ -26,10 +32,8 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing.VisualStudio
             if (string.IsNullOrEmpty(type)) throw new ArgumentNullException(nameof(type));
             if (!string.Equals(type, ".csproj", StringComparison.InvariantCultureIgnoreCase)) throw new ArgumentOutOfRangeException(nameof(type), type, null);
 
-            var project = new VsProject
-            {
-                Language = "C#"
-            };
+            var project = new VsCSharpProject();
+
             var xmlProj = XElement.Load(stream);
             var ns = XNamespace.Get("http://schemas.microsoft.com/developer/msbuild/2003");
 

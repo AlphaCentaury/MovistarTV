@@ -1,9 +1,15 @@
-// Copyright (C) 2014-2019, GitHub/Codeplex user AlphaCentaury
+// ==============================================================================
 // 
-// All rights reserved, except those granted by the governing license of this software.
-// See 'license.txt' file in the project root for complete license information.
+//   Copyright (C) 2014-2020, GitHub/Codeplex user AlphaCentaury
+//   All rights reserved.
 // 
-// http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
+//     See 'LICENSE.MD' file (or 'license.txt' if missing) in the project root
+//     for complete license information.
+// 
+//   http://www.alphacentaury.org/movistartv
+//   https://github.com/AlphaCentaury
+// 
+// ==============================================================================
 
 using System;
 using System.ComponentModel;
@@ -12,7 +18,7 @@ using System.Xml.Serialization;
 namespace AlphaCentaury.Licensing.Data.Serialization
 {
     [Serializable]
-    public sealed class ThirdPartyDependency: LicensedComponentDependency, IEquatable<ThirdPartyDependency>
+    public sealed class ThirdPartyDependency: LicensedComponentDependency, ICloneable<ThirdPartyDependency>, IEquatable<ThirdPartyDependency>
     {
         [XmlAttribute("type")]
         [DefaultValue(ThirdPartyDependencyType.Other)]
@@ -34,6 +40,8 @@ namespace AlphaCentaury.Licensing.Data.Serialization
             return clone;
         } // Clone
 
+        object ICloneable.Clone() => Clone();
+
         #region Equality members
 
         public bool Equals(ThirdPartyDependency x, ThirdPartyDependency y)
@@ -51,6 +59,7 @@ namespace AlphaCentaury.Licensing.Data.Serialization
             if (Type != other.Type) return false;
             if (LicenseId != other.LicenseId) return false;
             if (!string.Equals(Name, other.Name, stringComparison)) return false;
+            if (!string.Equals(Version, other.Version, StringComparison.InvariantCultureIgnoreCase)) return false;
             if (!string.Equals(LicenseId, other.LicenseId, StringComparison.InvariantCultureIgnoreCase)) return false;
             if (!string.Equals(Copyright, other.Copyright, stringComparison)) return false;
             if (!string.Equals(Authors, other.Authors, stringComparison)) return false;
@@ -71,7 +80,7 @@ namespace AlphaCentaury.Licensing.Data.Serialization
             return StringComparer.CurrentCulture.GetHashCode(GetKey());
         } // GetHashCode
 
-        public string GetKey() => Type + ":" + Name;
+        public string GetKey() => Type + "~" + Name + (string.IsNullOrEmpty(Version) ? "" : " #") + Version;
 
         public static bool operator ==(ThirdPartyDependency left, ThirdPartyDependency right)
         {

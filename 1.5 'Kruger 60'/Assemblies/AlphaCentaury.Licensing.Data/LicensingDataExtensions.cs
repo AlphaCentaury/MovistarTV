@@ -1,9 +1,15 @@
-// Copyright (C) 2014-2019, GitHub/Codeplex user AlphaCentaury
+// ==============================================================================
 // 
-// All rights reserved, except those granted by the governing license of this software.
-// See 'license.txt' file in the project root for complete license information.
+//   Copyright (C) 2014-2020, GitHub/Codeplex user AlphaCentaury
+//   All rights reserved.
 // 
-// http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
+//     See 'LICENSE.MD' file (or 'license.txt' if missing) in the project root
+//     for complete license information.
+// 
+//   http://www.alphacentaury.org/movistartv
+//   https://github.com/AlphaCentaury
+// 
+// ==============================================================================
 
 using System;
 using System.Collections.Generic;
@@ -14,14 +20,6 @@ namespace AlphaCentaury.Licensing.Data
 {
     public static class LicensingDataExtensions
     {
-        public static List<License> Clone(this List<License> list)
-        {
-            var clone = new List<License>(list.Count);
-            clone.AddRange(list.Select(item => item.Clone()));
-
-            return clone;
-        } // Clone:List<License>
-
         public static void ForEach<T>(this IEnumerable<T> enumerable, Action<T> action)
         {
             if (enumerable == null) return;
@@ -40,7 +38,17 @@ namespace AlphaCentaury.Licensing.Data
             } // foreach
         } // ForEach
 
-        public static LicensedProgram Morph(this LicensedLibrary library)
+        public static List<T> Clone<T>(this IList<T> list) where T : ICloneable<T>
+        {
+            if (list == null) return null;
+
+            var clone = new List<T>(list.Count);
+            clone.AddRange(list.Select(item => item.Clone()));
+
+            return clone;
+        } // Clone
+
+        public static LicensedProgram MorphToProgram(this LicensedLibrary library, bool isGuiApp)
         {
             return new LicensedProgram
             {
@@ -52,11 +60,11 @@ namespace AlphaCentaury.Licensing.Data
                 TermsConditions = library.TermsConditions,
                 Product = library.Product,
                 Assembly = library.Assembly,
-                IsGuiApp = true
+                IsGuiApp = isGuiApp
             };
-        } // Morph LicensedLibrary
+        } // MorphToProgram LicensedLibrary
 
-        public static LicensedLibrary Morph(this LicensedProgram program)
+        public static LicensedLibrary MorphToLibrary(this LicensedProgram program)
         {
             return new LicensedLibrary
             {
@@ -69,6 +77,6 @@ namespace AlphaCentaury.Licensing.Data
                 Product = program.Product,
                 Assembly = program.Assembly,
             };
-        } // Morph LicensedProgram
+        } // MorphToLibrary LicensedProgram
     } // class LicenseFileUtils
 } // namespace

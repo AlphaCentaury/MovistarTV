@@ -1,4 +1,17 @@
-﻿using System;
+// ==============================================================================
+// 
+//   Copyright (C) 2014-2020, GitHub/Codeplex user AlphaCentaury
+//   All rights reserved.
+// 
+//     See 'LICENSE.MD' file (or 'license.txt' if missing) in the project root
+//     for complete license information.
+// 
+//   http://www.alphacentaury.org/movistartv
+//   https://github.com/AlphaCentaury
+// 
+// ==============================================================================
+
+using System;
 using System.ComponentModel.Composition;
 using System.IO;
 using System.Linq;
@@ -17,10 +30,7 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing.VisualStudio
             if (string.IsNullOrEmpty(type)) throw new ArgumentNullException(nameof(type));
             if (!string.Equals(type, ".wixproj", StringComparison.InvariantCultureIgnoreCase)) throw new ArgumentOutOfRangeException(nameof(type), type, null);
 
-            var project = new VsProject
-            {
-                Language = "WIX"
-            };
+            var project = new VsWixProject();
 
             var xmlProj = XElement.Load(stream);
             var ns = XNamespace.Get("http://schemas.microsoft.com/developer/msbuild/2003");
@@ -51,7 +61,7 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing.VisualStudio
                 } // switch
             } // foreach
 
-            project.Namespace = $"MSI:{project.AssemblyName}";
+            project.Namespace = $"WiX:{project.AssemblyName}";
 
             return project;
         } // Read

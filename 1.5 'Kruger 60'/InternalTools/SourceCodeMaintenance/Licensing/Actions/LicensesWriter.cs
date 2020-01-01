@@ -1,87 +1,92 @@
-﻿using System;
+// ==============================================================================
+// 
+//   Copyright (C) 2014-2020, GitHub/Codeplex user AlphaCentaury
+//   All rights reserved.
+// 
+//     See 'LICENSE.MD' file (or 'license.txt' if missing) in the project root
+//     for complete license information.
+// 
+//   http://www.alphacentaury.org/movistartv
+//   https://github.com/AlphaCentaury
+// 
+// ==============================================================================
+
+using AlphaCentaury.Licensing.Data;
+using AlphaCentaury.Licensing.Data.Serialization;
+using AlphaCentaury.Tools.SourceCodeMaintenance.Interfaces;
+using AlphaCentaury.Tools.SourceCodeMaintenance.Licensing.TextConverters;
+using AlphaCentaury.Tools.SourceCodeMaintenance.Licensing.VisualStudio;
+using AlphaCentaury.Tools.SourceCodeMaintenance.Properties;
+using IpTviewr.Common.Serialization;
+using System;
 using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Threading;
-using AlphaCentaury.Licensing.Data;
-using AlphaCentaury.Licensing.Data.Serialization;
-using AlphaCentaury.Tools.SourceCodeMaintenance.Interfaces;
-using AlphaCentaury.Tools.SourceCodeMaintenance.Licensing.VisualStudio;
-using AlphaCentaury.Tools.SourceCodeMaintenance.Properties;
-using IpTviewr.Common.Serialization;
-using Markdig;
 using File = System.IO.File;
 
 namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing.Actions
 {
-    internal sealed class LicensesWriter : ProjectAction
+    internal sealed partial class LicensesWriter : ProjectAction
     {
-        private readonly WriterOptions _options;
-        private readonly MarkdownPipeline _mdPipeline;
+        private readonly WriterOptions _writerOptions;
+        private readonly WriterOptions _solutionOptions;
+        private readonly ITextFormatConverter _plainTextConverter;
+        private readonly ITextFormatConverter _markdownConverter;
+        private readonly ITextFormatConverter _htmlConverter;
+        private readonly ITextFormatConverter _rtfConverter;
+        private WriterOptions _options;
 
-        public LicensesWriter(VsSolution solution, IToolOutputWriter writer, WriterOptions options, CancellationToken token) : base(solution, writer, token)
+        public LicensesWriter(VsSolution solution, IToolOutputWriter writer, WriterOptions options, WriterOptions solutionOptions, CancellationToken token) : base(solution, writer, token)
         {
+            MarkdownConverter mdConverter;
+
             _options = options;
-            _mdPipeline = new MarkdownPipelineBuilder().UseAdvancedExtensions().Build();
+            _writerOptions = options;
+            _solutionOptions = solutionOptions;
+            _plainTextConverter = new PlainTextConverter(writer);
+            _markdownConverter = mdConverter = new MarkdownConverter(writer);
+            _htmlConverter = new HtmlConverter(writer, mdConverter.Pipeline);
+            _rtfConverter = new RtfConverter(writer, mdConverter.Pipeline, token);
         } // constructor
 
         public override void Do(VsProject project, bool standalone)
         {
             Token.ThrowIfCancellationRequested();
+
+            _options = VsSolutionProject.IsSolutionProject(project) ? _solutionOptions : _writerOptions;
+
             Writer.WriteLine("Project '{0}'", project.Name);
             Writer.IncreaseIndent();
             try
             {
-                var filename = LicensingMaintenance.Helper.GetLicensingFilename(project, standalone);
-                if (!File.Exists(filename))
+                if (_options.DeleteOldFiles)
                 {
-                    Writer.WriteLine("ERROR: file '{0}' not found", Path.GetFileName(filename));
-                    return;
+                    DeleteOldFiles(project, standalone);
                 } // if
 
-                Writer.WriteLine("Loading '{0}'", Path.GetFileName(filename));
-                var data = XmlSerialization.Deserialize<LicensingData>(filename);
-                if ((data.Licensed == null) ||
-                    !data.Licensed.TermsConditionsSpecified ||
-                    !data.LicensesSpecified)
-                {
-                    Writer.WriteLine("ERROR: Invalid licensing data");
-                    return;
-                } // if
+                var data = LoadLicensingData(project, standalone, out var baseFilename);
+                if (data == null) return;
 
-                data.FilePath = filename;
-
-                if (!_options.SkipLicensingHtml)
+                if (_options.LicensingHtml)
                 {
-                    var licensingHtml = Path.Combine(Path.GetDirectoryName(filename), Path.GetFileNameWithoutExtension(filename) + ".html.xml");
+                    var licensingHtml = baseFilename + ".html.xml";
                     WriteHtmlLicensingData(data, licensingHtml);
                 } // if
 
-                var usage = LicensingDataTools.GetUsage(data);
+                if (_options.LicensingRtf)
+                {
+                    var licensingRtf = baseFilename + ".rtf.xml";
+                    WriteRtfLicensingData(data, licensingRtf);
+                } // if
+
+                // save current culture settings
                 var currentCulture = CultureInfo.CurrentCulture;
                 var currentUiCulture = CultureInfo.CurrentUICulture;
 
-                CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
-                foreach (var language in data.Licensed.TermsConditions.Select(terms => terms.Language))
-                {
-                    CultureInfo.CurrentCulture = (language is null)? CultureInfo.InvariantCulture : new CultureInfo(language);
-                    CultureInfo.CurrentUICulture = (language is null) ? CultureInfo.InvariantCulture : new CultureInfo(language);
-
-                    var licenseFilename = LicensingMaintenance.Helper.GetLicenseFilename(project, standalone, "LICENSE") + (language != null ? "." : "");
-                    var mdFile = licenseFilename + language + ".MD";
-                    WriteMarkdown(usage, mdFile, language);
-                    if (_options.WriteHtml)
-                    {
-                        WriteHtml(usage, mdFile, (licenseFilename + language + ".htm").ToLowerInvariant());
-                    } // if
-
-                    if (language == null)
-                    {
-                        var plainTextFile = (licenseFilename + ".txt").ToLowerInvariant();
-                        WritePlainText(usage, plainTextFile, language);
-                    } // if
-                } // foreach
-
+                WriteLanguageLicenseFiles(project, standalone, data);
+                
+                // restore culture settings
                 CultureInfo.CurrentCulture = currentCulture;
                 CultureInfo.CurrentUICulture = currentUiCulture;
             }
@@ -91,192 +96,134 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing.Actions
             } // finally
         } // Do
 
-        #region Markdown
-
-        private void WriteMarkdown(LicensingUsage data, string filename, string language)
+        public override void End()
         {
-            if (data.Licensed == null) throw new ArgumentException();
+            _plainTextConverter.Dispose();
+            _markdownConverter.Dispose();
+            _htmlConverter.Dispose();
+            _rtfConverter.Dispose();
+        } // End
 
-            Writer.WriteLine("Writing '{0}'...", filename);
-            using var output = new StreamWriter(filename, false, XmlSerialization.Utf8NoBomEncoding.Value, 1024);
-
-            // Header
-            WriteMarkdownHeader(output, data);
-
-            // Terms and conditions
-            output.WriteLine("## {0}", LicensingResources.WriteTermsAndCondition);
-            output.WriteLine();
-            var terms = data.Licensed.TermsConditions.First(t => string.Equals(t.Language, language, StringComparison.InvariantCulture));
-            output.WriteLine(TransformToMarkdown(terms.Text, terms.Format));
-            output.WriteLine();
-            output.WriteLine("_{0}_", LicensingResources.WriteSeeLicensingXml);
-            output.WriteLine();
-
-            // List of licenses
-            output.WriteLine("## {0}", LicensingResources.WriteListLicenses);
-            output.WriteLine();
-            foreach (var usage in data.Usage.Where(usage => usage.AppliesTo != null))
+        private LicensingData LoadLicensingData(VsProject project, bool standalone, out string baseFilename)
+        {
+            var filename = LicensingMaintenance.Helper.GetLicensingFilename(project, standalone);
+            if (!File.Exists(filename))
             {
-                output.WriteLine("  * [{0}]", usage.License.Name);
-            } // foreach
-            output.WriteLine();
+                Writer.WriteLine("ERROR: file '{0}' not found", Path.GetFileName(filename));
+                baseFilename = null;
+                return null;
+            } // if
 
-            // Licenses
-            foreach (var usage in data.Usage.Where(usage => usage.AppliesTo != null))
+            var folder = Path.GetDirectoryName(filename) ?? Path.GetPathRoot(filename);
+            baseFilename = Path.Combine(folder, Path.GetFileNameWithoutExtension(filename));
+
+            Writer.WriteLine("Loading '{0}'", Path.GetFileName(filename));
+            var data = XmlSerialization.Deserialize<LicensingData>(filename);
+            data.FilePath = filename;
+
+            // check if data seems valid enough
+            if ((data.Licensed != null) &&
+                data.Licensed.TermsConditionsSpecified &&
+                data.LicensesSpecified) return data;
+
+            Writer.WriteLine("ERROR: Invalid licensing data");
+            return null;
+        } // LoadLicensingData
+
+        private void WriteLanguageLicenseFiles(VsProject project, bool standalone, LicensingData data)
+        {
+            var usage = data.GetUsage();
+
+            foreach (var language in data.Licensed.TermsConditions.Select(terms => terms.Language))
             {
-                output.WriteLine("### {0}", usage.License.Name);
-                output.WriteLine();
-                output.WriteLine(TransformToMarkdown(usage.License.Text, usage.License.Format));
-                output.WriteLine();
-                output.WriteLine();
+                if ((language != null) && !_options.Translated) continue;
 
-                // Third-party components
-                int index;
+                CultureInfo.CurrentCulture = (language is null) ? CultureInfo.InvariantCulture : new CultureInfo(language);
+                CultureInfo.CurrentUICulture = (language is null) ? CultureInfo.InvariantCulture : new CultureInfo(language);
 
-                if (usage.AppliesTo.ThirdPartySpecified)
+                var path = LicensingMaintenance.Helper.GetLicenseFilename(project, standalone, "LICENSE") + (language != null ? "." : "") + language;
+                var folder = Path.GetDirectoryName(path) ?? Path.GetPathRoot(path);
+                var licenseFilename = Path.GetFileName(path);
+
+                if (_options.PlainText && ((language == null) || _options.TranslatedPlainText))
                 {
-                    output.WriteLine(LicensingResources.WriteAppliesToThirdPartyFormatMd, usage.License.Name);
-                    output.WriteLine();
-
-                    index = 0;
-                    foreach (var thirdParty in usage.AppliesTo.ThirdParty.OrderBy(comp => comp.Name + ":"))
-                    {
-                        WriteComponentDependencyMarkdown(output, thirdParty, ++index);
-                        output.WriteLine();
-                    } // foreach
-
-                    output.WriteLine();
+                    var plainTextFile = Path.Combine(folder, (licenseFilename + ".txt").ToLowerInvariant());
+                    WritePlainText(usage, plainTextFile, language);
                 } // if
 
-                // Libraries
-                if (!usage.AppliesTo.LibrariesSpecified) continue;
-
-                output.WriteLine(LicensingResources.WriteAppliesToLibrariesFormatMd, usage.License.Name);
-                output.WriteLine();
-                index = 0;
-                foreach (var library in usage.AppliesTo.Libraries.OrderBy(lib => lib.Assembly))
+                if (_options.Markdown && ((language == null) || _options.TranslatedMarkdown))
                 {
-                    WriteLibraryDependencyMarkdown(output, library, ++index);
-                    output.WriteLine();
-                } // foreach
+                    var mdFile = Path.Combine(folder, licenseFilename + ".MD");
+                    WriteMarkdown(usage, mdFile, language);
+                } // if
 
-                output.WriteLine();
-            } // foreach var usage
-        } // WriteMarkdown
-
-        private void WriteMarkdownHeader(TextWriter output, LicensingUsage data)
-        {
-            output.WriteLine(LicensingResources.WriteLicensedFormatMd, GetLicensedType(data.Licensed), data.Licensed.Assembly);
-            if (data.Licensed.Product != null)
-            {
-                output.WriteLine("{0}\\", data.Licensed.Product);
-            } // if
-
-            if (data.Licensed.Authors != null)
-            {
-                output.WriteLine(LicensingResources.WriteAuthorsFormatMd, data.Licensed.Authors);
-                output.WriteLine();
-            } // if
-
-            if (data.Licensed.Copyright != null)
-            {
-                output.WriteLine("**{0}**", data.Licensed.Copyright);
-                output.WriteLine();
-            } // if
-
-            if (data.Licensed.Remarks?.Text != null)
-            {
-                output.WriteLine(TransformToMarkdown(data.Licensed.Remarks.Text, data.Licensed.Remarks.Format));
-                output.WriteLine();
-            } // if
-
-            if (data.Licensed.Notes?.Text != null)
-            {
-                output.WriteLine("_" + TransformToMarkdown(data.Licensed.Notes.Text, data.Licensed.Notes.Format) + "_");
-                output.WriteLine();
-            } // if
-        } // WriteMarkdownHeader
-
-        private void WriteLibraryDependencyMarkdown(TextWriter output, LibraryDependency dependency, int index)
-        {
-            output.WriteLine("#### {0}. {1}", index, dependency.Assembly);
-
-            if (dependency.Authors != null)
-            {
-                var type = GetDependencyType(dependency);
-                if (type.Length == 0)
+                if (_options.Html && ((language == null) || _options.TranslatedHtml))
                 {
-                    output.WriteLine(LicensingResources.WriteAuthorsFormatMd, dependency.Authors);
+                    var htmlFile = Path.Combine(folder, (licenseFilename + ".htm").ToLowerInvariant());
+                    WriteHtml(usage, language, htmlFile);
+                } // if
+
+                if (_options.Rtf && ((language == null) || _options.TranslatedRtf))
+                {
+                    var rtfFile = Path.Combine(folder, (licenseFilename + ".rtf").ToLowerInvariant());
+                    WriteRtf(usage, language, rtfFile);
+                } // if
+            } // foreach
+        } // WriteLanguageLicenseFiles
+
+        private void DeleteOldFiles(VsProject project, bool standalone)
+        {
+            var baseFile = LicensingMaintenance.Helper.GetLicensingFilename(project, standalone);
+            var folder = Path.GetDirectoryName(baseFile) ?? Path.GetPathRoot(baseFile);
+            var search = Path.GetFileNameWithoutExtension(baseFile) + ".*.xml";
+
+            Writer.WriteLine("Deleting old files...");
+            foreach (var file in Directory.EnumerateFiles(folder, search, SearchOption.TopDirectoryOnly))
+            {
+                if (file == baseFile) continue; // just in case
+                try
+                {
+                    File.Delete(file);
                 }
-                else
+                catch (Exception e)
                 {
-                    output.WriteLine(LicensingResources.WriteTypeDependencyAuthorsFormatMd, type, dependency.Authors);
-                } // if-else
+                    Writer.WriteException(e, $"Unable to delete file '{file}'");
+                } // catch
+            } // foreach
 
-                output.WriteLine();
-            }
-            else
+            baseFile = LicensingMaintenance.Helper.GetLicenseFilename(project, standalone, "LICENSE");
+            folder = Path.GetDirectoryName(baseFile) ?? Path.GetPathRoot(baseFile);
+            search = Path.GetFileName(baseFile) + ".*";
+            foreach (var file in Directory.EnumerateFiles(folder, search, SearchOption.TopDirectoryOnly))
             {
-                output.WriteLine("_{0}_", GetDependencyType(dependency));
-                output.WriteLine();
-            } // if-else
-
-            if (dependency.Copyright != null)
-            {
-                output.WriteLine("**{0}**", dependency.Copyright);
-                output.WriteLine();
-            } // if
-
-            if (dependency.Remarks?.Text == null) return;
-
-            var md = TransformToMarkdown(dependency.Remarks.Text, dependency.Remarks.Format);
-            WriteIndented(output, md, "   ");
-            output.WriteLine();
-        } // WriteLibraryDependencyMarkdown
-
-        private void WriteComponentDependencyMarkdown(TextWriter output, ThirdPartyDependency dependency, int index)
-        {
-            output.WriteLine("#### {0}. {1}", index, dependency.Name);
-
-            if (dependency.Authors != null)
-            {
-                var type = GetDependencyType(dependency);
-                if (type.Length == 0)
+                try
                 {
-                    output.WriteLine(LicensingResources.WriteAuthorsFormatMd, dependency.Authors);
+                    File.Delete(file);
                 }
-                else
+                catch (Exception e)
                 {
-                    output.WriteLine(LicensingResources.WriteTypeDependencyAuthorsFormatMd, type, dependency.Authors);
-                } // if-else
+                    Writer.WriteException(e, $"Unable to delete file '{file}'");
+                } // catch
+            } // foreach
+        } // DeleteOldFiles
 
-                output.WriteLine();
-            }
-            else
+        private string ChangeTextFormat(string text, string fromFormat, string toFormat)
+        {
+            switch (toFormat)
             {
-                output.WriteLine("_{0}_", GetDependencyType(dependency));
-                output.WriteLine();
-            } // if-else
-
-            if (dependency.Copyright != null)
-            {
-                output.WriteLine("**{0}**", dependency.Copyright);
-                output.WriteLine();
-            } // if
-
-            if (dependency.Remarks?.Text != null)
-            {
-                var md = TransformToMarkdown(dependency.Remarks.Text, dependency.Remarks.Format);
-                WriteIndented(output, md, "   ");
-                output.WriteLine();
-            } // if
-
-            if (dependency.Description != null)
-            {
-                output.WriteLine(dependency.Description);
-                output.WriteLine();
-            } // if
-        } // WriteComponentDependencyMarkdown
+                case null:
+                    return _plainTextConverter.ConvertFrom(fromFormat, text);
+                case "MD":
+                    return _markdownConverter.ConvertFrom(fromFormat, text);
+                case "HTML":
+                    return _htmlConverter.ConvertFrom(fromFormat, text);
+                case "RTF":
+                    return _rtfConverter.ConvertFrom(fromFormat, text);
+                default:
+                    Writer.WriteLine("ERROR: unable to transform '{0}' to {1}", fromFormat, toFormat);
+                    return null;
+            } // switch
+        } // ChangeTextFormat
 
         private static void WriteIndented(TextWriter output, string multiLineText, string indent)
         {
@@ -294,284 +241,17 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing.Actions
             } // foreach
         } // WriteIndented
 
-        #endregion
-
-        #region Plain text
-
-        private void WritePlainText(LicensingUsage data, string filename, string language)
+        private static string GetLicensedItemType(LicensedItemType type)
         {
-            if (data.Licensed == null) throw new ArgumentException();
-
-            Writer.WriteLine("Writing '{0}'...", filename);
-            using var output = new StreamWriter(filename, false, XmlSerialization.Utf8NoBomEncoding.Value, 1024);
-
-            // Header
-            WritePlainTextHeader(output, data);
-
-            // Terms and conditions
-            output.WriteLine("A.- {0}", LicensingResources.WriteTermsAndCondition);
-            output.WriteLine("==============================================================================");
-            output.WriteLine();
-            var terms = data.Licensed.TermsConditions.First(t => string.Equals(t.Language, language, StringComparison.InvariantCulture));
-            output.WriteLine(TransformToPlainText(terms.Text, terms.Format));
-            output.WriteLine();
-            output.WriteLine("({0})", LicensingResources.WriteSeeLicensingXml);
-            output.WriteLine();
-            output.WriteLine();
-
-            // List of licenses
-            output.WriteLine("B.- {0}", LicensingResources.WriteListLicenses);
-            output.WriteLine("==============================================================================");
-            output.WriteLine();
-            foreach (var usage in data.Usage.Where(usage => usage.AppliesTo != null))
-            {
-                output.WriteLine("  * {0}", usage.License.Name);
-            } // foreach
-
-            // Licenses
-            foreach (var usage in data.Usage.Where(usage => usage.AppliesTo != null))
-            {
-                output.WriteLine();
-                output.WriteLine();
-                output.WriteLine("////////////////////////////////////////////////////////////");
-                output.WriteLine("//");
-                output.WriteLine("//  {0}", usage.License.Name);
-                output.WriteLine("//");
-                output.WriteLine("////////////////////////////////////////////////////////////");
-                output.WriteLine();
-                output.WriteLine(TransformToPlainText(usage.License.Text, usage.License.Format));
-                output.WriteLine();
-                output.WriteLine("////////////////////////////////////////////////////////////");
-                output.WriteLine();
-
-                // Third-party components
-                int index;
-
-                if (usage.AppliesTo.ThirdPartySpecified)
-                {
-                    output.WriteLine(LicensingResources.WriteAppliesToThirdPartyFormat, usage.License.Name);
-                    output.WriteLine();
-
-                    index = 0;
-                    foreach (var thirdParty in usage.AppliesTo.ThirdParty.OrderBy(comp => comp.Name + ":"))
-                    {
-                        WriteComponentDependencyText(output, thirdParty, ++index);
-                        output.WriteLine();
-                    } // foreach
-                } // if
-
-                // Libraries
-                if (!usage.AppliesTo.LibrariesSpecified) continue;
-
-                output.WriteLine(LicensingResources.WriteAppliesToLibrariesFormat, usage.License.Name);
-                output.WriteLine();
-                index = 0;
-                foreach (var library in usage.AppliesTo.Libraries.OrderBy(lib => lib.Assembly))
-                {
-                    WriteLibraryDependencyText(output, library, ++index);
-                    output.WriteLine();
-                } // foreach
-            } // foreach var usage
-        } // WritePlainText
-
-        private void WritePlainTextHeader(TextWriter output, LicensingUsage data)
-        {
-            output.WriteLine("##############################################################################");
-            output.WriteLine("##");
-            output.WriteLine(LicensingResources.WriteLicensedFormat, GetLicensedType(data.Licensed), data.Licensed.Assembly);
-            output.WriteLine("##");
-            output.WriteLine("##############################################################################");
-            output.WriteLine("##");
-
-            if (data.Licensed.Product != null)
-            {
-                output.WriteLine("## {0}", data.Licensed.Product);
-            } // if
-
-            if (data.Licensed.Authors != null)
-            {
-                output.WriteLine(LicensingResources.WriteAuthorsFormat, data.Licensed.Authors);
-                
-            } // if
-
-            if ((data.Licensed.Product != null) && (data.Licensed.Authors != null))
-            {
-                output.WriteLine("##");
-            } // if
-
-            if (data.Licensed.Copyright != null)
-            {
-                output.WriteLine("## {0}", data.Licensed.Copyright);
-            } // if
-
-            if (data.Licensed.Remarks?.Text != null)
-            {
-                output.WriteLine("##");
-                WriteIndented(output, TransformToPlainText(data.Licensed.Remarks.Text, data.Licensed.Remarks.Format), "##    ");
-            } // if
-
-            if (data.Licensed.Notes?.Text != null)
-            {
-                output.WriteLine("##");
-                WriteIndented(output, TransformToPlainText(data.Licensed.Notes.Text, data.Licensed.Notes.Format), "##    ");
-            } // if
-
-            output.WriteLine("##");
-            output.WriteLine("##############################################################################");
-            output.WriteLine();
-        } // WritePlainTextHeader
-
-        private void WriteLibraryDependencyText(TextWriter output, LibraryDependency dependency, int index)
-        {
-            output.WriteLine("{0}. {2}{1}", index, dependency.Assembly, dependency.Authors is null? $"{GetDependencyType(dependency)} " : "");
-            output.WriteLine("------------------------------");
-
-            if (dependency.Authors != null)
-            {
-                var type = GetDependencyType(dependency);
-                if (type.Length == 0)
-                {
-                    output.WriteLine(LicensingResources.WriteDependencyAuthorsFormat, dependency.Authors);
-                }
-                else
-                {
-                    output.WriteLine(LicensingResources.WriteTypeDependencyAuthorsFormat, type, dependency.Authors);
-                } // if-else
-            } // if
-
-            if (dependency.Copyright != null)
-            {
-                output.WriteLine(dependency.Copyright);
-            } // if
-
-            if (dependency.Remarks?.Text != null)
-            {
-                var md = TransformToPlainText(dependency.Remarks.Text, dependency.Remarks.Format);
-                WriteIndented(output, md, "   ");
-            } // if
-        } // WriteLibraryDependencyText
-
-        private void WriteComponentDependencyText(TextWriter output, ThirdPartyDependency dependency, int index)
-        {
-            output.WriteLine("{0}. {2}{1}", index, dependency.Name, dependency.Authors is null ? $"{GetDependencyType(dependency)} " : "");
-            output.WriteLine("------------------------------");
-
-            if (dependency.Authors != null)
-            {
-                var type = GetDependencyType(dependency);
-                if (type.Length == 0)
-                {
-                    output.WriteLine(LicensingResources.WriteDependencyAuthorsFormat, dependency.Authors);
-                }
-                else
-                {
-                    output.WriteLine(LicensingResources.WriteTypeDependencyAuthorsFormat, type, dependency.Authors);
-                } // if-else
-            } // if
-
-            if (dependency.Copyright != null)
-            {
-                output.WriteLine(dependency.Copyright);
-            } // if
-
-            if (dependency.Remarks?.Text != null)
-            {
-                var md = TransformToPlainText(dependency.Remarks.Text, dependency.Remarks.Format);
-                WriteIndented(output, md, "   ");
-            } // if
-
-            if (dependency.Description != null)
-            {
-                output.WriteLine("   {0}", dependency.Description);
-            } // if
-        } // WriteComponentDependencyText
-
-        #endregion
-
-        #region HTML
-
-        private void WriteHtml(LicensingUsage usageData, string licenseFilenameMd, string licenseFilenameHtml)
-        {
-            Writer.WriteLine("Writing '{0}'...", licenseFilenameHtml);
-
-            var text = File.ReadAllText(licenseFilenameMd);
-            var html = Markdown.ToHtml(text, _mdPipeline);
-
-            using var writer = new StreamWriter(licenseFilenameHtml, false, XmlSerialization.Utf8NoBomEncoding.Value);
-            writer.WriteLine(LicensingResources.WriteHtmlHead);
-            writer.WriteLine(LicensingResources.WriteHtmlTitle, GetLicensedType(usageData.Licensed), usageData.Licensed.Assembly);
-            writer.WriteLine(LicensingResources.WriteHtmlCss);
-            writer.WriteLine("</head><body>");
-            writer.WriteLine(html);
-            writer.WriteLine("</body></html>");
-        } // WriteHtml
-
-        private void WriteHtmlLicensingData(LicensingData data, string filename)
-        {
-            data = XmlSerialization.Clone(data);
-
-            Writer.WriteLine("Writing '{0}'...", filename);
-            foreach (var terms in data.Licensed.TermsConditions)
-            {
-                terms.Text = TransformToHtml(terms.Text, terms.Format);
-                terms.Format = "HTML";
-            } // foreach
-
-            if (data.Dependencies != null)
-            {
-                if (data.Dependencies.LibrariesSpecified)
-                {
-                    foreach (var library in data.Dependencies.Libraries.Where(lib => !(lib.Remarks is null)))
-                    {
-                        library.Remarks.Text = TransformToHtml(library.Remarks.Text, library.Remarks.Format);
-                        library.Remarks.Format = "HTML";
-                    } // foreach
-                } // if
-
-                if (data.Dependencies.ThirdPartySpecified)
-                {
-                    foreach (var component in data.Dependencies.ThirdParty.Where(c => !(c.Remarks is null)))
-                    {
-                        component.Remarks.Text = TransformToHtml(component.Remarks.Text, component.Remarks.Format);
-                        component.Remarks.Format = "HTML";
-                    } // foreach
-                } // if
-            } // if
-
-            if (data.LicensesSpecified)
-            {
-                foreach (var license in data.Licenses)
-                {
-                    license.Text = TransformToHtml(license.Text, license.Format);
-                    license.Format = "HTML";
-                } // foreach
-            } // if
-            XmlSerialization.Serialize(filename, data);
-        } // WriteHtmlXml
-
-        #endregion
-
-        private static string GetLicensedType(LicensedItem item)
-        {
-            return item.Type switch
+            return type switch
             {
                 LicensedItemType.Library => LicensingResources.WriteTypeLibrary,
                 LicensedItemType.Program => LicensingResources.WriteTypeProgram,
                 LicensedItemType.Installer => LicensingResources.WriteTypeInstaller,
+                LicensedItemType.Solution => LicensingResources.WriteTypeSolution,
                 _ => LicensingResources.WriteUnknown
             };
-        } // GetLicensedType
-
-        private static string GetDependencyType(LibraryDependency dependency)
-        {
-            return dependency.Type switch
-            {
-                LicensedItemType.Library => LicensingResources.WriteTypeLibrary,
-                LicensedItemType.Program => LicensingResources.WriteTypeProgram,
-                LicensedItemType.Installer => LicensingResources.WriteTypeInstaller,
-                _ => LicensingResources.WriteUnknown
-            };
-        } // GetDependencyType
+        } // GetLicensedItemType
 
         private static string GetDependencyType(ThirdPartyDependency dependency)
         {
@@ -584,70 +264,5 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing.Actions
                 _ => LicensingResources.WriteTypeOtherThirdParty
             };
         } // GetDependencyType
-
-        private string TransformToPlainText(string text, string format)
-        {
-            switch (format)
-            {
-                case null:
-                    return text.Trim();
-                case "MD":
-                    // TODO: parse MD to text
-                    return text.Trim();
-                default:
-                    Writer.WriteLine("ERROR: unable to transform '{0}' to Markdown", format);
-                    return null;
-            } // switch
-        } // TransformToPlainText
-
-        private string TransformToMarkdown(string text, string format)
-        {
-            switch (format)
-            {
-                case null:
-                    return TextToMarkdown(text.Trim());
-                case "MD":
-                    return text.Trim();
-                default:
-                    Writer.WriteLine("ERROR: unable to transform '{0}' to Markdown", format);
-                    return null;
-            } // switch
-        } // TransformToMarkdown
-
-        private string TransformToHtml(string text, string format)
-        {
-            switch (format)
-            {
-                case null:
-                    return Markdown.ToHtml(TextToMarkdown(text.Trim()), _mdPipeline);
-                case "MD":
-                    return Markdown.ToHtml(text, _mdPipeline);
-                case "HTML":
-                    return text;
-                default:
-                    Writer.WriteLine("ERROR: unable to transform '{0}' to HTML", format);
-                    return null;
-            } // switch
-        } // TransformToHtml
-
-        private static string TextToMarkdown(string text)
-        {
-            var lines = text.Trim().Split('\n');
-
-            for (var index = 0; index < lines.Length; index++)
-            {
-                if (string.IsNullOrWhiteSpace(lines[index])) lines[index] = string.Empty;
-            } // for
-
-            for (var index = 0; index < lines.Length; index++)
-            {
-                if (((index + 1) < lines.Length) && (lines[index + 1].Trim().Length != 0))
-                {
-                    lines[index] += "  \\"; // break line <br />
-                } // if
-            } // for
-
-            return string.Join("\n", lines);
-        } // TextToMarkdown
     } // class LicensesWriter
 } // namespace

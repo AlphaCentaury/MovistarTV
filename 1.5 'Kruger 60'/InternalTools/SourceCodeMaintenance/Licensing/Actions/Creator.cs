@@ -1,3 +1,17 @@
+// ==============================================================================
+// 
+//   Copyright (C) 2014-2020, GitHub/Codeplex user AlphaCentaury
+//   All rights reserved.
+// 
+//     See 'LICENSE.MD' file (or 'license.txt' if missing) in the project root
+//     for complete license information.
+// 
+//   http://www.alphacentaury.org/movistartv
+//   https://github.com/AlphaCentaury
+// 
+// ==============================================================================
+
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading;
@@ -10,13 +24,13 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing.Actions
 {
     internal sealed class Creator : ProjectAction
     {
-        public readonly IReadOnlyDictionary<string, LicensingDefaults> Defaults;
-
         public Creator(VsSolution solution, IToolOutputWriter writer, string defaultsPath, CancellationToken token) : base(solution, writer, token)
         {
             writer.WriteLine("Reading licensing defaults...");
-            Defaults = LicensingMaintenance.Helper.ReadLicensingDefaults(defaultsPath);
+            Defaults = LicensingMaintenance.Helper.ReadLicensingDefaultsPool(defaultsPath, writer);
         } // constructor
+
+        public LicensingDefaultsPool Defaults { get; }
 
         public override void Do(VsProject project, bool standalone)
         {
@@ -28,7 +42,7 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing.Actions
             Writer.IncreaseIndent();
             if (File.Exists(filename))
             {
-                Writer.WriteLine("File '{0}' not needed", Path.GetFileName(filename));
+                // Writer.WriteLine(Verbose, "File '{0}' not needed", Path.GetFileName(filename));
             }
             else
             {
@@ -40,30 +54,18 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing.Actions
             Writer.DecreaseIndent();
         } // ForProject
 
-        private LicensingData GetLicensingData(VsProject project)
+        public LicensingData GetLicensingData(VsProject project)
         {
-            var defaults = Defaults[project.LicensingDefaultsKey ?? ""];
-            var licensed = project.IsLibrary switch
-            {
-                true => (LicensedItem)new LicensedLibrary(),
-                false => new LicensedProgram { IsGuiApp = (project.Type != "WinExe") }
-            };
-
-            var licensingData = new LicensingData
-            {
-                Licensed = licensed,
-                Licenses = defaults.Licenses
-            };
-
-            var licensedDefaults = project.IsLibrary ? defaults.ForLibraries : defaults.ForPrograms;
-            licensed.Product = licensedDefaults.Product;
-            licensed.TermsConditions = licensedDefaults.TermsConditions;
-            licensed.Authors = licensedDefaults.Authors;
-            licensed.Copyright = licensedDefaults.Copyright;
-            licensed.LicenseId = licensedDefaults.LicenseId;
-            licensed.Remarks = licensedDefaults.Remarks;
-
-            return licensingData;
+            return project.GetLicensingData(GetLicensingDefaults(Defaults, project, true));
         } // GetLicensingData
+
+        public static LicensingDefaults GetLicensingDefaults(LicensingDefaultsPool defaultsPool, VsProject project, bool getDefault)
+        {
+            var isSolution = VsSolutionProject.IsSolutionProject(project);
+            var defaults = defaultsPool[project.LicensingDefaultsKey] ?? (isSolution ? defaultsPool["#solution#"] : null);
+            if (getDefault) defaults ??= defaultsPool[null];
+
+            return defaults;
+        } // GetLicensingDefaults
     } // class Creator
 } // namespace

@@ -172,6 +172,25 @@
   <data name="Dependencies_32x" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Licensing\Resources\Dependencies_32x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="HtmlDefaultStylesheet" xml:space="preserve">
+    <value>body {font-family: "Calibri", "Tahoma", "Arial", Sans-serif; font-size:11pt}
+h1 {border-bottom: solid 2px #A0A0A0; font-size: 24pt}
+h2 {border-bottom: solid 1px #A0A0A0; font-size: 20pt}
+h3 {border-bottom: solid 1px #A0A0A0; font-size: 17pt}
+h4 {font-size: 14pt; font-weight: bold}
+h5 {font-size: 12pt; font-weight: bold; font-style: italic}
+ol {margin-left: 0; padding-left: 1em;}
+ul {margin-left: 0; padding-left: 1em;}
+li {margin-left: 1em; padding-left: 0.5em}</value>
+  </data>
+  <data name="HtmlDefaultStylesheetRf" xml:space="preserve">
+    <value>body {font-family: "Calibri", "Tahoma", "Arial", Sans-serif; font-size:11pt}
+h1 {border-bottom: solid 2px #A0A0A0; font-size: 24pt}
+h2 {border-bottom: solid 1px #A0A0A0; font-size: 20pt}
+h3 {border-bottom: solid 1px #A0A0A0; font-size: 17pt}
+h4 {font-size: 14pt; font-weight: bold}
+h5 {font-size: 12pt; font-weight: bold; font-style: italic}</value>
+  </data>
   <data name="Installer_16x" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\licensing\resources\installer_16x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -233,7 +252,7 @@
     <comment>{0} = license name</comment>
   </data>
   <data name="WriteAppliesToThirdPartyFormatMd" xml:space="preserve">
-    <value>&gt; **'{0}'** applies to the following **third-party components:***</value>
+    <value>&gt; **'{0}'** applies to the following **third-party components:**</value>
     <comment>{0} = license name</comment>
   </data>
   <data name="WriteAuthorsFormat" xml:space="preserve">
@@ -244,15 +263,6 @@
   </data>
   <data name="WriteDependencyAuthorsFormat" xml:space="preserve">
     <value>by {0}</value>
-  </data>
-  <data name="WriteHtmlCss" xml:space="preserve">
-    <value>&lt;style&gt;
-body {font-family: "Calibri", "Tahoma", "Arial", Sans-serif; font-size:12pt}
-h1 {border-bottom: solid 3px #A0A0A0}
-h2 {border-bottom: solid 2px #A0A0A0}
-h3 {border-bottom: solid 1px #A0A0A0}
-p {text-align: justify}
-&lt;/style&gt;</value>
   </data>
   <data name="WriteHtmlHead" xml:space="preserve">
     <value>&lt;html&gt;
@@ -274,9 +284,6 @@ p {text-align: justify}
   </data>
   <data name="WriteListLicenses" xml:space="preserve">
     <value>Licenses</value>
-  </data>
-  <data name="WriteSeeLicensingXml" xml:space="preserve">
-    <value>Additional details might be available at machine-readable 'licensing.xml' file.</value>
   </data>
   <data name="WriteTermsAndCondition" xml:space="preserve">
     <value>Terms and conditions</value>
@@ -306,6 +313,9 @@ p {text-align: justify}
   </data>
   <data name="WriteTypeProgram" xml:space="preserve">
     <value>Program</value>
+  </data>
+  <data name="WriteTypeSolution" xml:space="preserve">
+    <value>VS Solution</value>
   </data>
   <data name="WriteTypeSourceCode" xml:space="preserve">
     <value>Source code</value>

@@ -1,3 +1,16 @@
+// ==============================================================================
+// 
+//   Copyright (C) 2014-2020, GitHub/Codeplex user AlphaCentaury
+//   All rights reserved.
+// 
+//     See 'LICENSE.MD' file (or 'license.txt' if missing) in the project root
+//     for complete license information.
+// 
+//   http://www.alphacentaury.org/movistartv
+//   https://github.com/AlphaCentaury
+// 
+// ==============================================================================
+
 using System.Drawing;
 using System.Windows.Forms;
 using AlphaCentaury.Tools.SourceCodeMaintenance.Properties;
@@ -6,23 +19,32 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing
 {
     internal sealed class SolutionImages
     {
-        private const string KeyFolder = @"Folder";
-        private const string KeyFolderOpen = @"FolderOpen";
-        private const string KeyVsSolution = @"VS_Solution";
-        private const string KeyVsSolutionFile = @"VS_Solution_File";
-        private const string KeyVsProjectUnknown = @"VS_Project_Unknown";
-        private const string KeyCsExe = @"CSharp_Exe";
-        private const string KeyCsLib = @"CSharp_Lib";
-        private const string KeyCsWinExe = @"CSharp_WinExe";
-        private const string KeyInstaller = @"CSharp_Installer";
-        private const string KeyCertificate = @"Certificate";
-        private const string KeyCertificateError = @"Certificate_Error";
-        private const string KeyReferences = @"References";
+        public const string KeyFolder = @"Folder";
+        public const string KeyFolderOpen = @"FolderOpen";
+        public const string KeyLinkedFolder = @"LinkedFolder";
+        public const string KeyLinkedFolderOpen = @"LinkedFolderOpen";
+        public const string KeyVsSolution = @"VS_Solution";
+        public const string KeyVsSolutionFile = @"VS_Solution_File";
+        public const string KeyVsProjectUnknown = @"VS_Project_Unknown";
+        public const string KeyCsExe = @"CSharp_Exe";
+        public const string KeyCsLib = @"CSharp_Lib";
+        public const string KeyCsWinExe = @"CSharp_WinExe";
+        public const string KeyInstaller = @"CSharp_Installer";
+        public const string KeyCertificate = @"Certificate";
+        public const string KeyCertificateError = @"Certificate_Error";
+        public const string KeyReferences = @"References";
 
-        public SolutionImages(ImageList.ImageCollection images)
+        private readonly ImageList _list;
+
+        public SolutionImages(ImageList list)
         {
+            _list = list;
+
+            var images = list.Images;
             Folder = images.IndexOfKey(KeyFolder);
             FolderOpen = images.IndexOfKey(KeyFolderOpen);
+            LinkedFolder = images.IndexOfKey(KeyLinkedFolder);
+            LinkedFolderOpen = images.IndexOfKey(KeyLinkedFolderOpen);
             VsSolution = images.IndexOfKey(KeyVsSolution);
             VsSolutionFile = images.IndexOfKey(KeyVsSolutionFile);
             VsProjectUnknown = images.IndexOfKey(KeyVsProjectUnknown);
@@ -41,6 +63,8 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing
             list.ImageSize = new Size(16, 16);
             list.Images.Add(KeyFolder, Resources.Folder_16x);
             list.Images.Add(KeyFolderOpen, Resources.FolderOpen_16x);
+            list.Images.Add(KeyLinkedFolder, Resources.LinkedFolder_16x);
+            list.Images.Add(KeyLinkedFolderOpen, Resources.LinkedFolderOpen_16x);
             list.Images.Add(KeyVsSolution, LicensingResources.VS_Solution_16x);
             list.Images.Add(KeyVsSolutionFile, LicensingResources.VS_Solution_File_16x);
             list.Images.Add(KeyVsProjectUnknown, LicensingResources.VS_Project_Unknown_16x);
@@ -59,6 +83,8 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing
             list.ImageSize = new Size(24, 24);
             list.Images.Add(KeyFolder, Resources.Folder_24x);
             list.Images.Add(KeyFolderOpen, Resources.FolderOpen_24x);
+            list.Images.Add(KeyLinkedFolder, Resources.LinkedFolder_24x);
+            list.Images.Add(KeyLinkedFolderOpen, Resources.LinkedFolderOpen_24x);
             list.Images.Add(KeyVsSolution, LicensingResources.VS_Solution_24x);
             list.Images.Add(KeyVsSolutionFile, LicensingResources.VS_Solution_File_24x);
             list.Images.Add(KeyVsProjectUnknown, LicensingResources.VS_Project_Unknown_24x);
@@ -71,8 +97,13 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing
             list.Images.Add(KeyReferences, LicensingResources.Dependencies_32x);
         } // InitializeImageListMedium
 
+        public int this[string key] => _list.Images.IndexOfKey(key);
+        public Image this[int index] => _list.Images[index];
+
         public int Folder { get; }
         public int FolderOpen { get; }
+        public int LinkedFolder { get; }
+        public int LinkedFolderOpen { get; }
         public int VsSolution { get; }
         public int VsSolutionFile { get; }
         public int VsProjectUnknown { get; }

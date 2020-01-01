@@ -41,7 +41,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\..\AssemblySolutionInfo.cs">
+      <Link>Properties\AssemblySolutionInfo.cs</Link>
+    </Compile>
     <Compile Include="DependencyLibraryNameComparer.cs" />
+    <Compile Include="ICloneable.cs" />
+    <Compile Include="Serialization\LicensedSolution.cs" />
     <Compile Include="LicensingDataExtensions.cs" />
     <Compile Include="LicensingDataTools.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

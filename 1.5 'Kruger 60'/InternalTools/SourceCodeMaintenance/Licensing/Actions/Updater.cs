@@ -1,4 +1,17 @@
-﻿using System;
+// ==============================================================================
+// 
+//   Copyright (C) 2014-2020, GitHub/Codeplex user AlphaCentaury
+//   All rights reserved.
+// 
+//     See 'LICENSE.MD' file (or 'license.txt' if missing) in the project root
+//     for complete license information.
+// 
+//   http://www.alphacentaury.org/movistartv
+//   https://github.com/AlphaCentaury
+// 
+// ==============================================================================
+
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -47,6 +60,12 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing.Actions
             } // finally
         } // Do
 
+        public override void End()
+        {
+            UpdateSolution();
+            UpdateSubSolutions();
+        } // End
+
         private void Update(LicensingData data, VsProject project)
         {
             // clear all dependencies, except runtime
@@ -80,7 +99,7 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing.Actions
             NamespaceData.Add(data.Licensed.Name, data);
         } // Update
 
-        public override void End()
+        private void UpdateSolution()
         {
             CompleteSkeletonDependencies();
 
@@ -111,7 +130,8 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing.Actions
             {
                 try
                 {
-                    File.Copy(data.FilePath, data.FilePath+ ".backup", true);
+                    // TODO: add to options
+                    // File.Copy(data.FilePath, data.FilePath + ".backup", true);
                     XmlSerialization.Serialize(data.FilePath, data);
                 }
                 catch (Exception e)
@@ -120,7 +140,7 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing.Actions
                 } // try-catch
             });
             Writer.DecreaseIndent();
-        } // End
+        } // UpdateSolution
 
         private void CompleteSkeletonDependencies()
         {
@@ -166,5 +186,15 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing.Actions
                 data.Licenses.Add(license);
             } // foreach
         } // AdjustLicenses
+
+        private void UpdateSubSolutions()
+        {
+            if (Solution.SubSolutions == null) return;
+            foreach (var subVsSolution in Solution.SubSolutions)
+            {
+                var updater = new Updater(subVsSolution, Writer, Token);
+                LicensingMaintenance.Helper.ForEachProject(updater, "Update solution dependencies");
+            } // foreach
+        } // UpdateSubSolutions
     } // class Updater
 } // namespace

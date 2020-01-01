@@ -1,9 +1,15 @@
-// Copyright (C) 2014-2019, GitHub/Codeplex user AlphaCentaury
+// ==============================================================================
 // 
-// All rights reserved, except those granted by the governing license of this software.
-// See 'license.txt' file in the project root for complete license information.
+//   Copyright (C) 2014-2020, GitHub/Codeplex user AlphaCentaury
+//   All rights reserved.
 // 
-// http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
+//     See 'LICENSE.MD' file (or 'license.txt' if missing) in the project root
+//     for complete license information.
+// 
+//   http://www.alphacentaury.org/movistartv
+//   https://github.com/AlphaCentaury
+// 
+// ==============================================================================
 
 using IpTviewr.Common;
 using JetBrains.Annotations;
@@ -115,7 +121,9 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.CopyrightNotices
                 // new path?
                 if (currentPath != lastPath)
                 {
+                    Writer.DecreaseIndent();
                     Writer.WriteLine(currentPath);
+                    Writer.IncreaseIndent();
                     lastPath = currentPath;
                 } // if
 
@@ -167,7 +175,10 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.CopyrightNotices
             try
             {
                 var result = UpdateHeaders(filename, locateFunc, writeAction);
-                Writer.WriteLine($"{Path.GetFileName(filename)}{(result ? ": Ok" : ": not needed")}");
+                if (result)
+                {
+                    Writer.WriteLine($"{Path.GetFileName(filename)}: Updated headers");
+                } // if
             }
             catch (Exception ex)
             {
@@ -253,9 +264,9 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.CopyrightNotices
             {
                 if (index >= CopyrightHeaderLines.Length) return true;
 
-                if (!CurrentLine.StartsWith("//")) return false;
+                if (!CurrentLine.StartsWith("// ")) return false;
 
-                var line = CurrentLine.Substring(2, CurrentLine.Length - 2).Trim();
+                var line = CurrentLine.Substring(3).TrimEnd();
                 if (line != CopyrightHeaderLines[index++]) break;
             } // while
 
@@ -299,7 +310,7 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.CopyrightNotices
             {
                 if (index >= CopyrightHeaderLines.Length) return true;
 
-                var line = CurrentLine.Trim();
+                var line = CurrentLine.TrimEnd();
                 if (!isHeader)
                 {
                     if (line.Length == 0) continue;

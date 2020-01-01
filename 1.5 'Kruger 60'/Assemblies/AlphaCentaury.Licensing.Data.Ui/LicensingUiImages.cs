@@ -1,9 +1,15 @@
-// Copyright (C) 2014-2019, GitHub/Codeplex user AlphaCentaury
+// ==============================================================================
 // 
-// All rights reserved, except those granted by the governing license of this software.
-// See 'license.txt' file in the project root for complete license information.
+//   Copyright (C) 2014-2020, GitHub/Codeplex user AlphaCentaury
+//   All rights reserved.
 // 
-// http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
+//     See 'LICENSE.MD' file (or 'license.txt' if missing) in the project root
+//     for complete license information.
+// 
+//   http://www.alphacentaury.org/movistartv
+//   https://github.com/AlphaCentaury
+// 
+// ==============================================================================
 
 using System.Drawing;
 using System.Windows.Forms;
@@ -30,9 +36,16 @@ namespace AlphaCentaury.Licensing.Data.Ui
         public const string KeyDependencyUnknown = "Unknown";
         public const string KeyLicenses = "Licenses";
         public const string KeyLicense = "License";
+        public const string KeyTermsAndConditionsNode = "TermsConditionsList";
+        public const string KeyTermsAndConditions = "TermsConditions";
 
-        public LicensingUiImages(ImageList.ImageCollection images)
+        private readonly ImageList _list;
+
+        public LicensingUiImages(ImageList list)
         {
+            _list = list;
+
+            var images = list.Images;
             LicensingData = images.IndexOfKey(KeyLicensingData);
             LicensedProgramCli = images.IndexOfKey(KeyLicensedProgramCli);
             LicensedProgramGui = images.IndexOfKey(KeyLicensedProgramGui);
@@ -50,7 +63,12 @@ namespace AlphaCentaury.Licensing.Data.Ui
             DependencyUnknown = images.IndexOfKey(KeyDependencyUnknown);
             Licenses = images.IndexOfKey(KeyLicenses);
             License = images.IndexOfKey(KeyLicense);
+            TermsAndConditionsNode = images.IndexOfKey(KeyTermsAndConditionsNode);
+            TermsAndConditions = images.IndexOfKey(KeyTermsAndConditions);
         } // constructor
+
+        public int this[string key] => _list.Images.IndexOfKey(key);
+        public Image this[int index] => _list.Images[index];
 
         public int LicensingData { get; }
         public int LicensedProgramCli { get; }
@@ -69,7 +87,8 @@ namespace AlphaCentaury.Licensing.Data.Ui
         public int DependencyUnknown { get; }
         public int Licenses { get; }
         public int License { get; }
-
+        public int TermsAndConditionsNode { get; }
+        public int TermsAndConditions { get; }
 
         public static void GetImageListSmall(ImageList list)
         {
@@ -93,6 +112,8 @@ namespace AlphaCentaury.Licensing.Data.Ui
             list.Images.Add(KeyDependencyUnknown, Resources.Unknown_16x);
             list.Images.Add(KeyLicenses, Resources.Certificate_16x);
             list.Images.Add(KeyLicense, Resources.LicenseFile_16x);
+            list.Images.Add(KeyTermsAndConditionsNode, Resources.TermsConditionsList_16x);
+            list.Images.Add(KeyTermsAndConditions, Resources.TermsConditions_16x);
         } // GetImageListSmall
 
         public static void GetImageListMedium(ImageList list)
@@ -117,6 +138,9 @@ namespace AlphaCentaury.Licensing.Data.Ui
             list.Images.Add(KeyDependencyUnknown, Resources.Unknown_24x);
             list.Images.Add(KeyLicenses, Resources.Certificate_24x);
             list.Images.Add(KeyLicense, Resources.LicenseFile_24x);
+            list.Images.Add(KeyTermsAndConditionsNode, Resources.TermsConditionsList_24x);
+            list.Images.Add(KeyTermsAndConditions, Resources.TermsConditions_24x);
+
         } // GetImageListMedium
 
         public static void GetImageListLarge(ImageList list)
@@ -141,6 +165,8 @@ namespace AlphaCentaury.Licensing.Data.Ui
             list.Images.Add(KeyDependencyUnknown, Resources.Unknown_32x);
             list.Images.Add(KeyLicenses, Resources.Certificate_32x);
             list.Images.Add(KeyLicense, Resources.LicenseFile_32x);
+            list.Images.Add(KeyTermsAndConditionsNode, Resources.TermsConditionsList_32x);
+            list.Images.Add(KeyTermsAndConditions, Resources.TermsConditions_32x);
         } // GetImageListLarge
     } // class LicensingUiImages
 } // namespace

@@ -1,9 +1,15 @@
-// Copyright (C) 2014-2019, GitHub/Codeplex user AlphaCentaury
+// ==============================================================================
 // 
-// All rights reserved, except those granted by the governing license of this software.
-// See 'license.txt' file in the project root for complete license information.
+//   Copyright (C) 2014-2020, GitHub/Codeplex user AlphaCentaury
+//   All rights reserved.
 // 
-// http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
+//     See 'LICENSE.MD' file (or 'license.txt' if missing) in the project root
+//     for complete license information.
+// 
+//   http://www.alphacentaury.org/movistartv
+//   https://github.com/AlphaCentaury
+// 
+// ==============================================================================
 
 using System.Reflection;
 using System.Runtime.InteropServices;
@@ -13,9 +19,9 @@ using System.Runtime.InteropServices;
 // associated with an assembly.
 [assembly: AssemblyTitle("AlphaCentaury.Licensing.Data")]
 [assembly: AssemblyDescription("AlphaCentaury licensing data")]
-[assembly: AssemblyCompany("www.alphacentaury.org")]
-[assembly: AssemblyProduct("AlphaCentaury application framework")]
-[assembly: AssemblyCopyright("Copyright(C) 2019, GitHub user AlphaCentaury")]
+[assembly: AssemblyConfiguration("")]
+[assembly: AssemblyCopyright(SolutionVersion.DefaultCopyright)]
+[assembly: AssemblyCulture("")]
 
 // Setting ComVisible to false makes the types in this assembly not visible
 // to COM components.  If you need to access a type in this assembly from
@@ -31,5 +37,4 @@ using System.Runtime.InteropServices;
 //      Minor Version
 //      Build Number
 //      Revision
-[assembly: AssemblyVersion("1.0.0.0")]
-[assembly: AssemblyFileVersion("1.0.0.0")]
+[assembly: AssemblyVersion(SolutionVersion.DefaultAssemblyVersion)]

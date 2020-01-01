@@ -1,9 +1,15 @@
-// Copyright (C) 2014-2019, GitHub/Codeplex user AlphaCentaury
+// ==============================================================================
 // 
-// All rights reserved, except those granted by the governing license of this software.
-// See 'license.txt' file in the project root for complete license information.
+//   Copyright (C) 2014-2020, GitHub/Codeplex user AlphaCentaury
+//   All rights reserved.
 // 
-// http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
+//     See 'LICENSE.MD' file (or 'license.txt' if missing) in the project root
+//     for complete license information.
+// 
+//   http://www.alphacentaury.org/movistartv
+//   https://github.com/AlphaCentaury
+// 
+// ==============================================================================
 
 namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing
 {
@@ -20,17 +26,15 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing
         {
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Solution");
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Licensing file", -2, -2);
             this.tabControlSolution = new System.Windows.Forms.TabControl();
             this.tabPageSolution = new System.Windows.Forms.TabPage();
-            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.splitContainerSolution = new System.Windows.Forms.SplitContainer();
             this.treeViewSolution = new System.Windows.Forms.TreeView();
-            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this.splitContainerSolutionRight = new System.Windows.Forms.SplitContainer();
             this.treeViewDetails = new System.Windows.Forms.TreeView();
             this.textBoxDetails = new System.Windows.Forms.TextBox();
             this.tabPageLicensing = new System.Windows.Forms.TabPage();
-            this.splitContainer3 = new System.Windows.Forms.SplitContainer();
-            this.treeViewLicensingData = new System.Windows.Forms.TreeView();
+            this.licensingDataViewer = new AlphaCentaury.Tools.SourceCodeMaintenance.Licensing.LicensingDataViewer();
             this.tabPageOutput = new System.Windows.Forms.TabPage();
             this.textBoxOutput = new System.Windows.Forms.TextBox();
             this.imageListSolutionTreeMedium = new System.Windows.Forms.ImageList(this.components);
@@ -51,20 +55,18 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing
             this.imageListSolutionTreeSmall = new System.Windows.Forms.ImageList(this.components);
             this.selectFolderDialog = new IpTviewr.Native.WinForms.SelectFolderDialog();
             this.timerRefreshOutput = new System.Windows.Forms.Timer(this.components);
+            this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.tabControlSolution.SuspendLayout();
             this.tabPageSolution.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
-            this.splitContainer1.Panel1.SuspendLayout();
-            this.splitContainer1.Panel2.SuspendLayout();
-            this.splitContainer1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
-            this.splitContainer2.Panel1.SuspendLayout();
-            this.splitContainer2.Panel2.SuspendLayout();
-            this.splitContainer2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerSolution)).BeginInit();
+            this.splitContainerSolution.Panel1.SuspendLayout();
+            this.splitContainerSolution.Panel2.SuspendLayout();
+            this.splitContainerSolution.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerSolutionRight)).BeginInit();
+            this.splitContainerSolutionRight.Panel1.SuspendLayout();
+            this.splitContainerSolutionRight.Panel2.SuspendLayout();
+            this.splitContainerSolutionRight.SuspendLayout();
             this.tabPageLicensing.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).BeginInit();
-            this.splitContainer3.Panel1.SuspendLayout();
-            this.splitContainer3.SuspendLayout();
             this.tabPageOutput.SuspendLayout();
             this.toolStripMain.SuspendLayout();
             this.SuspendLayout();
@@ -85,7 +87,7 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing
             // 
             // tabPageSolution
             // 
-            this.tabPageSolution.Controls.Add(this.splitContainer1);
+            this.tabPageSolution.Controls.Add(this.splitContainerSolution);
             this.tabPageSolution.Location = new System.Drawing.Point(4, 22);
             this.tabPageSolution.Name = "tabPageSolution";
             this.tabPageSolution.Padding = new System.Windows.Forms.Padding(3);
@@ -94,24 +96,24 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing
             this.tabPageSolution.Text = "Solution";
             this.tabPageSolution.UseVisualStyleBackColor = true;
             // 
-            // splitContainer1
+            // splitContainerSolution
             // 
-            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.Location = new System.Drawing.Point(3, 3);
-            this.splitContainer1.Name = "splitContainer1";
+            this.splitContainerSolution.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainerSolution.Location = new System.Drawing.Point(3, 3);
+            this.splitContainerSolution.Name = "splitContainerSolution";
             // 
-            // splitContainer1.Panel1
+            // splitContainerSolution.Panel1
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.treeViewSolution);
-            this.splitContainer1.Panel1MinSize = 125;
+            this.splitContainerSolution.Panel1.Controls.Add(this.treeViewSolution);
+            this.splitContainerSolution.Panel1MinSize = 125;
             // 
-            // splitContainer1.Panel2
+            // splitContainerSolution.Panel2
             // 
-            this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
-            this.splitContainer1.Panel2MinSize = 125;
-            this.splitContainer1.Size = new System.Drawing.Size(746, 489);
-            this.splitContainer1.SplitterDistance = 350;
-            this.splitContainer1.TabIndex = 0;
+            this.splitContainerSolution.Panel2.Controls.Add(this.splitContainerSolutionRight);
+            this.splitContainerSolution.Panel2MinSize = 125;
+            this.splitContainerSolution.Size = new System.Drawing.Size(746, 489);
+            this.splitContainerSolution.SplitterDistance = 350;
+            this.splitContainerSolution.TabIndex = 0;
             // 
             // treeViewSolution
             // 
@@ -130,23 +132,23 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing
             this.treeViewSolution.BeforeExpand += new System.Windows.Forms.TreeViewCancelEventHandler(this.treeViewSolution_BeforeExpand);
             this.treeViewSolution.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeViewSolution_AfterSelect);
             // 
-            // splitContainer2
+            // splitContainerSolutionRight
             // 
-            this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer2.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer2.Name = "splitContainer2";
-            this.splitContainer2.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            this.splitContainerSolutionRight.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainerSolutionRight.Location = new System.Drawing.Point(0, 0);
+            this.splitContainerSolutionRight.Name = "splitContainerSolutionRight";
+            this.splitContainerSolutionRight.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
-            // splitContainer2.Panel1
+            // splitContainerSolutionRight.Panel1
             // 
-            this.splitContainer2.Panel1.Controls.Add(this.treeViewDetails);
+            this.splitContainerSolutionRight.Panel1.Controls.Add(this.treeViewDetails);
             // 
-            // splitContainer2.Panel2
+            // splitContainerSolutionRight.Panel2
             // 
-            this.splitContainer2.Panel2.Controls.Add(this.textBoxDetails);
-            this.splitContainer2.Size = new System.Drawing.Size(392, 489);
-            this.splitContainer2.SplitterDistance = 339;
-            this.splitContainer2.TabIndex = 0;
+            this.splitContainerSolutionRight.Panel2.Controls.Add(this.textBoxDetails);
+            this.splitContainerSolutionRight.Size = new System.Drawing.Size(392, 489);
+            this.splitContainerSolutionRight.SplitterDistance = 339;
+            this.splitContainerSolutionRight.TabIndex = 0;
             // 
             // treeViewDetails
             // 
@@ -172,7 +174,7 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing
             // 
             // tabPageLicensing
             // 
-            this.tabPageLicensing.Controls.Add(this.splitContainer3);
+            this.tabPageLicensing.Controls.Add(this.licensingDataViewer);
             this.tabPageLicensing.Location = new System.Drawing.Point(4, 22);
             this.tabPageLicensing.Name = "tabPageLicensing";
             this.tabPageLicensing.Padding = new System.Windows.Forms.Padding(3);
@@ -181,34 +183,15 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing
             this.tabPageLicensing.Text = "Licensing file";
             this.tabPageLicensing.UseVisualStyleBackColor = true;
             // 
-            // splitContainer3
+            // licensingDataViewer
             // 
-            this.splitContainer3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer3.Location = new System.Drawing.Point(3, 3);
-            this.splitContainer3.Name = "splitContainer3";
-            // 
-            // splitContainer3.Panel1
-            // 
-            this.splitContainer3.Panel1.Controls.Add(this.treeViewLicensingData);
-            this.splitContainer3.Size = new System.Drawing.Size(746, 489);
-            this.splitContainer3.SplitterDistance = 347;
-            this.splitContainer3.TabIndex = 0;
-            // 
-            // treeViewLicensingData
-            // 
-            this.treeViewLicensingData.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.treeViewLicensingData.FullRowSelect = true;
-            this.treeViewLicensingData.HideSelection = false;
-            this.treeViewLicensingData.Location = new System.Drawing.Point(0, 0);
-            this.treeViewLicensingData.Name = "treeViewLicensingData";
-            treeNode2.ImageIndex = -2;
-            treeNode2.Name = "DummySolutionNode";
-            treeNode2.SelectedImageIndex = -2;
-            treeNode2.Text = "Licensing file";
-            this.treeViewLicensingData.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode2});
-            this.treeViewLicensingData.Size = new System.Drawing.Size(347, 489);
-            this.treeViewLicensingData.TabIndex = 0;
+            this.licensingDataViewer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.licensingDataViewer.LicensingData = null;
+            this.licensingDataViewer.LicensingDataName = null;
+            this.licensingDataViewer.Location = new System.Drawing.Point(3, 3);
+            this.licensingDataViewer.Name = "licensingDataViewer";
+            this.licensingDataViewer.Size = new System.Drawing.Size(746, 489);
+            this.licensingDataViewer.TabIndex = 0;
             // 
             // tabPageOutput
             // 
@@ -276,25 +259,23 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing
             // 
             this.openSolutionFolderToolStripMenuItem.Image = global::AlphaCentaury.Tools.SourceCodeMaintenance.Properties.LicensingResources.VS_Solution_16x;
             this.openSolutionFolderToolStripMenuItem.Name = "openSolutionFolderToolStripMenuItem";
-            this.openSolutionFolderToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.openSolutionFolderToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.openSolutionFolderToolStripMenuItem.Text = "Solution folder";
             this.openSolutionFolderToolStripMenuItem.Click += new System.EventHandler(this.openSolutionFolderToolStripMenuItem_Click);
             // 
             // openSolutionFileToolStripMenuItem
             // 
-            this.openSolutionFileToolStripMenuItem.Enabled = false;
             this.openSolutionFileToolStripMenuItem.Image = global::AlphaCentaury.Tools.SourceCodeMaintenance.Properties.LicensingResources.VS_Solution_File_16x;
             this.openSolutionFileToolStripMenuItem.Name = "openSolutionFileToolStripMenuItem";
-            this.openSolutionFileToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.openSolutionFileToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.openSolutionFileToolStripMenuItem.Text = "Solution file";
             this.openSolutionFileToolStripMenuItem.Click += new System.EventHandler(this.openSolutionFileToolStripMenuItem_Click);
             // 
             // openLicensingDataToolStripMenuItem
             // 
-            this.openLicensingDataToolStripMenuItem.Enabled = false;
             this.openLicensingDataToolStripMenuItem.Image = global::AlphaCentaury.Tools.SourceCodeMaintenance.Properties.LicensingResources.Certificate_16x;
             this.openLicensingDataToolStripMenuItem.Name = "openLicensingDataToolStripMenuItem";
-            this.openLicensingDataToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.openLicensingDataToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.openLicensingDataToolStripMenuItem.Text = "Licensing file";
             this.openLicensingDataToolStripMenuItem.Click += new System.EventHandler(this.openLicensingDataToolStripMenuItem_Click);
             // 
@@ -376,13 +357,13 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing
             this.imageListSolutionTreeSmall.ImageSize = new System.Drawing.Size(16, 16);
             this.imageListSolutionTreeSmall.TransparentColor = System.Drawing.Color.Transparent;
             // 
-            // selectFolderDialog
-            // 
-            this.selectFolderDialog.SelectedPath = "";
-            // 
             // timerRefreshOutput
             // 
             this.timerRefreshOutput.Interval = 1500;
+            // 
+            // openFileDialog
+            // 
+            this.openFileDialog.RestoreDirectory = true;
             // 
             // LicensingFormDocumentView
             // 
@@ -395,19 +376,16 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing
             this.Text = "Licensing maintenance";
             this.tabControlSolution.ResumeLayout(false);
             this.tabPageSolution.ResumeLayout(false);
-            this.splitContainer1.Panel1.ResumeLayout(false);
-            this.splitContainer1.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
-            this.splitContainer1.ResumeLayout(false);
-            this.splitContainer2.Panel1.ResumeLayout(false);
-            this.splitContainer2.Panel2.ResumeLayout(false);
-            this.splitContainer2.Panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
-            this.splitContainer2.ResumeLayout(false);
+            this.splitContainerSolution.Panel1.ResumeLayout(false);
+            this.splitContainerSolution.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerSolution)).EndInit();
+            this.splitContainerSolution.ResumeLayout(false);
+            this.splitContainerSolutionRight.Panel1.ResumeLayout(false);
+            this.splitContainerSolutionRight.Panel2.ResumeLayout(false);
+            this.splitContainerSolutionRight.Panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerSolutionRight)).EndInit();
+            this.splitContainerSolutionRight.ResumeLayout(false);
             this.tabPageLicensing.ResumeLayout(false);
-            this.splitContainer3.Panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).EndInit();
-            this.splitContainer3.ResumeLayout(false);
             this.tabPageOutput.ResumeLayout(false);
             this.tabPageOutput.PerformLayout();
             this.toolStripMain.ResumeLayout(false);
@@ -421,7 +399,7 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing
 
         protected System.Windows.Forms.TabControl tabControlSolution;
         protected System.Windows.Forms.TabPage tabPageSolution;
-        protected System.Windows.Forms.SplitContainer splitContainer1;
+        protected System.Windows.Forms.SplitContainer splitContainerSolution;
         protected System.Windows.Forms.TreeView treeViewSolution;
         protected System.Windows.Forms.ImageList imageListSolutionTreeMedium;
         protected System.Windows.Forms.TabPage tabPageLicensing;
@@ -431,11 +409,9 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing
         protected System.Windows.Forms.ToolStripMenuItem openSolutionFolderToolStripMenuItem;
         protected System.Windows.Forms.ToolStripMenuItem openSolutionFileToolStripMenuItem;
         protected System.Windows.Forms.ToolStripMenuItem openLicensingDataToolStripMenuItem;
-        protected System.Windows.Forms.SplitContainer splitContainer2;
+        protected System.Windows.Forms.SplitContainer splitContainerSolutionRight;
         protected System.Windows.Forms.TreeView treeViewDetails;
         protected System.Windows.Forms.TextBox textBoxDetails;
-        protected System.Windows.Forms.SplitContainer splitContainer3;
-        protected System.Windows.Forms.TreeView treeViewLicensingData;
         protected IpTviewr.Native.WinForms.SelectFolderDialog selectFolderDialog;
         protected System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         protected System.Windows.Forms.ToolStripLabel toolStripLabel1;
@@ -450,5 +426,7 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing
         protected System.Windows.Forms.ToolStripButton checkStripButton;
         private System.Windows.Forms.ToolStripButton licensingWriteStripButton;
         private System.Windows.Forms.ToolStripButton licensingOptionsStripButton;
+        protected LicensingDataViewer licensingDataViewer;
+        protected System.Windows.Forms.OpenFileDialog openFileDialog;
     }
 }

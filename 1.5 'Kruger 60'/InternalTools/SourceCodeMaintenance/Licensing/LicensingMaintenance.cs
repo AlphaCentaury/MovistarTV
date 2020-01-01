@@ -1,9 +1,15 @@
-// Copyright (C) 2014-2019, GitHub/Codeplex user AlphaCentaury
+// ==============================================================================
 // 
-// All rights reserved, except those granted by the governing license of this software.
-// See 'license.txt' file in the project root for complete license information.
+//   Copyright (C) 2014-2020, GitHub/Codeplex user AlphaCentaury
+//   All rights reserved.
 // 
-// http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
+//     See 'LICENSE.MD' file (or 'license.txt' if missing) in the project root
+//     for complete license information.
+// 
+//   http://www.alphacentaury.org/movistartv
+//   https://github.com/AlphaCentaury
+// 
+// ==============================================================================
 
 using System;
 using System.Collections.Generic;
@@ -65,7 +71,7 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing
 
                 if (string.Equals(value, "Write", StringComparison.InvariantCultureIgnoreCase))
                 {
-                    WriteLicenseFiles(solution, writer, options.Writer, token);
+                    WriteLicenseFiles(solution, writer, options.Writer, options.SolutionWriter, token);
                     continue;
                 } // if Write
 
@@ -167,11 +173,11 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing
 
         #region Operations: Write
 
-        public static void WriteLicenseFiles(VsSolution solution, IToolOutputWriter writer, WriterOptions options, CancellationToken token)
+        public static void WriteLicenseFiles(VsSolution solution, IToolOutputWriter writer, WriterOptions options, WriterOptions solutionOptions, CancellationToken token)
         {
             try
             {
-                var action = new LicensesWriter(solution, writer, options, token);
+                var action = new LicensesWriter(solution, writer, options, solutionOptions, token);
                 Helper.ForEachProject(action, "Write licenses readme files");
             }
             catch (Exception e)
@@ -180,9 +186,9 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing
             } // try-catch
         } // WriteLicenseFiles
 
-        public static Task WriteLicenseFilesAsync(VsSolution solution, IToolOutputWriter writer, WriterOptions options, CancellationToken token)
+        public static Task WriteLicenseFilesAsync(VsSolution solution, IToolOutputWriter writer, WriterOptions options, WriterOptions solutionOptions, CancellationToken token)
         {
-            var task = new Task(() => WriteLicenseFiles(solution, writer, options, token), token, TaskCreationOptions.LongRunning);
+            var task = new Task(() => WriteLicenseFiles(solution, writer, options, solutionOptions, token), token, TaskCreationOptions.LongRunning);
             task.Start();
 
             return task;

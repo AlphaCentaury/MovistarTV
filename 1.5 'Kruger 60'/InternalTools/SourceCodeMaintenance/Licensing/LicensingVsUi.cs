@@ -1,4 +1,17 @@
-﻿using System;
+// ==============================================================================
+// 
+//   Copyright (C) 2014-2020, GitHub/Codeplex user AlphaCentaury
+//   All rights reserved.
+// 
+//     See 'LICENSE.MD' file (or 'license.txt' if missing) in the project root
+//     for complete license information.
+// 
+//   http://www.alphacentaury.org/movistartv
+//   https://github.com/AlphaCentaury
+// 
+// ==============================================================================
+
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
@@ -21,7 +34,7 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing
         public TreeNode GetSolutionTree(VsSolution solution)
         {
             var image = SolutionImages.VsSolution;
-            var root = new TreeNode($"Solution <{solution.Name}> ({solution.AllProjects.Count} projects)", image, image)
+            var root = new TreeNode($"Solution {(solution.SolutionFile == null ? "folder" : "file")} <{solution.Name}> ({solution.AllProjects.Count} projects)", image, image)
             {
                 Tag = solution
             };
@@ -32,14 +45,14 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing
             return root;
         } // GetSolutionTree
 
-        public void AddSolutionFolder(TreeNode treeNode, VsSolutionFolder vsFolder)
+        public void AddSolutionFolder(TreeNode treeNode, VsFolder vsFolder)
         {
             if ((vsFolder == null) || (treeNode == null)) return;
             if (vsFolder.Folders != null)
             {
-                var folderImage = SolutionImages.Folder;
                 foreach (var folder in vsFolder.Folders)
                 {
+                    var folderImage = folder.Name.StartsWith("<") ? SolutionImages.LinkedFolder : SolutionImages.Folder;
                     var node = new TreeNode(folder.Name, folderImage, folderImage);
                     AddSolutionFolder(node, folder);
                     treeNode.Nodes.Add(node);
@@ -61,7 +74,6 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing
         public TreeNode GetProjectTree(VsProject project, VsSolution solution)
         {
             var root = GetProjectTreeNode(project);
-            root.Expand();
             AddProjectReferences(root, solution, project.ReferencedProjects);
 
             return root;
@@ -76,7 +88,6 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing
             } // if
 
             var node = new TreeNode("Referenced projects", SolutionImages.References, SolutionImages.References);
-            node.Expand();
             foreach (var guid in referencedProjects)
             {
                 if (solution.TryGetValue(guid, out var project))
@@ -93,7 +104,7 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing
             treeNode.Nodes.Add(node);
         } // AddProjectReferences
 
-        public void AddProject(TreeNode treeNode, VsSolutionFolder vsFolder, VsProject project)
+        public void AddProject(TreeNode treeNode, VsFolder vsFolder, VsProject project)
         {
             treeNode.Nodes.Add(GetProjectTreeNode(project));
 
@@ -114,21 +125,7 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.Licensing
 
         public TreeNode GetProjectTreeNode(VsProject project)
         {
-            var image = project.Language switch
-            {
-                "C#" => project.Type switch
-                {
-                    "Exe" => SolutionImages.CsExe,
-                    "Library" => SolutionImages.CsLib,
-                    "WinExe" => SolutionImages.CsWinExe,
-                    _ => SolutionImages.VsProjectUnknown,
-                },
-                _ => project.Type switch
-                {
-                    "Package" => SolutionImages.Installer,
-                    _ => SolutionImages.VsProjectUnknown,
-                }
-            };
+            var image = SolutionImages[project.ImageKey];
 
             return new TreeNode(project.Namespace, image, image)
             {

@@ -1,9 +1,15 @@
-// Copyright (C) 2014-2019, GitHub/Codeplex user AlphaCentaury
+// ==============================================================================
 // 
-// All rights reserved, except those granted by the governing license of this software.
-// See 'license.txt' file in the project root for complete license information.
+//   Copyright (C) 2014-2020, GitHub/Codeplex user AlphaCentaury
+//   All rights reserved.
 // 
-// http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
+//     See 'LICENSE.MD' file (or 'license.txt' if missing) in the project root
+//     for complete license information.
+// 
+//   http://www.alphacentaury.org/movistartv
+//   https://github.com/AlphaCentaury
+// 
+// ==============================================================================
 
 using System;
 using System.Collections.Generic;
@@ -14,13 +20,14 @@ namespace AlphaCentaury.Licensing.Data.Serialization
 {
     [Serializable]
     [XmlRoot("Licensing", Namespace = Namespace, IsNullable = false)]
-    public class LicensingData
+    public class LicensingData: ICloneable<LicensingData>
     {
         public const string Namespace = "http://alphacentaury.org/Licensing.Data/v1";
 
         [XmlElement("Library", typeof(LicensedLibrary))]
         [XmlElement("Program", typeof(LicensedProgram))]
         [XmlElement("Installer", typeof(LicensedInstaller))]
+        [XmlElement("Solution", typeof(LicensedSolution))]
         public LicensedItem Licensed { get; set; }
 
         public LicensingDependencies Dependencies { get; set; }
@@ -37,7 +44,7 @@ namespace AlphaCentaury.Licensing.Data.Serialization
 
         public License GetLicense(string licenseId)
         {
-            if (!LicensesSpecified) return null;
+            if (!LicensesSpecified || string.IsNullOrEmpty(licenseId)) return null;
             return Licenses.FirstOrDefault(license => string.Equals(license.Id, licenseId, StringComparison.InvariantCultureIgnoreCase));
         } // GetLicense
 
@@ -53,7 +60,9 @@ namespace AlphaCentaury.Licensing.Data.Serialization
             return clone;
         } // Clone
 
-        public bool DependenciesSpecified => (Dependencies != null) && Dependencies.LibrariesSpecified && Dependencies.ThirdPartySpecified;
+        object ICloneable.Clone() => Clone();
+
+        public bool DependenciesSpecified => (Dependencies != null) && (Dependencies.LibrariesSpecified || Dependencies.ThirdPartySpecified);
 
         // avoid serializing empty lists
         public bool LicensesSpecified => (Licenses != null) && (Licenses.Count > 0);

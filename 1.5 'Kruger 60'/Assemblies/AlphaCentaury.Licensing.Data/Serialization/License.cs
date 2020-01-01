@@ -1,9 +1,15 @@
-// Copyright (C) 2014-2019, GitHub/Codeplex user AlphaCentaury
+// ==============================================================================
 // 
-// All rights reserved, except those granted by the governing license of this software.
-// See 'license.txt' file in the project root for complete license information.
+//   Copyright (C) 2014-2020, GitHub/Codeplex user AlphaCentaury
+//   All rights reserved.
 // 
-// http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
+//     See 'LICENSE.MD' file (or 'license.txt' if missing) in the project root
+//     for complete license information.
+// 
+//   http://www.alphacentaury.org/movistartv
+//   https://github.com/AlphaCentaury
+// 
+// ==============================================================================
 
 using System;
 using System.Xml;
@@ -13,7 +19,7 @@ using System.Xml.Serialization;
 namespace AlphaCentaury.Licensing.Data.Serialization
 {
     [Serializable]
-    public sealed class License : IXmlSerializable, IEquatable<License>
+    public sealed class License : IXmlSerializable, IEquatable<License>, ICloneable<License>
     {
         public string Id { get; set; }
 
@@ -35,6 +41,18 @@ namespace AlphaCentaury.Licensing.Data.Serialization
                 Text = Text
             };
         } // Clone
+
+        object ICloneable.Clone() => Clone();
+
+        public void Inherit(License from)
+        {
+            if (from == null) return;
+
+            Id ??= from.Id;
+            Name ??= from.Name;
+            Format ??= from.Format;
+            Text ??= from.Format;
+        } // Inherit
 
         #region IEquatable<License>
 

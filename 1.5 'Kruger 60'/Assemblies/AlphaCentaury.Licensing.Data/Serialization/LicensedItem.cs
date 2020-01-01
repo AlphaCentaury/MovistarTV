@@ -1,10 +1,17 @@
-// Copyright (C) 2014-2019, GitHub/Codeplex user AlphaCentaury
+// ==============================================================================
 // 
-// All rights reserved, except those granted by the governing license of this software.
-// See 'license.txt' file in the project root for complete license information.
+//   Copyright (C) 2014-2020, GitHub/Codeplex user AlphaCentaury
+//   All rights reserved.
 // 
-// http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
+//     See 'LICENSE.MD' file (or 'license.txt' if missing) in the project root
+//     for complete license information.
+// 
+//   http://www.alphacentaury.org/movistartv
+//   https://github.com/AlphaCentaury
+// 
+// ==============================================================================
 
+using JetBrains.Annotations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +20,7 @@ using System.Xml.Serialization;
 namespace AlphaCentaury.Licensing.Data.Serialization
 {
     [Serializable]
-    public abstract class LicensedItem: LicensedComponent
+    public abstract class LicensedItem : LicensedComponent, ICloneable<LicensedItem>
     {
         [XmlAttribute("file")]
         public string Assembly { get; set; }
@@ -28,7 +35,7 @@ namespace AlphaCentaury.Licensing.Data.Serialization
         [XmlIgnore]
         public abstract LicensedItemType Type { get; }
 
-        public  override string ToString()
+        public override string ToString()
         {
             return $"{Type}:{Name}";
         } // ToString
@@ -47,9 +54,24 @@ namespace AlphaCentaury.Licensing.Data.Serialization
             return clone;
         } // Clone
 
+        object ICloneable.Clone() => Clone();
+
+        public abstract void Inherit([CanBeNull] LicensedItem from);
+
         public void CopyTo(LibraryDependency item) => CopyToLibraryDependency(item);
 
-        public LibraryDependency ConvertToLibraryDependency(string language = null)
+        public void CopyTo(LicensedItem item)
+        {
+            if (item == null) return;
+            item.Assembly = Assembly;
+            item.Product = Product;
+            item.TermsConditions = TermsConditions.Clone();
+            item.Notes = Notes.Clone();
+
+            CopyToComponent(item);
+        } // CopyTo
+
+        public LibraryDependency ConvertToLibraryDependency()
         {
             var item = new LibraryDependency();
             CopyToLibraryDependency(item);
@@ -71,5 +93,17 @@ namespace AlphaCentaury.Licensing.Data.Serialization
             item.Copyright = Copyright;
             item.Remarks = Remarks?.Clone();
         } // CopyToLibraryDependency
+
+        protected void ProtectedInherit([CanBeNull] LicensedItem from)
+        {
+            if (from == null) return;
+
+            Assembly ??= from.Assembly;
+            Product ??= from.Product;
+            TermsConditions = TermsAndConditions.Inherit(TermsConditions, from.TermsConditions);
+            Notes ??= from.Notes?.Clone();
+
+            Inherit((LicensedComponent)from);
+        } // ProtectedOverride
     } // class LicensedItem
 } // namespace
