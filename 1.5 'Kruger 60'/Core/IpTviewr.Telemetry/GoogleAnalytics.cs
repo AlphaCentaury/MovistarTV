@@ -32,8 +32,12 @@ namespace IpTviewr.Telemetry
         public void Start(IReadOnlyDictionary<string, string> properties)
         {
             if (properties == null) throw new InvalidOperationException();
+
             TrackingId = properties["TrackingId"];
-            // will really start when Init() is called by AppTelemetry.HackInitGoogle()
+            _userAgent = BuildUserAgent();
+            _applicationName = Path.GetFileNameWithoutExtension(Application.ExecutablePath);
+            ClientId = properties["ClientId"];
+            ManageSession(false);
         } // Start
 
         public void End()
@@ -80,12 +84,9 @@ namespace IpTviewr.Telemetry
             get;
             private set;
         } // ClientId
+
         public void Init(string clientId)
         {
-            _userAgent = BuildUserAgent();
-            _applicationName = Path.GetFileNameWithoutExtension(Application.ExecutablePath);
-            ClientId = clientId;
-            ManageSession(false);
         } // Init
 
         public void EnsureHitsSents()
