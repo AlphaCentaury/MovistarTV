@@ -1,13 +1,21 @@
-// Copyright (C) 2014-2019, GitHub/Codeplex user AlphaCentaury
+// ==============================================================================
 // 
-// All rights reserved, except those granted by the governing license of this software.
-// See 'license.txt' file in the project root for complete license information.
+//   Copyright (C) 2014-2020, GitHub/Codeplex user AlphaCentaury
+//   All rights reserved.
 // 
-// http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
+//     See 'LICENSE.MD' file (or 'license.txt' if missing) in the project root
+//     for complete license information.
+// 
+//   http://www.alphacentaury.org/movistartv
+//   https://github.com/AlphaCentaury
+// 
+// ==============================================================================
 
+using System;
 using AlphaCentaury.Licensing.Data.Serialization;
 using JetBrains.Annotations;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Windows.Forms;
 using AlphaCentaury.Licensing.Data.Ui.Properties;
 
@@ -41,19 +49,28 @@ namespace AlphaCentaury.Licensing.Data.Ui
             if (dependencies == null) return;
             if (!dependencies.LibrariesSpecified && !dependencies.ThirdPartySpecified) return;
 
-            var root = new TreeNode(Resources.DependenciesNode, _images.Dependencies, _images.Dependencies);
+            var root = new TreeNode(Resources.DependenciesNode, _images.Dependencies, _images.Dependencies)
+            {
+                Tag = dependencies
+            };
             treeNode.Nodes.Add(root);
 
             if (dependencies.LibrariesSpecified)
             {
-                var nodeLibraries = new TreeNode( Resources.DependenciesLibrariesNode, _images.DependenciesLibraries, _images.DependenciesLibraries);
+                var nodeLibraries = new TreeNode(Resources.DependenciesLibrariesNode, _images.DependenciesLibraries, _images.DependenciesLibraries)
+                {
+                    Tag = dependencies.Libraries
+                };
                 root.Nodes.Add(nodeLibraries);
                 AddLibraryDependenciesNodes(nodeLibraries, dependencies.Libraries);
             } // if
 
             if (!dependencies.ThirdPartySpecified) return;
 
-            var nodeThirdParty = new TreeNode(Resources.DependenciesThirdPartyNode, _images.DependenciesThirdParty, _images.DependenciesThirdParty);
+            var nodeThirdParty = new TreeNode(Resources.DependenciesThirdPartyNode, _images.DependenciesThirdParty, _images.DependenciesThirdParty)
+            {
+                Tag = dependencies.ThirdParty
+            };
             root.Nodes.Add(nodeThirdParty);
             foreach (var dependency in dependencies.ThirdParty)
             {
@@ -75,7 +92,10 @@ namespace AlphaCentaury.Licensing.Data.Ui
         {
             if ((licenses == null) || (licenses.Count == 0)) return;
 
-            var node = new TreeNode(Resources.LicensesNode, _images.Licenses, _images.Licenses);
+            var node = new TreeNode(Resources.LicensesNode, _images.Licenses, _images.Licenses)
+            {
+                Tag = licenses
+            };
             node.Expand();
             treeNode.Nodes.Add(node);
 
@@ -87,15 +107,49 @@ namespace AlphaCentaury.Licensing.Data.Ui
 
         public TreeNode LicensedItemToNode(LicensedItem item)
         {
+            if (item == null) throw new ArgumentNullException(nameof(item));
+
             var image = item switch
             {
                 LicensedLibrary _ => _images.LicensedLibrary,
-                LicensedProgram program => program.IsGuiApp ? _images.LicensedProgramCli : _images.LicensedProgramGui,
                 LicensedInstaller _ => _images.LicensedInstaller,
+                LicensedProgram program => program.IsGuiApp ? _images.LicensedProgramGui : _images.LicensedProgramCli,
                 _ => _images.LicensedUnknown
             };
 
-            return new TreeNode(item?.Name ?? Resources.NoName, image, image) { Tag = item };
+            var node = new TreeNode(item.Name ?? Resources.NoName, image, image) { Tag = item };
+            if (!item.TermsConditionsSpecified) return node;
+
+            image = _images.TermsAndConditionsNode;
+            var terms = new TreeNode(Resources.TermsAndConditionsNode, image, image) { Tag = item.TermsConditions };
+            foreach (var term in item.TermsConditions)
+            {
+                string name;
+
+                try
+                {
+                    if (string.IsNullOrEmpty(term.Language))
+                    {
+                        name = "(Default)";
+                    }
+                    else
+                    {
+                        var culture = CultureInfo.GetCultureInfo(term.Language);
+                        name = $"{culture.DisplayName} ({culture.NativeName})";
+                    } // if-else
+                }
+                catch (CultureNotFoundException)
+                {
+                    name = $"({term.Language})";
+                } // try-catch
+
+                image = _images.TermsAndConditions;
+                var termNode = new TreeNode(name, image, image) { Tag = term };
+                terms.Nodes.Add(termNode);
+            } // foreach term
+
+            node.Nodes.Add(terms);
+            return node;
         } // LicensedItemToNode
 
         public TreeNode ThirdPartyDependencyToNode(ThirdPartyDependency dependency)
@@ -115,7 +169,7 @@ namespace AlphaCentaury.Licensing.Data.Ui
 
         public TreeNode LibraryDependencyToNode(LibraryDependency library)
         {
-            return new TreeNode(library.Name, _images.DependencyProject, _images.DependencyProject);
+            return new TreeNode(library.Name, _images.DependencyProject, _images.DependencyProject) { Tag = library };
         } // LicenseToNode
 
         public TreeNode LicenseToNode(License license)
