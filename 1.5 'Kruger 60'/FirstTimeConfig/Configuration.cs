@@ -5,6 +5,7 @@
 // 
 // http://www.alphacentaury.org/movistartv https://github.com/AlphaCentaury
 
+using IpTviewr.Core;
 using IpTviewr.UiServices.Configuration;
 using IpTviewr.UiServices.Configuration.Schema2014.Config;
 using IpTviewr.UiServices.Configuration.Settings.Network;
@@ -13,23 +14,23 @@ using IpTviewr.UiServices.Discovery.BroadcastList;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using IpTviewr.Core;
-using IpTviewr.IpTvServices.MovistarPlus;
+using System.Net.Mime;
+using IpTviewr.Common.Telemetry;
+using IpTviewr.Tools.FirstTimeConfig.Properties;
 
 namespace IpTviewr.Tools.FirstTimeConfig
 {
     internal class Configuration
     {
-        public static bool Create(string vlcPath, string rootSaveLocation, TelemetryConfiguration analytics, EpgConfig epg, bool sdPriority, string xmlConfigPath, out string message)
+        public static bool Create(string vlcPath, bool vlcIsX86onX64, string rootSaveLocation, TelemetryConfiguration telemetry, EpgConfig epg, bool sdPriority, string xmlConfigPath, out string message)
         {
-            UserConfig user;
-
             try
             {
-                user = new UserConfig()
+                // Settings.Telemetry = telemetry
+
+                var user = new UserConfig()
                 {
-                    Telemetry = analytics,
-                    PreferredLanguages = Properties.Texts.DvbIpTv_PreferredLanguages,
+                    PreferredLanguages = Texts.DvbIpTv_PreferredLanguages,
                     Record = new RecordConfig()
                     {
                         SaveLocations = new[]
@@ -40,20 +41,20 @@ namespace IpTviewr.Tools.FirstTimeConfig
                             }, // RecordSaveLocation
                             new RecordSaveLocation()
                             {
-                                Name = Properties.Texts.SaveLocationSeriesName,
-                                Path = Path.Combine(rootSaveLocation, Properties.Texts.SaveLocationSeriesFolder)
+                                Name = Texts.SaveLocationSeriesName,
+                                Path = Path.Combine(rootSaveLocation, Texts.SaveLocationSeriesFolder)
                             }, // RecordSaveLocation
                             new RecordSaveLocation()
                             {
-                                Name = Properties.Texts.SaveLocationMoviesName,
-                                Path = Path.Combine(rootSaveLocation, Properties.Texts.SaveLocationMoviesFolder)
+                                Name = Texts.SaveLocationMoviesName,
+                                Path = Path.Combine(rootSaveLocation, Texts.SaveLocationMoviesFolder)
                             } // RecordSaveLocation
                         }, // SaveLocations
                         TaskSchedulerFolders = new[]
                         {
                             new RecordTaskSchedulerFolder()
                             {
-                                Name = Properties.Texts.TaskSchedulerFolderDvbIpTv,
+                                Name = Texts.TaskSchedulerFolderDvbIpTv,
                                 Path = "\\IPTViewr"
                             } // RecordTaskSchedulerFolder
                         }, // TaskSchedulerFolders
@@ -79,14 +80,14 @@ namespace IpTviewr.Tools.FirstTimeConfig
                     }, // Record
                     Epg = epg,
                     ChannelNumberStandardDefinitionPriority = sdPriority,
-                }; // user
+                };
 
                 foreach (var location in user.Record.SaveLocations)
                 {
                     Directory.CreateDirectory(location.Path);
                 } // foreach
 
-                var tvPlayers = GetTvPlayers(vlcPath);
+                var tvPlayers = GetTvPlayers(vlcPath, vlcIsX86onX64);
                 var movistarPlusIpTvProviderSettings = new IpTvProviderSettings();
 
                 var config = AppConfig.CreateForUserConfig(user);
@@ -96,31 +97,35 @@ namespace IpTviewr.Tools.FirstTimeConfig
                 config.RegisterConfiguration(new IpTvProviderSettingsRegistration(), movistarPlusIpTvProviderSettings);
 
                 config.Save(xmlConfigPath);
-                message = Properties.Texts.ConfigurationCreateOk;
+                message = Texts.ConfigurationCreateOk;
 
                 return true;
             }
             catch (Exception ex)
             {
-                message = string.Format(Properties.Texts.ConfigurationCreateException, ex.ToString());
+                message = string.Format(Texts.ConfigurationCreateException, ex.ToString());
                 return false;
             } // try-catch
         } // Create
 
-        private static TvPlayersSettings GetTvPlayers(string vlcPath)
+        private static TvPlayersSettings GetTvPlayers(string vlcPath, bool isX86OnX64)
         {
+            const string vlcGuid = "{C12055FC-315A-47C4-B9CC-48D2E6ECD8FA}";
+            const string VlcX86Guid = "{364A5B10-6895-438F-8FBE-405E0D816721}";
+            const string vlcSameGuid = "{4154BC96-5FE0-45C2-9895-083C4FB4C8CE}";
+            const string vlcX86SameGuid = "{076D734D-D8F2-4CBB-8AAE-B26237D99BCD}";
+            const string mpcGuid = "{8FFA2EE6-8823-40B1-B20F-F962389D4B07}";
+            const string mpcX86Guid = "{289A17CA-2A6D-4F3C-96DA-9BC91DCB4489}";
+
             List<TvPlayer> players;
             TvPlayer player;
-            string path;
-
             players = new List<TvPlayer>(3);
-            var programFilesFolder86 = Installation.GetProgramFilesAnyFolder();
 
             // VLC
             player = new TvPlayer()
             {
-                Name = "VLC",
-                Id = new Guid("{C12055FC-315A-47C4-B9CC-48D2E6ECD8FA}"),
+                Name = isX86OnX64? Texts.GetTvPlayersVlcX86 : Texts.GetTvPlayersVlc,
+                Id = new Guid(isX86OnX64? VlcX86Guid : vlcGuid),
                 Path = vlcPath,
                 Arguments = new[]
                 {
@@ -133,8 +138,8 @@ namespace IpTviewr.Tools.FirstTimeConfig
             // VLC (new window)
             player = new TvPlayer()
             {
-                Name = Properties.Texts.GetTvPlayersVlcSameWindow,
-                Id = new Guid("{4154BC96-5FE0-45C2-9895-083C4FB4C8CE}"),
+                Name = isX86OnX64 ? Texts.GetTvPlayersVlcSameWindowX86 : Texts.GetTvPlayersVlcSameWindow,
+                Id = new Guid(isX86OnX64? vlcX86SameGuid : vlcSameGuid),
                 Path = vlcPath,
                 Arguments = new[]
                 {
@@ -147,14 +152,39 @@ namespace IpTviewr.Tools.FirstTimeConfig
             players.Add(player);
 
             // locate K-Lite Codec Pack Media Player Classic
-            path = Path.Combine(programFilesFolder86, "K-Lite Codec Pack\\Media Player Classic\\mpc-hc.exe");
+            Installation.GetProgramFilesFolder(out var programFilesFolder, out var programFilesFolder86);
+
+            var path = Path.Combine(programFilesFolder, Resources.MpcDefaultLocation);
             if (File.Exists(path))
+            {
+                AddMpcPlayer(path, false, mpcGuid);
+            } // if
+
+            if (programFilesFolder86 != null)
+            {
+                path = Path.Combine(programFilesFolder86, Resources.MpcDefaultLocation);
+                if (File.Exists(path))
+                {
+                    AddMpcPlayer(path, true, mpcX86Guid);
+                } // if
+            } // if
+
+            var tvPlayers = new TvPlayersSettings()
+            {
+                DirectLaunch = false,
+                DefaultPlayerId = new Guid(vlcGuid),
+                Players = players.ToArray()
+            };
+
+            return tvPlayers;
+
+            void AddMpcPlayer(string playerPath, bool isX86OnX64Player, string guid)
             {
                 player = new TvPlayer()
                 {
-                    Name = "K-Lite Media Player Classic",
-                    Id = new Guid("{8FFA2EE6-8823-40B1-B20F-F962389D4B07}"),
-                    Path = path,
+                    Name = isX86OnX64Player ? Texts.GetTvPlayersMpcX86 : Texts.GetTvPlayersMpc,
+                    Id = new Guid(guid),
+                    Path = playerPath,
                     Arguments = new[]
                     {
                         "{param:Channel.Url}",
@@ -163,16 +193,7 @@ namespace IpTviewr.Tools.FirstTimeConfig
                 }; // TvPlayer
 
                 players.Add(player);
-            } // if
-
-            var tvPlayers = new TvPlayersSettings()
-            {
-                DirectLaunch = false,
-                DefaultPlayerId = new Guid("{C12055FC-315A-47C4-B9CC-48D2E6ECD8FA}"),
-                Players = players.ToArray()
-            };
-
-            return tvPlayers;
+            } // local AddMpcPlayer
         } // GetTvPlayers
     } // class Configuration
 } // namespace

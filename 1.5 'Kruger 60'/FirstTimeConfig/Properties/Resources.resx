@@ -164,7 +164,7 @@
     <value>..\Resources\Settings_16x616.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="VlcExeTargetVersion" xml:space="preserve">
-    <value>2.2.4.0</value>
+    <value>3.0.0.0</value>
   </data>
   <data name="ActionOk_16x16" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ActionOk_16x16.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -176,7 +176,7 @@
     <value>..\resources\success_48x48.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="VlcLibTargetVersion" xml:space="preserve">
-    <value>2.2.0.0</value>
+    <value>3.0.0.0</value>
   </data>
   <data name="openfolderHS" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\openfolderHS.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -228,5 +228,8 @@
   <data name="TelemetryAppCenter_AppSecret" xml:space="preserve">
     <value>13fb25ea-ccce-4909-9080-5fe029694e7e</value>
     <comment>Get new secret for every new major version or new phase!</comment>
+  </data>
+  <data name="MpcDefaultLocation" xml:space="preserve">
+    <value>K-Lite Codec Pack\\Media Player Classic\\mpc-hc.exe</value>
   </data>
 </root>

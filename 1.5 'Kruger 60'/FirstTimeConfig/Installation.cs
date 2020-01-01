@@ -13,10 +13,12 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using IpTviewr.Common.Configuration;
 using IpTviewr.Common.Telemetry;
 using IpTviewr.Native;
 using IpTviewr.Tools.FirstTimeConfig.Properties;
 using IpTviewr.UiServices.Configuration;
+using JetBrains.Annotations;
 using Microsoft.Win32;
 
 namespace IpTviewr.Tools.FirstTimeConfig
@@ -27,83 +29,48 @@ namespace IpTviewr.Tools.FirstTimeConfig
 
         public static bool Is32BitWindows { get; set; }
 
-        public static AppConfig LoadRegistrySettings(out InitializationResult initializationResult)
+        public static AppUiConfigurationFolders LoadFolders(out InitializationResult initializationResult)
         {
             Is32BitWindows = WindowsBitness.Is32BitWindows();
-            var result = AppConfig.LoadRegistryAppConfiguration(out initializationResult);
+            var result = AppConfig.LoadFoldersConfiguration(out initializationResult);
 #if DEBUG
-            _redistFolder = Path.Combine(result.Folders.Base, "Bin\\Redist");
+            _redistFolder = Path.Combine(result.Base, "Bin\\Redist");
 #else
-            RedistFolder = Path.Combine(result.Folders.Install, "Redist");
+            RedistFolder = Path.Combine(Folders.Install, "Redist");
 #endif
-
             return result;
-        } // LoadRegistrySettings
+        } // LoadFolders
 
-        public static string GetProgramFilesAnyFolder()
+        public static void GetProgramFilesFolder([NotNull] out string folder, [CanBeNull] out string altFolder)
         {
-            try
-            {
-                return WindowsBitness.Is64BitWindows() ? GetProgramFilesx64Folder() : GetProgramFilesx86Folder();
-            }
-            catch
-            {
-                return Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles);
-            } // try-catch
+            folder = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles);
+            altFolder = Is32BitWindows ? null : Environment.GetFolderPath(Environment.SpecialFolder.CommonProgramFilesX86);
         } // GetProgramFilesAnyFolder
-
-        public static string GetProgramFilesx86Folder()
-        {
-            var folder = KnownFolders.GetKnownFolder(KnownFolders.System.ProgramFilesX86, KnownFolders.Flags.None);
-            return Environment.ExpandEnvironmentVariables(folder);
-        } // GetProgramFilesx86Folder
-
-        public static string GetProgramFilesx64Folder()
-        {
-            var folder = KnownFolders.GetKnownFolder(KnownFolders.System.ProgramFilesX64, KnownFolders.Flags.None);
-            return Environment.ExpandEnvironmentVariables(folder);
-        } // GetProgramFilesx64Folder
-
-        public static string GetCurrentUserVideosFolder()
-        {
-            var folder = KnownFolders.GetKnownFolder(KnownFolders.CurrentUser.Videos, KnownFolders.Flags.None);
-            return Environment.ExpandEnvironmentVariables(folder);
-        } // GetCurrentUserVideosFolder
 
         public static string GetTestMedia()
         {
-            string folder;
-            int step;
-
-            step = 1;
+            var step = 1;
             while (true)
             {
                 try
                 {
-                    switch (step)
+                    var folder = step switch
                     {
-                        case 1:
-                            folder = KnownFolders.GetKnownFolder(KnownFolders.Common.SampleVideos, KnownFolders.Flags.None);
-                            break;
-                        case 2:
-                            folder = KnownFolders.GetKnownFolder(KnownFolders.CurrentUser.Videos, KnownFolders.Flags.None);
-                            break;
-                        case 3:
-                            folder = KnownFolders.GetKnownFolder(KnownFolders.Common.SampleMusic, KnownFolders.Flags.None);
-                            break;
-                        case 4:
-                            folder = KnownFolders.GetKnownFolder(KnownFolders.CurrentUser.Music, KnownFolders.Flags.None);
-                            break;
-                        default:
-                            return null;
-                    } // switch
+                        1 => Environment.GetFolderPath(Environment.SpecialFolder.CommonVideos),
+                        2 => Environment.GetFolderPath(Environment.SpecialFolder.MyVideos),
+                        3 => Environment.GetFolderPath(Environment.SpecialFolder.CommonMusic),
+                        4 => Environment.GetFolderPath(Environment.SpecialFolder.MyMusic),
+                        _ => null,
+                    }; // switch
+
+                    if (folder == null) return null;
 
                     var files = Directory.GetFiles(folder);
                     var q = from file in files
-                        let ext = Path.GetExtension(file).ToLowerInvariant()
-                        where ext == ".wmv" || ext == ".mp4" || ext == ".mkv" || ext == ".avi" ||
-                              ext == ".wma" || ext == ".mp3" || ext == ".aac" || ext == ".wav"
-                        select file;
+                            let ext = Path.GetExtension(file).ToLowerInvariant()
+                            where ext == ".wmv" || ext == ".mp4" || ext == ".mkv" || ext == ".avi" ||
+                                  ext == ".wma" || ext == ".mp3" || ext == ".aac" || ext == ".wav"
+                            select file;
                     var media = q.FirstOrDefault();
                     if (media != null) return media;
                 }
@@ -153,7 +120,7 @@ namespace IpTviewr.Tools.FirstTimeConfig
                         FileName = filename,
                         UseShellExecute = true,
                         ErrorDialog = true,
-                        ErrorDialogParentHandle = parent != null ? parent.Handle : IntPtr.Zero
+                        ErrorDialogParentHandle = parent?.Handle ?? IntPtr.Zero
                     };
                     process.Start();
                     return null;
@@ -309,22 +276,31 @@ namespace IpTviewr.Tools.FirstTimeConfig
             } // try-catch
         } // IsSqlCeInstalled
 
-        public static bool IsVlcInstalled(out string message, ref string path)
+        public static bool IsVlcInstalled(out string message, ref string path, ref bool isX86OnX64)
         {
             try
             {
                 // locate VLC at it's default location
+                GetProgramFilesFolder(out var programFiles, out var programFiles86);
                 if (string.IsNullOrEmpty(path))
                 {
-                    var programFiles = GetProgramFilesAnyFolder();
                     path = Path.Combine(programFiles, Resources.VlcDefaultLocation);
-                } // if
+                    var exists = File.Exists(path);
+                    isX86OnX64 = false;
 
-                // file exists?
-                if (!File.Exists(path))
-                {
-                    message = string.Format(Texts.IsVlcInstalledNotInstalled, path);
-                    return false;
+                    if (!exists && (programFiles86 != null))
+                    {
+                        // try x86 version
+                        path = Path.Combine(programFiles86, Resources.VlcDefaultLocation);
+                        exists = File.Exists(path);
+                        isX86OnX64 = true;
+                    } // if
+
+                    if (!exists)
+                    {
+                        message = string.Format(Texts.IsVlcInstalledNotInstalled, path);
+                        return false;
+                    } // if
                 } // if
 
                 // check VLC.exe file version
@@ -569,7 +545,7 @@ namespace IpTviewr.Tools.FirstTimeConfig
                 if (binPath != null)
                 {
                     binPath = Path.GetDirectoryName(binPath);
-                    var programs = Resources.FirewallProgramList.Split(new[] {"\r\n"}, StringSplitOptions.RemoveEmptyEntries);
+                    var programs = Resources.FirewallProgramList.Split(new[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
                     foreach (var program in programs)
                     {
                         var programPath = Path.Combine(binPath, program);

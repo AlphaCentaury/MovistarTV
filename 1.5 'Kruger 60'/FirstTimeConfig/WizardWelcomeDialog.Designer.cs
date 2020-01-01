@@ -82,6 +82,7 @@ namespace IpTviewr.Tools.FirstTimeConfig
             resources.ApplyResources(this.buttonNext, "buttonNext");
             this.buttonNext.Name = "buttonNext";
             this.buttonNext.UseVisualStyleBackColor = true;
+            this.buttonNext.Click += new System.EventHandler(this.buttonNext_Click);
             // 
             // buttonCancel
             // 

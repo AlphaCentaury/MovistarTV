@@ -30,6 +30,8 @@ namespace IpTviewr.Tools.FirstTimeConfig
             wizardControl.IsPageAllowed[wizardPagePrerequisites.Name] = true;
         } // constructor
 
+        public bool VlcIsX86OnX64 { get; set; }
+
         private void ConfigForm_Load(object sender, EventArgs e)
         {
             // Description is no longer available in new SelectFolderDialog
@@ -38,14 +40,7 @@ namespace IpTviewr.Tools.FirstTimeConfig
             openFile.Title = Texts.OpenFileVlcTitle;
             openFile.Filter = Texts.OpenFileVlcFilter;
 
-            try
-            {
-                _defaultRecordingsSavePath = Installation.GetCurrentUserVideosFolder();
-            }
-            catch
-            {
-                _defaultRecordingsSavePath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-            } // try-catch
+            _defaultRecordingsSavePath = Environment.GetFolderPath(Environment.SpecialFolder.MyVideos);
 
             wizardControl.Initialization[wizardPageReadme.Name] = PageReadme_Setup;
             wizardControl.Initialization[wizardPagePrerequisites.Name] = PagePrerequisites_Setup;
@@ -124,9 +119,9 @@ namespace IpTviewr.Tools.FirstTimeConfig
             wizardControl.UpdateWizardButtons();
         } // checkReadmeAck_CheckedChanged
 
-#endregion
+        #endregion
 
-#region Prerequisites Page
+        #region Prerequisites Page
 
         private void PagePrerequisites_Setup()
         {
@@ -213,12 +208,13 @@ namespace IpTviewr.Tools.FirstTimeConfig
 
         private void PagePrerequisites_Step4(bool withUi)
         {
-            string message;
-            string path;
 
-            path = textBoxVlc.Text;
-            var installed = Installation.IsVlcInstalled(out message, ref path);
+            var path = textBoxVlc.Text;
+            var isX86OnX64 = VlcIsX86OnX64;
+            var installed = Installation.IsVlcInstalled(out var message, ref path, ref isX86OnX64);
+            VlcIsX86OnX64 = isX86OnX64;
             textBoxVlc.Text = path;
+
             if (withUi)
             {
                 labelVlcInstallCheckResult.Text = null;
@@ -237,7 +233,6 @@ namespace IpTviewr.Tools.FirstTimeConfig
             pictureBoxVlcOk.Image = Resources.Sucess_16x16;
             linkLabelPrerequisiteVlc.Visible = false;
             buttonVerifyVlc.Visible = false;
-            //buttonFindVlc.Enabled = false;
             buttonTestVlc.Enabled = true;
             buttonTestVlc.Focus();
 
@@ -365,9 +360,9 @@ namespace IpTviewr.Tools.FirstTimeConfig
             if (!installed) return;
         } // buttonTestVlc_Click
 
-#endregion
+        #endregion
 
-#region Firewall page
+        #region Firewall page
 
         private void PageFirewall_Setup()
         {
@@ -388,7 +383,7 @@ namespace IpTviewr.Tools.FirstTimeConfig
         private void buttonFirewall_Click(object sender, EventArgs e)
         {
             var result = Installation.RunSelfForFirewall(
-                checkBoxFirewallDecoder.Checked ? Program.AppConfig.Folders.Install : null,
+                checkBoxFirewallDecoder.Checked ? Program.AppConfigFolders.Install : null,
                 checkBoxFirewallVlc.Checked ? textBoxVlc.Text : null);
 
             if (result.Message == null) return;
@@ -431,13 +426,6 @@ namespace IpTviewr.Tools.FirstTimeConfig
         {
             var enabled = checkEnableAnalytics.Checked;
 
-#if (DEBUG == false)
-            if (!enabled)
-            {
-                MessageBox.Show(this, Properties.Texts.AnalyticsKeepChecked, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            } // if
-#endif
-
             checkAnalyticsUsage.Checked = enabled;
             checkAnalyticsUsage.Enabled = enabled;
 
@@ -447,21 +435,21 @@ namespace IpTviewr.Tools.FirstTimeConfig
 
         private void linkAnalyticsHelp_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            HelpDialog.ShowRtfHelp(this, Texts.GoogleTelemetry, Texts.TelemetryHelpCaption);
+            HelpDialog.ShowRtfHelp(this, Texts.AppTelemetryHelp, Texts.TelemetryHelpCaption);
         } // linkAnalyticsHelp_LinkClicked
 
-#endregion
+        #endregion
 
-#region Basic page
+        #region Basic page
 
         private void PageBasic_Setup()
         {
             wizardControl.IsPageAllowed[wizardPageRecordings.Name] = true;
         } // PageBasic_Setup
 
-#endregion
+        #endregion
 
-#region Recording page 
+        #region Recording page 
 
         private void PageRecordings_Setup()
         {
@@ -500,7 +488,7 @@ namespace IpTviewr.Tools.FirstTimeConfig
                 rootFolder = Path.Combine(rootFolder, subFolder);
             } // if
 
-            xmlConfigPath = Path.Combine(Program.AppConfig.Folders.Base, "user-config.xml");
+            xmlConfigPath = Path.Combine(Program.AppConfigFolders.Base, "user-config.xml");
 
             if (File.Exists(xmlConfigPath))
             {
@@ -513,7 +501,7 @@ namespace IpTviewr.Tools.FirstTimeConfig
 
             labelCreatingConfig.Visible = true;
             labelCreatingConfig.Refresh();
-            var success = Configuration.Create(textBoxVlc.Text,
+            var success = Configuration.Create(textBoxVlc.Text, VlcIsX86OnX64,
                 rootFolder,
                 new TelemetryConfiguration(checkEnableAnalytics.Checked, checkAnalyticsUsage.Checked, checkAnalyticsExceptions.Checked),
                 new EpgConfig(checkEpg.Checked, -1, 7),
@@ -529,9 +517,9 @@ namespace IpTviewr.Tools.FirstTimeConfig
             } // if-else
         } // buttonConfig_Click
 
-#endregion
+        #endregion
 
-#region End wizard
+        #region End wizard
 
         private void EndWizard(DialogResult result, string message, Exception ex)
         {
@@ -540,6 +528,6 @@ namespace IpTviewr.Tools.FirstTimeConfig
             Close();
         } // EndWizard
 
-#endregion
+        #endregion
     } // class ConfigForm
 } // namespace

@@ -13,6 +13,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Threading;
 using System.Windows.Forms;
+using IpTviewr.Common.Configuration;
 using IpTviewr.Tools.FirstTimeConfig.Properties;
 
 namespace IpTviewr.Tools.FirstTimeConfig
@@ -27,7 +28,7 @@ namespace IpTviewr.Tools.FirstTimeConfig
         internal static bool RunFirewallConfiguration;
         internal static string FirewallBinPath;
         internal static string FirewallVlcPath;
-        internal static AppConfig AppConfig;
+        internal static AppUiConfigurationFolders AppConfigFolders;
 
         private static DialogResult _wizardEndResult;
         private static string _wizardEndText;
@@ -81,40 +82,26 @@ namespace IpTviewr.Tools.FirstTimeConfig
 
             _wizardEndResult = DialogResult.Abort;
 
-            AppConfig = Installation.LoadRegistrySettings(out initResult);
-            if (AppConfig == null)
+            AppConfigFolders = Installation.LoadFolders(out initResult);
+            if (string.IsNullOrEmpty(Settings.Default.Telemetry_GoogleAnalyticsClientId))
+            {
+                Settings.Default.Telemetry_GoogleAnalyticsClientId = Guid.NewGuid().ToString("D");
+                Settings.Default.Save();
+            } // if
+
+            if (AppConfigFolders == null)
             {
                 SetWizardResult(DialogResult.Abort, $"{initResult.Caption}\r\n{initResult.Message}", initResult.InnerException);
                 goto End;
             } // if
 
-            // TODO: init on Wizard Start Dialog
-            AppTelemetry.Start(new TelemetryFactory(), new Dictionary<string, IReadOnlyDictionary<string, string>>
-            {
-                {
-                    "IpTviewr.Telemetry.VsAppCenter", new Dictionary<string, string>
-                    {
-                        {"AppSecret", Resources.TelemetryAppCenter_AppSecret}
-                    }
-
-                },
-                {
-                    "IpTviewr.Telemetry.GoogleAnalytics", new Dictionary<string, string>
-                    {
-                        {"TrackingId", Resources.TelemetryGoogleAnalytics_TrackingId}
-                    }
-                }
-            });
-            AppTelemetry.HackInitGoogle(AppConfig.AnalyticsClientId);
-
             using (var dlg = new WizardWelcomeDialog())
             {
-                switch (dlg.ShowDialog())
+                if (dlg.ShowDialog() == DialogResult.Cancel)
                 {
-                    case DialogResult.Cancel:
-                        SetWizardResult(DialogResult.Cancel);
-                        goto End;
-                } // switch
+                    SetWizardResult(DialogResult.Cancel);
+                    goto End;
+                } // if
             } // using
 
             using (var dlg = new ConfigForm())
@@ -134,19 +121,18 @@ namespace IpTviewr.Tools.FirstTimeConfig
                 result = (_wizardEndResult == DialogResult.OK) ? 0 : -1;
             } // using
 
-            if (launchMainProgram)
+            if (!launchMainProgram) return result;
+
+            var message = Installation.Launch(null, AppConfigFolders?.Install, Resources.SuccessExecuteProgram);
+            if (message != null)
             {
-                var message = Installation.Launch(null, AppConfig.Folders.Install, Properties.Resources.SuccessExecuteProgram);
-                if (message != null)
-                {
-                    MessageBox.Show(message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                } // if
+                MessageBox.Show(message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Stop);
             } // if
 
             return result;
         } // LaunchWizard
 
-        static void ProcessArguments(string[] arguments)
+        private static void ProcessArguments(string[] arguments)
         {
             if ((arguments == null) || (arguments.Length == 0)) return;
 
@@ -180,17 +166,12 @@ namespace IpTviewr.Tools.FirstTimeConfig
                 } // if
             } // foreach
 
-            if (culture != null)
-            {
-                ForceUiCulture(culture);
-            } // if
+            ForceUiCulture(culture);
         } // ProcessArguments
 
-        static void ForceUiCulture(string culture)
+        private static void ForceUiCulture(string culture)
         {
-            if (culture == null) return;
-            culture = culture.Trim();
-            if (culture == string.Empty) return;
+            if (string.IsNullOrWhiteSpace(culture)) return;
 
             try
             {
@@ -198,7 +179,7 @@ namespace IpTviewr.Tools.FirstTimeConfig
             }
             catch
             {
-                MessageBox.Show(Properties.Texts.ExceptionForceUiCulture,
+                MessageBox.Show(Texts.ExceptionForceUiCulture,
                     Path.GetFileName(Application.ExecutablePath),
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             } // try-catch

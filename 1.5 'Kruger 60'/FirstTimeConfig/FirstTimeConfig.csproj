@@ -27,6 +27,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
+    <LangVersion>8</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -37,6 +38,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
+    <LangVersion>8</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>Resources\first-time-config.ico</ApplicationIcon>
@@ -44,7 +46,13 @@
   <PropertyGroup>
     <StartupObject />
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
+  </PropertyGroup>
   <ItemGroup>
+    <Reference Include="JetBrains.Annotations, Version=2019.1.3.0, Culture=neutral, PublicKeyToken=1010a0d8d6380325, processorArchitecture=MSIL">
+      <HintPath>..\packages\JetBrains.Annotations.2019.1.3\lib\net20\JetBrains.Annotations.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
@@ -69,7 +77,6 @@
       <DependentUpon>FirewallForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Installation.cs" />
-    <Compile Include="KnownFolders.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Texts.Designer.cs">
@@ -77,6 +84,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Texts.resx</DependentUpon>
     </Compile>
+    <Compile Include="Properties\Settings.cs" />
     <Compile Include="WindowsFirewall.cs" />
     <Compile Include="WizardEndDialog.cs">
       <SubType>Form</SubType>
@@ -134,13 +142,15 @@
     <EmbeddedResource Include="WizardWelcomeDialog.resx">
       <DependentUpon>WizardWelcomeDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="..\ChannelList\Resources\GoogleTelemetry_en.rtf">
-      <Link>Resources\GoogleTelemetry_en.rtf</Link>
+    <None Include="..\ChannelList\Resources\AppTelemetry_en.rtf">
+      <Link>Resources\AppTelemetry_en.rtf</Link>
     </None>
-    <None Include="..\ChannelList\Resources\GoogleTelemetry_es.rtf">
-      <Link>Resources\GoogleTelemetry_es.rtf</Link>
+    <None Include="..\ChannelList\Resources\AppTelemetry_es.rtf">
+      <Link>Resources\AppTelemetry_es.rtf</Link>
     </None>
     <None Include="app.config" />
+    <None Include="packages.config" />
+    <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
