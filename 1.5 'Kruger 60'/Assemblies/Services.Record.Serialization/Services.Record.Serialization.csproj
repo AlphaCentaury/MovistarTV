@@ -85,6 +85,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="license.txt" />
     <Content Include="licensing.xml" />
     <Content Include="Properties\License.txt" />
   </ItemGroup>
@@ -97,6 +98,10 @@
       <Project>{3a053f34-4edf-4071-b966-923255a0ae14}</Project>
       <Name>Services.SqlServerCE</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="LICENSE.ES.MD" />
+    <None Include="LICENSE.MD" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

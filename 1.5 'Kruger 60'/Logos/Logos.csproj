@@ -189,6 +189,8 @@
     <Content Include="Providers\movistar+\vasco\vasco.ico" />
     <Content Include="Providers\provider-mappings.xml" />
     <None Include="app.config" />
+    <None Include="LICENSE.ES.MD" />
+    <None Include="LICENSE.MD" />
     <None Include="Resources\PackLogos.ico" />
     <Content Include="Services\domain-mappings.xml" />
     <Content Include="Services\generic\data\%28default%29\128.png" />

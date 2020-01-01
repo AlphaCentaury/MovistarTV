@@ -124,6 +124,8 @@
     <Compile Include="v010501\XmlSerialization\TvAnytime\Mpeg7\TermUse.cs" />
     <Compile Include="v010501\XmlSerialization\TvAnytime\Mpeg7\TextualBase.cs" />
     <Compile Include="v010501\XmlSerialization\TvAnytime\Mpeg7\TextualData.cs" />
+    <None Include="LICENSE.ES.MD" />
+    <None Include="LICENSE.MD" />
     <None Include="v010501\Xsd.Unified\sdns_v1.cs" />
   </ItemGroup>
   <ItemGroup>

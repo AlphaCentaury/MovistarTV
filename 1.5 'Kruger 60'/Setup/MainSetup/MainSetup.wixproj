@@ -59,6 +59,8 @@
     <Content Include="Components.Modules.wxs" />
     <Content Include="dlgbmp.bmp" />
     <Content Include="iptviewr-for-movistarplus_alt.ico" />
+    <Content Include="LICENSE.ES.MD" />
+    <Content Include="LICENSE.MD" />
     <Content Include="License.txt" />
     <Content Include="licensing.xml" />
     <Content Include="Redist\ENU\SSCERuntime_x64-ENU.exe" />

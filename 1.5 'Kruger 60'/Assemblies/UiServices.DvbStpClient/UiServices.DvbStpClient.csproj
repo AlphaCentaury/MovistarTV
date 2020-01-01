@@ -141,6 +141,8 @@
     <Content Include="Resources\NetworkInternetIcon_256x256.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="LICENSE.ES.MD" />
+    <None Include="LICENSE.MD" />
     <None Include="Resources\GuiaResolucionProblemas.rtf" />
     <None Include="Resources\TroubleshootingGuide.rtf" />
   </ItemGroup>

@@ -114,6 +114,8 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="LICENSE.ES.MD" />
+    <None Include="LICENSE.MD" />
     <None Include="packages.config" />
     <None Include="Resources\Action_ArrangeCascade_16x.png" />
   </ItemGroup>
@@ -151,6 +153,8 @@
     <None Include="Resources\Action_TileVertical_32x.png" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="license.txt" />
+    <Content Include="licensing.xml" />
     <Content Include="Resources\CliTool_16x.png" />
     <Content Include="Resources\CliTool.svg" />
     <Content Include="Resources\CliTool_24x.png" />

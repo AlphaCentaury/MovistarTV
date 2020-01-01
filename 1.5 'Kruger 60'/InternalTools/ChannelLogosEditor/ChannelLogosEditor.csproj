@@ -98,6 +98,8 @@
       <LastGenOutput>Texts.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <None Include="LICENSE.ES.MD" />
+    <None Include="LICENSE.MD" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -153,6 +155,7 @@
     <None Include="Resources\Action_Properties_16x16.png" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="license.txt" />
     <Content Include="licensing.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

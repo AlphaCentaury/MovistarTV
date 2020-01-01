@@ -184,6 +184,7 @@
       <Link>Resources\Action_Properties_16x16.png</Link>
     </Content>
     <Content Include="License.txt" />
+    <Content Include="licensing.xml" />
     <Content Include="Resources\Action_Epg_16x16.png" />
     <Content Include="Resources\Action_Epg_Play_16x16.png" />
     <Content Include="Resources\Action_Epg_Record_16x16.png" />
@@ -232,6 +233,10 @@
       <Project>{971b720e-2ae8-4ea4-b5ce-7a1af11c3743}</Project>
       <Name>UiServices.Record</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="LICENSE.ES.MD" />
+    <None Include="LICENSE.MD" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -63,6 +63,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="license.txt" />
     <Content Include="licensing.xml" />
     <Content Include="Resources\ApplicationCli.svg" />
     <Content Include="Resources\ApplicationCli_16x.png" />
@@ -151,6 +152,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="LICENSE.ES.MD" />
+    <None Include="LICENSE.MD" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

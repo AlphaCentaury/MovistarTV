@@ -296,6 +296,8 @@
       <Link>Resources\Status_Success_24x24.png</Link>
     </Content>
     <Content Include="License.txt" />
+    <None Include="LICENSE.ES.MD" />
+    <None Include="LICENSE.MD" />
     <None Include="Resources\MissingLogo256.png" />
     <None Include="Resources\MissingLogo16.png" />
     <None Include="Resources\MissingLogo24.png" />

@@ -288,6 +288,8 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="LICENSE.ES.MD" />
+    <None Include="LICENSE.MD" />
     <None Include="packages.config" />
     <None Include="Resources\BrokenFile_128.png" />
   </ItemGroup>

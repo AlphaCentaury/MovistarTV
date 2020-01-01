@@ -88,5 +88,9 @@
     <Content Include="License.txt" />
     <Content Include="licensing.xml" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="LICENSE.ES.MD" />
+    <None Include="LICENSE.MD" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

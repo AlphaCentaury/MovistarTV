@@ -133,6 +133,8 @@
   <ItemGroup>
     <Content Include="License.txt" />
     <Content Include="licensing.xml" />
+    <None Include="LICENSE.ES.MD" />
+    <None Include="LICENSE.MD" />
     <None Include="Resources\Action_Run_16x16.png" />
     <None Include="Resources\Action_Refresh_Blue_16x16.png" />
     <None Include="Resources\Action_Properties_16x16.png" />

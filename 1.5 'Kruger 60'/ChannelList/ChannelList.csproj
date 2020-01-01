@@ -164,6 +164,8 @@
     <Compile Include="ChannelListForm.ListManager.cs">
       <SubType>Form</SubType>
     </Compile>
+    <None Include="LICENSE.ES.MD" />
+    <None Include="LICENSE.MD" />
     <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

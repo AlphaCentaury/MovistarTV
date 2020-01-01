@@ -206,6 +206,8 @@
       <Link>Resources\WaitClock_Icon.ico</Link>
     </Content>
     <Content Include="License.txt" />
+    <None Include="LICENSE.ES.MD" />
+    <None Include="LICENSE.MD" />
     <None Include="packages.config" />
     <None Include="Resources\DefaultSplash.png" />
     <None Include="Resources\Action_Delete_16x16.png" />

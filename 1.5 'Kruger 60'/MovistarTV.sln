@@ -18,15 +18,32 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{227520B6-B11F-45B8-84B2-8FDF27A2492C}"
 	ProjectSection(SolutionItems) = preProject
 		AssemblySolutionInfo.cs = AssemblySolutionInfo.cs
+		InternalTools.LICENSE.ES.MD = InternalTools.LICENSE.ES.MD
+		internaltools.license.es.rtf = internaltools.license.es.rtf
+		internaltools.license.es.txt = internaltools.license.es.txt
+		InternalTools.LICENSE.MD = InternalTools.LICENSE.MD
+		internaltools.license.rtf = internaltools.license.rtf
+		internaltools.license.txt = internaltools.license.txt
+		InternalTools.licensing.xml = InternalTools.licensing.xml
 		..\LICENSE = ..\LICENSE
+		LICENSE.ES.MD = LICENSE.ES.MD
+		license.es.rtf = license.es.rtf
+		license.es.txt = license.es.txt
+		LICENSE.MD = LICENSE.MD
+		license.rtf = license.rtf
+		license.txt = license.txt
 		..\LICENSE_ES = ..\LICENSE_ES
+		licensing.xml = licensing.xml
 		movistarplus.json = movistarplus.json
 		movistartv-config.xml = movistartv-config.xml
+		MovistarTV.LICENSE.ES.MD = MovistarTV.LICENSE.ES.MD
+		movistartv.license.es.rtf = movistartv.license.es.rtf
+		movistartv.license.es.txt = movistartv.license.es.txt
+		MovistarTV.LICENSE.MD = MovistarTV.LICENSE.MD
+		movistartv.license.rtf = movistartv.license.rtf
+		movistartv.license.txt = movistartv.license.txt
+		MovistarTV.licensing.xml = MovistarTV.licensing.xml
 		..\README.md = ..\README.md
-		solution-license.rtf = solution-license.rtf
-		solution-license.txt = solution-license.txt
-		solution-license_es.rtf = solution-license_es.rtf
-		solution-license_es.txt = solution-license_es.txt
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UiServices.Forms", "Assemblies\UiServices.Forms\UiServices.Forms.csproj", "{90F750B3-64DB-493F-96A6-E68DE5EA60A1}"

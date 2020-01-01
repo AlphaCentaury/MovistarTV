@@ -149,6 +149,8 @@
       <Link>Resources\AppTelemetry_es.rtf</Link>
     </None>
     <None Include="app.config" />
+    <None Include="LICENSE.ES.MD" />
+    <None Include="LICENSE.MD" />
     <None Include="packages.config" />
     <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
