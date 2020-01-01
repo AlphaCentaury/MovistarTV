@@ -12,6 +12,7 @@ using System.Threading;
 using System.Windows.Forms;
 using IpTviewr.ChannelList.Properties;
 using IpTviewr.Common;
+using IpTviewr.Common.Configuration;
 using IpTviewr.Common.Telemetry;
 using IpTviewr.UiServices.Common.Start;
 using IpTviewr.UiServices.Configuration;
@@ -22,6 +23,12 @@ namespace IpTviewr.ChannelList
     {
         private ISplashScreen _splashScreen;
         private InitializationResult _initializationResult;
+        private string[] _arguments;
+
+        public AppInitializer(string[] arguments)
+        {
+            _arguments = arguments;
+        } // constructor
 
         public int ExitCode
         {
@@ -88,6 +95,7 @@ namespace IpTviewr.ChannelList
             }
             finally
             {
+                _arguments = null;
                 _splashScreen = null;
             } // try-finally
         } // OnInitializationComplete
@@ -119,11 +127,6 @@ namespace IpTviewr.ChannelList
                 result = ValidateConfiguration(AppConfig.Current);
                 if (result.IsError) return result;
 
-                AppTelemetry.Enable(AppConfig.Current.User.Telemetry.Enabled,
-                    AppConfig.Current.User.Telemetry.Usage,
-                    AppConfig.Current.User.Telemetry.Exceptions);
-                AppTelemetry.HackInitGoogle(AppConfig.Current.AnalyticsClientId);
-
                 AppTelemetry.ScreenEvent(AppTelemetry.LoadEvent, "SplashScreen");
 
                 return InitializationResult.Ok;
@@ -141,9 +144,7 @@ namespace IpTviewr.ChannelList
 
         private static InitializationResult ValidateConfiguration(AppConfig config)
         {
-            string recorderPath;
-
-            recorderPath = config.Folders.Install;
+            var recorderPath = config.Folders.Install;
 #if !DEBUG
             var myPath = Application.StartupPath;
             if (myPath.EndsWith(Properties.InvariantTexts.DebugLocationPath, StringComparison.OrdinalIgnoreCase))
@@ -157,7 +158,7 @@ namespace IpTviewr.ChannelList
             } // if-else
 #endif // DEBUG
 
-            var recorderLauncherPath = Path.Combine(recorderPath, Properties.InvariantTexts.ExeRecorderLauncher);
+            var recorderLauncherPath = Path.Combine(recorderPath, InvariantTexts.ExeRecorderLauncher);
             if (!File.Exists(recorderLauncherPath))
             {
                 return new InitializationResult()
@@ -170,12 +171,11 @@ namespace IpTviewr.ChannelList
             return InitializationResult.Ok;
         } // ValidateConfiguration
 
-        private static void ForceUiCulture(Thread backgroundThread)
+        private void ForceUiCulture(Thread backgroundThread)
         {
-            MyApplication.ForceUiCulture(Environment.GetCommandLineArgs(), Settings.Default.ForceUiCulture);
+            MyApplication.ForceUiCulture(_arguments, Settings.Default.ForceUiCulture);
             backgroundThread.CurrentCulture = Thread.CurrentThread.CurrentCulture;
             backgroundThread.CurrentUICulture = Thread.CurrentThread.CurrentUICulture;
         } // ForceUiCulture
-
     } // class AppInitializer
 } // namespace

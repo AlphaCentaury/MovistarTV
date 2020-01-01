@@ -13,9 +13,9 @@ using IpTviewr.Common;
 
 namespace IpTviewr.ChannelList
 {
-    public static class MyApplication
+    internal static class MyApplication
     {
-        public static string RecorderLauncherPath
+        internal static string RecorderLauncherPath
         {
             get;
             set;

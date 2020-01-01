@@ -8,6 +8,7 @@
 using IpTviewr.Common.Telemetry;
 using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Threading;
 using System.Windows.Forms;
 using IpTviewr.ChannelList.Properties;
@@ -25,33 +26,19 @@ namespace IpTviewr.ChannelList
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
-        static int Main(string[] arguments)
+        private static int Main(string[] arguments)
         {
+
+
             _mainThread = Thread.CurrentThread;
             Application.ThreadException += ApplicationOnThreadException;
             Application.SetUnhandledExceptionMode(UnhandledExceptionMode.CatchException);
             AppDomain.CurrentDomain.UnhandledException += AppDomainCurrentOnUnhandledException;
-            AppTelemetry.Start(new TelemetryFactory(), new Dictionary<string, IReadOnlyDictionary<string, string>>
-            {
-                {
-                    "IpTviewr.Telemetry.VsAppCenter", new Dictionary<string, string>
-                    {
-                        {"AppSecret", InvariantTexts.TelemetryAppCenter_AppSecret}
-                    }
 
-                },
-                {
-                    "IpTviewr.Telemetry.GoogleAnalytics", new Dictionary<string, string>
-                    {
-                        {"TrackingId", InvariantTexts.TelemetryGoogleAnalytics_TrackingId}
-                    }
-                }
-            });
-
-            var appInitializer = new AppInitializer();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
+            var appInitializer = new AppInitializer(arguments);
             SplashAppContext.Run(appInitializer);
             var exitCode = appInitializer.ExitCode;
             SplashAppContext.Current.Dispose();
@@ -66,6 +53,49 @@ namespace IpTviewr.ChannelList
 
             return exitCode;
         } // Main
+
+        private void StartTelemetry()
+        {
+            // load telemetry configuration
+            // let .NET handle uncaught exceptions when loading configuration
+            var telemetryConfiguration = Settings.Default.Telemetry;
+            if (telemetryConfiguration == null)
+            {
+                telemetryConfiguration = new TelemetryConfiguration(false, true, true);
+                Settings.Default.Telemetry = telemetryConfiguration;
+            } // if
+
+            // create Google Analytics client ID
+            if (string.IsNullOrEmpty(Settings.Default.Telemetry_GoogleAnalyticsClientId))
+            {
+                Settings.Default.Telemetry_GoogleAnalyticsClientId = Guid.NewGuid().ToString("D");
+                Settings.Default.Save();
+            } // if
+
+            // ensure we capture ALL unhandled exceptions
+            Application.ThreadException += ApplicationOnThreadException;
+            Application.SetUnhandledExceptionMode(UnhandledExceptionMode.CatchException);
+            AppDomain.CurrentDomain.UnhandledException += AppDomainCurrentOnUnhandledException;
+
+            // start telemetry
+            AppTelemetry.Start(new TelemetryFactory(), telemetryConfiguration, new Dictionary<string, IReadOnlyDictionary<string, string>>
+            {
+                {
+                    "IpTviewr.Telemetry.VsAppCenter", new Dictionary<string, string>
+                    {
+                        {"AppSecret", InvariantTexts.TelemetryAppCenter_AppSecret}
+                    }
+
+                },
+                {
+                    "IpTviewr.Telemetry.GoogleAnalytics", new Dictionary<string, string>
+                    {
+                        {"TrackingId", InvariantTexts.TelemetryGoogleAnalytics_TrackingId},
+                        {"ClientId", Settings.Default.Telemetry_GoogleAnalyticsClientId}
+                    }
+                }
+            });
+        } // StartTelemetry
 
         private static void ApplicationOnThreadException(object sender, ThreadExceptionEventArgs e)
         {
