@@ -10,13 +10,13 @@
    xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="180mm"
-   height="55mm"
-   viewBox="0 0 180 55"
+   width="500mm"
+   height="500mm"
+   viewBox="0 0 500 500"
    version="1.1"
    id="svg833"
    inkscape:version="0.92.4 (5da689c313, 2019-01-14)"
-   sodipodi:docname="dibujo.svg">
+   sodipodi:docname="nova.svg">
   <defs
      id="defs827">
     <clipPath
@@ -99,14 +99,14 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.7"
-     inkscape:cx="346.96015"
-     inkscape:cy="274.28571"
+     inkscape:zoom="0.24748737"
+     inkscape:cx="-152.55625"
+     inkscape:cy="389.9868"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
-     inkscape:window-width="1280"
-     inkscape:window-height="962"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
      inkscape:window-x="-8"
      inkscape:window-y="-8"
      inkscape:window-maximized="1" />
@@ -126,10 +126,10 @@
      inkscape:label="Capa 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(0,-242)">
+     transform="translate(0,203)">
     <g
        id="g874"
-       transform="matrix(1.3215249,0,0,1.3215249,-12.094525,243.09659)">
+       transform="matrix(3.6407994,0,0,3.6407994,-32.063657,-24.05931)">
       <g
          id="g872">
         <defs
