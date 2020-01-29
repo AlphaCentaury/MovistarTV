@@ -56,5 +56,5 @@ namespace IpTviewr.Internal.Tools.ChannelLogos
             var cookies = response.Cookies;
             CookieContainer.Add(cookies);
         } // ReadCookies
-    }
-}
+    } // class WebClientEx
+} // namespace

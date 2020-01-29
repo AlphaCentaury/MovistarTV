@@ -24,6 +24,7 @@
     <WarningLevel>4</WarningLevel>
     <LangVersion>8</LangVersion>
     <GenerateSerializationAssemblies>On</GenerateSerializationAssemblies>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -48,17 +49,15 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
-    <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\..\AssemblySolutionInfo.cs">
+      <Link>Properties\AssemblySolutionInfo.cs</Link>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -90,6 +89,8 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="LICENSE.ES.MD" />
+    <None Include="LICENSE.MD" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -104,6 +105,8 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="license.txt" />
+    <Content Include="licensing.xml" />
     <Content Include="Resources\Action_Cancel_16x16.png" />
     <Content Include="Resources\Action_Ok_16x16.png" />
     <Content Include="Resources\IpTViewrGuiTools_16x.png" />
@@ -113,12 +116,16 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Assemblies\Project.Common\IpTviewr.Common.csproj">
-      <Project>{8DA15060-5A78-4F89-A9F1-7AA56B0D622C}</Project>
+      <Project>{8da15060-5a78-4f89-a9f1-7aa56b0d622c}</Project>
       <Name>IpTviewr.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Assemblies\UiServices.Config\UiServices.Config.csproj">
       <Project>{a722de9d-ae51-479c-825f-a19f4c69bd75}</Project>
       <Name>UiServices.Config</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Core\IpTViewr.Core\IpTViewr.Core.csproj">
+      <Project>{968c6eeb-1e79-446a-96ae-69cb225e1c37}</Project>
+      <Name>IpTViewr.Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\ChannelLogos\ChannelLogos.csproj">
       <Project>{a51cc220-48c4-46f6-bf5d-3178cc317426}</Project>

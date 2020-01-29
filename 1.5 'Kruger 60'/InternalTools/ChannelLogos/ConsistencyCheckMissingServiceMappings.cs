@@ -11,62 +11,69 @@
 // 
 // ==============================================================================
 
+using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Xml;
 using IpTviewr.UiServices.Configuration.Logos;
 using IpTviewr.UiServices.Discovery;
 
 namespace IpTviewr.Internal.Tools.ChannelLogos
 {
-    internal sealed class ConsistencyCheckMissingServiceLogos: ConsistencyCheckAllServices
+    internal sealed class ConsistencyCheckMissingServiceMappings : ConsistencyCheckAllServices
     {
         protected override void Run()
         {
-            AddResult(Severity.Info, "Loading providers");
-            var providers = GetProviders();
-
-            AddResult(Severity.Info, "Loading broadcast data");
-            var list = GetBroadcastList(providers);
-            if (list == null) goto end;
-
-            AddResult(Severity.Info, "Loading domain mappings");
-            var domainMappings = GetDomainMappings();
-
-            AddResult(Severity.Info, "Loading service mappings");
-            var mappedServices = GetMappedServices();
-
-            AddResult(Severity.Info, "Locating missing logos");
-            var missing = GetMissingEntries(list, mappedServices, domainMappings);
-
-            ShowMissingEntries(missing);
-
-            end:
-            AddResult(Severity.Info, "Check ended");
+            var missing = GetMissingMappings();
+            ShowMissingMappings(missing);
         } // Run
 
-        private ICollection<UiBroadcastService> GetMissingEntries(IEnumerable<BroadcastList> list, IDictionary<string, MappedService> mappedServices, IDictionary<string, ServiceLogoMappings.ReplacementDomain> domainMappings)
+        private IEnumerable<UiBroadcastService> GetMissingMappings()
         {
+            AddResult(Severity.Info, "Loading providers");
+            var providers = Data.GetProviders();
+            if (providers.Count == 0) return null;
+
+            AddResult(Severity.Info, "Loading broadcast data");
+            var list = Data.GetBroadcastList(AddResult);
+            if (list == null) return null;
+
+            AddResult(Severity.Info, "Loading domain mappings");
+            var domainMappings = Data.GetDomainMappings();
+            if (domainMappings.Count == 0) return null;
+
+            AddResult(Severity.Info, "Loading service mappings");
+            var mappedServices = Data.GetMappedServices();
+            if (mappedServices.Count == 0) return null;
+
+            AddResult(Severity.Info, "Locating missing entries");
+
             var missing = new Dictionary<string, UiBroadcastService>();
             foreach (var item in list)
             {
                 foreach (var service in item.Services)
                 {
-                    var mappedService = GetMappedService(item, service, mappedServices, domainMappings);
+                    var mappedService = Data.GetMappedService(item, service);
                     if (mappedService != null) continue;
 
                     missing[service.ServiceName] = service;
                 } // foreach service
             } // foreach item
 
-            return missing.Values;
-        } // GetMissingEntries
+            return from service in missing.Values
+                   orderby service.ServiceName
+                   select service;
+        } // GetMissingMappings
 
-        private void ShowMissingEntries(ICollection<UiBroadcastService> missing)
+        private void ShowMissingMappings(IEnumerable<UiBroadcastService> missing)
         {
             var missingCount = 0;
 
+            if (missing == null) return;
+
             foreach (var item in missing)
             {
-                AddResult(Severity.Error, "Missing logo", item.ServiceName, item.DisplayName, "#" + item.DisplayLogicalNumber);
+                AddResult(Severity.Error, "Missing entry", item.ServiceName, item.DisplayName, item.DisplayLogicalNumber);
                 missingCount++;
             } // foreach
 
@@ -74,6 +81,6 @@ namespace IpTviewr.Internal.Tools.ChannelLogos
             {
                 AddResult(Severity.Info, "No missing entries");
             } // if
-        } // ShowMissingEntries
-    } // sealed class ConsistencyCheckMissingServiceLogos
+        } // ShowMissingMappings
+    } // sealed class ConsistencyCheckMissingServiceMappings
 } // namespace

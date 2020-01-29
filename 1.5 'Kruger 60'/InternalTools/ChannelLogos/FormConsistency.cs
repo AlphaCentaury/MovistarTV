@@ -13,8 +13,11 @@
 
 using System;
 using System.ComponentModel;
+using System.IO;
+using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using IpTviewr.Common;
 using IpTviewr.Internal.Tools.UiFramework;
 using IpTviewr.UiServices.Configuration;
 
@@ -22,6 +25,9 @@ namespace IpTviewr.Internal.Tools.ChannelLogos
 {
     public partial class FormConsistency : MdiRibbonChildForm
     {
+        private ConsistencyCheck _currentCheck;
+        private ConsistencyChecksData _data;
+
         public FormConsistency()
         {
             InitializeComponent();
@@ -33,13 +39,25 @@ namespace IpTviewr.Internal.Tools.ChannelLogos
         {
             base.OnLoad(e);
 
-            if (AppConfig.Current == null)
-            {
-                RibbonMdiForm.SetStatusText("Loading configuration...");
-                AppConfig.Load(null, RibbonMdiForm.SetStatusText);
-                RibbonMdiForm.SetStatusText("Configuration loaded");
-            } // if
+            var baseFolder = Path.GetFullPath(Path.Combine(Application.StartupPath, @"..\..\..\.."));
+            textBoxLogosFolder.Text = Path.Combine(baseFolder, @"Logos");
+            checkLogosFolder.Checked = true;
         } // OnLoad
+
+        protected override void OnShown(EventArgs e)
+        {
+            base.OnShown(e);
+
+            if (AppConfig.Current != null) return;
+
+            RibbonMdiForm.SetStatusText("Loading configuration...");
+            var result = AppConfig.Load(null, RibbonMdiForm.SetStatusText);
+            if (result.IsError)
+            {
+                BaseProgram.HandleException(this, result.Caption, result.Message, result.InnerException);
+            } // if
+            RibbonMdiForm.SetStatusText("Configuration loaded");
+        } // OnShown
 
         private void comboCheck_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -48,8 +66,6 @@ namespace IpTviewr.Internal.Tools.ChannelLogos
 
         private void buttonRun_Click(object sender, EventArgs e)
         {
-            ConsistencyCheck check;
-
             // init list
             var width = (listViewResults.Width - SystemInformation.VerticalScrollBarWidth - 4) / 3;
             listViewResults.BeginUpdate();
@@ -60,36 +76,53 @@ namespace IpTviewr.Internal.Tools.ChannelLogos
             listViewResults.Columns.Add("Data").Width = width;
             listViewResults.EndUpdate();
 
-            var test = int.Parse(comboCheck.SelectedItem.ToString().Substring(0, 2));
-            switch (test)
+            if (_currentCheck != null)
             {
-                case 1: check = new ConsistencyCheckMissingServiceLogos(); break;
-                case 2: check = new ConsistencyCheckUnusedServiceMappingEntries(); break;
-                case 3: check = new ConsistencyCheckMissingLogoFiles(); break;
-                case 4: check = new ConsistencyCheckUnusedLogoFiles(); break;
-                default:
-                    return;
-            } // switch
+                _currentCheck.ProgressChanged -= Check_ProgressChanged;
+            } // if
 
-            check.ProgressChanged += Check_ProgressChanged;
-            check.Execute(this);
-            ShowResults(check);
+            var test = int.Parse(comboCheck.SelectedItem.ToString().Substring(0, 2));
+            _currentCheck = test switch
+            {
+                1 => new ConsistencyCheckMissingServiceMappings(),
+                2 => new ConsistencyCheckUnusedServiceMappingEntries(),
+                11 => new ConsistencyCheckMissingLogoFiles(),
+                12 => new ConsistencyCheckUnusedLogoFiles(),
+                _ => (ConsistencyCheck)null
+            };
+
+            if (_currentCheck == null) return;
+
+            _data ??= new ConsistencyChecksData(this, !checkBoxUseCache.Checked, checkLogosFolder.Checked ? textBoxLogosFolder.Text : null);
+            buttonDiscardData.Enabled = true;
+
+            _currentCheck.ProgressChanged += Check_ProgressChanged;
+            _currentCheck.Execute(_data);
+            ShowResults(_currentCheck);
         } // buttonRun_Click
+
+        private void buttonDiscardData_Click(object sender, EventArgs e)
+        {
+            _data = null;
+            buttonDiscardData.Enabled = false;
+        } // buttonDiscardData_Click
 
         private void contextMenuListView_Opening(object sender, CancelEventArgs e)
         {
-            var selectedItem = (listViewResults.SelectedIndices.Count == 0)? null : listViewResults.SelectedItems[0];
+            var selectedItem = (listViewResults.SelectedIndices.Count == 0) ? null : listViewResults.SelectedItems[0];
             if ((selectedItem == null) || (selectedItem.SubItems.Count == 0))
             {
                 menuItemListContextCopyActivity.Enabled = false;
                 menuItemListContextCopyFirstDetail.Enabled = false;
                 menuItemListContextCopyRow.Enabled = false;
+                menuItemListContextCopyMappingEntry.Enabled = false;
                 return;
             } // if
 
             menuItemListContextCopyActivity.Enabled = true;
             menuItemListContextCopyFirstDetail.Enabled = (selectedItem.SubItems.Count > 1);
             menuItemListContextCopyRow.Enabled = true;
+            menuItemListContextCopyMappingEntry.Enabled = _currentCheck is ConsistencyCheckMissingServiceMappings;
         } // contextMenuListView_Opening
 
         private void menuItemListContextCopyActivity_Click(object sender, EventArgs e)
@@ -119,14 +152,38 @@ namespace IpTviewr.Internal.Tools.ChannelLogos
 
             var result = new StringBuilder();
             result.Append(selectedItem.ImageKey);
-            foreach (ListViewItem.ListViewSubItem subitem in selectedItem.SubItems)
+            foreach (ListViewItem.ListViewSubItem subItem in selectedItem.SubItems)
             {
                 result.Append('\t');
-                result.Append(subitem);
-            } // foreach subitem
+                result.Append(subItem);
+            } // foreach subItem
 
             Clipboard.SetText(result.ToString());
         } // menuItemListContextCopyRow_Click
+
+        private void menuItemListContextCopyMappingEntry_Click(object sender, EventArgs e)
+        {
+            if (listViewResults.SelectedIndices.Count == 0) return;
+            var selectedItem = listViewResults.SelectedItems[0];
+
+            var entry = $"<Mapping serviceName=\"{selectedItem.SubItems[1].Text}\" logo=\"***\" remarks=\"{selectedItem.SubItems[2].Text}\" />";
+            Clipboard.SetText(entry);
+        } // menuItemListContextCopyMappingEntry_Click
+
+        private void menuItemListContextCopyMissingEntries_Click(object sender, EventArgs e)
+        {
+            var entries = new StringBuilder();
+            foreach (var item in listViewResults.Items.Cast<ListViewItem>())
+            {
+                if (item.Text != "Missing logo") continue;
+
+                entries.AppendFormat("<Mapping serviceName=\"{0}\" logo=\"***\" remarks=\"{1}\" />", item.SubItems[1].Text, item.SubItems[2].Text);
+                entries.AppendLine();
+            } // foreach
+
+            Clipboard.SetText(entries.ToString());
+        } // menuItemListContextCopyMissingEntries_Click
+
 
         private void LoadDisplayProgress(string text)
         {
@@ -148,37 +205,38 @@ namespace IpTviewr.Internal.Tools.ChannelLogos
 
         private void ShowResults(ConsistencyCheck consistencyCheck)
         {
-            var maxColumns = 0;
-
             listViewResults.BeginUpdate();
             listViewResults.Columns.Clear();
             listViewResults.Items.Clear();
 
-            foreach (var result in consistencyCheck.Results)
+            if (consistencyCheck.Results.Count > 0)
             {
-                maxColumns = Math.Max(result.Data.Length, maxColumns);
-            } // foreach result
 
-            foreach (var result in consistencyCheck.Results)
-            {
-                var item = new ListViewItem(result.Data)
-                {
-                    ImageKey = result.Severity.ToString()
-                };
-                for (var missing = 0; missing < maxColumns - result.Data.Length; missing++)
-                {
-                    item.SubItems.Add((string)null);
-                } // for missing
-                item.SubItems.Add((result.Timestamp - consistencyCheck.StartTime).ToString());
-                listViewResults.Items.Add(item);
-            } // foreach result
+                var maxColumns = consistencyCheck.Results.Select(result => result.Data.Length).Max();
 
-            listViewResults.Columns.Add("Activity").AutoResize(ColumnHeaderAutoResizeStyle.ColumnContent);
-            for (var i = 1; i < maxColumns; i++)
-            {
-                listViewResults.Columns.Add("Details").AutoResize(ColumnHeaderAutoResizeStyle.ColumnContent);
-            } // for i
-            listViewResults.Columns.Add("Elapsed").AutoResize(ColumnHeaderAutoResizeStyle.ColumnContent);
+                foreach (var result in consistencyCheck.Results)
+                {
+                    var item = new ListViewItem(result.Data)
+                    {
+                        ImageKey = result.Severity.ToString()
+                    };
+                    for (var missing = 0; missing < maxColumns - result.Data.Length; missing++)
+                    {
+                        item.SubItems.Add((string)null);
+                    } // for missing
+
+                    item.SubItems.Add((result.Timestamp - consistencyCheck.StartTime).ToString());
+                    listViewResults.Items.Add(item);
+                } // foreach result
+
+                listViewResults.Columns.Add("Activity").AutoResize(ColumnHeaderAutoResizeStyle.ColumnContent);
+                for (var i = 1; i < maxColumns; i++)
+                {
+                    listViewResults.Columns.Add("Details").AutoResize(ColumnHeaderAutoResizeStyle.ColumnContent);
+                } // for i
+
+                listViewResults.Columns.Add("Elapsed").AutoResize(ColumnHeaderAutoResizeStyle.ColumnContent);
+            } // if
 
             listViewResults.EndUpdate();
         } // ShowResults
@@ -188,5 +246,10 @@ namespace IpTviewr.Internal.Tools.ChannelLogos
         public override Guid TypeGuid => Guid.Parse(LogosConsistenceTool.ToolGuid);
 
         #endregion
+
+        private void checkLogosFolder_CheckedChanged(object sender, EventArgs e)
+        {
+            textBoxLogosFolder.Enabled = checkLogosFolder.Checked;
+        } // checkLogosFolder_CheckedChanged
     } // class FormConsistency
 } // namespace

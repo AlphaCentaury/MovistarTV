@@ -22,6 +22,7 @@ using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 using AlphaCentaury.Tools.SourceCodeMaintenance.Interfaces;
+using IpTviewr.Common.Serialization;
 
 namespace AlphaCentaury.Tools.SourceCodeMaintenance.CopyrightNotices
 {
@@ -190,14 +191,14 @@ namespace AlphaCentaury.Tools.SourceCodeMaintenance.CopyrightNotices
         {
             var tempFilename = (string)null;
 
-            using (var reader = new StreamReader(filename, Encoding.UTF8, true, short.MaxValue))
+            using (var reader = new StreamReader(filename, XmlSerialization.Utf8NoBomEncoding.Value, true, short.MaxValue))
             {
                 FileHeaderLines = null;
 
                 if (!locateFunc(reader))
                 {
                     tempFilename = Path.GetTempFileName();
-                    using var writer = new StreamWriter(tempFilename, false, new UTF8Encoding(false, true), short.MaxValue);
+                    using var writer = new StreamWriter(tempFilename, false, XmlSerialization.Utf8NoBomEncoding.Value, short.MaxValue);
                     if (FileHeaderLines != null)
                     {
                         foreach (var line in FileHeaderLines)

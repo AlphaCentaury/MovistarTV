@@ -65,9 +65,13 @@ namespace IpTviewr.Internal.Tools.UiFramework
             this.ribbonButtonTileVertical = new ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupButton();
             this.commandTileVertical = new ComponentFactory.Krypton.Toolkit.KryptonCommand();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
-            this.kryptonManager1 = new ComponentFactory.Krypton.Toolkit.KryptonManager(this.components);
             this.statusLabelStatus = new System.Windows.Forms.ToolStripStatusLabel();
+            this.kryptonManager1 = new ComponentFactory.Krypton.Toolkit.KryptonManager(this.components);
             this.timerClearStatus = new System.Windows.Forms.Timer(this.components);
+            this.kryptonRibbonGroupLines1 = new ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupLines();
+            this.kryptonRibbonGroupButton1 = new ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupButton();
+            this.kryptonRibbonGroupButton2 = new ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupButton();
+            this.ribbonComboWindows = new ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.ribbon)).BeginInit();
             this.statusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -84,7 +88,6 @@ namespace IpTviewr.Internal.Tools.UiFramework
             this.ribbon.RibbonAppButton.AppButtonShowRecentDocs = false;
             this.ribbon.RibbonTabs.AddRange(new ComponentFactory.Krypton.Ribbon.KryptonRibbonTab[] {
             this.tabWindows});
-            this.ribbon.SelectedContext = null;
             this.ribbon.SelectedTab = this.tabWindows;
             this.ribbon.Size = new System.Drawing.Size(1008, 115);
             this.ribbon.TabIndex = 1;
@@ -179,7 +182,8 @@ namespace IpTviewr.Internal.Tools.UiFramework
             this.ribbonGroupWindowsArrange.DialogBoxLauncher = false;
             this.ribbonGroupWindowsArrange.Image = global::IpTviewr.Internal.Tools.UiFramework.Properties.Resources.Action_ArrangeCascade_16x;
             this.ribbonGroupWindowsArrange.Items.AddRange(new ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupContainer[] {
-            this.kryptonRibbonGroupTriple4});
+            this.kryptonRibbonGroupTriple4,
+            this.kryptonRibbonGroupLines1});
             this.ribbonGroupWindowsArrange.KeyTipGroup = "A";
             this.ribbonGroupWindowsArrange.TextLine1 = "Arrange";
             // 
@@ -252,22 +256,51 @@ namespace IpTviewr.Internal.Tools.UiFramework
             this.statusStrip.TabIndex = 3;
             this.statusStrip.Text = "statusStrip1";
             // 
-            // kryptonManager1
-            // 
-            this.kryptonManager1.GlobalPaletteMode = ComponentFactory.Krypton.Toolkit.PaletteModeManager.Office2010Silver;
-            // 
             // statusLabelStatus
             // 
             this.statusLabelStatus.Name = "statusLabelStatus";
-            this.statusLabelStatus.Size = new System.Drawing.Size(962, 17);
+            this.statusLabelStatus.Size = new System.Drawing.Size(993, 17);
             this.statusLabelStatus.Spring = true;
             this.statusLabelStatus.Text = "Ready";
             this.statusLabelStatus.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // kryptonManager1
+            // 
+            this.kryptonManager1.GlobalPaletteMode = ComponentFactory.Krypton.Toolkit.PaletteModeManager.Office2010Silver;
             // 
             // timerClearStatus
             // 
             this.timerClearStatus.Interval = 1250;
             this.timerClearStatus.Tick += new System.EventHandler(this.timerClearStatus_Tick);
+            // 
+            // kryptonRibbonGroupLines1
+            // 
+            this.kryptonRibbonGroupLines1.Items.AddRange(new ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupItem[] {
+            this.kryptonRibbonGroupButton1,
+            this.kryptonRibbonGroupButton2,
+            this.ribbonComboWindows});
+            // 
+            // kryptonRibbonGroupButton1
+            // 
+            this.kryptonRibbonGroupButton1.Visible = false;
+            // 
+            // kryptonRibbonGroupButton2
+            // 
+            this.kryptonRibbonGroupButton2.Visible = false;
+            // 
+            // ribbonComboWindows
+            // 
+            this.ribbonComboWindows.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.FileSystemDirectories;
+            this.ribbonComboWindows.DisplayMember = "Text";
+            this.ribbonComboWindows.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ribbonComboWindows.DropDownWidth = 400;
+            this.ribbonComboWindows.FormattingEnabled = false;
+            this.ribbonComboWindows.ItemHeight = 15;
+            this.ribbonComboWindows.KeyTip = "T";
+            this.ribbonComboWindows.MaximumSize = new System.Drawing.Size(300, 0);
+            this.ribbonComboWindows.MinimumSize = new System.Drawing.Size(200, 0);
+            this.ribbonComboWindows.Text = "";
+            this.ribbonComboWindows.SelectedIndexChanged += new System.EventHandler(this.ribbonComboWindows_SelectedIndexChanged);
             // 
             // MdiRibbonForm
             // 
@@ -314,5 +347,9 @@ namespace IpTviewr.Internal.Tools.UiFramework
         protected ComponentFactory.Krypton.Toolkit.KryptonManager kryptonManager1;
         private System.Windows.Forms.ToolStripStatusLabel statusLabelStatus;
         private System.Windows.Forms.Timer timerClearStatus;
+        private ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupLines kryptonRibbonGroupLines1;
+        private ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupButton kryptonRibbonGroupButton1;
+        private ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupButton kryptonRibbonGroupButton2;
+        private ComponentFactory.Krypton.Ribbon.KryptonRibbonGroupComboBox ribbonComboWindows;
     }
 }

@@ -11,23 +11,22 @@
 // 
 // ==============================================================================
 
-using IpTviewr.Common;
 using System;
-using System.Windows.Forms;
 
 namespace IpTviewr.Internal.Tools.ChannelLogos
 {
-    internal class Program: BaseProgram
+    public interface IToolOutputWriter
     {
-        /// <summary>
-        /// The main entry point for the application.
-        /// </summary>
-        [STAThread]
-        private static void Main()
-        {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormStart());
-        } // Main
-    } // class Program
+        void WriteLine();
+        void WriteLine(string text);
+        void WriteLine(string format, params object[] objects);
+        void WriteException(Exception ex, string message = null);
+        int IncreaseIndent();
+        int DecreaseIndent();
+        bool WriteTimestamps { get; set; }
+        bool AbsoluteTimestamps { get; set; }
+        TimeSpan ElapsedTime { get; }
+        DateTime UtcStartTime { get; }
+        int IndentLevel { get; }
+    } // IToolOutputWriter
 } // namespace

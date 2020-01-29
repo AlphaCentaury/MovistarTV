@@ -22,8 +22,8 @@ namespace IpTviewr.Internal.Tools.ConsoleExperiments
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            //var experiment = new Find();
-            var experiment = new Playground();
+            var experiment = new Find();
+            //var experiment = new Playground();
 
             return experiment.Execute(args);
         } // Main

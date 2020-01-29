@@ -71,6 +71,8 @@ namespace IpTviewr.Internal.Tools.UiFramework
             {
                 mdiChild.IsActiveChild = ReferenceEquals(mdiChild.Form, ActiveMdiChild);
             } // foreach
+
+            ribbonComboWindows.SelectedItem = ActiveMdiChild;
         } // OnMdiChildActivate
 
         #endregion
@@ -125,7 +127,15 @@ namespace IpTviewr.Internal.Tools.UiFramework
         {
             timerClearStatus.Stop();
             statusLabelStatus.Text = "Ready";
-        }
+        } // timerClearStatus_Tick
+
+        private void ribbonComboWindows_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ribbonComboWindows.SelectedItem is Form form)
+            {
+                form.Activate();
+            } // if
+        } // ribbonComboWindows_SelectedIndexChanged
 
         #endregion
 
@@ -154,6 +164,8 @@ namespace IpTviewr.Internal.Tools.UiFramework
 
             form.FormClosed += MdiChildOnFormClosed;
             form.Show();
+            ribbonComboWindows.Items.Add(form);
+            ribbonComboWindows.SelectedIndex = ribbonComboWindows.Items.Count - 1;
             MdiChildCount++;
 
             return true;
@@ -175,7 +187,6 @@ namespace IpTviewr.Internal.Tools.UiFramework
                 {
                     if (tab == null) continue;
                     if (first == null) first = tab;
-                    //tab.Ribbon?.RibbonTabs.Remove(tab);
                     tab.ContextName = fullName;
                     ribbon.RibbonTabs.Add(tab);
                 } // foreach
@@ -199,6 +210,8 @@ namespace IpTviewr.Internal.Tools.UiFramework
             form.Dispose();
 
             MdiChildCount--;
+
+            ribbonComboWindows.Items.Remove(form);
         } // MdiChildOnFormClosed
 
         #region IRibbonMdiForm implementation
@@ -218,16 +231,12 @@ namespace IpTviewr.Internal.Tools.UiFramework
             ribbon.SelectedTab = tab;
         } // IRibbonMdiForm.SetActiveContexts
 
-        #region Implementation of IRibbonMdiForm
-
         void IRibbonMdiForm.SetStatusText(string status)
         {
             timerClearStatus.Start();
             statusLabelStatus.Text = status;
             statusStrip.Refresh();
-        }
-
-        #endregion
+        } // IRibbonMdiForm.SetStatusText
 
         #endregion
 
