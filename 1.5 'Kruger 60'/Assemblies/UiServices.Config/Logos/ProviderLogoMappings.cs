@@ -107,6 +107,20 @@ namespace IpTviewr.UiServices.Configuration.Logos
             return zipEntry?.Open();
         } // ILogoMapping.GetImage
 
+#if DEBUG
+        bool ILogoMapping.ImageExists(string key, string entry, LogoSize size, out bool substituted)
+        {
+            substituted = false;
+            if (!_collections.TryGetValue(key, out var collection)) return false;
+
+            var zip = BaseLogo.GetZipArchive(collection.ArchivePath);
+            var entryName = $@"{entry}{Path.DirectorySeparatorChar}{(int)size}.png";
+            var zipEntry = BaseLogo.GetZipEntry(zip, entryName);
+
+            return (zipEntry != null);
+        } // ILogoMapping.ImageExists
+#endif
+
         ZipArchiveEntry ILogoMapping.GetIcon(string key, string entry, out DateTime lastModifiedUtc)
         {
             throw new NotSupportedException();

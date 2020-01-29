@@ -12,6 +12,7 @@
 // ==============================================================================
 
 using System.Collections.Generic;
+using IpTviewr.UiServices.Configuration.Schema2014.Logos;
 
 namespace IpTviewr.UiServices.Configuration.Logos
 {
@@ -25,7 +26,7 @@ namespace IpTviewr.UiServices.Configuration.Logos
                 internal set;
             } // DomainRedirection
 
-            public IDictionary<string, string> Logos
+            public IDictionary<string, ServiceMapping> Logos
             {
                 get;
                 internal set;

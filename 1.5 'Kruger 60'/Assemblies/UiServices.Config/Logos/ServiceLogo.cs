@@ -15,9 +15,17 @@ namespace IpTviewr.UiServices.Configuration.Logos
 {
     public class ServiceLogo : BaseLogo
     {
-        internal ServiceLogo(ILogoMapping mapping, string mappingKey, string entry, string uniqueKey) : base(mapping, mappingKey, entry, uniqueKey)
+        public const string QualityDefault = "(default)";
+        public const string QualityStandard = "SD";
+        public const string QualityHigh = "HD";
+        public const string QualityUltraHigh4K = "4K";
+        public const string QualityUltraHigh8K = "8K";
+
+        private readonly string _quality;
+
+        internal ServiceLogo(ILogoMapping mapping, string mappingKey, string entry, string uniqueKey, string quality) : base(mapping, mappingKey, entry, uniqueKey)
         {
-            // no-op
+            _quality = quality;
         } // constructor
 
         protected override string ImageNotFoundExceptionText => Properties.Texts.ExceptionLogosServiceImageNotFound;

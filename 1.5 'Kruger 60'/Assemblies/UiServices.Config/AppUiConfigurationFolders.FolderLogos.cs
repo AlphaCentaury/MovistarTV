@@ -37,5 +37,16 @@ namespace IpTviewr.UiServices.Configuration
             public string FileServiceDomainMappings => Path.Combine(Services, Properties.InvariantTexts.FileLogoDomainMappings);
 
             public string FileServiceMappings => Path.Combine(Services, Properties.InvariantTexts.FileLogoServiceMappings);
+
+#if  DEBUG
+
+            public string FileNameProviderMappings => Properties.InvariantTexts.FileLogoProviderMappings;
+
+            public string FileNameServiceDomainMappings => Properties.InvariantTexts.FileLogoDomainMappings;
+
+            public string FileNameServiceMappings => Properties.InvariantTexts.FileLogoServiceMappings;
+
+#endif
         } // FolderLogos
-    }} // namespace
+    }
+} // namespace

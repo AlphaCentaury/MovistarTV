@@ -68,11 +68,14 @@ namespace IpTviewr.UiServices.Configuration.Schema2014.Logos
         [XmlAttribute("logo")]
         public string Logo { get; set; }
 
+        [XmlAttribute("quality")]
+        public string Quality { get; set; }
+
 #if DEBUG
         [XmlAttribute("remarks")]
         public string Remarks { get; set; }
 #endif
 
-        public override string ToString() => $@"Service mapping: {Name} => {Logo}";
+        public override string ToString() => $@"{Name} => {Logo}";
     } // class ServiceMapping
 } // namespace

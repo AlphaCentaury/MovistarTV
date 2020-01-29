@@ -80,54 +80,53 @@ namespace IpTviewr.UiServices.Configuration.Logos
             } // try-finally
         } // GetImage
 
+#if DEBUG
+        public bool ImageExists(LogoSize logoSize, out bool substituted)
+        {
+            return Mapping.ImageExists(MappingKey, MappingEntry, logoSize, out substituted);
+        } // ImageExists
+#endif
+
         public string GetLogoIconPath()
         {
-            Stream stream = null;
+            var iconPath = Path.Combine(AppConfig.Current.Folders.Logos.Cache,
+                $"{TextUtils.SanitizeFilename(Key, "~")}.ico");
 
-            try
+            var zipEntry = Mapping.GetIcon(MappingKey, MappingEntry, out var lastModifiedUtc);
+            if (zipEntry == null) return null;
+
+            if (File.Exists(iconPath))
             {
-                var iconPath = Path.Combine(AppConfig.Current.Folders.Logos.Cache,
-                    $"{TextUtils.SanitizeFilename(Key, "~")}.ico");
+                File.SetAttributes(iconPath, FileAttributes.Normal);
+                var info = new FileInfo(iconPath);
+                var last = info.CreationTimeUtc;
+                if (info.LastWriteTimeUtc > last) last = info.LastWriteTimeUtc;
 
-                var zipEntry = Mapping.GetIcon(MappingKey, MappingEntry, out var lastModifiedUtc);
-                if (zipEntry == null) return null;
+                if (lastModifiedUtc <= last) return iconPath;
+            } // if
 
-                if (File.Exists(iconPath))
-                {
-                    File.SetAttributes(iconPath, FileAttributes.Normal);
-                    var info = new FileInfo(iconPath);
-                    var last = info.CreationTimeUtc;
-                    if (info.LastWriteTimeUtc > last) last = info.LastWriteTimeUtc;
-
-                    if (lastModifiedUtc <= last) return iconPath;
-                } // if
-
-                Directory.CreateDirectory(AppConfig.Current.Folders.Logos.Cache);
-                using (var output = new FileStream(iconPath, FileMode.Create, FileAccess.Write, FileShare.None))
-                {
-                    var buffer = new byte[1024];
-                    int read;
-
-                    stream = zipEntry.Open();
-                    while ((read = stream.Read(buffer, 0, buffer.Length)) > 0)
-                    {
-                        output.Write(buffer, 0, read);
-                    } // while
-                } // using
-
-                var unused = new FileInfo(iconPath)
-                {
-                    CreationTimeUtc = lastModifiedUtc,
-                    LastWriteTimeUtc = lastModifiedUtc,
-                    LastAccessTimeUtc = lastModifiedUtc
-                };
-
-                return iconPath;
-            }
-            finally
+            Directory.CreateDirectory(AppConfig.Current.Folders.Logos.Cache);
+            using (var output = new FileStream(iconPath, FileMode.Create, FileAccess.Write, FileShare.None))
             {
-                stream?.Dispose();
-            } // try-finally
+                var buffer = new byte[1024];
+                int read;
+
+                using var stream = zipEntry.Open();
+                while ((read = stream.Read(buffer, 0, buffer.Length)) > 0)
+                {
+                    output.Write(buffer, 0, read);
+                } // while
+            } // using
+
+            // ReSharper disable once AssignmentIsFullyDiscarded [assignment has a side effect]
+            _ = new FileInfo(iconPath)
+            {
+                CreationTimeUtc = lastModifiedUtc,
+                LastWriteTimeUtc = lastModifiedUtc,
+                LastAccessTimeUtc = lastModifiedUtc
+            };
+
+            return iconPath;
         } // GetLogoIconPath
 
         #region Static methods

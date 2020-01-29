@@ -21,6 +21,10 @@ namespace IpTviewr.UiServices.Configuration.Logos
     {
         Stream GetImage(string key, string entry, LogoSize size);
 
+#if DEBUG
+        bool ImageExists(string key, string entry, LogoSize size, out bool substituted);
+#endif
+
         ZipArchiveEntry GetIcon(string key, string entry, out DateTime lastModifiedUtc);
     } // interface ILogoMapping
 } // namespace

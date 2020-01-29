@@ -54,7 +54,7 @@ namespace IpTviewr.UiServices.Discovery
 
         public ProviderLogo Logo => _logo ??= GetLogo();
 
-        // v1.0 RC 0: code moved from ChannelList > ChanneListForm.cs > DumpProperties(UiServiceProvider)
+        public override string ToString() => DomainName;
 
         public IList<Property> DumpProperties()
         {

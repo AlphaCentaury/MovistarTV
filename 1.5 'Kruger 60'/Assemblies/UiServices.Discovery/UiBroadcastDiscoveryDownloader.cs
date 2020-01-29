@@ -111,35 +111,35 @@ namespace IpTviewr.UiServices.Discovery
         public PackageDiscoveryRoot PackageDiscovery { get; private set; }
         public BroadcastContentGuideDiscoveryRoot EpgDiscovery { get; private set; }
 
-        public bool Download(Form ownerForm, UiServiceProvider serviceProvider, UiBroadcastDiscovery currentUiDiscovery, bool fromCache, bool? highDefinitionPriority = null)
+        public bool Download(Form ownerForm, UiServiceProvider serviceProvider, UiBroadcastDiscovery currentUiDiscovery, bool fromCache, bool? highDefinitionPriority = null, bool skipEpg = false)
         {
             try
             {
                 BroadcastDiscovery = null;
                 PackageDiscovery = null;
-                EpgDiscovery = null;
+                if (!skipEpg) EpgDiscovery = null;
 
                 if (fromCache)
                 {
                     OnBeforeCacheLoad(this, EventArgs.Empty);
+                    var cachedBroadcastDiscovery = AppConfig.Current.Cache.LoadXmlDocument<UiBroadcastDiscovery>("UiBroadcastDiscovery", serviceProvider.Key);
                     var cachedPackageDiscovery = AppConfig.Current.Cache.LoadXmlDocument<PackageDiscoveryRoot>("PackageDiscovery", serviceProvider.Key);
                     var cachedEpgDiscovery = AppConfig.Current.Cache.LoadXmlDocument<BroadcastContentGuideDiscoveryRoot>("BroadcastContentGuideDiscovery", serviceProvider.Key);
-                    var cachedBroadcastDiscovery = AppConfig.Current.Cache.LoadXmlDocument<UiBroadcastDiscovery>("UiBroadcastDiscovery", serviceProvider.Key);
                     OnAfterCacheLoad(this, new CacheEventArgs(cachedBroadcastDiscovery));
 
                     BroadcastDiscovery = cachedBroadcastDiscovery?.Document;
                     PackageDiscovery = cachedPackageDiscovery?.Document;
-                    EpgDiscovery = cachedEpgDiscovery?.Document;
+                    if (!skipEpg) EpgDiscovery = cachedEpgDiscovery?.Document;
                 } // if
 
-                if ((BroadcastDiscovery != null) && (PackageDiscovery != null) && (EpgDiscovery != null))
+                if ((BroadcastDiscovery != null) && (PackageDiscovery != null) && (skipEpg || EpgDiscovery != null))
                 {
                     return true;
                 } // if
 
                 BroadcastDiscovery = null;
                 PackageDiscovery = null;
-                EpgDiscovery = null;
+                if (!skipEpg) EpgDiscovery = null;
 
                 OnBeforeDownload(this, EventArgs.Empty);
                 var downloader = new UiDvbStpEnhancedDownloader()
@@ -161,7 +161,7 @@ namespace IpTviewr.UiServices.Discovery
                 };
                 downloader.Request.AddPayload(0x02, null, Properties.Texts.Payload02DisplayName, typeof(BroadcastDiscoveryRoot));
                 downloader.Request.AddPayload(0x05, null, Properties.Texts.Payload05DisplayName, typeof(PackageDiscoveryRoot));
-                downloader.Request.AddPayload(0x06, null, Properties.Texts.Payload06DisplayName, typeof(BroadcastContentGuideDiscoveryRoot));
+                if (!skipEpg) downloader.Request.AddPayload(0x06, null, Properties.Texts.Payload06DisplayName, typeof(BroadcastContentGuideDiscoveryRoot));
                 downloader.Download(ownerForm);
                 OnAfterDownload(this, new DownloadEventArgs(downloader));
                 if (!downloader.IsOk) return false;
@@ -174,17 +174,17 @@ namespace IpTviewr.UiServices.Discovery
                 OnAfterMerge(this, new MergeEventArgs(BroadcastDiscovery, currentUiDiscovery));
 
                 PackageDiscovery = downloader.Request.Payloads[1].XmlDeserializedData as PackageDiscoveryRoot;
-                highDefinitionPriority = highDefinitionPriority ?? !AppConfig.Current.User.ChannelNumberStandardDefinitionPriority;
+                highDefinitionPriority ??= !AppConfig.Current.User.ChannelNumberStandardDefinitionPriority;
 
                 OnBeforeAssignNumbers(this, new AssignNumbersArgs(BroadcastDiscovery, PackageDiscovery, serviceProvider, highDefinitionPriority.Value));
                 UiServicesLogicalNumbers.AssignLogicalNumbers(BroadcastDiscovery, PackageDiscovery, serviceProvider.DomainName, highDefinitionPriority.Value);
                 OnAfterAssignNumbers(this, new AssignNumbersArgs(BroadcastDiscovery, PackageDiscovery, serviceProvider, highDefinitionPriority.Value));
 
-                EpgDiscovery = downloader.Request.Payloads[2].XmlDeserializedData as BroadcastContentGuideDiscoveryRoot;
+                if (!skipEpg) EpgDiscovery = downloader.Request.Payloads[2].XmlDeserializedData as BroadcastContentGuideDiscoveryRoot;
 
                 AppConfig.Current.Cache.SaveXml("UiBroadcastDiscovery", serviceProvider.Key, BroadcastDiscovery.Version, BroadcastDiscovery);
                 AppConfig.Current.Cache.SaveXml("PackageDiscovery", serviceProvider.Key, 0, PackageDiscovery);
-                AppConfig.Current.Cache.SaveXml("BroadcastContentGuideDiscovery", serviceProvider.Key, 0, EpgDiscovery);
+                if (!skipEpg) AppConfig.Current.Cache.SaveXml("BroadcastContentGuideDiscovery", serviceProvider.Key, 0, EpgDiscovery);
 
                 return true;
             }

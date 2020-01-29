@@ -83,9 +83,9 @@ namespace IpTviewr.UiServices.Configuration.Logos
                         continue;
                     } // if
 
-                    if (!serviceLogos.Logos.TryGetValue(serviceName, out var logoFile))
+                    if (!serviceLogos.Logos.TryGetValue(serviceName, out var serviceMapping))
                     {
-                        if (!serviceLogos.Logos.TryGetValue(Properties.InvariantTexts.ServiceNameAny, out logoFile))
+                        if (!serviceLogos.Logos.TryGetValue(Properties.InvariantTexts.ServiceNameAny, out serviceMapping))
                         {
                             firstReplacementChance = false;
                             continue;
@@ -93,7 +93,7 @@ namespace IpTviewr.UiServices.Configuration.Logos
                     } // if
 
                     var domain = serviceLogos.DomainRedirection ?? serviceDomainName;
-                    return GetLogo(domain, logoFile);
+                    return GetLogo(domain, serviceMapping);
                 } // while
 
                 // avoid infinite recursion if default domain name contains no logos or doesn't exists
@@ -121,19 +121,16 @@ namespace IpTviewr.UiServices.Configuration.Logos
             return Get(null, domain, service, null);
         } // FromServiceKey
 
-        private ServiceLogo GetLogo(string domain, string logoFile)
+        private ServiceLogo GetLogo(string domain, ServiceMapping mapping)
         {
-            if ((domain == null) || (logoFile == null) || !_collections.TryGetValue(domain, out var collection))
+            if ((domain == null) || (mapping?.Logo == null) || !_collections.TryGetValue(domain, out var collection))
             {
-                return new ServiceLogo(this, "", "", @"/services/<unknown>");
+                return new ServiceLogo(this, "", "", @"/services/<unknown>", null);
             } // if
 
-            if (logoFile.StartsWith("hd_"))
-            {
-                logoFile = $@"HD/{logoFile.Substring(3)}";
-            } // if
+            var entry = $@"{mapping.Quality}{(!string.IsNullOrEmpty(mapping.Quality) ? ":" : null)}{mapping.Logo}";
 
-            return new ServiceLogo(this, domain, logoFile, $@"/services/{collection.Name}/{domain}/{logoFile}");
+            return new ServiceLogo(this, domain, entry, $@" /services/{collection.Name}/{domain}/{entry}", mapping.Quality);
         } // GetLogo
 
         private static string GetParentDomain(string domainName)
@@ -200,7 +197,7 @@ namespace IpTviewr.UiServices.Configuration.Logos
                 var domainMappings = new ServiceDomainMapping()
                 {
                     DomainRedirection = entry.Domain.RedirectDomainName,
-                    Logos = new Dictionary<string, string>(entry.Domain.Mappings.Length, StringComparer.OrdinalIgnoreCase),
+                    Logos = new Dictionary<string, ServiceMapping>(entry.Domain.Mappings.Length, StringComparer.OrdinalIgnoreCase),
                 };
                 try
                 {
@@ -217,17 +214,17 @@ namespace IpTviewr.UiServices.Configuration.Logos
                         entry.Domain.DomainName), ex);
                 } // try-catch
 
-                foreach (var mp in entry.Domain.Mappings)
+                foreach (var serviceMapping in entry.Domain.Mappings)
                 {
                     try
                     {
-                        domainMappings.Logos.Add(mp.Name, mp.Logo);
+                        domainMappings.Logos.Add(serviceMapping.Name, serviceMapping);
                     }
                     catch (ArgumentException ex) // duplicated key (domain service name)
                     {
                         throw new ApplicationException(
                             string.Format(Properties.Texts.ExceptionLogosServiceMappingsDuplicatedService,
-                            mp.Name, entry.Domain.DomainName), ex);
+                            serviceMapping.Name, entry.Domain.DomainName), ex);
                     } // try-catch
                 } // foreach mp
             } // foreach domain
@@ -238,47 +235,64 @@ namespace IpTviewr.UiServices.Configuration.Logos
         Stream ILogoMapping.GetImage(string key, string entry, LogoSize size)
         {
             var quality = GetQuality(entry, out entry);
-            return GetZipEntry(key, entry, quality, ((int) size).ToString(), ".png", out _)?.Open();
+            return GetZipEntry(key, entry, quality, ((int)size).ToString(), ".png", out _, out _)?.Open();
         } // ILogoMapping.GetImage
+
+#if DEBUG
+        bool ILogoMapping.ImageExists(string key, string entry, LogoSize size, out bool substituted)
+        {
+            var requestedQuality = GetQuality(entry, out entry);
+            var zipEntry = GetZipEntry(key, entry, requestedQuality, ((int)size).ToString(), ".png", out _, out var quality);
+            substituted = ReferenceEquals(requestedQuality, quality);
+
+            return (zipEntry != null);
+        } // ILogoMapping.ImageExists
+#endif
 
         ZipArchiveEntry ILogoMapping.GetIcon(string key, string entry, out DateTime lastModifiedUtc)
         {
             var quality = GetQuality(entry, out entry);
-            return GetZipEntry(key, entry, quality, entry, ".ico", out lastModifiedUtc);
+            return GetZipEntry(key, entry, quality, entry, ".ico", out lastModifiedUtc, out _);
         } // ILogoMapping.GetImage
 
-        private ZipArchiveEntry GetZipEntry(string key, string entry, string quality, string zipFile, string extension, out DateTime lastModifiedUtc)
+        private ZipArchiveEntry GetZipEntry(string key, string entry, string requestedQuality, string zipFile, string extension, out DateTime lastModifiedUtc, out string quality)
         {
             lastModifiedUtc = DateTime.MinValue;
+            quality = null;
+
             if (!_collections.TryGetValue(key, out var collection)) return null;
 
             var zip = BaseLogo.GetZipArchive(collection.ArchivePath);
             lastModifiedUtc = collection.GetLastModifiedUtc();
 
-            while (quality != null)
+            while (requestedQuality != null)
             {
-                var entryName = $@"{key}{Path.DirectorySeparatorChar}{entry}{Path.DirectorySeparatorChar}{quality}{Path.DirectorySeparatorChar}{zipFile}{extension}";
+                var entryName = $@"{key}{Path.DirectorySeparatorChar}{entry}{Path.DirectorySeparatorChar}{requestedQuality}{Path.DirectorySeparatorChar}{zipFile}{extension}";
                 var zipEntry = BaseLogo.GetZipEntry(zip, entryName);
-                if (zipEntry != null) return zipEntry;
+                if (zipEntry != null)
+                {
+                    quality = requestedQuality;
+                    return zipEntry;
+                } // if
 
-                quality = (quality == "(default)") ? null : "(default)";
+                requestedQuality = (requestedQuality == ServiceLogo.QualityDefault) ? null : ServiceLogo.QualityDefault;
             } // while
 
             return null;
         } // GetZipEntry
 
-        private static string GetQuality(string entry, out string zipFile)
+        private static string GetQuality(string entry, out string resultEntry)
         {
             int pos;
 
-            if ((pos = entry.IndexOf('/')) >= 0)
+            if ((pos = entry.IndexOf(':')) >= 0)
             {
-                zipFile = entry.Substring(pos + 1);
+                resultEntry = entry.Substring(pos + 1);
                 return entry.Substring(0, pos);
             } // if
 
-            zipFile = entry;
-            return @"(default)";
+            resultEntry = entry;
+            return ServiceLogo.QualityDefault;
         } // GetQuality
 
         #endregion

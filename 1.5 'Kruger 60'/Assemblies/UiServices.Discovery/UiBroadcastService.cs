@@ -49,6 +49,8 @@ namespace IpTviewr.UiServices.Discovery
         {
         } // constructor
 
+        public override string ToString() => $"{ServiceLogicalNumber} {DisplayName}";
+
         public static string GetKey(TextualIdentifier serviceIdentifier, string defaultDomainName)
         {
             var domain = serviceIdentifier.DomainName ?? defaultDomainName;

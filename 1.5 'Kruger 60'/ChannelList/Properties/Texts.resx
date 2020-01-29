@@ -198,13 +198,13 @@ The application will now end.</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="SolutionLicense" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\..\solution-license.txt;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+    <value>..\..\movistartv.license.txt;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
   <data name="SchedulerCreateTaskOk" xml:space="preserve">
     <value>The recording task has been sucessfully created.</value>
   </data>
   <data name="SolutionLicenseRtf" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\..\solution-license.rtf;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+    <value>..\..\movistartv.license.rtf;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
   <data name="RecordDeadTvChannel" xml:space="preserve">
     <value>The selected TV channel has been marked as inactive and might not be available.
