@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="500mm"
+   height="500mm"
+   viewBox="0 0 499.99997 499.99999"
+   version="1.1"
+   id="svg14309"
+   inkscape:version="0.92.4 (5da689c313, 2019-01-14)"
+   sodipodi:docname="tnt.svg">
+  <defs
+     id="defs14303" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.175"
+     inkscape:cx="543.53063"
+     inkscape:cy="1758.3758"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     units="mm"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata14306">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,202.99998)">
+    <path
+       d="M 250.10799,-192.99998 C 117.78606,-192.99998 9.9999831,-85.405889 9.9999831,46.892057 9.9999831,179.25926 117.78606,287 250.10799,287 c 132.36994,0 239.892,-107.74074 239.892,-240.107943 0,-132.297946 -107.52473,-239.892037 -239.892,-239.892037 z m 0,38.1838 c 111.19139,0 201.70822,90.538129 201.70822,201.708237 0,111.191393 -90.51416,201.708153 -201.70822,201.708153 -111.16738,0 -201.708219,-90.51415 -201.708219,-201.708153 0,-111.167387 90.538179,-201.708237 201.708219,-201.708237 z M 81.407594,-1.6463829 V 25.318837 h 36.026466 v 93.626143 h 31.27983 V 25.318837 h 36.02647 V -1.6463829 Z m 116.708696,0 V 118.94761 h 29.5545 V 43.657407 h 0.43197 l 41.85044,75.290203 h 32.36247 V -1.6463829 H 272.75851 V 72.563877 h -0.43198 L 230.47612,-1.6463829 Z m 117.78866,0 V 25.318837 h 36.02914 v 93.626143 h 31.27717 V 25.318837 h 36.02913 V -1.6463829 Z"
+       inkscape:connector-curvature="0"
+       id="path12036_8_"
+       style="stroke-width:2.66665173;fill:#0190b0;fill-opacity:1" />
+  </g>
+</svg>

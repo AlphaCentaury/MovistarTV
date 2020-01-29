@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   version="1.1"
+   id="Livello_1"
+   x="0px"
+   y="0px"
+   viewBox="0 0 1889.7637 1889.7639"
+   xml:space="preserve"
+   width="500mm"
+   height="500mm"
+   inkscape:version="0.92.4 (5da689c313, 2019-01-14)"
+   sodipodi:docname="madrid_laotra.svg"><metadata
+   id="metadata13"><rdf:RDF><cc:Work
+       rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type
+         rdf:resource="http://purl.org/dc/dcmitype/StillImage" /></cc:Work></rdf:RDF></metadata><sodipodi:namedview
+   pagecolor="#ffffff"
+   bordercolor="#666666"
+   borderopacity="1"
+   objecttolerance="10"
+   gridtolerance="10"
+   guidetolerance="10"
+   inkscape:pageopacity="0"
+   inkscape:pageshadow="2"
+   inkscape:window-width="1920"
+   inkscape:window-height="1017"
+   id="namedview11"
+   showgrid="false"
+   inkscape:zoom="0.12488333"
+   inkscape:cx="944.88189"
+   inkscape:cy="944.88189"
+   inkscape:window-x="-8"
+   inkscape:window-y="-8"
+   inkscape:window-maximized="1"
+   inkscape:current-layer="Livello_1" /><defs
+   id="defs37" />
+  <style
+   type="text/css"
+   id="style2">.st0{fill:#FF003B;}</style>
+  <g
+   id="g16"
+   transform="matrix(4.3051097,0,0,4.3051097,52.432649,37.795276)">
+		<polygon
+   style="fill:#ff003b"
+   id="polygon6"
+   points="118.5,312.1 0,225.5 27.3,141.2 148.1,227.8 "
+   class="st0" />
+		<polygon
+   style="fill:#ff003b"
+   id="polygon8"
+   points="86.6,141.2 132.1,0 221,0 175.4,141.2 "
+   class="st0" />
+		<polygon
+   style="fill:#ff003b"
+   id="polygon10"
+   points="173.1,421.4 102.5,369.1 221,282.5 293.9,334.9 "
+   class="st0" />
+		<polygon
+   style="fill:#ff003b"
+   id="polygon12"
+   points="266.5,141.2 239.2,54.7 387.3,54.7 414.6,141.2 "
+   class="st0" />
+		<polygon
+   style="fill:#ff003b"
+   id="polygon14"
+   points="296.2,227.8 366.8,175.4 414.6,316.7 341.7,369.1 "
+   class="st0" />
+	</g>
+</svg>
