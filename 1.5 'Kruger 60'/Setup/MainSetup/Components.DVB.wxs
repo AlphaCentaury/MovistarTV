@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+==============================================================================
+
+  Copyright (C) 2014-2020, GitHub/Codeplex user AlphaCentaury
+  All rights reserved.
+
+    See 'LICENSE.MD' file (or 'license.txt' if missing) in the project root
+    for complete license information.
+
+  http://www.alphacentaury.org/movistartv
+  https://github.com/AlphaCentaury
+
+==============================================================================
+-->
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <?include strings.guid.wxi ?>
+  <Fragment>
+    <ComponentGroup Id="DVB">
+      <ComponentGroupRef Id="DVB.Assemblies" />
+      <!--
+      <ComponentGroupRef Id="DVB.Assemblies.Localization" />
+      -->
+    </ComponentGroup>
+
+    <ComponentGroup Id="DVB.Assemblies" Directory="INSTALLFOLDER">
+      <Component Id="DVB.Assemblies" Guid="$(var.Guid.DVB.Assemblies)">
+        <File Id="DvbStpClient.dll" Source="$(var.DvbStpClient.TargetDir)DvbStpClient.dll" />
+        <File Id="DvbStpClient.pdb" Source="$(var.DvbStpClient.TargetDir)DvbStpClient.pdb" />
+        <File Id="Etsi.Ts102034.dll" Source="$(var.Etsi.Ts102034.TargetDir)Etsi.Ts102034.dll" />
+        <File Id="Etsi.Ts102034.pdb" Source="$(var.Etsi.Ts102034.TargetDir)Etsi.Ts102034.pdb" />
+      </Component>
+    </ComponentGroup>
+
+    <!--
+    <ComponentGroup Id="DVB.Assemblies.Localization">
+      <Component Id="DVB.Assemblies.Localization.es" Directory="InstallFolder.es" Guid="$(var.Guid.DVB.Assemblies.Localization.es">
+        <File Id="Etsi.Ts102034.es.dll" Source="$(var.Etsi.Ts102034.TargetDir)es\Etsi.Ts102034.resources.dll" />
+        <File Id="DvbStpClient.es.dll" Source="$(var.DvbStpClient.TargetDir)es\DvbStpClient.resources.dll" />
+      </Component>
+    </ComponentGroup>
+    -->
+  </Fragment>
+</Wix>

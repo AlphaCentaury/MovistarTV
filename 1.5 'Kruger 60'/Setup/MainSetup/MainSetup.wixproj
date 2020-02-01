@@ -32,13 +32,23 @@
     <Cultures>es-es;en-us;</Cultures>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Common.wxs" />
-    <Compile Include="Components.wxs" />
-    <Compile Include="EPG.wxs" />
-    <Compile Include="Logos.wxs" />
+    <Compile Include="Components.DVB.wxs" />
+    <Compile Include="Components.Services.wxs" />
+    <Compile Include="Components.ThirdParty.wxs" />
+    <Compile Include="Components.ContentProvider.wxs" />
+    <Compile Include="Components.Redist.wxs" />
+    <Compile Include="Components.Telemetry.wxs" />
+    <Compile Include="Components.UIServices.wxs" />
+    <Compile Include="Components.Core.wxs" />
+    <Compile Include="Components.EPG.wxs" />
+    <Compile Include="Components.Logos.wxs" />
+    <Compile Include="Components.Product.wxs" />
+    <Compile Include="Product.Folders.wxs" />
+    <Compile Include="Product.Registry.wxs" />
     <Compile Include="Product.wxs" />
-    <Compile Include="Record.wxs" />
-    <Compile Include="Tools.wxs" />
+    <Compile Include="Components.Record.wxs" />
+    <Compile Include="Components.Tools.wxs" />
+    <Compile Include="Components.Uninstall.wxs" />
   </ItemGroup>
   <ItemGroup>
     <WixExtension Include="WixUtilExtension">
@@ -56,7 +66,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="bannrbmp.bmp" />
-    <Content Include="Components.Modules.wxs" />
+    <Content Include="strings.guid.wxi" />
     <Content Include="dlgbmp.bmp" />
     <Content Include="iptviewr-for-movistarplus_alt.ico" />
     <Content Include="LICENSE.ES.MD" />
@@ -87,6 +97,22 @@
     <Folder Include="Redist\ESN\x86\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Assemblies\AlphaCentaury.Licensing.Data.Ui\AlphaCentaury.Licensing.Data.Ui.csproj">
+      <Name>AlphaCentaury.Licensing.Data.Ui</Name>
+      <Project>{1293a5c4-478f-4efd-8e53-d283b35e1a06}</Project>
+      <Private>True</Private>
+      <DoNotHarvest>True</DoNotHarvest>
+      <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>
+      <RefTargetDir>INSTALLFOLDER</RefTargetDir>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Assemblies\AlphaCentaury.Licensing.Data\AlphaCentaury.Licensing.Data.csproj">
+      <Name>AlphaCentaury.Licensing.Data</Name>
+      <Project>{42b71db3-2e34-43bb-bf87-88f422bcf861}</Project>
+      <Private>True</Private>
+      <DoNotHarvest>True</DoNotHarvest>
+      <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>
+      <RefTargetDir>INSTALLFOLDER</RefTargetDir>
+    </ProjectReference>
     <ProjectReference Include="..\..\Assemblies\Core.IpTvProvider\IpTviewr.IpTvServices.csproj">
       <Name>IpTviewr.IpTvServices</Name>
       <Project>{36b8e0a1-f1b1-498d-8fe7-a39bb7fd68ca}</Project>
@@ -226,6 +252,22 @@
     <ProjectReference Include="..\..\ChannelList\ChannelList.csproj">
       <Name>ChannelList</Name>
       <Project>{3fb48c93-85ec-4894-8fe7-e035ddc0618c}</Project>
+      <Private>True</Private>
+      <DoNotHarvest>True</DoNotHarvest>
+      <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>
+      <RefTargetDir>INSTALLFOLDER</RefTargetDir>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Core\IpTViewr.Core\IpTViewr.Core.csproj">
+      <Name>IpTViewr.Core</Name>
+      <Project>{968c6eeb-1e79-446a-96ae-69cb225e1c37}</Project>
+      <Private>True</Private>
+      <DoNotHarvest>True</DoNotHarvest>
+      <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>
+      <RefTargetDir>INSTALLFOLDER</RefTargetDir>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Core\IpTviewr.Telemetry\IpTviewr.Telemetry.csproj">
+      <Name>IpTviewr.Telemetry</Name>
+      <Project>{8c3814bf-9482-41c2-ba1a-cba59f5c2ed4}</Project>
       <Private>True</Private>
       <DoNotHarvest>True</DoNotHarvest>
       <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>

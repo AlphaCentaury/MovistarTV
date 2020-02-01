@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+==============================================================================
+
+  Copyright (C) 2014-2020, GitHub/Codeplex user AlphaCentaury
+  All rights reserved.
+
+    See 'LICENSE.MD' file (or 'license.txt' if missing) in the project root
+    for complete license information.
+
+  http://www.alphacentaury.org/movistartv
+  https://github.com/AlphaCentaury
+
+==============================================================================
+-->
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <?include strings.guid.wxi ?>
+  <Fragment>
+    <ComponentGroup Id="ContentProvider">
+      <ComponentGroupRef Id="ContentProvider.Configuration"/>
+      <ComponentGroupRef Id="ContentProvider.Assemblies" />
+      <ComponentGroupRef Id="ContentProvider.Assemblies.Localization" />
+    </ComponentGroup>
+
+    <ComponentGroup Id="ContentProvider.Configuration" Directory="BaseFolder">
+      <Component Id="ContentProvider.Configuration" Guid="$(var.Guid.ContentProvider.Configuration)">
+        <File Id="movistartv_config.xml" Source="$(var.SolutionDir)movistartv-config.xml" KeyPath="yes" />
+      </Component>
+    </ComponentGroup>
+
+    <ComponentGroup Id="ContentProvider.Assemblies" Directory="INSTALLFOLDER">
+      <Component Id="ContentProvider.Assemblies" Guid="$(var.Guid.ContentProvider.Assemblies)">
+        <File Id="IpTviewr.MovistarPlus.dll" Source="$(var.IpTv.MovistarPlus.TargetDir)IpTviewr.MovistarPlus.dll" />
+        <File Id="IpTViewr.MovistarPlus.pdb" Source="$(var.IpTv.MovistarPlus.TargetDir)IpTViewr.MovistarPlus.pdb" />
+      </Component>
+    </ComponentGroup>
+
+    <ComponentGroup Id="ContentProvider.Assemblies.Localization">
+      <Component Id="ContentProvider.Assemblies.Localization.es" Directory="InstallFolder.es" Guid="$(var.Guid.ContentProvider.Assemblies.Localization.es)">
+        <File Id="IpTViewr.MovistarPlus.es.dll" Source="$(var.IpTv.MovistarPlus.TargetDir)es\IpTViewr.MovistarPlus.resources.dll" />
+      </Component>
+    </ComponentGroup>
+  </Fragment>
+</Wix>

@@ -19,35 +19,14 @@
     <Package Id="*" InstallerVersion="405" Compressed="yes" InstallScope="perUser"
       Description="!(loc.PackageDescription)" Languages="!(loc.LANGUAGE)" Manufacturer="http://www.alphacentaury.org" />
 
-    <!-- Ensure .NET Framework 4.5.2 is installed -->
-    <PropertyRef Id="WIX_IS_NETFRAMEWORK_452_OR_LATER_INSTALLED"/>
-    <PropertyRef Id="NETFRAMEWORK35_SP_LEVEL"/>
+    <!-- Ensure .NET Framework 4.6.2 is installed -->
+    <PropertyRef Id="WIX_IS_NETFRAMEWORK_462_OR_LATER_INSTALLED"/>
     <Condition Message="!(loc.NetFrameworkNotPresent)">
-      <![CDATA[Installed OR WIX_IS_NETFRAMEWORK_452_OR_LATER_INSTALLED]]>
+      <![CDATA[Installed OR WIX_IS_NETFRAMEWORK_462_OR_LATER_INSTALLED]]>
     </Condition>
 
     <MajorUpgrade DowngradeErrorMessage="!(loc.DowngradeErrorMessage)" />
     <MediaTemplate EmbedCab="yes" />
-
-    <Feature Id="ProductFeature" Title="!(loc.ProductName)" Level="1" Absent="disallow" Display="expand">
-      <Feature Id="Features" Display="expand" Title="Aditional features">
-        <FeatureRef Id="Feature.Record" />
-        <FeatureRef Id="Feature.EPG" />
-      </Feature>
-      <Feature Id="Base" Title="Common files" Absent="disallow">
-        <FeatureRef Id="Feature.Logos" />
-        <FeatureRef Id="Feature.Tools" />
-        <ComponentGroupRef Id="RegistryConfiguration" />
-        <ComponentGroupRef Id="CommonComponents" />
-        <ComponentGroupRef Id="CommonComponents.Localization" />
-        <ComponentGroupRef Id="ProductComponents" />
-        <ComponentGroupRef Id="ProductComponents.Localization" />
-        <ComponentGroupRef Id="ContentProviderComponents" />
-        <ComponentGroupRef Id="UninstallFolders" />
-        <ComponentGroupRef Id="ThirdParty"/>
-        <ComponentGroupRef Id="Redist"/>
-      </Feature>
-    </Feature>
 
     <UIRef Id='WixUI_Minimal'/>
     <!--<UIRef Id='WixUI_FeatureTree'/>-->
@@ -70,77 +49,26 @@
         <![CDATA[WIXUI_EXITDIALOGOPTIONALCHECKBOX = 1 and NOT Installed]]>
       </Publish>
     </UI>
+
+    <Feature Id="ProductFeature" Title="!(loc.ProductName)" Level="1" Absent="disallow" Display="expand">
+      <Feature Id="Features" Display="expand" Title="Additional features">
+        <FeatureRef Id="Feature.Record" />
+        <FeatureRef Id="Feature.EPG" />
+      </Feature>
+      <Feature Id="Base" Title="Common files" Absent="disallow">
+        <ComponentGroupRef Id="ContentProvider" />
+        <ComponentGroupRef Id="Core" />
+        <ComponentGroupRef Id="DVB" />
+        <ComponentGroupRef Id="Product" />
+        <ComponentGroupRef Id="Product.Registry" />
+        <ComponentGroupRef Id="Telemetry" />
+        <ComponentGroupRef Id="ThirdParty" />
+        <ComponentGroupRef Id="Redist" />
+        <ComponentGroupRef Id="UIServices" />
+        <ComponentGroupRef Id="Uninstall" />
+        <FeatureRef Id="Feature.Logos" />
+        <FeatureRef Id="Feature.Tools" />
+      </Feature>
+    </Feature>
   </Product>
-
-  <Fragment>
-    <Directory Id="TARGETDIR" Name="SourceDir">
-      <Directory Id="PersonalFolder">
-        <Directory Id="Folder.IPTViewr" Name="IPTViewr">
-          <Directory Id="BaseFolder" Name="$(var.BaseInstallFolder)">
-            <Directory Id="INSTALLFOLDER" Name="bin">
-              <Directory Id="RedistFolderBase" Name ="Redist">
-                <Directory Id="RedistFolder" Name="!(loc.RedistLanguage)">
-                  <Directory Id="x86RedistFolder" Name="x86" />
-                  <Directory Id="x64RedistFolder" Name="x64" />
-                </Directory>
-              </Directory>
-              <Directory Id="InstallFolder.es" Name="es" />
-              <Directory Id="Modules" Name="modules">
-                <Directory Id ="Modules.Localization.es" Name="es" />
-              </Directory>
-            </Directory>
-            <Directory Id="Folder.Cache" Name="cache">
-              <Directory Id="Folder.Cache.Logos" Name="logos" />
-            </Directory>
-            <Directory Id="Folder.Logos" Name="Logos">
-              <Directory Id ="Folder.Logos.Providers" Name ="providers" />
-              <Directory Id ="Folder.Logos.Services" Name ="services" />
-            </Directory>
-            <Directory Id="Folder.RecordTasks" Name="record-tasks" />
-          </Directory>
-        </Directory>
-      </Directory>
-
-      <Directory Id="ProgramMenuFolder">
-        <Directory Id="ProgramStartMenuFolder" Name="!(loc.ProgramStartMenuFolder)" />
-      </Directory>
-    </Directory>
-
-    <ComponentGroup Id="UninstallFolders">
-      <Component Id="Folders" Directory="BaseFolder" Guid="$(var.Guid.Component.Folders)">
-        <RemoveFile Id="Purge_BaseFolder" Name="*.*" On="uninstall" />
-        <RemoveFile Id="Purge_INSTALLFOLDER" Name="*.*" On="uninstall" Directory="INSTALLFOLDER" />
-        <RemoveFile Id="Purge_InstallFolder.es" Name="*.*" On="uninstall" Directory="InstallFolder.es"/>
-        <RemoveFile Id="Purge_RedistFolderBase" Name="*.*" On="uninstall" Directory="RedistFolderBase"/>
-        <RemoveFile Id="Purge_RedistFolder" Name="*.*" On="uninstall" Directory="RedistFolder"/>
-        <RemoveFile Id="Purge_RedistFolderx86" Name="*.*" On="uninstall" Directory="x86RedistFolder"/>
-        <RemoveFile Id="Purge_RedistFolderx64" Name="*.*" On="uninstall" Directory="x64RedistFolder"/>
-        <RemoveFile Id="Purge_CacheLogosFolder" Name="*.*" On="uninstall" Directory="Folder.Cache.Logos" />
-        <RemoveFile Id="Purge_CacheFolder" Name="*.*" On="uninstall" Directory="Folder.Cache" />
-        <RemoveFile Id="Purge_LogosFolder" Name="*.*" On="uninstall" Directory="Folder.Logos"/>
-        <RemoveFile Id="Purge_LogosProvidersFolder" Name="*.*" On="uninstall" Directory="Folder.Logos.Providers"/>
-        <RemoveFile Id="Purge_LogosServicesFolder" Name="*.*" On="uninstall" Directory="Folder.Logos.Services"/>
-        <RemoveFile Id="Purge_Folder.RecordTasks" Name="*.*" On="uninstall" Directory="Folder.RecordTasks"/>
-
-        <RemoveFolder Id="Remove_DvbFolder" On="uninstall" Directory="Folder.IPTViewr" />
-        <RemoveFolder Id="Remove_BaseFolder" On="uninstall" Directory="BaseFolder"/>
-        <RemoveFolder Id="Remove_INSTALLFOLDER" On="uninstall" Directory="INSTALLFOLDER"/>
-        <RemoveFolder Id="Remove_InstallFolder.es" On="uninstall" Directory="InstallFolder.es"/>
-        <RemoveFolder Id="Remove_RedistFolderBase" On="uninstall" Directory="RedistFolderBase"/>
-        <RemoveFolder Id="Remove_RedistFolder" On="uninstall" Directory="RedistFolder"/>
-        <RemoveFolder Id="Remove_RedistFolderx86" On="uninstall" Directory="x86RedistFolder"/>
-        <RemoveFolder Id="Remove_RedistFolderx64" On="uninstall" Directory="x64RedistFolder"/>
-        <RemoveFolder Id="Remove_CacheLogosFolder" On="uninstall" Directory="Folder.Cache.Logos" />
-        <RemoveFolder Id="Remove_CacheFolder" On="uninstall" Directory="Folder.Cache" />
-        <RemoveFolder Id="Remove_LogosFolder" On="uninstall" Directory="Folder.Logos"/>
-        <RemoveFolder Id="Remove_LogosProvidersFolder" On="uninstall" Directory="Folder.Logos.Providers"/>
-        <RemoveFolder Id="Remove_LogosServicesFolder" On="uninstall" Directory="Folder.Logos.Services"/>
-        <RemoveFolder Id="Remove_Folder.RecordTasks" On="uninstall" Directory="Folder.RecordTasks"/>
-
-        <RemoveFile Id="Purge_ProgramStartMenuFolder" Name="*.*" On="uninstall" Directory="ProgramStartMenuFolder"/>
-
-        <RemoveFolder Id="Remove_ProgramStartMenuFolder" On="uninstall" Directory="ProgramStartMenuFolder"/>
-      </Component>
-    </ComponentGroup>
-  </Fragment>
 </Wix>

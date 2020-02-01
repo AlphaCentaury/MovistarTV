@@ -38,13 +38,13 @@ namespace IpTviewr.Tools.FirstTimeConfig
         public static AppUiConfigurationFolders LoadFolders(out InitializationResult initializationResult)
         {
             Is32BitWindows = WindowsBitness.Is32BitWindows();
-            var result = AppConfig.LoadFoldersConfiguration(out initializationResult);
+            var folders = AppConfig.LoadFoldersConfiguration(out initializationResult);
 #if DEBUG
-            _redistFolder = Path.Combine(result.Base, "Bin\\Redist");
+            _redistFolder = Path.Combine(folders.Base, "Bin\\Redist");
 #else
-            RedistFolder = Path.Combine(Folders.Install, "Redist");
+            _redistFolder = Path.Combine(folders.Install, "Redist");
 #endif
-            return result;
+            return folders;
         } // LoadFolders
 
         public static void GetProgramFilesFolder([NotNull] out string folder, [CanBeNull] out string altFolder)

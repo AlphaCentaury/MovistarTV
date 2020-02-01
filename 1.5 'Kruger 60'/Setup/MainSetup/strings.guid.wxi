@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+==============================================================================
+
+  Copyright (C) 2014-2020, GitHub/Codeplex user AlphaCentaury
+  All rights reserved.
+
+    See 'LICENSE.MD' file (or 'license.txt' if missing) in the project root
+    for complete license information.
+
+  http://www.alphacentaury.org/movistartv
+  https://github.com/AlphaCentaury
+
+==============================================================================
+-->
+<Include>
+  <?define Guid.Core.Assemblies = "{758E22E3-E788-45BD-A639-9D7AF0035FA4}" ?>
+  <?define Guid.Core.Assemblies.Localization.es = "{71137D42-10AF-4945-AD08-B7E6D63382B7}" ?>
+
+  <?define Guid.ContentProvider.Configuration ="{F093519F-4B79-4D5F-ACA4-05DA412CCE0F}" ?>
+  <?define Guid.ContentProvider.Assemblies = "{51523D48-AAF3-4294-8878-9CDFEF1284F2}" ?>
+  <?define Guid.ContentProvider.Assemblies.Localization.es = "{0EB605F8-D5A0-4CFA-A385-0A6184232A6E}" ?>
+
+  <?define Guid.DVB.Assemblies = "{2D4AE820-CAE9-43B5-889A-9D9A124EB4B9}" ?>
+  <?define Guid.DVB.Assemblies.Localization.es = "{AC4217BF-A34D-47AB-BED3-3E97FF9B0F6A}" ?>
+
+  <?define Guid.EPG.Assemblies = "{32989458-EB10-4E96-93B0-C1BCC01FC345}" ?>
+  <?define Guid.EPG.Assemblies.Localization.es = "{F25E34E8-9CB4-420C-94BE-6DA298ED1B9D}" ?>
+
+  <?define Guid.Product.Assemblies = "{81EEA9A2-DDAD-4A1C-8742-5060DAF10BB7}" ?>
+  <?define Guid.Product.Shortcut = "{423B60E5-523E-4C12-A279-A3581A51C7EA}" ?>
+  <?define Guid.Product.Localization.es = "{5B6F75F2-187C-4C8A-B558-04DB3EAB74BB}" ?>
+  <?define Guid.Product.Licensing = "{3EC4AB77-F3E5-4A1F-9D94-0E57FB261F6B}" ?>
+
+  <?define Guid.Record.Registry = "{2ACDDE71-150B-426A-90F6-C8D6963BBFAF}" ?>
+  <?define Guid.Record.Assemblies = "{2ACDDE71-150B-426A-90F6-C8D6963BBFAF}" ?>
+  <?define Guid.Record.Assemblies.Localization.es = "{0F926D7F-9232-469C-AD97-A3790A0C1BFF}" ?>
+  <?define Guid.Record.Dependencies = "{DDB374CA-B1C9-48E7-9E52-2CCD16DBDAB7}" ?>
+  <?define Guid.Record.Dependencies.Localization.es = "{C9CB0BAB-901B-4E3B-A539-7AC344C2ADF0}" ?>
+  <?define Guid.Record.DB = "{42A07287-84FE-4283-9DEC-E6ADA2FBA7BE}" ?>
+  <?define Guid.Record.Launcher = "{C2BDBA86-2725-4FBB-9A95-274BD8D3E44B}" ?>
+  <?define Guid.Record.Launcher.Localization.es = "{61D56C06-B2F1-4631-BA4A-A7AF3705BB21}" ?>
+
+  <?define Guid.Redist.EMB.x86 = "{9DDFBDAD-E91A-4D42-B4DC-90023A00F132}" ?>
+  <?define Guid.Redist.EMB.x64 = "{0925E2E3-6C49-4454-A3ED-FF86781017AF}" ?>
+  <?define Guid.Redist.SqlCe.x86 = "{5B27AE95-5228-4C24-BB3B-7E1ADDA5DA3F}" ?>
+  <?define Guid.Redist.SqlCe.x64 = "{B0A999F8-859C-4D8C-9EE4-5D9CB1B657AA}" ?>
+
+  <?define Guid.Services.Assemblies = "{0180EBF7-06BF-4E8E-AAF4-5230F79B29DA}" ?>
+  <?define Guid.Services.Assemblies.Localization.es ="{99E5A674-B6FB-4655-9B9A-38286350C43B}" ?>
+
+  <?define Guid.Telemetry.Assemblies = "{E23F6B5A-391F-4236-8828-A2274376E0C8}" ?>
+  <?define Guid.Telemetry.Assemblies.Localization.es = "{28E1E3CB-638E-4446-BC58-65C283A38B1C}" ?>
+  <?define Guid.Telemetry.MsAppCenter = "{EB055538-C780-42F2-AF45-48B932EDEA4A}" ?>
+  <?define Guid.Telemetry.MsAppCenter.Dependencies = "{5C0A2E3B-C6F5-4F38-853C-4A0B979C6C98}" ?>
+
+  <?define Guid.ThirdParty.JsonNet = "{69DA6040-C4A4-4EFA-9F29-531E794A5840}" ?>
+  <?define Guid.ThirdParty.SQLite = "{77F054BF-7917-406F-B053-A14AF9CDAEC9}" ?>
+  <?define Guid.ThirdParty.SQLite.x86 = "{ABF06329-F9AF-467C-9FC8-2E0757BF044D}" ?>
+  <?define Guid.ThirdParty.SQLite.x64 = "{01C9F0A8-D6DA-4D10-9090-15BBCF7E1A60}" ?>
+
+  <?define Guid.Tools.FirstTimeConfig.Assemblies = "{CFBEECEE-C30E-4EF7-BB4B-00D6EB8FD004}" ?>
+  <?define Guid.Tools.FirstTimeConfig.Shortcut = "{BFB9BD6B-6270-462D-A892-6C41F0717E5F}" ?>
+  <?define Guid.Tools.FirstTimeConfig.Localization.es = "{31712C70-9962-4D12-A8F7-6084519D77C2}" ?>
+
+  <?define Guid.UIServices.Assemblies = "{B9598C51-DA9C-4EBC-9028-1D1C1E45160B}" ?>
+  <?define Guid.UIServices.Assemblies.Localization.es ="{AF3BE940-2A48-486D-8E1F-0A0442D474D6}" ?>
+
+  <?define Guid.Uninstall.Folders = "{9FFE537B-71DC-4D5C-8442-067096DEA702}" ?>
+</Include>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+==============================================================================
+
+  Copyright (C) 2014-2020, GitHub/Codeplex user AlphaCentaury
+  All rights reserved.
+
+    See 'LICENSE.MD' file (or 'license.txt' if missing) in the project root
+    for complete license information.
+
+  http://www.alphacentaury.org/movistartv
+  https://github.com/AlphaCentaury
+
+==============================================================================
+-->
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <?include strings.guid.wxi ?>
+	<Fragment>
+    <ComponentGroup Id="Services">
+      <ComponentGroupRef Id="Services.Assemblies" />
+      <!--
+      <ComponentGroupRef Id="Services.Assemblies.Localization" />
+      -->
+    </ComponentGroup>
+
+    <ComponentGroup Id="Services.Assemblies" Directory="INSTALLFOLDER">
+      <Component Id="Services.Assemblies" Guid="$(var.Guid.Services.Assemblies)">
+        <File Id="AlphaCentaury.Licensing.Data.dll" Source="$(var.AlphaCentaury.Licensing.Data.TargetDir)AlphaCentaury.Licensing.Data.dll" />
+        <File Id="AlphaCentaury.Licensing.Data.pdb" Source="$(var.AlphaCentaury.Licensing.Data.TargetDir)AlphaCentaury.Licensing.Data.pdb" />
+        <File Id="Services.SqlServerCE.dll" Source="$(var.Services.SqlServerCE.TargetDir)Services.SqlServerCE.dll" />
+        <File Id="Services.SqlServerCE.pdb" Source="$(var.Services.SqlServerCE.TargetDir)Services.SqlServerCE.pdb" />
+      </Component>
+    </ComponentGroup>
+
+    <!--
+    <ComponentGroup Id="Services.Assemblies.Localization">
+      <Component Id="Services.Assemblies.Localization.es" Directory="InstallFolder.es" Guid="$(var.Guid.Services.Assemblies.Localization.es)">
+        <File Id="AlphaCentaury.Licensing.Data.es.dll" Source="$(var.AlphaCentaury.Licensing.Data.TargetDir)es\AlphaCentaury.Licensing.Data.resources.dll" />
+        <File Id="Services.SqlServerCE.es.dll" Source="$(var.Services.SqlServerCE.TargetDir)es\Services.SqlServerCE.resources.dll" />
+      </Component>
+    </ComponentGroup>
+    -->
+  </Fragment>
+</Wix>

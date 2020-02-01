@@ -40,10 +40,10 @@
         <File Id="logos.services.mappings.service.xml" Source="$(var.Logos.ProjectDir)Services\service-mappings.xml" KeyPath="yes" />
       </Component>
       <Component>
-        <File Id="logos.services.generic" Source="$(var.Logos.TargetDir)logos\Services\generic.zip" KeyPath="yes" />
+        <File Id="logos.services.generic.zip" Source="$(var.Logos.TargetDir)logos\Services\generic.zip" KeyPath="yes" />
       </Component>
       <Component>
-        <File Id="logos.services.movistar" Source="$(var.Logos.TargetDir)logos\Services\movistar+.zip" KeyPath="yes" />
+        <File Id="logos.services.movistar.zip" Source="$(var.Logos.TargetDir)logos\Services\movistar+.zip" KeyPath="yes" />
       </Component>
     </ComponentGroup>
   </Fragment>

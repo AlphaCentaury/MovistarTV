@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+==============================================================================
+
+  Copyright (C) 2014-2020, GitHub/Codeplex user AlphaCentaury
+  All rights reserved.
+
+    See 'LICENSE.MD' file (or 'license.txt' if missing) in the project root
+    for complete license information.
+
+  http://www.alphacentaury.org/movistartv
+  https://github.com/AlphaCentaury
+
+==============================================================================
+-->
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <?include strings.guid.wxi ?>
+  <Fragment>
+    <ComponentGroup Id="ThirdParty">
+      <ComponentGroupRef Id="ThirdParty.JsonNet" />
+      <ComponentGroupRef Id="ThirdParty.SQLite" />
+    </ComponentGroup>
+
+    <ComponentGroup Id="ThirdParty.JsonNet" Directory="INSTALLFOLDER">
+      <Component Id="ThirdParty.JsonNet" Guid="$(var.Guid.ThirdParty.JsonNet)">
+        <File Id="Newtonsoft.Json.dll" Source="$(var.ChannelList.TargetDir)Newtonsoft.Json.dll" />
+      </Component>
+    </ComponentGroup>
+
+    <ComponentGroup Id="ThirdParty.SQLite">
+      <Component Id="ThirdParty.SQLite" Directory="INSTALLFOLDER" Guid="$(var.Guid.ThirdParty.SQLite)">
+        <File Id="SQLite_net.dll" Source="$(var.IpTviewr.Telemetry.TargetDir)SQLite-net.dll" />
+        <File Id="SQLitePCLRaw.batteries_green.dll" Source="$(var.IpTviewr.Telemetry.TargetDir)SQLitePCLRaw.batteries_green.dll" />
+        <File Id="SQLitePCLRaw.batteries_v2.dll" Source="$(var.IpTviewr.Telemetry.TargetDir)SQLitePCLRaw.batteries_v2.dll" />
+        <File Id="SQLitePCLRaw.core.dll" Source="$(var.IpTviewr.Telemetry.TargetDir)SQLitePCLRaw.core.dll" />
+        <File Id="SQLitePCLRaw.provider.e_sqlite3.dll" Source="$(var.IpTviewr.Telemetry.TargetDir)SQLitePCLRaw.provider.e_sqlite3.dll" />
+      </Component>
+      <Component Id ="ThirdParty.SQLite.x86" Directory ="InstallFolder.x86" Guid="$(var.Guid.ThirdParty.SQLite.x86)">
+        <File Id="x86.e_sqlite3.dll" Source="$(var.IpTviewr.Telemetry.TargetDir)x86\e_sqlite3.dll"/>
+      </Component>
+      <Component Id="ThirdParty.SQLite.x64" Directory="InstallFolder.x64" Guid="$(var.Guid.ThirdParty.SQLite.x64)">
+        <File Id="x64.e_sqlite3.dll" Source="$(var.IpTviewr.Telemetry.TargetDir)x64\e_sqlite3.dll"/>
+      </Component>
+    </ComponentGroup>
+  </Fragment>
+</Wix>

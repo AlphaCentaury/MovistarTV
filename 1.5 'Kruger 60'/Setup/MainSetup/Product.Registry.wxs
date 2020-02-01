@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+==============================================================================
+
+  Copyright (C) 2014-2020, GitHub/Codeplex user AlphaCentaury
+  All rights reserved.
+
+    See 'LICENSE.MD' file (or 'license.txt' if missing) in the project root
+    for complete license information.
+
+  http://www.alphacentaury.org/movistartv
+  https://github.com/AlphaCentaury
+
+==============================================================================
+-->
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <?include strings.wxi ?>
+  <Fragment>
+    <ComponentGroup Id="Product.Registry">
+      <Component Id="RegistryConfiguration_Install" Guid="*" Directory="ProgramStartMenuFolder">
+        <RegistryKey Root='HKCU' Key='$(var.BaseRegistryKey)' ForceDeleteOnUninstall='yes'>
+          <RegistryValue Type='string' Value='!(loc.ProductName)'></RegistryValue>
+          <RegistryValue Type='string' Name='Installed' Value='1' KeyPath='yes' />
+          <RegistryValue Type='string' Name='Folder.Base' Value='[BaseFolder]' />
+          <RegistryValue Type='string' Name='Folder.Install' Value='[INSTALLFOLDER]' />
+          <RegistryKey Key='Features'>
+          </RegistryKey>
+        </RegistryKey>
+      </Component>
+    </ComponentGroup>
+	</Fragment>
+</Wix>

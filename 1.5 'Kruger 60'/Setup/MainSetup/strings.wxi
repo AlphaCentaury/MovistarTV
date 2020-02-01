@@ -21,22 +21,4 @@
   <?define Version = "1.5.1010.0" ?>
   <?define BaseRegistryKey = "Software\AlphaCentaury.org\IPTViewr\movistar+\v1.5.1010.0" ?>
   <?define BaseInstallFolder = "movistar+ (v1.5.1010.0 'Kruger 60')" ?>
-
-  <?define Guid.Component.Folders = "{9FFE537B-71DC-4D5C-8442-067096DEA702}" ?>
-
-  <?define Guid.Component.CommonAssemblies = "{758E22E3-E788-45BD-A639-9D7AF0035FA4}" ?>
-  <?define Guid.Component.CommonAssemblies.PDB = "{33C0E01F-FF23-4053-8306-2A1DA011A408}" ?>
-  <?define Guid.Component.CommonAssemblies.Localization.es = "{71137D42-10AF-4945-AD08-B7E6D63382B7}" ?>
-
-  <?define Guid.Component.Modules = "{51523D48-AAF3-4294-8878-9CDFEF1284F2}" ?>
-  <?define Guid.Component.Modules.PDB = "{D8BC270C-A4A0-4564-AC93-24E64E25280C}" ?>
-  <?define Guid.Component.Modules.Localization.es = "{0EB605F8-D5A0-4CFA-A385-0A6184232A6E}" ?>
-
-  <?define Guid.Component.Record.Assemblies = "{2ACDDE71-150B-426A-90F6-C8D6963BBFAF}" ?>
-  <?define Guid.Component.Record.Assemblies.PDB = "{F42A0B2C-6663-4549-8BBF-EC68AF39A7FC}" ?>
-  <?define Guid.Component.Record.Assemblies.Localization.es = "{0F926D7F-9232-469C-AD97-A3790A0C1BFF}" ?>
-
-  <?define Guid.Component.EPG.Assemblies = "{32989458-EB10-4E96-93B0-C1BCC01FC345}" ?>
-  <?define Guid.Component.EPG.PDB = "{5428C4FA-1059-4F97-B6E3-D441A0BDD821}" ?>
-  <?define Guid.Component.EPG.Assemblies.Localization.es = "{F25E34E8-9CB4-420C-94BE-6DA298ED1B9D}" ?>
 </Include>
