@@ -64,6 +64,12 @@ namespace IpTviewr.Common.Telemetry
                 if (_providers != null) return;
             } // lock
 
+            _enabled = configuration.Enabled;
+            Usage = configuration.Usage;
+            Exceptions = configuration.Exceptions;
+
+            if (!Enabled) return;
+
             _providers = factory.GetProviders();
             if (_providers == null) throw new NullReferenceException();
 
@@ -75,6 +81,7 @@ namespace IpTviewr.Common.Telemetry
             } // foreach
         } // Start
 
+        /*
         public static void Enable(bool? enable, bool? usage, bool? exceptions)
         {
             lock (Sync)
@@ -84,6 +91,7 @@ namespace IpTviewr.Common.Telemetry
                 if (enable != null) Enabled = enable.Value;
             } // lock
         } // Enable
+        */
 
         public static void End()
         {

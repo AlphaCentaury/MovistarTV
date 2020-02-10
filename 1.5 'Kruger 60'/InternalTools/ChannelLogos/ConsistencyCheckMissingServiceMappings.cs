@@ -73,7 +73,8 @@ namespace IpTviewr.Internal.Tools.ChannelLogos
 
             foreach (var item in missing)
             {
-                AddResult(Severity.Error, "Missing entry", item.ServiceName, item.DisplayName, item.DisplayLogicalNumber);
+                var severity = item.DisplayName.IndexOf(@"prueba", StringComparison.InvariantCultureIgnoreCase) < 0 ? Severity.Error : Severity.Warning;
+                AddResult(severity, "Missing entry", item.ServiceName, item.DisplayName, item.DisplayLogicalNumber);
                 missingCount++;
             } // foreach
 

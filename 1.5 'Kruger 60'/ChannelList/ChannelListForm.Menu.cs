@@ -19,7 +19,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Windows.Forms;
-using IpTviewr.Common.Telemetry;
+using IpTviewr.UiServices.Configuration.Push;
 using IpTviewr.UiServices.Forms;
 
 namespace IpTviewr.ChannelList
@@ -166,8 +166,7 @@ namespace IpTviewr.ChannelList
         } // menuItemIpTviewrSettings_Click
 
         #endregion
-
-
+        
         #region 'Help' menu event handlers
 
         private void menuItemHelpDocumentation_Click(object sender, EventArgs e)
@@ -216,7 +215,7 @@ namespace IpTviewr.ChannelList
 
         private void Implementation_menuItemHelpCheckUpdates_Click(object sender, EventArgs e)
         {
-            OpenUrl(InvariantTexts.UrlCheckForUpdatesManual);
+            PushManager.CheckForUpdates(this, new MyApplication.PushUpdateContext());
         } // Implementation_menuItemHelpCheckUpdates_Click
 
         private void Implementation_menuItemHelpAbout_Click(object sender, EventArgs e)

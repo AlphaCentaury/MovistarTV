@@ -354,23 +354,19 @@ namespace IpTviewr.UiServices.DvbStpClient
 
         private void Worker_DoWork(object sender, DoWorkEventArgs e)
         {
-            DvbStpEnhancedClient dvbStpClient;
-
             InitWorker(e);
 
-            dvbStpClient = null;
+            DvbStpEnhancedClient dvbStpClient = null;
             try
             {
                 dvbStpClient = CreateDvbStpClient();
                 dvbStpClient.DownloadPayloads(GetDvbStpClientSegmentInfoList());
+                if (dvbStpClient.CancelRequested) return;
 
-                if (!dvbStpClient.CancelRequested)
-                {
 #if DEBUG
-                    DumpPayloads();
+                DumpPayloads();
 #endif
-                    Deserialize();
-                } // if
+                Deserialize();
             }
             finally
             {
@@ -383,12 +379,10 @@ namespace IpTviewr.UiServices.DvbStpClient
         {
             // inherit parent thead culture settings
             var currentThread = Thread.CurrentThread;
-            var parentThread = e.Argument as Thread;
-            if (parentThread != null)
-            {
-                currentThread.CurrentCulture = parentThread.CurrentCulture; // matches regular application Culture; set again just-in-case
-                currentThread.CurrentUICulture = parentThread.CurrentUICulture; // UICulture not inherited from spwawning thread
-            } // if
+            if (!(e.Argument is Thread parentThread)) return;
+
+            currentThread.CurrentCulture = parentThread.CurrentCulture; // matches regular application Culture; set again just-in-case
+            currentThread.CurrentUICulture = parentThread.CurrentUICulture; // UICulture not inherited from spawning thread
         } // InitWorker
 
         private DvbStpEnhancedClient CreateDvbStpClient()

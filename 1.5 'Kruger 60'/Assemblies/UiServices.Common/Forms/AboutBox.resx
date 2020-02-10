@@ -151,7 +151,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;okButton.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="logoPictureBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 12</value>
@@ -175,7 +175,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;logoPictureBox.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>12</value>
   </data>
   <data name="labelProductName.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
@@ -205,7 +205,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;labelProductName.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
   </data>
   <data name="labelVersion.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
@@ -238,7 +238,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;labelVersion.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>8</value>
   </data>
   <data name="labelCopyright.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
@@ -268,7 +268,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;labelCopyright.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>9</value>
   </data>
   <data name="labelCompanyName.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
@@ -298,7 +298,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;labelCompanyName.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>10</value>
   </data>
   <data name="textBoxDescription.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
@@ -331,7 +331,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;textBoxDescription.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>11</value>
   </data>
   <data name="linkLabelWebsite.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Left</value>
@@ -346,13 +346,13 @@
     <value>12, 272</value>
   </data>
   <data name="linkLabelWebsite.Size" type="System.Drawing.Size, System.Drawing">
-    <value>242, 15</value>
+    <value>247, 15</value>
   </data>
   <data name="linkLabelWebsite.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
   </data>
   <data name="linkLabelWebsite.Text" xml:space="preserve">
-    <value>http://www.alphacentaury.org/movistartv</value>
+    <value>https://www.alphacentaury.org/movistartv</value>
   </data>
   <data name="&gt;&gt;linkLabelWebsite.Name" xml:space="preserve">
     <value>linkLabelWebsite</value>
@@ -364,7 +364,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;linkLabelWebsite.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="labelEULA.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -394,7 +394,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;labelEULA.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="labelAppName.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
@@ -430,7 +430,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;labelAppName.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="labelAppVersion.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
@@ -466,7 +466,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;labelAppVersion.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="linkLabelSourceCode.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Left</value>
@@ -484,13 +484,13 @@
     <value>12, 288</value>
   </data>
   <data name="linkLabelSourceCode.Size" type="System.Drawing.Size, System.Drawing">
-    <value>262, 15</value>
+    <value>267, 15</value>
   </data>
   <data name="linkLabelSourceCode.TabIndex" type="System.Int32, mscorlib">
     <value>15</value>
   </data>
   <data name="linkLabelSourceCode.Text" xml:space="preserve">
-    <value>http://github.com/AlphaCentaury/MovistarTV</value>
+    <value>https://github.com/AlphaCentaury/MovistarTV</value>
   </data>
   <data name="&gt;&gt;linkLabelSourceCode.Name" xml:space="preserve">
     <value>linkLabelSourceCode</value>
@@ -502,6 +502,40 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;linkLabelSourceCode.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="buttonZoom.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGOfPtRkwAAACBjSFJNAAB6
+        JQAAgIMAAPn/AACA6QAAdTAAAOpgAAA6mAAAF2+SX8VGAAAACXBIWXMAAAsTAAALEwEAmpwYAAABhElE
+        QVQ4T6WSu0oDQRSGpwwKXrBVO0GsFDttBB/AVrAQxSJPEBAMNiIIgkSJGgyKIFgEiTG+QRDBaCGKoFXA
+        LpvLJnvN7uz+zsziJjHBiFn4Ocxh/u+cOWfJ3v4RupEAvLznOiq4HmmJPuDh8elf8gHtPxeO68BxHFBq
+        w7Jt1Go1mKYJQ9ehaVpnAHUpAlsEgW2Cnh2C3l2C1fRiZ4DLxKtTh8JmlddSy9j8DOLY2EB/hAizqijN
+        AB5/6uIygfhdHJOpEUSNEEIfSxg4IFAUFdVqVdxpAjROPXp+g8xblplHcWqHMZMYx3CsD4OHRJgrFbkV
+        QG0qhsRbVFiLc8kphHMrmD4Zw9lzTLQ9FCPMXEG5XK4DXNcVB/5ewzSgal6Ls4kJLCTnkcneQ1G9nMwq
+        y8xcKpXqAD4wHvmaNDZhDki/psSlYrGIq+tbv21e+TtfB1AqDr+pIrO2ZdkzFwqQJEnkBYC/3bIs/0fR
+        dcNblaq0rVwoSMjnGwDdiLAFdKW2yb8L5AsadzBnUc46EgAAAABJRU5ErkJggg==
+</value>
+  </data>
+  <data name="buttonZoom.Location" type="System.Drawing.Point, System.Drawing">
+    <value>417, 118</value>
+  </data>
+  <data name="buttonZoom.Size" type="System.Drawing.Size, System.Drawing">
+    <value>25, 25</value>
+  </data>
+  <data name="buttonZoom.TabIndex" type="System.Int32, mscorlib">
+    <value>16</value>
+  </data>
+  <data name="&gt;&gt;buttonZoom.Name" xml:space="preserve">
+    <value>buttonZoom</value>
+  </data>
+  <data name="&gt;&gt;buttonZoom.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;buttonZoom.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;buttonZoom.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">

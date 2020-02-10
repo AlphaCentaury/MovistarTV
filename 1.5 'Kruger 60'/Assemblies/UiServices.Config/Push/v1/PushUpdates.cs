@@ -17,15 +17,15 @@ using System.Xml.Serialization;
 
 namespace IpTviewr.UiServices.Configuration.Push.v1
 {
-    [XmlRoot("News.Data", Namespace = "http://alphacentaury.org/movistar+/Push.v1")]
-    public class PushNewsData
+    [Serializable]
+    [XmlRoot("Push.Updates", Namespace = "http://alphacentaury.org/movistar+/Push.v1")]
+    public class PushUpdates
     {
-        [XmlAttribute("timestamp")]
         public DateTime Timestamp { get; set; }
 
-        [XmlElement("news")]
-        public List<PushNews> News { get; set; }
+        [XmlElement("Update")]
+        public List<PushUpdate> Updates { get; set; }
 
-        public bool NewsSpecified => (News != null) && (News.Count > 0);
-    } // class PushNewsData
+        public bool UpdatesSpecified => (Updates != null) && (Updates.Count > 0);
+    } // class PushUpdates
 } // namespace

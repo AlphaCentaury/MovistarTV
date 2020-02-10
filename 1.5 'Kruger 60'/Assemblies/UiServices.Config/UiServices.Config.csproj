@@ -116,17 +116,26 @@
     </Compile>
     <Compile Include="Logos\ProviderLogo.cs" />
     <Compile Include="Logos\ProviderLogoMappings.cs" />
+    <Compile Include="Push\IPushContext.cs" />
+    <Compile Include="Push\IPushUpdateContext.cs" />
     <Compile Include="Push\PushManager.cs" />
+    <Compile Include="Push\PushUpdateResult.cs" />
     <Compile Include="Push\UI\PushForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Push\UI\PushForm.Designer.cs">
       <DependentUpon>PushForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Push\UI\UpdatesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Push\UI\UpdatesForm.Designer.cs">
+      <DependentUpon>UpdatesForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Push\v1\PushNewsItem.cs" />
     <Compile Include="Push\v1\PushNews.cs" />
-    <Compile Include="Push\v1\PushNewsData.cs" />
     <Compile Include="Push\v1\PushUpdate.cs" />
-    <Compile Include="Push\v1\PushUpdateData.cs" />
+    <Compile Include="Push\v1\PushUpdates.cs" />
     <Compile Include="Schema2014\Config\ConfigCommon.cs" />
     <Compile Include="Schema2014\Config\EpgConfig.cs" />
     <Compile Include="Schema2014\Config\RecordConfig.cs" />
@@ -261,6 +270,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Push\UI\PushForm.resx">
       <DependentUpon>PushForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Push\UI\UpdatesForm.resx">
+      <DependentUpon>UpdatesForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Settings\Network\Editors\NetworkSettingsEditor.es.resx">
       <DependentUpon>NetworkSettingsEditor.cs</DependentUpon>

@@ -19,7 +19,6 @@
   <Fragment>
     <ComponentGroup Id="Product">
       <ComponentGroupRef Id="Product.Assemblies" />
-      <ComponentGroupRef Id="Product.Shortcut" />
       <ComponentGroupRef Id="Product.Localization" />
       <ComponentGroupRef Id="Product.Licensing" />
     </ComponentGroup>
@@ -30,9 +29,6 @@
         <File Id='IPTViewr.exe.config' Source='$(var.ChannelList.TargetDir)IPTViewr.exe.config' />
         <File Id='IPTViewr.pdb' Source='$(var.ChannelList.TargetDir)IPTViewr.pdb' />
       </Component>
-    </ComponentGroup>
-
-    <ComponentGroup Id="Product.Shortcut" Directory="INSTALLFOLDER">
       <Component Id="Product.Shortcut" Guid="$(var.Guid.Product.Shortcut)">
         <RegistryValue Root='HKCU' Key="$(var.BaseRegistryKey)\Shortcuts" Name="IPTViewr" Type="integer" Value="1" KeyPath="yes"/>
         <Shortcut Id='IPTViewr.exe.lnk'
@@ -53,6 +49,7 @@
       <Component Id="Product.Licensing" Directory="BaseFolder" Guid="$(var.Guid.Product.Licensing)">
         <File Id='license.txt' Source='$(var.SolutionDir)!(loc.SourceFileLicenseAgreement).txt' Name='!(loc.FileLicenseAgreement).txt' />
         <File Id='license.rtf' Source='$(var.SolutionDir)!(loc.SourceFileLicenseAgreement).rtf' Name='!(loc.FileLicenseAgreement).rtf' />
+        <File Id='license.MD' Source='$(var.SolutionDir)!(loc.SourceFileLicenseAgreement).MD' Name='!(loc.FileLicenseAgreement).MD' />
       </Component>
     </ComponentGroup>
   </Fragment>

@@ -12,25 +12,31 @@
 // ==============================================================================
 
 using System;
-using System.Collections.Generic;
+using System.ComponentModel;
 using System.Xml.Serialization;
+using IpTviewr.Common.Serialization;
 
 namespace IpTviewr.UiServices.Configuration.Push.v1
 {
-    [XmlRoot("Update.Data", Namespace = "http://alphacentaury.org/movistar+/Push.v1")]
-    public class PushUpdateData
+    [Serializable]
+    public class PushNewsItem
     {
         [XmlAttribute("timestamp")]
         public DateTime Timestamp { get; set; }
 
-        [XmlElement("Update")]
-        public List<PushUpdate> Updates { get; set; }
+        [XmlAttribute("breakingNews")]
+        [DefaultValue(false)]
+        public bool BreakingNews { get; set; }
 
-        [XmlElement("Upgrade")]
-        public List<PushUpdate> Upgrades { get; set; }
+        public Guid Id { get; set; }
 
-        public bool UpdatesSpecified => (Updates != null) && (Updates.Count > 0);
+        public string Title { get; set; }
 
-        public bool UpgradesSpecified => (Upgrades != null) && (Upgrades.Count > 0);
-    } // class PushUpdateData
+        public XmlCDataText Content { get; set; }
+
+        public XmlCDataText ContentRtf { get; set; }
+
+        [XmlElement("Details")]
+        public string DetailsUrl { get; set; }
+    } // class PushNewsItem
 } // namespace

@@ -91,10 +91,6 @@ namespace IpTviewr.Telemetry
             private set;
         } // ClientId
 
-        public void Init(string clientId)
-        {
-        } // Init
-
         public void EnsureHitsSents()
         {
             // this is a nasty trick to give time to the ThreadPool to send any remaining hits

@@ -33,7 +33,7 @@
     <WixVariable Id='WixUIBannerBmp' Value='bannrbmp.bmp'/>
     <WixVariable Id='WixUIDialogBmp' Value='dlgbmp.bmp'/>
     <!-- ATENCION: WixVariable no permite utilizar !(loc.xxx); por tanto, el nombre del archivo de licencia va a "piñon fijo"; hay que buscar la forma de solucionar esto; cuando se crea un instalador para otro idioma es necesario modificar manualmente el nombre del archivo para que se incluya el acuerdo de licencia en el idioma correcto -->
-    <WixVariable Id="WixUILicenseRtf" Value="$(var.SolutionDir)solution-license_es.rtf" />
+    <WixVariable Id="WixUILicenseRtf" Value="$(var.SolutionDir)movistartv.license.rtf" />
 
     <Icon Id="Icon.Product" SourceFile="iptviewr-for-movistarplus_alt.ico"/>
     <Property Id="ARPPRODUCTICON" Value="Icon.Product" />

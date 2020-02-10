@@ -53,6 +53,7 @@ namespace IpTviewr.UiServices.Common.Forms
             this.labelAppName = new System.Windows.Forms.Label();
             this.labelAppVersion = new System.Windows.Forms.Label();
             this.linkLabelSourceCode = new System.Windows.Forms.LinkLabel();
+            this.buttonZoom = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.logoPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -102,6 +103,7 @@ namespace IpTviewr.UiServices.Common.Forms
             // 
             resources.ApplyResources(this.textBoxDescription, "textBoxDescription");
             this.textBoxDescription.BackColor = System.Drawing.SystemColors.Window;
+            this.textBoxDescription.DetectUrls = false;
             this.textBoxDescription.Name = "textBoxDescription";
             this.textBoxDescription.ReadOnly = true;
             // 
@@ -136,11 +138,19 @@ namespace IpTviewr.UiServices.Common.Forms
             this.linkLabelSourceCode.TabStop = true;
             this.linkLabelSourceCode.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabelSourceCode_LinkClicked);
             // 
+            // buttonZoom
+            // 
+            resources.ApplyResources(this.buttonZoom, "buttonZoom");
+            this.buttonZoom.Name = "buttonZoom";
+            this.buttonZoom.UseVisualStyleBackColor = true;
+            this.buttonZoom.Click += new System.EventHandler(this.buttonZoom_Click);
+            // 
             // AboutBox
             // 
             this.AcceptButton = this.okButton;
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.buttonZoom);
             this.Controls.Add(this.linkLabelSourceCode);
             this.Controls.Add(this.labelAppVersion);
             this.Controls.Add(this.labelAppName);
@@ -158,7 +168,6 @@ namespace IpTviewr.UiServices.Common.Forms
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;
-            this.Load += new System.EventHandler(this.AboutBox_Load);
             ((System.ComponentModel.ISupportInitialize)(this.logoPictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -179,5 +188,6 @@ namespace IpTviewr.UiServices.Common.Forms
         private System.Windows.Forms.Label labelAppName;
         private System.Windows.Forms.Label labelAppVersion;
         private System.Windows.Forms.LinkLabel linkLabelSourceCode;
+        private System.Windows.Forms.Button buttonZoom;
     }
 }

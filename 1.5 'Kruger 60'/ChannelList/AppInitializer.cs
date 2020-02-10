@@ -55,7 +55,7 @@ namespace IpTviewr.ChannelList
             progressLabel.Size = new Size(320, 50);
             progressLabel.Text = InvariantTexts.SplashScreenDefaultStatus;
 
-            return Properties.Resources.SplashScreenBackground;
+            return Resources.SplashScreenBackground;
         } // SetupSplashScreen
 
         /// <remarks>There's no need for a try/catch block. The underlying Task takes care of any unhandled exception and the splash makes it available in OnInitializationComplete</remarks>
@@ -127,6 +127,8 @@ namespace IpTviewr.ChannelList
         {
             try
             {
+                Program.StartTelemetry();
+
                 var result = AppConfig.Load(null, _splashScreen.DisplayProgress);
                 if (result.IsError) return result;
 
@@ -179,9 +181,9 @@ namespace IpTviewr.ChannelList
 
         private void ForceUiCulture(Thread backgroundThread)
         {
-            MyApplication.ForceUiCulture(_arguments, Settings.Default.ForceUiCulture);
+            MyApplication.SetUiCulture(_arguments, Settings.Default.SetUiCulture);
             backgroundThread.CurrentCulture = Thread.CurrentThread.CurrentCulture;
             backgroundThread.CurrentUICulture = Thread.CurrentThread.CurrentUICulture;
-        } // ForceUiCulture
+        } // SetUiCulture
     } // class AppInitializer
 } // namespace

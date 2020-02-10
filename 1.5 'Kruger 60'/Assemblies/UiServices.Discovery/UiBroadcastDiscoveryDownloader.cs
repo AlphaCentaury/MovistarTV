@@ -152,6 +152,8 @@ namespace IpTviewr.UiServices.Discovery
                         DescriptionParsing = Properties.Texts.BroadcastParsingList,
                         AllowXmlExtraWhitespace = false,
                         XmlNamespaceReplacer = NamespaceUnification.Replacer,
+                        NoDataTimeout = 60000, // 60 seconds
+                        ReceiveDatagramTimeout = 60000, // 60 seconds
 #if DEBUG
                         DumpToFolder = AppConfig.Current.Folders.Cache
 #endif

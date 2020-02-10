@@ -33,7 +33,7 @@
   <?define Guid.Product.Licensing = "{3EC4AB77-F3E5-4A1F-9D94-0E57FB261F6B}" ?>
 
   <?define Guid.Record.Registry = "{2ACDDE71-150B-426A-90F6-C8D6963BBFAF}" ?>
-  <?define Guid.Record.Assemblies = "{2ACDDE71-150B-426A-90F6-C8D6963BBFAF}" ?>
+  <?define Guid.Record.Assemblies = "{E3F392CA-DF1E-4384-953D-B29452C2787F}" ?>
   <?define Guid.Record.Assemblies.Localization.es = "{0F926D7F-9232-469C-AD97-A3790A0C1BFF}" ?>
   <?define Guid.Record.Dependencies = "{DDB374CA-B1C9-48E7-9E52-2CCD16DBDAB7}" ?>
   <?define Guid.Record.Dependencies.Localization.es = "{C9CB0BAB-901B-4E3B-A539-7AC344C2ADF0}" ?>

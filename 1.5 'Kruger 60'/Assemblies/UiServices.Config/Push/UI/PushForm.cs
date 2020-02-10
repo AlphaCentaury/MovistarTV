@@ -11,20 +11,14 @@
 // 
 // ==============================================================================
 
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using IpTviewr.UiServices.Configuration.Properties;
+using System;
+using System.ComponentModel;
+using System.Windows.Forms;
 
 namespace IpTviewr.UiServices.Configuration.Push.UI
 {
-    public partial class PushWarningForm : Form
+    internal partial class PushWarningForm : Form
     {
         private string _detailsUrl;
         private string _flagColor;

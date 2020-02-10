@@ -147,6 +147,8 @@ namespace IpTviewr.UiServices.Forms
                             PayloadDataType = typeof(ProviderDiscoveryRoot),
                             AllowXmlExtraWhitespace = false,
                             XmlNamespaceReplacer = NamespaceUnification.Replacer,
+                            NoDataTimeout = 60000, // 60 seconds
+                            ReceiveDatagramTimeout = 60000, // 60 seconds
                         },
                         TextUserCancelled = Properties.DiscoveryTexts.UserCancelListRefresh,
                         TextDownloadException = providerTexts.ListRefreshError,

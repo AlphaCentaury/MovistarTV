@@ -11,13 +11,11 @@
 // 
 // ==============================================================================
 
-using System;
 using System.Collections.Specialized;
 using System.Configuration;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
-using System.Windows.Forms;
 
 namespace IpTviewr.UiServices.Configuration.Settings
 {
@@ -44,7 +42,7 @@ namespace IpTviewr.UiServices.Configuration.Settings
             } // if
 
             // TODO: avoid fixed location
-            var storePath = Path.GetFullPath(Path.Combine(folders.UserConfiguration, "..\\user-config.json"));
+            var storePath = Path.GetFullPath(Path.Combine(folders.UserConfiguration, "user-config.json"));
             _store = new JsonSettingsStore(storePath);
 
             config ??= new NameValueCollection();

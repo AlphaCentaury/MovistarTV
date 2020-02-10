@@ -384,6 +384,7 @@
       <Mapping serviceName="4890" logo="mezzo_live" quality="HD" remarks="Mezzo Live HD" />
       <Mapping serviceName="4894" logo="movistar_liga_campeones" remarks="M LCampeones." />
       <Mapping serviceName="4895" logo="movistar_liga_campeones" quality="HD" remarks="M LCampeones HD." />
+      <Mapping serviceName="4897" logo="madrid_telemadrid" quality="HD" remarks="Telemadrid HS" />
     </Domain>
     <Domain name="dem_1.imagenio.es" redirectDomain="imagenio.es">
       <Mapping serviceName="56" logo="autonomico_cataluna" remarks="TV3" />

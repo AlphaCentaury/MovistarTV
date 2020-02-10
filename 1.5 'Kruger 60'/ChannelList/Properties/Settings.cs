@@ -19,7 +19,7 @@ namespace IpTviewr.ChannelList.Properties
     [SettingsProvider(typeof(JsonSettingsProvider))]
     partial class Settings
     {
-        // no additional method
+        // no additional methods
         // used to add [SettingsProvider]
     } // class Settings
 } // namespace

@@ -34,8 +34,6 @@ namespace IpTviewr.ChannelList
         [STAThread]
         private static int Main(string[] arguments)
         {
-
-
             _mainThread = Thread.CurrentThread;
             Application.ThreadException += ApplicationOnThreadException;
             Application.SetUnhandledExceptionMode(UnhandledExceptionMode.CatchException);
@@ -60,7 +58,7 @@ namespace IpTviewr.ChannelList
             return exitCode;
         } // Main
 
-        private void StartTelemetry()
+        internal static void StartTelemetry()
         {
             // load telemetry configuration
             // let .NET handle uncaught exceptions when loading configuration

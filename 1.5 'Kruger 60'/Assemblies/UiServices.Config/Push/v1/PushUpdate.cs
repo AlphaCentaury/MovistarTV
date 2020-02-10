@@ -17,6 +17,7 @@ using IpTviewr.Common.Serialization;
 
 namespace IpTviewr.UiServices.Configuration.Push.v1
 {
+    [Serializable]
     public class PushUpdate
     {
         [XmlAttribute("timestamp")]
@@ -26,12 +27,13 @@ namespace IpTviewr.UiServices.Configuration.Push.v1
 
         public string Version { get; set; }
 
-        public string Title { get; set; }
+        public string DisplayVersion { get; set; }
 
-        [XmlElement("Description")]
-        public XmlCDataText Description { get; set; }
+        public DateTime ReleasedDate { get; set; }
 
-        [XmlElement("Details")]
-        public string DetailsUrl { get; set; }
+        [XmlElement("URL")]
+        public string DownloadUrl { get; set; }
+
+        public string Link { get; set; }
     } // class PushUpdate
 } // namespace

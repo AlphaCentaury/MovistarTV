@@ -59,9 +59,9 @@ namespace IpTviewr.UiServices.Common.Forms
             // 
             // buttonClose
             // 
+            resources.ApplyResources(this.buttonClose, "buttonClose");
             this.buttonClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.buttonClose.Image = global::IpTviewr.UiServices.Common.Properties.Resources.Action_Ok_16x16;
-            resources.ApplyResources(this.buttonClose, "buttonClose");
             this.buttonClose.Name = "buttonClose";
             this.buttonClose.UseVisualStyleBackColor = true;
             // 

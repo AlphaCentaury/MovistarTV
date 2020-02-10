@@ -19,26 +19,26 @@ namespace IpTviewr.UiServices.Common.Forms
 {
     public partial class HelpDialog : Form
     {
-        public static DialogResult ShowRtfHelp(IWin32Window owner, string rtfHelpText, string caption = null)
+        public static DialogResult ShowRtfHelp(IWin32Window owner, string rtfHelpText, string caption = null, bool maximize = false)
         {
-            using (var dialog = new HelpDialog())
-            {
-                AppTelemetry.FormEvent(AppTelemetry.LoadEvent, dialog, caption);
-                dialog.richTextHelp.Rtf = rtfHelpText;
-                if (caption != null) dialog.Text = caption;
-                return dialog.ShowDialog(owner);
-            } // using dialog
+            using var dialog = new HelpDialog();
+            AppTelemetry.FormEvent(AppTelemetry.LoadEvent, dialog, caption);
+            dialog.richTextHelp.Rtf = rtfHelpText;
+            if (caption != null) dialog.Text = caption;
+            if (maximize) dialog.WindowState = FormWindowState.Maximized;
+
+            return dialog.ShowDialog(owner);
         } // ShowRtfHelp
 
-        public static DialogResult ShowPlainTextHelp(IWin32Window owner, string helpText, string caption = null)
+        public static DialogResult ShowPlainTextHelp(IWin32Window owner, string helpText, string caption = null, bool maximize = false)
         {
-            using (var dialog = new HelpDialog())
-            {
-                AppTelemetry.FormEvent(AppTelemetry.LoadEvent, dialog, caption);
-                dialog.richTextHelp.Text = helpText;
-                if (caption != null) dialog.Text = caption;
-                return dialog.ShowDialog(owner);
-            } // using dialog
+            using var dialog = new HelpDialog();
+            AppTelemetry.FormEvent(AppTelemetry.LoadEvent, dialog, caption);
+            dialog.richTextHelp.Text = helpText;
+            if (caption != null) dialog.Text = caption;
+            if (maximize) dialog.WindowState = FormWindowState.Maximized;
+
+            return dialog.ShowDialog(owner);
         } // ShowRtfHelp
 
         public HelpDialog()

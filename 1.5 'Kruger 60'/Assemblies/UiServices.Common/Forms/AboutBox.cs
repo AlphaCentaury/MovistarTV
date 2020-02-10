@@ -34,8 +34,10 @@ namespace IpTviewr.UiServices.Common.Forms
 
         protected override bool SendLoadEvent => false;
 
-        private void AboutBox_Load(object sender, EventArgs e)
+        protected override void OnLoad(EventArgs e)
         {
+            base.OnLoad(e);
+
             AppTelemetry.FormEvent(AppTelemetry.LoadEvent, this, Application.ProductName);
             Text = string.Format(Text, Application.ProductName);
             if (ApplicationData != null)
@@ -62,6 +64,7 @@ namespace IpTviewr.UiServices.Common.Forms
                 labelAppVersion.Text = AssemblyVersion;
                 labelEULA.Visible = false;
                 textBoxDescription.Visible = false;
+                buttonZoom.Visible = false;
             } // if-else
 
             labelProductName.Text = AssemblyProduct;
@@ -69,6 +72,18 @@ namespace IpTviewr.UiServices.Common.Forms
             labelCopyright.Text = AssemblyCopyright;
             labelCompanyName.Text = AssemblyCompany;
         } // AboutBox_Load
+
+        private void buttonZoom_Click(object sender, EventArgs e)
+        {
+            if (ApplicationData.LicenseTextRtf != null)
+            {
+                HelpDialog.ShowRtfHelp(this, ApplicationData.LicenseTextRtf, labelEULA.Text, true);
+            }
+            else
+            {
+                HelpDialog.ShowPlainTextHelp(this, ApplicationData.LicenseText, labelEULA.Text, true);
+            } // if-else
+        } // buttonZoom_Click
 
         private void linkLabelWebsite_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {

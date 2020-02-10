@@ -13,14 +13,56 @@
 
 using IpTviewr.Common.Telemetry;
 using System;
+using System.Collections.Specialized;
+using System.Globalization;
 using System.Threading;
 using System.Windows.Forms;
+using IpTviewr.ChannelList.Properties;
 using IpTviewr.Common;
+using IpTviewr.UiServices.Configuration.Push;
 
 namespace IpTviewr.ChannelList
 {
     internal static class MyApplication
     {
+        public sealed class PushUpdateContext : IPushUpdateContext
+        {
+            public Version GetAppVersion() => Version.TryParse(Application.ProductVersion, out var version) ? version : new Version();
+
+            public DateTime LastChecked
+            {
+                get => Settings.Default.LastCheckedForUpdates;
+                set
+                {
+                    Settings.Default.LastCheckedForUpdates = value;
+                    Settings.Default.Save();
+                } // set
+            } // LastChecked
+
+            public void AddHidden(Guid message)
+            {
+                var list = Settings.Default.PushIgnoreList ?? new StringCollection();
+                list.Add(message.ToString("B", CultureInfo.InvariantCulture));
+                Settings.Default.PushIgnoreList = list;
+                Settings.Default.Save();
+            } // AddHidden
+
+            public bool IsHidden(Guid message)
+            {
+                var list = Settings.Default.PushIgnoreList;
+                if (list == null) return false;
+
+                var guid = message.ToString("B", CultureInfo.InvariantCulture);
+
+                foreach (var item in list)
+                {
+                    if (string.Equals(guid, item, StringComparison.InvariantCultureIgnoreCase)) return true;
+                } // foreach
+
+                return false;
+            } // IsHidden
+        } // class PushUpdateContext
+
         internal static string RecorderLauncherPath
         {
             get;
@@ -71,9 +113,9 @@ namespace IpTviewr.ChannelList
 
         #endregion
 
-        private const string ForceUiCultureArgument = "/forceuiculture:";
+        private const string SetUiCultureArgument = "/setuiculture:";
 
-        internal static void ForceUiCulture(string[] arguments, string settingsCulture)
+        internal static void SetUiCulture(string[] arguments, string settingsCulture)
         {
             var culture = (string)null;
 
@@ -82,8 +124,8 @@ namespace IpTviewr.ChannelList
             {
                 foreach (var argument in arguments)
                 {
-                    if (!argument.ToLowerInvariant().StartsWith(ForceUiCultureArgument)) continue;
-                    culture = argument.Substring(ForceUiCultureArgument.Length);
+                    if (!argument.ToLowerInvariant().StartsWith(SetUiCultureArgument)) continue;
+                    culture = argument.Substring(SetUiCultureArgument.Length);
                     break;
                 } // foreach
             } // if
@@ -94,10 +136,10 @@ namespace IpTviewr.ChannelList
                 culture = settingsCulture;
             } // if
 
-            ForceUiCulture(culture);
-        } // ForceUiCulture
+            SetUiCulture(culture);
+        } // SetUiCulture
 
-        private static void ForceUiCulture(string culture)
+        private static void SetUiCulture(string culture)
         {
             if (culture == null) return;
             culture = culture.Trim();
@@ -111,6 +153,6 @@ namespace IpTviewr.ChannelList
             {
                 HandleException(null, Properties.InvariantTexts.ExceptionForceUiCulture, ex);
             } // try-catch
-        } // ForceUiCulture
+        } // SetUiCulture
     } // static class MyApplication
 } // namespace

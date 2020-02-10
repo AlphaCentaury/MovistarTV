@@ -26,13 +26,12 @@ namespace IpTviewr.Telemetry
 {
     public sealed class VsAppCenter : ITelemetryProvider
     {
-
         #region Implementation of ITelemetryProvider
 
         public bool Enabled
         {
             get => AppCenter.IsEnabledAsync().Result;
-            set => AppCenter.SetEnabledAsync(value);
+            set => AppCenter.SetEnabledAsync(value).Wait();
         } // Enabled
 
         public void Start(IReadOnlyDictionary<string, string> properties)
@@ -83,9 +82,8 @@ namespace IpTviewr.Telemetry
             Crashes.TrackError(ex, new Dictionary<string, string>
             {
                 {"Screen", screenName },
-                {"Message", message },
-                {"StackTrace", ex.StackTrace }
-            });
+                {"Message", message }
+            }, ErrorAttachmentLog.AttachmentWithText(ex.StackTrace, "ex.StackTrace"));
         } // Exception
 
         public void CustomEvent(string eventName, string action, string screenName, string data = null, IEnumerable<KeyValuePair<string, string>> properties = null)

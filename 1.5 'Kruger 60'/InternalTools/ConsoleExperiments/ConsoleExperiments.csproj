@@ -74,9 +74,9 @@
     <Compile Include="ExceptionMsgBoxExperiment.cs" />
     <Compile Include="Experiment.cs" />
     <Compile Include="Find.cs" />
-    <Compile Include="Playground.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PushBuilder.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Assemblies\Project.Common\IpTviewr.Common.csproj">

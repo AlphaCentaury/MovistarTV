@@ -61,7 +61,7 @@ namespace IpTviewr.Internal.Tools.ChannelLogos
 
         private void comboCheck_SelectedIndexChanged(object sender, EventArgs e)
         {
-            buttonRun.Enabled = !(comboCheck.SelectedItem.ToString().StartsWith("--"));
+            buttonRun.Enabled = (comboCheck.SelectedIndex >=0) && !(comboCheck.SelectedItem.ToString().StartsWith("--"));
         } // comboCheck_SelectedIndexChanged
 
         private void buttonRun_Click(object sender, EventArgs e)

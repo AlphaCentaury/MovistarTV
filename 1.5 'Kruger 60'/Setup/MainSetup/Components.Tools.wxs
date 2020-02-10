@@ -27,7 +27,6 @@
                Title="First-time configuration assistant"
                Description="Installs the first-time configuration assistant component. The assistant will help you install and verify prerequisites, as well as performing the application initial configuration.">
         <ComponentGroupRef Id="Tools.FirstTimeConfig.Assemblies" />
-        <ComponentGroupRef Id="Tools.FirstTimeConfig.Shortcut" />
         <ComponentGroupRef Id="Tools.FirstTimeConfig.Localization" />
       </Feature>
     </Feature>
@@ -39,9 +38,6 @@
         <File Id="FirstTimeConfig.pdb" Source="$(var.FirstTimeConfig.TargetDir)FirstTimeConfig.pdb" />
         <File Id="Interop.NetFwTypeLib.dll" Source="$(var.FirstTimeConfig.TargetDir)Interop.NetFwTypeLib.dll" />
       </Component>
-    </ComponentGroup>
-
-    <ComponentGroup Id="Tools.FirstTimeConfig.Shortcut" Directory="INSTALLFOLDER">
       <Component Id="Tools.FirstTimeConfig.Shortcut" Guid="$(var.Guid.Tools.FirstTimeConfig.Shortcut)">
         <RegistryValue Root='HKCU' Key="$(var.BaseRegistryKey)\Shortcuts" Name="FirstTimeConfig" Type="integer" Value="1" KeyPath="yes"/>
         <Shortcut Id='FirstTimeConfig.exe.lnk'
