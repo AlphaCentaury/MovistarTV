@@ -50,7 +50,7 @@ namespace IpTviewr.Tools.FirstTimeConfig
             this.buttonPreviousPage = new System.Windows.Forms.Button();
             this.buttonNextPage = new System.Windows.Forms.Button();
             this.buttonCancel = new System.Windows.Forms.Button();
-            this.selectFolder = new SelectFolderDialog();
+            this.selectFolder = new IpTviewr.Native.WinForms.SelectFolderDialog();
             this.wizardControl = new IpTviewr.Tools.FirstTimeConfig.WizardTabControl();
             this.wizardPageReadme = new System.Windows.Forms.TabPage();
             this.checkReadmeAck = new System.Windows.Forms.CheckBox();
@@ -77,7 +77,6 @@ namespace IpTviewr.Tools.FirstTimeConfig
             this.labelSqlCe = new System.Windows.Forms.Label();
             this.pictureBoxEmbOk = new System.Windows.Forms.PictureBox();
             this.buttonVerifyEmb = new System.Windows.Forms.Button();
-            this.linkLabelPrerequisiteEmb = new System.Windows.Forms.LinkLabel();
             this.labelEmb = new System.Windows.Forms.Label();
             this.wizardPageFirewall = new System.Windows.Forms.TabPage();
             this.groupAnalytics = new System.Windows.Forms.GroupBox();
@@ -324,7 +323,6 @@ namespace IpTviewr.Tools.FirstTimeConfig
             this.groupPrerequisites.Controls.Add(this.labelSqlCe);
             this.groupPrerequisites.Controls.Add(this.pictureBoxEmbOk);
             this.groupPrerequisites.Controls.Add(this.buttonVerifyEmb);
-            this.groupPrerequisites.Controls.Add(this.linkLabelPrerequisiteEmb);
             this.groupPrerequisites.Controls.Add(this.labelEmb);
             resources.ApplyResources(this.groupPrerequisites, "groupPrerequisites");
             this.groupPrerequisites.Name = "groupPrerequisites";
@@ -385,13 +383,6 @@ namespace IpTviewr.Tools.FirstTimeConfig
             this.buttonVerifyEmb.Name = "buttonVerifyEmb";
             this.buttonVerifyEmb.UseVisualStyleBackColor = true;
             this.buttonVerifyEmb.Click += new System.EventHandler(this.buttonVerifyEmb_Click);
-            // 
-            // linkLabelPrerequisiteEmb
-            // 
-            resources.ApplyResources(this.linkLabelPrerequisiteEmb, "linkLabelPrerequisiteEmb");
-            this.linkLabelPrerequisiteEmb.Name = "linkLabelPrerequisiteEmb";
-            this.linkLabelPrerequisiteEmb.TabStop = true;
-            this.linkLabelPrerequisiteEmb.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelPrerequisiteEmb_LinkClicked);
             // 
             // labelEmb
             // 
@@ -685,7 +676,6 @@ namespace IpTviewr.Tools.FirstTimeConfig
         private System.Windows.Forms.Button buttonVerifyEmb;
         private System.Windows.Forms.LinkLabel linkLabelPrerequisiteVlc;
         private System.Windows.Forms.Label labelVlc;
-        private System.Windows.Forms.LinkLabel linkLabelPrerequisiteEmb;
         private System.Windows.Forms.Label labelEmb;
         private System.Windows.Forms.TabPage wizardPageFirewall;
         private System.Windows.Forms.GroupBox groupVlc;

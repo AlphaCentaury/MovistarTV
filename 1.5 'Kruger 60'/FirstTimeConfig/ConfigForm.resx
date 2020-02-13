@@ -984,39 +984,6 @@
   <data name="&gt;&gt;buttonVerifyEmb.ZOrder" xml:space="preserve">
     <value>7</value>
   </data>
-  <data name="linkLabelPrerequisiteEmb.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="linkLabelPrerequisiteEmb.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="linkLabelPrerequisiteEmb.Location" type="System.Drawing.Point, System.Drawing">
-    <value>217, 50</value>
-  </data>
-  <data name="linkLabelPrerequisiteEmb.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 3, 3, 3</value>
-  </data>
-  <data name="linkLabelPrerequisiteEmb.Size" type="System.Drawing.Size, System.Drawing">
-    <value>146, 13</value>
-  </data>
-  <data name="linkLabelPrerequisiteEmb.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="linkLabelPrerequisiteEmb.Text" xml:space="preserve">
-    <value>Download from microsoft.com</value>
-  </data>
-  <data name="&gt;&gt;linkLabelPrerequisiteEmb.Name" xml:space="preserve">
-    <value>linkLabelPrerequisiteEmb</value>
-  </data>
-  <data name="&gt;&gt;linkLabelPrerequisiteEmb.Type" xml:space="preserve">
-    <value>System.Windows.Forms.LinkLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;linkLabelPrerequisiteEmb.Parent" xml:space="preserve">
-    <value>groupPrerequisites</value>
-  </data>
-  <data name="&gt;&gt;linkLabelPrerequisiteEmb.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
   <data name="labelEmb.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -1051,7 +1018,7 @@
     <value>groupPrerequisites</value>
   </data>
   <data name="&gt;&gt;labelEmb.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>8</value>
   </data>
   <data name="groupPrerequisites.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 6</value>
@@ -2021,9 +1988,6 @@ Which channels should appear first?</value>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
     <value>493, 359</value>
   </data>
-  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
   <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
     <value>CenterScreen</value>
   </data>
@@ -2040,12 +2004,12 @@ Which channels should appear first?</value>
     <value>selectFolder</value>
   </data>
   <data name="&gt;&gt;selectFolder.Type" xml:space="preserve">
-    <value>IpTviewr.UiServices.Common.Controls.SelectFolderDialog, UiServices.Common, Version=1.5.1010.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>IpTviewr.Native.WinForms.SelectFolderDialog, IpTViewr.Native, Version=1.5.1010.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>ConfigForm</value>
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>IpTviewr.UiServices.Common.Forms.CommonBaseForm, UiServices.Common, Version=1.5.1010.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
 </root>

@@ -117,6 +117,7 @@ namespace IpTviewr.ChannelList
             this.menuItemHelpReportIssue = new System.Windows.Forms.ToolStripMenuItem();
             this.separatorHelp1 = new System.Windows.Forms.ToolStripSeparator();
             this.menuItemHelpCheckUpdates = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuItemHelpTelemetry = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemHelpAbout = new System.Windows.Forms.ToolStripMenuItem();
             this.labelProviderName = new System.Windows.Forms.Label();
             this.labelProviderDescription = new System.Windows.Forms.Label();
@@ -644,6 +645,7 @@ namespace IpTviewr.ChannelList
             this.menuItemHelpReportIssue,
             this.separatorHelp1,
             this.menuItemHelpCheckUpdates,
+            this.menuItemHelpTelemetry,
             this.menuItemHelpAbout});
             this.menuItemHelp.Name = "menuItemHelp";
             resources.ApplyResources(this.menuItemHelp, "menuItemHelp");
@@ -680,6 +682,12 @@ namespace IpTviewr.ChannelList
             this.menuItemHelpCheckUpdates.Name = "menuItemHelpCheckUpdates";
             resources.ApplyResources(this.menuItemHelpCheckUpdates, "menuItemHelpCheckUpdates");
             this.menuItemHelpCheckUpdates.Click += new System.EventHandler(this.menuItemHelpCheckUpdates_Click);
+            // 
+            // menuItemHelpTelemetry
+            // 
+            this.menuItemHelpTelemetry.Name = "menuItemHelpTelemetry";
+            resources.ApplyResources(this.menuItemHelpTelemetry, "menuItemHelpTelemetry");
+            this.menuItemHelpTelemetry.Click += new System.EventHandler(this.menuItemHelpTelemetry_Click);
             // 
             // menuItemHelpAbout
             // 
@@ -982,5 +990,6 @@ namespace IpTviewr.ChannelList
         private System.Windows.Forms.ToolStripStatusLabel statusLabelMain;
         private UiServices.EPG.EpgMiniGuide epgMiniGuide;
         private System.Windows.Forms.ToolStripStatusLabel statusLabelEpg;
+        private System.Windows.Forms.ToolStripMenuItem menuItemHelpTelemetry;
     }
 }

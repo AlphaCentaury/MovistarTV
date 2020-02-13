@@ -189,6 +189,11 @@ namespace IpTviewr.ChannelList
             SafeCall(Implementation_menuItemHelpCheckUpdates_Click, sender, e);
         } // menuItemHelpCheckUpdates_Click
 
+        private void menuItemHelpTelemetry_Click(object sender, EventArgs e)
+        {
+            SafeCall(Implementation_menuItemHelpTelemetry_Click, sender, e);
+        } // menuItemHelpTelemetry_Click
+
         private void menuItemHelpAbout_Click(object sender, EventArgs e)
         {
             SafeCall(Implementation_menuItemHelpAbout_Click, sender, e);
@@ -218,7 +223,12 @@ namespace IpTviewr.ChannelList
             PushManager.CheckForUpdates(this, new MyApplication.PushUpdateContext());
         } // Implementation_menuItemHelpCheckUpdates_Click
 
-        private void Implementation_menuItemHelpAbout_Click(object sender, EventArgs e)
+        private void Implementation_menuItemHelpTelemetry_Click(object sender, EventArgs e)
+        {
+            HelpDialog.ShowRtfHelp(this, Texts.AppTelemetry);
+        } // Implementation_menuItemHelpTelemetry_Click
+
+    private void Implementation_menuItemHelpAbout_Click(object sender, EventArgs e)
         {
             using (var box = new AboutBox())
             {

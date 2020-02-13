@@ -500,25 +500,43 @@
 </value>
   </data>
   <data name="menuItemIpTviewrRecent.Size" type="System.Drawing.Size, System.Drawing">
-    <value>194, 22</value>
+    <value>195, 22</value>
   </data>
   <data name="menuItemIpTviewrRecent.Text" xml:space="preserve">
     <value>Canales &amp;recientes</value>
   </data>
+  <data name="separatorIpTviewr1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>192, 6</value>
+  </data>
+  <data name="menuItemIpTviewrProvider.Size" type="System.Drawing.Size, System.Drawing">
+    <value>195, 22</value>
+  </data>
+  <data name="menuItemIpTviewrPackages.Size" type="System.Drawing.Size, System.Drawing">
+    <value>195, 22</value>
+  </data>
   <data name="menuItemIpTviewrPackages.Text" xml:space="preserve">
     <value>P&amp;aquete</value>
   </data>
+  <data name="separatorIpTviewr2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>192, 6</value>
+  </data>
+  <data name="menuItemIpTviewrSettings.Size" type="System.Drawing.Size, System.Drawing">
+    <value>195, 22</value>
+  </data>
   <data name="menuItemIpTviewrSettings.Text" xml:space="preserve">
     <value>Configuración...</value>
+  </data>
+  <data name="menuItemIpTviewrExport.Size" type="System.Drawing.Size, System.Drawing">
+    <value>195, 22</value>
   </data>
   <data name="menuItemIpTviewrExport.Text" xml:space="preserve">
     <value>Exportar información...</value>
   </data>
   <data name="separatorIpTviewr3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>191, 6</value>
+    <value>192, 6</value>
   </data>
   <data name="menuItemIpTviewrExit.Size" type="System.Drawing.Size, System.Drawing">
-    <value>194, 22</value>
+    <value>195, 22</value>
   </data>
   <data name="menuItemIpTviewrExit.Text" xml:space="preserve">
     <value>&amp;Salir</value>
@@ -958,6 +976,12 @@
   <data name="menuItemHelpCheckUpdates.Text" xml:space="preserve">
     <value>&amp;Buscar actualizaciones...</value>
   </data>
+  <data name="menuItemHelpTelemetry.Size" type="System.Drawing.Size, System.Drawing">
+    <value>228, 22</value>
+  </data>
+  <data name="menuItemHelpTelemetry.Text" xml:space="preserve">
+    <value>Recolección de datos...</value>
+  </data>
   <data name="menuItemHelpAbout.Size" type="System.Drawing.Size, System.Drawing">
     <value>228, 22</value>
   </data>
@@ -992,25 +1016,25 @@
     <value>Ver con &amp;reproductor...</value>
   </data>
   <data name="contextMenuListCopyURL.Size" type="System.Drawing.Size, System.Drawing">
-    <value>238, 22</value>
+    <value>239, 22</value>
   </data>
   <data name="contextMenuListCopyURL.Text" xml:space="preserve">
     <value>Copiar la URL de ubicación</value>
   </data>
   <data name="contextMenuListCopyRow.Size" type="System.Drawing.Size, System.Drawing">
-    <value>238, 22</value>
+    <value>239, 22</value>
   </data>
   <data name="contextMenuListCopyRow.Text" xml:space="preserve">
     <value>Copiar datos del canal</value>
   </data>
   <data name="contextMenuListCopyAll.Size" type="System.Drawing.Size, System.Drawing">
-    <value>238, 22</value>
+    <value>239, 22</value>
   </data>
   <data name="contextMenuListCopyAll.Text" xml:space="preserve">
     <value>Copiar todos los canales</value>
   </data>
   <data name="separatorContextList3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>235, 6</value>
+    <value>236, 6</value>
   </data>
   <data name="contextMenuListExportM3u.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -1029,19 +1053,13 @@
 </value>
   </data>
   <data name="contextMenuListExportM3u.Size" type="System.Drawing.Size, System.Drawing">
-    <value>238, 22</value>
+    <value>239, 22</value>
   </data>
   <data name="contextMenuListExportM3u.Text" xml:space="preserve">
     <value>Exportar lista en archivo .m3u...</value>
   </data>
   <data name="contextMenuListCopy.Text" xml:space="preserve">
     <value>&amp;Copiar</value>
-  </data>
-  <data name="buttonRecordChannel.Text" xml:space="preserve">
-    <value>Gra&amp;bar...</value>
-  </data>
-  <data name="buttonDisplayChannel.Text" xml:space="preserve">
-    <value>&amp;Ver canal...</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Lista de canales - IPTViewr</value>

@@ -135,7 +135,6 @@ namespace IpTviewr.Tools.FirstTimeConfig
 
             buttonVerifyEmb.Visible = true;
             linkLabelSetupEmb.Enabled = Installation.CheckRedistFile(Texts.DownloadEmbFile, Texts.DownloadEmbFile32bit);
-            linkLabelPrerequisiteEmb.Enabled = true;
 
             buttonVerifySqlCe.Visible = false;
             linkLabelSetupSqlCe.Enabled = false;
@@ -174,7 +173,6 @@ namespace IpTviewr.Tools.FirstTimeConfig
             pictureBoxEmbOk.Image = Resources.Sucess_16x16;
             buttonVerifyEmb.Visible = false;
             linkLabelSetupEmb.Enabled = false;
-            linkLabelPrerequisiteEmb.Enabled = false;
 
             buttonVerifySqlCe.Visible = true;
             linkLabelSetupSqlCe.Enabled = Installation.CheckRedistFile(Texts.DownloadSqlCeFile, Texts.DownloadSqlCeFile32bit);
@@ -264,7 +262,6 @@ namespace IpTviewr.Tools.FirstTimeConfig
 
             pictureBoxEmbOk.Image = Resources.Status_Wait_16x16;
             linkLabelSetupEmb.Enabled = false;
-            linkLabelPrerequisiteEmb.Enabled = false;
             buttonVerifyEmb.Enabled = false;
             wizardControl.ShowWizardButtons(false);
         } // linkLabelSetupEmb_LinkClicked
@@ -273,11 +270,11 @@ namespace IpTviewr.Tools.FirstTimeConfig
         {
             pictureBoxEmbOk.Image = success ? Resources.Status_Pending_16x16 : Resources.Error_16x16;
             linkLabelSetupEmb.Enabled = true;
-            linkLabelPrerequisiteEmb.Enabled = true;
             buttonVerifyEmb.Enabled = true;
             wizardControl.ShowWizardButtons(true);
         } // SetupEmb_Completed
 
+        // TODO: purge all references to download MS-EMB
         private void linkLabelPrerequisiteEmb_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Installation.PromptDownloadFromVendor(this, "Microsoft", Texts.DownloadEmbFile, Texts.DownloadEmbFile32bit);
