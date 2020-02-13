@@ -1,10 +1,10 @@
 ##############################################################################
 ##
-## VS Solution 'MovistarTV.sln'
+## IPTViewr v1.5
 ##
 ##############################################################################
 ##
-## IPTViewr: Virtual Decoder for movistar+ version 1.5 “Kruger 60” Beta 1
+## IPTV Virtual Decoder for movistar+ v1.5 “Kruger 60” Beta 1
 ## by Codeplex/GitHub user AlphaCentaury
 ##
 ## Copyright (C) 2014-2020, Codeplex/GitHub user AlphaCentaury and its contributors
