@@ -311,6 +311,12 @@ namespace IpTviewr.UiServices.Configuration
 
         #region Registry settings
 
+        public static string RegistryKey_Root => InvariantTexts.RegistryKey_Root;
+        public static string RegistryMissingKey => Texts.AppConfigRegistryMissingKey;
+        public static string RegistryValue_FirstTimeConfig => InvariantTexts.RegistryValue_FirstTimeConfig;
+
+        public static bool IsFirstTimeConfigExecuted { get; private set; }
+
         private InitializationResult LoadRegistrySettings(string overrideBasePath)
         {
             try
@@ -342,15 +348,17 @@ namespace IpTviewr.UiServices.Configuration
         {
             using var keyCurrentUser = Registry.CurrentUser;
             var fullKeyPath = InvariantTexts.RegistryKey_Root;
-            var rootKey = string.Format(InvariantTexts.RegistryKey_Root, Application.ProductVersion);
+            var rootKey = string.Format(fullKeyPath, Application.ProductVersion);
             using var root = keyCurrentUser.OpenSubKey(rootKey);
-            if (root == null) return string.Format(Texts.AppConfigRegistryMissingKey, fullKeyPath);
+            if (root == null) return string.Format(Texts.AppConfigRegistryMissingKey, rootKey);
 
             var isInstalled = root.GetValue(InvariantTexts.RegistryValue_Installed);
-            if (isInstalled == null) return string.Format(Texts.AppConfigRegistryMissingValue, fullKeyPath, InvariantTexts.RegistryValue_Installed);
+            if (isInstalled == null) return string.Format(Texts.AppConfigRegistryMissingValue, rootKey, InvariantTexts.RegistryValue_Installed);
+
+            IsFirstTimeConfigExecuted = root.GetValue(RegistryValue_FirstTimeConfig) != null;
 
             var baseFolder = root.GetValue(InvariantTexts.RegistryValue_Folder_Base);
-            if (baseFolder == null) return string.Format(Texts.AppConfigRegistryMissingValue, fullKeyPath, InvariantTexts.RegistryValue_Folder_Base);
+            if (baseFolder == null) return string.Format(Texts.AppConfigRegistryMissingValue, rootKey, InvariantTexts.RegistryValue_Folder_Base);
             Folders.Base = overrideBasePath ?? baseFolder as string;
 
             var installFolder = root.GetValue(InvariantTexts.RegistryValue_Folder_Install);
@@ -387,6 +395,13 @@ namespace IpTviewr.UiServices.Configuration
             {
                 Caption = Texts.LoadConfigValidationCaption
             };
+
+            if (!IsFirstTimeConfigExecuted)
+            {
+                result.Caption = Texts.AppConfigFirstTimeConfigNotExecutedCaption;
+                result.Message = Texts.AppConfigFirstTimeConfigNotExecuted;
+                return result;
+            } // if
 
             if (!Directory.Exists(Folders.Base))
             {

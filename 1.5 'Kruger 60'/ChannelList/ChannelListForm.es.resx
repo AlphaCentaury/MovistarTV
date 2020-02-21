@@ -907,6 +907,9 @@
   <data name="menuItemEpgBasicGrid.Size" type="System.Drawing.Size, System.Drawing">
     <value>239, 22</value>
   </data>
+  <data name="menuItemEpgBasicGrid.Text" xml:space="preserve">
+    <value>Guía abreviada...</value>
+  </data>
   <data name="separatorEpg1.Size" type="System.Drawing.Size, System.Drawing">
     <value>236, 6</value>
   </data>
@@ -1060,6 +1063,10 @@
   </data>
   <data name="contextMenuListCopy.Text" xml:space="preserve">
     <value>&amp;Copiar</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>Inherit</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Lista de canales - IPTViewr</value>

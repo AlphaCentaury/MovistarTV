@@ -312,7 +312,7 @@ Do you want to overwrite the existing file?</value>
     <value>IPTViewr: virtual decoder for movistar+</value>
   </data>
   <data name="ProductMainProgramName" xml:space="preserve">
-    <value>movistar+ channels</value>
+    <value>IPTViewr for movistar+</value>
   </data>
   <data name="ProductShortName" xml:space="preserve">
     <value>v1.5 “Kruger 60” Beta 1</value>

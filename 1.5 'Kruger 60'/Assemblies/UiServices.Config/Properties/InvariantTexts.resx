@@ -174,4 +174,7 @@
   <data name="FolderModules" xml:space="preserve">
     <value>modules</value>
   </data>
+  <data name="RegistryValue_FirstTimeConfig" xml:space="preserve">
+    <value>FirstTimeConfig</value>
+  </data>
 </root>

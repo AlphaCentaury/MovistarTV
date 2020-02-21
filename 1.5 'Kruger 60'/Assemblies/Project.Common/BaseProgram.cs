@@ -39,17 +39,35 @@ namespace IpTviewr.Common
 
         public static void HandleException(IWin32Window owner, string caption, string message, MessageBoxIcon icon, Exception ex)
         {
-            AddExceptionAdvancedInformation(ex);
-
-            var box = new ExceptionMessageBox()
+            try
             {
-                Caption = caption ?? Properties.Texts.MyAppHandleExceptionDefaultCaption,
-                Text = message ?? Properties.Texts.MyAppHandleExceptionDefaultMessage,
-                InnerException = ex,
-                Beep = true,
-                Symbol = TranslateIconToSymbol(icon),
-            };
-            box.Show(owner);
+                AddExceptionAdvancedInformation(ex);
+
+                var box = new ExceptionMessageBox()
+                {
+                    Caption = caption ?? Properties.Texts.MyAppHandleExceptionDefaultCaption,
+                    Text = message ?? Properties.Texts.MyAppHandleExceptionDefaultMessage,
+                    InnerException = ex,
+                    Beep = true,
+                    Symbol = TranslateIconToSymbol(icon),
+                };
+                box.Show(owner);
+            }
+            catch (Exception e)
+            {
+                // ExceptionMessageBox not available?
+
+                var text = (ex == null) switch
+                {
+                    true => @$"{message ?? Properties.Texts.MyAppHandleExceptionDefaultMessage}\r\n\r\n{e.Message}",
+                    false => @$"{message ?? Properties.Texts.MyAppHandleExceptionDefaultMessage}\r\n\r\n{ex.Message}\r\n{ex.GetType().FullName}\r\n\r\n{e.Message}"
+                };
+
+                MessageBox.Show(owner,
+                    text,
+                    caption ?? Properties.Texts.MyAppHandleExceptionDefaultCaption,
+                    MessageBoxButtons.OK, icon);
+            } // try-catch
         } // HandleException
 
         public static void HandleException(object sender, HandleExceptionEventArgs e)

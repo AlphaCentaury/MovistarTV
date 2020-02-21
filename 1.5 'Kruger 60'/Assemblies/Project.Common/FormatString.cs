@@ -64,16 +64,17 @@ namespace IpTviewr.Common
         public static string TimeSpanTotalMinutes(TimeSpan value, Format format)
         {
             string spanFormat;
-            int minutes;
+            var minutes = value.Minutes + ((value.Seconds > 0) ? 1 : 0);
 
             switch (format)
             {
                 case Format.Compact:
-                    if (value.TotalMinutes < 61)
+                    if (value.TotalMinutes <= 60)
                     {
+                        if (value.TotalMinutes > 59) minutes = 60;
                         spanFormat = Properties.FormatStringTexts.TimeSpanTotalMinutesCompact;
                     }
-                    else if (value.TotalHours < 24)
+                    else if (value.TotalHours <= 24)
                     {
                         spanFormat = Properties.FormatStringTexts.TimeSpanTotalMinutesCompactHours;
                     }
@@ -82,12 +83,15 @@ namespace IpTviewr.Common
                         spanFormat = Properties.FormatStringTexts.TimeSpanTotalMinutesCompactDays;
                     } // if-else
                     break;
+
                 case Format.Extended:
+
                     if (value.TotalMinutes <= 60)
                     {
+                        if (value.TotalMinutes > 59) minutes = 60;
                         spanFormat = Properties.FormatStringTexts.TimeSpanTotalMinutesExtended;
                     }
-                    else if (value.TotalHours < 24)
+                    else if (value.TotalHours <= 24)
                     {
                         spanFormat = Properties.FormatStringTexts.TimeSpanTotalMinutesExtendedHours;
                     }
@@ -96,11 +100,11 @@ namespace IpTviewr.Common
                         spanFormat = Properties.FormatStringTexts.TimeSpanTotalMinutesExtendedDays;
                     } // if-else
                     break;
+
                 default:
                     return string.Format(Properties.FormatStringTexts.TimeSpanTotalMinutesBasic, value.TotalMinutes);
             } // switch
 
-            minutes = value.Minutes + ((value.Seconds > 0) ? 1 : 0);
             return string.Format(spanFormat, minutes, value.Hours, value.Days);
         } // TimeSpanTotalMinutes
 

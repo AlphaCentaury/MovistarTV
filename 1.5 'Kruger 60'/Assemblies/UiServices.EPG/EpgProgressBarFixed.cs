@@ -46,7 +46,6 @@ namespace IpTviewr.UiServices.EPG
         public double MaximumValue
         {
             get => _max;
-// get
             set
             {
                 if (_max < _min) throw new ArgumentOutOfRangeException();
@@ -55,23 +54,19 @@ namespace IpTviewr.UiServices.EPG
             } // set
         } // MaximumValue
 
-        public double ValueRange
-            // ValueRange
-            =>
-                _max - _min;
+        public double ValueRange => _max - _min;
 
         [DefaultValue(0.0)]
         public double Value
         {
             get => _progressValue;
-// get
             set
             {
                 var old = _progressValue;
                 _progressValue = value;
                 if (_progressValue < _min) _progressValue = _min;
                 if (_progressValue > _max) _progressValue = _max;
-                if (_progressValue != old)
+                if (Math.Abs(_progressValue - old) > 0.01)
                 {
                     Invalidate();
                 } // if
@@ -85,21 +80,17 @@ namespace IpTviewr.UiServices.EPG
             _barFilled = Properties.Resources.ProgressBarFilled;
         } // OnCreateControl
 
-        protected override Size DefaultSize
-            // DefaultSize
-            =>
-                new Size(125, 20);
+        protected override Size DefaultSize => new Size(125, 20);
 
         protected override void Dispose(bool disposing)
         {
             base.Dispose(disposing);
-            if (disposing)
-            {
-                _barBase?.Dispose();
-                _barFilled?.Dispose();
-                _barBase = null;
-                _barFilled = null;
-            } // if
+            if (!disposing) return;
+
+            _barBase?.Dispose();
+            _barFilled?.Dispose();
+            _barBase = null;
+            _barFilled = null;
         } // Dispose
 
         protected override void OnPaint(PaintEventArgs e)

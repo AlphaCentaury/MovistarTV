@@ -184,9 +184,7 @@ namespace IpTviewr.Tools.FirstTimeConfig
 
         private void PagePrerequisites_Step3(bool withUi)
         {
-            string message;
-
-            var installed = Installation.IsSqlCeInstalled(out message);
+            var installed = Installation.IsSqlCeInstalled(out var message);
             if (withUi)
             {
                 MessageBox.Show(this, message, Text, MessageBoxButtons.OK,
@@ -212,7 +210,6 @@ namespace IpTviewr.Tools.FirstTimeConfig
 
         private void PagePrerequisites_Step4(bool withUi)
         {
-
             var path = textBoxVlc.Text;
             var isX86OnX64 = VlcIsX86OnX64;
             var installed = Installation.IsVlcInstalled(out var message, ref path, ref isX86OnX64);
@@ -353,10 +350,8 @@ namespace IpTviewr.Tools.FirstTimeConfig
 
         private void buttonTestVlc_Click(object sender, EventArgs e)
         {
-            string message;
-
             var testMedia = Installation.GetTestMedia();
-            var installed = Installation.TestVlcInstallation(out message, textBoxVlc.Text, testMedia);
+            var installed = Installation.TestVlcInstallation(out var message, textBoxVlc.Text, testMedia);
             MessageBox.Show(this, message, Text, MessageBoxButtons.OK,
                 installed ? MessageBoxIcon.Information : MessageBoxIcon.Warning);
 

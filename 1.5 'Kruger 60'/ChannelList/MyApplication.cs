@@ -31,7 +31,22 @@ namespace IpTviewr.ChannelList
 
             public DateTime LastChecked
             {
-                get => Settings.Default.LastCheckedForUpdates;
+                get
+                {
+                    try
+                    {
+                        return Settings.Default.LastCheckedForUpdates;
+                    }
+                    catch
+                    {
+                        // invalid value or not set
+                        var defaultDate = new DateTime(1970, 01, 01);
+                        Settings.Default.LastCheckedForUpdates = defaultDate;
+                        Settings.Default.Save();
+
+                        return defaultDate;
+                    }
+                }
                 set
                 {
                     Settings.Default.LastCheckedForUpdates = value;
@@ -97,7 +112,7 @@ namespace IpTviewr.ChannelList
 
         public static void HandleException(Form owner, string caption, string message, MessageBoxIcon icon, Exception ex)
         {
-            AppTelemetry.FormException(ex, owner, message);
+            if (ex != null) AppTelemetry.FormException(ex, owner, message);
             BaseProgram.HandleException(owner, caption, message, icon, ex);
         } // HandleException
 

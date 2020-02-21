@@ -65,6 +65,11 @@ namespace IpTviewr.ChannelList
 
             _splashScreen.Invoke(new Action<Thread>(ForceUiCulture), Thread.CurrentThread);
             _initializationResult = LoadConfiguration();
+
+            if (_initializationResult.InnerException != null)
+            {
+                AppTelemetry.FormException(_initializationResult.InnerException, _splashScreen.SplashForm, _initializationResult.Message);
+            } // if
         } // InitializeApp
 
         public bool OnInitializationComplete(Exception ex)
@@ -108,7 +113,7 @@ namespace IpTviewr.ChannelList
 
         public void DisplayMessage(string caption, string message, MessageBoxIcon icon)
         {
-            BaseProgram.HandleException(_splashScreen.SplashForm, caption, message, icon, null);
+            MyApplication.HandleException(_splashScreen.SplashForm, caption, message, icon, null);
         } // DisplayMessage
 
         public void DisplayException(string caption, string message, Exception exception)
@@ -130,6 +135,12 @@ namespace IpTviewr.ChannelList
                 Program.StartTelemetry();
 
                 var result = AppConfig.Load(null, _splashScreen.DisplayProgress);
+                if ((!AppConfig.IsFirstTimeConfigExecuted) || (result.IsError))
+                {
+                    MessageBox.Show(result.Message, result.Caption, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Environment.Exit(-7);
+                } // if
+
                 if (result.IsError) return result;
 
                 result = ValidateConfiguration(AppConfig.Current);

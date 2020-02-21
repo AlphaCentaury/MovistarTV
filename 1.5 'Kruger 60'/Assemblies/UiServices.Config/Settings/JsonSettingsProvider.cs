@@ -19,16 +19,33 @@ using System.Linq;
 
 namespace IpTviewr.UiServices.Configuration.Settings
 {
-    public class JsonSettingsProvider : SettingsProvider, IApplicationSettingsProvider
+    public sealed class JsonSettingsProvider : SettingsProvider, IApplicationSettingsProvider
     {
-        private string _applicationName;
         private readonly object _lock = new object();
         private JsonSettingsStore _store;
 
         public JsonSettingsProvider()
         {
-            _applicationName = string.Empty;
+            ApplicationName = string.Empty;
         } // constructor
+
+        public static void Close(ApplicationSettingsBase settings)
+        {
+            foreach (var provider in settings.Providers)
+            {
+                if (!(provider is JsonSettingsProvider jsonProvider)) continue;
+
+                jsonProvider.Close();
+            } // foreach
+        } // SaveAndClose
+
+        public void Close()
+        {
+            lock (_lock)
+            {
+                _store?.Close();
+            } // lock
+        } // Close
 
         #region Overrides of ProviderBase
 
@@ -53,11 +70,7 @@ namespace IpTviewr.UiServices.Configuration.Settings
 
         #region Overrides of SettingsProvider
 
-        public override string ApplicationName
-        {
-            get => _applicationName;
-            set => _applicationName = value;
-        } // ApplicationName
+        public override string ApplicationName { get; set; }
 
         public override SettingsPropertyValueCollection GetPropertyValues(SettingsContext context, SettingsPropertyCollection collection)
         {

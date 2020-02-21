@@ -36,6 +36,8 @@ namespace IpTviewr.UiServices.Discovery
 
         public static UiServiceProvider GetUiServiceProviderFromKey(ProviderDiscoveryRoot discoveryXml, string serviceKey)
         {
+            if (discoveryXml.ServiceProviderDiscovery == null) return null;
+
             var providers = from discovery in discoveryXml.ServiceProviderDiscovery
                             from provider in discovery.Providers
                             let uiProvider = new UiServiceProvider(provider)

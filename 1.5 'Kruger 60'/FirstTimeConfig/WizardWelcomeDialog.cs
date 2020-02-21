@@ -55,6 +55,13 @@ namespace IpTviewr.Tools.FirstTimeConfig
         {
             if (!checkAnalytics.Checked) return;
 
+            // create Google Analytics client ID
+            if (string.IsNullOrEmpty(Settings.Default.Telemetry_GoogleAnalyticsClientId))
+            {
+                Settings.Default.Telemetry_GoogleAnalyticsClientId = Guid.NewGuid().ToString("D");
+                Settings.Default.Save();
+            } // if
+
             var telemetryConfiguration = new TelemetryConfiguration(checkAnalytics.Checked, true, true);
             AppTelemetry.Start(new TelemetryFactory(), telemetryConfiguration, new Dictionary<string, IReadOnlyDictionary<string, string>>
             {

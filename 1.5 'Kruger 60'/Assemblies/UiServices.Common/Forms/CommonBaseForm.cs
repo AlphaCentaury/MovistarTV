@@ -33,6 +33,14 @@ namespace IpTviewr.UiServices.Common.Forms
 
         protected virtual bool SendLoadEvent => true;
 
+#if DEBUG
+        protected override void OnShown(EventArgs e)
+        {
+            base.OnShown(e);
+            Text = @$"[DEBUG] {Text}";
+        } // OnShown
+#endif
+
         #endregion
 
         #endregion
@@ -170,18 +178,69 @@ namespace IpTviewr.UiServices.Common.Forms
             } // try-catch
         } // SafeCall<T1, T2>
 
+        protected bool SafeCall<TResult>(Func<TResult> function, out TResult result)
+        {
+            try
+            {
+                result = function();
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                HandleException(new ExceptionEventData(ex));
+                result = default;
+
+                return false;
+            } // try-catch
+        } // SafeCall
+
+        protected bool SafeCall<T, TResult>(Func<T, TResult> function, T arg, out TResult result)
+        {
+            try
+            {
+                result = function(arg);
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                HandleException(new ExceptionEventData(ex));
+                result = default;
+
+                return false;
+            } // try-catch
+        } // SafeCall
+
+        protected bool SafeCall<T1, T2, TResult>(Func<T1, T2, TResult> function, T1 arg1, T2 arg2, out TResult result)
+        {
+            try
+            {
+                result = function(arg1, arg2);
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                HandleException(new ExceptionEventData(ex));
+                result = default;
+
+                return false;
+            } // try-catch
+        } // SafeCall
+
         #endregion
 
         #region Helper methods
 
         protected void BeginInvoke(Action action)
         {
-            BeginInvoke((Delegate) action);
+            BeginInvoke((Delegate)action);
         } // BeginInvoke
 
         protected void BeginInvoke<T>(Action<T> action, T param)
         {
-            BeginInvoke((Delegate) action, param);
+            BeginInvoke((Delegate)action, param);
         } // BeginInvoke
 
         protected void BeginInvoke<T1, T2>(Action<T1, T2> action, T1 param1, T2 param2)

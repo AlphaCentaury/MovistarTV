@@ -126,7 +126,7 @@
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="buttonRecordChannel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>109, 63</value>
+    <value>163, 63</value>
   </data>
   <data name="buttonRecordChannel.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 25</value>
@@ -159,7 +159,7 @@
     <value>Standard</value>
   </data>
   <data name="buttonDisplayChannel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 63</value>
+    <value>57, 63</value>
   </data>
   <data name="buttonDisplayChannel.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 25</value>
@@ -201,7 +201,7 @@
     <value>Standard</value>
   </data>
   <data name="buttonDetails.Location" type="System.Drawing.Point, System.Drawing">
-    <value>215, 63</value>
+    <value>269, 63</value>
   </data>
   <data name="buttonDetails.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 25</value>

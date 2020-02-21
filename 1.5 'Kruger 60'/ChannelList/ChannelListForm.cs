@@ -115,7 +115,7 @@ namespace IpTviewr.ChannelList
         {
             base.OnFormClosed(e);
 
-            _tokenSource.Cancel();
+            _tokenSource?.Cancel();
         } // OnFormClosed
 
         #endregion
@@ -240,13 +240,13 @@ namespace IpTviewr.ChannelList
 
         private void TimerRefreshEpgStatus_Tick(object sender, EventArgs e)
         {
-            statusLabelEpg.Text = (_epgDataStore == null)? Texts.EpgStatusNotStarted : Texts.EpgStatusWait;
+            statusLabelEpg.Text = (_epgDataStore == null) ? Texts.EpgStatusNotStarted : Texts.EpgStatusWait;
         } // TimerRefreshEpgStatus_Tick
 
 #pragma warning disable CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
         private void LaunchBackgroundTasks()
         {
-            PushManager.CheckForUpdatesUiAsync(this, new MyApplication.PushUpdateContext(), new TimeSpan(7,0,0,0));
+            PushManager.CheckForUpdatesUiAsync(this, new MyApplication.PushUpdateContext(), new TimeSpan(7, 0, 0, 0));
         } // LaunchBackgroundTasks
 #pragma warning restore CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
 

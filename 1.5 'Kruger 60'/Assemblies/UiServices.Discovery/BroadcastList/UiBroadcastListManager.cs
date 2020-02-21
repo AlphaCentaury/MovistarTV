@@ -540,7 +540,14 @@ namespace IpTviewr.UiServices.Discovery.BroadcastList
             var columns = Settings.CurrentColumns;
             foreach (var column in columns)
             {
-                ListView.Columns.Add(GetColumnName(column), GetColumnWidth(column));
+                var name = GetColumnName(column);
+                var listColumn = new ColumnHeader()
+                {
+                    Name = Enum.GetName(typeof(UiBroadcastListColumn), column),
+                    Text = GetColumnName(column),
+                    Width = GetColumnWidth(column),
+                };
+                ListView.Columns.Add(listColumn);
             } // foreach
             ListView.Columns[0].Width += _smallImageList.ImageSize.Width + 5;
 
@@ -589,14 +596,18 @@ namespace IpTviewr.UiServices.Discovery.BroadcastList
                 {
                     Tag = service,
                     Name = service.Key,
-                    Text = GetColumnData(service, columns[0])
+                    Text = GetColumnData(service, columns[0]),
                 };
 
-                var subItems = new string[columns.Count - 1];
+                var subItems = new ListViewItem.ListViewSubItem[columns.Count - 1];
                 var index = 0;
                 foreach (var column in columns.Skip(1))
                 {
-                    subItems[index++] = GetColumnData(service, column);
+                    subItems[index++] = new ListViewItem.ListViewSubItem
+                    {
+                        Text = GetColumnData(service, column),
+                        Name = Enum.GetName(typeof(UiBroadcastListColumn), column)
+                    };
                 } // foreach
                 item.SubItems.AddRange(subItems);
 

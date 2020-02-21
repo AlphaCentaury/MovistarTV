@@ -339,4 +339,10 @@ Please install the application using the official installer or repair the instal
   <data name="PushVersionFormat" xml:space="preserve">
     <value>Version {0}</value>
   </data>
+  <data name="AppConfigFirstTimeConfigNotExecuted" xml:space="preserve">
+    <value>Execute the 'First-time Configuration Wizard' to configure the application.</value>
+  </data>
+  <data name="AppConfigFirstTimeConfigNotExecutedCaption" xml:space="preserve">
+    <value>The application is not properly configured.</value>
+  </data>
 </root>

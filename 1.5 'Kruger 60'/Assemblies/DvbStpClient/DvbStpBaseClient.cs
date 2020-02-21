@@ -32,7 +32,7 @@ namespace IpTviewr.DvbStp.Client
         {
             MulticastIpAddress = ip;
             MulticastPort = port;
-            ReceiveDatagramTimeout = 7500; // 7.5 seconds (7.5 s * 1,000 ms)
+            ReceiveDatagramTimeout = 20000; // 20 seconds (20 s * 1,000 ms)
             OperationTimeout = 600000; // 10 minutes (10 m * 60 s * 1,000 ms)
             CancellationToken = cancellationToken;
         } // constructor

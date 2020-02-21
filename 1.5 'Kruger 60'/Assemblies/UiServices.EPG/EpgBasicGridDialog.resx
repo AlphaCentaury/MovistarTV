@@ -157,7 +157,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;dataGridPrograms.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>2</value>
   </data>
   <data name="buttonOk.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
@@ -195,44 +195,14 @@
   <data name="&gt;&gt;buttonOk.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="pictureProgramThumbnail.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Left</value>
-  </data>
-  <data name="pictureProgramThumbnail.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="pictureProgramThumbnail.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 310</value>
-  </data>
-  <data name="pictureProgramThumbnail.Size" type="System.Drawing.Size, System.Drawing">
-    <value>120, 90</value>
-  </data>
-  <data name="pictureProgramThumbnail.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms">
-    <value>Zoom</value>
-  </data>
-  <data name="pictureProgramThumbnail.TabIndex" type="System.Int32, mscorlib">
-    <value>42</value>
-  </data>
-  <data name="&gt;&gt;pictureProgramThumbnail.Name" xml:space="preserve">
-    <value>pictureProgramThumbnail</value>
-  </data>
-  <data name="&gt;&gt;pictureProgramThumbnail.Type" xml:space="preserve">
-    <value>IpTviewr.UiServices.EPG.EpgProgramPictureBox, UiServices.EPG, Version=1.5.1010.0, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;pictureProgramThumbnail.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;pictureProgramThumbnail.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
   <data name="epgMiniGuide.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Left, Right</value>
   </data>
   <data name="epgMiniGuide.Location" type="System.Drawing.Point, System.Drawing">
-    <value>138, 312</value>
+    <value>12, 312</value>
   </data>
   <data name="epgMiniGuide.Size" type="System.Drawing.Size, System.Drawing">
-    <value>484, 88</value>
+    <value>610, 88</value>
   </data>
   <data name="epgMiniGuide.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -247,7 +217,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;epgMiniGuide.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>1</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>

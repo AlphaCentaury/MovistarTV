@@ -310,4 +310,10 @@ Consulte los detalles de la excepción (más abajo) para obtener información de
   <data name="LoadProgress_Mef" xml:space="preserve">
     <value>Cargando módulos de la aplicación...</value>
   </data>
+  <data name="AppConfigFirstTimeConfigNotExecuted" xml:space="preserve">
+    <value>Ejecute el 'Asistente de configuración inicial' para configurar la aplicación.</value>
+  </data>
+  <data name="AppConfigFirstTimeConfigNotExecutedCaption" xml:space="preserve">
+    <value>La aplicación no está debidamente configurada.</value>
+  </data>
 </root>

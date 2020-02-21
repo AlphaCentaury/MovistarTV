@@ -129,20 +129,18 @@ namespace IpTviewr.Services.Record
                 isOk = true;
 
                 // Run task right now?
-                if (record.Schedule.Kind == RecordScheduleKind.RightNow)
-                {
-                    try
-                    {
-                        task.Run(null);
-                    }
-                    catch (Exception ex)
-                    {
-                        _exceptionHandler(new ExceptionEventData(Texts.TaskRunException, ex));
-                        return false;
-                    } // try-catch
-                } // if
+                if (record.Schedule.Kind != RecordScheduleKind.RightNow) return true;
 
-                return true;
+                try
+                {
+                    task.Run();
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    _exceptionHandler(new ExceptionEventData(Texts.TaskRunException, ex));
+                    return false;
+                } // try-catch
             }
             catch (Exception ex)
             {
@@ -187,21 +185,23 @@ namespace IpTviewr.Services.Record
                 return taskScheduler.RootFolder;
             } // if
 
+            TaskFolder folder = null;
             try
             {
-                return taskScheduler.GetFolder(settings.TaskSchedulerFolder);
+                folder = taskScheduler.GetFolder(settings.TaskSchedulerFolder);
             }
             catch (DirectoryNotFoundException)
             {
-                // folder does not exist: create it
-                return taskScheduler.RootFolder.CreateFolder(settings.TaskSchedulerFolder);
+                // folder does not exists
             }
             catch (FileNotFoundException)
             {
-                // folder does not exist: create it
-                return taskScheduler.RootFolder.CreateFolder(settings.TaskSchedulerFolder);
-
+                // folder does not exists
             } // try-catch
+
+            folder ??= taskScheduler.RootFolder.CreateFolder(settings.TaskSchedulerFolder);
+
+            return folder ?? throw new IOException();
         } // GetTaskSchedulerFolder
 
         private void GetDuration(RecordTask task)

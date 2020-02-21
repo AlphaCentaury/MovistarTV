@@ -57,8 +57,11 @@ namespace IpTviewr.Telemetry
                 {"CurrentUICulture", CultureInfo.CurrentUICulture.Name},
                 {"InstalledUICulture", CultureInfo.InstalledUICulture.Name},
                 {"MonitorCount", SystemInformation.MonitorCount.ToString(CultureInfo.InvariantCulture)},
-                {"DpiX", dpiX.ToString(CultureInfo.InvariantCulture) },
-                {"DpiY", dpiY.ToString(CultureInfo.InvariantCulture) },
+                {"DPI", string.Format(CultureInfo.InvariantCulture, "{0}x{1}", dpiX, dpiY) },
+                {"ScreenResolution", string.Format(CultureInfo.InvariantCulture, "{0}x{1}",Screen.PrimaryScreen.Bounds.Width, Screen.PrimaryScreen.Bounds.Height)},
+                {"ViewportSize", string.Format(CultureInfo.InvariantCulture, "{0}x{1}", SystemInformation.WorkingArea.Width, SystemInformation.WorkingArea.Height)},
+                {"ScreenColors", string.Format(CultureInfo.InvariantCulture, "{0}-bits", Screen.PrimaryScreen.BitsPerPixel)},
+                {"OSVersion", Environment.OSVersion.ToString()},
             });
         } // Start
 

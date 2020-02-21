@@ -45,15 +45,13 @@ namespace IpTviewr.UiServices.EPG
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dataGridPrograms = new System.Windows.Forms.DataGridView();
-            this.buttonOk = new System.Windows.Forms.Button();
             this.columnChannel = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.columnProgramNow = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.columnProgramThen = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.columnProgramAfter = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.pictureProgramThumbnail = new IpTviewr.UiServices.EPG.EpgProgramPictureBox();
+            this.buttonOk = new System.Windows.Forms.Button();
             this.epgMiniGuide = new IpTviewr.UiServices.EPG.EpgMiniGuideButtons();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridPrograms)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureProgramThumbnail)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridPrograms
@@ -88,14 +86,6 @@ namespace IpTviewr.UiServices.EPG
             this.dataGridPrograms.ShowRowErrors = false;
             this.dataGridPrograms.SelectionChanged += new System.EventHandler(this.dataGridPrograms_SelectionChanged);
             // 
-            // buttonOk
-            // 
-            resources.ApplyResources(this.buttonOk, "buttonOk");
-            this.buttonOk.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.buttonOk.Image = global::IpTviewr.UiServices.EPG.Properties.CommonUiResources.Action_Ok_16x16;
-            this.buttonOk.Name = "buttonOk";
-            this.buttonOk.UseVisualStyleBackColor = true;
-            // 
             // columnChannel
             // 
             this.columnChannel.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
@@ -124,14 +114,13 @@ namespace IpTviewr.UiServices.EPG
             this.columnProgramAfter.Name = "columnProgramAfter";
             this.columnProgramAfter.ReadOnly = true;
             // 
-            // pictureProgramThumbnail
+            // buttonOk
             // 
-            resources.ApplyResources(this.pictureProgramThumbnail, "pictureProgramThumbnail");
-            this.pictureProgramThumbnail.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pictureProgramThumbnail.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureProgramThumbnail.InitialImage = global::IpTviewr.UiServices.EPG.Properties.Resources.EpgNoProgramImage;
-            this.pictureProgramThumbnail.Name = "pictureProgramThumbnail";
-            this.pictureProgramThumbnail.TabStop = false;
+            resources.ApplyResources(this.buttonOk, "buttonOk");
+            this.buttonOk.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.buttonOk.Image = global::IpTviewr.UiServices.EPG.Properties.CommonUiResources.Action_Ok_16x16;
+            this.buttonOk.Name = "buttonOk";
+            this.buttonOk.UseVisualStyleBackColor = true;
             // 
             // epgMiniGuide
             // 
@@ -149,7 +138,6 @@ namespace IpTviewr.UiServices.EPG
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.buttonOk);
-            this.Controls.Add(this.pictureProgramThumbnail);
             this.Controls.Add(this.epgMiniGuide);
             this.Controls.Add(this.dataGridPrograms);
             this.MinimizeBox = false;
@@ -157,7 +145,6 @@ namespace IpTviewr.UiServices.EPG
             this.ShowInTaskbar = false;
             this.Load += new System.EventHandler(this.EpgBasicGridDialog_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridPrograms)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureProgramThumbnail)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -167,7 +154,6 @@ namespace IpTviewr.UiServices.EPG
         private System.Windows.Forms.DataGridView dataGridPrograms;
         private System.Windows.Forms.Button buttonOk;
         private IpTviewr.UiServices.EPG.EpgMiniGuideButtons epgMiniGuide;
-        private IpTviewr.UiServices.EPG.EpgProgramPictureBox pictureProgramThumbnail;
         private System.Windows.Forms.DataGridViewTextBoxColumn columnChannel;
         private System.Windows.Forms.DataGridViewTextBoxColumn columnProgramNow;
         private System.Windows.Forms.DataGridViewTextBoxColumn columnProgramThen;

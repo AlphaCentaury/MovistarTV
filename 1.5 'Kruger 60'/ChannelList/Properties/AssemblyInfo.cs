@@ -17,8 +17,8 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute parameters to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("IPTViewr: Canales y servicios movistar+")]
-[assembly: AssemblyDescription("ChannelList app")]
+[assembly: AssemblyTitle("IpTviewr.ChannelList")]
+[assembly: AssemblyDescription("IPTViewr for movistar+")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCopyright(SolutionVersion.DefaultCopyright)]
 [assembly: AssemblyCulture("")]

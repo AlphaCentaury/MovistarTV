@@ -21,18 +21,25 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Net.Mime;
+using System.Security.AccessControl;
+using System.Windows.Forms;
 using IpTviewr.Common.Telemetry;
 using IpTviewr.Tools.FirstTimeConfig.Properties;
+using IpTviewr.UiServices.Configuration.Properties;
+using IpTviewr.UiServices.Configuration.Settings;
+using Microsoft.Win32;
 
 namespace IpTviewr.Tools.FirstTimeConfig
 {
     internal class Configuration
     {
-        public static bool Create(string vlcPath, bool vlcIsX86onX64, string rootSaveLocation, TelemetryConfiguration telemetry, EpgConfig epg, bool sdPriority, string xmlConfigPath, out string message)
+        public static bool Create(string vlcPath, bool vlcIsX86OnX64, string rootSaveLocation, TelemetryConfiguration telemetry, EpgConfig epg, bool sdPriority, string xmlConfigPath, out string message)
         {
             try
             {
-                // Settings.Telemetry = telemetry
+                Settings.Default.Telemetry = telemetry;
+                Settings.Default.Save();
+                JsonSettingsProvider.Close(Settings.Default);
 
                 var user = new UserConfig()
                 {
@@ -93,7 +100,7 @@ namespace IpTviewr.Tools.FirstTimeConfig
                     Directory.CreateDirectory(location.Path);
                 } // foreach
 
-                var tvPlayers = GetTvPlayers(vlcPath, vlcIsX86onX64);
+                var tvPlayers = GetTvPlayers(vlcPath, vlcIsX86OnX64);
                 var movistarPlusIpTvProviderSettings = new IpTvProviderSettings();
 
                 var config = AppConfig.CreateForUserConfig(user);
@@ -102,6 +109,9 @@ namespace IpTviewr.Tools.FirstTimeConfig
                 config.RegisterConfiguration(new NetworkSettingsRegistration(), null, true);
                 config.RegisterConfiguration(new IpTvProviderSettingsRegistration(), movistarPlusIpTvProviderSettings);
 
+                message = CreateRegistryEntries();
+                if (message != null) return false;
+
                 config.Save(xmlConfigPath);
                 message = Texts.ConfigurationCreateOk;
 
@@ -109,7 +119,7 @@ namespace IpTviewr.Tools.FirstTimeConfig
             }
             catch (Exception ex)
             {
-                message = string.Format(Texts.ConfigurationCreateException, ex.ToString());
+                message = string.Format(Texts.ConfigurationCreateException, ex);
                 return false;
             } // try-catch
         } // Create
@@ -117,21 +127,19 @@ namespace IpTviewr.Tools.FirstTimeConfig
         private static TvPlayersSettings GetTvPlayers(string vlcPath, bool isX86OnX64)
         {
             const string vlcGuid = "{C12055FC-315A-47C4-B9CC-48D2E6ECD8FA}";
-            const string VlcX86Guid = "{364A5B10-6895-438F-8FBE-405E0D816721}";
+            const string vlcX86Guid = "{364A5B10-6895-438F-8FBE-405E0D816721}";
             const string vlcSameGuid = "{4154BC96-5FE0-45C2-9895-083C4FB4C8CE}";
             const string vlcX86SameGuid = "{076D734D-D8F2-4CBB-8AAE-B26237D99BCD}";
             const string mpcGuid = "{8FFA2EE6-8823-40B1-B20F-F962389D4B07}";
             const string mpcX86Guid = "{289A17CA-2A6D-4F3C-96DA-9BC91DCB4489}";
 
-            List<TvPlayer> players;
-            TvPlayer player;
-            players = new List<TvPlayer>(3);
+            var players = new List<TvPlayer>(3);
 
             // VLC
-            player = new TvPlayer()
+            var player = new TvPlayer
             {
                 Name = isX86OnX64? Texts.GetTvPlayersVlcX86 : Texts.GetTvPlayersVlc,
-                Id = new Guid(isX86OnX64? VlcX86Guid : vlcGuid),
+                Id = new Guid(isX86OnX64? vlcX86Guid : vlcGuid),
                 Path = vlcPath,
                 Arguments = new[]
                 {
@@ -201,5 +209,17 @@ namespace IpTviewr.Tools.FirstTimeConfig
                 players.Add(player);
             } // local AddMpcPlayer
         } // GetTvPlayers
+
+        private static string CreateRegistryEntries()
+        {
+            using var keyCurrentUser = Registry.CurrentUser;
+            var fullKeyPath = AppConfig.RegistryKey_Root;
+            var rootKey = string.Format(fullKeyPath, Application.ProductVersion);
+            using var root = keyCurrentUser.OpenSubKey(rootKey, true);
+            if (root == null) return string.Format(AppConfig.RegistryMissingKey, rootKey);
+
+            root.SetValue(AppConfig.RegistryValue_FirstTimeConfig, "1");
+            return null;
+        } // CreateRegistryEntries
     } // class Configuration
 } // namespace

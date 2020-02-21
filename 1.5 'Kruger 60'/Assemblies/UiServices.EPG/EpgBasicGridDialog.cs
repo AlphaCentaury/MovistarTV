@@ -216,17 +216,10 @@ namespace IpTviewr.UiServices.EPG
         {
             if (cellIndex < 1)
             {
-                pictureProgramThumbnail.Visible = false;
                 epgMiniGuide.Visible = false;
             }
             else
             {
-                //pictureProgramThumbnail.SetImage(Properties.Resources.EpgLoadingProgramImage);
-                pictureProgramThumbnail.Visible = true;
-
-                // TODO: load program image (async)
-                pictureProgramThumbnail.SetImage(Properties.Resources.EpgNoProgramImage);
-
                 epgMiniGuide.Visible = true;
                 epgMiniGuide.GoTo(cellIndex);
             } // if-else
@@ -240,7 +233,6 @@ namespace IpTviewr.UiServices.EPG
 
             if (rowIndex == -1)
             {
-                pictureProgramThumbnail.Visible = false;
                 epgMiniGuide.Visible = false;
                 return;
             } // if

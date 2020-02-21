@@ -17,7 +17,7 @@
   <?include Strings.wxi ?>
   <Product Id="$(var.ProductId)" Name="!(loc.ProductName)" Language="!(loc.LANGUAGE)" Codepage="Windows-1252" Version="$(var.Version)" Manufacturer="$(var.Manufacturer)"  UpgradeCode="$(var.UpgradeCode)">
     <Package Id="*" InstallerVersion="405" Compressed="yes" InstallScope="perUser"
-      Description="!(loc.PackageDescription)" Languages="!(loc.LANGUAGE)" Manufacturer="http://www.alphacentaury.org" />
+             Description="!(loc.PackageDescription)" Languages="!(loc.LANGUAGE)" Manufacturer="$(var.Manufacturer)" />
 
     <!-- Ensure .NET Framework 4.6.2 is installed -->
     <PropertyRef Id="WIX_IS_NETFRAMEWORK_462_OR_LATER_INSTALLED"/>
@@ -33,7 +33,7 @@
     <WixVariable Id='WixUIBannerBmp' Value='bannrbmp.bmp'/>
     <WixVariable Id='WixUIDialogBmp' Value='dlgbmp.bmp'/>
     <!-- ATENCION: WixVariable no permite utilizar !(loc.xxx); por tanto, el nombre del archivo de licencia va a "piñon fijo"; hay que buscar la forma de solucionar esto; cuando se crea un instalador para otro idioma es necesario modificar manualmente el nombre del archivo para que se incluya el acuerdo de licencia en el idioma correcto -->
-    <WixVariable Id="WixUILicenseRtf" Value="$(var.SolutionDir)movistartv.license.rtf" />
+    <WixVariable Id="WixUILicenseRtf" Value="$(var.SolutionDir)movistartv.license.es.rtf" />
 
     <Icon Id="Icon.Product" SourceFile="iptviewr-for-movistarplus_alt.ico"/>
     <Property Id="ARPPRODUCTICON" Value="Icon.Product" />
@@ -64,6 +64,7 @@
         <ComponentGroupRef Id="Telemetry" />
         <ComponentGroupRef Id="ThirdParty" />
         <ComponentGroupRef Id="Redist" />
+        <ComponentGroupRef Id="Services" />
         <ComponentGroupRef Id="UIServices" />
         <ComponentGroupRef Id="Uninstall" />
         <FeatureRef Id="Feature.Logos" />

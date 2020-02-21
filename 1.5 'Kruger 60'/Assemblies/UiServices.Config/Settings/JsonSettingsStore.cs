@@ -61,8 +61,7 @@ namespace IpTviewr.UiServices.Configuration.Settings
         {
             if (_loaded) return;
 
-            _file = new FileStream(_storePath, FileMode.Open, FileAccess.ReadWrite, FileShare.Read, 4096);
-            _file.Seek(0, SeekOrigin.Begin);
+            OpenFile();
             using var reader = new StreamReader(_file, XmlSerialization.Utf8NoBomEncoding.Value, false, 4096, true);
             _store = JObject.Load(new JsonTextReader(reader));
             _loaded = true;
@@ -72,8 +71,10 @@ namespace IpTviewr.UiServices.Configuration.Settings
         {
             if (!_isDirty) return;
 
+            OpenFile();
             _file.Seek(0, SeekOrigin.Begin);
             _file.SetLength(0);
+
             using (var writer = new StreamWriter(_file, XmlSerialization.Utf8NoBomEncoding.Value, 4096, true))
             {
                 using var jsonWriter = new JsonTextWriter(writer)
@@ -86,12 +87,29 @@ namespace IpTviewr.UiServices.Configuration.Settings
             _isDirty = false;
         } // Save
 
+        public void Close()
+        {
+            if (_file == null) return;
+
+            Save();
+            _file.Close();
+            _file = null;
+        } // Close
+
         public void Dispose()
         {
             Save();
             _file?.Close();
             _file = null;
         } // Dispose
+
+        private void OpenFile()
+        {
+            if (_file != null) return;
+
+            _file = new FileStream(_storePath, FileMode.Open, FileAccess.ReadWrite, FileShare.Read, 4096);
+            _file.Seek(0, SeekOrigin.Begin);
+        } // OpenFile
 
         private object Get(SettingsProperty property)
         {

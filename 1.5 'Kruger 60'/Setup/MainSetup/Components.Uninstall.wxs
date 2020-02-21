@@ -20,6 +20,8 @@
       <Component Id="Uninstall.Folders" Directory="BaseFolder" Guid="$(var.Guid.Uninstall.Folders)">
         <RemoveFile Id="Purge_BaseFolder" Name="*.*" On="uninstall" />
         <RemoveFile Id="Purge_INSTALLFOLDER" Name="*.*" On="uninstall" Directory="INSTALLFOLDER" />
+        <RemoveFile Id="Purge_InstallFolder.x86" Name="*.*" On="uninstall" Directory="InstallFolder.x86" />
+        <RemoveFile Id="Purge_InstallFolder.x64" Name="*.*" On="uninstall" Directory="InstallFolder.x64" />
         <RemoveFile Id="Purge_InstallFolder.es" Name="*.*" On="uninstall" Directory="InstallFolder.es"/>
         <RemoveFile Id="Purge_RedistFolderBase" Name="*.*" On="uninstall" Directory="RedistFolderBase"/>
         <RemoveFile Id="Purge_RedistFolder" Name="*.*" On="uninstall" Directory="RedistFolder"/>
@@ -35,6 +37,8 @@
         <RemoveFolder Id="Remove_DvbFolder" On="uninstall" Directory="Folder.IPTViewr" />
         <RemoveFolder Id="Remove_BaseFolder" On="uninstall" Directory="BaseFolder"/>
         <RemoveFolder Id="Remove_INSTALLFOLDER" On="uninstall" Directory="INSTALLFOLDER"/>
+        <RemoveFolder Id="Remove_InstallFolder.x86" On="uninstall" Directory="InstallFolder.x86" />
+        <RemoveFolder Id="Remove_InstallFolder.x64" On="uninstall" Directory="InstallFolder.x64" />
         <RemoveFolder Id="Remove_InstallFolder.es" On="uninstall" Directory="InstallFolder.es"/>
         <RemoveFolder Id="Remove_RedistFolderBase" On="uninstall" Directory="RedistFolderBase"/>
         <RemoveFolder Id="Remove_RedistFolder" On="uninstall" Directory="RedistFolder"/>

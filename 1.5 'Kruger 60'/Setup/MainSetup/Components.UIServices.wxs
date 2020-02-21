@@ -23,8 +23,8 @@
 
     <ComponentGroup Id="UIServices.Assemblies">
       <Component Id="UIServices.Assemblies" Directory="INSTALLFOLDER" Guid="$(var.Guid.UIServices.Assemblies)">
-        <File Id="AlphaCentaury.Licensing.Data.Ui.dll" Source="$(var.AlphaCentaury.Licensing.Data.Ui.TargetDir)AlphaCentaury.Licensing.Data.dll" />
-        <File Id="AlphaCentaury.Licensing.Data.Ui.pdb" Source="$(var.AlphaCentaury.Licensing.Data.Ui.TargetDir)AlphaCentaury.Licensing.Data.pdb" />
+        <File Id="AlphaCentaury.Licensing.Data.Ui.dll" Source="$(var.AlphaCentaury.Licensing.Data.Ui.TargetDir)AlphaCentaury.Licensing.Data.Ui.dll" />
+        <File Id="AlphaCentaury.Licensing.Data.Ui.pdb" Source="$(var.AlphaCentaury.Licensing.Data.Ui.TargetDir)AlphaCentaury.Licensing.Data.Ui.pdb" />
         <File Id="UiServices.Common.dll" Source="$(var.UiServices.Common.TargetDir)UiServices.Common.dll" />
         <File Id="UiServices.Common.pdb" Source="$(var.UiServices.Common.TargetDir)UiServices.Common.pdb" />
         <File Id="UiServices.Configuration.dll" Source="$(var.UiServices.Config.TargetDir)UiServices.Configuration.dll" />

@@ -50,7 +50,7 @@ namespace IpTviewr.Tools.FirstTimeConfig
         public static void GetProgramFilesFolder([NotNull] out string folder, [CanBeNull] out string altFolder)
         {
             folder = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles);
-            altFolder = Is32BitWindows ? null : Environment.GetFolderPath(Environment.SpecialFolder.CommonProgramFilesX86);
+            altFolder = Is32BitWindows ? null : Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86);
         } // GetProgramFilesAnyFolder
 
         public static string GetTestMedia()
@@ -69,7 +69,13 @@ namespace IpTviewr.Tools.FirstTimeConfig
                         _ => null,
                     }; // switch
 
-                    if (folder == null) return null;
+                    switch (folder)
+                    {
+                        case "":
+                            continue;
+                        case null:
+                            return null;
+                    } // switch
 
                     var files = Directory.GetFiles(folder);
                     var q = from file in files
@@ -93,17 +99,17 @@ namespace IpTviewr.Tools.FirstTimeConfig
         {
             try
             {
-                using (var process = new Process())
+                using var process = new Process
                 {
-                    process.StartInfo = new ProcessStartInfo
+                    StartInfo = new ProcessStartInfo
                     {
                         FileName = url,
                         UseShellExecute = true,
                         ErrorDialog = true,
                         ErrorDialogParentHandle = parent.Handle
-                    };
-                    process.Start();
-                } // using process
+                    }
+                };
+                process.Start();
             }
             catch (Exception ex)
             {
@@ -119,18 +125,18 @@ namespace IpTviewr.Tools.FirstTimeConfig
 
             try
             {
-                using (var process = new Process())
+                using var process = new Process
                 {
-                    process.StartInfo = new ProcessStartInfo
+                    StartInfo = new ProcessStartInfo
                     {
                         FileName = filename,
                         UseShellExecute = true,
                         ErrorDialog = true,
                         ErrorDialogParentHandle = parent?.Handle ?? IntPtr.Zero
-                    };
-                    process.Start();
-                    return null;
-                } // using process
+                    }
+                };
+                process.Start();
+                return null;
             }
             catch (Exception ex)
             {
@@ -140,11 +146,9 @@ namespace IpTviewr.Tools.FirstTimeConfig
 
         private static bool IsAssemblyInstalled(string assemblyName, out Version assemblyVersion, out Version fileVersion)
         {
-            AppDomain domain;
-
             assemblyVersion = new Version();
             fileVersion = new Version();
-            domain = null;
+            AppDomain domain = null;
 
             try
             {
@@ -286,12 +290,15 @@ namespace IpTviewr.Tools.FirstTimeConfig
         {
             try
             {
+                bool exists;
+
                 // locate VLC at it's default location
                 GetProgramFilesFolder(out var programFiles, out var programFiles86);
+
                 if (string.IsNullOrEmpty(path))
                 {
                     path = Path.Combine(programFiles, Resources.VlcDefaultLocation);
-                    var exists = File.Exists(path);
+                    exists = File.Exists(path);
                     isX86OnX64 = false;
 
                     if (!exists && (programFiles86 != null))
@@ -299,14 +306,31 @@ namespace IpTviewr.Tools.FirstTimeConfig
                         // try x86 version
                         path = Path.Combine(programFiles86, Resources.VlcDefaultLocation);
                         exists = File.Exists(path);
-                        isX86OnX64 = true;
-                    } // if
 
-                    if (!exists)
-                    {
-                        message = string.Format(Texts.IsVlcInstalledNotInstalled, path);
-                        return false;
+                        if (exists)
+                        {
+                            isX86OnX64 = true;
+                        }
+                        else
+                        {
+                            // revert path to Program Files
+                            path = Path.Combine(programFiles, Resources.VlcDefaultLocation);
+                        } // if-else
                     } // if
+                }
+                else
+                {
+                    exists = File.Exists(path);
+                    if (exists)
+                    {
+                        isX86OnX64 = (programFiles86 != null) && (path.StartsWith(programFiles86, StringComparison.CurrentCultureIgnoreCase));
+                    } // if
+                } // if-else
+
+                if (!exists)
+                {
+                    message = string.Format(Texts.IsVlcInstalledNotInstalled, path);
+                    return false;
                 } // if
 
                 // check VLC.exe file version
@@ -351,19 +375,19 @@ namespace IpTviewr.Tools.FirstTimeConfig
         {
             try
             {
-                using (var process = new Process())
+                using var process = new Process
                 {
-                    process.StartInfo = new ProcessStartInfo
+                    StartInfo = new ProcessStartInfo
                     {
                         FileName = path,
-                        Arguments = testVideoPath != null ? $"\"{testVideoPath}\"" : null,
+                        Arguments = testVideoPath != null ? $"\"{testVideoPath}\"" : "",
                         UseShellExecute = false
-                    };
-                    process.Start();
+                    }
+                };
+                process.Start();
 
-                    // TODO: WaitForExit in a non-blocking manner
-                    // process.WaitForExit();
-                } // using process
+                // TODO: WaitForExit in a non-blocking manner
+                // process.WaitForExit();
             }
             catch (Exception ex)
             {

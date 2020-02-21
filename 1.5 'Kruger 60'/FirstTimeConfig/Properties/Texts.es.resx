@@ -311,7 +311,7 @@ Si sobreescribe el archivo se perderá cualquier configuración personalizada.
     <value>IPTViewr: decodificador virtual para movistar+</value>
   </data>
   <data name="ProductMainProgramName" xml:space="preserve">
-    <value>Canales movistar+</value>
+    <value>IPTViewr para movistar+</value>
   </data>
   <data name="ProductShortName" xml:space="preserve">
     <value>v1.5 “Kruger 60” beta 1</value>

@@ -50,6 +50,14 @@ namespace IpTviewr.UiServices.Forms
             } // if
         } // SelectProviderDialog_Load
 
+        protected override void OnShown(EventArgs e)
+        {
+            base.OnShown(e);
+
+            if (_providersDiscovery != null) return;
+            SafeCall(LoadServiceProviderList, false, out _);
+        } // OnShown
+
         private void listViewServiceProviders_SelectedIndexChanged(object sender, EventArgs e)
         {
             SafeCall(SelectedIndexChanged);
@@ -102,7 +110,7 @@ namespace IpTviewr.UiServices.Forms
         public static UiServiceProvider GetLastUserSelectedProvider(string lastSelectedServiceProvider)
         {
             var lastSelectedProvider = lastSelectedServiceProvider;
-            if (lastSelectedProvider == null) return null;
+            if (string.IsNullOrEmpty(lastSelectedProvider)) return null;
 
             var baseIpAddress = AppConfig.Current.ContentProvider.Bootstrap.MulticastAddress;
             var discovery = AppConfig.Current.Cache.LoadXml<ProviderDiscoveryRoot>("ProviderDiscovery", baseIpAddress);
@@ -116,15 +124,14 @@ namespace IpTviewr.UiServices.Forms
             var providerTexts = AppConfig.Current.IpTvService.Texts.Provider;
             try
             {
-                ProviderDiscoveryRoot discovery;
                 var baseIpAddress = AppConfig.Current.ContentProvider.Bootstrap.MulticastAddress;
 
                 // can load from cache?
-                discovery = null;
+                ProviderDiscoveryRoot discovery = null;
                 if (fromCache)
                 {
                     discovery = AppConfig.Current.Cache.LoadXml<ProviderDiscoveryRoot>("ProviderDiscovery", baseIpAddress);
-                    if (discovery == null)
+                    if (discovery?.ServiceProviderDiscovery == null)
                     {
                         return false;
                     } // if
