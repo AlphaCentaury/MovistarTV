@@ -1,4 +1,4 @@
-// ==============================================================================
+﻿// ==============================================================================
 // 
 //   Copyright (C) 2014-2020, GitHub/Codeplex user AlphaCentaury
 //   All rights reserved.
@@ -204,12 +204,42 @@ namespace IpTviewr.UiServices.Configuration.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon GenericFile {
+            get {
+                object obj = ResourceManager.GetObject("GenericFile", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap NetworkSettings_32 {
             get {
                 object obj = ResourceManager.GetObject("NetworkSettings_32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon NotFound {
+            get {
+                object obj = ResourceManager.GetObject("NotFound", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon PlayerNotFound {
+            get {
+                object obj = ResourceManager.GetObject("PlayerNotFound", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
             }
         }
         

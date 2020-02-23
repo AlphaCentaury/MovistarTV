@@ -69,7 +69,24 @@ namespace IpTviewr.Core
                 } // using
             } // if-else
 
-            Launch(player, service, !tvPlayerSettings.DirectLaunch);
+            try
+            {
+                Launch(player, service, !tvPlayerSettings.DirectLaunch);
+            }
+            catch (Exception e)
+            {
+                var box = new ExceptionMessageBox()
+                {
+                    Caption = owner.Text,
+                    Text = string.Format(Texts.ExternalPlayerLaunchError, player.Name, service.DisplayName),
+                    InnerException = e,
+                    Beep = true,
+                    Symbol = ExceptionMessageBoxSymbol.Warning,
+                    Buttons = ExceptionMessageBoxButtons.OK,
+                };
+                
+                box.Show(owner);
+            } // try-catch
         } // ShowTvChannel
 
         public static void Launch(TvPlayer player, UiBroadcastService service, bool throughShortcut)
@@ -77,7 +94,7 @@ namespace IpTviewr.Core
             if (!File.Exists(player.Path))
             {
                 var ex = new FileNotFoundException();
-                throw new FileNotFoundException(ex.Message + "\r\n" + player.Path);
+                throw new FileNotFoundException($"{ex.Message}\r\n{player.Path}");
             } // if
 
             if (_launchParamKeys == null)

@@ -186,30 +186,31 @@ namespace IpTviewr.UiServices.Configuration.Settings.TvPlayers.Editors
 
         private void FillList(bool keepSelection, bool selectDefault)
         {
-            FillList(listViewPlayers, _players, Settings.DefaultPlayerId, keepSelection, selectDefault);
+            FillList(listViewPlayers, _players, Settings.DefaultPlayerId, keepSelection, selectDefault, false);
         } // FillList
 
-        internal static void FillList(ListView list, IList<TvPlayer> players, Guid defaultPlayerId, bool keepSelection, bool selectDefault)
+        internal static void FillList(ListView list, ICollection<TvPlayer> players, Guid defaultPlayerId, bool keepSelection, bool selectDefault, bool ignoreMissingPlayers)
         {
-            ListViewItem[] items;
-            int index;
-            int selectedIndex;
+            var selectedIndex = (list.SelectedItems.Count > 0) ? list.SelectedItems[0].Index : -1;
 
-            selectedIndex = (list.SelectedItems.Count > 0) ? list.SelectedItems[0].Index : -1;
+            list.BeginUpdate();
+            list.Items.Clear();
 
-            items = new ListViewItem[players.Count];
-            index = 0;
             foreach (var player in players)
             {
-                items[index++] = GetTvPlayerListItem(player, defaultPlayerId, list.Font, selectDefault);
+                var item = GetTvPlayerListItem(player, defaultPlayerId, list.Font, selectDefault);
+                if (!ignoreMissingPlayers || (item.ImageKey != TvPlayersSettings.PlayerNotFoundKey))
+                {
+                    list.Items.Add(item);
+                }
             } // foreach
 
-            list.Items.Clear();
-            list.Items.AddRange(items);
             if ((selectedIndex >= 0) && (keepSelection))
             {
                 list.Items[selectedIndex].Selected = true;
             } // if
+
+            list.EndUpdate();
         } // FillList
 
         private static ListViewItem GetTvPlayerListItem(TvPlayer player, Guid defaultPlayerId, Font listFont, bool selectDefault)
@@ -219,13 +220,13 @@ namespace IpTviewr.UiServices.Configuration.Settings.TvPlayers.Editors
                 Tag = player,
                 ImageKey = TvPlayersSettingsRegistration.Settings.GetPlayerIconKey(player.Path)
             };
-            if (player.Id == defaultPlayerId)
+
+            if (player.Id != defaultPlayerId) return item;
+
+            item.Font = new Font(listFont, FontStyle.Bold);
+            if (selectDefault)
             {
-                item.Font = new Font(listFont, FontStyle.Bold);
-                if (selectDefault)
-                {
-                    item.Selected = true;
-                } // if
+                item.Selected = true;
             } // if
 
             return item;

@@ -14,15 +14,20 @@
 using IpTviewr.UiServices.Configuration.Schema2014.Config;
 using System;
 using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
 using System.Xml.Serialization;
 using IpTviewr.Common.Configuration;
+using IpTviewr.UiServices.Configuration.Properties;
 
 namespace IpTviewr.UiServices.Configuration.Settings.TvPlayers
 {
     [XmlRoot("TvPlayers", Namespace = ConfigCommon.ConfigXmlNamespace)]
     public class TvPlayersSettings : IConfigurationItem
     {
+        internal const string PlayerNoIconKey = "<empty>";
+        internal const string PlayerNotFoundKey = "<null>";
+
         private TvPlayer _defaultPlayer;
         private Guid _defaultPlayerGuid;
 
@@ -85,12 +90,39 @@ namespace IpTviewr.UiServices.Configuration.Settings.TvPlayers
 
         public string GetPlayerIconKey(string playerPath)
         {
-            var key = playerPath.ToLower();
-            if (!PlayerIcons.Images.ContainsKey(key))
+            if (PlayerIcons.Images.ContainsKey(playerPath)) return playerPath;
+
+            Icon icon = null;
+            var key = playerPath;
+
+            if (File.Exists(playerPath))
             {
-                var icon = Icon.ExtractAssociatedIcon(playerPath);
-                PlayerIcons.Images.Add(key, icon);
-            } // if
+                try
+                {
+                    icon = Icon.ExtractAssociatedIcon(playerPath);
+                }
+                catch
+                {
+                    // ignore
+                } // try-catch
+
+                if (icon == null)
+                {
+                    key = PlayerNoIconKey;
+                    if (PlayerIcons.Images.ContainsKey(key)) return key;
+
+                    icon = Resources.GenericFile;
+                }
+            }
+            else
+            {
+                key = PlayerNotFoundKey;
+                if (PlayerIcons.Images.ContainsKey(key)) return key;
+
+                icon = Resources.NotFound;
+            } // if-else
+
+            PlayerIcons.Images.Add(key, icon);
 
             return key;
         } // GetPlayerIconKey

@@ -43,7 +43,7 @@ namespace IpTviewr.UiServices.Configuration.Settings.TvPlayers
             listViewPlayers.TileSize = new Size((listViewPlayers.Width - SystemInformation.VerticalScrollBarWidth - 6),
                 settings.PlayerIcons.ImageSize.Height + 4);
 
-            TvPlayersSettingsEditor.FillList(listViewPlayers, new List<TvPlayer>(settings.Players), settings.DefaultPlayerId, false, true);
+            TvPlayersSettingsEditor.FillList(listViewPlayers, settings.Players, settings.DefaultPlayerId, false, true, true);
         } // SelectTvPlayerDialog_Load
 
         private void listViewPlayers_SelectedIndexChanged(object sender, EventArgs e)

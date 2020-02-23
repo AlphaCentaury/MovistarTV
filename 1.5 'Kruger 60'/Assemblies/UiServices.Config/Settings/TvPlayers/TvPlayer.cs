@@ -64,10 +64,12 @@ namespace IpTviewr.UiServices.Configuration.Settings.TvPlayers
             {
                 return ConfigCommon.ErrorMissingEmpty("Path", ownerTag, "name", Name);
             } // if
+            /*
             if (!System.IO.File.Exists(Path))
             {
                 return string.Format(Properties.Texts.PlayerConfigValidationPathNotFound, Name, Path);
             } // if
+            */
 
             var validationError = ConfigCommon.ValidateArray(Arguments, "Argument", "Arguments", ownerTag);
             if (validationError != null) return validationError;
