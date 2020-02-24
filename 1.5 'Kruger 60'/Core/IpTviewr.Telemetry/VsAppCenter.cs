@@ -62,6 +62,7 @@ namespace IpTviewr.Telemetry
                 {"ViewportSize", string.Format(CultureInfo.InvariantCulture, "{0}x{1}", SystemInformation.WorkingArea.Width, SystemInformation.WorkingArea.Height)},
                 {"ScreenColors", string.Format(CultureInfo.InvariantCulture, "{0}-bits", Screen.PrimaryScreen.BitsPerPixel)},
                 {"OSVersion", Environment.OSVersion.ToString()},
+                {"OSBitness", Environment.Is64BitOperatingSystem? "64 bits" : "32 bits" }
             });
         } // Start
 

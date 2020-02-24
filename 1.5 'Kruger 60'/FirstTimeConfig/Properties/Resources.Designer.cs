@@ -1,4 +1,4 @@
-// ==============================================================================
+﻿// ==============================================================================
 // 
 //   Copyright (C) 2014-2020, GitHub/Codeplex user AlphaCentaury
 //   All rights reserved.
@@ -336,7 +336,7 @@ namespace IpTviewr.Tools.FirstTimeConfig.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 13fb25ea-ccce-4909-9080-5fe029694e7e.
+        ///   Looks up a localized string similar to 36b7045d-3bfe-4166-bd7c-4b012f5365e0.
         /// </summary>
         internal static string TelemetryAppCenter_AppSecret {
             get {

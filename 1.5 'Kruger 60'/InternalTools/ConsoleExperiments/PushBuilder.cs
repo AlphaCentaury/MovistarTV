@@ -39,24 +39,26 @@ namespace IpTviewr.Internal.Tools.ConsoleExperiments
                 Timestamp = DateTime.UtcNow,
                 Updates = new List<PushUpdate>
                 {
+                    /*
                     new PushUpdate
                     {
-                        Timestamp = DateTime.SpecifyKind(new DateTime(2020, 2, 10), DateTimeKind.Utc),
+                        Timestamp = DateTime.SpecifyKind(new DateTime(2020, ??, ??), DateTimeKind.Utc),
                         Id = Guid.Parse("{F7E051A2-EEF4-410D-AB38-8E53F936D08A}"),
                         Version = "1.5.1020.0",
-                        DisplayVersion = "FAKE 1.5 \"Kruger 60\" Beta 2",
-                        ReleasedDate = DateTime.SpecifyKind(new DateTime(2020, 2, 10), DateTimeKind.Utc),
-                        DownloadUrl = "https://www.alphacentaury.org/movistartv/downloads/2016/iptviewr-v1-5-kruger-60-beta-0/",
+                        DisplayVersion = "1.5 \"Kruger 60\" Beta 2",
+                        ReleasedDate = DateTime.SpecifyKind(new DateTime(2020, ??, ??), DateTimeKind.Utc),
+                        DownloadUrl = "https://www.alphacentaury.org/movistartv/downloads/2020/iptviewr-v1-5-kruger-60-beta-2/",
                         Link = "https://www.alphacentaury.org/movistartv/downloads"
                     },
+                    */
                     new PushUpdate
                     {
-                        Timestamp = DateTime.SpecifyKind(new DateTime(2020, 2, 8), DateTimeKind.Utc),
+                        Timestamp = DateTime.SpecifyKind(new DateTime(2020, 2, 24), DateTimeKind.Utc),
                         Id = Guid.Parse("{C7B65119-4C04-4050-BABF-2345BF6144DF}"),
-                        Version = "1.5.1010.0",
-                        DisplayVersion = "1.5 \"Kruger 60\" Beta 1",
-                        ReleasedDate = DateTime.SpecifyKind(new DateTime(2020, 2, 8), DateTimeKind.Utc),
-                        DownloadUrl = "https://www.alphacentaury.org/movistartv/downloads/2016/iptviewr-v1-5-kruger-60-beta-0/",
+                        Version = "1.5.1015.0",
+                        DisplayVersion = "1.5 \"Kruger 60\" Beta 1 RTW",
+                        ReleasedDate = DateTime.SpecifyKind(new DateTime(2020, 2, 24), DateTimeKind.Utc),
+                        DownloadUrl = "https://www.alphacentaury.org/movistartv/downloads/2020/iptviewr-v1-5-kruger-60-beta-1/",
                         Link = "https://www.alphacentaury.org/movistartv/downloads",
                     },
                     new PushUpdate

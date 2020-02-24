@@ -127,7 +127,7 @@
     <value>Beta (estable pero con posibles fallos)</value>
   </data>
   <data name="AppVersion" xml:space="preserve">
-    <value>1.5 “Kruger 60” beta 1</value>
+    <value>1.5 “Kruger 60” beta 1 RTW</value>
   </data>
   <data name="BroadcastListUnableRefresh" xml:space="preserve">
     <value>No ha sido posible obtener la lista de canales de TV o servicios</value>

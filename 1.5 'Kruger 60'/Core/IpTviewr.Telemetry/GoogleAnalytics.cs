@@ -339,20 +339,28 @@ namespace IpTviewr.Telemetry
         #region Custom Dimensions / Metrics
 
         /// <summary>
-        /// Custom Dimension #1
+        /// Custom Dimension #1: OSVersion
         /// </summary>
         /// <remarks>
         /// Each custom dimension has an associated index. There is a maximum of 20 custom dimensions.
         /// </remarks>
-        private const string AnalyticsCustomDimension1 = "cd<1>";
+        private const string AnalyticsCustomOsVersion = "cd<1>";
 
         /// <summary>
-        /// Custom Dimension #2
+        /// Custom Dimension #2: DPI
         /// </summary>
         /// <remarks>
         /// Each custom dimension has an associated index. There is a maximum of 20 custom dimensions.
         /// </remarks>
-        private const string AnalyticsCustomDimension2 = "cd<2>";
+        private const string AnalyticsCustomDpi = "cd<2>";
+
+        /// <summary>
+        /// Custom Dimension #2: OSBitnesss
+        /// </summary>
+        /// <remarks>
+        /// Each custom dimension has an associated index. There is a maximum of 20 custom dimensions.
+        /// </remarks>
+        private const string AnalyticsCustomOsBitness = "cd<3>";
 
         #endregion
 
@@ -418,8 +426,9 @@ namespace IpTviewr.Telemetry
                 bag.Add(AnalyticsViewportSize, $"{SystemInformation.WorkingArea.Width}x{SystemInformation.WorkingArea.Height}");
                 bag.Add(AnalyticsScreenColors, $"{Screen.PrimaryScreen.BitsPerPixel}-bits");
                 bag.Add(AnalyticsNonInteractionHit, AnalyticsNonInteractionHitValue);
-                bag.Add(AnalyticsCustomDimension1, string.Format(CultureInfo.InvariantCulture, "OSVersion: {0}", Environment.OSVersion));
-                bag.Add(AnalyticsCustomDimension2, string.Format(CultureInfo.InvariantCulture, "DPI: {0}x{1}", dpiX, dpiY));
+                bag.Add(AnalyticsCustomOsVersion, string.Format(CultureInfo.InvariantCulture, "OSVersion: {0}", Environment.OSVersion));
+                bag.Add(AnalyticsCustomDpi, string.Format(CultureInfo.InvariantCulture, "DPI: {0}x{1}", dpiX, dpiY));
+                bag.Add(AnalyticsCustomOsBitness, Environment.Is64BitOperatingSystem ? "64 bits" : "32 bits");
                 Send(bag);
 
                 bag = CreatePropertyBag();

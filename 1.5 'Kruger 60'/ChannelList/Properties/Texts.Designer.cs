@@ -1,4 +1,4 @@
-// ==============================================================================
+﻿// ==============================================================================
 // 
 //   Copyright (C) 2014-2020, GitHub/Codeplex user AlphaCentaury
 //   All rights reserved.
@@ -116,7 +116,7 @@ namespace IpTviewr.ChannelList.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 1.5 “Kruger 60” Beta 1.
+        ///   Looks up a localized string similar to 1.5 “Kruger 60” Beta 1 RTW.
         /// </summary>
         internal static string AppVersion {
             get {
@@ -442,11 +442,11 @@ namespace IpTviewr.ChannelList.Properties {
         /// <summary>
         ///   Looks up a localized string similar to ##############################################################################
         ///##
-        ///## VS Solution &apos;MovistarTV.sln&apos;
+        ///## IPTViewr v1.5
         ///##
         ///##############################################################################
         ///##
-        ///## IPTViewr: Virtual Decoder for movistar+ version 1.5 â€œKruger 60â€ Beta 1
+        ///## IPTV Virtual Decoder for movistar+ v1.5 â€œKruger 60â€ Beta 1
         ///## by Codeplex/GitHub user AlphaCentaury
         ///##
         ///## Copyright (C) 2014-2020, Codeplex/GitHub user AlphaCentaury and its contributors
@@ -454,7 +454,7 @@ namespace IpTviewr.ChannelList.Properties {
         ///##    http://www.alphacentaury.org/movistartv
         ///##    https://github.com/AlphaCentaury
         ///##
-        ///## [rest of string was truncated]&quot;;.
+        ///############################# [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string SolutionLicense {
             get {
@@ -463,11 +463,13 @@ namespace IpTviewr.ChannelList.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {\rtf1\fbidis\ansi\ansicpg1252\deff0\deflang3082\deflangfe3082\deftab708{\fonttbl{\f0\fswiss\fprq2\fcharset0 Calibri;}{\f1\froman\fprq2\fcharset2 Symbol;}{\f2\fmodern\fprq1\fcharset0 Courier New;}{\f3\fnil\fprq2\fcharset2 Wingdings;}}
+        ///   Looks up a localized string similar to {\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang3082\deflangfe3082\deftab708{\fonttbl{\f0\fswiss\fprq2\fcharset0 Calibri;}{\f1\froman\fprq2\fcharset2 Symbol;}{\f2\fmodern\fprq1\fcharset0 Courier New;}{\f3\fnil\fprq2\fcharset2 Wingdings;}}
         ///{\colortbl ;\red0\green0\blue255;}
         ///{\stylesheet{ Normal;}{\s1 heading 1;}{\s2 heading 2;}{\s3 heading 3;}{\s4 heading 4;}}
-        ///\viewkind4\uc1\pard\brdrb\brdrs\brdrw30 \ltrpar\s1\sb100\sa100\kerning36\b\f0\fs48 VS Solution &apos;MovistarTV.sln&apos;\par
-        ///\pard\ltrpar\sb100\sa100\kerning0\ [rest of string was truncated]&quot;;.
+        ///{\*\generator Riched20 10.0.18362}\viewkind4\uc1 
+        ///\pard\brdrb\brdrs\brdrw30 \s1\sb100\sa100\kerning36\b\f0\fs48 IPTViewr v1.5\par
+        ///
+        ///\pard\sb100\s [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string SolutionLicenseRtf {
             get {
