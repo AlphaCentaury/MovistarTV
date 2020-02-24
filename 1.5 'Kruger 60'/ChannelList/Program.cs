@@ -42,6 +42,8 @@ namespace IpTviewr.ChannelList
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
+            MyApplication.SetApplicationCulture(arguments);
+
             var appInitializer = new AppInitializer(arguments);
             SplashAppContext.Run(appInitializer);
             var exitCode = appInitializer.ExitCode;

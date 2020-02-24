@@ -384,4 +384,15 @@ To properly configure the application at a later time, please run this wizard ag
 The application is not properly configured and will not run.
 To properly configure the application at a later time, please run this wizard again.</value>
   </data>
+  <data name="NetFxRequired" xml:space="preserve">
+    <value>{0} is an optional feature of Windows 10 and is not installed.
+Windows will now ask you if you wish to install it.
+
+1. Select 'Download and install this feature'.
+2. Follow the wizard to completion.
+3. Press 'Verify...' to check if {0} is properly installed.</value>
+  </data>
+  <data name="NextFxWindows10Setup" xml:space="preserve">
+    <value>Install as Windows optional feature</value>
+  </data>
 </root>

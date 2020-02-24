@@ -99,6 +99,7 @@ namespace IpTviewr.UiServices.Configuration.Settings.TvPlayers.Editors
             // selectPlayerDialog
             // 
             this.selectPlayerDialog.DefaultExt = "exe";
+            resources.ApplyResources(this.selectPlayerDialog, "selectPlayerDialog");
             this.selectPlayerDialog.RestoreDirectory = true;
             this.selectPlayerDialog.SupportMultiDottedExtensions = true;
             // 

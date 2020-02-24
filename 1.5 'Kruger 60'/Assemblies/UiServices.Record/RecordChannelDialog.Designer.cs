@@ -140,20 +140,20 @@ namespace IpTviewr.UiServices.Record
             // 
             // tabPageSchedule
             // 
+            resources.ApplyResources(this.tabPageSchedule, "tabPageSchedule");
             this.tabPageSchedule.Controls.Add(this.dateTimeExpiryDate);
             this.tabPageSchedule.Controls.Add(this.checkBoxExpiryDate);
             this.tabPageSchedule.Controls.Add(this.labelStartMarginSufix);
             this.tabPageSchedule.Controls.Add(this.numericStartMargin);
             this.tabPageSchedule.Controls.Add(this.checkBoxStartMargin);
             this.tabPageSchedule.Controls.Add(this.recordingSchedule);
-            resources.ApplyResources(this.tabPageSchedule, "tabPageSchedule");
             this.tabPageSchedule.Name = "tabPageSchedule";
             this.tabPageSchedule.UseVisualStyleBackColor = true;
             // 
             // dateTimeExpiryDate
             // 
-            this.dateTimeExpiryDate.CausesValidation = false;
             resources.ApplyResources(this.dateTimeExpiryDate, "dateTimeExpiryDate");
+            this.dateTimeExpiryDate.CausesValidation = false;
             this.dateTimeExpiryDate.Name = "dateTimeExpiryDate";
             // 
             // checkBoxExpiryDate
@@ -194,27 +194,27 @@ namespace IpTviewr.UiServices.Record
             // 
             // tabPageLength
             // 
-            this.tabPageLength.Controls.Add(this.recordingTime);
             resources.ApplyResources(this.tabPageLength, "tabPageLength");
+            this.tabPageLength.Controls.Add(this.recordingTime);
             this.tabPageLength.Name = "tabPageLength";
             this.tabPageLength.UseVisualStyleBackColor = true;
             // 
             // recordingTime
             // 
+            resources.ApplyResources(this.recordingTime, "recordingTime");
             this.recordingTime.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
             this.recordingTime.CausesValidation = false;
-            resources.ApplyResources(this.recordingTime, "recordingTime");
             this.recordingTime.Name = "recordingTime";
             // 
             // tabPageSave
             // 
+            resources.ApplyResources(this.tabPageSave, "tabPageSave");
             this.tabPageSave.Controls.Add(this.listViewLocations);
             this.tabPageSave.Controls.Add(this.buttonSelectFolder);
             this.tabPageSave.Controls.Add(this.comboFileExtension);
             this.tabPageSave.Controls.Add(this.textFilename);
             this.tabPageSave.Controls.Add(this.labelFilename);
             this.tabPageSave.Controls.Add(this.labelSaveLocation);
-            resources.ApplyResources(this.tabPageSave, "tabPageSave");
             this.tabPageSave.Name = "tabPageSave";
             this.tabPageSave.UseVisualStyleBackColor = true;
             // 
@@ -278,10 +278,10 @@ namespace IpTviewr.UiServices.Record
             // 
             // tabPageDescription
             // 
+            resources.ApplyResources(this.tabPageDescription, "tabPageDescription");
             this.tabPageDescription.Controls.Add(this.checkAppendRecordingDetails);
             this.tabPageDescription.Controls.Add(this.textTaskDescription);
             this.tabPageDescription.Controls.Add(this.labelTaskDescription);
-            resources.ApplyResources(this.tabPageDescription, "tabPageDescription");
             this.tabPageDescription.Name = "tabPageDescription";
             this.tabPageDescription.UseVisualStyleBackColor = true;
             // 
@@ -305,6 +305,7 @@ namespace IpTviewr.UiServices.Record
             // 
             // tabPageAdvanced
             // 
+            resources.ApplyResources(this.tabPageAdvanced, "tabPageAdvanced");
             this.tabPageAdvanced.Controls.Add(this.checkAddTaskPrefix);
             this.tabPageAdvanced.Controls.Add(this.labelTaskName);
             this.tabPageAdvanced.Controls.Add(this.textTaskName);
@@ -319,7 +320,6 @@ namespace IpTviewr.UiServices.Record
             this.tabPageAdvanced.Controls.Add(this.checkSchedulerASAP);
             this.tabPageAdvanced.Controls.Add(this.comboSchedulerFolder);
             this.tabPageAdvanced.Controls.Add(this.labelSchedulerFolder);
-            resources.ApplyResources(this.tabPageAdvanced, "tabPageAdvanced");
             this.tabPageAdvanced.Name = "tabPageAdvanced";
             this.tabPageAdvanced.UseVisualStyleBackColor = true;
             // 
@@ -357,6 +357,7 @@ namespace IpTviewr.UiServices.Record
             // 
             // comboSchedulerAlreadyRunning
             // 
+            resources.ApplyResources(this.comboSchedulerAlreadyRunning, "comboSchedulerAlreadyRunning");
             this.comboSchedulerAlreadyRunning.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboSchedulerAlreadyRunning.FormattingEnabled = true;
             this.comboSchedulerAlreadyRunning.Items.AddRange(new object[] {
@@ -364,7 +365,6 @@ namespace IpTviewr.UiServices.Record
             resources.GetString("comboSchedulerAlreadyRunning.Items1"),
             resources.GetString("comboSchedulerAlreadyRunning.Items2"),
             resources.GetString("comboSchedulerAlreadyRunning.Items3")});
-            resources.ApplyResources(this.comboSchedulerAlreadyRunning, "comboSchedulerAlreadyRunning");
             this.comboSchedulerAlreadyRunning.Name = "comboSchedulerAlreadyRunning";
             // 
             // labelSchedulerConcurrent
@@ -442,8 +442,8 @@ namespace IpTviewr.UiServices.Record
             // 
             // pictureChannelLogo
             // 
-            this.pictureChannelLogo.BackColor = System.Drawing.SystemColors.Control;
             resources.ApplyResources(this.pictureChannelLogo, "pictureChannelLogo");
+            this.pictureChannelLogo.BackColor = System.Drawing.SystemColors.Control;
             this.pictureChannelLogo.Name = "pictureChannelLogo";
             this.pictureChannelLogo.TabStop = false;
             // 

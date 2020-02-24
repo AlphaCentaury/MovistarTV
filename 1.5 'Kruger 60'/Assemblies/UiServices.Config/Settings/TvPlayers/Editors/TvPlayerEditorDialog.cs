@@ -148,17 +148,24 @@ namespace IpTviewr.UiServices.Configuration.Settings.TvPlayers.Editors
             } // using
         } // SetPlayerIcon
 
-        private string GetPlayerName(string playerPath)
+        private static string GetPlayerName(string playerPath)
         {
+            string playerName = null;
+
             try
             {
                 var info = System.Diagnostics.FileVersionInfo.GetVersionInfo(playerPath);
-                return info.FileDescription;
+                playerName = info.FileDescription;
+                if (string.IsNullOrEmpty(playerName)) playerName = info.ProductName;
             }
             catch
             {
-                return Path.GetFileNameWithoutExtension(playerPath);
+                // ignore
             } // try-catch
+
+            if (string.IsNullOrEmpty(playerName)) playerName = Path.GetFileNameWithoutExtension(playerPath);
+
+            return playerName;
         } // GetPlayerName
     } // class TvPlayerEditorDialog
 } // namespace

@@ -56,18 +56,18 @@ namespace IpTviewr.UiServices.Record.Controls
             // 
             // comboQuickSetting
             // 
+            resources.ApplyResources(this.comboQuickSetting, "comboQuickSetting");
             this.comboQuickSetting.BackColor = System.Drawing.SystemColors.Window;
             this.comboQuickSetting.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboQuickSetting.FormattingEnabled = true;
-            resources.ApplyResources(this.comboQuickSetting, "comboQuickSetting");
             this.comboQuickSetting.Name = "comboQuickSetting";
             this.comboQuickSetting.SelectedIndexChanged += new System.EventHandler(this.comboQuickSetting_SelectedIndexChanged);
             // 
             // dateTimeEndTime
             // 
+            resources.ApplyResources(this.dateTimeEndTime, "dateTimeEndTime");
             this.dateTimeEndTime.CausesValidation = false;
             this.dateTimeEndTime.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            resources.ApplyResources(this.dateTimeEndTime, "dateTimeEndTime");
             this.dateTimeEndTime.Name = "dateTimeEndTime";
             this.dateTimeEndTime.ShowUpDown = true;
             this.dateTimeEndTime.ValueChanged += new System.EventHandler(this.dateTimeEndDate_ValueChanged);
@@ -75,8 +75,8 @@ namespace IpTviewr.UiServices.Record.Controls
             // 
             // dateTimeEndDate
             // 
-            this.dateTimeEndDate.CausesValidation = false;
             resources.ApplyResources(this.dateTimeEndDate, "dateTimeEndDate");
+            this.dateTimeEndDate.CausesValidation = false;
             this.dateTimeEndDate.Name = "dateTimeEndDate";
             this.dateTimeEndDate.ValueChanged += new System.EventHandler(this.dateTimeEndDate_ValueChanged);
             this.dateTimeEndDate.Validating += new System.ComponentModel.CancelEventHandler(this.dateTimeEndDate_Validating);

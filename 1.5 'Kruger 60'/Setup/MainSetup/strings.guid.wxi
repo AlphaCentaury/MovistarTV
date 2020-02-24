@@ -45,6 +45,7 @@
   <?define Guid.Redist.EMB.x64 = "{0925E2E3-6C49-4454-A3ED-FF86781017AF}" ?>
   <?define Guid.Redist.SqlCe.x86 = "{5B27AE95-5228-4C24-BB3B-7E1ADDA5DA3F}" ?>
   <?define Guid.Redist.SqlCe.x64 = "{B0A999F8-859C-4D8C-9EE4-5D9CB1B657AA}" ?>
+  <?define Guid.Redist.LoadNetFx35 = "{0BE831C2-65B3-4D19-AA11-D3B3B415BFA6}" ?>
 
   <?define Guid.Services.Assemblies = "{0180EBF7-06BF-4E8E-AAF4-5230F79B29DA}" ?>
   <?define Guid.Services.Assemblies.Localization.es ="{99E5A674-B6FB-4655-9B9A-38286350C43B}" ?>

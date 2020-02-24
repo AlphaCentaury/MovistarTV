@@ -45,7 +45,7 @@ namespace IpTviewr.UiServices.Common.Forms
             this.labelDescription = new System.Windows.Forms.Label();
             this.buttonOk = new System.Windows.Forms.Button();
             this.pictureBoxItemIcon = new IpTviewr.UiServices.Common.Controls.PictureBoxEx();
-            this.propertiesViewer1 = new IpTviewr.UiServices.Common.Forms.PropertiesViewer();
+            this.propertiesViewer = new IpTviewr.UiServices.Common.Forms.PropertiesViewer();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxItemIcon)).BeginInit();
             this.SuspendLayout();
             // 
@@ -70,18 +70,18 @@ namespace IpTviewr.UiServices.Common.Forms
             this.pictureBoxItemIcon.Name = "pictureBoxItemIcon";
             this.pictureBoxItemIcon.TabStop = false;
             // 
-            // propertiesViewer1
+            // propertiesViewer
             // 
-            resources.ApplyResources(this.propertiesViewer1, "propertiesViewer1");
-            this.propertiesViewer1.Name = "propertiesViewer1";
-            this.propertiesViewer1.Properties = null;
+            resources.ApplyResources(this.propertiesViewer, "propertiesViewer");
+            this.propertiesViewer.AutoResizeColumns = true;
+            this.propertiesViewer.Name = "propertiesViewer";
             // 
             // PropertiesDialog
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.buttonOk;
-            this.Controls.Add(this.propertiesViewer1);
+            this.Controls.Add(this.propertiesViewer);
             this.Controls.Add(this.pictureBoxItemIcon);
             this.Controls.Add(this.buttonOk);
             this.Controls.Add(this.labelDescription);
@@ -100,6 +100,6 @@ namespace IpTviewr.UiServices.Common.Forms
         private System.Windows.Forms.Label labelDescription;
         private System.Windows.Forms.Button buttonOk;
         private IpTviewr.UiServices.Common.Controls.PictureBoxEx pictureBoxItemIcon;
-        private PropertiesViewer propertiesViewer1;
+        private PropertiesViewer propertiesViewer;
     }
 }

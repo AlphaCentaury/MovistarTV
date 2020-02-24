@@ -179,7 +179,7 @@ namespace IpTviewr.Tools.FirstTimeConfig
 
         #region IsComponentInstalled
 
-        public static bool IsNetInstalled(out string message)
+        public static bool IsNet35Installed(out string message)
         {
             var keys = new[]
             {
@@ -198,11 +198,10 @@ namespace IpTviewr.Tools.FirstTimeConfig
                     var newKey = key.OpenSubKey(keyName);
                     key.Close();
                     key = newKey;
-                    if (key == null)
-                    {
-                        message = Texts.IsNetInstalledNotInstalled;
-                        return false;
-                    }
+                    if (key != null) continue;
+
+                    message = Texts.IsNetInstalledNotInstalled;
+                    return false;
                 } // foreach
 
                 var value = key.GetValue("Install");
@@ -239,7 +238,7 @@ namespace IpTviewr.Tools.FirstTimeConfig
                 message = string.Format(Texts.IsNetInstalledException, ex);
                 return false;
             } // try-catch
-        } // IsNetInstalled
+        } // IsNet35Installed
 
         public static bool IsEmbInstalled(out string message)
         {
@@ -411,82 +410,113 @@ namespace IpTviewr.Tools.FirstTimeConfig
 
         public static void PromptDownloadFromVendor(Form owner, string vendor, string file64Bit, string file32Bit)
         {
-            string text;
-
-            if (Is32BitWindows)
-                text = string.Format(Texts.DownloadFromVendor32bit, vendor, file32Bit);
-            else
-                text = string.Format(Texts.DownloadFromVendor64bit, vendor, file64Bit);
+            var text = string.Format(Is32BitWindows ? Texts.DownloadFromVendor32bit : Texts.DownloadFromVendor64bit,
+                vendor, Is32BitWindows ? file32Bit : file64Bit);
 
             MessageBox.Show(owner, text, owner.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
         } // PromptDownloadFromVendor
 
-        public static bool RedistSetup(Form owner, string file64Bit, string file32Bit, string productName, Label labelProduct, Action<bool> setupExitCallback)
+        public static bool RedistSetup([NotNull] Form owner, string file64Bit, string file32Bit, string productName, Label labelProduct, Action<int> setupExitCallback)
         {
             var filename = GetRedistFileFullPath(file64Bit, file32Bit);
 
-            Exception exception = null;
             try
             {
-                var process = new Process
-                {
-                    StartInfo = new ProcessStartInfo
-                    {
-                        FileName = filename,
-                        UseShellExecute = true,
-                        ErrorDialog = true,
-                        ErrorDialogParentHandle = owner != null ? owner.Handle : IntPtr.Zero
-                    },
-                    EnableRaisingEvents = true
-                };
-                process.Exited += (o, e) =>
-                {
-                    var exitCode = process.ExitCode;
-                    process.Dispose();
-
-                    owner?.BeginInvoke(new RedistSetupProcessExitedDelegate(RedistSetup_ProcessExited), exitCode, owner, productName, labelProduct, setupExitCallback);
-                };
-                process.Start();
-
-                labelProduct.Text = string.Format(Texts.RedistSetupInstalling, productName);
+                LaunchSetup(owner, filename, productName, labelProduct, RedistSetup_ProcessExited, setupExitCallback);
 
                 return true;
             }
-            catch (Win32Exception ex)
+            catch (Win32Exception ex) when (ex.NativeErrorCode == 1223) // Operation cancelled by user
             {
-                if (ex.NativeErrorCode != 1223) // Operation cancelled by user
-                    exception = ex;
+                // do nothing
             }
             catch (Exception ex)
             {
-                exception = ex;
+                var message = string.Format(Texts.LaunchSetupException, filename, productName, ex);
+                MessageBox.Show(owner, message, owner.Text, MessageBoxButtons.OK, MessageBoxIcon.Stop);
             } // try-catch
-
-            if ((exception == null) || (owner == null)) return false;
-
-            var message = string.Format(Texts.LaunchSetupException, filename, labelProduct.Text, exception);
-            MessageBox.Show(owner, message, owner.Text, MessageBoxButtons.OK, MessageBoxIcon.Stop);
 
             return false;
         } // RedistSetup
 
-        private delegate void RedistSetupProcessExitedDelegate(int exitCode, Form owner, string productName, Label labelProduct, Action<bool> setupExitCallback);
-
-        private static void RedistSetup_ProcessExited(int exitCode, Form owner, string productName, Label labelProduct, Action<bool> setupExitCallback)
+        public static bool Windows10LoadNetFx35([NotNull] Form owner, string productName, Label labelProduct, Action<int> setupExitCallback)
         {
-            var format = exitCode == 0 ? Texts.LaunchSetupSuccess : Texts.LaunchSetupError;
-            var message = string.Format(format, productName, exitCode);
-            MessageBox.Show(owner, message, owner.Text, MessageBoxButtons.OK, exitCode == 0 ? MessageBoxIcon.Information : MessageBoxIcon.Warning);
+            var filename = Path.Combine(_redistFolder, "LoadNetFx35.exe");
+
+            var msg = string.Format(Texts.NetFxRequired, productName);
+            MessageBox.Show(owner, msg, owner.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+            try
+            {
+                LaunchSetup(owner, filename, productName, labelProduct, Windows10LoadNetFx35_ProcessExited, setupExitCallback);
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                var message = string.Format(Texts.LaunchSetupException, filename, productName, ex);
+                MessageBox.Show(owner, message, owner.Text, MessageBoxButtons.OK, MessageBoxIcon.Stop);
+
+                return false;
+            } // try-catch
+        } // Windows10LoadNetFx35
+
+        private static void LaunchSetup([NotNull] Form owner, string filename, string productName, Label labelProduct, SetupProcessExitedDelegate processExitedDelegate,
+            Action<int> setupExitCallback)
+        {
+            var process = new Process
+            {
+                StartInfo = new ProcessStartInfo
+                {
+                    FileName = filename,
+                    UseShellExecute = true,
+                    ErrorDialog = true,
+                    ErrorDialogParentHandle = owner.Handle
+                },
+                EnableRaisingEvents = true
+            };
+            process.Exited += (o, e) =>
+            {
+                var exitCode = process.ExitCode;
+                process.Dispose();
+
+                owner?.BeginInvoke(processExitedDelegate, exitCode, owner, productName, labelProduct, setupExitCallback);
+            };
+            process.Start();
+
+            labelProduct.Text = string.Format(Texts.RedistSetupInstalling, productName);
+        } // LaunchSetup
+
+        private delegate void SetupProcessExitedDelegate(int exitCode, Form owner, string productName, Label labelProduct, Action<int> setupExitCallback);
+
+        private static void RedistSetup_ProcessExited(int exitCode, Form owner, string productName, Label labelProduct, Action<int> setupExitCallback)
+        {
+            if (exitCode != 0)
+            {
+                var message = string.Format(Texts.LaunchSetupError, productName, exitCode);
+                MessageBox.Show(owner, message, owner.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            } // if
 
             labelProduct.Text = productName;
-
-            setupExitCallback(exitCode == 0);
+            setupExitCallback(exitCode);
         } // RedistSetup_ProcessExited
+
+        private static void Windows10LoadNetFx35_ProcessExited(int exitCode, Form owner, string productName, Label labelProduct, Action<int> setupExitCallback)
+        {
+            if (exitCode != -2146232576) // 0x80131700 = .Net FX not installed
+            {
+                var message = string.Format(Texts.LaunchSetupError, productName, exitCode);
+                MessageBox.Show(owner, message, owner.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            } // if
+
+            labelProduct.Text = productName;
+            setupExitCallback(exitCode);
+        } // Windows10LoadNetFx35_ProcessExited
 
         private static string GetRedistFileFullPath(string file64Bit, string file32Bit)
         {
             var file = Is32BitWindows ? file32Bit : file64Bit;
-            file.Replace('\\', Path.DirectorySeparatorChar);
+            file = file.Replace('\\', Path.DirectorySeparatorChar);
             file = Path.Combine(_redistFolder, file);
 
             return file;

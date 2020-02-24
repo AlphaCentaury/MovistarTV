@@ -108,11 +108,11 @@ namespace IpTviewr.UiServices.Common.Forms
             // 
             // listViewProperties
             // 
-            resources.ApplyResources(this.listViewProperties, "listViewProperties");
             this.listViewProperties.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.ColumnProperty,
             this.ColumnValue});
             this.listViewProperties.ContextMenuStrip = this.contextMenuList;
+            resources.ApplyResources(this.listViewProperties, "listViewProperties");
             this.listViewProperties.FullRowSelect = true;
             this.listViewProperties.GridLines = true;
             this.listViewProperties.HeaderCustomFont = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));

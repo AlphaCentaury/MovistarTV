@@ -40,7 +40,7 @@ namespace IpTviewr.UiServices.Common.Forms
             Text = Caption;
             labelDescription.Text = (Description ?? Properties.PropertiesDialog.CaptionDefault);
             pictureBoxItemIcon.Image = ItemIcon;
-            propertiesViewer1.Properties = ItemProperties;
+            propertiesViewer.Properties = ItemProperties;
         } // PropertiesDialog_Load
     } // class PropertiesDlg
 } // namespace

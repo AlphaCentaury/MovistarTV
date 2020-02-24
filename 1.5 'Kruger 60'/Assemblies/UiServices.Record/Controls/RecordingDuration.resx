@@ -117,34 +117,83 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="comboQuickSetting.Location" type="System.Drawing.Point, System.Drawing">
-    <value>279, 23</value>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="radioEndDateTime.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
-  <data name="comboQuickSetting.Size" type="System.Drawing.Size, System.Drawing">
-    <value>146, 21</value>
+  <data name="&gt;&gt;radioEndDateTime.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="&gt;&gt;timeSpanLength.Name" xml:space="preserve">
+    <value>timeSpanLength</value>
+  </data>
+  <data name="&gt;&gt;labelEndMarginSufix.Name" xml:space="preserve">
+    <value>labelEndMarginSufix</value>
+  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="dateTimeEndTime.Location" type="System.Drawing.Point, System.Drawing">
+    <value>241, 72</value>
+  </data>
+  <data name="radioTimeSpan.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="&gt;&gt;dateTimeEndDate.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="comboQuickSetting.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
+  <data name="radioTimeSpan.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
   </data>
-  <data name="&gt;&gt;comboQuickSetting.Name" xml:space="preserve">
-    <value>comboQuickSetting</value>
+  <data name="&gt;&gt;numericEndMargin.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
-  <data name="&gt;&gt;comboQuickSetting.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="timeSpanLength.Location" type="System.Drawing.Point, System.Drawing">
+    <value>20, 23</value>
+  </data>
+  <data name="&gt;&gt;checkBoxEndMargin.Name" xml:space="preserve">
+    <value>checkBoxEndMargin</value>
   </data>
   <data name="&gt;&gt;comboQuickSetting.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
+  <data name="dateTimeEndDate.Location" type="System.Drawing.Point, System.Drawing">
+    <value>20, 72</value>
+  </data>
+  <data name="numericEndMargin.Size" type="System.Drawing.Size, System.Drawing">
+    <value>40, 20</value>
+  </data>
+  <data name="&gt;&gt;dateTimeEndDate.Name" xml:space="preserve">
+    <value>dateTimeEndDate</value>
+  </data>
   <data name="&gt;&gt;comboQuickSetting.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
-  <data name="dateTimeEndTime.Location" type="System.Drawing.Point, System.Drawing">
-    <value>241, 72</value>
+  <data name="timeSpanLength.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="&gt;&gt;radioEndDateTime.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="dateTimeEndTime.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 20</value>
+  </data>
+  <data name="&gt;&gt;checkBoxEndMargin.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>6, 13</value>
+  </data>
+  <data name="timeSpanLength.Size" type="System.Drawing.Size, System.Drawing">
+    <value>253, 20</value>
+  </data>
+  <data name="radioEndDateTime.Text" xml:space="preserve">
+    <value>Specify recording end date and time:</value>
+  </data>
+  <data name="radioTimeSpan.Size" type="System.Drawing.Size, System.Drawing">
+    <value>151, 17</value>
+  </data>
+  <data name="&gt;&gt;radioTimeSpan.ZOrder" xml:space="preserve">
+    <value>8</value>
   </data>
   <data name="dateTimeEndTime.TabIndex" type="System.Int32, mscorlib">
     <value>11</value>
@@ -152,168 +201,47 @@
   <data name="&gt;&gt;dateTimeEndTime.Name" xml:space="preserve">
     <value>dateTimeEndTime</value>
   </data>
-  <data name="&gt;&gt;dateTimeEndTime.Type" xml:space="preserve">
-    <value>System.Windows.Forms.DateTimePicker, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="labelEndMarginSufix.Location" type="System.Drawing.Point, System.Drawing">
+    <value>165, 122</value>
   </data>
-  <data name="&gt;&gt;dateTimeEndTime.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;dateTimeEndTime.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="dateTimeEndDate.Location" type="System.Drawing.Point, System.Drawing">
-    <value>20, 72</value>
-  </data>
-  <data name="dateTimeEndDate.Size" type="System.Drawing.Size, System.Drawing">
-    <value>215, 20</value>
-  </data>
-  <data name="dateTimeEndDate.TabIndex" type="System.Int32, mscorlib">
-    <value>10</value>
-  </data>
-  <data name="&gt;&gt;dateTimeEndDate.Name" xml:space="preserve">
-    <value>dateTimeEndDate</value>
-  </data>
-  <data name="&gt;&gt;dateTimeEndDate.Type" xml:space="preserve">
-    <value>System.Windows.Forms.DateTimePicker, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;dateTimeEndDate.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;dateTimeEndDate.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="radioEndDateTime.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="radioEndDateTime.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
+  <data name="&gt;&gt;checkBoxEndMargin.ZOrder" xml:space="preserve">
+    <value>2</value>
   </data>
   <data name="radioEndDateTime.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 49</value>
   </data>
-  <data name="radioEndDateTime.Size" type="System.Drawing.Size, System.Drawing">
-    <value>198, 17</value>
-  </data>
-  <data name="radioEndDateTime.TabIndex" type="System.Int32, mscorlib">
-    <value>9</value>
-  </data>
-  <data name="radioEndDateTime.Text" xml:space="preserve">
-    <value>Specify recording end date and time:</value>
-  </data>
-  <data name="&gt;&gt;radioEndDateTime.Name" xml:space="preserve">
-    <value>radioEndDateTime</value>
-  </data>
-  <data name="&gt;&gt;radioEndDateTime.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;radioEndDateTime.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;radioEndDateTime.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="radioTimeSpan.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="radioTimeSpan.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
   <data name="radioTimeSpan.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
-  </data>
-  <data name="radioTimeSpan.Size" type="System.Drawing.Size, System.Drawing">
-    <value>151, 17</value>
-  </data>
-  <data name="radioTimeSpan.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="radioTimeSpan.Text" xml:space="preserve">
-    <value>Specify total record length:</value>
   </data>
   <data name="&gt;&gt;radioTimeSpan.Name" xml:space="preserve">
     <value>radioTimeSpan</value>
   </data>
-  <data name="&gt;&gt;radioTimeSpan.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;radioTimeSpan.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;radioTimeSpan.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
-  <data name="timeSpanLength.Location" type="System.Drawing.Point, System.Drawing">
-    <value>20, 23</value>
-  </data>
-  <data name="timeSpanLength.Size" type="System.Drawing.Size, System.Drawing">
-    <value>253, 20</value>
-  </data>
-  <data name="timeSpanLength.TabIndex" type="System.Int32, mscorlib">
-    <value>12</value>
-  </data>
-  <data name="&gt;&gt;timeSpanLength.Name" xml:space="preserve">
-    <value>timeSpanLength</value>
-  </data>
-  <data name="&gt;&gt;timeSpanLength.Type" xml:space="preserve">
-    <value>IpTviewr.UiServices.Common.Controls.TimeSpanUpDown, UiServices.Common, Version=1.5.1010.0, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;timeSpanLength.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;timeSpanLength.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="labelEndMarginSufix.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="labelEndMarginSufix.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="labelEndMarginSufix.Location" type="System.Drawing.Point, System.Drawing">
-    <value>165, 122</value>
-  </data>
-  <data name="labelEndMarginSufix.Size" type="System.Drawing.Size, System.Drawing">
-    <value>43, 13</value>
+  <data name="&gt;&gt;dateTimeEndDate.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DateTimePicker, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="labelEndMarginSufix.TabIndex" type="System.Int32, mscorlib">
     <value>15</value>
   </data>
-  <data name="labelEndMarginSufix.Text" xml:space="preserve">
-    <value>minutes</value>
+  <data name="comboQuickSetting.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
   </data>
-  <data name="&gt;&gt;labelEndMarginSufix.Name" xml:space="preserve">
-    <value>labelEndMarginSufix</value>
+  <data name="&gt;&gt;dateTimeEndTime.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
-  <data name="&gt;&gt;labelEndMarginSufix.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;radioTimeSpan.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;radioEndDateTime.Name" xml:space="preserve">
+    <value>radioEndDateTime</value>
+  </data>
+  <data name="&gt;&gt;timeSpanLength.ZOrder" xml:space="preserve">
+    <value>3</value>
   </data>
   <data name="&gt;&gt;labelEndMarginSufix.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;labelEndMarginSufix.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="numericEndMargin.Location" type="System.Drawing.Point, System.Drawing">
-    <value>119, 120</value>
-  </data>
-  <data name="numericEndMargin.Size" type="System.Drawing.Size, System.Drawing">
-    <value>40, 20</value>
-  </data>
-  <data name="numericEndMargin.TabIndex" type="System.Int32, mscorlib">
-    <value>14</value>
-  </data>
   <data name="numericEndMargin.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Center</value>
-  </data>
-  <data name="&gt;&gt;numericEndMargin.Name" xml:space="preserve">
-    <value>numericEndMargin</value>
-  </data>
-  <data name="&gt;&gt;numericEndMargin.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;numericEndMargin.Parent" xml:space="preserve">
-    <value>$this</value>
   </data>
   <data name="&gt;&gt;numericEndMargin.ZOrder" xml:space="preserve">
     <value>1</value>
@@ -321,46 +249,118 @@
   <data name="checkBoxEndMargin.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="checkBoxEndMargin.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
+  <data name="labelEndMarginSufix.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="labelEndMarginSufix.Text" xml:space="preserve">
+    <value>minutes</value>
+  </data>
+  <data name="&gt;&gt;radioEndDateTime.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
   <data name="checkBoxEndMargin.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 121</value>
   </data>
+  <data name="&gt;&gt;radioTimeSpan.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
   <data name="checkBoxEndMargin.Size" type="System.Drawing.Size, System.Drawing">
     <value>113, 17</value>
   </data>
-  <data name="checkBoxEndMargin.TabIndex" type="System.Int32, mscorlib">
-    <value>13</value>
+  <data name="&gt;&gt;labelEndMarginSufix.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;comboQuickSetting.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="radioTimeSpan.Text" xml:space="preserve">
+    <value>Specify total record length:</value>
+  </data>
+  <data name="numericEndMargin.TabIndex" type="System.Int32, mscorlib">
+    <value>14</value>
+  </data>
+  <data name="dateTimeEndDate.Size" type="System.Drawing.Size, System.Drawing">
+    <value>215, 20</value>
   </data>
   <data name="checkBoxEndMargin.Text" xml:space="preserve">
     <value>Add safety margin:</value>
   </data>
-  <data name="&gt;&gt;checkBoxEndMargin.Name" xml:space="preserve">
-    <value>checkBoxEndMargin</value>
-  </data>
-  <data name="&gt;&gt;checkBoxEndMargin.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;checkBoxEndMargin.Parent" xml:space="preserve">
+  <data name="&gt;&gt;timeSpanLength.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;checkBoxEndMargin.ZOrder" xml:space="preserve">
-    <value>2</value>
+  <data name="checkBoxEndMargin.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>6, 13</value>
+  <data name="labelEndMarginSufix.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
-  <data name="$this.Size" type="System.Drawing.Size, System.Drawing">
-    <value>425, 145</value>
+  <data name="&gt;&gt;timeSpanLength.Type" xml:space="preserve">
+    <value>IpTviewr.UiServices.Common.Controls.TimeSpanUpDown, UiServices.Common, Version=1.5.1010.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;numericEndMargin.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="checkBoxEndMargin.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
+  <data name="comboQuickSetting.Size" type="System.Drawing.Size, System.Drawing">
+    <value>146, 21</value>
+  </data>
+  <data name="&gt;&gt;dateTimeEndTime.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DateTimePicker, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="labelEndMarginSufix.Size" type="System.Drawing.Size, System.Drawing">
+    <value>43, 13</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>RecordingDuration</value>
   </data>
+  <data name="$this.Size" type="System.Drawing.Size, System.Drawing">
+    <value>425, 145</value>
+  </data>
+  <data name="radioEndDateTime.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;checkBoxEndMargin.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;comboQuickSetting.Name" xml:space="preserve">
+    <value>comboQuickSetting</value>
+  </data>
+  <data name="&gt;&gt;numericEndMargin.Name" xml:space="preserve">
+    <value>numericEndMargin</value>
+  </data>
+  <data name="radioEndDateTime.Size" type="System.Drawing.Size, System.Drawing">
+    <value>198, 17</value>
+  </data>
+  <data name="radioEndDateTime.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="radioTimeSpan.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
     <value>System.Windows.Forms.UserControl, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;dateTimeEndTime.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;dateTimeEndDate.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="&gt;&gt;labelEndMarginSufix.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="dateTimeEndDate.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="numericEndMargin.Location" type="System.Drawing.Point, System.Drawing">
+    <value>119, 120</value>
+  </data>
+  <data name="comboQuickSetting.Location" type="System.Drawing.Point, System.Drawing">
+    <value>279, 23</value>
+  </data>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
 </root>

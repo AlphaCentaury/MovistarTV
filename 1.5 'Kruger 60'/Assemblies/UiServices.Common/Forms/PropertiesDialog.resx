@@ -216,25 +216,28 @@
   <data name="&gt;&gt;pictureBoxItemIcon.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="propertiesViewer1.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="propertiesViewer.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left, Right</value>
+  </data>
+  <data name="propertiesViewer.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 82</value>
   </data>
-  <data name="propertiesViewer1.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="propertiesViewer.Size" type="System.Drawing.Size, System.Drawing">
     <value>460, 137</value>
   </data>
-  <data name="propertiesViewer1.TabIndex" type="System.Int32, mscorlib">
+  <data name="propertiesViewer.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
   </data>
-  <data name="&gt;&gt;propertiesViewer1.Name" xml:space="preserve">
-    <value>propertiesViewer1</value>
+  <data name="&gt;&gt;propertiesViewer.Name" xml:space="preserve">
+    <value>propertiesViewer</value>
   </data>
-  <data name="&gt;&gt;propertiesViewer1.Type" xml:space="preserve">
+  <data name="&gt;&gt;propertiesViewer.Type" xml:space="preserve">
     <value>IpTviewr.UiServices.Common.Forms.PropertiesViewer, UiServices.Common, Version=1.5.1010.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
-  <data name="&gt;&gt;propertiesViewer1.Parent" xml:space="preserve">
+  <data name="&gt;&gt;propertiesViewer.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;propertiesViewer1.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;propertiesViewer.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
@@ -245,9 +248,6 @@
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
     <value>484, 262</value>
-  </data>
-  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
   </data>
   <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
     <value>CenterParent</value>

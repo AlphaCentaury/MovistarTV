@@ -15,6 +15,7 @@ using IpTviewr.Common.Serialization;
 using IpTviewr.UiServices.Configuration.Push.UI;
 using IpTviewr.UiServices.Configuration.Push.v1;
 using System;
+using System.Net;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
@@ -131,42 +132,20 @@ namespace IpTviewr.UiServices.Configuration.Push
                     client = new HttpClient();
                     if (main)
                     {
-                        var uri = new UriBuilder(BaseUrl + file);
-                        uri.Query = $"cache={DateTime.UtcNow.Ticks:D}";
-                        var stream = await client.GetStreamAsync(uri.Uri);
-                        data = await Task.Run(() => XmlSerialization.Deserialize<T>(stream));
+                        (data, main) = await Deserialize<T>(client, BaseUrl + file);
                     } // if
-                }
-                catch (HttpRequestException)
-                {
-                    // ignore
-                }
-                catch
-                {
-                    main = false;
-                } // try-catch
 
-                // second-try
-                try
-                {
-                    if ((client != null) && alt)
+                    if ((data == null) && alt)
                     {
-                        var uri = new Uri(BaseUrlAlt + file);
-                        var stream = await client.GetStreamAsync(uri);
-                        data = await Task.Run(() => XmlSerialization.Deserialize<T>(stream));
+                        (data, alt) = await Deserialize<T>(client, BaseUrlAlt + file);
                     } // if
-                }
-                catch (HttpRequestException)
-                {
-                    // ignore
+
+                    if ((data != null) || (tries >= 3) || (!main && !alt)) break;
                 }
                 catch
                 {
-                    alt = false;
+                    break;
                 } // try-catch
-
-                if (data != null) break;
-                if (tries >= 3) break;
 
                 tries++;
                 Thread.Sleep(1000);
@@ -174,6 +153,32 @@ namespace IpTviewr.UiServices.Configuration.Push
 
             client?.Dispose();
             return data;
+        } // Deserialize
+
+        private static async Task<(T data, bool canBeRetried)> Deserialize<T>(HttpClient client, string url) where T : class
+        {
+            try
+            {
+                var uriBuilder = new UriBuilder(url) { Query = $"cache={DateTime.UtcNow.Ticks:D}" };
+                var response = await client.GetAsync(uriBuilder.Uri);
+
+                if (response.StatusCode == HttpStatusCode.NotFound) return (null, false);
+                if (!response.IsSuccessStatusCode) return (null, true);
+
+                var stream = await response.Content.ReadAsStreamAsync();
+                var data = await Task.Run(() => XmlSerialization.Deserialize<T>(stream));
+
+                return (data, true);
+            }
+            catch (HttpRequestException)
+            {
+                // Error may be a transient condition
+                return (null, true);
+            }
+            catch
+            {
+                return (null, false);
+            } // catch
         } // Deserialize
     } // PushManager
 } // class PushManager

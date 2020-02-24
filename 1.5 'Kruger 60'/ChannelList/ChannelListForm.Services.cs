@@ -254,7 +254,12 @@ namespace IpTviewr.ChannelList
                 {
                     ++_epgDataCount;
                     if (_epgDataCount > 10) _epgDataCount = 0;
-                    statusLabelEpg.Text = string.Format(Texts.EpgStatusData, new string('\u2022', _epgDataCount)); // U+2022 = 'bullet'
+                    if (!statusMainStrip.IsDisposed)
+                    {
+                        // avoid a race condition when closing the app.
+                        // A packet can still be received before the loading thread is cancelled.
+                        statusLabelEpg.Text = string.Format(Texts.EpgStatusData, new string('\u2022', _epgDataCount)); // U+2022 = 'bullet'
+                    } // if
                 };
                 epgDownloader.ParseError += (sender, args) =>
                 {

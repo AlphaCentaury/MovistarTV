@@ -29,6 +29,9 @@
       <Component Id="Redist.SqlCe.x64" Directory="RedistFolder" Guid="$(var.Guid.Redist.SqlCe.x64)">
         <File Id ="Redist.SqlCe.x64" Source="$(var.SolutionDir)Setup\MainSetup\Redist\!(loc.RedistLanguage)\SSCERuntime_x64-!(loc.RedistLanguage).exe" />
       </Component>
+      <Component Id="Redist.LoadNetFx35" Directory="RedistFolderBase" Guid="$(var.Guid.Redist.LoadNetFx35)">
+        <File Id ="Redist.LoadNetFx35" Source="$(var.LoadNetFx35.TargetDir)LoadNetFx35.exe" />
+      </Component>
     </ComponentGroup>
   </Fragment>
 </Wix>

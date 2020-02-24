@@ -128,45 +128,63 @@ namespace IpTviewr.ChannelList
 
         #endregion
 
+        private const string SetCultureArgument = "/setculture:";
         private const string SetUiCultureArgument = "/setuiculture:";
 
-        internal static void SetUiCulture(string[] arguments, string settingsCulture)
+        internal static void SetApplicationCulture(string[] arguments)
         {
             var culture = (string)null;
+            var uiCulture = (string)null;
 
             // Command line culture has preference over settings culture (allows to override user setting)
             if ((arguments != null) && (arguments.Length != 0))
             {
                 foreach (var argument in arguments)
                 {
-                    if (!argument.ToLowerInvariant().StartsWith(SetUiCultureArgument)) continue;
-                    culture = argument.Substring(SetUiCultureArgument.Length);
-                    break;
+                    if (argument.StartsWith(SetCultureArgument, StringComparison.InvariantCultureIgnoreCase))
+                    {
+                        culture = argument.Substring(SetCultureArgument.Length);
+                    }
+                    else
+                    {
+                        uiCulture = argument.Substring(SetUiCultureArgument.Length);
+                    } // if-else
                 } // foreach
             } // if
 
             // If no culture is specified in command line arguments, use settings culture
-            if (culture == null)
-            {
-                culture = settingsCulture;
-            } // if
+            culture ??= Settings.Default.SetCulture;
 
-            SetUiCulture(culture);
-        } // SetUiCulture
+            // If no UI culture is specified in command line arguments, use settings UI culture
+            uiCulture ??= Settings.Default.SetUiCulture;
 
-        private static void SetUiCulture(string culture)
+            SetUiCulture(culture, uiCulture);
+        } // SetApplicationCulture
+
+        private static void SetUiCulture(string culture, string uiCulture)
         {
-            if (culture == null) return;
-            culture = culture.Trim();
-            if (culture == string.Empty) return;
-
             try
             {
-                Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(culture);
+                if (!string.IsNullOrWhiteSpace(culture))
+                {
+                    Thread.CurrentThread.CurrentCulture = new CultureInfo(culture);
+                } // if
             }
             catch (Exception ex)
             {
-                HandleException(null, Properties.InvariantTexts.ExceptionForceUiCulture, ex);
+                HandleException(null, InvariantTexts.ExceptionSetCulture, ex);
+            } // try-catch
+
+            try
+            {
+                if (!string.IsNullOrWhiteSpace(uiCulture))
+                {
+                    Thread.CurrentThread.CurrentUICulture = new CultureInfo(uiCulture);
+                }
+            }
+            catch (Exception ex)
+            {
+                HandleException(null, InvariantTexts.ExceptionSetUiCulture, ex);
             } // try-catch
         } // SetUiCulture
     } // static class MyApplication

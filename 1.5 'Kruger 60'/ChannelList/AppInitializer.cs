@@ -62,8 +62,6 @@ namespace IpTviewr.ChannelList
         public void InitializeApp(ISplashScreen splash)
         {
             _splashScreen = splash;
-
-            _splashScreen.Invoke(new Action<Thread>(ForceUiCulture), Thread.CurrentThread);
             _initializationResult = LoadConfiguration();
 
             if (_initializationResult.InnerException != null)
@@ -135,7 +133,7 @@ namespace IpTviewr.ChannelList
                 Program.StartTelemetry();
 
                 var result = AppConfig.Load(null, _splashScreen.DisplayProgress);
-                if ((!AppConfig.IsFirstTimeConfigExecuted) || (result.IsError))
+                if (!AppConfig.IsFirstTimeConfigExecuted)
                 {
                     MessageBox.Show(result.Message, result.Caption, MessageBoxButtons.OK, MessageBoxIcon.Error);
                     Environment.Exit(-7);
@@ -189,12 +187,5 @@ namespace IpTviewr.ChannelList
 
             return InitializationResult.Ok;
         } // ValidateConfiguration
-
-        private void ForceUiCulture(Thread backgroundThread)
-        {
-            MyApplication.SetUiCulture(_arguments, Settings.Default.SetUiCulture);
-            backgroundThread.CurrentCulture = Thread.CurrentThread.CurrentCulture;
-            backgroundThread.CurrentUICulture = Thread.CurrentThread.CurrentUICulture;
-        } // SetUiCulture
     } // class AppInitializer
 } // namespace

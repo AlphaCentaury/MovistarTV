@@ -383,4 +383,15 @@ Para configurar adecuadamente la aplicación mas tarde, ejecute el asistente de 
 La aplicación no está configurada adecuadamente y no se podrá ejecutar.
 Para configurar adecuadamente la aplicación mas tarde, ejecute el asistente de nuevo.</value>
   </data>
+  <data name="NetFxRequired" xml:space="preserve">
+    <value>{0} es una característica opcional de Windows 10 y no está instalada.
+Windows le preguntará a continuación si desea instalarla.
+
+1. Seleccione la opción 'Descargar e instalar esta característica'.
+2. Siga el asistente hasta su finalización.
+3. Presione 'Comprobar...' para verificar si {0} está instalado correctamente.</value>
+  </data>
+  <data name="NextFxWindows10Setup" xml:space="preserve">
+    <value>Instalar como característica adicional de Windows</value>
+  </data>
 </root>

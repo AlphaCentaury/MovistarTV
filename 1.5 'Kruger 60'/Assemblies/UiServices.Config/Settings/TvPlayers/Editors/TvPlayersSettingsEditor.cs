@@ -118,17 +118,15 @@ namespace IpTviewr.UiServices.Configuration.Settings.TvPlayers.Editors
             var item = (listViewPlayers.SelectedItems.Count > 0) ? listViewPlayers.SelectedItems[0] : null;
             if (item == null) return;
 
-            var player = (TvPlayer)item.Tag;
-            using (var editor = new TvPlayerEditorDialog())
+            using var editor = new TvPlayerEditorDialog
             {
-                editor.Player = player;
-                editor.ShowDialog(this);
-                if (editor.IsDataChanged)
-                {
-                    FillList(true, false);
-                    IsDataChanged = true;
-                } // if
-            } // using
+                Player = (TvPlayer) item.Tag
+            };
+            if (editor.ShowDialog(this) != DialogResult.OK) return;
+            if (!editor.IsDataChanged) return;
+
+            FillList(true, false);
+            IsDataChanged = true;
         } // buttonEdit_Click
 
         private void buttonDelete_Click(object sender, EventArgs e)
@@ -166,16 +164,14 @@ namespace IpTviewr.UiServices.Configuration.Settings.TvPlayers.Editors
 
         private void buttonAdd_Click(object sender, EventArgs e)
         {
-            using (var editor = new TvPlayerEditorDialog())
-            {
-                editor.ShowDialog(this);
-                if (editor.IsDataChanged)
-                {
-                    _players.Add(editor.Player);
-                    FillList(false, false);
-                    listViewPlayers.Items[listViewPlayers.Items.Count - 1].Selected = true;
-                } // if
-            } // using
+            using var editor = new TvPlayerEditorDialog();
+
+            if (editor.ShowDialog(this) != DialogResult.OK) return;
+            if (!editor.IsDataChanged) return;
+
+            _players.Add(editor.Player);
+            FillList(false, false);
+            listViewPlayers.Items[listViewPlayers.Items.Count - 1].Selected = true;
         } // buttonAdd_Click
 
         private void checkBoxShortcut_CheckedChanged(object sender, EventArgs e)

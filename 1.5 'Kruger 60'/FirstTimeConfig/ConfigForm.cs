@@ -133,7 +133,19 @@ namespace IpTviewr.Tools.FirstTimeConfig
         {
             wizardControl.IsPageAllowed[wizardPagePrerequisites.Name] = false;
 
-            buttonVerifyEmb.Visible = true;
+            linkLabelNetFx.Enabled = true;
+            if ((Environment.OSVersion.Version.Major >= 10))
+            {
+                linkLabelNetFx.Text = Texts.NextFxWindows10Setup;
+                buttonVerifyNetFx.Enabled = false;
+            } // if
+            else
+            {
+                buttonVerifyNetFx.Enabled = true;
+            } // if-else
+
+            buttonVerifyEmb.Visible = false;
+            linkLabelSetupEmb.Visible = false;
             linkLabelSetupEmb.Enabled = Installation.CheckRedistFile(Texts.DownloadEmbFile, Texts.DownloadEmbFile32bit);
 
             buttonVerifySqlCe.Visible = false;
@@ -147,22 +159,33 @@ namespace IpTviewr.Tools.FirstTimeConfig
             buttonFindVlc.Enabled = false;
             buttonTestVlc.Enabled = false;
 
-            PagePrerequisites_Step1(false);
+            PagePrerequisites_NetFx(false);
         } // PagePrerequisites_Setup
 
-        private void PagePrerequisites_Step1(bool withUi)
+        private void PagePrerequisites_NetFx(bool withUi)
         {
-            // Here lies .Net verification. This is no longer needed, as the MSI checks if installed or not
+            var installed = Installation.IsNet35Installed(out var message);
+            if (withUi)
+            {
+                MessageBox.Show(this, message, Text, MessageBoxButtons.OK,
+                    installed ? MessageBoxIcon.Information : MessageBoxIcon.Warning);
+            } // if
+            if (!installed) return;
 
+            pictureBoxNetFxOk.Image = Resources.Sucess_16x16;
+            buttonVerifyNetFx.Visible = false;
+            linkLabelNetFx.Visible = false;
+
+            buttonVerifyEmb.Visible = true;
+            linkLabelSetupEmb.Visible = true;
             linkLabelSetupEmb.Focus();
-            PagePrerequisites_Step2(false);
-        } // PagePrerequisites_Step1
 
-        private void PagePrerequisites_Step2(bool withUi)
+            PagePrerequisites_Emb(false);
+        } // PagePrerequisites_NetFx
+
+        private void PagePrerequisites_Emb(bool withUi)
         {
-            string message;
-
-            var installed = Installation.IsEmbInstalled(out message);
+            var installed = Installation.IsEmbInstalled(out var message);
             if (withUi)
             {
                 MessageBox.Show(this, message, Text, MessageBoxButtons.OK,
@@ -172,17 +195,17 @@ namespace IpTviewr.Tools.FirstTimeConfig
 
             pictureBoxEmbOk.Image = Resources.Sucess_16x16;
             buttonVerifyEmb.Visible = false;
-            linkLabelSetupEmb.Enabled = false;
+            linkLabelSetupEmb.Visible = false;
 
             buttonVerifySqlCe.Visible = true;
             linkLabelSetupSqlCe.Enabled = Installation.CheckRedistFile(Texts.DownloadSqlCeFile, Texts.DownloadSqlCeFile32bit);
             linkLabelPrerequisiteSqlCe.Enabled = true;
             linkLabelSetupSqlCe.Focus();
 
-            PagePrerequisites_Step3(false);
-        } // PagePrerequisites_Step2
+            PagePrerequisites_SqlCe(false);
+        } // PagePrerequisites_Emb
 
-        private void PagePrerequisites_Step3(bool withUi)
+        private void PagePrerequisites_SqlCe(bool withUi)
         {
             var installed = Installation.IsSqlCeInstalled(out var message);
             if (withUi)
@@ -194,8 +217,8 @@ namespace IpTviewr.Tools.FirstTimeConfig
 
             pictureBoxSqlCeOk.Image = Resources.Sucess_16x16;
             buttonVerifySqlCe.Visible = false;
-            linkLabelSetupSqlCe.Enabled = false;
-            linkLabelPrerequisiteSqlCe.Enabled = false;
+            linkLabelSetupSqlCe.Visible = false;
+            linkLabelPrerequisiteSqlCe.Visible = false;
 
             buttonVerifyVlc.Visible = true;
             linkLabelPrerequisiteVlc.Enabled = true;
@@ -205,10 +228,10 @@ namespace IpTviewr.Tools.FirstTimeConfig
             buttonFindVlc.Enabled = true;
             buttonTestVlc.Enabled = false;
 
-            PagePrerequisites_Step4(false);
-        } // PagePrerequisites_Step3
+            PagePrerequisites_Vlc(false);
+        } // PagePrerequisites_SqlCe
 
-        private void PagePrerequisites_Step4(bool withUi)
+        private void PagePrerequisites_Vlc(bool withUi)
         {
             var path = textBoxVlc.Text;
             var isX86OnX64 = VlcIsX86OnX64;
@@ -237,19 +260,41 @@ namespace IpTviewr.Tools.FirstTimeConfig
             buttonTestVlc.Enabled = true;
             buttonTestVlc.Focus();
 
-            PagePrerequisites_Step5(false);
-        } // PagePrerequisites_Step4
+            PagePrerequisites_End(false);
+        } // PagePrerequisites_Vlc
 
-        private void PagePrerequisites_Step5(bool withUi)
+        private void PagePrerequisites_End(bool withUi)
         {
             wizardControl.IsPageAllowed[wizardPageFirewall.Name] = true;
             wizardControl.UpdateWizardButtons();
-        } // PagePrerequisites_Step5
+        } // PagePrerequisites_End
 
-        private void linkLabelPrerequisiteNet_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void linkLabelPrerequisiteNetFx_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Installation.OpenUrl(this, Texts.DownloadUrlNet);
-        } // linkLabelPrerequisiteNet_LinkClicked
+            if (Environment.OSVersion.Version.Major >= 10)
+            {
+                Installation.Windows10LoadNetFx35(this, labelNetFx.Text, labelNetFx, LoadNetFx_Completed);
+            }
+            else
+            {
+                Installation.OpenUrl(this, Texts.DownloadUrlNet);
+            } // if-else
+        } // linkLabelPrerequisiteNetFx_LinkClicked
+
+        private void LoadNetFx_Completed(int errorCode)
+        {
+            pictureBoxNetFxOk.Image = errorCode switch
+            {
+                0 => Resources.Sucess_16x16,
+                -2146232576 => Resources.Status_Pending_16x16, // 0x80131700
+                _ => Resources.Error_16x16,
+            };
+
+            buttonVerifyNetFx.Enabled = (errorCode != 0);
+            wizardControl.ShowWizardButtons(true);
+
+            if (errorCode == 0) PagePrerequisites_NetFx(true);
+        } // LoadNetFx_Completed
 
         private void linkLabelSetupEmb_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
@@ -263,12 +308,20 @@ namespace IpTviewr.Tools.FirstTimeConfig
             wizardControl.ShowWizardButtons(false);
         } // linkLabelSetupEmb_LinkClicked
 
-        private void SetupEmb_Completed(bool success)
+        private void SetupEmb_Completed(int errorCode)
         {
-            pictureBoxEmbOk.Image = success ? Resources.Status_Pending_16x16 : Resources.Error_16x16;
-            linkLabelSetupEmb.Enabled = true;
-            buttonVerifyEmb.Enabled = true;
             wizardControl.ShowWizardButtons(true);
+
+            if (errorCode == 0)
+            {
+                PagePrerequisites_Emb(true);
+            } // if
+            else
+            {
+                pictureBoxEmbOk.Image = Resources.Error_16x16;
+                linkLabelSetupEmb.Enabled = true;
+                buttonVerifyEmb.Enabled = true;
+            } // if-else
         } // SetupEmb_Completed
 
         // TODO: purge all references to download MS-EMB
@@ -291,13 +344,21 @@ namespace IpTviewr.Tools.FirstTimeConfig
             wizardControl.ShowWizardButtons(false);
         } // linkLabelSetupSqlCe_LinkClicked
 
-        private void SetupSqlCe_Completed(bool success)
+        private void SetupSqlCe_Completed(int errorCode)
         {
-            pictureBoxSqlCeOk.Image = success ? Resources.Status_Pending_16x16 : Resources.Error_16x16;
-            linkLabelSetupSqlCe.Enabled = true;
-            linkLabelPrerequisiteSqlCe.Enabled = true;
-            buttonVerifySqlCe.Enabled = true;
             wizardControl.ShowWizardButtons(true);
+
+            if (errorCode == 0)
+            {
+                PagePrerequisites_SqlCe(true);
+            } // if
+            else
+            {
+                pictureBoxSqlCeOk.Image = Resources.Error_16x16;
+                linkLabelSetupSqlCe.Enabled = true;
+                linkLabelPrerequisiteSqlCe.Enabled = true;
+                buttonVerifySqlCe.Enabled = true;
+            } // if-else
         } // SetupSqlCe_Completed
 
         private void linkLabelPrerequisiteSqlCe_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -313,22 +374,22 @@ namespace IpTviewr.Tools.FirstTimeConfig
 
         private void buttonVerifyNet_Click(object sender, EventArgs e)
         {
-            PagePrerequisites_Step1(true);
+            PagePrerequisites_NetFx(true);
         } // buttonVerifyNet_Click
 
         private void buttonVerifyEmb_Click(object sender, EventArgs e)
         {
-            PagePrerequisites_Step2(true);
+            PagePrerequisites_Emb(true);
         } // buttonVerifyEmb_Click
 
         private void buttonVerifySqlCe_Click(object sender, EventArgs e)
         {
-            PagePrerequisites_Step3(true);
+            PagePrerequisites_SqlCe(true);
         }  // buttonVerifySqlCe_Click
 
         private void buttonVerifyVlc_Click(object sender, EventArgs e)
         {
-            PagePrerequisites_Step4(true);
+            PagePrerequisites_Vlc(true);
         } // buttonVerifyVlc_Click
 
         private void buttonFindVlc_Click(object sender, EventArgs e)

@@ -316,4 +316,31 @@ Consulte los detalles de la excepción (más abajo) para obtener información de
   <data name="AppConfigFirstTimeConfigNotExecutedCaption" xml:space="preserve">
     <value>La aplicación no está debidamente configurada.</value>
   </data>
+  <data name="PushCheckForUpdates" xml:space="preserve">
+    <value>Buscar actualizaciones</value>
+  </data>
+  <data name="PushCheckingForUpdates" xml:space="preserve">
+    <value>Buscando actualizaciones...</value>
+  </data>
+  <data name="PushDoNotShowAgain" xml:space="preserve">
+    <value>No mostrar este mensaje de nuevo</value>
+  </data>
+  <data name="PushDownloadLink" xml:space="preserve">
+    <value>Pulse en el enlace para descargar la actualización:</value>
+  </data>
+  <data name="PushNewUpdate" xml:space="preserve">
+    <value>Una nueva versión está disponible</value>
+  </data>
+  <data name="PushNoUpdates" xml:space="preserve">
+    <value>No hay actualizaciones disponibles</value>
+  </data>
+  <data name="PushReleasedOnFormat" xml:space="preserve">
+    <value>Fecha de la actualizacion: {0:yyyy/MM/dd}</value>
+  </data>
+  <data name="PushUpdateError" xml:space="preserve">
+    <value>Error de conexión con el servidor de actualizaciones</value>
+  </data>
+  <data name="PushVersionFormat" xml:space="preserve">
+    <value>Versión {0}</value>
+  </data>
 </root>

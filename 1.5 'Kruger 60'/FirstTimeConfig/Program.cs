@@ -58,14 +58,16 @@ namespace IpTviewr.Tools.FirstTimeConfig
 
                 return result;
             }
-            else
+
+            using var dlg = new FirewallForm();
+            dlg.ShowDialog();
+
+            return dlg.DialogResult switch
             {
-                using (var dlg = new FirewallForm())
-                {
-                    dlg.ShowDialog();
-                    return (dlg.DialogResult == DialogResult.OK) ? 0 : (dlg.DialogResult == DialogResult.Cancel) ? 1 : -1;
-                } // using dlg
-            } // if-else
+                DialogResult.OK => 0,
+                DialogResult.Cancel => 1,
+                _ => -1
+            };
         } // Main
 
         internal static void SetWizardResult(DialogResult endResult)
@@ -82,13 +84,12 @@ namespace IpTviewr.Tools.FirstTimeConfig
 
         static int LaunchWizard()
         {
-            InitializationResult initResult;
-            var launchMainProgram = false;
-            var result = 0;
+            bool launchMainProgram;
+            int result;
 
             _wizardEndResult = DialogResult.Abort;
 
-            AppConfigFolders = Installation.LoadFolders(out initResult);
+            AppConfigFolders = Installation.LoadFolders(out var initResult);
             if (string.IsNullOrEmpty(Settings.Default.Telemetry_GoogleAnalyticsClientId))
             {
                 Settings.Default.Telemetry_GoogleAnalyticsClientId = Guid.NewGuid().ToString("D");
