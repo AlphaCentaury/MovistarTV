@@ -1,17 +1,24 @@
-﻿// Copyright (C) 2014-2016, Codeplex/GitHub user AlphaCentaury
-// All rights reserved, except those granted by the governing license of this software. See 'license.txt' file in the project root for complete license information.
+// ==============================================================================
+// 
+//   Copyright (C) 2014-2020, GitHub/Codeplex user AlphaCentaury
+//   All rights reserved.
+// 
+//     See 'LICENSE.MD' file (or 'license.txt' if missing) in the project root
+//     for complete license information.
+// 
+//   http://www.alphacentaury.org/movistartv
+//   https://github.com/AlphaCentaury
+// 
+// ==============================================================================
 
 using IpTviewr.DvbStp.Client;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.IO;
-using System.Linq;
 using System.Net;
-using System.Net.Sockets;
 using System.Text;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace IpTviewr.Internal.Tools.GuiTools
@@ -28,6 +35,7 @@ namespace IpTviewr.Internal.Tools.GuiTools
         private string DumpFolderSections;
         private string DumpFolderSegments;
         private DateTime StartTime;
+        private CancellationTokenSource CancellationTokenSource;
 
         public DvbStpStreamExplorerForm()
         {
@@ -117,7 +125,8 @@ namespace IpTviewr.Internal.Tools.GuiTools
             listViewSections.Items.Clear();
             listViewRuns.Items.Clear();
 
-            Explorer = new DvbStpExplorer(MulticastIpAddress, MulticastPort);
+            CancellationTokenSource = new CancellationTokenSource();
+            Explorer = new DvbStpExplorer(MulticastIpAddress, MulticastPort, CancellationTokenSource.Token);
             statusLabelReceiving.Text = "Trying to connect...";
 
             Worker = new BackgroundWorker()
@@ -136,7 +145,7 @@ namespace IpTviewr.Internal.Tools.GuiTools
             buttonStop.Enabled = false;
             buttonStop.Text = "Cancelling";
             buttonStop.Image = Properties.Resources.Status_Wait_16x16;
-            Explorer.CancelRequest();
+            CancellationTokenSource.Cancel();
         } // buttonStop_Click
 
         #endregion
@@ -153,20 +162,23 @@ namespace IpTviewr.Internal.Tools.GuiTools
 
         #region Worker events
 
-        void Worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        private void Worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
+            Worker.Dispose();
+            Worker = null;
+
+            CancellationTokenSource.Dispose();
+            CancellationTokenSource = null;
+
             buttonStart.Enabled = true;
             buttonStop.Text = "Stop";
             buttonStop.Image = Properties.Resources.Action_Cancel_Red_16x16;
             statusLabelDataReception.Text = null;
             statusLabelReceiving.Text = null;
             checkDumpSections.Enabled = true;
-
-            Worker.Dispose();
-            Worker = null;
         } // Worker_RunWorkerCompleted
 
-        void Worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        private void Worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
             switch (e.ProgressPercentage)
             {
@@ -200,7 +212,7 @@ namespace IpTviewr.Internal.Tools.GuiTools
             DatagramCount++;
             DatagramByteCount += section.BytesReceived;
 
-            int length = (DatagramCount % 10) + 1;
+            var length = (DatagramCount % 10) + 1;
             statusLabelDataReception.Text = new string('l', length);
 
             statusLabelDatagramCount.Text = string.Format("{0:N0} datagrams received", DatagramCount);
@@ -210,7 +222,7 @@ namespace IpTviewr.Internal.Tools.GuiTools
             {
                 string.Format("p{0:X2}s{1:X4}v{2:X2}", section.Header.PayloadId, section.Header.SegmentId, section.Header.SegmentVersion),
                 string.Format("{0,7:N0}", section.BytesReceived),
-                string.Format(section.Header.HasCRC? "yes" : "no"),
+                string.Format(section.Header.HasCrc? "yes" : "no"),
                 string.Format("{0,7:N0}", section.Payload.Length),
                 string.Format("{0,7:N0}", section.Header.SectionNumber),
                 string.Format("{0,7:N0}", section.Header.LastSectionNumber),
@@ -273,7 +285,7 @@ namespace IpTviewr.Internal.Tools.GuiTools
 
         #region Worker implementation
 
-        void Worker_DoWork(object sender, DoWorkEventArgs e)
+        private void Worker_DoWork(object sender, DoWorkEventArgs e)
         {
             StartTime = DateTime.Now;
             try
@@ -318,8 +330,8 @@ namespace IpTviewr.Internal.Tools.GuiTools
         {
             if (count > data.Length) count = data.Length;
 
-            StringBuilder buffer = new StringBuilder(count);
-            for (int index = 0; index < count; index++)
+            var buffer = new StringBuilder(count);
+            for (var index = 0; index < count; index++)
             {
                 var b = data[index];
                 buffer.Append((b <32 )? '·' : (char) b);

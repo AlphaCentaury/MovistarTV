@@ -1,0 +1,343 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AppConfigValidationBasePath" xml:space="preserve">
+    <value>No se puede encontrar la carpeta 'base' en '{0}'.</value>
+  </data>
+  <data name="AppConfigValidationLogosPath" xml:space="preserve">
+    <value>No se puede encontrar la carpeta de 'logotipos' en '{0}'.</value>
+  </data>
+  <data name="ExceptionLogosDomainMappingsDuplicatedDomain" xml:space="preserve">
+    <value>El nombre de dominio (domain name) '{0}' está duplicado en 'logos/services/domain-mappings.xml'</value>
+  </data>
+  <data name="ExceptionLogosProviderMappingsDuplicatedDomain" xml:space="preserve">
+    <value>El nombre de dominio (domain name) '{0}' está duplicado en 'logos/providers/provider-mappings.xml'</value>
+  </data>
+  <data name="ExceptionLogosServiceImageLoadError" xml:space="preserve">
+    <value>Imposible cargar el archivo con el logo del servicio
+{0}</value>
+  </data>
+  <data name="ExceptionLogosServiceImageNotFound" xml:space="preserve">
+    <value>El archivo con el logo del servicio no existe</value>
+  </data>
+  <data name="ExceptionLogosServiceMappingsDuplicatedDomain" xml:space="preserve">
+    <value>El nombre de dominio (domain name) '{0}' está duplicado en 'logos/services/service-mappings.xml'</value>
+  </data>
+  <data name="ExceptionLogosServiceMappingsDuplicatedService" xml:space="preserve">
+    <value>El nombre de servicio (service name) '{0}' está duplicado en 'logos/services/service-mappings.xml' en el dominio '{1}'</value>
+  </data>
+  <data name="LoadConfigUserConfigValidation" xml:space="preserve">
+    <value>El archivo de configuración de usuario '{0}' no es válido o contiene errores graves.
+{1}
+
+Verifique la sintáxis XML del archivo y solucione los errores detectados.</value>
+  </data>
+  <data name="LoadConfigUserConfigValidationException" xml:space="preserve">
+    <value>Consulte los detalles de la excepción (más abajo) para obtener información detallada del problema.</value>
+  </data>
+  <data name="LoadConfigValidationCaption" xml:space="preserve">
+    <value>Error al validar la configuración de la aplicación</value>
+  </data>
+  <data name="LoadUserConfigExceptionCaption" xml:space="preserve">
+    <value>Imposible cargar la configuración de usuario</value>
+  </data>
+  <data name="LoadUserConfigValidationCaption" xml:space="preserve">
+    <value>Error al validar la configuración y las preferencias de usuario</value>
+  </data>
+  <data name="PlayerConfigValidationPathNotFound" xml:space="preserve">
+    <value>No se ha localizado el reproductor de TV '{0}' en '{1}'.</value>
+  </data>
+  <data name="RecorderConfigValidationPathNotFound" xml:space="preserve">
+    <value>No se ha localizado el grabador externo '{0}' en '{1}'.</value>
+  </data>
+  <data name="RecordSaveLocationValidationAbsolutePath" xml:space="preserve">
+    <value>El valor '{0}' no es válido como ruta en la etiqueta &lt;{1}&gt;. Tiene que ser una ruta absoluta con letra de volumen (como 'C:\Carpeta') o una ubicación de red en formato 'UNC' (como  '\\servidor\compartido').</value>
+  </data>
+  <data name="RecordTaskSchedulerFolderValidationPath" xml:space="preserve">
+    <value>El valor '{0}' en la etiqueta &lt;{1}&gt; no es un nombre de carpeta válido para el Programador de Tareas. Debe comenzar forzosamente por '\' y no puede terminar en '\'.</value>
+  </data>
+  <data name="UserConfigValidationAtLeastOne" xml:space="preserve">
+    <value>Debe especificarse al menos una etiqueta &lt;{0}&gt; bajo la etiqueta &lt;{1}&gt;.</value>
+  </data>
+  <data name="UserConfigValidationDuplicatedEntry" xml:space="preserve">
+    <value>Elemento &lt;{1}&gt; duplicado en la lista &lt;{0}&gt;. El valor de '{2}' es '{3}'</value>
+  </data>
+  <data name="UserConfigValidationIpAddress" xml:space="preserve">
+    <value>dirección IP</value>
+  </data>
+  <data name="UserConfigValidationIpPort" xml:space="preserve">
+    <value>número de puerto IP</value>
+  </data>
+  <data name="UserConfigValidationMissingEmpty" xml:space="preserve">
+    <value>La etiqueta &lt;{0}&gt; no existe o está vacía.</value>
+  </data>
+  <data name="UserConfigValidationMissingEmptyAttribute" xml:space="preserve">
+    <value>El attribute '{0}' falta o está vacío en la etiqueta &lt;{1}&gt;.</value>
+  </data>
+  <data name="UserConfigValidationMissingEmptyOwner" xml:space="preserve">
+    <value>La etiqueta &lt;{0}&gt; no existe o está vacía bajo la etiqueta &lt;{1}&gt; tag.</value>
+  </data>
+  <data name="UserConfigValidationMissingEmptyValue" xml:space="preserve">
+    <value>La etiquete &lt;{0}&gt; no existe o está vacía bajo la etiqueta&lt;{1}&gt;. EL valor de '{2}' es '{3}'.</value>
+  </data>
+  <data name="UserConfigValidationMissingTag" xml:space="preserve">
+    <value>Falta una etiqueta &lt;{0}&gt; bajo la etiqueta &lt;{1}&gt;.</value>
+  </data>
+  <data name="UserConfigValidationValueType" xml:space="preserve">
+    <value>El valor '{2}' especificado en la etiqueta &lt;{0}&gt; no es un/una {1} válido.</value>
+  </data>
+  <data name="LoadContentProviderDataExceptionCaption" xml:space="preserve">
+    <value>Imposible cargar la información del proveedor de contenidos</value>
+  </data>
+  <data name="LoadContentProviderDataValidation" xml:space="preserve">
+    <value>El archivo de datos del proveedor de contenidos '{0}' no es válido o contiene errores graves.
+{1}
+Verifique la sintáxis XML del archivo y corrija los errores detectados.</value>
+  </data>
+  <data name="LoadContentProviderDataValidationCaption" xml:space="preserve">
+    <value>Error al validar la información del proveedor de contenidos</value>
+  </data>
+  <data name="LoadContentProviderDataValidationException" xml:space="preserve">
+    <value>Consulte los detalles de la excepción (más abajo) para obtener información detallada del problema.</value>
+  </data>
+  <data name="AppConfigRegistryCaption" xml:space="preserve">
+    <value>La aplicación no está instalada correctamente</value>
+  </data>
+  <data name="AppConfigRegistryMissingKey" xml:space="preserve">
+    <value>No se puede localizar o abrir 'HKCU\{0}'.</value>
+  </data>
+  <data name="AppConfigRegistryMissingValue" xml:space="preserve">
+    <value>El valor '{1}' no existe bajo la clave 'HKCU\{0}'.</value>
+  </data>
+  <data name="AppConfigRegistryText" xml:space="preserve">
+    <value>Se ha producido un error al acceder a la configuración de la aplicación en el Registro de Windows:
+{0}
+
+Por favor, instale la aplicación utilizando el instalador oficial o repare la instalación.</value>
+  </data>
+  <data name="LogoSize128" xml:space="preserve">
+    <value>Más grande</value>
+  </data>
+  <data name="LogoSize256" xml:space="preserve">
+    <value>Enorme</value>
+  </data>
+  <data name="LogoSize32" xml:space="preserve">
+    <value>Pequeño</value>
+  </data>
+  <data name="LogoSize48" xml:space="preserve">
+    <value>Normal</value>
+  </data>
+  <data name="LogoSize64" xml:space="preserve">
+    <value>Medio</value>
+  </data>
+  <data name="LogoSize96" xml:space="preserve">
+    <value>Grande</value>
+  </data>
+  <data name="LogoSizeWithSizeFormat" xml:space="preserve">
+    <value>{0} ({1}x{2})</value>
+  </data>
+  <data name="LoadProgress_ContentProvider" xml:space="preserve">
+    <value>Leyendo la información del proveedor de contenidos...</value>
+  </data>
+  <data name="LoadProgress_Start" xml:space="preserve">
+    <value>Cargando la configuración de la aplicación...</value>
+  </data>
+  <data name="LoadProgress_UserConfig" xml:space="preserve">
+    <value>Leyendo la configuración de usuario y preferencias...</value>
+  </data>
+  <data name="DvbServiceTypeDescription_01" xml:space="preserve">
+    <value>TV SD</value>
+  </data>
+  <data name="DvbServiceTypeDescription_02" xml:space="preserve">
+    <value>Radio (MPEG-1)</value>
+  </data>
+  <data name="DvbServiceTypeDescription_03" xml:space="preserve">
+    <value>Teletexto</value>
+  </data>
+  <data name="DvbServiceTypeDescription_06" xml:space="preserve">
+    <value>Mosaico</value>
+  </data>
+  <data name="DvbServiceTypeDescription_10" xml:space="preserve">
+    <value>Radio HD</value>
+  </data>
+  <data name="DvbServiceTypeDescription_11" xml:space="preserve">
+    <value>Mosaico HD</value>
+  </data>
+  <data name="DvbServiceTypeDescription_12" xml:space="preserve">
+    <value>Datos</value>
+  </data>
+  <data name="DvbServiceTypeDescription_16" xml:space="preserve">
+    <value>DVB MHP</value>
+  </data>
+  <data name="DvbServiceTypeDescription_17" xml:space="preserve">
+    <value>TV HD (MPEG-2)</value>
+  </data>
+  <data name="DvbServiceTypeDescription_22" xml:space="preserve">
+    <value>TV SD (AAC)</value>
+  </data>
+  <data name="DvbServiceTypeDescription_25" xml:space="preserve">
+    <value>TV HD</value>
+  </data>
+  <data name="LoadCompositionException" xml:space="preserve">
+    <value>No se han podido cargar los módulos de la aplicación, seguramente por la ausencia de uno de ellos. Por favor, reinstale la aplicacion.</value>
+  </data>
+  <data name="LoadCompositionExceptionCaption" xml:space="preserve">
+    <value>Faltan módulos de la aplicación</value>
+  </data>
+  <data name="LoadMefCaption" xml:space="preserve">
+    <value>Imposible cargar los módulos de la aplicación</value>
+  </data>
+  <data name="LoadMefException" xml:space="preserve">
+    <value>Se ha producido un error inesperado al cargar los módulos de aplicación.
+Consulte los detalles de la excepción (más abajo) para obtener información detallada del problema.</value>
+  </data>
+  <data name="LoadProgress_Mef" xml:space="preserve">
+    <value>Cargando módulos de la aplicación...</value>
+  </data>
+  <data name="ButtonOk" xml:space="preserve">
+    <value>Aceptar</value>
+  </data>
+  <data name="PushCheckForUpdates" xml:space="preserve">
+    <value>Buscar actualizaciones</value>
+  </data>
+  <data name="PushCheckingForUpdates" xml:space="preserve">
+    <value>Buscando actualizaciones</value>
+  </data>
+  <data name="PushDoNotShowAgain" xml:space="preserve">
+    <value>No volver a mostrar este mensaje</value>
+  </data>
+  <data name="PushDownloadLink" xml:space="preserve">
+    <value>Pulse el enlace de abajo para descargar la actualización:</value>
+  </data>
+  <data name="PushNewUpdate" xml:space="preserve">
+    <value>Hay una nueva versión disponible</value>
+  </data>
+  <data name="PushNoUpdates" xml:space="preserve">
+    <value>No se han encontrado nuevas versiones</value>
+  </data>
+  <data name="PushReleasedOnFormat" xml:space="preserve">
+    <value>Publicado el día {0:yyyy/MM/dd}</value>
+  </data>
+  <data name="PushUpdateError" xml:space="preserve">
+    <value>Error en la conexión con el servidor de actualizaciones</value>
+  </data>
+  <data name="PushVersionFormat" xml:space="preserve">
+    <value>Versión {0}</value>
+  </data>
+</root>

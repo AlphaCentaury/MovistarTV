@@ -1,21 +1,28 @@
-﻿using System;
+// ==============================================================================
+// 
+//   Copyright (C) 2014-2020, GitHub/Codeplex user AlphaCentaury
+//   All rights reserved.
+// 
+//     See 'LICENSE.MD' file (or 'license.txt' if missing) in the project root
+//     for complete license information.
+// 
+//   http://www.alphacentaury.org/movistartv
+//   https://github.com/AlphaCentaury
+// 
+// ==============================================================================
+
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace IpTviewr.Internal.Tools.ChannelLogos
 {
-    abstract class ConsistencyCheck
+    internal abstract class ConsistencyCheck
     {
-        protected Form Owner;
-
-        public class ProgressChangedEventArgs: EventArgs
+        public class ProgressChangedEventArgs : EventArgs
         {
             public string[] Messages;
         } // class ProgressChangedEventArgs
-
-        public event EventHandler<ProgressChangedEventArgs> ProgressChanged;
 
         public enum Severity
         {
@@ -31,19 +38,16 @@ namespace IpTviewr.Internal.Tools.ChannelLogos
             public DateTime Timestamp
             {
                 get;
-                private set;
             } // Timestamp
 
             public Severity Severity
             {
                 get;
-                private set;
             } // Severity
 
             public string[] Data
             {
                 get;
-                private set;
             } // Data
 
             public Result(Severity severity, params string[] data)
@@ -54,29 +58,40 @@ namespace IpTviewr.Internal.Tools.ChannelLogos
             } // constructor
         } // class Result
 
-        public ConsistencyCheck()
+        protected ConsistencyCheck()
         {
             Results = new List<Result>();
             StartTime = DateTime.Now;
         } // constructor
 
+        public event EventHandler<ProgressChangedEventArgs> ProgressChanged;
+
+        public ConsistencyChecksData Data { get; set; }
+
         public DateTime StartTime
         {
             get;
-            private set;
         } // Start Time
 
         public IList<Result> Results
         {
             get;
-            private set;
         } // Results
 
-        public void Execute(Form owner)
+        public void Execute(ConsistencyChecksData data)
         {
-            Owner = owner;
-            Run();
-            Owner = null;
+            try
+            {
+                Data = data ?? throw new ArgumentNullException(nameof(data));
+                AddResult(Severity.Info, "Check started");
+                Run();
+            }
+            catch (Exception e)
+            {
+                AddResult(Severity.Error, "Exception", e.Message);
+            } // try-catch
+
+            AddResult(Severity.Info, "Check ended");
         } // Execute
 
         protected abstract void Run();
@@ -85,23 +100,14 @@ namespace IpTviewr.Internal.Tools.ChannelLogos
         {
             Results.Add(new Result(severity, data));
 
-            if (severity == Severity.Info)
-            {
-                var e = new ProgressChangedEventArgs()
-                {
-                    Messages = data
-                };
+            if (severity != Severity.Info) return;
 
-                OnProgressChanged(this, e);
-            } // if
-        } // AddResult
+            OnProgressChanged(this, new ConsistencyCheck.ProgressChangedEventArgs { Messages = data });
+        } // // AddResult
 
-        protected virtual void OnProgressChanged(object sender, ProgressChangedEventArgs e)
+        protected virtual void OnProgressChanged(ConsistencyCheck sender, ProgressChangedEventArgs e)
         {
-            var progressChanged = ProgressChanged;
-            if (progressChanged == null) return;
-
-            progressChanged(sender, e);
+            ProgressChanged?.Invoke(sender, e);
         } // OnProgressChanged
     } // abstract class ConsistencyCheck
 } // namespace

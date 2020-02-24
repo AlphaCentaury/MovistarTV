@@ -1,14 +1,18 @@
-﻿// Copyright (C) 2014-2016, Codeplex/GitHub user AlphaCentaury
-// All rights reserved, except those granted by the governing license of this software. See 'license.txt' file in the project root for complete license information.
+// ==============================================================================
+// 
+//   Copyright (C) 2014-2020, GitHub/Codeplex user AlphaCentaury
+//   All rights reserved.
+// 
+//     See 'LICENSE.MD' file (or 'license.txt' if missing) in the project root
+//     for complete license information.
+// 
+//   http://www.alphacentaury.org/movistartv
+//   https://github.com/AlphaCentaury
+// 
+// ==============================================================================
 
 using IpTviewr.Tools.FirstTimeConfig.Properties;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace IpTviewr.Tools.FirstTimeConfig
@@ -18,7 +22,7 @@ namespace IpTviewr.Tools.FirstTimeConfig
         public FirewallForm()
         {
             InitializeComponent();
-            this.Icon = Resources.FirewallIcon;
+            Icon = Resources.FirewallIcon;
 
             checkBoxFirewallDecoder.Enabled = !string.IsNullOrEmpty(Program.FirewallBinPath);
             checkBoxFirewallDecoder.Checked = checkBoxFirewallDecoder.Enabled;
@@ -30,15 +34,14 @@ namespace IpTviewr.Tools.FirstTimeConfig
         private void buttonFirewall_Click(object sender, EventArgs e)
         {
             string message;
-
-            var ok = Installation.ConfigureFirewall(
+            _ = Installation.ConfigureFirewall(
                 checkBoxFirewallDecoder.Checked ? Program.FirewallBinPath : null,
                 checkBoxFirewallVlc.Checked ? Program.FirewallVlcPath : null,
                 out message);
 
             if (message != null)
             {
-                MessageBox.Show(this, message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(this, message, Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             } // if
 

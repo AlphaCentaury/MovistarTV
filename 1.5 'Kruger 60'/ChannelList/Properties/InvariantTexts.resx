@@ -117,41 +117,54 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AnalyticsGoogleTrackingId" xml:space="preserve">
-    <value>UA-66146192-4</value>
-    <comment>Get new property for every new major version or new phase!</comment>
-  </data>
   <data name="DebugLocationPath" xml:space="preserve">
     <value>\bin\debug</value>
   </data>
   <data name="DebugRecorderLauncherPath" xml:space="preserve">
     <value>..\..\..\IpTvRecorderLauncher\bin\debug\</value>
   </data>
-  <data name="ExceptionForceUiCulture" xml:space="preserve">
-    <value>Unable to change the applicationt UI language.
-The language ("culture") id may not be valid or not recognized by the system.
-Please verify the value of the 'ForceUICulture' property in '.config' file.
+  <data name="ExceptionSetCulture" xml:space="preserve">
+    <value>Unable to change the applicationt formatting language.
+The specified language ("culture") id '{0}' may not be valid or not recognized by the system.
+Please check the value of the argument/settings 'SetCulture'.
 
-No se ha podido cambiar el idioma de la aplicación.
-El identificador de idioma ("cultura") puede no ser válido o no ser reconocido por el sistema.
-Verifique el valor de  la propiedad 'ForceUICulture' del archivo '.config'</value>
+No se ha podido cambiar el idioma para dar formato de la aplicación.
+El identificador de idioma ("cultura") '{0} puede no ser válido o no ser reconocido por el sistema.
+Verifique el valor del argumento/configuración 'SetCulture'.</value>
   </data>
   <data name="ExeRecorderLauncher" xml:space="preserve">
     <value>IpTvRecorderLauncher.exe</value>
   </data>
   <data name="SplashScreenDefaultStatus" xml:space="preserve">
-    <value>http://movistartv.codeplex.com</value>
+    <value>https://alphacentaury.org/movistartv</value>
   </data>
   <data name="UrlCheckForUpdatesManual" xml:space="preserve">
-    <value>http://movistartv.codeplex.com/wikipage?title=Update-v1.5.1010.0</value>
+    <value>https://www.alphacentaury.org/temas/movistartv/downloads/</value>
   </data>
   <data name="UrlDocumentation" xml:space="preserve">
-    <value>http://movistartv.codeplex.com/documentation</value>
+    <value>https://www.alphacentaury.org/temas/movistartv/</value>
   </data>
   <data name="UrlHomePage" xml:space="preserve">
-    <value>http://movistartv.codeplex.com</value>
+    <value>https://www.alphacentaury.org/movistartv</value>
   </data>
   <data name="UrlReportIssue" xml:space="preserve">
-    <value>http://movistartv.codeplex.com/workitem/list/basic</value>
+    <value>https://github.com/AlphaCentaury/MovistarTV/issues</value>
+  </data>
+  <data name="TelemetryAppCenter_AppSecret" xml:space="preserve">
+    <value>36b7045d-3bfe-4166-bd7c-4b012f5365e0</value>
+    <comment>Get new secret for every new major version or new phase!</comment>
+  </data>
+  <data name="TelemetryGoogleAnalytics_TrackingId" xml:space="preserve">
+    <value>UA-66146192-4</value>
+    <comment>Get new property for every new major version or new phase!</comment>
+  </data>
+  <data name="ExceptionSetUiCulture" xml:space="preserve">
+    <value>Unable to change the applicationt UI language.
+The specified language ("culture") id '{0}' may not be valid or not recognized by the system.
+Please check the value of the argument/settings 'SetUiCulture'.
+
+No se ha podido cambiar el idioma de la aplicación.
+El identificador de idioma ("cultura") '{0} puede no ser válido o no ser reconocido por el sistema.
+Verifique el valor del argumento/configuración 'SetUiCulture'.</value>
   </data>
 </root>

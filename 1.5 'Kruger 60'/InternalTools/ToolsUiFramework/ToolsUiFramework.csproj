@@ -1,0 +1,169 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{63482F69-C5DE-430D-86E7-E2A4EAC59A51}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>IpTviewr.Internal.Tools.UiFramework</RootNamespace>
+    <AssemblyName>IpTviewr.ToolsUiFramework</AssemblyName>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ComponentFactory.Krypton.Navigator, Version=4.6.0.0, Culture=neutral, PublicKeyToken=a87e673e9ecb6e8e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Assemblies\Third-party\ComponentFactory\Krypton\v4.6.0.0\ComponentFactory.Krypton.Navigator.dll</HintPath>
+    </Reference>
+    <Reference Include="ComponentFactory.Krypton.Ribbon, Version=4.6.0.0, Culture=neutral, PublicKeyToken=a87e673e9ecb6e8e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Assemblies\Third-party\ComponentFactory\Krypton\v4.6.0.0\ComponentFactory.Krypton.Ribbon.dll</HintPath>
+    </Reference>
+    <Reference Include="ComponentFactory.Krypton.Toolkit, Version=4.6.0.0, Culture=neutral, PublicKeyToken=a87e673e9ecb6e8e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Assemblies\Third-party\ComponentFactory\Krypton\v4.6.0.0\ComponentFactory.Krypton.Toolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="JetBrains.Annotations, Version=2019.1.3.0, Culture=neutral, PublicKeyToken=1010a0d8d6380325, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JetBrains.Annotations.2019.1.3\lib\net20\JetBrains.Annotations.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.ValueTuple.4.5.0\lib\net461\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\..\AssemblySolutionInfo.cs">
+      <Link>Properties\AssemblySolutionInfo.cs</Link>
+    </Compile>
+    <Compile Include="CliToolData.cs" />
+    <Compile Include="GuiToolData.cs" />
+    <Compile Include="ICliTool.cs" />
+    <Compile Include="ICliToolDataProvider.cs" />
+    <Compile Include="IGuiTool.cs" />
+    <Compile Include="IGuiToolDataProvider.cs" />
+    <Compile Include="IRibbonMdiChild.cs" />
+    <Compile Include="IRibbonMdiForm.cs" />
+    <Compile Include="ITool.cs" />
+    <Compile Include="IToolDataProvider.cs" />
+    <Compile Include="IToolMetadata.cs" />
+    <Compile Include="IToolOutputWriter.cs" />
+    <Compile Include="MdiRibbonChildForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MdiRibbonForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MdiRibbonForm.Designer.cs">
+      <DependentUpon>MdiRibbonForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MdiRibbonContext.cs" />
+    <Compile Include="OutputWriter\BaseOutputWriter.cs" />
+    <Compile Include="OutputWriter\ToolOutputWriter.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <DependentUpon>Resources.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="SelectToolDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SelectToolDialog.Designer.cs">
+      <DependentUpon>SelectToolDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ToolData.cs" />
+    <Compile Include="ToolsContainer.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="MdiRibbonForm.resx">
+      <DependentUpon>MdiRibbonForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectToolDialog.resx">
+      <DependentUpon>SelectToolDialog.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="LICENSE.ES.MD" />
+    <None Include="LICENSE.MD" />
+    <None Include="packages.config" />
+    <None Include="Resources\Action_ArrangeCascade_16x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Action_ArrangeCascade_32x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Action_CloseAllWindows_16x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Action_CloseAllWindows_32x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Action_CloseWindow_16x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Action_CloseWindow_32x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Action_NewWindow_16x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Action_NewWindow_32x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Action_TileHorizontal_16x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Action_TileHorizontal_32x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Action_TileVertical_16x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Action_TileVertical_32x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="license.txt" />
+    <Content Include="licensing.xml" />
+    <Content Include="Resources\CliTool_16x.png" />
+    <Content Include="Resources\CliTool.svg" />
+    <Content Include="Resources\CliTool_24x.png" />
+    <Content Include="Resources\CliTool_32x.png" />
+    <Content Include="Resources\GuiTool_16x.png" />
+    <Content Include="Resources\GuiTool.svg" />
+    <Content Include="Resources\GuiTool_24x.png" />
+    <Content Include="Resources\GuiTool_32x.png" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+==============================================================================
+
+  Copyright (C) 2014-2020, GitHub/Codeplex user AlphaCentaury
+  All rights reserved.
+
+    See 'LICENSE.MD' file (or 'license.txt' if missing) in the project root
+    for complete license information.
+
+  http://www.alphacentaury.org/movistartv
+  https://github.com/AlphaCentaury
+
+==============================================================================
+-->
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<Fragment>
+    <Feature Id="Feature.Logos" Absent="disallow">
+      <ComponentGroupRef Id="Logos.Providers"/>
+      <ComponentGroupRef Id="Logos.Services"/>
+    </Feature>
+
+    <ComponentGroup Id="Logos.Providers" Directory="Folder.Logos.Providers">
+      <Component>
+        <File Id="logos.providers.mappings.xml" Source="$(var.Logos.ProjectDir)Providers\provider-mappings.xml" KeyPath="yes" />
+      </Component>
+      <Component>
+        <File Id="logos.providers.default" Source="$(var.Logos.TargetDir)logos\Providers\(default).zip" KeyPath="yes" />
+      </Component>
+      <Component>
+        <File Id="logos.providers.movistar" Source="$(var.Logos.TargetDir)logos\Providers\movistar+.zip" KeyPath="yes" />
+      </Component>
+    </ComponentGroup>
+
+    <ComponentGroup Id="Logos.Services" Directory="Folder.Logos.Services">
+      <Component>
+        <File Id="logos.services.mappings.domain.xml" Source="$(var.Logos.ProjectDir)Services\domain-mappings.xml" KeyPath="yes" />
+      </Component>
+      <Component>
+        <File Id="logos.services.mappings.service.xml" Source="$(var.Logos.ProjectDir)Services\service-mappings.xml" KeyPath="yes" />
+      </Component>
+      <Component>
+        <File Id="logos.services.generic.zip" Source="$(var.Logos.TargetDir)logos\Services\generic.zip" KeyPath="yes" />
+      </Component>
+      <Component>
+        <File Id="logos.services.movistar.zip" Source="$(var.Logos.TargetDir)logos\Services\movistar+.zip" KeyPath="yes" />
+      </Component>
+    </ComponentGroup>
+  </Fragment>
+</Wix>

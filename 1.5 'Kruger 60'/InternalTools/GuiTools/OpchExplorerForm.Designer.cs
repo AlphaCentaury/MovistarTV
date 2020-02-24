@@ -1,5 +1,15 @@
-﻿// Copyright (C) 2014-2016, Codeplex/GitHub user AlphaCentaury
-// All rights reserved, except those granted by the governing license of this software. See 'license.txt' file in the project root for complete license information.
+// ==============================================================================
+// 
+//   Copyright (C) 2014-2020, GitHub/Codeplex user AlphaCentaury
+//   All rights reserved.
+// 
+//     See 'LICENSE.MD' file (or 'license.txt' if missing) in the project root
+//     for complete license information.
+// 
+//   http://www.alphacentaury.org/movistartv
+//   https://github.com/AlphaCentaury
+// 
+// ==============================================================================
 
 namespace IpTviewr.Internal.Tools.GuiTools
 {
@@ -36,7 +46,7 @@ namespace IpTviewr.Internal.Tools.GuiTools
             System.Windows.Forms.ColumnHeader columnHeaderSize;
             System.Windows.Forms.ColumnHeader columnHeaderSuffix;
             System.Windows.Forms.ColumnHeader columnHeaderCount;
-            System.Windows.Forms.ColumnHeader columnHeaderPrefix;
+            System.Windows.Forms.ColumnHeader columnHeaderType;
             this.buttonStart = new System.Windows.Forms.Button();
             this.buttonStop = new System.Windows.Forms.Button();
             this.textPort = new System.Windows.Forms.TextBox();
@@ -52,12 +62,16 @@ namespace IpTviewr.Internal.Tools.GuiTools
             this.statusLabelDataReception = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusLabelDatagramCount = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusLabelByteCount = new System.Windows.Forms.ToolStripStatusLabel();
+            this.checkReassemble = new System.Windows.Forms.CheckBox();
+            this.radioOnTheFly = new System.Windows.Forms.RadioButton();
+            this.radioAfterStop = new System.Windows.Forms.RadioButton();
+            this.checkDeleteFragments = new System.Windows.Forms.CheckBox();
             columnHeaderFilename = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             columnHeaderFragment = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             columnHeaderSize = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             columnHeaderSuffix = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             columnHeaderCount = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            columnHeaderPrefix = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            columnHeaderType = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.statusStripMain.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -73,7 +87,8 @@ namespace IpTviewr.Internal.Tools.GuiTools
             // 
             // columnHeaderSize
             // 
-            columnHeaderSize.Text = "Size";
+            columnHeaderSize.Text = "Data size";
+            columnHeaderSize.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             columnHeaderSize.Width = 75;
             // 
             // columnHeaderSuffix
@@ -86,10 +101,10 @@ namespace IpTviewr.Internal.Tools.GuiTools
             columnHeaderCount.Text = "Count";
             columnHeaderCount.Width = 75;
             // 
-            // columnHeaderPrefix
+            // columnHeaderType
             // 
-            columnHeaderPrefix.Text = "Prefix";
-            columnHeaderPrefix.Width = 100;
+            columnHeaderType.Text = "File type";
+            columnHeaderType.Width = 100;
             // 
             // buttonStart
             // 
@@ -124,7 +139,7 @@ namespace IpTviewr.Internal.Tools.GuiTools
             this.textPort.Location = new System.Drawing.Point(213, 15);
             this.textPort.Name = "textPort";
             this.textPort.Size = new System.Drawing.Size(50, 20);
-            this.textPort.TabIndex = 19;
+            this.textPort.TabIndex = 5;
             this.textPort.Text = "22222";
             // 
             // labelPort
@@ -133,7 +148,7 @@ namespace IpTviewr.Internal.Tools.GuiTools
             this.labelPort.Location = new System.Drawing.Point(181, 18);
             this.labelPort.Name = "labelPort";
             this.labelPort.Size = new System.Drawing.Size(26, 13);
-            this.labelPort.TabIndex = 18;
+            this.labelPort.TabIndex = 4;
             this.labelPort.Text = "Port";
             // 
             // textIpAddress
@@ -141,7 +156,7 @@ namespace IpTviewr.Internal.Tools.GuiTools
             this.textIpAddress.Location = new System.Drawing.Point(75, 15);
             this.textIpAddress.Name = "textIpAddress";
             this.textIpAddress.Size = new System.Drawing.Size(100, 20);
-            this.textIpAddress.TabIndex = 17;
+            this.textIpAddress.TabIndex = 3;
             this.textIpAddress.Text = "239.0.2.30";
             // 
             // labelIpAddress
@@ -150,35 +165,35 @@ namespace IpTviewr.Internal.Tools.GuiTools
             this.labelIpAddress.Location = new System.Drawing.Point(12, 18);
             this.labelIpAddress.Name = "labelIpAddress";
             this.labelIpAddress.Size = new System.Drawing.Size(57, 13);
-            this.labelIpAddress.TabIndex = 16;
+            this.labelIpAddress.TabIndex = 2;
             this.labelIpAddress.Text = "IP address";
             // 
             // textBaseDumpFolder
             // 
             this.textBaseDumpFolder.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBaseDumpFolder.Location = new System.Drawing.Point(237, 43);
+            this.textBaseDumpFolder.Location = new System.Drawing.Point(258, 66);
             this.textBaseDumpFolder.Name = "textBaseDumpFolder";
-            this.textBaseDumpFolder.Size = new System.Drawing.Size(435, 20);
-            this.textBaseDumpFolder.TabIndex = 22;
+            this.textBaseDumpFolder.Size = new System.Drawing.Size(414, 20);
+            this.textBaseDumpFolder.TabIndex = 11;
             // 
             // labelBaseDumpFolder
             // 
             this.labelBaseDumpFolder.AutoSize = true;
-            this.labelBaseDumpFolder.Location = new System.Drawing.Point(124, 46);
+            this.labelBaseDumpFolder.Location = new System.Drawing.Point(125, 69);
             this.labelBaseDumpFolder.Name = "labelBaseDumpFolder";
-            this.labelBaseDumpFolder.Size = new System.Drawing.Size(107, 13);
-            this.labelBaseDumpFolder.TabIndex = 21;
-            this.labelBaseDumpFolder.Text = "Base folder for dump:";
+            this.labelBaseDumpFolder.Size = new System.Drawing.Size(127, 13);
+            this.labelBaseDumpFolder.TabIndex = 10;
+            this.labelBaseDumpFolder.Text = "Base folder for fragments:";
             // 
             // checkDumpDatagrams
             // 
             this.checkDumpDatagrams.AutoSize = true;
             this.checkDumpDatagrams.Location = new System.Drawing.Point(12, 45);
             this.checkDumpDatagrams.Name = "checkDumpDatagrams";
-            this.checkDumpDatagrams.Size = new System.Drawing.Size(106, 17);
-            this.checkDumpDatagrams.TabIndex = 20;
-            this.checkDumpDatagrams.Text = "Dump datagrams";
+            this.checkDumpDatagrams.Size = new System.Drawing.Size(100, 17);
+            this.checkDumpDatagrams.TabIndex = 6;
+            this.checkDumpDatagrams.Text = "Save fragments";
             this.checkDumpDatagrams.UseVisualStyleBackColor = true;
             this.checkDumpDatagrams.CheckedChanged += new System.EventHandler(this.checkDumpPayloads_CheckedChanged);
             // 
@@ -190,22 +205,23 @@ namespace IpTviewr.Internal.Tools.GuiTools
             | System.Windows.Forms.AnchorStyles.Right)));
             this.listViewFiles.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             columnHeaderFilename,
-            columnHeaderCount,
             columnHeaderFragment,
+            columnHeaderCount,
             columnHeaderSize,
-            columnHeaderPrefix,
+            columnHeaderType,
             columnHeaderSuffix});
             this.listViewFiles.FullRowSelect = true;
             this.listViewFiles.GridLines = true;
             this.listViewFiles.HeaderCustomFont = null;
             this.listViewFiles.HeaderCustomForeColor = System.Drawing.Color.Empty;
             this.listViewFiles.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.listViewFiles.HideSelection = false;
             this.listViewFiles.IsDoubleBuffered = true;
-            this.listViewFiles.Location = new System.Drawing.Point(12, 69);
+            this.listViewFiles.Location = new System.Drawing.Point(12, 92);
             this.listViewFiles.MultiSelect = false;
             this.listViewFiles.Name = "listViewFiles";
-            this.listViewFiles.Size = new System.Drawing.Size(660, 318);
-            this.listViewFiles.TabIndex = 33;
+            this.listViewFiles.Size = new System.Drawing.Size(660, 295);
+            this.listViewFiles.TabIndex = 12;
             this.listViewFiles.UseCompatibleStateImageBehavior = false;
             this.listViewFiles.View = System.Windows.Forms.View.Details;
             // 
@@ -219,7 +235,7 @@ namespace IpTviewr.Internal.Tools.GuiTools
             this.statusStripMain.Location = new System.Drawing.Point(0, 390);
             this.statusStripMain.Name = "statusStripMain";
             this.statusStripMain.Size = new System.Drawing.Size(684, 22);
-            this.statusStripMain.TabIndex = 36;
+            this.statusStripMain.TabIndex = 13;
             this.statusStripMain.Text = "statusStrip1";
             // 
             // statusLabelReceiving
@@ -228,6 +244,7 @@ namespace IpTviewr.Internal.Tools.GuiTools
             this.statusLabelReceiving.Name = "statusLabelReceiving";
             this.statusLabelReceiving.Size = new System.Drawing.Size(175, 17);
             this.statusLabelReceiving.Text = "Data reception is in progress";
+            this.statusLabelReceiving.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // statusLabelDataReception
             // 
@@ -253,11 +270,62 @@ namespace IpTviewr.Internal.Tools.GuiTools
             this.statusLabelByteCount.Text = "Total received bytes";
             this.statusLabelByteCount.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
+            // checkReassemble
+            // 
+            this.checkReassemble.AutoSize = true;
+            this.checkReassemble.Checked = true;
+            this.checkReassemble.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkReassemble.Location = new System.Drawing.Point(128, 45);
+            this.checkReassemble.Name = "checkReassemble";
+            this.checkReassemble.Size = new System.Drawing.Size(108, 17);
+            this.checkReassemble.TabIndex = 7;
+            this.checkReassemble.Text = "Reassemble files:";
+            this.checkReassemble.UseVisualStyleBackColor = true;
+            this.checkReassemble.CheckedChanged += new System.EventHandler(this.checkReassemble_CheckedChanged);
+            // 
+            // radioOnTheFly
+            // 
+            this.radioOnTheFly.AutoSize = true;
+            this.radioOnTheFly.Location = new System.Drawing.Point(258, 43);
+            this.radioOnTheFly.Name = "radioOnTheFly";
+            this.radioOnTheFly.Size = new System.Drawing.Size(70, 17);
+            this.radioOnTheFly.TabIndex = 8;
+            this.radioOnTheFly.Text = "On-the-fly";
+            this.radioOnTheFly.UseVisualStyleBackColor = true;
+            // 
+            // radioAfterStop
+            // 
+            this.radioAfterStop.AutoSize = true;
+            this.radioAfterStop.Checked = true;
+            this.radioAfterStop.Location = new System.Drawing.Point(334, 45);
+            this.radioAfterStop.Name = "radioAfterStop";
+            this.radioAfterStop.Size = new System.Drawing.Size(70, 17);
+            this.radioAfterStop.TabIndex = 9;
+            this.radioAfterStop.TabStop = true;
+            this.radioAfterStop.Text = "After stop";
+            this.radioAfterStop.UseVisualStyleBackColor = true;
+            // 
+            // checkDeleteFragments
+            // 
+            this.checkDeleteFragments.AutoSize = true;
+            this.checkDeleteFragments.Checked = true;
+            this.checkDeleteFragments.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkDeleteFragments.Location = new System.Drawing.Point(426, 45);
+            this.checkDeleteFragments.Name = "checkDeleteFragments";
+            this.checkDeleteFragments.Size = new System.Drawing.Size(185, 17);
+            this.checkDeleteFragments.TabIndex = 14;
+            this.checkDeleteFragments.Text = "Delete fragments after reassambly";
+            this.checkDeleteFragments.UseVisualStyleBackColor = true;
+            // 
             // OpchExplorerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(684, 412);
+            this.Controls.Add(this.checkDeleteFragments);
+            this.Controls.Add(this.radioAfterStop);
+            this.Controls.Add(this.radioOnTheFly);
+            this.Controls.Add(this.checkReassemble);
             this.Controls.Add(this.statusStripMain);
             this.Controls.Add(this.listViewFiles);
             this.Controls.Add(this.textBaseDumpFolder);
@@ -297,5 +365,9 @@ namespace IpTviewr.Internal.Tools.GuiTools
         private System.Windows.Forms.ToolStripStatusLabel statusLabelDataReception;
         private System.Windows.Forms.ToolStripStatusLabel statusLabelDatagramCount;
         private System.Windows.Forms.ToolStripStatusLabel statusLabelByteCount;
+        private System.Windows.Forms.CheckBox checkReassemble;
+        private System.Windows.Forms.RadioButton radioOnTheFly;
+        private System.Windows.Forms.RadioButton radioAfterStop;
+        private System.Windows.Forms.CheckBox checkDeleteFragments;
     } // class OpchExplorerForm
 } // namespace

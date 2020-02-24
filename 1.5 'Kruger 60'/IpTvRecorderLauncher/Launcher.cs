@@ -1,5 +1,15 @@
-﻿// Copyright (C) 2014-2016, Codeplex/GitHub user AlphaCentaury
-// All rights reserved, except those granted by the governing license of this software. See 'license.txt' file in the project root for complete license information.
+// ==============================================================================
+// 
+//   Copyright (C) 2014-2020, GitHub/Codeplex user AlphaCentaury
+//   All rights reserved.
+// 
+//     See 'LICENSE.MD' file (or 'license.txt' if missing) in the project root
+//     for complete license information.
+// 
+//   http://www.alphacentaury.org/movistartv
+//   https://github.com/AlphaCentaury
+// 
+// ==============================================================================
 
 using Microsoft.Win32.SafeHandles;
 using IpTviewr.Common;
@@ -10,26 +20,24 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Globalization;
 using System.IO;
-using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text;
-using System.Xml.Serialization;
 
 namespace IpTviewr.RecorderLauncher
 {
     internal class Launcher
     {
-        private DateTime StartTime;
-        private TimeSpan TotalTime;
-        private bool RecordingLate;
-        private bool RecordingTimeExceeded;
-        private bool RecordingTimeExceededDisplayed;
-        private int TimerTickCount;
+        private DateTime _startTime;
+        private TimeSpan _totalTime;
+        private bool _recordingLate;
+        private bool _recordingTimeExceeded;
+        private bool _recordingTimeExceededDisplayed;
+        private int _timerTickCount;
 
         public Program.Result Run(Guid taskId, string dbFile, string logFolder)
         {
-            var logFilename = Path.Combine(logFolder, string.Format("{0}{1}", taskId, Properties.Resources.ExtensionLogFile));
+            var logFilename = Path.Combine(logFolder, $"{taskId}{Properties.Resources.ExtensionLogFile}");
             if (logFolder != null)
             {
                 Logger.Start(logFilename, Logger.Level.Verbose);
@@ -96,7 +104,7 @@ namespace IpTviewr.RecorderLauncher
             {
                 using (var process = Process.GetCurrentProcess())
                 {
-                    string jobName = string.Format(Properties.Resources.FormatJobName, Assembly.GetEntryAssembly().GetName().Name, process.Id);
+                    var jobName = string.Format(Properties.Resources.FormatJobName, Assembly.GetEntryAssembly().GetName().Name, process.Id);
                     Logger.Log(Logger.Level.Verbose, Properties.Texts.LogVerboseJobName, jobName);
 
                     var jobHandleNative = UnsafeNativeMethods.CreateJobObject(IntPtr.Zero, jobName);
@@ -179,13 +187,13 @@ namespace IpTviewr.RecorderLauncher
             var gap = now - scheduledDateTime;
 
             if (gap.TotalSeconds < 1) gap = TimeSpan.Zero;
-            TotalTime = scheduledTotalTime - gap;
+            _totalTime = scheduledTotalTime - gap;
 
             Logger.Log(Logger.Level.Verbose, Properties.Texts.LogVerboseScheduledStartTimeGap,
-                scheduledStartTime, scheduledTotalTime, gap, TotalTime);
-            DisplayTaskData(task, TotalTime);
+                scheduledStartTime, scheduledTotalTime, gap, _totalTime);
+            DisplayTaskData(task, _totalTime);
 
-            if (TotalTime.TotalSeconds < 1)
+            if (_totalTime.TotalSeconds < 1)
             {
                 Logger.Log(Logger.Level.Error, Properties.Texts.LogErrorTooLate);
                 return Program.Result.TooLate;
@@ -197,7 +205,7 @@ namespace IpTviewr.RecorderLauncher
             {
                 if (gap.TotalSeconds > task.Schedule.SafetyMarginTimeSpan.TotalSeconds)
                 {
-                    RecordingLate = true;
+                    _recordingLate = true;
                     Logger.Log(Logger.Level.Warning, Properties.Texts.LogWarningRecordingLate, (int)task.Schedule.SafetyMarginTimeSpan.TotalMinutes);
                     Console.WriteLine(Properties.Texts.DisplayWarningRecordingLate, (int)task.Schedule.SafetyMarginTimeSpan.TotalMinutes);
                 }
@@ -216,7 +224,7 @@ namespace IpTviewr.RecorderLauncher
                 task.Action.SaveLocationPath,
                 task.Action.Filename,
                 date,
-                RecordingLate ? Properties.Texts.FormatRecordFileDelayed : null,
+                _recordingLate ? Properties.Texts.FormatRecordFileDelayed : null,
                 task.Action.FileExtension);
 
             var parameters = CreateParameters(filename, task);
@@ -242,8 +250,8 @@ namespace IpTviewr.RecorderLauncher
                     Logger.Log(Logger.Level.Info, Properties.Texts.LogInfoLaunchingRecorderOk, process.Id);
                     Console.WriteLine(Properties.Texts.DisplayLaunchingRecorderOk, process.Id);
 
-                    TimerTickCount = 0;
-                    StartTime = DateTime.UtcNow;
+                    _timerTickCount = 0;
+                    _startTime = DateTime.UtcNow;
                     var timer = new System.Threading.Timer(OnTimerTick, null, 0, 60000);
 
                     Logger.Log(Logger.Level.Verbose, Properties.Texts.LogVerboseWaitForExit);
@@ -275,7 +283,7 @@ namespace IpTviewr.RecorderLauncher
 
         private IDictionary<string, string> CreateParameters(string filename, RecordTask task)
         {
-            var paramKeys = new string[]
+            var paramKeys = new[]
             {
                 "OutputFile",
                 "Channel.Url",
@@ -285,7 +293,7 @@ namespace IpTviewr.RecorderLauncher
                 "Description.Description",
                 "Duration.TotalSeconds",
             };
-            var paramValues = new string[]
+            var paramValues = new[]
             {
                 filename,
                 task.Channel.ChannelUrl,
@@ -293,7 +301,7 @@ namespace IpTviewr.RecorderLauncher
                 task.Channel.Description,
                 task.Description.Name,
                 task.Description.Description,
-                ((int)TotalTime.TotalSeconds).ToString(CultureInfo.InvariantCulture),
+                ((int)_totalTime.TotalSeconds).ToString(CultureInfo.InvariantCulture),
             };
 
             return ArgumentsManager.CreateParameters(paramKeys, paramValues, false);
@@ -303,14 +311,14 @@ namespace IpTviewr.RecorderLauncher
         {
             try
             {
-                var elapsed = DateTime.UtcNow - StartTime;
-                var remaining = TotalTime - elapsed;
+                var elapsed = DateTime.UtcNow - _startTime;
+                var remaining = _totalTime - elapsed;
 
-                if ((TimerTickCount % 10) == 0)
+                if ((_timerTickCount % 10) == 0)
                 {
                     Logger.Log(Logger.Level.Verbose, "OnTimerTick({0}, {1})", elapsed, remaining);
                 } // if
-                ++TimerTickCount;
+                ++_timerTickCount;
 
                 if (remaining.TotalSeconds < 0)
                 {
@@ -320,10 +328,10 @@ namespace IpTviewr.RecorderLauncher
                     }
                     else
                     {
-                        if (!RecordingTimeExceededDisplayed)
+                        if (!_recordingTimeExceededDisplayed)
                         {
-                            RecordingTimeExceeded = true;
-                            RecordingTimeExceededDisplayed = true;
+                            _recordingTimeExceeded = true;
+                            _recordingTimeExceededDisplayed = true;
                             Logger.Log(Logger.Level.Error, Properties.Texts.LogErrorRecordingTimeExceeded);
 
                             Console.Write(new string(' ', Console.WindowWidth - 2));
@@ -334,22 +342,22 @@ namespace IpTviewr.RecorderLauncher
                     } // if
                 } // if
 
-                if (elapsed > TotalTime) elapsed = TotalTime;
+                if (elapsed > _totalTime) elapsed = _totalTime;
 
                 var remainingFormat = (remaining.Days > 0) ? "{0,3}.{1:00}:{2:00}:{3:00}" : "{1:00}:{2:00}:{3:00}";
                 var remainingText = string.Format(remainingFormat, remaining.Days, remaining.Hours, remaining.Minutes, remaining.Seconds);
 
                 var barLength = (Console.WindowWidth - 2) - remainingText.Length;
-                var secondsPerChar = TotalTime.TotalSeconds / barLength;
+                var secondsPerChar = _totalTime.TotalSeconds / barLength;
                 var elapsedChars = (int)(elapsed.TotalSeconds / secondsPerChar);
                 var progressElapsed = new string('#', elapsedChars);
                 var progressRemaining = new string('.', barLength - elapsedChars);
 
-                var ForeColor = Console.ForegroundColor;
-                if (RecordingTimeExceeded) Console.ForegroundColor = ConsoleColor.Red;
+                var foreColor = Console.ForegroundColor;
+                if (_recordingTimeExceeded) Console.ForegroundColor = ConsoleColor.Red;
                 Console.Write(progressElapsed);
                 Console.Write(progressRemaining);
-                if (RecordingTimeExceeded) Console.ForegroundColor = ForeColor;
+                if (_recordingTimeExceeded) Console.ForegroundColor = foreColor;
                 Console.Write(" ");
                 Console.Write(remainingText);
                 Console.Write("\r");
@@ -389,7 +397,7 @@ namespace IpTviewr.RecorderLauncher
             buffer.Append("\" ");
             buffer.Append(arguments);
 
-            for (int index = 0; index < originalArguments.Length; index++)
+            for (var index = 0; index < originalArguments.Length; index++)
             {
                 buffer.AppendLine();
                 buffer.AppendFormat("{0}", originalArguments[index]);

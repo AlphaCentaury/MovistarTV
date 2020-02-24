@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+==============================================================================
+
+  Copyright (C) 2014-2020, GitHub/Codeplex user AlphaCentaury
+  All rights reserved.
+
+    See 'LICENSE.MD' file (or 'license.txt' if missing) in the project root
+    for complete license information.
+
+  http://www.alphacentaury.org/movistartv
+  https://github.com/AlphaCentaury
+
+==============================================================================
+-->
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <?include strings.wxi ?>
+  <?include strings.guid.wxi ?>
+  <Fragment>
+    <Feature Id="Feature.Tools"
+             Absent="disallow"
+             Display="collapse"
+             Title="Tools"
+             Description="Tools.">
+      <Feature Id="Feature.Tools.FirstTimeConfig"
+               Absent="disallow"
+               Title="First-time configuration assistant"
+               Description="Installs the first-time configuration assistant component. The assistant will help you install and verify prerequisites, as well as performing the application initial configuration.">
+        <ComponentGroupRef Id="Tools.FirstTimeConfig.Assemblies" />
+        <ComponentGroupRef Id="Tools.FirstTimeConfig.Localization" />
+      </Feature>
+    </Feature>
+
+    <!-- First-time configuration assistant -->
+    <ComponentGroup Id="Tools.FirstTimeConfig.Assemblies" Directory="INSTALLFOLDER">
+      <Component Id="Tools.FirstTimeConfig" Guid="$(var.Guid.Tools.FirstTimeConfig.Assemblies)">
+        <File Id="FirstTimeConfig.exe" Source="$(var.FirstTimeConfig.TargetDir)FirstTimeConfig.exe" KeyPath="yes" />
+        <File Id="FirstTimeConfig.pdb" Source="$(var.FirstTimeConfig.TargetDir)FirstTimeConfig.pdb" />
+        <File Id="Interop.NetFwTypeLib.dll" Source="$(var.FirstTimeConfig.TargetDir)Interop.NetFwTypeLib.dll" />
+      </Component>
+      <Component Id="Tools.FirstTimeConfig.Shortcut" Guid="$(var.Guid.Tools.FirstTimeConfig.Shortcut)">
+        <RegistryValue Root='HKCU' Key="$(var.BaseRegistryKey)\Shortcuts" Name="FirstTimeConfig" Type="integer" Value="1" KeyPath="yes"/>
+        <Shortcut Id='FirstTimeConfig.exe.lnk'
+                  Directory='ProgramStartMenuFolder'
+                  Name='!(loc.FirstTimeConfig.exe.lnk)'
+                  Target='[#FirstTimeConfig.exe]'
+                  WorkingDirectory='INSTALLFOLDER' />
+      </Component>
+    </ComponentGroup>
+
+    <ComponentGroup Id="Tools.FirstTimeConfig.Localization">
+      <Component Id="Tools.FirstTimeConfig.Exe.Localization.es" Directory="InstallFolder.es" Guid="$(var.Guid.Tools.FirstTimeConfig.Localization.es)">
+        <File Id="FirstTimeConfig.es.exe" Source="$(var.FirstTimeConfig.TargetDir)es\FirstTimeConfig.resources.dll" />
+      </Component>
+    </ComponentGroup>
+  </Fragment>
+</Wix>

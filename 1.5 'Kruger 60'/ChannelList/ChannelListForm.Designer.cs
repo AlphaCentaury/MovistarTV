@@ -1,5 +1,15 @@
-﻿// Copyright (C) 2014-2016, Codeplex/GitHub user AlphaCentaury
-// All rights reserved, except those granted by the governing license of this software. See 'license.txt' file in the project root for complete license information.
+// ==============================================================================
+// 
+//   Copyright (C) 2014-2020, GitHub/Codeplex user AlphaCentaury
+//   All rights reserved.
+// 
+//     See 'LICENSE.MD' file (or 'license.txt' if missing) in the project root
+//     for complete license information.
+// 
+//   http://www.alphacentaury.org/movistartv
+//   https://github.com/AlphaCentaury
+// 
+// ==============================================================================
 
 namespace IpTviewr.ChannelList
 {
@@ -18,15 +28,12 @@ namespace IpTviewr.ChannelList
         {
             if (disposing)
             {
-                ListManager.Dispose();
+                _listManager?.Dispose();
+                components?.Dispose();
             } // if
 
-            if (disposing && (components != null))
-            {
-                components.Dispose();
-            }
             base.Dispose(disposing);
-        }
+        } // Dispose
 
         #region Windows Form Designer generated code
 
@@ -41,30 +48,30 @@ namespace IpTviewr.ChannelList
             this.imageListChannelsLarge = new System.Windows.Forms.ImageList(this.components);
             this.imageListChannels = new System.Windows.Forms.ImageList(this.components);
             this.menuStripMain = new System.Windows.Forms.MenuStrip();
-            this.menuItemDvbIpTv = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuItemDvbRecent = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuItemDvbRecent0 = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuItemDvbRecent1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuItemDvbRecent2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuItemDvbRecent3 = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuItemDvbRecent4 = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuItemDvbRecent5 = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuItemDvbRecent6 = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuItemDvbRecent7 = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuItemDvbRecent8 = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuItemDvbRecent9 = new System.Windows.Forms.ToolStripMenuItem();
-            this.separatorDvb1 = new System.Windows.Forms.ToolStripSeparator();
-            this.menuItemDvbProvider = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuItemProviderSelect = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuItemProviderDetails = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuItemDvbPackages = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuItemIpTviewr = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuItemIpTviewrRecent = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuItemIpTviewrRecent0 = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuItemIpTviewrRecent1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuItemIpTviewrRecent2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuItemIpTviewrRecent3 = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuItemIpTviewrRecent4 = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuItemIpTviewrRecent5 = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuItemIpTviewrRecent6 = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuItemIpTviewrRecent7 = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuItemIpTviewrRecent8 = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuItemIpTviewrRecent9 = new System.Windows.Forms.ToolStripMenuItem();
+            this.separatorIpTviewr1 = new System.Windows.Forms.ToolStripSeparator();
+            this.menuItemIpTviewrProvider = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuItemIpTviewrProviderSelect = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuItemIpTviewrProviderDetails = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuItemIpTviewrPackages = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemPackagesSelect = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemPackagesManage = new System.Windows.Forms.ToolStripMenuItem();
-            this.separatorDvb2 = new System.Windows.Forms.ToolStripSeparator();
-            this.menuItemDvbSettings = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuItemDvbExport = new System.Windows.Forms.ToolStripMenuItem();
-            this.separatorDvb3 = new System.Windows.Forms.ToolStripSeparator();
-            this.menuItemDvbExit = new System.Windows.Forms.ToolStripMenuItem();
+            this.separatorIpTviewr2 = new System.Windows.Forms.ToolStripSeparator();
+            this.menuItemIpTviewrSettings = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuItemIpTviewrExport = new System.Windows.Forms.ToolStripMenuItem();
+            this.separatorIpTviewr3 = new System.Windows.Forms.ToolStripSeparator();
+            this.menuItemIpTviewrExit = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemChannel = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemChannelFavorites = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemChannelFavorites0 = new System.Windows.Forms.ToolStripMenuItem();
@@ -110,6 +117,7 @@ namespace IpTviewr.ChannelList
             this.menuItemHelpReportIssue = new System.Windows.Forms.ToolStripMenuItem();
             this.separatorHelp1 = new System.Windows.Forms.ToolStripSeparator();
             this.menuItemHelpCheckUpdates = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuItemHelpTelemetry = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemHelpAbout = new System.Windows.Forms.ToolStripMenuItem();
             this.labelProviderName = new System.Windows.Forms.Label();
             this.labelProviderDescription = new System.Windows.Forms.Label();
@@ -132,6 +140,7 @@ namespace IpTviewr.ChannelList
             this.pictureProviderLogo = new System.Windows.Forms.PictureBox();
             this.statusMainStrip = new System.Windows.Forms.StatusStrip();
             this.statusLabelMain = new System.Windows.Forms.ToolStripStatusLabel();
+            this.statusLabelEpg = new System.Windows.Forms.ToolStripStatusLabel();
             this.epgMiniGuide = new IpTviewr.UiServices.EPG.EpgMiniGuide();
             this.menuStripMain.SuspendLayout();
             this.contextMenuList.SuspendLayout();
@@ -154,7 +163,7 @@ namespace IpTviewr.ChannelList
             // menuStripMain
             // 
             this.menuStripMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menuItemDvbIpTv,
+            this.menuItemIpTviewr,
             this.menuItemChannel,
             this.menuItemRecordings,
             this.menuItemEpg,
@@ -162,143 +171,143 @@ namespace IpTviewr.ChannelList
             resources.ApplyResources(this.menuStripMain, "menuStripMain");
             this.menuStripMain.Name = "menuStripMain";
             // 
-            // menuItemDvbIpTv
+            // menuItemIpTviewr
             // 
-            this.menuItemDvbIpTv.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menuItemDvbRecent,
-            this.separatorDvb1,
-            this.menuItemDvbProvider,
-            this.menuItemDvbPackages,
-            this.separatorDvb2,
-            this.menuItemDvbSettings,
-            this.menuItemDvbExport,
-            this.separatorDvb3,
-            this.menuItemDvbExit});
-            this.menuItemDvbIpTv.Name = "menuItemDvbIpTv";
-            resources.ApplyResources(this.menuItemDvbIpTv, "menuItemDvbIpTv");
+            this.menuItemIpTviewr.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuItemIpTviewrRecent,
+            this.separatorIpTviewr1,
+            this.menuItemIpTviewrProvider,
+            this.menuItemIpTviewrPackages,
+            this.separatorIpTviewr2,
+            this.menuItemIpTviewrSettings,
+            this.menuItemIpTviewrExport,
+            this.separatorIpTviewr3,
+            this.menuItemIpTviewrExit});
+            this.menuItemIpTviewr.Name = "menuItemIpTviewr";
+            resources.ApplyResources(this.menuItemIpTviewr, "menuItemIpTviewr");
             // 
-            // menuItemDvbRecent
+            // menuItemIpTviewrRecent
             // 
-            this.menuItemDvbRecent.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menuItemDvbRecent0,
-            this.menuItemDvbRecent1,
-            this.menuItemDvbRecent2,
-            this.menuItemDvbRecent3,
-            this.menuItemDvbRecent4,
-            this.menuItemDvbRecent5,
-            this.menuItemDvbRecent6,
-            this.menuItemDvbRecent7,
-            this.menuItemDvbRecent8,
-            this.menuItemDvbRecent9});
-            this.menuItemDvbRecent.Image = global::IpTviewr.ChannelList.CommonUiResources.Action_History_MD_16x16;
-            this.menuItemDvbRecent.Name = "menuItemDvbRecent";
-            resources.ApplyResources(this.menuItemDvbRecent, "menuItemDvbRecent");
-            this.menuItemDvbRecent.DropDownOpening += new System.EventHandler(this.menuItemDvbRecent_DropDownOpening);
+            this.menuItemIpTviewrRecent.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuItemIpTviewrRecent0,
+            this.menuItemIpTviewrRecent1,
+            this.menuItemIpTviewrRecent2,
+            this.menuItemIpTviewrRecent3,
+            this.menuItemIpTviewrRecent4,
+            this.menuItemIpTviewrRecent5,
+            this.menuItemIpTviewrRecent6,
+            this.menuItemIpTviewrRecent7,
+            this.menuItemIpTviewrRecent8,
+            this.menuItemIpTviewrRecent9});
+            this.menuItemIpTviewrRecent.Image = global::IpTviewr.ChannelList.CommonUiResources.Action_History_MD_16x16;
+            this.menuItemIpTviewrRecent.Name = "menuItemIpTviewrRecent";
+            resources.ApplyResources(this.menuItemIpTviewrRecent, "menuItemIpTviewrRecent");
+            this.menuItemIpTviewrRecent.DropDownOpening += new System.EventHandler(this.menuItemIpTviewrRecent_DropDownOpening);
             // 
-            // menuItemDvbRecent0
+            // menuItemIpTviewrRecent0
             // 
-            resources.ApplyResources(this.menuItemDvbRecent0, "menuItemDvbRecent0");
-            this.menuItemDvbRecent0.Name = "menuItemDvbRecent0";
-            this.menuItemDvbRecent0.Tag = "0";
-            this.menuItemDvbRecent0.Click += new System.EventHandler(this.menuItemDvbRecent_Click);
+            resources.ApplyResources(this.menuItemIpTviewrRecent0, "menuItemIpTviewrRecent0");
+            this.menuItemIpTviewrRecent0.Name = "menuItemIpTviewrRecent0";
+            this.menuItemIpTviewrRecent0.Tag = "0";
+            this.menuItemIpTviewrRecent0.Click += new System.EventHandler(this.menuItemIpTviewrRecent_Click);
             // 
-            // menuItemDvbRecent1
+            // menuItemIpTviewrRecent1
             // 
-            resources.ApplyResources(this.menuItemDvbRecent1, "menuItemDvbRecent1");
-            this.menuItemDvbRecent1.Name = "menuItemDvbRecent1";
-            this.menuItemDvbRecent1.Tag = "1";
-            this.menuItemDvbRecent1.Click += new System.EventHandler(this.menuItemDvbRecent_Click);
+            resources.ApplyResources(this.menuItemIpTviewrRecent1, "menuItemIpTviewrRecent1");
+            this.menuItemIpTviewrRecent1.Name = "menuItemIpTviewrRecent1";
+            this.menuItemIpTviewrRecent1.Tag = "1";
+            this.menuItemIpTviewrRecent1.Click += new System.EventHandler(this.menuItemIpTviewrRecent_Click);
             // 
-            // menuItemDvbRecent2
+            // menuItemIpTviewrRecent2
             // 
-            resources.ApplyResources(this.menuItemDvbRecent2, "menuItemDvbRecent2");
-            this.menuItemDvbRecent2.Name = "menuItemDvbRecent2";
-            this.menuItemDvbRecent2.Tag = "2";
-            this.menuItemDvbRecent2.Click += new System.EventHandler(this.menuItemDvbRecent_Click);
+            resources.ApplyResources(this.menuItemIpTviewrRecent2, "menuItemIpTviewrRecent2");
+            this.menuItemIpTviewrRecent2.Name = "menuItemIpTviewrRecent2";
+            this.menuItemIpTviewrRecent2.Tag = "2";
+            this.menuItemIpTviewrRecent2.Click += new System.EventHandler(this.menuItemIpTviewrRecent_Click);
             // 
-            // menuItemDvbRecent3
+            // menuItemIpTviewrRecent3
             // 
-            resources.ApplyResources(this.menuItemDvbRecent3, "menuItemDvbRecent3");
-            this.menuItemDvbRecent3.Name = "menuItemDvbRecent3";
-            this.menuItemDvbRecent3.Tag = "3";
-            this.menuItemDvbRecent3.Click += new System.EventHandler(this.menuItemDvbRecent_Click);
+            resources.ApplyResources(this.menuItemIpTviewrRecent3, "menuItemIpTviewrRecent3");
+            this.menuItemIpTviewrRecent3.Name = "menuItemIpTviewrRecent3";
+            this.menuItemIpTviewrRecent3.Tag = "3";
+            this.menuItemIpTviewrRecent3.Click += new System.EventHandler(this.menuItemIpTviewrRecent_Click);
             // 
-            // menuItemDvbRecent4
+            // menuItemIpTviewrRecent4
             // 
-            resources.ApplyResources(this.menuItemDvbRecent4, "menuItemDvbRecent4");
-            this.menuItemDvbRecent4.Name = "menuItemDvbRecent4";
-            this.menuItemDvbRecent4.Tag = "4";
-            this.menuItemDvbRecent4.Click += new System.EventHandler(this.menuItemDvbRecent_Click);
+            resources.ApplyResources(this.menuItemIpTviewrRecent4, "menuItemIpTviewrRecent4");
+            this.menuItemIpTviewrRecent4.Name = "menuItemIpTviewrRecent4";
+            this.menuItemIpTviewrRecent4.Tag = "4";
+            this.menuItemIpTviewrRecent4.Click += new System.EventHandler(this.menuItemIpTviewrRecent_Click);
             // 
-            // menuItemDvbRecent5
+            // menuItemIpTviewrRecent5
             // 
-            resources.ApplyResources(this.menuItemDvbRecent5, "menuItemDvbRecent5");
-            this.menuItemDvbRecent5.Name = "menuItemDvbRecent5";
-            this.menuItemDvbRecent5.Tag = "5";
-            this.menuItemDvbRecent5.Click += new System.EventHandler(this.menuItemDvbRecent_Click);
+            resources.ApplyResources(this.menuItemIpTviewrRecent5, "menuItemIpTviewrRecent5");
+            this.menuItemIpTviewrRecent5.Name = "menuItemIpTviewrRecent5";
+            this.menuItemIpTviewrRecent5.Tag = "5";
+            this.menuItemIpTviewrRecent5.Click += new System.EventHandler(this.menuItemIpTviewrRecent_Click);
             // 
-            // menuItemDvbRecent6
+            // menuItemIpTviewrRecent6
             // 
-            resources.ApplyResources(this.menuItemDvbRecent6, "menuItemDvbRecent6");
-            this.menuItemDvbRecent6.Name = "menuItemDvbRecent6";
-            this.menuItemDvbRecent6.Tag = "6";
-            this.menuItemDvbRecent6.Click += new System.EventHandler(this.menuItemDvbRecent_Click);
+            resources.ApplyResources(this.menuItemIpTviewrRecent6, "menuItemIpTviewrRecent6");
+            this.menuItemIpTviewrRecent6.Name = "menuItemIpTviewrRecent6";
+            this.menuItemIpTviewrRecent6.Tag = "6";
+            this.menuItemIpTviewrRecent6.Click += new System.EventHandler(this.menuItemIpTviewrRecent_Click);
             // 
-            // menuItemDvbRecent7
+            // menuItemIpTviewrRecent7
             // 
-            resources.ApplyResources(this.menuItemDvbRecent7, "menuItemDvbRecent7");
-            this.menuItemDvbRecent7.Name = "menuItemDvbRecent7";
-            this.menuItemDvbRecent7.Tag = "7";
-            this.menuItemDvbRecent7.Click += new System.EventHandler(this.menuItemDvbRecent_Click);
+            resources.ApplyResources(this.menuItemIpTviewrRecent7, "menuItemIpTviewrRecent7");
+            this.menuItemIpTviewrRecent7.Name = "menuItemIpTviewrRecent7";
+            this.menuItemIpTviewrRecent7.Tag = "7";
+            this.menuItemIpTviewrRecent7.Click += new System.EventHandler(this.menuItemIpTviewrRecent_Click);
             // 
-            // menuItemDvbRecent8
+            // menuItemIpTviewrRecent8
             // 
-            resources.ApplyResources(this.menuItemDvbRecent8, "menuItemDvbRecent8");
-            this.menuItemDvbRecent8.Name = "menuItemDvbRecent8";
-            this.menuItemDvbRecent8.Tag = "8";
-            this.menuItemDvbRecent8.Click += new System.EventHandler(this.menuItemDvbRecent_Click);
+            resources.ApplyResources(this.menuItemIpTviewrRecent8, "menuItemIpTviewrRecent8");
+            this.menuItemIpTviewrRecent8.Name = "menuItemIpTviewrRecent8";
+            this.menuItemIpTviewrRecent8.Tag = "8";
+            this.menuItemIpTviewrRecent8.Click += new System.EventHandler(this.menuItemIpTviewrRecent_Click);
             // 
-            // menuItemDvbRecent9
+            // menuItemIpTviewrRecent9
             // 
-            resources.ApplyResources(this.menuItemDvbRecent9, "menuItemDvbRecent9");
-            this.menuItemDvbRecent9.Name = "menuItemDvbRecent9";
-            this.menuItemDvbRecent9.Tag = "9";
-            this.menuItemDvbRecent9.Click += new System.EventHandler(this.menuItemDvbRecent_Click);
+            resources.ApplyResources(this.menuItemIpTviewrRecent9, "menuItemIpTviewrRecent9");
+            this.menuItemIpTviewrRecent9.Name = "menuItemIpTviewrRecent9";
+            this.menuItemIpTviewrRecent9.Tag = "9";
+            this.menuItemIpTviewrRecent9.Click += new System.EventHandler(this.menuItemIpTviewrRecent_Click);
             // 
-            // separatorDvb1
+            // separatorIpTviewr1
             // 
-            this.separatorDvb1.Name = "separatorDvb1";
-            resources.ApplyResources(this.separatorDvb1, "separatorDvb1");
+            this.separatorIpTviewr1.Name = "separatorIpTviewr1";
+            resources.ApplyResources(this.separatorIpTviewr1, "separatorIpTviewr1");
             // 
-            // menuItemDvbProvider
+            // menuItemIpTviewrProvider
             // 
-            this.menuItemDvbProvider.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menuItemProviderSelect,
-            this.menuItemProviderDetails});
-            this.menuItemDvbProvider.Name = "menuItemDvbProvider";
-            resources.ApplyResources(this.menuItemDvbProvider, "menuItemDvbProvider");
+            this.menuItemIpTviewrProvider.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuItemIpTviewrProviderSelect,
+            this.menuItemIpTviewrProviderDetails});
+            this.menuItemIpTviewrProvider.Name = "menuItemIpTviewrProvider";
+            resources.ApplyResources(this.menuItemIpTviewrProvider, "menuItemIpTviewrProvider");
             // 
-            // menuItemProviderSelect
+            // menuItemIpTviewrProviderSelect
             // 
-            this.menuItemProviderSelect.Image = global::IpTviewr.ChannelList.Properties.Resources.ListBullets_16x16;
-            this.menuItemProviderSelect.Name = "menuItemProviderSelect";
-            resources.ApplyResources(this.menuItemProviderSelect, "menuItemProviderSelect");
-            this.menuItemProviderSelect.Click += new System.EventHandler(this.menuItemProviderSelect_Click);
+            this.menuItemIpTviewrProviderSelect.Image = global::IpTviewr.ChannelList.Properties.Resources.ListBullets_16x16;
+            this.menuItemIpTviewrProviderSelect.Name = "menuItemIpTviewrProviderSelect";
+            resources.ApplyResources(this.menuItemIpTviewrProviderSelect, "menuItemIpTviewrProviderSelect");
+            this.menuItemIpTviewrProviderSelect.Click += new System.EventHandler(this.menuItemIpTviewrProviderSelect_Click);
             // 
-            // menuItemProviderDetails
+            // menuItemIpTviewrProviderDetails
             // 
-            this.menuItemProviderDetails.Image = global::IpTviewr.ChannelList.CommonUiResources.Action_Properties_16x16;
-            this.menuItemProviderDetails.Name = "menuItemProviderDetails";
-            resources.ApplyResources(this.menuItemProviderDetails, "menuItemProviderDetails");
-            this.menuItemProviderDetails.Click += new System.EventHandler(this.menuItemProviderDetails_Click);
+            this.menuItemIpTviewrProviderDetails.Image = global::IpTviewr.ChannelList.CommonUiResources.Action_Properties_16x16;
+            this.menuItemIpTviewrProviderDetails.Name = "menuItemIpTviewrProviderDetails";
+            resources.ApplyResources(this.menuItemIpTviewrProviderDetails, "menuItemIpTviewrProviderDetails");
+            this.menuItemIpTviewrProviderDetails.Click += new System.EventHandler(this.menuItemIpTviewrProviderDetails_Click);
             // 
-            // menuItemDvbPackages
+            // menuItemIpTviewrPackages
             // 
-            this.menuItemDvbPackages.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuItemIpTviewrPackages.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuItemPackagesSelect,
             this.menuItemPackagesManage});
-            this.menuItemDvbPackages.Name = "menuItemDvbPackages";
-            resources.ApplyResources(this.menuItemDvbPackages, "menuItemDvbPackages");
+            this.menuItemIpTviewrPackages.Name = "menuItemIpTviewrPackages";
+            resources.ApplyResources(this.menuItemIpTviewrPackages, "menuItemIpTviewrPackages");
             // 
             // menuItemPackagesSelect
             // 
@@ -314,36 +323,36 @@ namespace IpTviewr.ChannelList
             this.menuItemPackagesManage.Name = "menuItemPackagesManage";
             this.menuItemPackagesManage.Click += new System.EventHandler(this.menuItemPackagesManage_Click);
             // 
-            // separatorDvb2
+            // separatorIpTviewr2
             // 
-            this.separatorDvb2.Name = "separatorDvb2";
-            resources.ApplyResources(this.separatorDvb2, "separatorDvb2");
+            this.separatorIpTviewr2.Name = "separatorIpTviewr2";
+            resources.ApplyResources(this.separatorIpTviewr2, "separatorIpTviewr2");
             // 
-            // menuItemDvbSettings
+            // menuItemIpTviewrSettings
             // 
-            this.menuItemDvbSettings.Image = global::IpTviewr.ChannelList.CommonUiResources.Action_Settings_16x16;
-            this.menuItemDvbSettings.Name = "menuItemDvbSettings";
-            resources.ApplyResources(this.menuItemDvbSettings, "menuItemDvbSettings");
-            this.menuItemDvbSettings.Click += new System.EventHandler(this.menuItemDvbSettings_Click);
+            this.menuItemIpTviewrSettings.Image = global::IpTviewr.ChannelList.CommonUiResources.Action_Settings_16x16;
+            this.menuItemIpTviewrSettings.Name = "menuItemIpTviewrSettings";
+            resources.ApplyResources(this.menuItemIpTviewrSettings, "menuItemIpTviewrSettings");
+            this.menuItemIpTviewrSettings.Click += new System.EventHandler(this.menuItemIpTviewrSettings_Click);
             // 
-            // menuItemDvbExport
+            // menuItemIpTviewrExport
             // 
-            this.menuItemDvbExport.Image = global::IpTviewr.ChannelList.CommonUiResources.Action_Export_Data;
-            this.menuItemDvbExport.Name = "menuItemDvbExport";
-            resources.ApplyResources(this.menuItemDvbExport, "menuItemDvbExport");
-            this.menuItemDvbExport.Click += new System.EventHandler(this.menuItemDvbExport_Click);
+            this.menuItemIpTviewrExport.Image = global::IpTviewr.ChannelList.CommonUiResources.Action_Export_Data;
+            this.menuItemIpTviewrExport.Name = "menuItemIpTviewrExport";
+            resources.ApplyResources(this.menuItemIpTviewrExport, "menuItemIpTviewrExport");
+            this.menuItemIpTviewrExport.Click += new System.EventHandler(this.menuItemIpTviewrExport_Click);
             // 
-            // separatorDvb3
+            // separatorIpTviewr3
             // 
-            this.separatorDvb3.Name = "separatorDvb3";
-            resources.ApplyResources(this.separatorDvb3, "separatorDvb3");
+            this.separatorIpTviewr3.Name = "separatorIpTviewr3";
+            resources.ApplyResources(this.separatorIpTviewr3, "separatorIpTviewr3");
             // 
-            // menuItemDvbExit
+            // menuItemIpTviewrExit
             // 
-            this.menuItemDvbExit.Image = global::IpTviewr.ChannelList.CommonUiResources.Action_Close_16x16;
-            resources.ApplyResources(this.menuItemDvbExit, "menuItemDvbExit");
-            this.menuItemDvbExit.Name = "menuItemDvbExit";
-            this.menuItemDvbExit.Click += new System.EventHandler(this.menuItemDvbExit_Click);
+            this.menuItemIpTviewrExit.Image = global::IpTviewr.ChannelList.CommonUiResources.Action_Close_16x16;
+            resources.ApplyResources(this.menuItemIpTviewrExit, "menuItemIpTviewrExit");
+            this.menuItemIpTviewrExit.Name = "menuItemIpTviewrExit";
+            this.menuItemIpTviewrExit.Click += new System.EventHandler(this.menuItemIpTviewrExit_Click);
             // 
             // menuItemChannel
             // 
@@ -636,6 +645,7 @@ namespace IpTviewr.ChannelList
             this.menuItemHelpReportIssue,
             this.separatorHelp1,
             this.menuItemHelpCheckUpdates,
+            this.menuItemHelpTelemetry,
             this.menuItemHelpAbout});
             this.menuItemHelp.Name = "menuItemHelp";
             resources.ApplyResources(this.menuItemHelp, "menuItemHelp");
@@ -672,6 +682,12 @@ namespace IpTviewr.ChannelList
             this.menuItemHelpCheckUpdates.Name = "menuItemHelpCheckUpdates";
             resources.ApplyResources(this.menuItemHelpCheckUpdates, "menuItemHelpCheckUpdates");
             this.menuItemHelpCheckUpdates.Click += new System.EventHandler(this.menuItemHelpCheckUpdates_Click);
+            // 
+            // menuItemHelpTelemetry
+            // 
+            this.menuItemHelpTelemetry.Name = "menuItemHelpTelemetry";
+            resources.ApplyResources(this.menuItemHelpTelemetry, "menuItemHelpTelemetry");
+            this.menuItemHelpTelemetry.Click += new System.EventHandler(this.menuItemHelpTelemetry_Click);
             // 
             // menuItemHelpAbout
             // 
@@ -803,6 +819,7 @@ namespace IpTviewr.ChannelList
             this.listViewChannelList.ContextMenuStrip = this.contextMenuList;
             this.listViewChannelList.HeaderCustomFont = null;
             this.listViewChannelList.HeaderCustomForeColor = System.Drawing.Color.Empty;
+            this.listViewChannelList.HideSelection = false;
             this.listViewChannelList.IsDoubleBuffered = true;
             this.listViewChannelList.Name = "listViewChannelList";
             this.listViewChannelList.OwnerDraw = true;
@@ -818,7 +835,8 @@ namespace IpTviewr.ChannelList
             // statusMainStrip
             // 
             this.statusMainStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.statusLabelMain});
+            this.statusLabelMain,
+            this.statusLabelEpg});
             resources.ApplyResources(this.statusMainStrip, "statusMainStrip");
             this.statusMainStrip.Name = "statusMainStrip";
             // 
@@ -830,11 +848,17 @@ namespace IpTviewr.ChannelList
             this.statusLabelMain.Padding = new System.Windows.Forms.Padding(50, 0, 0, 0);
             this.statusLabelMain.Spring = true;
             // 
+            // statusLabelEpg
+            // 
+            resources.ApplyResources(this.statusLabelEpg, "statusLabelEpg");
+            this.statusLabelEpg.Name = "statusLabelEpg";
+            // 
             // epgMiniGuide
             // 
             resources.ApplyResources(this.epgMiniGuide, "epgMiniGuide");
             this.epgMiniGuide.BackColor = System.Drawing.Color.White;
             this.epgMiniGuide.BasicGridEnabled = true;
+            this.epgMiniGuide.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.epgMiniGuide.DetailsEnabled = false;
             this.epgMiniGuide.IsDisabled = false;
             this.epgMiniGuide.ManualActions = false;
@@ -873,8 +897,8 @@ namespace IpTviewr.ChannelList
         private System.Windows.Forms.ImageList imageListChannelsLarge;
         private System.Windows.Forms.ImageList imageListChannels;
         private System.Windows.Forms.MenuStrip menuStripMain;
-        private System.Windows.Forms.ToolStripMenuItem menuItemDvbIpTv;
-        private System.Windows.Forms.ToolStripMenuItem menuItemDvbExit;
+        private System.Windows.Forms.ToolStripMenuItem menuItemIpTviewr;
+        private System.Windows.Forms.ToolStripMenuItem menuItemIpTviewrExit;
         private System.Windows.Forms.ToolStripMenuItem menuItemChannel;
         private System.Windows.Forms.ToolStripMenuItem menuItemChannelRefreshList;
         private System.Windows.Forms.ToolStripMenuItem menuItemChannelVerify;
@@ -894,30 +918,30 @@ namespace IpTviewr.ChannelList
         private System.Windows.Forms.ToolStripMenuItem menuItemHelpCheckUpdates;
         private System.Windows.Forms.ToolStripMenuItem menuItemHelpAbout;
         private System.Windows.Forms.ToolStripMenuItem menuItemRecordingsRecord;
-        private System.Windows.Forms.ToolStripMenuItem menuItemDvbProvider;
-        private System.Windows.Forms.ToolStripMenuItem menuItemProviderSelect;
-        private System.Windows.Forms.ToolStripMenuItem menuItemProviderDetails;
-        private System.Windows.Forms.ToolStripSeparator separatorDvb1;
+        private System.Windows.Forms.ToolStripMenuItem menuItemIpTviewrProvider;
+        private System.Windows.Forms.ToolStripMenuItem menuItemIpTviewrProviderSelect;
+        private System.Windows.Forms.ToolStripMenuItem menuItemIpTviewrProviderDetails;
+        private System.Windows.Forms.ToolStripSeparator separatorIpTviewr1;
         private System.Windows.Forms.ToolStripMenuItem menuItemRecordingsManage;
         private System.Windows.Forms.ToolStripSeparator separatorRecordings1;
         private System.Windows.Forms.ToolStripMenuItem menuItemRecordingsRepair;
-        private System.Windows.Forms.ToolStripMenuItem menuItemDvbPackages;
+        private System.Windows.Forms.ToolStripMenuItem menuItemIpTviewrPackages;
         private System.Windows.Forms.ToolStripMenuItem menuItemPackagesSelect;
         private System.Windows.Forms.ToolStripMenuItem menuItemPackagesManage;
         private System.Windows.Forms.ToolStripMenuItem menuItemEpg;
         private System.Windows.Forms.ToolStripSeparator separatorEpg1;
-        private System.Windows.Forms.ToolStripMenuItem menuItemDvbRecent;
-        private System.Windows.Forms.ToolStripMenuItem menuItemDvbRecent0;
-        private System.Windows.Forms.ToolStripMenuItem menuItemDvbRecent1;
-        private System.Windows.Forms.ToolStripMenuItem menuItemDvbRecent2;
-        private System.Windows.Forms.ToolStripMenuItem menuItemDvbRecent3;
-        private System.Windows.Forms.ToolStripMenuItem menuItemDvbRecent4;
-        private System.Windows.Forms.ToolStripMenuItem menuItemDvbRecent5;
-        private System.Windows.Forms.ToolStripMenuItem menuItemDvbRecent6;
-        private System.Windows.Forms.ToolStripMenuItem menuItemDvbRecent7;
-        private System.Windows.Forms.ToolStripMenuItem menuItemDvbRecent8;
-        private System.Windows.Forms.ToolStripMenuItem menuItemDvbRecent9;
-        private System.Windows.Forms.ToolStripSeparator separatorDvb2;
+        private System.Windows.Forms.ToolStripMenuItem menuItemIpTviewrRecent;
+        private System.Windows.Forms.ToolStripMenuItem menuItemIpTviewrRecent0;
+        private System.Windows.Forms.ToolStripMenuItem menuItemIpTviewrRecent1;
+        private System.Windows.Forms.ToolStripMenuItem menuItemIpTviewrRecent2;
+        private System.Windows.Forms.ToolStripMenuItem menuItemIpTviewrRecent3;
+        private System.Windows.Forms.ToolStripMenuItem menuItemIpTviewrRecent4;
+        private System.Windows.Forms.ToolStripMenuItem menuItemIpTviewrRecent5;
+        private System.Windows.Forms.ToolStripMenuItem menuItemIpTviewrRecent6;
+        private System.Windows.Forms.ToolStripMenuItem menuItemIpTviewrRecent7;
+        private System.Windows.Forms.ToolStripMenuItem menuItemIpTviewrRecent8;
+        private System.Windows.Forms.ToolStripMenuItem menuItemIpTviewrRecent9;
+        private System.Windows.Forms.ToolStripSeparator separatorIpTviewr2;
         private System.Windows.Forms.ToolStripMenuItem menuItemChannelFavorites;
         private System.Windows.Forms.ToolStripMenuItem menuItemChannelFavorites0;
         private System.Windows.Forms.ToolStripMenuItem menuItemChannelFavorites1;
@@ -946,10 +970,10 @@ namespace IpTviewr.ChannelList
         private System.Windows.Forms.ToolStripMenuItem contextMenuListRecord;
         private System.Windows.Forms.ToolStripMenuItem contextMenuListShowWith;
         private System.Windows.Forms.ToolStripMenuItem contextMenuListCopyURL;
-        private System.Windows.Forms.ToolStripMenuItem menuItemDvbExport;
-        private System.Windows.Forms.ToolStripSeparator separatorDvb3;
+        private System.Windows.Forms.ToolStripMenuItem menuItemIpTviewrExport;
+        private System.Windows.Forms.ToolStripSeparator separatorIpTviewr3;
         private System.Windows.Forms.ToolStripMenuItem menuItemHelpReportIssue;
-        private System.Windows.Forms.ToolStripMenuItem menuItemDvbSettings;
+        private System.Windows.Forms.ToolStripMenuItem menuItemIpTviewrSettings;
         private System.Windows.Forms.ToolStripMenuItem menuItemEpgPrevious;
         private System.Windows.Forms.ToolStripMenuItem menuItemEpgNext;
         private System.Windows.Forms.ToolStripSeparator separatorEpg2;
@@ -965,5 +989,7 @@ namespace IpTviewr.ChannelList
         private System.Windows.Forms.StatusStrip statusMainStrip;
         private System.Windows.Forms.ToolStripStatusLabel statusLabelMain;
         private UiServices.EPG.EpgMiniGuide epgMiniGuide;
+        private System.Windows.Forms.ToolStripStatusLabel statusLabelEpg;
+        private System.Windows.Forms.ToolStripMenuItem menuItemHelpTelemetry;
     }
 }

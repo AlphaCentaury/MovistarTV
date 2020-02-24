@@ -9,16 +9,31 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>IpTviewr.Internal.Tools.ConsoleExperiments</RootNamespace>
     <AssemblyName>ConsoleExperiments</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SccProjectName>SAK</SccProjectName>
     <SccLocalPath>SAK</SccLocalPath>
     <SccAuxPath>SAK</SccAuxPath>
     <SccProvider>SAK</SccProvider>
     <TargetFrameworkProfile />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>x86</PlatformTarget>
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -27,6 +42,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
+    <LangVersion>8</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -37,21 +53,17 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
+    <LangVersion>8</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+    <Reference Include="Microsoft.ExceptionMessageBox, Version=9.0.242.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Third-party\Json70r1\Bin\Net35\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\..\Program Files (x86)\Microsoft SQL Server\90\SDK\Assemblies\Microsoft.ExceptionMessageBox.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Data.SqlServerCe, Version=4.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\..\..\..\..\..\Program Files\Microsoft SQL Server Compact Edition\v4.0\Desktop\System.Data.SqlServerCe.dll</HintPath>
-    </Reference>
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
@@ -59,48 +71,47 @@
     <Compile Include="..\..\AssemblySolutionInfo.cs">
       <Link>Properties\AssemblySolutionInfo.cs</Link>
     </Compile>
+    <Compile Include="ExceptionMsgBoxExperiment.cs" />
     <Compile Include="Experiment.cs" />
-    <Compile Include="ProcessRawEpgData.cs" />
+    <Compile Include="Find.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TestEpgDownloader.cs" />
-    <Compile Include="TestEpgLinkedListWrapper.cs" />
+    <Compile Include="PushBuilder.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Etsi.Ts102034\Etsi.Ts102034.csproj">
-      <Project>{b91c438d-0333-4d06-86cd-74ce82df6f40}</Project>
-      <Name>Etsi.Ts102034</Name>
+    <ProjectReference Include="..\..\Assemblies\Project.Common\IpTviewr.Common.csproj">
+      <Project>{8DA15060-5A78-4F89-A9F1-7AA56B0D622C}</Project>
+      <Name>IpTviewr.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\IpTv.MovistarPlus\IpTv.MovistarPlus.csproj">
-      <Project>{e1748f45-dd50-4479-96f6-f7eba6f3e28b}</Project>
-      <Name>IpTv.MovistarPlus</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Project.Common\Project.Common.csproj">
-      <Project>{8da15060-5a78-4f89-a9f1-7aa56b0d622c}</Project>
-      <Name>Project.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Services.EpgDiscovery\Services.EpgDiscovery.csproj">
-      <Project>{5a171dbb-855c-452b-93c6-229c7aa6c7a6}</Project>
-      <Name>Services.EPG.Serialization</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Services.SqlServerCE\Services.SqlServerCE.csproj">
-      <Project>{3a053f34-4edf-4071-b966-923255a0ae14}</Project>
-      <Name>Services.SqlServerCE</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\UiServices.Config\UiServices.Config.csproj">
-      <Project>{a722de9d-ae51-479c-825f-a19f4c69bd75}</Project>
+    <ProjectReference Include="..\..\Assemblies\UiServices.Config\UiServices.Config.csproj">
+      <Project>{A722DE9D-AE51-479C-825F-A19F4C69BD75}</Project>
       <Name>UiServices.Config</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\UiServices.Discovery\UiServices.Discovery.csproj">
-      <Project>{7e5e21b9-4bd6-4fb3-9055-9b09cc479c6c}</Project>
-      <Name>UiServices.Discovery</Name>
+    <ProjectReference Include="..\..\Assemblies\Winforms.MsgBoxEx\Winforms.MsgBoxEx.csproj">
+      <Project>{448697cf-3d5c-45c3-8775-844ba7129672}</Project>
+      <Name>Winforms.MsgBoxEx</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="License.txt" />
+    <Content Include="licensing.xml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="LICENSE.ES.MD" />
+    <None Include="LICENSE.MD" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5.2 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

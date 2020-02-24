@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+==============================================================================
+
+  Copyright (C) 2014-2020, GitHub/Codeplex user AlphaCentaury
+  All rights reserved.
+
+    See 'LICENSE.MD' file (or 'license.txt' if missing) in the project root
+    for complete license information.
+
+  http://www.alphacentaury.org/movistartv
+  https://github.com/AlphaCentaury
+
+==============================================================================
+-->
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <?include strings.wxi ?>
+  <?include strings.guid.wxi ?>
+  <Fragment>
+    <ComponentGroup Id="Product">
+      <ComponentGroupRef Id="Product.Assemblies" />
+      <ComponentGroupRef Id="Product.Localization" />
+      <ComponentGroupRef Id="Product.Licensing" />
+    </ComponentGroup>
+
+    <ComponentGroup Id="Product.Assemblies" Directory="INSTALLFOLDER">
+      <Component Id="Product.Assemblies" Guid="$(var.Guid.Product.Assemblies)">
+        <File Id="IPTViewr.exe" Source="$(var.ChannelList.TargetDir)IPTViewr.exe" KeyPath="yes" />
+        <File Id='IPTViewr.exe.config' Source='$(var.ChannelList.TargetDir)IPTViewr.exe.config' />
+        <File Id='IPTViewr.pdb' Source='$(var.ChannelList.TargetDir)IPTViewr.pdb' />
+      </Component>
+      <Component Id="Product.Shortcut" Guid="$(var.Guid.Product.Shortcut)">
+        <RegistryValue Root='HKCU' Key="$(var.BaseRegistryKey)\Shortcuts" Name="IPTViewr" Type="integer" Value="1" KeyPath="yes"/>
+        <Shortcut Id='IPTViewr.exe.lnk'
+                  Directory='ProgramStartMenuFolder'
+                  Name='!(loc.IPTViewr.exe.lnk)'
+                  WorkingDirectory='INSTALLFOLDER'
+                  Target='[#IPTViewr.exe]' />
+      </Component>
+    </ComponentGroup>
+
+    <ComponentGroup Id="Product.Localization">
+      <Component Id="Product.Localization.es" Directory="InstallFolder.es" Guid="$(var.Guid.Product.Localization.es)">
+        <File Id="IPTViewr.es.exe" Source="$(var.ChannelList.TargetDir)es\IPTViewr.resources.dll" />
+      </Component>
+    </ComponentGroup>
+
+    <ComponentGroup Id="Product.Licensing">
+      <Component Id="Product.Licensing" Directory="BaseFolder" Guid="$(var.Guid.Product.Licensing)">
+        <File Id='license.txt' Source='$(var.SolutionDir)!(loc.SourceFileLicenseAgreement).txt' Name='!(loc.FileLicenseAgreement).txt' />
+        <File Id='license.rtf' Source='$(var.SolutionDir)!(loc.SourceFileLicenseAgreement).rtf' Name='!(loc.FileLicenseAgreement).rtf' />
+        <File Id='license.MD' Source='$(var.SolutionDir)!(loc.SourceFileLicenseAgreement).MD' Name='!(loc.FileLicenseAgreement).MD' />
+      </Component>
+    </ComponentGroup>
+  </Fragment>
+</Wix>

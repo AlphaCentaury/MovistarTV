@@ -251,3 +251,10 @@ paket-files/
 # JetBrains Rider
 .idea/
 *.sln.iml
+
+# Include ALL files in 'docs' folder (movistartv.alphacentaury.org website files)
+!/docs/*
+
+#Include ALL files in Assemblies/Third Party
+!Assemblies/Third-Party
+*.backup

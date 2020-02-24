@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+==============================================================================
+
+  Copyright (C) 2014-2020, GitHub/Codeplex user AlphaCentaury
+  All rights reserved.
+
+    See 'LICENSE.MD' file (or 'license.txt' if missing) in the project root
+    for complete license information.
+
+  http://www.alphacentaury.org/movistartv
+  https://github.com/AlphaCentaury
+
+==============================================================================
+-->
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <?include strings.wxi ?>
+  <?include strings.guid.wxi ?>
+  <Fragment>
+    <ComponentGroup Id="Core">
+      <ComponentGroupRef Id="Core.Assemblies" />
+      <ComponentGroupRef Id="Core.Assemblies.Localization" />
+    </ComponentGroup>
+
+    <ComponentGroup Id="Core.Assemblies" Directory="INSTALLFOLDER">
+      <Component Id="Core.Assemblies" Guid="$(var.Guid.Core.Assemblies)">
+        <File Id="IpTviewr.Common.dll" Source="$(var.IpTviewr.Common.TargetDir)IpTviewr.Common.dll" />
+        <File Id="IpTViewr.Common.pdb" Source="$(var.IpTviewr.Common.TargetDir)IpTViewr.Common.pdb" />
+        <File Id="IpTViewr.Core.dll" Source="$(var.IpTViewr.Core.TargetDir)IpTViewr.Core.dll" />
+        <File Id="IpTViewr.Core.pdb" Source="$(var.IpTViewr.Core.TargetDir)IpTViewr.Core.pdb" />
+        <File Id="IpTViewr.IpTvServices.dll" Source="$(var.IpTviewr.IpTvServices.TargetDir)IpTViewr.IpTvServices.dll" />
+        <File Id="IpTViewr.IpTvServices.pdb" Source="$(var.IpTviewr.IpTvServices.TargetDir)IpTViewr.IpTvServices.pdb" />
+        <File Id="IpTviewr.Native.dll" Source="$(var.IpTviewr.Native.TargetDir)IpTviewr.Native.dll" />
+        <File Id="IpTViewr.Native.pdb" Source="$(var.IpTviewr.Native.TargetDir)IpTViewr.Native.pdb" />
+      </Component>
+    </ComponentGroup>
+
+    <ComponentGroup Id="Core.Assemblies.Localization">
+      <Component Id="Core.Assemblies.Localization.es" Directory="InstallFolder.es" Guid="$(var.Guid.Core.Assemblies.Localization.es)">
+        <File Id="IpTViewr.Common.es.dll" Source="$(var.IpTviewr.Common.TargetDir)es\IpTViewr.Common.resources.dll" />
+        <File Id="IpTViewr.Core.es.dll" Source="$(var.IpTViewr.Core.TargetDir)es\IpTViewr.Core.resources.dll" />
+        <!--
+        <File Id="IpTViewr.IpTvService.es.dll" Source="$(var.Core.IpTvProvider.TargetDir)es\IpTViewr.IpTvService.resources.dll" />
+        -->
+        <File Id="IpTViewr.Native.es.dll" Source="$(var.IpTviewr.Native.TargetDir)es\IpTViewr.Native.resources.dll" />
+      </Component>
+    </ComponentGroup>
+  </Fragment>
+</Wix>

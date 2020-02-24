@@ -1,0 +1,185 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{90F750B3-64DB-493F-96A6-E68DE5EA60A1}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>IpTviewr.UiServices.Forms</RootNamespace>
+    <AssemblyName>UiServices.Forms</AssemblyName>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <LangVersion>8.0</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <LangVersion>8.0</LangVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\..\AssemblySolutionInfo.cs">
+      <Link>Properties\AssemblySolutionInfo.cs</Link>
+    </Compile>
+    <Compile Include="DiscoveryDialogs.cs" />
+    <Compile Include="Properties\CommonUiResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CommonUiResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\DiscoveryTexts.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DiscoveryTexts.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\MulticastScanner.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MulticastScanner.resx</DependentUpon>
+    </Compile>
+    <Compile Include="MulticastScannerDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MulticastScannerDialog.Designer.cs">
+      <DependentUpon>MulticastScannerDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MulticastScannerOptionsDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MulticastScannerOptionsDialog.Designer.cs">
+      <DependentUpon>MulticastScannerOptionsDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="SelectProviderDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SelectProviderDialog.Designer.cs">
+      <DependentUpon>SelectProviderDialog.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\CommonUiResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>CommonUiResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\DiscoveryTexts.es.resx" />
+    <EmbeddedResource Include="Properties\DiscoveryTexts.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>DiscoveryTexts.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\MulticastScanner.es.resx" />
+    <EmbeddedResource Include="Properties\MulticastScanner.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>MulticastScanner.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MulticastScannerDialog.es.resx">
+      <DependentUpon>MulticastScannerDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MulticastScannerDialog.resx">
+      <DependentUpon>MulticastScannerDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MulticastScannerOptionsDialog.es.resx">
+      <DependentUpon>MulticastScannerOptionsDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MulticastScannerOptionsDialog.resx">
+      <DependentUpon>MulticastScannerOptionsDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectProviderDialog.es.resx">
+      <DependentUpon>SelectProviderDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectProviderDialog.resx">
+      <DependentUpon>SelectProviderDialog.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="License.txt" />
+    <Content Include="licensing.xml" />
+    <None Include="LICENSE.ES.MD" />
+    <None Include="LICENSE.MD" />
+    <None Include="Resources\Action_Run_16x16.png" />
+    <None Include="Resources\Action_Refresh_Blue_16x16.png" />
+    <None Include="Resources\Action_Properties_16x16.png" />
+    <None Include="Resources\Action_Ok_16x16.png" />
+    <None Include="Resources\Action_Copy_Table.png" />
+    <None Include="Resources\Action_Cancel_16x16.png" />
+    <None Include="Resources\128-scan-tv.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Core.IpTvProvider\IpTviewr.IpTvServices.csproj">
+      <Project>{36b8e0a1-f1b1-498d-8fe7-a39bb7fd68ca}</Project>
+      <Name>IpTviewr.IpTvServices</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Etsi.Ts102034\Etsi.Ts102034.csproj">
+      <Project>{B91C438D-0333-4D06-86CD-74CE82DF6F40}</Project>
+      <Name>Etsi.Ts102034</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Project.Common\IpTviewr.Common.csproj">
+      <Project>{8da15060-5a78-4f89-a9f1-7aa56b0d622c}</Project>
+      <Name>IpTviewr.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UiServices.Common\UiServices.Common.csproj">
+      <Project>{76346905-ac2f-4f01-ba99-bbffbb2a6fe9}</Project>
+      <Name>UiServices.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UiServices.Config\UiServices.Config.csproj">
+      <Project>{a722de9d-ae51-479c-825f-a19f4c69bd75}</Project>
+      <Name>UiServices.Config</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UiServices.Discovery\UiServices.Discovery.csproj">
+      <Project>{7E5E21B9-4BD6-4FB3-9055-9B09CC479C6C}</Project>
+      <Name>UiServices.Discovery</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UiServices.DvbStpClient\UiServices.DvbStpClient.csproj">
+      <Project>{BA481E42-F570-4D2C-94D4-21C4CCE27762}</Project>
+      <Name>UiServices.DvbStpClient</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

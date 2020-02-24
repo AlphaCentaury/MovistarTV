@@ -1,303 +1,146 @@
-﻿using IpTviewr.UiServices.Configuration;
-using IpTviewr.UiServices.Configuration.Schema2014.Logos;
+// ==============================================================================
+// 
+//   Copyright (C) 2014-2020, GitHub/Codeplex user AlphaCentaury
+//   All rights reserved.
+// 
+//     See 'LICENSE.MD' file (or 'license.txt' if missing) in the project root
+//     for complete license information.
+// 
+//   http://www.alphacentaury.org/movistartv
+//   https://github.com/AlphaCentaury
+// 
+// ==============================================================================
+
 using System;
+using IpTviewr.UiServices.Configuration;
+using IpTviewr.UiServices.Configuration.Schema2014.Logos;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
+using IpTviewr.UiServices.Configuration.Logos;
 
 namespace IpTviewr.Internal.Tools.ChannelLogos
 {
-    sealed class ConsistencyCheckMissingLogoFiles : ConsistencyCheck
+    internal sealed class ConsistencyCheckMissingLogoFiles : ConsistencyCheck
     {
-        internal class Folder
-        {
-            private List<string> Extra;
-            private IDictionary<string, FolderLogo> FolderLogos;
-
-            public string FolderName { get; private set; }
-            public string FullPath { get; private set; }
-
-            public IList<string> ExtraFiles
-            {
-                get { return Extra.AsReadOnly(); }
-            } // ExtraFiles
-
-            public ICollection<FolderLogo> Logos
-            {
-                get { return FolderLogos.Values; }
-            } // Logo
-
-            public Folder(string fullPath)
-            {
-                FolderName = Path.GetFileName(fullPath);
-                FullPath = fullPath;
-                FolderLogos = new Dictionary<string, FolderLogo>();
-                Extra = new List<string>();
-            } // constructor
-
-            public bool Add(string file)
-            {
-                bool isExtra;
-                FolderLogo logo;
-
-                var ext = Path.GetExtension(file);
-                var filename = Path.GetFileNameWithoutExtension(file);
-
-                if ((ext == ".ico") || (ext == ".png"))
-                {
-                    var partialIndex = filename.LastIndexOf('@');
-                    var logoFile = (partialIndex >= 0) ? filename.Substring(0, partialIndex) : filename;
-                    var size = (partialIndex >= 0) ? filename.Substring(partialIndex) : null;
-
-                    if (!FolderLogos.TryGetValue(logoFile, out logo))
-                    {
-                        logo = new FolderLogo(logoFile);
-                        FolderLogos[logoFile] = logo;
-                    } // if
-                    isExtra = !logo.Add(size, ext == ".ico");
-                }
-                else
-                {
-                    isExtra = true;
-                }
-
-                if (isExtra)
-                {
-                    if (ext != ".png") Extra.Add(Path.GetFileName(file));
-                    else Extra.Add(filename);
-                } // if
-
-                return !isExtra;
-            } // Add
-        } // class Folder
-
-        internal class FolderLogo
-        {
-            private IDictionary<string, bool> Sizes;
-
-            public string Logo { get; private set; }
-
-            public IEnumerable<string> MissingSizes()
-            {
-                var q = from entry in Sizes
-                        where entry.Value == false
-                        where entry.Key != "@24" // optional (for now)
-                        select entry.Key;
-
-                return q;
-            } // MissingSizes
-
-            public FolderLogo(string logo)
-            {
-                Logo = logo;
-                Sizes = new Dictionary<string, bool>(7);
-                Sizes.Add(".ico", false);
-                Sizes.Add("@24", false);
-                Sizes.Add("@32", false);
-                Sizes.Add("@48", false);
-                Sizes.Add("@64", false);
-                Sizes.Add("@96", false);
-                Sizes.Add("@128", false);
-                Sizes.Add("@256", false);
-            } // constructor
-
-            public bool Add(string size, bool isIcon)
-            {
-                if (isIcon)
-                {
-                    Sizes[".ico"] = true;
-                    return true;
-                } // if
-
-                if (!Sizes.ContainsKey(size)) return false;
-
-                Sizes[size] = true;
-                return true;
-            } // Add
-        } // FolderLogo
-
-        private class Domain
-        {
-            private IDictionary<string, DomainFile> files;
-
-            public string DomainName { get; private set; }
-
-            public ICollection<DomainFile> Files
-            {
-                get { return files.Values; }
-            } // Files
-
-            public Domain(string domainName)
-            {
-                DomainName = domainName;
-                files = new Dictionary<string, DomainFile>();
-            } // constructor
-
-            public void Add(ServiceMapping mapping)
-            {
-                DomainFile domainFile;
-
-                if (!files.TryGetValue(mapping.Logo, out domainFile))
-                {
-                    domainFile = new DomainFile(mapping.Logo);
-                    files.Add(mapping.Logo, domainFile);
-                } // if
-                domainFile.Add(mapping);
-            } // Add
-
-        } // class Domain
-
-        private class DomainFile
-        {
-            private List<ServiceMapping> services;
-
-            public string File { get; private set; }
-
-            public IList<ServiceMapping> Services
-            {
-                get { return services.AsReadOnly(); }
-            } // Services
-
-            public DomainFile(string file)
-            {
-                File = file;
-                services = new List<ServiceMapping>();
-            } // constructor
-
-            public void Add(ServiceMapping mapping)
-            {
-                services.Add(mapping);
-            } // Add
-        } // DomainFile
-
         protected override void Run()
         {
-            AddResult(Severity.Info, "Get list of files");
-            var files = GetLogosFiles();
+            AddResult(Severity.Info, "Loading XML service mappings");
+            var serviceMappings = Data.GetServiceMappings();
+            if (serviceMappings.Collections.Length == 0) return;
+
+            AddResult(Severity.Info, "Loading list of files");
+            var files = Data.GetLogoFiles();
 
             AddResult(Severity.Info, "Verifying files");
-            VerifyLogosFiles(files);
+            var (missing, redirected, optional) = VerifyLogosFiles(serviceMappings, files);
 
-            AddResult(Severity.Info, "Get list of referenced files");
-            var references = GetReferencedFiles();
+            foreach (var item in missing)
+            {
+                AddResult(Severity.Error, item);
+            } // foreach
 
-            AddResult(Severity.Info, "Verifying references");
-            VerifyReferences(references);
+            foreach (var item in redirected)
+            {
+                AddResult(Severity.Warning, item);
+            } // foreach
 
-            AddResult(Severity.Info, "Check ended");
+            foreach (var item in optional)
+            {
+                AddResult(Severity.Info, item);
+            } // foreach
         } // Run
 
-        internal static IEnumerable<Folder> GetLogosFiles()
+        private (List<string[]>, List<string[]>, List<string[]>) VerifyLogosFiles(ServiceMappingsXml mappings, IReadOnlyDictionary<string, IReadOnlyList<string>> files)
         {
-            Folder[] result;
+            var missing = new List<string[]>();
+            var redirected = new List<string[]>();
+            var optional = new List<string[]>();
 
-            var folders = Directory.GetDirectories(AppUiConfiguration.Current.Folders.Logos.Services, "*.*", SearchOption.TopDirectoryOnly);
-            result = new Folder[folders.Length];
-
-            for (int index = 0; index<folders.Length; index++)
+            foreach (var collection in mappings.Collections)
             {
-                var folder = new Folder(folders[index]);
-                result[index] = folder;
-
-                var files = Directory.GetFiles(folder.FullPath, "*.*", SearchOption.TopDirectoryOnly);
-                foreach (var file in files)
+                foreach (var domain in collection.Domains)
                 {
-                    folder.Add(file);
-                } // foreach
-            } // for index
-
-            return result;
-        } // GetLogosFiles
-
-        private void VerifyLogosFiles(IEnumerable<Folder> folders)
-        {
-            var errorCount = 0;
-            foreach (var folder in folders)
-            {
-                foreach (var logo in folder.Logos)
-                {
-                    var missing = logo.MissingSizes();
-                    if (missing.Count() == 0) continue;
-
-                    AddResult(Severity.Error, "Missing file(s)", logo.Logo, folder.FolderName);
-                    foreach (var size in missing)
+                    foreach (var mapping in domain.Mappings)
                     {
-                        AddResult(Severity.None, null, size);
-                    } // foreach size
-                    errorCount++;
-                } // foreach logo
+                        var list = GetList(collection, domain, mapping, out var qualityRedirected);
+                        if (list == null)
+                        {
+                            missing.Add(new[] { "Missing logos", collection.Name, domain.DomainName, mapping.Name, mapping.Quality, mapping.Logo });
+                            continue;
+                        } // if
 
-                if (folder.ExtraFiles.Count > 0)
-                {
-                    AddResult(Severity.Warning, "Extra files", folder.FolderName);
-                    foreach (var extraFile in folder.ExtraFiles)
-                    {
-                        AddResult(Severity.None, null, extraFile);
-                    } // foreach extraFile
-                } // if
-            } // foreach folder
+                        if (qualityRedirected)
+                        {
+                            redirected.Add(new[] { "Missing quality", collection.Name, domain.DomainName, mapping.Name, mapping.Quality, mapping.Logo });
+                        } // if
 
-            if (errorCount == 0)
+                        var notFound = from int size in Enum.GetValues(typeof(LogoSize))
+                                       where !list.Contains($"{size}.png", StringComparer.InvariantCultureIgnoreCase)
+                                       select new[] { "Missing logo file", collection.Name, domain.DomainName, mapping.Name, mapping.Quality, mapping.Logo, $"{size}x{size}" };
+                        missing.AddRange(notFound);
+
+                        const int optionalSize = 24;
+                        if (!list.Contains($"{optionalSize}.png", StringComparer.InvariantCultureIgnoreCase))
+                        {
+                            optional.Add(new[] { "Missing optional file", collection.Name, domain.DomainName, mapping.Name, mapping.Quality, mapping.Logo, $"{optionalSize}x{optionalSize}" });
+                        } // if
+
+                        var iconFile = $"{mapping.Logo}.ico";
+                        if (!list.Contains(iconFile, StringComparer.InvariantCultureIgnoreCase))
+                        {
+                            missing.Add(new[] { "Missing logo file", collection.Name, domain.DomainName, mapping.Name, mapping.Quality, mapping.Logo, iconFile });
+                        } // if
+                    } // foreach mapping
+                } // foreach domain
+            } // foreach collection
+
+            return (missing, redirected, optional);
+
+            IReadOnlyList<string> GetList(ServiceCollection collection, ServiceDomains domain, ServiceMapping mapping, out bool qualityRedirected)
             {
-                AddResult(Severity.Ok, "No missing files");
-            } // if
+                return GetFilesList(files, collection, domain, mapping, out _, out qualityRedirected, out _);
+            } // GetList
         } // VerifyLogosFiles
 
-        private IEnumerable<Domain> GetReferencedFiles()
+        internal static IReadOnlyList<string> GetFilesList(IReadOnlyDictionary<string, IReadOnlyList<string>> files, ServiceCollection collection, ServiceDomains domain, ServiceMapping mapping, out bool redirected, out bool qualityRedirected, out string key)
         {
-            IDictionary<string, Domain> result;
+            var quality = !string.IsNullOrEmpty(mapping.Quality) ? mapping.Quality : ServiceLogo.QualityDefault;
 
-            var serviceMappings = LogosCommon.ParseServiceMappingsXml(AppUiConfiguration.Current.Folders.Logos.FileServiceMappings);
+            redirected = false;
+            qualityRedirected = false;
 
-            var domains = from package in serviceMappings.Packages
-                          from domain in package.Domains
-                          select domain;
+            key = ConsistencyChecksData.GetServiceLogoFileKey(collection.Package, domain.DomainName, quality, mapping.Logo);
+            if (files.TryGetValue(key, out var value)) return value;
 
-            result = new Dictionary<string, Domain>(domains.Count());
-
-            foreach (var domain in domains)
+            if (quality != ServiceLogo.QualityDefault)
             {
-                var domainName = domain.RedirectDomainName ?? domain.DomainName;
-                result[domainName] = new Domain(domainName);
-            } // foreach domain
-
-            foreach (var domain in domains)
-            {
-                var domainName = domain.RedirectDomainName ?? domain.DomainName;
-                var list = result[domainName];
-
-                foreach (var mapping in domain.Mappings)
+                key = ConsistencyChecksData.GetServiceLogoFileKey(collection.Package, domain.DomainName, ServiceLogo.QualityDefault, mapping.Logo);
+                if (files.TryGetValue(key, out value))
                 {
-                    list.Add(mapping);
-                } // foreach mapping
-            } // foreach domain
-
-            return result.Values;
-        } // GetReferencedFiles
-
-        private void VerifyReferences(IEnumerable<Domain> domains)
-        {
-            var errorCount = 0;
-            foreach (var domain in domains)
-            {
-                foreach (var file in domain.Files)
-                {
-                    var filename = string.Format("{0}\\{1}\\{2}.ico", AppUiConfiguration.Current.Folders.Logos.Services, domain.DomainName, file.File);
-                    if (File.Exists(filename)) continue;
-                    AddResult(Severity.Error, "Missing logo", file.File, domain.DomainName);
-                    foreach (var service in file.Services)
-                    {
-                        AddResult(Severity.None, null, service.Name, service.Remarks);
-                    } // foreach service
-                    errorCount++;
-                } // foreach
-            } // foreach entry
-
-            if (errorCount == 0)
-            {
-                AddResult(Severity.Ok, "No missing logos");
+                    qualityRedirected = true;
+                    return value;
+                } // if
             } // if
-        } // VerifyReferences
+
+            if (string.IsNullOrEmpty(domain.RedirectDomainName)) return null;
+
+            redirected = true;
+
+            key = ConsistencyChecksData.GetServiceLogoFileKey(collection.Package, domain.RedirectDomainName, quality, mapping.Logo);
+            if (files.TryGetValue(key, out value)) return value;
+
+            if (quality != ServiceLogo.QualityDefault)
+            {
+                key = ConsistencyChecksData.GetServiceLogoFileKey(collection.Package, domain.RedirectDomainName, ServiceLogo.QualityDefault, mapping.Logo);
+                if (files.TryGetValue(key, out value))
+                {
+                    qualityRedirected = true;
+                    return value;
+                } // if
+            } // if
+
+            return null;
+        } // GetFilesList
     } // sealed class ConsistencyCheckMissingLogoFiles
 } // namespace

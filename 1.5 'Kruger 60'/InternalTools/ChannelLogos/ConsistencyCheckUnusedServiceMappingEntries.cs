@@ -1,61 +1,62 @@
-﻿using Etsi.Ts102034.v010501.XmlSerialization.ProviderDiscovery;
-using IpTviewr.UiServices.Configuration;
+// ==============================================================================
+// 
+//   Copyright (C) 2014-2020, GitHub/Codeplex user AlphaCentaury
+//   All rights reserved.
+// 
+//     See 'LICENSE.MD' file (or 'license.txt' if missing) in the project root
+//     for complete license information.
+// 
+//   http://www.alphacentaury.org/movistartv
+//   https://github.com/AlphaCentaury
+// 
+// ==============================================================================
+
 using IpTviewr.UiServices.Configuration.Logos;
-using IpTviewr.UiServices.Configuration.Schema2014.Logos;
-using IpTviewr.UiServices.Discovery;
-using IpTviewr.UiServices.Forms;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Windows.Forms;
+using System.Net.Sockets;
+using IpTviewr.UiServices.Discovery;
 
 namespace IpTviewr.Internal.Tools.ChannelLogos
 {
-    class ConsistencyCheckUnusedServiceMappingEntries: ConsistencyCheckAllServices
+    internal class ConsistencyCheckUnusedServiceMappingEntries : ConsistencyCheckAllServices
     {
         protected override void Run()
         {
-            AddResult(Severity.Info, "Loading providers");
-            var providers = GetProviders();
-
-            AddResult(Severity.Info, "Loading broadcast data");
-            var list = GetBroadcastList(providers);
-            if (list == null) goto end;
-
-            AddResult(Severity.Info, "Loading domain mappings");
-            var domainMappings = GetDomainMappings();
-
-            AddResult(Severity.Info, "Loading service mappings");
-            var mappedServices = GetMappedServices();
-
-            AddResult(Severity.Info, "Locating unused entries");
-            var unused = GetUnusedEntries(list, mappedServices, domainMappings);
-
+            var unused = GetUnusedEntries();
             ShowUnusedEntries(unused);
-
-            end:
-            AddResult(Severity.Info, "Check ended");
         } // Run
 
-        private IEnumerable<MappedService> GetUnusedEntries(IList<BroadcastList> list, IDictionary<string, MappedService> mappedServices, IDictionary<string, ServiceLogoMappings.ReplacementDomain> domainMappings)
+        private IEnumerable<MappedService> GetUnusedEntries()
         {
-            MappedService mappedService;
+            AddResult(Severity.Info, "Loading providers");
+            Data.LoadProviders();
 
-            foreach (var item in list)
+            AddResult(Severity.Info, "Loading broadcast data");
+            var list = Data.GetBroadcastList(AddResult);
+            if (list == null) return null;
+
+            AddResult(Severity.Info, "Loading domain mappings");
+            Data.LoadDomainMappings();
+
+            AddResult(Severity.Info, "Loading service mappings");
+            var mappedServices = Data.GetMappedServices();
+
+            AddResult(Severity.Info, "Locating unused entries");
+
+            var mapped = from item in list
+                         from service in item.Services
+                         let m = Data.GetMappedService(item, service)
+                         where m != null
+                         select (m, item.Provider);
+
+            foreach (var (mappedService, provider) in mapped)
             {
-                foreach (var service in item.Services)
-                {
-                    mappedService = GetMappedService(item, service, mappedServices, domainMappings);
-                    if (mappedService != null)
-                    {
-                        mappedService.Referenced = true;
-                    } // if
-                } // foreach service
+                mappedService.AddReference(provider);
             } // foreach item
 
             var result = from entry in mappedServices.Values
-                         where entry.Referenced == false
+                         where entry.Referenced.Count == 0
                          select entry;
 
             return result;
@@ -64,17 +65,20 @@ namespace IpTviewr.Internal.Tools.ChannelLogos
         private void ShowUnusedEntries(IEnumerable<MappedService> unused)
         {
             var unusedCount = 0;
-            foreach (var entry in unused)
+
+            if (unused != null)
             {
-                AddResult(Severity.Warning, "Unused entry", entry.Mapping.Name, entry.Mapping.Logo, entry.Domain);
-                unusedCount++;
-            } // foreach entry
+                foreach (var entry in unused)
+                {
+                    AddResult(Severity.Warning, "Unused entry", entry.Mapping.Name, entry.Mapping.Logo, entry.Domain);
+                    unusedCount++;
+                } // foreach entry
+            } // if
 
             if (unusedCount == 0)
             {
                 AddResult(Severity.Ok, "No unused entries");
             } // if
-
         } // ShowUnusedEntries
     } // sealed class ConsistencyCheckUnusedServiceMappingEntries
 } // namespace

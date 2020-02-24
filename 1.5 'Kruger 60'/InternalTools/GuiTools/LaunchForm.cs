@@ -1,38 +1,63 @@
-﻿// Copyright (C) 2014-2016, Codeplex/GitHub user AlphaCentaury
-// All rights reserved, except those granted by the governing license of this software. See 'license.txt' file in the project root for complete license information.
+// ==============================================================================
+// 
+//   Copyright (C) 2014-2020, GitHub/Codeplex user AlphaCentaury
+//   All rights reserved.
+// 
+//     See 'LICENSE.MD' file (or 'license.txt' if missing) in the project root
+//     for complete license information.
+// 
+//   http://www.alphacentaury.org/movistartv
+//   https://github.com/AlphaCentaury
+// 
+// ==============================================================================
 
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace IpTviewr.Internal.Tools.GuiTools
 {
     public partial class LaunchForm : Form
     {
+        private Type SelectedForm;
+
         public LaunchForm()
         {
             InitializeComponent();
-            this.Icon = Properties.Resources.GuiTools;
+            Icon = Properties.Resources.GuiTools;
         } // constructor
 
         private void buttonExecute_Click(object sender, EventArgs e)
         {
-            Form form = null;
+            if (!(Activator.CreateInstance(SelectedForm) is Form form)) return;
 
-            if (radioSimpleDownload.Checked) form = new SimpleDvbStpDownloadForm();
-            else if (radioDvbStpExplorer.Checked) form = new DvbStpStreamExplorerForm();
-            else if (radioMulticastExplorer.Checked) form = new MulticastStreamExplorerForm();
-            else if (radioOpchExplorer.Checked) form = new OpchExplorerForm();
-
-            if (form != null)
-            {
-                form.Show();
-            } // if
+            form.Show();
+            form.FormClosed += FormOnFormClosed;
         } // buttonExecute_Click
+
+        private void FormOnFormClosed(object sender, FormClosedEventArgs e)
+        {
+            var form = (Form) sender;
+            form.FormClosed -= FormOnFormClosed;
+            form.Dispose();
+        } // FormOnFormClosed
+
+        private void radioOption_CheckedChanged(object sender, EventArgs e)
+        {
+            SelectedForm = GetSelectedForm();
+            buttonExecute.Enabled = SelectedForm != null;
+        } // radioOption_CheckedChanged
+
+        private Type GetSelectedForm()
+        {
+            if (radioSimpleDownload.Checked) return typeof(SimpleDvbStpDownloadForm);
+            if (radioDvbStpExplorer.Checked) return typeof(DvbStpStreamExplorerForm);
+            if (radioMulticastExplorer.Checked) return typeof(MulticastStreamExplorerForm);
+            if (radioOpchExplorer.Checked) return typeof(OpchExplorerForm);
+            if (radioBinaryEditor.Checked) return typeof(BinaryEditorForm);
+            if (radioIconBuilder.Checked) return typeof(IconBuilder);
+            if (radioRtf.Checked) return typeof(RtfViewer);
+            if (radioRibbon.Checked) return typeof(RibbonForm);
+            return null;
+        } // GetSelectedForm
     } // class LaunchForm
 } // namespace

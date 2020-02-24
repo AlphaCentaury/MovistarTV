@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+==============================================================================
+
+  Copyright (C) 2014-2020, GitHub/Codeplex user AlphaCentaury
+  All rights reserved.
+
+    See 'LICENSE.MD' file (or 'license.txt' if missing) in the project root
+    for complete license information.
+
+  http://www.alphacentaury.org/movistartv
+  https://github.com/AlphaCentaury
+
+==============================================================================
+-->
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <?include strings.guid.wxi ?>
+  <Fragment>
+    <ComponentGroup Id="Uninstall">
+      <Component Id="Uninstall.Folders" Directory="BaseFolder" Guid="$(var.Guid.Uninstall.Folders)">
+        <RemoveFile Id="Purge_BaseFolder" Name="*.*" On="uninstall" />
+        <RemoveFile Id="Purge_INSTALLFOLDER" Name="*.*" On="uninstall" Directory="INSTALLFOLDER" />
+        <RemoveFile Id="Purge_InstallFolder.x86" Name="*.*" On="uninstall" Directory="InstallFolder.x86" />
+        <RemoveFile Id="Purge_InstallFolder.x64" Name="*.*" On="uninstall" Directory="InstallFolder.x64" />
+        <RemoveFile Id="Purge_InstallFolder.es" Name="*.*" On="uninstall" Directory="InstallFolder.es"/>
+        <RemoveFile Id="Purge_RedistFolderBase" Name="*.*" On="uninstall" Directory="RedistFolderBase"/>
+        <RemoveFile Id="Purge_RedistFolder" Name="*.*" On="uninstall" Directory="RedistFolder"/>
+        <RemoveFile Id="Purge_RedistFolderx86" Name="*.*" On="uninstall" Directory="x86RedistFolder"/>
+        <RemoveFile Id="Purge_RedistFolderx64" Name="*.*" On="uninstall" Directory="x64RedistFolder"/>
+        <RemoveFile Id="Purge_CacheLogosFolder" Name="*.*" On="uninstall" Directory="Folder.Cache.Logos" />
+        <RemoveFile Id="Purge_CacheFolder" Name="*.*" On="uninstall" Directory="Folder.Cache" />
+        <RemoveFile Id="Purge_LogosFolder" Name="*.*" On="uninstall" Directory="Folder.Logos"/>
+        <RemoveFile Id="Purge_LogosProvidersFolder" Name="*.*" On="uninstall" Directory="Folder.Logos.Providers"/>
+        <RemoveFile Id="Purge_LogosServicesFolder" Name="*.*" On="uninstall" Directory="Folder.Logos.Services"/>
+        <RemoveFile Id="Purge_Folder.RecordTasks" Name="*.*" On="uninstall" Directory="Folder.RecordTasks"/>
+
+        <RemoveFolder Id="Remove_DvbFolder" On="uninstall" Directory="Folder.IPTViewr" />
+        <RemoveFolder Id="Remove_BaseFolder" On="uninstall" Directory="BaseFolder"/>
+        <RemoveFolder Id="Remove_INSTALLFOLDER" On="uninstall" Directory="INSTALLFOLDER"/>
+        <RemoveFolder Id="Remove_InstallFolder.x86" On="uninstall" Directory="InstallFolder.x86" />
+        <RemoveFolder Id="Remove_InstallFolder.x64" On="uninstall" Directory="InstallFolder.x64" />
+        <RemoveFolder Id="Remove_InstallFolder.es" On="uninstall" Directory="InstallFolder.es"/>
+        <RemoveFolder Id="Remove_RedistFolderBase" On="uninstall" Directory="RedistFolderBase"/>
+        <RemoveFolder Id="Remove_RedistFolder" On="uninstall" Directory="RedistFolder"/>
+        <RemoveFolder Id="Remove_RedistFolderx86" On="uninstall" Directory="x86RedistFolder"/>
+        <RemoveFolder Id="Remove_RedistFolderx64" On="uninstall" Directory="x64RedistFolder"/>
+        <RemoveFolder Id="Remove_CacheLogosFolder" On="uninstall" Directory="Folder.Cache.Logos" />
+        <RemoveFolder Id="Remove_CacheFolder" On="uninstall" Directory="Folder.Cache" />
+        <RemoveFolder Id="Remove_LogosFolder" On="uninstall" Directory="Folder.Logos"/>
+        <RemoveFolder Id="Remove_LogosProvidersFolder" On="uninstall" Directory="Folder.Logos.Providers"/>
+        <RemoveFolder Id="Remove_LogosServicesFolder" On="uninstall" Directory="Folder.Logos.Services"/>
+        <RemoveFolder Id="Remove_Folder.RecordTasks" On="uninstall" Directory="Folder.RecordTasks"/>
+
+        <RemoveFile Id="Purge_ProgramStartMenuFolder" Name="*.*" On="uninstall" Directory="ProgramStartMenuFolder"/>
+        <RemoveFolder Id="Remove_ProgramStartMenuFolder" On="uninstall" Directory="ProgramStartMenuFolder"/>
+      </Component>
+    </ComponentGroup>
+  </Fragment>
+</Wix>

@@ -1,22 +1,29 @@
-﻿// Copyright (C) 2014-2016, Codeplex/GitHub user AlphaCentaury
-// All rights reserved, except those granted by the governing license of this software. See 'license.txt' file in the project root for complete license information.
+// ==============================================================================
+// 
+//   Copyright (C) 2014-2020, GitHub/Codeplex user AlphaCentaury
+//   All rights reserved.
+// 
+//     See 'LICENSE.MD' file (or 'license.txt' if missing) in the project root
+//     for complete license information.
+// 
+//   http://www.alphacentaury.org/movistartv
+//   https://github.com/AlphaCentaury
+// 
+// ==============================================================================
 
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
 using System.Text;
 
 namespace IpTviewr.RecorderLauncher
 {
     internal static class Logger
     {
-        private static object syncLock;
-        private static string logFilename;
-        private static DateTime startTime;
-        private static int processId;
-        private static Level minLevel;
+        private static object _syncLock;
+        private static string _logFilename;
+        private static DateTime _startTime;
+        private static int _processId;
 
         public enum Level
         {
@@ -30,14 +37,14 @@ namespace IpTviewr.RecorderLauncher
         /// <remarks>NOT THREAD SAFE. Call from MAIN thread before being used in other threads</remarks>
         public static void Start(string logFilename, Level minLevel)
         {
-            Logger.logFilename = logFilename;
-            Logger.syncLock = new object();
-            Logger.minLevel = minLevel;
-            startTime = DateTime.Now;
+            _logFilename = logFilename;
+            _syncLock = new object();
+            MinLevel = minLevel;
+            _startTime = DateTime.Now;
 
             using (var process = Process.GetCurrentProcess())
             {
-                processId = process.Id;
+                _processId = process.Id;
             } // using process
 
             if (!File.Exists(logFilename))
@@ -49,60 +56,57 @@ namespace IpTviewr.RecorderLauncher
                 } // if
             } // if
 
-            WriteDate("PROGRAM-START", string.Format("ProcessId={0}", processId), false);
+            WriteDate("PROGRAM-START", $"ProcessId={_processId}", false);
         } // Start
 
         /// <remarks>NOT THREAD SAFE. Call from main() just before returning the exit code</remarks>
         public static void Stop(int exitCode)
         {
-            if (syncLock == null) return;
+            if (_syncLock == null) return;
 
-            WriteDate("PROGRAM-STOP ", string.Format("ProcessId={0} & ExitCode={1}", processId, exitCode), true);
+            WriteDate("PROGRAM-STOP ", $"ProcessId={_processId} & ExitCode={exitCode}", true);
 
-            syncLock = null;
-            logFilename = null;
+            _syncLock = null;
+            _logFilename = null;
         } // Stop
 
         #region Log methods
 
-        public static Level MinLevel
-        {
-            get { return minLevel; }
-        } // MinLevel
+        public static Level MinLevel { get; private set; }
 
         public static void Log(Level level, string text)
         {
-            if (syncLock == null) return;
-            if (level < minLevel) return;
+            if (_syncLock == null) return;
+            if (level < MinLevel) return;
 
             Write(level, text, null);
         } // Log
 
         public static void Log(Level level, string format, params object[] args)
         {
-            if (syncLock == null) return;
-            if (level < minLevel) return;
+            if (_syncLock == null) return;
+            if (level < MinLevel) return;
 
             Write(level, format, args);
         } // Log
 
         public static void Exception(Exception ex)
         {
-            if (syncLock == null) return;
+            if (_syncLock == null) return;
 
             Write(Level.Exception, ex.ToString(), null);
         } // Exception
 
         public static void Exception(Exception ex, string context)
         {
-            if (syncLock == null) return;
+            if (_syncLock == null) return;
 
             Write(Level.Exception, Properties.Texts.LoggerExceptionFormat, context, ex.ToString());
         } // Exception
 
         public static void Exception(Exception ex, string context, params object[] args)
         {
-            if (syncLock == null) return;
+            if (_syncLock == null) return;
 
             Write(Level.Exception, Properties.Texts.LoggerExceptionFormat, string.Format(context, args), ex.ToString());
         } // Exception
@@ -118,16 +122,16 @@ namespace IpTviewr.RecorderLauncher
                 var buffer = new StringBuilder();
                 buffer.Append(specialOperation);
                 buffer.Append(' ');
-                buffer.AppendFormat("{0:X8}", processId);
+                buffer.AppendFormat("{0:X8}", _processId);
                 buffer.Append(' ');
                 buffer.AppendFormat("{0:O}", DateTime.Now);
                 buffer.Append(' ');
                 buffer.AppendLine(text);
                 if (newLine) buffer.AppendLine();
 
-                lock (syncLock)
+                lock (_syncLock)
                 {
-                    File.AppendAllText(logFilename, buffer.ToString(), Encoding.UTF8);
+                    File.AppendAllText(_logFilename, buffer.ToString(), Encoding.UTF8);
                 } // lock
             }
             catch
@@ -140,7 +144,7 @@ namespace IpTviewr.RecorderLauncher
         {
             try
             {
-                var ellapsed = DateTime.Now - startTime;
+                var ellapsed = DateTime.Now - _startTime;
                 var buffer = new StringBuilder();
 
                 switch (level)
@@ -155,7 +159,7 @@ namespace IpTviewr.RecorderLauncher
                 } // switch
 
                 buffer.Append(' ');
-                buffer.AppendFormat("{0:X8}", processId);
+                buffer.AppendFormat("{0:X8}", _processId);
                 buffer.Append(' ');
 
                 var format = (ellapsed.Days > 0) ? "P{0:00}DT{1:00}H{2:00}M{3:00}.{4:000}S" : "PT{1:00}H{2:00}M{3:00}.{4:000}S";
@@ -174,9 +178,9 @@ namespace IpTviewr.RecorderLauncher
                 buffer.Replace("\r\n", "\r\n  >> ");
                 buffer.AppendLine();
 
-                lock (syncLock)
+                lock (_syncLock)
                 {
-                    File.AppendAllText(logFilename, buffer.ToString(), Encoding.UTF8);
+                    File.AppendAllText(_logFilename, buffer.ToString(), Encoding.UTF8);
                 } // lock
             }
             catch

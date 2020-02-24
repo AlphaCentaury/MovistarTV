@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+==============================================================================
+
+  Copyright (C) 2014-2020, GitHub/Codeplex user AlphaCentaury
+  All rights reserved.
+
+    See 'LICENSE.MD' file (or 'license.txt' if missing) in the project root
+    for complete license information.
+
+  http://www.alphacentaury.org/movistartv
+  https://github.com/AlphaCentaury
+
+==============================================================================
+-->
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <?include strings.guid.wxi ?>
+  <Fragment>
+    <ComponentGroup Id="Redist">
+      <Component Id="Redist.EMB.x86" Directory="x86RedistFolder" Guid="$(var.Guid.Redist.EMB.x86)">
+        <File Id ="Redist.EMB.x86" Source="$(var.SolutionDir)Setup\MainSetup\Redist\!(loc.RedistLanguage)\x86/SQLServer2005_EMB.msi" />
+      </Component>
+      <Component Id="Redist.EMB.x64" Directory="x64RedistFolder" Guid="$(var.Guid.Redist.EMB.x64)">
+        <File Id ="Redist.EMB.x64" Source="$(var.SolutionDir)Setup\MainSetup\Redist\!(loc.RedistLanguage)\x64/SQLServer2005_EMB.msi" />
+      </Component>
+      <Component Id="Redist.SqlCe.x86" Directory="RedistFolder" Guid="$(var.Guid.Redist.SqlCe.x86)">
+        <File Id ="Redist.SqlCe.x86" Source="$(var.SolutionDir)Setup\MainSetup\Redist\!(loc.RedistLanguage)\SSCERuntime_x86-!(loc.RedistLanguage).exe" />
+      </Component>
+      <Component Id="Redist.SqlCe.x64" Directory="RedistFolder" Guid="$(var.Guid.Redist.SqlCe.x64)">
+        <File Id ="Redist.SqlCe.x64" Source="$(var.SolutionDir)Setup\MainSetup\Redist\!(loc.RedistLanguage)\SSCERuntime_x64-!(loc.RedistLanguage).exe" />
+      </Component>
+      <Component Id="Redist.LoadNetFx35" Directory="RedistFolderBase" Guid="$(var.Guid.Redist.LoadNetFx35)">
+        <File Id ="Redist.LoadNetFx35" Source="$(var.LoadNetFx35.TargetDir)LoadNetFx35.exe" />
+      </Component>
+    </ComponentGroup>
+  </Fragment>
+</Wix>

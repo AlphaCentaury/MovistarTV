@@ -126,6 +126,21 @@
   <data name="buttonCancel.Text" xml:space="preserve">
     <value>&amp;Cancelar</value>
   </data>
+  <data name="wizardPageReadme.ToolTipText" xml:space="preserve">
+    <value>Información importante sobre el uso de este programa</value>
+  </data>
+  <data name="wizardPagePrerequisites.ToolTipText" xml:space="preserve">
+    <value>Paso 1: Verificación de instalación del software necesario</value>
+  </data>
+  <data name="wizardPageFirewall.ToolTipText" xml:space="preserve">
+    <value>Paso 2: Cortafuegos de Windows y mejora del software</value>
+  </data>
+  <data name="wizardPageBasic.ToolTipText" xml:space="preserve">
+    <value>Paso 3: Configuración y ajustes básicos</value>
+  </data>
+  <data name="wizardPageRecordings.ToolTipText" xml:space="preserve">
+    <value>Paso 4: Configuración de la funcionalidad de grabación</value>
+  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="checkReadmeAck.Size" type="System.Drawing.Size, System.Drawing">
     <value>318, 17</value>
@@ -136,14 +151,23 @@
   <data name="labelReadmeWarning.Text" xml:space="preserve">
     <value>Lea atentamente la siguiente información hasta el final antes de utilizar este programa.</value>
   </data>
-  <data name="wizardPageReadme.ToolTipText" xml:space="preserve">
-    <value>Información importante sobre el uso de este programa</value>
+  <data name="linkLabelNetFx.Text" xml:space="preserve">
+    <value>Descargar de microsoft.com</value>
+  </data>
+  <data name="buttonVerifyNetFx.Text" xml:space="preserve">
+    <value>Co&amp;mprobar...</value>
   </data>
   <data name="buttonTestVlc.Text" xml:space="preserve">
     <value>&amp;Probar...</value>
   </data>
+  <data name="linkLabelSetupSqlCe.Text" xml:space="preserve">
+    <value>Instalar con archivo de instalación local</value>
+  </data>
   <data name="buttonFindVlc.Text" xml:space="preserve">
     <value>&amp;Localizar...</value>
+  </data>
+  <data name="linkLabelSetupEmb.Text" xml:space="preserve">
+    <value>Instalar con archivo de instalación local</value>
   </data>
   <data name="labelVlcPath.Size" type="System.Drawing.Size, System.Drawing">
     <value>96, 13</value>
@@ -154,14 +178,11 @@
   <data name="buttonVerifyVlc.Text" xml:space="preserve">
     <value>Co&amp;mprobar...</value>
   </data>
-  <data name="linkLabelPrerequisiteVlc.Location" type="System.Drawing.Point, System.Drawing">
-    <value>231, 27</value>
-  </data>
-  <data name="linkLabelPrerequisiteVlc.Size" type="System.Drawing.Size, System.Drawing">
-    <value>132, 13</value>
-  </data>
   <data name="linkLabelPrerequisiteVlc.Text" xml:space="preserve">
     <value>Descargar de videolan.org</value>
+  </data>
+  <data name="buttonVerifySqlCe.Text" xml:space="preserve">
+    <value>Co&amp;mprobar...</value>
   </data>
   <data name="labelVlc.Size" type="System.Drawing.Size, System.Drawing">
     <value>146, 13</value>
@@ -169,57 +190,21 @@
   <data name="labelVlc.Text" xml:space="preserve">
     <value>Reproductor VLC de Videolan</value>
   </data>
-  <data name="groupVlc.Text" xml:space="preserve">
-    <value>Software adicional</value>
-  </data>
-  <data name="linkLabelSetupSqlCe.Size" type="System.Drawing.Size, System.Drawing">
-    <value>193, 13</value>
-  </data>
-  <data name="linkLabelSetupSqlCe.Text" xml:space="preserve">
-    <value>Instalar con archivo de instalación local</value>
-  </data>
-  <data name="linkLabelSetupEmb.Size" type="System.Drawing.Size, System.Drawing">
-    <value>193, 13</value>
-  </data>
-  <data name="linkLabelSetupEmb.Text" xml:space="preserve">
-    <value>Instalar con archivo de instalación local</value>
-  </data>
-  <data name="buttonVerifySqlCe.Text" xml:space="preserve">
-    <value>Co&amp;mprobar...</value>
-  </data>
-  <data name="linkLabelPrerequisiteSqlCe.Location" type="System.Drawing.Point, System.Drawing">
-    <value>232, 100</value>
-  </data>
-  <data name="linkLabelPrerequisiteSqlCe.Size" type="System.Drawing.Size, System.Drawing">
-    <value>139, 13</value>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="labelEmb.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
   </data>
   <data name="linkLabelPrerequisiteSqlCe.Text" xml:space="preserve">
     <value>Descargar de microsoft.com</value>
   </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="buttonVerifyEmb.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
   <data name="buttonVerifyEmb.Text" xml:space="preserve">
     <value>Co&amp;mprobar...</value>
   </data>
-  <data name="linkLabelPrerequisiteEmb.Location" type="System.Drawing.Point, System.Drawing">
-    <value>232, 50</value>
-  </data>
-  <data name="linkLabelPrerequisiteEmb.Size" type="System.Drawing.Size, System.Drawing">
-    <value>139, 13</value>
-  </data>
-  <data name="linkLabelPrerequisiteEmb.Text" xml:space="preserve">
-    <value>Descargar de microsoft.com</value>
-  </data>
-  <data name="labelEmb.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="groupPrerequisites.Text" xml:space="preserve">
-    <value>Descargar e instalar requisitos previos</value>
-  </data>
-  <data name="wizardPagePrerequisites.ToolTipText" xml:space="preserve">
-    <value>Paso 1: Verificación de instalación del software necesario</value>
+  <data name="groupAnalytics.Text" xml:space="preserve">
+    <value>Recolección de datos de utilización</value>
   </data>
   <data name="checkAnalyticsExceptions.Size" type="System.Drawing.Size, System.Drawing">
     <value>189, 17</value>
@@ -248,8 +233,8 @@
   <data name="checkEnableAnalytics.Text" xml:space="preserve">
     <value>Ayudar a mejorar el software (recomendado)</value>
   </data>
-  <data name="groupAnalytics.Text" xml:space="preserve">
-    <value>Recolección de datos de utilización</value>
+  <data name="groupFirewall.Text" xml:space="preserve">
+    <value>Configuración del Cortafuegos de Windows (Windows Firewall)</value>
   </data>
   <data name="checkFirewallManual.Size" type="System.Drawing.Size, System.Drawing">
     <value>367, 17</value>
@@ -275,11 +260,8 @@
   <data name="checkBoxFirewallDecoder.Text" xml:space="preserve">
     <value>Permitir comunicar a través del cortafuegos a &amp;todos los programas del decodificador virtual</value>
   </data>
-  <data name="groupFirewall.Text" xml:space="preserve">
-    <value>Configuración del Cortafuegos de Windows (Windows Firewall)</value>
-  </data>
-  <data name="wizardPageFirewall.ToolTipText" xml:space="preserve">
-    <value>Paso 2: Cortafuegos de Windows y mejora del software</value>
+  <data name="groupBoxChannelNumbers.Text" xml:space="preserve">
+    <value>Asignación de números de canal</value>
   </data>
   <data name="radioChannelSDPriority.Size" type="System.Drawing.Size, System.Drawing">
     <value>453, 17</value>
@@ -298,14 +280,8 @@
 
 ¿Qué tipo de canal debe aparecer antes?</value>
   </data>
-  <data name="groupBoxChannelNumbers.Text" xml:space="preserve">
-    <value>Asignación de números de canal</value>
-  </data>
-  <data name="checkEpgAutoUpdate.Size" type="System.Drawing.Size, System.Drawing">
-    <value>446, 17</value>
-  </data>
-  <data name="checkEpgAutoUpdate.Text" xml:space="preserve">
-    <value>Actualizar automáticamente los datos EPG si tienen más de 24h en la siguiente ejecución</value>
+  <data name="groupEPG.Text" xml:space="preserve">
+    <value>Guía electrónica de programación (EPG)</value>
   </data>
   <data name="labelEpgWarning.Size" type="System.Drawing.Size, System.Drawing">
     <value>445, 13</value>
@@ -319,17 +295,14 @@
   <data name="checkEpg.Text" xml:space="preserve">
     <value>Habilitar la función de EPG</value>
   </data>
-  <data name="groupEPG.Text" xml:space="preserve">
-    <value>Guía electrónica de programación (EPG)</value>
-  </data>
-  <data name="wizardPageBasic.ToolTipText" xml:space="preserve">
-    <value>Paso 3: Configuración y ajustes básicos</value>
-  </data>
   <data name="labelCreatingConfig.Text" xml:space="preserve">
     <value>Creando los archivos de configuración de la aplicación y de preferencias de usuario...</value>
   </data>
   <data name="buttonConfig.Text" xml:space="preserve">
     <value>Configurar la &amp;aplicación</value>
+  </data>
+  <data name="groupRecordConfig.Text" xml:space="preserve">
+    <value>Grabación de programas</value>
   </data>
   <data name="checkSaveSubfolder.Size" type="System.Drawing.Size, System.Drawing">
     <value>401, 17</value>
@@ -354,16 +327,6 @@
   </data>
   <data name="labelSaveFolder.Text" xml:space="preserve">
     <value>Seleccione la carpeta en la que, por defecto, se guardarán las grabaciones:</value>
-  </data>
-  <data name="groupRecordConfig.Text" xml:space="preserve">
-    <value>Grabación de programas</value>
-  </data>
-  <data name="wizardPageRecordings.ToolTipText" xml:space="preserve">
-    <value>Paso 4: Configuración de la funcionalidad de grabación</value>
-  </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>Inherit</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Asistente de configuración inicial</value>

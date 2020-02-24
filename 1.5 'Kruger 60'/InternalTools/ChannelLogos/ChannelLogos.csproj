@@ -5,18 +5,18 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{A51CC220-48C4-46F6-BF5D-3178CC317426}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>IpTviewr.Internal.Tools.ChannelLogos</RootNamespace>
     <AssemblyName>ChannelLogos</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>x86</PlatformTarget>
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -25,6 +25,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
+    <LangVersion>8</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -35,31 +36,36 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
+    <LangVersion>8</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>Resources\IPTViewr_Tool.ico</ApplicationIcon>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.ExceptionMessageBox, Version=9.0.242.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\..\..\Program Files (x86)\Microsoft SQL Server\90\SDK\Assemblies\Microsoft.ExceptionMessageBox.dll</HintPath>
+    <Reference Include="JetBrains.Annotations, Version=2019.1.3.0, Culture=neutral, PublicKeyToken=1010a0d8d6380325, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JetBrains.Annotations.2019.1.3\lib\net20\JetBrains.Annotations.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Web" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\..\AssemblySolutionInfo.cs">
+      <Link>Properties\AssemblySolutionInfo.cs</Link>
+    </Compile>
+    <Compile Include="BaseOutputWriter.cs" />
     <Compile Include="ConsistencyCheck.cs" />
     <Compile Include="ConsistencyCheckAllServices.cs" />
     <Compile Include="ConsistencyCheckMissingLogoFiles.cs" />
-    <Compile Include="ConsistencyCheckMissingServiceLogos.cs" />
+    <Compile Include="ConsistencyCheckMissingServiceMappings.cs" />
+    <Compile Include="ConsistencyChecksData.cs" />
     <Compile Include="ConsistencyCheckUnusedServiceMappingEntries.cs" />
     <Compile Include="ConsistencyCheckUnusedLogoFiles.cs" />
     <Compile Include="FormConsistency.cs">
@@ -74,14 +80,20 @@
     <Compile Include="FormLogos.Designer.cs">
       <DependentUpon>FormLogos.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormStart.cs">
+    <Compile Include="FormSvgLogosExporter.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormStart.Designer.cs">
-      <DependentUpon>FormStart.cs</DependentUpon>
+    <Compile Include="FormSvgLogosExporter.Designer.cs">
+      <DependentUpon>FormSvgLogosExporter.cs</DependentUpon>
     </Compile>
-    <Compile Include="Program.cs" />
+    <Compile Include="IToolOutputWriter.cs" />
+    <Compile Include="LogosConsistenceTool.cs" />
+    <Compile Include="LogosIconBuilder.cs" />
+    <Compile Include="LogosSvgExporter.cs" />
+    <Compile Include="LogosMaintenanceTool.cs" />
+    <Compile Include="LogosTool.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TextBoxOutputWriter.cs" />
     <Compile Include="WebClientEx.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -91,8 +103,8 @@
     <EmbeddedResource Include="FormLogos.resx">
       <DependentUpon>FormLogos.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormStart.resx">
-      <DependentUpon>FormStart.cs</DependentUpon>
+    <EmbeddedResource Include="FormSvgLogosExporter.resx">
+      <DependentUpon>FormSvgLogosExporter.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -104,6 +116,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="LICENSE.ES.MD" />
+    <None Include="LICENSE.MD" />
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -118,49 +133,49 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Core.IpTvProvider\Core.IpTvProvider.csproj">
-      <Project>{36b8e0a1-f1b1-498d-8fe7-a39bb7fd68ca}</Project>
-      <Name>Core.IpTvProvider</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\DvbStpClient\DvbStpClient.csproj">
-      <Project>{8ad3c34b-a1d3-4385-a8a9-c429bd9a37d3}</Project>
-      <Name>DvbStpClient</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Etsi.Ts102034\Etsi.Ts102034.csproj">
-      <Project>{b91c438d-0333-4d06-86cd-74ce82df6f40}</Project>
+    <ProjectReference Include="..\..\Assemblies\Etsi.Ts102034\Etsi.Ts102034.csproj">
+      <Project>{B91C438D-0333-4D06-86CD-74CE82DF6F40}</Project>
       <Name>Etsi.Ts102034</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\IpTv.MovistarPlus\IpTv.MovistarPlus.csproj">
-      <Project>{e1748f45-dd50-4479-96f6-f7eba6f3e28b}</Project>
-      <Name>IpTv.MovistarPlus</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Project.Common\Project.Common.csproj">
+    <ProjectReference Include="..\..\Assemblies\Project.Common\IpTviewr.Common.csproj">
       <Project>{8da15060-5a78-4f89-a9f1-7aa56b0d622c}</Project>
-      <Name>Project.Common</Name>
+      <Name>IpTviewr.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\UiServices.Common\UiServices.Common.csproj">
+    <ProjectReference Include="..\..\Assemblies\Project.Native\IpTviewr.Native.csproj">
+      <Project>{8986CD52-0C65-42D6-9C47-20FF47CF87BB}</Project>
+      <Name>IpTviewr.Native</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Assemblies\UiServices.Common\UiServices.Common.csproj">
       <Project>{76346905-ac2f-4f01-ba99-bbffbb2a6fe9}</Project>
       <Name>UiServices.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\UiServices.Config\UiServices.Config.csproj">
+    <ProjectReference Include="..\..\Assemblies\UiServices.Config\UiServices.Config.csproj">
       <Project>{a722de9d-ae51-479c-825f-a19f4c69bd75}</Project>
       <Name>UiServices.Config</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\UiServices.Discovery\UiServices.Discovery.csproj">
-      <Project>{7e5e21b9-4bd6-4fb3-9055-9b09cc479c6c}</Project>
+    <ProjectReference Include="..\..\Assemblies\UiServices.Discovery\UiServices.Discovery.csproj">
+      <Project>{7E5E21B9-4BD6-4FB3-9055-9B09CC479C6C}</Project>
       <Name>UiServices.Discovery</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\UiServices.DvbStpClient\UiServices.DvbStpClient.csproj">
-      <Project>{ba481e42-f570-4d2c-94d4-21c4cce27762}</Project>
-      <Name>UiServices.DvbStpClient</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\UiServices.Forms\UiServices.Forms.csproj">
-      <Project>{90f750b3-64db-493f-96a6-e68de5ea60a1}</Project>
+    <ProjectReference Include="..\..\Assemblies\UiServices.Forms\UiServices.Forms.csproj">
+      <Project>{90F750B3-64DB-493F-96A6-E68DE5EA60A1}</Project>
       <Name>UiServices.Forms</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Core\IpTViewr.Core\IpTViewr.Core.csproj">
+      <Project>{968c6eeb-1e79-446a-96ae-69cb225e1c37}</Project>
+      <Name>IpTViewr.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ToolsUiFramework\ToolsUiFramework.csproj">
+      <Project>{63482f69-c5de-430d-86e7-e2a4eac59a51}</Project>
+      <Name>ToolsUiFramework</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\IPTViewr_Tool.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="License.txt" />
+    <Content Include="licensing.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

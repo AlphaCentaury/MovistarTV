@@ -1,15 +1,19 @@
-﻿// Copyright (C) 2014-2016, Codeplex/GitHub user AlphaCentaury
-// All rights reserved, except those granted by the governing license of this software. See 'license.txt' file in the project root for complete license information.
+// ==============================================================================
+// 
+//   Copyright (C) 2014-2020, GitHub/Codeplex user AlphaCentaury
+//   All rights reserved.
+// 
+//     See 'LICENSE.MD' file (or 'license.txt' if missing) in the project root
+//     for complete license information.
+// 
+//   http://www.alphacentaury.org/movistartv
+//   https://github.com/AlphaCentaury
+// 
+// ==============================================================================
 
 using IpTviewr.UiServices.DvbStpClient;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Globalization;
 using System.IO;
-using System.Linq;
 using System.Net;
 using System.Text;
 using System.Windows.Forms;
@@ -87,7 +91,7 @@ namespace IpTviewr.Internal.Tools.GuiTools
             {
                 var count = data.Length;
                 var buffer = new StringBuilder(count);
-                for (int index = 0; index < count; index++)
+                for (var index = 0; index < count; index++)
                 {
                     var b = data[index];
                     buffer.Append((b < 32) ? '·' : (char)b);

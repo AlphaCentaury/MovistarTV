@@ -1,24 +1,84 @@
-﻿// Copyright (C) 2014-2016, Codeplex/GitHub user AlphaCentaury
-// All rights reserved, except those granted by the governing license of this software. See 'license.txt' file in the project root for complete license information.
+// ==============================================================================
+// 
+//   Copyright (C) 2014-2020, GitHub/Codeplex user AlphaCentaury
+//   All rights reserved.
+// 
+//     See 'LICENSE.MD' file (or 'license.txt' if missing) in the project root
+//     for complete license information.
+// 
+//   http://www.alphacentaury.org/movistartv
+//   https://github.com/AlphaCentaury
+// 
+// ==============================================================================
 
-using Microsoft.SqlServer.MessageBox;
 using IpTviewr.Common.Telemetry;
-using IpTviewr.UiServices.Configuration;
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Reflection;
-using System.Text;
+using System.Collections.Specialized;
+using System.Globalization;
 using System.Threading;
 using System.Windows.Forms;
+using IpTviewr.ChannelList.Properties;
 using IpTviewr.Common;
+using IpTviewr.UiServices.Configuration.Push;
 
 namespace IpTviewr.ChannelList
 {
-    public static class MyApplication
+    internal static class MyApplication
     {
-        public static string RecorderLauncherPath
+        public sealed class PushUpdateContext : IPushUpdateContext
+        {
+            public Version GetAppVersion() => Version.TryParse(Application.ProductVersion, out var version) ? version : new Version();
+
+            public DateTime LastChecked
+            {
+                get
+                {
+                    try
+                    {
+                        return Settings.Default.LastCheckedForUpdates;
+                    }
+                    catch
+                    {
+                        // invalid value or not set
+                        var defaultDate = new DateTime(1970, 01, 01);
+                        Settings.Default.LastCheckedForUpdates = defaultDate;
+                        Settings.Default.Save();
+
+                        return defaultDate;
+                    }
+                }
+                set
+                {
+                    Settings.Default.LastCheckedForUpdates = value;
+                    Settings.Default.Save();
+                } // set
+            } // LastChecked
+
+            public void AddHidden(Guid message)
+            {
+                var list = Settings.Default.PushIgnoreList ?? new StringCollection();
+                list.Add(message.ToString("B", CultureInfo.InvariantCulture));
+                Settings.Default.PushIgnoreList = list;
+                Settings.Default.Save();
+            } // AddHidden
+
+            public bool IsHidden(Guid message)
+            {
+                var list = Settings.Default.PushIgnoreList;
+                if (list == null) return false;
+
+                var guid = message.ToString("B", CultureInfo.InvariantCulture);
+
+                foreach (var item in list)
+                {
+                    if (string.Equals(guid, item, StringComparison.InvariantCultureIgnoreCase)) return true;
+                } // foreach
+
+                return false;
+            } // IsHidden
+        } // class PushUpdateContext
+
+        internal static string RecorderLauncherPath
         {
             get;
             set;
@@ -28,17 +88,8 @@ namespace IpTviewr.ChannelList
 
         public static void HandleException(Form owner, Exception ex)
         {
-            BasicGoogleTelemetry.SendExtendedExceptionHit(ex);
-            AddExceptionAdvancedInformation(ex);
-
-            var box = new Microsoft.SqlServer.MessageBox.ExceptionMessageBox()
-            {
-                Caption = Properties.Texts.MyAppHandleExceptionDefaultCaption,
-                Message = ex,
-                Beep = true,
-                Symbol = ExceptionMessageBoxSymbol.Error,
-            };
-            box.Show(owner);
+            AppTelemetry.FormException(ex, owner);
+            BaseProgram.HandleException(owner, Properties.Texts.MyAppHandleExceptionDefaultCaption, null, ex);
         } // HandleException
 
         public static void HandleException(Form owner, string message, Exception ex)
@@ -61,99 +112,80 @@ namespace IpTviewr.ChannelList
 
         public static void HandleException(Form owner, string caption, string message, MessageBoxIcon icon, Exception ex)
         {
-            BasicGoogleTelemetry.SendExtendedExceptionHit(ex, true, message, null);
-            AddExceptionAdvancedInformation(ex);
-
-            var box = new ExceptionMessageBox()
-            {
-                Caption = caption ?? Properties.Texts.MyAppHandleExceptionDefaultCaption,
-                Text = message ?? Properties.Texts.MyAppHandleExceptionDefaultMessage,
-                InnerException = ex,
-                Beep = true,
-                Symbol = TranslateIconToSymbol(icon),
-            };
-            box.Show(owner);
+            if (ex != null) AppTelemetry.FormException(ex, owner, message);
+            BaseProgram.HandleException(owner, caption, message, icon, ex);
         } // HandleException
 
         internal static void HandleException(Form form, ExceptionEventData ex)
         {
-            MyApplication.HandleException(form, ex.Caption, ex.Message, ex.Exception);
+            HandleException(form, ex.Caption, ex.Message, ex.Exception);
         } // HandleException
 
         internal static void HandleException(object sender, HandleExceptionEventArgs e)
         {
-            MyApplication.HandleException(e.OwnerForm, e.Caption, e.Message, e.Exception);
+            HandleException(e.OwnerForm, e.Caption, e.Message, e.Exception);
         } // HandleException
 
         #endregion
 
-        private static ExceptionMessageBoxSymbol TranslateIconToSymbol(MessageBoxIcon icon)
-        {
-            switch (icon)
-            {
-                case MessageBoxIcon.Asterisk: return ExceptionMessageBoxSymbol.Asterisk;
-                case MessageBoxIcon.Error: return ExceptionMessageBoxSymbol.Error;
-                case MessageBoxIcon.Exclamation: return ExceptionMessageBoxSymbol.Exclamation;
-                //case MessageBoxIcon.Hand: return ExceptionMessageBoxSymbol.Hand;
-                //case MessageBoxIcon.Information: return ExceptionMessageBoxSymbol.Information;
-                case MessageBoxIcon.Question: return ExceptionMessageBoxSymbol.Question;
-                //case MessageBoxIcon.Stop: return ExceptionMessageBoxSymbol.Stop;
-                //case MessageBoxIcon.Warning: return ExceptionMessageBoxSymbol.Warning;
-                default:
-                    return ExceptionMessageBoxSymbol.None;
-            } // switch
-        } // TranslateIconToSymbol
+        private const string SetCultureArgument = "/setculture:";
+        private const string SetUiCultureArgument = "/setuiculture:";
 
-        private static void AddExceptionAdvancedInformation(Exception ex)
-        {
-            while (ex != null)
-            {
-                ex.Data["AdvancedInformation.Exception.Type"] = ex.GetType().FullName;
-                ex.Data["AdvancedInformation.Exception.Assembly"] = ex.GetType().Assembly.ToString();
-                ex = ex.InnerException;
-            } // while
-        } // AddExceptionAdvancedInformation
-
-        private const string ForceUiCultureArgument = "/forceuiculture:";
-
-        internal static void ForceUiCulture(string[] arguments, string settingsCulture)
+        internal static void SetApplicationCulture(string[] arguments)
         {
             var culture = (string)null;
+            var uiCulture = (string)null;
 
             // Command line culture has preference over settings culture (allows to override user setting)
             if ((arguments != null) && (arguments.Length != 0))
             {
                 foreach (var argument in arguments)
                 {
-                    if (!argument.ToLowerInvariant().StartsWith(ForceUiCultureArgument)) continue;
-                    culture = argument.Substring(ForceUiCultureArgument.Length);
-                    break;
+                    if (argument.StartsWith(SetCultureArgument, StringComparison.InvariantCultureIgnoreCase))
+                    {
+                        culture = argument.Substring(SetCultureArgument.Length);
+                    }
+                    else
+                    {
+                        uiCulture = argument.Substring(SetUiCultureArgument.Length);
+                    } // if-else
                 } // foreach
             } // if
 
             // If no culture is specified in command line arguments, use settings culture
-            if (culture == null)
-            {
-                culture = settingsCulture;
-            } // if
+            culture ??= Settings.Default.SetCulture;
 
-            ForceUiCulture(culture);
-        } // ForceUiCulture
+            // If no UI culture is specified in command line arguments, use settings UI culture
+            uiCulture ??= Settings.Default.SetUiCulture;
 
-        private static void ForceUiCulture(string culture)
+            SetUiCulture(culture, uiCulture);
+        } // SetApplicationCulture
+
+        private static void SetUiCulture(string culture, string uiCulture)
         {
-            if (culture == null) return;
-            culture = culture.Trim();
-            if (culture == string.Empty) return;
-
             try
             {
-                Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(culture);
+                if (!string.IsNullOrWhiteSpace(culture))
+                {
+                    Thread.CurrentThread.CurrentCulture = new CultureInfo(culture);
+                } // if
             }
             catch (Exception ex)
             {
-                MyApplication.HandleException(null, Properties.InvariantTexts.ExceptionForceUiCulture, ex);
+                HandleException(null, InvariantTexts.ExceptionSetCulture, ex);
             } // try-catch
-        } // ForceUiCulture
+
+            try
+            {
+                if (!string.IsNullOrWhiteSpace(uiCulture))
+                {
+                    Thread.CurrentThread.CurrentUICulture = new CultureInfo(uiCulture);
+                }
+            }
+            catch (Exception ex)
+            {
+                HandleException(null, InvariantTexts.ExceptionSetUiCulture, ex);
+            } // try-catch
+        } // SetUiCulture
     } // static class MyApplication
 } // namespace

@@ -1,9 +1,17 @@
-﻿// Copyright (C) 2014-2016, Codeplex/GitHub user AlphaCentaury
-// All rights reserved, except those granted by the governing license of this software. See 'license.txt' file in the project root for complete license information.
+// ==============================================================================
+// 
+//   Copyright (C) 2014-2020, GitHub/Codeplex user AlphaCentaury
+//   All rights reserved.
+// 
+//     See 'LICENSE.MD' file (or 'license.txt' if missing) in the project root
+//     for complete license information.
+// 
+//   http://www.alphacentaury.org/movistartv
+//   https://github.com/AlphaCentaury
+// 
+// ==============================================================================
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 
 namespace IpTviewr.RecorderLauncher
@@ -22,7 +30,7 @@ namespace IpTviewr.RecorderLauncher
 
         public static void ToString(this Exception ex, StringBuilder buffer, bool withMessage, bool withStackTrace)
         {
-            string message = withMessage ? ex.Message : null;
+            var message = withMessage ? ex.Message : null;
 
             buffer.Append(ex.GetType().FullName);
             if (message != null && message.Length > 0)
@@ -43,7 +51,7 @@ namespace IpTviewr.RecorderLauncher
 
             if (withStackTrace)
             {
-                string stackTrace = ex.StackTrace;
+                var stackTrace = ex.StackTrace;
                 if (stackTrace != null)
                 {
                     buffer.Append(Environment.NewLine);

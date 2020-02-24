@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Batch xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Lines>
+    <Execute tool="ba624943-eaab-49cc-a9cd-fd9cea6ec3ce" name="UpdateCopyright">
+      <Arguments>
+        <Argument>C:\Users\Developer\Source\Repos\AlphaCentaury\MovistarTV\1.5 'Kruger 60'</Argument>
+        <Argument>/exclude:C:\Users\Developer\Source\Repos\AlphaCentaury\MovistarTV\1.5 'Kruger 60'\packages</Argument>
+        <Argument>/R</Argument>
+      </Arguments>
+    </Execute>
+  </Lines>
+</Batch>

@@ -134,10 +134,10 @@
     <value>353, 17</value>
   </metadata>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="menuItemDvbRecent0.Enabled" type="System.Boolean, mscorlib">
+  <data name="menuItemIpTviewrRecent0.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
-  <data name="menuItemDvbRecent0.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="menuItemIpTviewrRecent0.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAu
         IgAALiIBquLdkgAAAAd0SU1FB94KCBQCD9JCkw4AAAlUSURBVFhH7ddpVJNnFgfwN1sDxkgI2WMIBAQE
@@ -183,16 +183,16 @@
         VBI2sSsJK80ogrC2If/x93g9COIftCli6OLZdiIAAAAASUVORK5CYII=
 </value>
   </data>
-  <data name="menuItemDvbRecent0.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="menuItemIpTviewrRecent0.Size" type="System.Drawing.Size, System.Drawing">
     <value>124, 22</value>
   </data>
-  <data name="menuItemDvbRecent0.Text" xml:space="preserve">
+  <data name="menuItemIpTviewrRecent0.Text" xml:space="preserve">
     <value>Recent[0]</value>
   </data>
-  <data name="menuItemDvbRecent1.Enabled" type="System.Boolean, mscorlib">
+  <data name="menuItemIpTviewrRecent1.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
-  <data name="menuItemDvbRecent1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="menuItemIpTviewrRecent1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAe
         vAAAHrwB7kRN9wAAAAd0SU1FB94KCBQHAUiNSkwAAAmpSURBVFhH7Zd3dNXlHYc/CQFZBQUBwdNWqVYc
@@ -240,16 +240,16 @@
         TkSuQmCC
 </value>
   </data>
-  <data name="menuItemDvbRecent1.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="menuItemIpTviewrRecent1.Size" type="System.Drawing.Size, System.Drawing">
     <value>124, 22</value>
   </data>
-  <data name="menuItemDvbRecent1.Text" xml:space="preserve">
+  <data name="menuItemIpTviewrRecent1.Text" xml:space="preserve">
     <value>Recent[1]</value>
   </data>
-  <data name="menuItemDvbRecent2.Enabled" type="System.Boolean, mscorlib">
+  <data name="menuItemIpTviewrRecent2.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
-  <data name="menuItemDvbRecent2.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="menuItemIpTviewrRecent2.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
         DAAACwwBP0AiyAAAAAd0SU1FB98CGRcaEMyeEGUAAAPOSURBVFhH7ZNtbFNlFMef+zzt7avDmSlEcUt0
@@ -272,16 +272,16 @@
         RU5ErkJggg==
 </value>
   </data>
-  <data name="menuItemDvbRecent2.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="menuItemIpTviewrRecent2.Size" type="System.Drawing.Size, System.Drawing">
     <value>124, 22</value>
   </data>
-  <data name="menuItemDvbRecent2.Text" xml:space="preserve">
+  <data name="menuItemIpTviewrRecent2.Text" xml:space="preserve">
     <value>Recent[2]</value>
   </data>
-  <data name="menuItemDvbRecent3.Enabled" type="System.Boolean, mscorlib">
+  <data name="menuItemIpTviewrRecent3.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
-  <data name="menuItemDvbRecent3.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="menuItemIpTviewrRecent3.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
         vAAADrwBlbxySQAAAAd0SU1FB94KFBIZKMA8eWoAAAXTSURBVFhH1VdvbFNVFO8rW7uufW3fa9e58a/t
@@ -312,16 +312,16 @@
         p9fu7oypm/Grecl8rxzBeWbxwDgwmf4BqkecP1ifu+AAAAAASUVORK5CYII=
 </value>
   </data>
-  <data name="menuItemDvbRecent3.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="menuItemIpTviewrRecent3.Size" type="System.Drawing.Size, System.Drawing">
     <value>124, 22</value>
   </data>
-  <data name="menuItemDvbRecent3.Text" xml:space="preserve">
+  <data name="menuItemIpTviewrRecent3.Text" xml:space="preserve">
     <value>Recent[3]</value>
   </data>
-  <data name="menuItemDvbRecent4.Enabled" type="System.Boolean, mscorlib">
+  <data name="menuItemIpTviewrRecent4.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
-  <data name="menuItemDvbRecent4.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="menuItemIpTviewrRecent4.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
         vAAADrwBlbxySQAAAAd0SU1FB94KCRQtE2zjkEkAAAXlSURBVFhH1VdrbBRVFJ7Z2WHbREoMQikg78cv
@@ -353,16 +353,16 @@
         YII=
 </value>
   </data>
-  <data name="menuItemDvbRecent4.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="menuItemIpTviewrRecent4.Size" type="System.Drawing.Size, System.Drawing">
     <value>124, 22</value>
   </data>
-  <data name="menuItemDvbRecent4.Text" xml:space="preserve">
+  <data name="menuItemIpTviewrRecent4.Text" xml:space="preserve">
     <value>Recent[4]</value>
   </data>
-  <data name="menuItemDvbRecent5.Enabled" type="System.Boolean, mscorlib">
+  <data name="menuItemIpTviewrRecent5.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
-  <data name="menuItemDvbRecent5.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="menuItemIpTviewrRecent5.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
         DAAACwwBP0AiyAAAAAd0SU1FB98CGgALBflGzYUAAAQzSURBVFhH7VTtb1NVGO9kGvEPMH7ZTBA1RNnW
@@ -386,16 +386,16 @@
         TlTOyKNKRhHNY5b7pRuTV1NIIYUUUvgPkEj+AsfZlR3W3/MiAAAAAElFTkSuQmCC
 </value>
   </data>
-  <data name="menuItemDvbRecent5.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="menuItemIpTviewrRecent5.Size" type="System.Drawing.Size, System.Drawing">
     <value>124, 22</value>
   </data>
-  <data name="menuItemDvbRecent5.Text" xml:space="preserve">
+  <data name="menuItemIpTviewrRecent5.Text" xml:space="preserve">
     <value>Recent[5]</value>
   </data>
-  <data name="menuItemDvbRecent6.Enabled" type="System.Boolean, mscorlib">
+  <data name="menuItemIpTviewrRecent6.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
-  <data name="menuItemDvbRecent6.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="menuItemIpTviewrRecent6.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAe
         vAAAHrwB7kRN9wAAAAd0SU1FB94KCRYlAs0O7t0AAAYoSURBVFhH1ZcJTFRXFIbvm+3NMGzDIFhrjbam
@@ -428,16 +428,16 @@
         AElFTkSuQmCC
 </value>
   </data>
-  <data name="menuItemDvbRecent6.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="menuItemIpTviewrRecent6.Size" type="System.Drawing.Size, System.Drawing">
     <value>124, 22</value>
   </data>
-  <data name="menuItemDvbRecent6.Text" xml:space="preserve">
+  <data name="menuItemIpTviewrRecent6.Text" xml:space="preserve">
     <value>Recent[6]</value>
   </data>
-  <data name="menuItemDvbRecent7.Enabled" type="System.Boolean, mscorlib">
+  <data name="menuItemIpTviewrRecent7.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
-  <data name="menuItemDvbRecent7.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="menuItemIpTviewrRecent7.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAe
         vAAAHrwB7kRN9wAAAAd0SU1FB94KCQg6D2hdEoQAAAikSURBVFhH7VZ7UFTXGf/YXV7LY4Fl2QcLy5uF
@@ -480,16 +480,16 @@
         APu4dBsEyNbjiLuU5OL9oJk5j+3/zAD+DFIJkyPj5/amAAAAAElFTkSuQmCC
 </value>
   </data>
-  <data name="menuItemDvbRecent7.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="menuItemIpTviewrRecent7.Size" type="System.Drawing.Size, System.Drawing">
     <value>124, 22</value>
   </data>
-  <data name="menuItemDvbRecent7.Text" xml:space="preserve">
+  <data name="menuItemIpTviewrRecent7.Text" xml:space="preserve">
     <value>Recent[7]</value>
   </data>
-  <data name="menuItemDvbRecent8.Enabled" type="System.Boolean, mscorlib">
+  <data name="menuItemIpTviewrRecent8.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
-  <data name="menuItemDvbRecent8.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="menuItemIpTviewrRecent8.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
         DAAACwwBP0AiyAAAAAd0SU1FB94MExcGKW49SJAAAArtSURBVFhHTVdrjFxlGT479zn3ud93Z3Zm9jq7
@@ -542,16 +542,16 @@
         PvLI8Weefir4fyyUPmG9+H3lAAAAAElFTkSuQmCC
 </value>
   </data>
-  <data name="menuItemDvbRecent8.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="menuItemIpTviewrRecent8.Size" type="System.Drawing.Size, System.Drawing">
     <value>124, 22</value>
   </data>
-  <data name="menuItemDvbRecent8.Text" xml:space="preserve">
+  <data name="menuItemIpTviewrRecent8.Text" xml:space="preserve">
     <value>Recent[8]</value>
   </data>
-  <data name="menuItemDvbRecent9.Enabled" type="System.Boolean, mscorlib">
+  <data name="menuItemIpTviewrRecent9.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
-  <data name="menuItemDvbRecent9.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="menuItemIpTviewrRecent9.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
         DAAACwwBP0AiyAAAAAd0SU1FB94LFwANGhYyDv8AAAnbSURBVFhHtZdpUFRXFsefoqgZDFEjKkSDohDW
@@ -599,44 +599,44 @@
         h2KZmX8IM98XyswDDz1fgsIesTGY5zCz2B/BNtABXGHjIPovkTBaGxTfOtQAAAAASUVORK5CYII=
 </value>
   </data>
-  <data name="menuItemDvbRecent9.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="menuItemIpTviewrRecent9.Size" type="System.Drawing.Size, System.Drawing">
     <value>124, 22</value>
   </data>
-  <data name="menuItemDvbRecent9.Text" xml:space="preserve">
+  <data name="menuItemIpTviewrRecent9.Text" xml:space="preserve">
     <value>Recent[9]</value>
   </data>
-  <data name="menuItemDvbRecent.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="menuItemIpTviewrRecent.Size" type="System.Drawing.Size, System.Drawing">
     <value>160, 22</value>
   </data>
-  <data name="menuItemDvbRecent.Text" xml:space="preserve">
+  <data name="menuItemIpTviewrRecent.Text" xml:space="preserve">
     <value>Recent channels</value>
   </data>
-  <data name="menuItemDvbRecent.Visible" type="System.Boolean, mscorlib">
+  <data name="menuItemIpTviewrRecent.Visible" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
-  <data name="separatorDvb1.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="separatorIpTviewr1.Size" type="System.Drawing.Size, System.Drawing">
     <value>157, 6</value>
   </data>
-  <data name="separatorDvb1.Visible" type="System.Boolean, mscorlib">
+  <data name="separatorIpTviewr1.Visible" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
-  <data name="menuItemProviderSelect.Size" type="System.Drawing.Size, System.Drawing">
-    <value>200, 22</value>
+  <data name="menuItemIpTviewrProviderSelect.Size" type="System.Drawing.Size, System.Drawing">
+    <value>126, 22</value>
   </data>
-  <data name="menuItemProviderSelect.Text" xml:space="preserve">
-    <value>Select provider...</value>
+  <data name="menuItemIpTviewrProviderSelect.Text" xml:space="preserve">
+    <value>(Select...)</value>
   </data>
-  <data name="menuItemProviderDetails.Size" type="System.Drawing.Size, System.Drawing">
-    <value>200, 22</value>
+  <data name="menuItemIpTviewrProviderDetails.Size" type="System.Drawing.Size, System.Drawing">
+    <value>126, 22</value>
   </data>
-  <data name="menuItemProviderDetails.Text" xml:space="preserve">
-    <value>Show technical details...</value>
+  <data name="menuItemIpTviewrProviderDetails.Text" xml:space="preserve">
+    <value>(Details...)</value>
   </data>
-  <data name="menuItemDvbProvider.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="menuItemIpTviewrProvider.Size" type="System.Drawing.Size, System.Drawing">
     <value>160, 22</value>
   </data>
-  <data name="menuItemDvbProvider.Text" xml:space="preserve">
-    <value>&amp;Provider</value>
+  <data name="menuItemIpTviewrProvider.Text" xml:space="preserve">
+    <value>(Provider)</value>
   </data>
   <data name="menuItemPackagesSelect.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -656,52 +656,52 @@
   <data name="menuItemPackagesManage.Text" xml:space="preserve">
     <value>Manage packages...</value>
   </data>
-  <data name="menuItemDvbPackages.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="menuItemIpTviewrPackages.Size" type="System.Drawing.Size, System.Drawing">
     <value>160, 22</value>
   </data>
-  <data name="menuItemDvbPackages.Text" xml:space="preserve">
+  <data name="menuItemIpTviewrPackages.Text" xml:space="preserve">
     <value>P&amp;ackage</value>
   </data>
-  <data name="menuItemDvbPackages.Visible" type="System.Boolean, mscorlib">
+  <data name="menuItemIpTviewrPackages.Visible" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
-  <data name="separatorDvb2.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="separatorIpTviewr2.Size" type="System.Drawing.Size, System.Drawing">
     <value>157, 6</value>
   </data>
-  <data name="menuItemDvbSettings.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="menuItemIpTviewrSettings.Size" type="System.Drawing.Size, System.Drawing">
     <value>160, 22</value>
   </data>
-  <data name="menuItemDvbSettings.Text" xml:space="preserve">
+  <data name="menuItemIpTviewrSettings.Text" xml:space="preserve">
     <value>Settings...</value>
   </data>
-  <data name="menuItemDvbExport.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="menuItemIpTviewrExport.Size" type="System.Drawing.Size, System.Drawing">
     <value>160, 22</value>
   </data>
-  <data name="menuItemDvbExport.Text" xml:space="preserve">
+  <data name="menuItemIpTviewrExport.Text" xml:space="preserve">
     <value>Export data...</value>
   </data>
-  <data name="menuItemDvbExport.Visible" type="System.Boolean, mscorlib">
+  <data name="menuItemIpTviewrExport.Visible" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
-  <data name="separatorDvb3.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="separatorIpTviewr3.Size" type="System.Drawing.Size, System.Drawing">
     <value>157, 6</value>
   </data>
-  <data name="menuItemDvbExit.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
+  <data name="menuItemIpTviewrExit.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
     <value>Black</value>
   </data>
-  <data name="menuItemDvbExit.ShortcutKeyDisplayString" xml:space="preserve">
+  <data name="menuItemIpTviewrExit.ShortcutKeyDisplayString" xml:space="preserve">
     <value>Alt+F4</value>
   </data>
-  <data name="menuItemDvbExit.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="menuItemIpTviewrExit.Size" type="System.Drawing.Size, System.Drawing">
     <value>160, 22</value>
   </data>
-  <data name="menuItemDvbExit.Text" xml:space="preserve">
+  <data name="menuItemIpTviewrExit.Text" xml:space="preserve">
     <value>Exit</value>
   </data>
-  <data name="menuItemDvbIpTv.Size" type="System.Drawing.Size, System.Drawing">
-    <value>65, 20</value>
+  <data name="menuItemIpTviewr.Size" type="System.Drawing.Size, System.Drawing">
+    <value>64, 20</value>
   </data>
-  <data name="menuItemDvbIpTv.Text" xml:space="preserve">
+  <data name="menuItemIpTviewr.Text" xml:space="preserve">
     <value>&amp;IPTViewr</value>
   </data>
   <data name="menuItemChannelFavorites0.Enabled" type="System.Boolean, mscorlib">
@@ -1240,16 +1240,16 @@
     <value>F6</value>
   </data>
   <data name="menuItemEpgBasicGrid.Size" type="System.Drawing.Size, System.Drawing">
-    <value>255, 22</value>
+    <value>254, 22</value>
   </data>
   <data name="menuItemEpgBasicGrid.Text" xml:space="preserve">
     <value>Current programming...</value>
   </data>
   <data name="separatorEpg1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>252, 6</value>
+    <value>251, 6</value>
   </data>
   <data name="menuItemEpgNow.Size" type="System.Drawing.Size, System.Drawing">
-    <value>255, 22</value>
+    <value>254, 22</value>
   </data>
   <data name="menuItemEpgNow.Text" xml:space="preserve">
     <value>&amp;Now and then...</value>
@@ -1261,7 +1261,7 @@
     <value>F7</value>
   </data>
   <data name="menuItemEpgToday.Size" type="System.Drawing.Size, System.Drawing">
-    <value>255, 22</value>
+    <value>254, 22</value>
   </data>
   <data name="menuItemEpgToday.Text" xml:space="preserve">
     <value>&amp;Today...</value>
@@ -1273,7 +1273,7 @@
     <value>Shift+F7</value>
   </data>
   <data name="menuItemEpgTomorrow.Size" type="System.Drawing.Size, System.Drawing">
-    <value>255, 22</value>
+    <value>254, 22</value>
   </data>
   <data name="menuItemEpgTomorrow.Text" xml:space="preserve">
     <value>T&amp;omorrow / other days...</value>
@@ -1282,7 +1282,7 @@
     <value>False</value>
   </data>
   <data name="separatorEpg2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>252, 6</value>
+    <value>251, 6</value>
   </data>
   <data name="separatorEpg2.Visible" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -1291,7 +1291,7 @@
     <value>Alt+Left</value>
   </data>
   <data name="menuItemEpgPrevious.Size" type="System.Drawing.Size, System.Drawing">
-    <value>255, 22</value>
+    <value>254, 22</value>
   </data>
   <data name="menuItemEpgPrevious.Text" xml:space="preserve">
     <value>&amp;Previous program</value>
@@ -1300,7 +1300,7 @@
     <value>Alt+Right</value>
   </data>
   <data name="menuItemEpgNext.Size" type="System.Drawing.Size, System.Drawing">
-    <value>255, 22</value>
+    <value>254, 22</value>
   </data>
   <data name="menuItemEpgNext.Text" xml:space="preserve">
     <value>&amp;Next program</value>
@@ -1340,6 +1340,12 @@
   </data>
   <data name="menuItemHelpCheckUpdates.Text" xml:space="preserve">
     <value>Check for &amp;updates...</value>
+  </data>
+  <data name="menuItemHelpTelemetry.Size" type="System.Drawing.Size, System.Drawing">
+    <value>179, 22</value>
+  </data>
+  <data name="menuItemHelpTelemetry.Text" xml:space="preserve">
+    <value>Data collection...</value>
   </data>
   <data name="menuItemHelpAbout.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+F1</value>
@@ -1604,12 +1610,24 @@
     <value>MiddleLeft</value>
   </data>
   <data name="statusLabelMain.Size" type="System.Drawing.Size, System.Drawing">
-    <value>709, 17</value>
+    <value>559, 17</value>
   </data>
   <data name="statusLabelMain.Text" xml:space="preserve">
     <value>statusLabelMain</value>
   </data>
   <data name="statusLabelMain.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="statusLabelEpg.AutoSize" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="statusLabelEpg.Size" type="System.Drawing.Size, System.Drawing">
+    <value>150, 17</value>
+  </data>
+  <data name="statusLabelEpg.Text" xml:space="preserve">
+    <value>(EPG)</value>
+  </data>
+  <data name="statusLabelEpg.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleLeft</value>
   </data>
   <data name="statusMainStrip.Location" type="System.Drawing.Point, System.Drawing">
@@ -1666,8 +1684,11 @@
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
     <value>724, 441</value>
   </data>
+  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Channel list - IPTViewr</value>
+    <value>[DEBUG] Channel list - IPTViewr</value>
   </data>
   <data name="&gt;&gt;imageListChannelsLarge.Name" xml:space="preserve">
     <value>imageListChannelsLarge</value>
@@ -1681,106 +1702,106 @@
   <data name="&gt;&gt;imageListChannels.Type" xml:space="preserve">
     <value>System.Windows.Forms.ImageList, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;menuItemDvbIpTv.Name" xml:space="preserve">
-    <value>menuItemDvbIpTv</value>
+  <data name="&gt;&gt;menuItemIpTviewr.Name" xml:space="preserve">
+    <value>menuItemIpTviewr</value>
   </data>
-  <data name="&gt;&gt;menuItemDvbIpTv.Type" xml:space="preserve">
+  <data name="&gt;&gt;menuItemIpTviewr.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;menuItemDvbRecent.Name" xml:space="preserve">
-    <value>menuItemDvbRecent</value>
+  <data name="&gt;&gt;menuItemIpTviewrRecent.Name" xml:space="preserve">
+    <value>menuItemIpTviewrRecent</value>
   </data>
-  <data name="&gt;&gt;menuItemDvbRecent.Type" xml:space="preserve">
+  <data name="&gt;&gt;menuItemIpTviewrRecent.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;menuItemDvbRecent0.Name" xml:space="preserve">
-    <value>menuItemDvbRecent0</value>
+  <data name="&gt;&gt;menuItemIpTviewrRecent0.Name" xml:space="preserve">
+    <value>menuItemIpTviewrRecent0</value>
   </data>
-  <data name="&gt;&gt;menuItemDvbRecent0.Type" xml:space="preserve">
+  <data name="&gt;&gt;menuItemIpTviewrRecent0.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;menuItemDvbRecent1.Name" xml:space="preserve">
-    <value>menuItemDvbRecent1</value>
+  <data name="&gt;&gt;menuItemIpTviewrRecent1.Name" xml:space="preserve">
+    <value>menuItemIpTviewrRecent1</value>
   </data>
-  <data name="&gt;&gt;menuItemDvbRecent1.Type" xml:space="preserve">
+  <data name="&gt;&gt;menuItemIpTviewrRecent1.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;menuItemDvbRecent2.Name" xml:space="preserve">
-    <value>menuItemDvbRecent2</value>
+  <data name="&gt;&gt;menuItemIpTviewrRecent2.Name" xml:space="preserve">
+    <value>menuItemIpTviewrRecent2</value>
   </data>
-  <data name="&gt;&gt;menuItemDvbRecent2.Type" xml:space="preserve">
+  <data name="&gt;&gt;menuItemIpTviewrRecent2.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;menuItemDvbRecent3.Name" xml:space="preserve">
-    <value>menuItemDvbRecent3</value>
+  <data name="&gt;&gt;menuItemIpTviewrRecent3.Name" xml:space="preserve">
+    <value>menuItemIpTviewrRecent3</value>
   </data>
-  <data name="&gt;&gt;menuItemDvbRecent3.Type" xml:space="preserve">
+  <data name="&gt;&gt;menuItemIpTviewrRecent3.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;menuItemDvbRecent4.Name" xml:space="preserve">
-    <value>menuItemDvbRecent4</value>
+  <data name="&gt;&gt;menuItemIpTviewrRecent4.Name" xml:space="preserve">
+    <value>menuItemIpTviewrRecent4</value>
   </data>
-  <data name="&gt;&gt;menuItemDvbRecent4.Type" xml:space="preserve">
+  <data name="&gt;&gt;menuItemIpTviewrRecent4.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;menuItemDvbRecent5.Name" xml:space="preserve">
-    <value>menuItemDvbRecent5</value>
+  <data name="&gt;&gt;menuItemIpTviewrRecent5.Name" xml:space="preserve">
+    <value>menuItemIpTviewrRecent5</value>
   </data>
-  <data name="&gt;&gt;menuItemDvbRecent5.Type" xml:space="preserve">
+  <data name="&gt;&gt;menuItemIpTviewrRecent5.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;menuItemDvbRecent6.Name" xml:space="preserve">
-    <value>menuItemDvbRecent6</value>
+  <data name="&gt;&gt;menuItemIpTviewrRecent6.Name" xml:space="preserve">
+    <value>menuItemIpTviewrRecent6</value>
   </data>
-  <data name="&gt;&gt;menuItemDvbRecent6.Type" xml:space="preserve">
+  <data name="&gt;&gt;menuItemIpTviewrRecent6.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;menuItemDvbRecent7.Name" xml:space="preserve">
-    <value>menuItemDvbRecent7</value>
+  <data name="&gt;&gt;menuItemIpTviewrRecent7.Name" xml:space="preserve">
+    <value>menuItemIpTviewrRecent7</value>
   </data>
-  <data name="&gt;&gt;menuItemDvbRecent7.Type" xml:space="preserve">
+  <data name="&gt;&gt;menuItemIpTviewrRecent7.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;menuItemDvbRecent8.Name" xml:space="preserve">
-    <value>menuItemDvbRecent8</value>
+  <data name="&gt;&gt;menuItemIpTviewrRecent8.Name" xml:space="preserve">
+    <value>menuItemIpTviewrRecent8</value>
   </data>
-  <data name="&gt;&gt;menuItemDvbRecent8.Type" xml:space="preserve">
+  <data name="&gt;&gt;menuItemIpTviewrRecent8.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;menuItemDvbRecent9.Name" xml:space="preserve">
-    <value>menuItemDvbRecent9</value>
+  <data name="&gt;&gt;menuItemIpTviewrRecent9.Name" xml:space="preserve">
+    <value>menuItemIpTviewrRecent9</value>
   </data>
-  <data name="&gt;&gt;menuItemDvbRecent9.Type" xml:space="preserve">
+  <data name="&gt;&gt;menuItemIpTviewrRecent9.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;separatorDvb1.Name" xml:space="preserve">
-    <value>separatorDvb1</value>
+  <data name="&gt;&gt;separatorIpTviewr1.Name" xml:space="preserve">
+    <value>separatorIpTviewr1</value>
   </data>
-  <data name="&gt;&gt;separatorDvb1.Type" xml:space="preserve">
+  <data name="&gt;&gt;separatorIpTviewr1.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;menuItemDvbProvider.Name" xml:space="preserve">
-    <value>menuItemDvbProvider</value>
+  <data name="&gt;&gt;menuItemIpTviewrProvider.Name" xml:space="preserve">
+    <value>menuItemIpTviewrProvider</value>
   </data>
-  <data name="&gt;&gt;menuItemDvbProvider.Type" xml:space="preserve">
+  <data name="&gt;&gt;menuItemIpTviewrProvider.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;menuItemProviderSelect.Name" xml:space="preserve">
-    <value>menuItemProviderSelect</value>
+  <data name="&gt;&gt;menuItemIpTviewrProviderSelect.Name" xml:space="preserve">
+    <value>menuItemIpTviewrProviderSelect</value>
   </data>
-  <data name="&gt;&gt;menuItemProviderSelect.Type" xml:space="preserve">
+  <data name="&gt;&gt;menuItemIpTviewrProviderSelect.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;menuItemProviderDetails.Name" xml:space="preserve">
-    <value>menuItemProviderDetails</value>
+  <data name="&gt;&gt;menuItemIpTviewrProviderDetails.Name" xml:space="preserve">
+    <value>menuItemIpTviewrProviderDetails</value>
   </data>
-  <data name="&gt;&gt;menuItemProviderDetails.Type" xml:space="preserve">
+  <data name="&gt;&gt;menuItemIpTviewrProviderDetails.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;menuItemDvbPackages.Name" xml:space="preserve">
-    <value>menuItemDvbPackages</value>
+  <data name="&gt;&gt;menuItemIpTviewrPackages.Name" xml:space="preserve">
+    <value>menuItemIpTviewrPackages</value>
   </data>
-  <data name="&gt;&gt;menuItemDvbPackages.Type" xml:space="preserve">
+  <data name="&gt;&gt;menuItemIpTviewrPackages.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;menuItemPackagesSelect.Name" xml:space="preserve">
@@ -1795,34 +1816,34 @@
   <data name="&gt;&gt;menuItemPackagesManage.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;separatorDvb2.Name" xml:space="preserve">
-    <value>separatorDvb2</value>
+  <data name="&gt;&gt;separatorIpTviewr2.Name" xml:space="preserve">
+    <value>separatorIpTviewr2</value>
   </data>
-  <data name="&gt;&gt;separatorDvb2.Type" xml:space="preserve">
+  <data name="&gt;&gt;separatorIpTviewr2.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;menuItemDvbSettings.Name" xml:space="preserve">
-    <value>menuItemDvbSettings</value>
+  <data name="&gt;&gt;menuItemIpTviewrSettings.Name" xml:space="preserve">
+    <value>menuItemIpTviewrSettings</value>
   </data>
-  <data name="&gt;&gt;menuItemDvbSettings.Type" xml:space="preserve">
+  <data name="&gt;&gt;menuItemIpTviewrSettings.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;menuItemDvbExport.Name" xml:space="preserve">
-    <value>menuItemDvbExport</value>
+  <data name="&gt;&gt;menuItemIpTviewrExport.Name" xml:space="preserve">
+    <value>menuItemIpTviewrExport</value>
   </data>
-  <data name="&gt;&gt;menuItemDvbExport.Type" xml:space="preserve">
+  <data name="&gt;&gt;menuItemIpTviewrExport.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;separatorDvb3.Name" xml:space="preserve">
-    <value>separatorDvb3</value>
+  <data name="&gt;&gt;separatorIpTviewr3.Name" xml:space="preserve">
+    <value>separatorIpTviewr3</value>
   </data>
-  <data name="&gt;&gt;separatorDvb3.Type" xml:space="preserve">
+  <data name="&gt;&gt;separatorIpTviewr3.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;menuItemDvbExit.Name" xml:space="preserve">
-    <value>menuItemDvbExit</value>
+  <data name="&gt;&gt;menuItemIpTviewrExit.Name" xml:space="preserve">
+    <value>menuItemIpTviewrExit</value>
   </data>
-  <data name="&gt;&gt;menuItemDvbExit.Type" xml:space="preserve">
+  <data name="&gt;&gt;menuItemIpTviewrExit.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;menuItemChannel.Name" xml:space="preserve">
@@ -2095,6 +2116,12 @@
   <data name="&gt;&gt;menuItemHelpCheckUpdates.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;menuItemHelpTelemetry.Name" xml:space="preserve">
+    <value>menuItemHelpTelemetry</value>
+  </data>
+  <data name="&gt;&gt;menuItemHelpTelemetry.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;menuItemHelpAbout.Name" xml:space="preserve">
     <value>menuItemHelpAbout</value>
   </data>
@@ -2189,6 +2216,12 @@
     <value>statusLabelMain</value>
   </data>
   <data name="&gt;&gt;statusLabelMain.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripStatusLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;statusLabelEpg.Name" xml:space="preserve">
+    <value>statusLabelEpg</value>
+  </data>
+  <data name="&gt;&gt;statusLabelEpg.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripStatusLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">

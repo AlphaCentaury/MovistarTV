@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+==============================================================================
+
+  Copyright (C) 2014-2020, GitHub/Codeplex user AlphaCentaury
+  All rights reserved.
+
+    See 'LICENSE.MD' file (or 'license.txt' if missing) in the project root
+    for complete license information.
+
+  http://www.alphacentaury.org/movistartv
+  https://github.com/AlphaCentaury
+
+==============================================================================
+-->
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <?include strings.wxi ?>
+  <?include strings.guid.wxi ?>
+  <Fragment>
+    <Feature Id="Feature.Record"
+             Absent="allow"
+             Title="Recording capabilities"
+             Display="hidden"
+             Description="Enables the recording capabilities. If this feature is not installed, recording programs will not be possible.">
+      <ComponentGroupRef Id="Record.Registry"/>
+      <ComponentGroupRef Id="Record.Assemblies"/>
+      <ComponentGroupRef Id="Record.Assemblies.Localization"/>
+      <ComponentGroupRef Id="Record.Dependencies"/>
+      <ComponentGroupRef Id="Record.Dependencies.Localization"/>
+      <ComponentGroupRef Id="Record.DB"/>
+      <ComponentGroupRef Id="Record.Launcher" />
+      <ComponentGroupRef Id="Record.Launcher.Localization" />
+    </Feature>
+
+    <ComponentGroup Id="Record.Registry" Directory="INSTALLFOLDER">
+      <Component Id="Record.Registry"  Guid="$(var.Guid.Record.Registry)">
+        <RegistryValue Root="HKCU" Key="$(var.BaseRegistryKey)\Features" Name="Record" Type="integer" Value="1" />
+      </Component>
+    </ComponentGroup>
+
+    <ComponentGroup Id="Record.Assemblies" Directory="INSTALLFOLDER">
+      <Component Id="Record.Assemblies"  Guid="$(var.Guid.Record.Assemblies)">
+        <File Id="Services.Record.dll" Source="$(var.Services.Record.TargetDir)Services.Record.dll" />
+        <File Id="Services.Record.Serialization.dll" Source="$(var.Services.Record.Serialization.TargetDir)Services.Record.Serialization.dll" />
+        <File Id="UiServices.Record.dll" Source="$(var.UiServices.Record.TargetDir)UiServices.Record.dll" />
+        <File Id="Services.Record.pdb" Source="$(var.Services.Record.TargetDir)Services.Record.pdb" />
+        <File Id="Services.Record.Serialization.pdb" Source="$(var.Services.Record.Serialization.TargetDir)Services.Record.Serialization.pdb" />
+        <File Id="UiServices.Record.pdb" Source="$(var.UiServices.Record.TargetDir)UiServices.Record.pdb" />
+      </Component>
+    </ComponentGroup>
+
+    <ComponentGroup Id="Record.Assemblies.Localization">
+      <Component Id="Record.Assemblies.Localization.es" Directory="InstallFolder.es" Guid="$(var.Guid.Record.Assemblies.Localization.es)">
+        <File Id="Services.Record.es.dll" Source="$(var.Services.Record.TargetDir)es\Services.Record.resources.dll" />
+        <File Id="Services.Record.Serialization.es.dll" Source="$(var.Services.Record.Serialization.TargetDir)es\Services.Record.Serialization.resources.dll" />
+        <File Id="UiServices.Record.es.dll" Source="$(var.UiServices.Record.TargetDir)es\UiServices.Record.resources.dll" />
+      </Component>
+    </ComponentGroup>
+
+    <!-- Dependencies (third-party) -->
+
+    <ComponentGroup Id="Record.Dependencies" Directory="INSTALLFOLDER">
+      <Component Id ="Record.Dependencies" Guid="$(var.Guid.Record.Dependencies)">
+        <File Id="Microsoft.Win32.TaskScheduler.dll" Source="$(var.Services.Record.TargetDir)Microsoft.Win32.TaskScheduler.dll" />
+      </Component>
+    </ComponentGroup>
+
+    <ComponentGroup Id="Record.Dependencies.Localization">
+      <Component Id ="Record.Dependencies.Localization.es" Directory="InstallFolder.es" Guid="$(var.Guid.Record.Dependencies.Localization.es)">
+        <File Id="Microsoft.Win32.TaskScheduler.es.dll" Source="$(var.Services.Record.TargetDir)es\Microsoft.Win32.TaskScheduler.resources.dll" />
+      </Component>
+    </ComponentGroup>
+
+    <!-- Database -->
+    <ComponentGroup Id="Record.DB" Directory="Folder.RecordTasks">
+      <Component Id="Record.DB" Guid="$(var.Guid.Record.DB)">
+        <File Id="RecordTasks.sdf" Source="$(var.SolutionDir)DB\RecordTasks.sdf" />
+      </Component>
+    </ComponentGroup>
+
+    <!-- IpTvRecorderLauncher -->
+    <ComponentGroup Id="Record.Launcher" Directory="INSTALLFOLDER">
+      <Component Id="Record.Launcher" Guid="$(var.Guid.Record.Launcher)">
+        <File Id="IpTvRecorderLauncher.exe" Source="$(var.IpTvRecorderLauncher.TargetDir)IpTvRecorderLauncher.exe" />
+        <File Id="IpTvRecorderLauncher.pdb" Source="$(var.IpTvRecorderLauncher.TargetDir)IpTvRecorderLauncher.pdb" />
+      </Component>
+    </ComponentGroup>
+
+    <ComponentGroup Id="Record.Launcher.Localization">
+      <Component Id="Record.Launcher.Localization.es" Directory="InstallFolder.es" Guid="$(var.Guid.Record.Launcher.Localization.es)">
+        <File Id="IpTvRecorderLauncher.es.exe" Source="$(var.IpTvRecorderLauncher.TargetDir)es\IpTvRecorderLauncher.resources.dll" />
+      </Component>
+    </ComponentGroup>
+  </Fragment>
+</Wix>

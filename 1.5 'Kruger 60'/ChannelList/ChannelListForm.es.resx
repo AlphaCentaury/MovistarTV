@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="menuItemDvbRecent0.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="menuItemIpTviewrRecent0.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAu
         IgAALiIBquLdkgAAAAd0SU1FB94KCBQCD9JCkw4AAAlUSURBVFhH7ddpVJNnFgfwN1sDxkgI2WMIBAQE
@@ -164,7 +164,7 @@
         VBI2sSsJK80ogrC2If/x93g9COIftCli6OLZdiIAAAAASUVORK5CYII=
 </value>
   </data>
-  <data name="menuItemDvbRecent1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="menuItemIpTviewrRecent1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAe
         vAAAHrwB7kRN9wAAAAd0SU1FB94KCBQHAUiNSkwAAAmpSURBVFhH7Zd3dNXlHYc/CQFZBQUBwdNWqVYc
@@ -212,7 +212,7 @@
         TkSuQmCC
 </value>
   </data>
-  <data name="menuItemDvbRecent2.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="menuItemIpTviewrRecent2.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
         DAAACwwBP0AiyAAAAAd0SU1FB98CGRcaEMyeEGUAAAPOSURBVFhH7ZNtbFNlFMef+zzt7avDmSlEcUt0
@@ -235,7 +235,7 @@
         RU5ErkJggg==
 </value>
   </data>
-  <data name="menuItemDvbRecent3.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="menuItemIpTviewrRecent3.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
         vAAADrwBlbxySQAAAAd0SU1FB94KFBIZKMA8eWoAAAXTSURBVFhH1VdvbFNVFO8rW7uufW3fa9e58a/t
@@ -266,7 +266,7 @@
         p9fu7oypm/Grecl8rxzBeWbxwDgwmf4BqkecP1ifu+AAAAAASUVORK5CYII=
 </value>
   </data>
-  <data name="menuItemDvbRecent4.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="menuItemIpTviewrRecent4.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
         vAAADrwBlbxySQAAAAd0SU1FB94KCRQtE2zjkEkAAAXlSURBVFhH1VdrbBRVFJ7Z2WHbREoMQikg78cv
@@ -298,7 +298,7 @@
         YII=
 </value>
   </data>
-  <data name="menuItemDvbRecent5.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="menuItemIpTviewrRecent5.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
         DAAACwwBP0AiyAAAAAd0SU1FB98CGgALBflGzYUAAAQzSURBVFhH7VTtb1NVGO9kGvEPMH7ZTBA1RNnW
@@ -322,7 +322,7 @@
         TlTOyKNKRhHNY5b7pRuTV1NIIYUUUvgPkEj+AsfZlR3W3/MiAAAAAElFTkSuQmCC
 </value>
   </data>
-  <data name="menuItemDvbRecent6.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="menuItemIpTviewrRecent6.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAe
         vAAAHrwB7kRN9wAAAAd0SU1FB94KCRYlAs0O7t0AAAYoSURBVFhH1ZcJTFRXFIbvm+3NMGzDIFhrjbam
@@ -355,7 +355,7 @@
         AElFTkSuQmCC
 </value>
   </data>
-  <data name="menuItemDvbRecent7.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="menuItemIpTviewrRecent7.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAe
         vAAAHrwB7kRN9wAAAAd0SU1FB94KCQg6D2hdEoQAAAikSURBVFhH7VZ7UFTXGf/YXV7LY4Fl2QcLy5uF
@@ -398,7 +398,7 @@
         APu4dBsEyNbjiLuU5OL9oJk5j+3/zAD+DFIJkyPj5/amAAAAAElFTkSuQmCC
 </value>
   </data>
-  <data name="menuItemDvbRecent8.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="menuItemIpTviewrRecent8.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
         DAAACwwBP0AiyAAAAAd0SU1FB94MExcGKW49SJAAAArtSURBVFhHTVdrjFxlGT479zn3ud93Z3Zm9jq7
@@ -451,7 +451,7 @@
         PvLI8Weefir4fyyUPmG9+H3lAAAAAElFTkSuQmCC
 </value>
   </data>
-  <data name="menuItemDvbRecent9.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="menuItemIpTviewrRecent9.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
         DAAACwwBP0AiyAAAAAd0SU1FB94LFwANGhYyDv8AAAnbSURBVFhHtZdpUFRXFsefoqgZDFEjKkSDohDW
@@ -499,55 +499,46 @@
         h2KZmX8IM98XyswDDz1fgsIesTGY5zCz2B/BNtABXGHjIPovkTBaGxTfOtQAAAAASUVORK5CYII=
 </value>
   </data>
-  <data name="menuItemDvbRecent.Size" type="System.Drawing.Size, System.Drawing">
-    <value>194, 22</value>
+  <data name="menuItemIpTviewrRecent.Size" type="System.Drawing.Size, System.Drawing">
+    <value>195, 22</value>
   </data>
-  <data name="menuItemDvbRecent.Text" xml:space="preserve">
+  <data name="menuItemIpTviewrRecent.Text" xml:space="preserve">
     <value>Canales &amp;recientes</value>
   </data>
-  <data name="separatorDvb1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>191, 6</value>
+  <data name="separatorIpTviewr1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>192, 6</value>
   </data>
-  <data name="menuItemProviderSelect.Text" xml:space="preserve">
-    <value>&amp;Seleccionar proveedor...</value>
+  <data name="menuItemIpTviewrProvider.Size" type="System.Drawing.Size, System.Drawing">
+    <value>195, 22</value>
   </data>
-  <data name="menuItemProviderDetails.Text" xml:space="preserve">
-    <value>Ver &amp;detalles técnicos...</value>
+  <data name="menuItemIpTviewrPackages.Size" type="System.Drawing.Size, System.Drawing">
+    <value>195, 22</value>
   </data>
-  <data name="menuItemDvbProvider.Size" type="System.Drawing.Size, System.Drawing">
-    <value>194, 22</value>
-  </data>
-  <data name="menuItemDvbProvider.Text" xml:space="preserve">
-    <value>&amp;Proveedor</value>
-  </data>
-  <data name="menuItemDvbPackages.Size" type="System.Drawing.Size, System.Drawing">
-    <value>194, 22</value>
-  </data>
-  <data name="menuItemDvbPackages.Text" xml:space="preserve">
+  <data name="menuItemIpTviewrPackages.Text" xml:space="preserve">
     <value>P&amp;aquete</value>
   </data>
-  <data name="separatorDvb2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>191, 6</value>
+  <data name="separatorIpTviewr2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>192, 6</value>
   </data>
-  <data name="menuItemDvbSettings.Size" type="System.Drawing.Size, System.Drawing">
-    <value>194, 22</value>
+  <data name="menuItemIpTviewrSettings.Size" type="System.Drawing.Size, System.Drawing">
+    <value>195, 22</value>
   </data>
-  <data name="menuItemDvbSettings.Text" xml:space="preserve">
+  <data name="menuItemIpTviewrSettings.Text" xml:space="preserve">
     <value>Configuración...</value>
   </data>
-  <data name="menuItemDvbExport.Size" type="System.Drawing.Size, System.Drawing">
-    <value>194, 22</value>
+  <data name="menuItemIpTviewrExport.Size" type="System.Drawing.Size, System.Drawing">
+    <value>195, 22</value>
   </data>
-  <data name="menuItemDvbExport.Text" xml:space="preserve">
+  <data name="menuItemIpTviewrExport.Text" xml:space="preserve">
     <value>Exportar información...</value>
   </data>
-  <data name="separatorDvb3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>191, 6</value>
+  <data name="separatorIpTviewr3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>192, 6</value>
   </data>
-  <data name="menuItemDvbExit.Size" type="System.Drawing.Size, System.Drawing">
-    <value>194, 22</value>
+  <data name="menuItemIpTviewrExit.Size" type="System.Drawing.Size, System.Drawing">
+    <value>195, 22</value>
   </data>
-  <data name="menuItemDvbExit.Text" xml:space="preserve">
+  <data name="menuItemIpTviewrExit.Text" xml:space="preserve">
     <value>&amp;Salir</value>
   </data>
   <data name="menuItemChannelFavorites0.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
@@ -916,6 +907,9 @@
   <data name="menuItemEpgBasicGrid.Size" type="System.Drawing.Size, System.Drawing">
     <value>239, 22</value>
   </data>
+  <data name="menuItemEpgBasicGrid.Text" xml:space="preserve">
+    <value>Guía abreviada...</value>
+  </data>
   <data name="separatorEpg1.Size" type="System.Drawing.Size, System.Drawing">
     <value>236, 6</value>
   </data>
@@ -985,6 +979,12 @@
   <data name="menuItemHelpCheckUpdates.Text" xml:space="preserve">
     <value>&amp;Buscar actualizaciones...</value>
   </data>
+  <data name="menuItemHelpTelemetry.Size" type="System.Drawing.Size, System.Drawing">
+    <value>228, 22</value>
+  </data>
+  <data name="menuItemHelpTelemetry.Text" xml:space="preserve">
+    <value>Recolección de datos...</value>
+  </data>
   <data name="menuItemHelpAbout.Size" type="System.Drawing.Size, System.Drawing">
     <value>228, 22</value>
   </data>
@@ -1019,25 +1019,25 @@
     <value>Ver con &amp;reproductor...</value>
   </data>
   <data name="contextMenuListCopyURL.Size" type="System.Drawing.Size, System.Drawing">
-    <value>238, 22</value>
+    <value>239, 22</value>
   </data>
   <data name="contextMenuListCopyURL.Text" xml:space="preserve">
     <value>Copiar la URL de ubicación</value>
   </data>
   <data name="contextMenuListCopyRow.Size" type="System.Drawing.Size, System.Drawing">
-    <value>238, 22</value>
+    <value>239, 22</value>
   </data>
   <data name="contextMenuListCopyRow.Text" xml:space="preserve">
     <value>Copiar datos del canal</value>
   </data>
   <data name="contextMenuListCopyAll.Size" type="System.Drawing.Size, System.Drawing">
-    <value>238, 22</value>
+    <value>239, 22</value>
   </data>
   <data name="contextMenuListCopyAll.Text" xml:space="preserve">
     <value>Copiar todos los canales</value>
   </data>
   <data name="separatorContextList3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>235, 6</value>
+    <value>236, 6</value>
   </data>
   <data name="contextMenuListExportM3u.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -1056,7 +1056,7 @@
 </value>
   </data>
   <data name="contextMenuListExportM3u.Size" type="System.Drawing.Size, System.Drawing">
-    <value>238, 22</value>
+    <value>239, 22</value>
   </data>
   <data name="contextMenuListExportM3u.Text" xml:space="preserve">
     <value>Exportar lista en archivo .m3u...</value>
@@ -1064,11 +1064,9 @@
   <data name="contextMenuListCopy.Text" xml:space="preserve">
     <value>&amp;Copiar</value>
   </data>
-  <data name="buttonRecordChannel.Text" xml:space="preserve">
-    <value>Gra&amp;bar...</value>
-  </data>
-  <data name="buttonDisplayChannel.Text" xml:space="preserve">
-    <value>&amp;Ver canal...</value>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>Inherit</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Lista de canales - IPTViewr</value>

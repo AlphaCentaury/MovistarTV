@@ -1,8 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+// ==============================================================================
+// 
+//   Copyright (C) 2014-2020, GitHub/Codeplex user AlphaCentaury
+//   All rights reserved.
+// 
+//     See 'LICENSE.MD' file (or 'license.txt' if missing) in the project root
+//     for complete license information.
+// 
+//   http://www.alphacentaury.org/movistartv
+//   https://github.com/AlphaCentaury
+// 
+// ==============================================================================
+
+using System;
 using System.Net;
-using System.Text;
 
 namespace IpTviewr.Internal.Tools.ChannelLogos
 {
@@ -10,50 +20,41 @@ namespace IpTviewr.Internal.Tools.ChannelLogos
     {
         public WebClientEx(CookieContainer container)
         {
-            this.container = container;
-        }
+            CookieContainer = container;
+        } // constructor
 
-        public CookieContainer CookieContainer
-        {
-            get { return container; }
-            set { container = value; }
-        }
-
-        private CookieContainer container;
+        public CookieContainer CookieContainer { get; set; }
 
         protected override WebRequest GetWebRequest(Uri address)
         {
-            WebRequest r = base.GetWebRequest(address);
-            var request = r as HttpWebRequest;
-            if (request != null)
+            var r = base.GetWebRequest(address);
+            if (r is HttpWebRequest request)
             {
-                request.CookieContainer = container;
+                request.CookieContainer = CookieContainer;
             }
             return r;
-        }
+        } // GetWebRequest
 
         protected override WebResponse GetWebResponse(WebRequest request, IAsyncResult result)
         {
-            WebResponse response = base.GetWebResponse(request, result);
+            var response = base.GetWebResponse(request, result);
             ReadCookies(response);
             return response;
-        }
+        } // GetWebResponse
 
         protected override WebResponse GetWebResponse(WebRequest request)
         {
-            WebResponse response = base.GetWebResponse(request);
+            var response = base.GetWebResponse(request);
             ReadCookies(response);
             return response;
-        }
+        } // GetWebResponse
 
         private void ReadCookies(WebResponse r)
         {
-            var response = r as HttpWebResponse;
-            if (response != null)
-            {
-                CookieCollection cookies = response.Cookies;
-                container.Add(cookies);
-            }
-        }
-    }
-}
+            if (!(r is HttpWebResponse response)) return;
+
+            var cookies = response.Cookies;
+            CookieContainer.Add(cookies);
+        } // ReadCookies
+    } // class WebClientEx
+} // namespace

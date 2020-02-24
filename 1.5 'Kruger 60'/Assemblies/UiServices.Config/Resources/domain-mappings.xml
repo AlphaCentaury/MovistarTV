@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+==============================================================================
+
+  Copyright (C) 2014-2020, GitHub/Codeplex user AlphaCentaury
+  All rights reserved.
+
+    See 'LICENSE.MD' file (or 'license.txt' if missing) in the project root
+    for complete license information.
+
+  http://www.alphacentaury.org/movistartv
+  https://github.com/AlphaCentaury
+
+==============================================================================
+-->
+<Logos-Domains xmlns="http://movistartv.alphacentaury.org/schema/2019:Configuration:Mappings">
+  <Package name="&lt;default&gt;">
+    <Mapping domainName="DVB-IPTV" mandatory="true">generic</Mapping>
+  </Package>
+  <Package name="movistarTV">
+    <Mapping domainName="DEM_1.imagenio.es" mandatory="false">imagenio.es</Mapping>
+    <Mapping domainName="DEM_4.imagenio.es" mandatory="false">imagenio.es</Mapping>
+    <Mapping domainName="DEM_6.imagenio.es" mandatory="false">imagenio.es</Mapping>
+    <Mapping domainName="DEM_10.imagenio.es" mandatory="false">imagenio.es</Mapping>
+    <Mapping domainName="DEM_12.imagenio.es" mandatory="false">imagenio.es</Mapping>
+    <Mapping domainName="DEM_13.imagenio.es" mandatory="false">imagenio.es</Mapping>
+    <Mapping domainName="DEM_15.imagenio.es" mandatory="false">imagenio.es</Mapping>
+    <Mapping domainName="DEM_19.imagenio.es" mandatory="false">imagenio.es</Mapping>
+    <Mapping domainName="DEM_24.imagenio.es" mandatory="false">imagenio.es</Mapping>
+    <Mapping domainName="DEM_29.imagenio.es" mandatory="false">imagenio.es</Mapping>
+    <Mapping domainName="DEM_31.imagenio.es" mandatory="false">imagenio.es</Mapping>
+    <Mapping domainName="DEM_32.imagenio.es" mandatory="false">imagenio.es</Mapping>
+    <Mapping domainName="DEM_34.imagenio.es" mandatory="false">imagenio.es</Mapping>
+    <Mapping domainName="DEM_35.imagenio.es" mandatory="false">imagenio.es</Mapping>
+    <Mapping domainName="DEM_36.imagenio.es" mandatory="false">imagenio.es</Mapping>
+    <Mapping domainName="DEM_37.imagenio.es" mandatory="false">imagenio.es</Mapping>
+    <Mapping domainName="DEM_38.imagenio.es" mandatory="false">imagenio.es</Mapping>
+  </Package>
+</Logos-Domains>

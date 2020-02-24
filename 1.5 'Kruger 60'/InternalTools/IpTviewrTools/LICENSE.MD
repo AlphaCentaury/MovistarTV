@@ -1,0 +1,306 @@
+# Program 'IpTviewrTools'
+Internal tools for IPTViewr version 1.5 “Kruger 60” Beta 1\
+_by Codeplex/GitHub user AlphaCentaury_
+
+**Copyright (C) 2014-2020, Codeplex/GitHub user AlphaCentaury and its contributors**
+
+_http://www.alphacentaury.org/movistartv  \
+https://github.com/AlphaCentaury_
+
+## Terms and conditions
+
+This PROGRAM (“SOFWARE”), either in binary or source code form, is **licensed under the terms of the _Microsoft Reciprocal License (Ms-RL)_** except for “THIRD-PARTY” components.  \
+All other rights are reserved by the author(s) of the software.
+
+_**THIS SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND**_, express or implied, including but not limited to the warranties of merchantability, fitness for a particular purpose and non-infringement.  \
+In no event shall the authors or the copyright holders be liable for any claim, damages or other liability, whether in action of contract, tort or otherwise, arising from, out of or in connection with the software or the use or other dealings in the software.
+
+All trademarks, service marks, trade names, product names and logos are the property of their respective owners, including, in some instances, Grupo Telefónica.  \
+Its use in the context of this product does not constitute endorsement nor support by their respective owners.
+
+Logos of movistar+ channels might be provided with this software. These logos are the property of the respective channels and businesses.  \
+Logos are provided in “good faith”, in order to identify the different channels and no copyright infringement is intended.
+
+## Licenses
+
+  * [Microsoft Reciprocal License (Ms-RL)]
+  * [The MIT License (MIT)]
+  * [Microsoft® Exception Message Box License Terms]
+  * [Microsoft® SQL Server Compact® 4.0 SP1 License Terms]
+
+### Microsoft Reciprocal License (Ms-RL)
+
+This license governs use of the accompanying software. If you use the software, you accept this license. If you do not accept the license, do not use the software.
+
+1. **Definitions**
+   
+   - The terms “reproduce,” “reproduction,” “derivative works,” and “distribution” have the same meaning here as under U.S. copyright law.
+   - A “contribution” is the original software, or any additions or changes to the software.
+   - A “contributor” is any person that distributes its contribution under this license.
+   - “Licensed patents” are a contributor's patent claims that read directly on its contribution.
+
+2. **Grant of Rights**
+   
+   - (A) _Copyright Grant_ - Subject to the terms of this license, including the license conditions and limitations in section 3, each contributor grants you a non-exclusive, worldwide, royalty-free copyright license to reproduce its contribution, prepare derivative works of its contribution, and distribute its contribution or any derivative works that you create.
+   - (B) _Patent Grant_ - Subject to the terms of this license, including the license conditions and limitations in section 3, each contributor grants you a non-exclusive, worldwide, royalty-free license under its licensed patents to make, have made, use, sell, offer for sale, import, and/or otherwise dispose of its contribution in the software or derivative works of the contribution in the software.
+
+3. **Conditions and Limitations**
+   
+   - (A) _Reciprocal Grants_ - For any file you distribute that contains code from the software (in source code or binary format), you must provide recipients the source code to that file along with a copy of this license, which license will govern that file. You may license other files that are entirely your own work and do not contain code from the software under any terms you choose.
+   - (B) _No Trademark License_ - This license does not grant you rights to use any contributors' name, logo, or trademarks.
+   - (C) If you bring a patent claim against any contributor over patents that you claim are infringed by the software, your patent license from such contributor to the software ends automatically.
+   - (D) If you distribute any portion of the software, you must retain all copyright, patent, trademark, and attribution notices that are present in the software.
+   - (E) If you distribute any portion of the software in source code form, you may do so only under this license by including a complete copy of this license with your distribution. If you distribute any portion of the software in compiled or object code form, you may only do so under a license that complies with this license.
+   - (F) _The software is licensed “as-is.”_ You bear the risk of using it. The contributors give no express warranties, guarantees or conditions. You may have additional consumer rights under your local laws which this license cannot change. To the extent permitted under your local laws, the contributors exclude the implied warranties of merchantability, fitness for a particular purpose and non-infringement.
+
+
+> **'Microsoft Reciprocal License (Ms-RL)'** applies to the following components:
+
+#### 1. ChannelLogos
+_Library by Codeplex/GitHub user AlphaCentaury_
+
+**Copyright (C) 2014-2020, Codeplex/GitHub user AlphaCentaury and its contributors**
+
+
+#### 2. DvbStpClient
+_Component by Codeplex/GitHub user AlphaCentaury_
+
+**Copyright (C) 2014-2020, Codeplex/GitHub user AlphaCentaury and its contributors**
+
+
+#### 3. Etsi.Ts102034
+_Component by Codeplex/GitHub user AlphaCentaury_
+
+**Copyright (C) 2014-2020, Codeplex/GitHub user AlphaCentaury and its contributors**
+
+
+#### 4. IpTviewr.Common
+_Library by Codeplex/GitHub user AlphaCentaury_
+
+**Copyright (C) 2014-2020, Codeplex/GitHub user AlphaCentaury and its contributors**
+
+
+#### 5. IpTViewr.IpTvServices
+_Component by Codeplex/GitHub user AlphaCentaury_
+
+**Copyright (C) 2014-2020, Codeplex/GitHub user AlphaCentaury and its contributors**
+
+
+#### 6. IpTviewr.ToolsUiFramework
+_Library by Codeplex/GitHub user AlphaCentaury_
+
+**Copyright (C) 2014-2020, Codeplex/GitHub user AlphaCentaury and its contributors**
+
+
+#### 7. IpTviewrTools
+_Program by Codeplex/GitHub user AlphaCentaury_
+
+**Copyright (C) 2014-2020, Codeplex/GitHub user AlphaCentaury and its contributors**
+
+
+#### 8. Services.EpgDiscovery
+_Component by Codeplex/GitHub user AlphaCentaury_
+
+**Copyright (C) 2014-2020, Codeplex/GitHub user AlphaCentaury and its contributors**
+
+
+#### 9. UiServices.Common
+_Component by Codeplex/GitHub user AlphaCentaury_
+
+**Copyright (C) 2014-2020, Codeplex/GitHub user AlphaCentaury and its contributors**
+
+
+#### 10. UiServices.Configuration
+_Library by Codeplex/GitHub user AlphaCentaury_
+
+**Copyright (C) 2014-2020, Codeplex/GitHub user AlphaCentaury and its contributors**
+
+
+#### 11. UiServices.Discovery
+_Component by Codeplex/GitHub user AlphaCentaury_
+
+**Copyright (C) 2014-2020, Codeplex/GitHub user AlphaCentaury and its contributors**
+
+
+#### 12. UiServices.DvbStpClient
+_Component by Codeplex/GitHub user AlphaCentaury_
+
+**Copyright (C) 2014-2020, Codeplex/GitHub user AlphaCentaury and its contributors**
+
+
+#### 13. UiServices.Forms
+_Component by Codeplex/GitHub user AlphaCentaury_
+
+**Copyright (C) 2014-2020, Codeplex/GitHub user AlphaCentaury and its contributors**
+
+
+
+### The MIT License (MIT)
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+- The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+**THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND**, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+
+> **'The MIT License (MIT)'** applies to the following **third-party components:**
+
+#### 1. JetBrains.Annotations
+_'nuget' package by JetBrains_
+
+**Copyright (c) 2016 JetBrains http://www.jetbrains.com**
+
+ReSharper Annotations help reduce false positive warnings, explicitly declare purity and nullability in your code, deal with implicit usages of members, support special semantics of APIs in ASP.NET and XAML frameworks and otherwise increase accuracy of ReSharper code inspections.
+
+
+#### 2. Newtonsoft.Json
+_'nuget' package by James Newton-King_
+
+**Copyright (c) 2007 James Newton-King**
+
+Json.NET is a popular high-performance JSON framework for .NET
+
+
+#### 3. System.ValueTuple
+_'nuget' package by Microsoft_
+
+**Copyright (c) .NET Foundation and Contributors**
+
+Provides the System.ValueTuple structs, which implement the underlying types for tuples in C# and Visual Basic.
+
+
+
+### Microsoft® Exception Message Box License Terms
+
+**MICROSOFT SOFTWARE SUPPLEMENTAL LICENSE TERMS FOR MICROSOFT EXCEPTION MESSAGE BOX FOR MICROSOFT SQL SERVER**
+
+**PLEASE NOTE:** Refer to your license terms for Microsoft SQL Server 2005 software (the "software") to identify the entity licensing this supplement to you and for support information. You may use a copy of this supplement with each validly licensed copy of the software.
+You may not use the supplement if you do not have a license for the software.
+The license terms for the software apply to your use of this supplement.
+
+
+> **'Microsoft® Exception Message Box License Terms'** applies to the following **third-party components:**
+
+#### 1. Microsoft® Exception Message Box
+_Library by Microsoft_
+
+   http://www.microsoft.com/en-us/download/details.aspx?id=20101 (Feature Pack for Microsoft SQL Server 2005 SP4)  \
+   x86: ENU\x86\SQLServer2005_EMB.msi  \
+   x64: ENU\x64\SQLServer2005_EMB.msi
+
+The exception message box is a programmatic interface that you can use in your applications for any tasks for which MessageBox may be used. The exception message box is a supported managed assembly designed to elegantly handle managed code exceptions. It provides significantly more control over the messaging experience and gives your users the options to save error message content for later reference and to get help on messages.
+
+
+
+### Microsoft® SQL Server Compact® 4.0 SP1 License Terms
+
+**MICROSOFT SOFTWARE LICENSE TERMS**
+
+These license terms are an agreement between Microsoft Corporation (or based on where you live, one of its affiliates) and you. Please read them. They apply to the software named above, which includes the media on which you received it, if any. The terms also apply to any Microsoft
+
+- updates,
+- supplements,
+- Internet-based services, and
+- support services
+
+for this software, unless other terms accompany those items. If so, those terms apply.
+
+**BY USING THE SOFTWARE, YOU ACCEPT THESE TERMS. IF YOU DO NOT ACCEPT THEM, DO NOT USE THE SOFTWARE.**
+
+**If you comply with these license terms, you have the rights below.**
+
+1. **INSTALLATION AND USE RIGHTS.**
+   
+   - **Installation and Use.** You may install and use any number of copies of the software on your devices to design, develop and test your programs for use with the software.
+   
+   - **Included Microsoft Programs.** The software contains the Microsoft Visual C++ 2008 Express Edition components listed below. You may only use these components with the software. The Microsoft Visual C++ 2008 Express license terms located at **%Program Files%\Microsoft SQL Server Compact Edition\v4.0** apply to your use of them, except that the components listed below may be used for commercial hosting services when used in conjunction with the software.
+     
+     - Microsoft\_VC90\_CRT\_x86.msm
+     - policy\_9\_0\_Microsoft\_VC90\_CRT\_x86.msm
+     - Microsoft\_VC90\_CRT\_x86\_x64.msm
+     - policy\_9\_0\_Microsoft\_VC90\_CRT\_x86\_x64.msm
+     - CRT\_X86\_msvcr90.dll
+     - CRT\_X86\_Microsoft.VC90.CRT.manifest
+     - CRT\_AMD64\_msvcr90.dll
+     - CRT\_AMD64\_Microsoft.VC90.CRT.manifest
+
+2. **ADDITIONAL LICENSING REQUIREMENTS AND/OR USE RIGHTS.**
+   
+   1. **Distributable Code.** The software contains code that you are permitted to distribute in programs you develop if you comply with the terms below.
+      
+      1. **Right to Use and Distribute. The code and text files listed below are "Distributable Code."**
+         
+         - TXT Files. You may copy and distribute the object code form of code listed in REDIST.TXT files.
+         - Third Party Distribution. You may permit distributors of your programs to copy and distribute the Distributable Code as part of those programs.
+      
+      2. **Distribution Requirements. For any Distributable Code you distribute, you must**
+         
+         - add significant primary functionality to it in your programs;
+         - for any Distributable Code having a filename extension of .lib, distribute only the results of running such Distributable Code through a linker with your program;
+         - distribute Distributable Code included in a setup program only as part of that setup program without modification;
+         - require distributors and external end users to agree to terms that protect it at least as much as this agreement;
+         - display your valid copyright notice on your programs; and
+         - indemnify, defend, and hold harmless Microsoft from any claims, including attorneys&#39; fees, related to the distribution or use of your programs.
+      
+      3. **Distribution Restrictions. You may not**
+         
+         - alter any copyright, trademark or patent notice in the Distributable Code;
+         - use Microsoft's trademarks in your programs' names or in a way that suggests your programs come from or are endorsed by Microsoft;
+         - distribute Distributable Code to run on a platform other than the Windows platform;
+         - include Distributable Code in malicious, deceptive or unlawful programs; or
+         - modify or distribute the source code of any Distributable Code so that any part of it becomes subject to an Excluded License. An Excluded License is one that requires, as a condition of use, modification or distribution, that
+           - the code be disclosed or distributed in source code form; or
+           - others have the right to modify it.
+
+3. **SCOPE OF LICENSE.** The software is licensed, not sold. This agreement only gives you some rights to use the software. Microsoft reserves all other rights. Unless applicable law gives you more rights despite this limitation, you may use the software only as expressly permitted in this agreement. In doing so, you must comply with any technical limitations in the software that only allow you to use it in certain ways. You may not
+   
+   - work around any technical limitations in the software;
+   - reverse engineer, decompile or disassemble the software, except and only to the extent that applicable law expressly permits, despite this limitation;
+   - make more copies of the software than specified in this agreement or allowed by applicable law, despite this limitation;
+   - publish the software for others to copy;
+   - rent, lease or lend the software; or
+   - transfer the software or this agreement to any third party.
+
+4. **BACKUP COPY.** You may make one backup copy of the software. You may use it only to reinstall the software.
+
+5. **DOCUMENTATION.** Any person that has valid access to your computer or internal network may copy and use the documentation for your internal, reference purposes.
+
+6. **EXPORT RESTRICTIONS.** The software is subject to United States export laws and regulations. You must comply with all domestic and international export laws and regulations that apply to the software. These laws include restrictions on destinations, end users and end use. For additional information, see [www.microsoft.com/exporting](http://www.microsoft.com/exporting).
+
+7. **SUPPORT SERVICES.** Because this software is provided "as is," we may not provide support services for it.
+
+8. **ENTIRE AGREEMENT.** This agreement, and the terms for supplements, updates, Internet-based services and support services that you use, are the entire agreement for the software and support services.
+
+9. **APPLICABLE LAW.**
+
+- **United States.** If you acquired the software in the United States, Washington state law governs the interpretation of this agreement and applies to claims for breach of it, regardless of conflict of laws principles. The laws of the state where you live govern all other claims, including claims under state consumer protection laws, unfair competition laws, and in tort.
+- **Outside the United States.** If you acquired the software in any other country, the laws of that country apply.
+
+10. **LEGAL EFFECT.** This agreement describes certain legal rights. You may have other rights under the laws of your country. You may also have rights with respect to the party from whom you acquired the software. This agreement does not change your rights under the laws of your country if the laws of your country do not permit it to do so.
+
+11. **DISCLAIMER OF WARRANTY.** THE SOFTWARE IS LICENSED "AS-IS." YOU BEAR THE RISK OF USING IT. MICROSOFT GIVES NO EXPRESS WARRANTIES, GUARANTEES OR CONDITIONS. YOU MAY HAVE ADDITIONAL CONSUMER RIGHTS UNDER YOUR LOCAL LAWS WHICH THIS AGREEMENT CANNOT CHANGE. TO THE EXTENT PERMITTED UNDER YOUR LOCAL LAWS, MICROSOFT EXCLUDES THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT.
+
+12. **LIMITATION ON AND EXCLUSION OF REMEDIES AND DAMAGES.** YOU CAN RECOVER FROM MICROSOFT AND ITS SUPPLIERS ONLY DIRECT DAMAGES UP TO U.S. $5.00. YOU CANNOT RECOVER ANY OTHER DAMAGES, INCLUDING CONSEQUENTIAL, LOST PROFITS, SPECIAL, INDIRECT OR INCIDENTAL DAMAGES.
+    
+    This limitation applies to
+    
+    - anything related to the software, services, content (including code) on third party Internet sites, or third party programs; and
+    - claims for breach of contract, breach of warranty, guarantee or condition, strict liability, negligence, or other tort to the extent permitted by applicable law.
+    
+    It also applies even if Microsoft knew or should have known about the possibility of the damages. The above limitation or exclusion may not apply to you because your country may not allow the exclusion or limitation of incidental, consequential or other damages.
+
+
+> **'Microsoft® SQL Server Compact® 4.0 SP1 License Terms'** applies to the following **third-party components:**
+
+#### 1. Microsoft® SQL Server Compact® 4.0 SP1
+_Library by Microsoft_
+
+   http://www.microsoft.com/en-us/download/details.aspx?id=30709 (Microsoft® SQL Server® Compact 4.0 SP1)  \
+   x86: ENU\SSCERuntime_x86-ENU.exe;  \
+   x64: ENU\SSCERuntime_x64-ENU.exe.msi
+
+Microsoft® SQL Server Compact® 4.0 is a free, embedded database that software developers can use for building Windows desktop applications. SQL Server Compact 4.0 has a small footprint and supports private deployment of its binaries within the application folder.
+
+
+

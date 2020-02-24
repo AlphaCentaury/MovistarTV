@@ -1,13 +1,23 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2014-2016, Codeplex/GitHub user AlphaCentaury
-All rights reserved, except those granted by the governing license of this software. See 'license.txt' file in the project root for complete license information.
+==============================================================================
+
+  Copyright (C) 2014-2020, GitHub/Codeplex user AlphaCentaury
+  All rights reserved.
+
+    See 'LICENSE.MD' file (or 'license.txt' if missing) in the project root
+    for complete license information.
+
+  http://www.alphacentaury.org/movistartv
+  https://github.com/AlphaCentaury
+
+==============================================================================
 -->
-<Logos-Domains xmlns="http://movistartv.codeplex.com/schema/2015:Configuration:Mappings">
-  <Package name="&lt;default&gt;">
-    <Mapping domainName="IPTV" mandatory="true">generic</Mapping>
-  </Package>
-  <Package name="movistarTV">
+<Logos-Domains xmlns="http://movistartv.alphacentaury.org/schema/2019:Configuration:Mappings">
+  <Collection name="&lt;default&gt;">
+    <Mapping domainName="IPTV" mandatory="true">DVB-IPTV</Mapping>
+  </Collection>
+  <Collection name="movistarTV">
     <Mapping domainName="DEM_1.imagenio.es" mandatory="false">imagenio.es</Mapping>
     <Mapping domainName="DEM_4.imagenio.es" mandatory="false">imagenio.es</Mapping>
     <Mapping domainName="DEM_6.imagenio.es" mandatory="false">imagenio.es</Mapping>
@@ -25,5 +35,5 @@ All rights reserved, except those granted by the governing license of this softw
     <Mapping domainName="DEM_36.imagenio.es" mandatory="false">imagenio.es</Mapping>
     <Mapping domainName="DEM_37.imagenio.es" mandatory="false">imagenio.es</Mapping>
     <Mapping domainName="DEM_38.imagenio.es" mandatory="false">imagenio.es</Mapping>
-  </Package>
+  </Collection>
 </Logos-Domains>

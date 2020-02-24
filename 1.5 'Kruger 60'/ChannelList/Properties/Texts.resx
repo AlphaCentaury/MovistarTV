@@ -112,22 +112,22 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AppCaption" xml:space="preserve">
-    <value>movistar+ channels - IPTViewr (1.5“Kruger 60” Beta 1)</value>
+    <value>IPTViewr for movistar+ (1.5“Kruger 60” Beta 1)</value>
   </data>
   <data name="AppName" xml:space="preserve">
     <value>IPTViewr: virtual decoder for movistar+</value>
   </data>
   <data name="AppStatus" xml:space="preserve">
-    <value>Alpha (experimental)</value>
+    <value>Beta (stable, but may fail/crash)</value>
   </data>
   <data name="AppVersion" xml:space="preserve">
-    <value>1.5 “Kruger 60” Beta 1</value>
+    <value>1.5 “Kruger 60” Beta 1 RTW</value>
   </data>
   <data name="BroadcastListUnableRefresh" xml:space="preserve">
     <value>Unable to obtain the list of TV channels/services</value>
@@ -191,38 +191,20 @@ The application will now end.</value>
   <data name="NotProvidedValue" xml:space="preserve">
     <value>&lt;Not provided&gt;</value>
   </data>
-  <data name="NotSelectedServiceProvider" xml:space="preserve">
-    <value>No service provider has been selected</value>
-  </data>
   <data name="OpenUrlError" xml:space="preserve">
     <value>Unable to open browser for URL '{0}'.
 
 {1}</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="SolutionLicense" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\..\solution-license.txt;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
-  </data>
-  <data name="SPListUnableRefresh" xml:space="preserve">
-    <value>Unable to obtain the list of service providers</value>
-  </data>
-  <data name="SPObtainingList" xml:space="preserve">
-    <value>Obtaining the list of service providers...</value>
-  </data>
-  <data name="SPParsingList" xml:space="preserve">
-    <value>Parsing and extracting the list of providers...</value>
-  </data>
-  <data name="SPProperties" xml:space="preserve">
-    <value>Properties of the service provider</value>
-  </data>
-  <data name="UserCancelListRefresh" xml:space="preserve">
-    <value>The refreshing of the list has been cancelled by the user.</value>
+    <value>..\..\movistartv.license.txt;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
   <data name="SchedulerCreateTaskOk" xml:space="preserve">
     <value>The recording task has been sucessfully created.</value>
   </data>
   <data name="SolutionLicenseRtf" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\..\solution-license.rtf;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+    <value>..\..\movistartv.license.rtf;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
   <data name="RecordDeadTvChannel" xml:space="preserve">
     <value>The selected TV channel has been marked as inactive and might not be available.
@@ -246,5 +228,26 @@ Do you still want to schedule a recording of {0}?</value>
 
 During the download process, the EPG information will either be unavailable or incomplete.
 In subsequent executions of the program, the EPG information will be updated in the background automatically (if more than {0} hours have ellapsed since the last update).</value>
+  </data>
+  <data name="EpgStatusData" xml:space="preserve">
+    <value>EPG: {0}</value>
+  </data>
+  <data name="EpgStatusDisabled" xml:space="preserve">
+    <value>EPG is disabled</value>
+  </data>
+  <data name="EpgStatusError" xml:space="preserve">
+    <value>EPG: reception error</value>
+  </data>
+  <data name="EpgStatusInvalid" xml:space="preserve">
+    <value>EPG: invalid data</value>
+  </data>
+  <data name="EpgStatusNotStarted" xml:space="preserve">
+    <value>EPG: not started</value>
+  </data>
+  <data name="EpgStatusWait" xml:space="preserve">
+    <value>EPG: waiting for data</value>
+  </data>
+  <data name="AppTelemetry" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\apptelemetry_en.rtf;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
 </root>

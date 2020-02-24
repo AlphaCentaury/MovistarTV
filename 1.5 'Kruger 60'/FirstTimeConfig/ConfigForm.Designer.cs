@@ -1,5 +1,17 @@
-﻿// Copyright (C) 2014-2016, Codeplex/GitHub user AlphaCentaury
-// All rights reserved, except those granted by the governing license of this software. See 'license.txt' file in the project root for complete license information.
+// ==============================================================================
+// 
+//   Copyright (C) 2014-2020, GitHub/Codeplex user AlphaCentaury
+//   All rights reserved.
+// 
+//     See 'LICENSE.MD' file (or 'license.txt' if missing) in the project root
+//     for complete license information.
+// 
+//   http://www.alphacentaury.org/movistartv
+//   https://github.com/AlphaCentaury
+// 
+// ==============================================================================
+
+using IpTviewr.Native.WinForms;
 
 namespace IpTviewr.Tools.FirstTimeConfig
 {
@@ -38,7 +50,7 @@ namespace IpTviewr.Tools.FirstTimeConfig
             this.buttonPreviousPage = new System.Windows.Forms.Button();
             this.buttonNextPage = new System.Windows.Forms.Button();
             this.buttonCancel = new System.Windows.Forms.Button();
-            this.selectFolder = new IpTviewr.UiServices.Common.Controls.SelectFolderDialog();
+            this.selectFolder = new IpTviewr.Native.WinForms.SelectFolderDialog();
             this.wizardControl = new IpTviewr.Tools.FirstTimeConfig.WizardTabControl();
             this.wizardPageReadme = new System.Windows.Forms.TabPage();
             this.checkReadmeAck = new System.Windows.Forms.CheckBox();
@@ -46,27 +58,28 @@ namespace IpTviewr.Tools.FirstTimeConfig
             this.pictureIconReadme = new System.Windows.Forms.PictureBox();
             this.labelReadmeWarning = new System.Windows.Forms.Label();
             this.wizardPagePrerequisites = new System.Windows.Forms.TabPage();
-            this.groupVlc = new System.Windows.Forms.GroupBox();
+            this.linkLabelNetFx = new System.Windows.Forms.LinkLabel();
+            this.pictureBoxNetFxOk = new System.Windows.Forms.PictureBox();
+            this.labelNetFx = new System.Windows.Forms.Label();
+            this.buttonVerifyNetFx = new System.Windows.Forms.Button();
             this.buttonTestVlc = new System.Windows.Forms.Button();
-            this.labelVlcInstallCheckResult = new System.Windows.Forms.Label();
+            this.linkLabelSetupSqlCe = new System.Windows.Forms.LinkLabel();
             this.buttonFindVlc = new System.Windows.Forms.Button();
+            this.linkLabelSetupEmb = new System.Windows.Forms.LinkLabel();
             this.textBoxVlc = new System.Windows.Forms.TextBox();
             this.labelVlcPath = new System.Windows.Forms.Label();
+            this.pictureBoxSqlCeOk = new System.Windows.Forms.PictureBox();
             this.pictureBoxVlcOk = new System.Windows.Forms.PictureBox();
             this.buttonVerifyVlc = new System.Windows.Forms.Button();
-            this.linkLabelPrerequisiteVlc = new System.Windows.Forms.LinkLabel();
-            this.labelVlc = new System.Windows.Forms.Label();
-            this.groupPrerequisites = new System.Windows.Forms.GroupBox();
-            this.linkLabelSetupSqlCe = new System.Windows.Forms.LinkLabel();
-            this.linkLabelSetupEmb = new System.Windows.Forms.LinkLabel();
-            this.pictureBoxSqlCeOk = new System.Windows.Forms.PictureBox();
-            this.buttonVerifySqlCe = new System.Windows.Forms.Button();
-            this.linkLabelPrerequisiteSqlCe = new System.Windows.Forms.LinkLabel();
-            this.labelSqlCe = new System.Windows.Forms.Label();
             this.pictureBoxEmbOk = new System.Windows.Forms.PictureBox();
-            this.buttonVerifyEmb = new System.Windows.Forms.Button();
-            this.linkLabelPrerequisiteEmb = new System.Windows.Forms.LinkLabel();
+            this.linkLabelPrerequisiteVlc = new System.Windows.Forms.LinkLabel();
+            this.buttonVerifySqlCe = new System.Windows.Forms.Button();
+            this.labelVlc = new System.Windows.Forms.Label();
+            this.labelVlcInstallCheckResult = new System.Windows.Forms.Label();
             this.labelEmb = new System.Windows.Forms.Label();
+            this.linkLabelPrerequisiteSqlCe = new System.Windows.Forms.LinkLabel();
+            this.buttonVerifyEmb = new System.Windows.Forms.Button();
+            this.labelSqlCe = new System.Windows.Forms.Label();
             this.wizardPageFirewall = new System.Windows.Forms.TabPage();
             this.groupAnalytics = new System.Windows.Forms.GroupBox();
             this.checkAnalyticsExceptions = new System.Windows.Forms.CheckBox();
@@ -103,10 +116,9 @@ namespace IpTviewr.Tools.FirstTimeConfig
             this.wizardPageReadme.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureIconReadme)).BeginInit();
             this.wizardPagePrerequisites.SuspendLayout();
-            this.groupVlc.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxVlcOk)).BeginInit();
-            this.groupPrerequisites.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxNetFxOk)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSqlCeOk)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxVlcOk)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxEmbOk)).BeginInit();
             this.wizardPageFirewall.SuspendLayout();
             this.groupAnalytics.SuspendLayout();
@@ -166,18 +178,6 @@ namespace IpTviewr.Tools.FirstTimeConfig
             this.buttonCancel.UseVisualStyleBackColor = true;
             this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
             // 
-            // selectFolder
-            // 
-            this.selectFolder.Description = "";
-            this.selectFolder.DontIncludeNetworkFoldersBelowDomainLevel = false;
-            this.selectFolder.NewStyle = true;
-            this.selectFolder.RootFolder = System.Environment.SpecialFolder.MyComputer;
-            this.selectFolder.SelectedPath = "";
-            this.selectFolder.ShowBothFilesAndFolders = false;
-            this.selectFolder.ShowEditBox = true;
-            this.selectFolder.ShowFullPathInEditBox = true;
-            this.selectFolder.ShowNewFolderButton = true;
-            // 
             // wizardControl
             // 
             resources.ApplyResources(this.wizardControl, "wizardControl");
@@ -233,26 +233,58 @@ namespace IpTviewr.Tools.FirstTimeConfig
             // 
             // wizardPagePrerequisites
             // 
-            this.wizardPagePrerequisites.Controls.Add(this.groupVlc);
-            this.wizardPagePrerequisites.Controls.Add(this.groupPrerequisites);
+            this.wizardPagePrerequisites.Controls.Add(this.linkLabelNetFx);
+            this.wizardPagePrerequisites.Controls.Add(this.pictureBoxNetFxOk);
+            this.wizardPagePrerequisites.Controls.Add(this.labelNetFx);
+            this.wizardPagePrerequisites.Controls.Add(this.buttonVerifyNetFx);
+            this.wizardPagePrerequisites.Controls.Add(this.buttonTestVlc);
+            this.wizardPagePrerequisites.Controls.Add(this.linkLabelSetupSqlCe);
+            this.wizardPagePrerequisites.Controls.Add(this.buttonFindVlc);
+            this.wizardPagePrerequisites.Controls.Add(this.linkLabelSetupEmb);
+            this.wizardPagePrerequisites.Controls.Add(this.textBoxVlc);
+            this.wizardPagePrerequisites.Controls.Add(this.labelVlcPath);
+            this.wizardPagePrerequisites.Controls.Add(this.pictureBoxSqlCeOk);
+            this.wizardPagePrerequisites.Controls.Add(this.pictureBoxVlcOk);
+            this.wizardPagePrerequisites.Controls.Add(this.buttonVerifyVlc);
+            this.wizardPagePrerequisites.Controls.Add(this.pictureBoxEmbOk);
+            this.wizardPagePrerequisites.Controls.Add(this.linkLabelPrerequisiteVlc);
+            this.wizardPagePrerequisites.Controls.Add(this.buttonVerifySqlCe);
+            this.wizardPagePrerequisites.Controls.Add(this.labelVlc);
+            this.wizardPagePrerequisites.Controls.Add(this.labelVlcInstallCheckResult);
+            this.wizardPagePrerequisites.Controls.Add(this.labelEmb);
+            this.wizardPagePrerequisites.Controls.Add(this.linkLabelPrerequisiteSqlCe);
+            this.wizardPagePrerequisites.Controls.Add(this.buttonVerifyEmb);
+            this.wizardPagePrerequisites.Controls.Add(this.labelSqlCe);
             resources.ApplyResources(this.wizardPagePrerequisites, "wizardPagePrerequisites");
             this.wizardPagePrerequisites.Name = "wizardPagePrerequisites";
             this.wizardPagePrerequisites.UseVisualStyleBackColor = true;
             // 
-            // groupVlc
+            // linkLabelNetFx
             // 
-            this.groupVlc.Controls.Add(this.buttonTestVlc);
-            this.groupVlc.Controls.Add(this.labelVlcInstallCheckResult);
-            this.groupVlc.Controls.Add(this.buttonFindVlc);
-            this.groupVlc.Controls.Add(this.textBoxVlc);
-            this.groupVlc.Controls.Add(this.labelVlcPath);
-            this.groupVlc.Controls.Add(this.pictureBoxVlcOk);
-            this.groupVlc.Controls.Add(this.buttonVerifyVlc);
-            this.groupVlc.Controls.Add(this.linkLabelPrerequisiteVlc);
-            this.groupVlc.Controls.Add(this.labelVlc);
-            resources.ApplyResources(this.groupVlc, "groupVlc");
-            this.groupVlc.Name = "groupVlc";
-            this.groupVlc.TabStop = false;
+            resources.ApplyResources(this.linkLabelNetFx, "linkLabelNetFx");
+            this.linkLabelNetFx.Name = "linkLabelNetFx";
+            this.linkLabelNetFx.TabStop = true;
+            this.linkLabelNetFx.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelPrerequisiteNetFx_LinkClicked);
+            // 
+            // pictureBoxNetFxOk
+            // 
+            this.pictureBoxNetFxOk.Image = global::IpTviewr.Tools.FirstTimeConfig.Properties.Resources.Error_16x16;
+            resources.ApplyResources(this.pictureBoxNetFxOk, "pictureBoxNetFxOk");
+            this.pictureBoxNetFxOk.Name = "pictureBoxNetFxOk";
+            this.pictureBoxNetFxOk.TabStop = false;
+            // 
+            // labelNetFx
+            // 
+            resources.ApplyResources(this.labelNetFx, "labelNetFx");
+            this.labelNetFx.Name = "labelNetFx";
+            // 
+            // buttonVerifyNetFx
+            // 
+            this.buttonVerifyNetFx.Image = global::IpTviewr.Tools.FirstTimeConfig.Properties.Resources.ApproveReject_16x16;
+            resources.ApplyResources(this.buttonVerifyNetFx, "buttonVerifyNetFx");
+            this.buttonVerifyNetFx.Name = "buttonVerifyNetFx";
+            this.buttonVerifyNetFx.UseVisualStyleBackColor = true;
+            this.buttonVerifyNetFx.Click += new System.EventHandler(this.buttonVerifyNet_Click);
             // 
             // buttonTestVlc
             // 
@@ -262,10 +294,12 @@ namespace IpTviewr.Tools.FirstTimeConfig
             this.buttonTestVlc.UseVisualStyleBackColor = true;
             this.buttonTestVlc.Click += new System.EventHandler(this.buttonTestVlc_Click);
             // 
-            // labelVlcInstallCheckResult
+            // linkLabelSetupSqlCe
             // 
-            resources.ApplyResources(this.labelVlcInstallCheckResult, "labelVlcInstallCheckResult");
-            this.labelVlcInstallCheckResult.Name = "labelVlcInstallCheckResult";
+            resources.ApplyResources(this.linkLabelSetupSqlCe, "linkLabelSetupSqlCe");
+            this.linkLabelSetupSqlCe.Name = "linkLabelSetupSqlCe";
+            this.linkLabelSetupSqlCe.TabStop = true;
+            this.linkLabelSetupSqlCe.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelSetupSqlCe_LinkClicked);
             // 
             // buttonFindVlc
             // 
@@ -274,6 +308,13 @@ namespace IpTviewr.Tools.FirstTimeConfig
             this.buttonFindVlc.Name = "buttonFindVlc";
             this.buttonFindVlc.UseVisualStyleBackColor = true;
             this.buttonFindVlc.Click += new System.EventHandler(this.buttonFindVlc_Click);
+            // 
+            // linkLabelSetupEmb
+            // 
+            resources.ApplyResources(this.linkLabelSetupEmb, "linkLabelSetupEmb");
+            this.linkLabelSetupEmb.Name = "linkLabelSetupEmb";
+            this.linkLabelSetupEmb.TabStop = true;
+            this.linkLabelSetupEmb.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelSetupEmb_LinkClicked);
             // 
             // textBoxVlc
             // 
@@ -286,6 +327,13 @@ namespace IpTviewr.Tools.FirstTimeConfig
             // 
             resources.ApplyResources(this.labelVlcPath, "labelVlcPath");
             this.labelVlcPath.Name = "labelVlcPath";
+            // 
+            // pictureBoxSqlCeOk
+            // 
+            this.pictureBoxSqlCeOk.Image = global::IpTviewr.Tools.FirstTimeConfig.Properties.Resources.Error_16x16;
+            resources.ApplyResources(this.pictureBoxSqlCeOk, "pictureBoxSqlCeOk");
+            this.pictureBoxSqlCeOk.Name = "pictureBoxSqlCeOk";
+            this.pictureBoxSqlCeOk.TabStop = false;
             // 
             // pictureBoxVlcOk
             // 
@@ -302,54 +350,19 @@ namespace IpTviewr.Tools.FirstTimeConfig
             this.buttonVerifyVlc.UseVisualStyleBackColor = true;
             this.buttonVerifyVlc.Click += new System.EventHandler(this.buttonVerifyVlc_Click);
             // 
+            // pictureBoxEmbOk
+            // 
+            this.pictureBoxEmbOk.Image = global::IpTviewr.Tools.FirstTimeConfig.Properties.Resources.Error_16x16;
+            resources.ApplyResources(this.pictureBoxEmbOk, "pictureBoxEmbOk");
+            this.pictureBoxEmbOk.Name = "pictureBoxEmbOk";
+            this.pictureBoxEmbOk.TabStop = false;
+            // 
             // linkLabelPrerequisiteVlc
             // 
             resources.ApplyResources(this.linkLabelPrerequisiteVlc, "linkLabelPrerequisiteVlc");
             this.linkLabelPrerequisiteVlc.Name = "linkLabelPrerequisiteVlc";
             this.linkLabelPrerequisiteVlc.TabStop = true;
             this.linkLabelPrerequisiteVlc.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelPrerequisiteVlc_LinkClicked);
-            // 
-            // labelVlc
-            // 
-            resources.ApplyResources(this.labelVlc, "labelVlc");
-            this.labelVlc.Name = "labelVlc";
-            // 
-            // groupPrerequisites
-            // 
-            this.groupPrerequisites.Controls.Add(this.linkLabelSetupSqlCe);
-            this.groupPrerequisites.Controls.Add(this.linkLabelSetupEmb);
-            this.groupPrerequisites.Controls.Add(this.pictureBoxSqlCeOk);
-            this.groupPrerequisites.Controls.Add(this.buttonVerifySqlCe);
-            this.groupPrerequisites.Controls.Add(this.linkLabelPrerequisiteSqlCe);
-            this.groupPrerequisites.Controls.Add(this.labelSqlCe);
-            this.groupPrerequisites.Controls.Add(this.pictureBoxEmbOk);
-            this.groupPrerequisites.Controls.Add(this.buttonVerifyEmb);
-            this.groupPrerequisites.Controls.Add(this.linkLabelPrerequisiteEmb);
-            this.groupPrerequisites.Controls.Add(this.labelEmb);
-            resources.ApplyResources(this.groupPrerequisites, "groupPrerequisites");
-            this.groupPrerequisites.Name = "groupPrerequisites";
-            this.groupPrerequisites.TabStop = false;
-            // 
-            // linkLabelSetupSqlCe
-            // 
-            resources.ApplyResources(this.linkLabelSetupSqlCe, "linkLabelSetupSqlCe");
-            this.linkLabelSetupSqlCe.Name = "linkLabelSetupSqlCe";
-            this.linkLabelSetupSqlCe.TabStop = true;
-            this.linkLabelSetupSqlCe.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelSetupSqlCe_LinkClicked);
-            // 
-            // linkLabelSetupEmb
-            // 
-            resources.ApplyResources(this.linkLabelSetupEmb, "linkLabelSetupEmb");
-            this.linkLabelSetupEmb.Name = "linkLabelSetupEmb";
-            this.linkLabelSetupEmb.TabStop = true;
-            this.linkLabelSetupEmb.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelSetupEmb_LinkClicked);
-            // 
-            // pictureBoxSqlCeOk
-            // 
-            this.pictureBoxSqlCeOk.Image = global::IpTviewr.Tools.FirstTimeConfig.Properties.Resources.Error_16x16;
-            resources.ApplyResources(this.pictureBoxSqlCeOk, "pictureBoxSqlCeOk");
-            this.pictureBoxSqlCeOk.Name = "pictureBoxSqlCeOk";
-            this.pictureBoxSqlCeOk.TabStop = false;
             // 
             // buttonVerifySqlCe
             // 
@@ -359,24 +372,27 @@ namespace IpTviewr.Tools.FirstTimeConfig
             this.buttonVerifySqlCe.UseVisualStyleBackColor = true;
             this.buttonVerifySqlCe.Click += new System.EventHandler(this.buttonVerifySqlCe_Click);
             // 
+            // labelVlc
+            // 
+            resources.ApplyResources(this.labelVlc, "labelVlc");
+            this.labelVlc.Name = "labelVlc";
+            // 
+            // labelVlcInstallCheckResult
+            // 
+            resources.ApplyResources(this.labelVlcInstallCheckResult, "labelVlcInstallCheckResult");
+            this.labelVlcInstallCheckResult.Name = "labelVlcInstallCheckResult";
+            // 
+            // labelEmb
+            // 
+            resources.ApplyResources(this.labelEmb, "labelEmb");
+            this.labelEmb.Name = "labelEmb";
+            // 
             // linkLabelPrerequisiteSqlCe
             // 
             resources.ApplyResources(this.linkLabelPrerequisiteSqlCe, "linkLabelPrerequisiteSqlCe");
             this.linkLabelPrerequisiteSqlCe.Name = "linkLabelPrerequisiteSqlCe";
             this.linkLabelPrerequisiteSqlCe.TabStop = true;
             this.linkLabelPrerequisiteSqlCe.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelPrerequisiteSqlCe_LinkClicked);
-            // 
-            // labelSqlCe
-            // 
-            resources.ApplyResources(this.labelSqlCe, "labelSqlCe");
-            this.labelSqlCe.Name = "labelSqlCe";
-            // 
-            // pictureBoxEmbOk
-            // 
-            this.pictureBoxEmbOk.Image = global::IpTviewr.Tools.FirstTimeConfig.Properties.Resources.Error_16x16;
-            resources.ApplyResources(this.pictureBoxEmbOk, "pictureBoxEmbOk");
-            this.pictureBoxEmbOk.Name = "pictureBoxEmbOk";
-            this.pictureBoxEmbOk.TabStop = false;
             // 
             // buttonVerifyEmb
             // 
@@ -386,17 +402,10 @@ namespace IpTviewr.Tools.FirstTimeConfig
             this.buttonVerifyEmb.UseVisualStyleBackColor = true;
             this.buttonVerifyEmb.Click += new System.EventHandler(this.buttonVerifyEmb_Click);
             // 
-            // linkLabelPrerequisiteEmb
+            // labelSqlCe
             // 
-            resources.ApplyResources(this.linkLabelPrerequisiteEmb, "linkLabelPrerequisiteEmb");
-            this.linkLabelPrerequisiteEmb.Name = "linkLabelPrerequisiteEmb";
-            this.linkLabelPrerequisiteEmb.TabStop = true;
-            this.linkLabelPrerequisiteEmb.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelPrerequisiteEmb_LinkClicked);
-            // 
-            // labelEmb
-            // 
-            resources.ApplyResources(this.labelEmb, "labelEmb");
-            this.labelEmb.Name = "labelEmb";
+            resources.ApplyResources(this.labelSqlCe, "labelSqlCe");
+            this.labelSqlCe.Name = "labelSqlCe";
             // 
             // wizardPageFirewall
             // 
@@ -650,12 +659,10 @@ namespace IpTviewr.Tools.FirstTimeConfig
             this.wizardPageReadme.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureIconReadme)).EndInit();
             this.wizardPagePrerequisites.ResumeLayout(false);
-            this.groupVlc.ResumeLayout(false);
-            this.groupVlc.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxVlcOk)).EndInit();
-            this.groupPrerequisites.ResumeLayout(false);
-            this.groupPrerequisites.PerformLayout();
+            this.wizardPagePrerequisites.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxNetFxOk)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSqlCeOk)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxVlcOk)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxEmbOk)).EndInit();
             this.wizardPageFirewall.ResumeLayout(false);
             this.groupAnalytics.ResumeLayout(false);
@@ -677,18 +684,15 @@ namespace IpTviewr.Tools.FirstTimeConfig
 
         #endregion
 
-        private IpTviewr.UiServices.Common.Controls.SelectFolderDialog selectFolder;
+        private SelectFolderDialog selectFolder;
         private System.Windows.Forms.OpenFileDialog openFile;
         private WizardTabControl wizardControl;
         private System.Windows.Forms.TabPage wizardPagePrerequisites;
-        private System.Windows.Forms.GroupBox groupPrerequisites;
         private System.Windows.Forms.Button buttonVerifyEmb;
         private System.Windows.Forms.LinkLabel linkLabelPrerequisiteVlc;
         private System.Windows.Forms.Label labelVlc;
-        private System.Windows.Forms.LinkLabel linkLabelPrerequisiteEmb;
         private System.Windows.Forms.Label labelEmb;
         private System.Windows.Forms.TabPage wizardPageFirewall;
-        private System.Windows.Forms.GroupBox groupVlc;
         private System.Windows.Forms.Button buttonVerifyVlc;
         private System.Windows.Forms.PictureBox pictureBoxVlcOk;
         private System.Windows.Forms.PictureBox pictureBoxEmbOk;
@@ -743,5 +747,9 @@ namespace IpTviewr.Tools.FirstTimeConfig
         private System.Windows.Forms.PictureBox pictureIconReadme;
         private System.Windows.Forms.CheckBox checkReadmeAck;
         private System.Windows.Forms.PictureBox pictureBoxEpgWarning;
+        private System.Windows.Forms.PictureBox pictureBoxNetFxOk;
+        private System.Windows.Forms.Label labelNetFx;
+        private System.Windows.Forms.Button buttonVerifyNetFx;
+        private System.Windows.Forms.LinkLabel linkLabelNetFx;
     }
 }

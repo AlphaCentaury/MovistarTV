@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+==============================================================================
+
+  Copyright (C) 2014-2020, GitHub/Codeplex user AlphaCentaury
+  All rights reserved.
+
+    See 'LICENSE.MD' file (or 'license.txt' if missing) in the project root
+    for complete license information.
+
+  http://www.alphacentaury.org/movistartv
+  https://github.com/AlphaCentaury
+
+==============================================================================
+-->
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <?include strings.guid.wxi ?>
+  <Fragment>
+    <ComponentGroup Id="UIServices">
+      <ComponentGroupRef Id="UIServices.Assemblies" />
+      <ComponentGroupRef Id="UIServices.Assemblies.Localization" />
+    </ComponentGroup>
+
+    <ComponentGroup Id="UIServices.Assemblies">
+      <Component Id="UIServices.Assemblies" Directory="INSTALLFOLDER" Guid="$(var.Guid.UIServices.Assemblies)">
+        <File Id="AlphaCentaury.Licensing.Data.Ui.dll" Source="$(var.AlphaCentaury.Licensing.Data.Ui.TargetDir)AlphaCentaury.Licensing.Data.Ui.dll" />
+        <File Id="AlphaCentaury.Licensing.Data.Ui.pdb" Source="$(var.AlphaCentaury.Licensing.Data.Ui.TargetDir)AlphaCentaury.Licensing.Data.Ui.pdb" />
+        <File Id="UiServices.Common.dll" Source="$(var.UiServices.Common.TargetDir)UiServices.Common.dll" />
+        <File Id="UiServices.Common.pdb" Source="$(var.UiServices.Common.TargetDir)UiServices.Common.pdb" />
+        <File Id="UiServices.Configuration.dll" Source="$(var.UiServices.Config.TargetDir)UiServices.Configuration.dll" />
+        <File Id="UiServices.Configuration.pdb" Source="$(var.UiServices.Config.TargetDir)UiServices.Configuration.pdb" />
+        <File Id="UiServices.Discovery.dll" Source="$(var.UiServices.Discovery.TargetDir)UiServices.Discovery.dll" />
+        <File Id="UiServices.Discovery.pdb" Source="$(var.UiServices.Discovery.TargetDir)UiServices.Discovery.pdb" />
+        <File Id="UiServices.DvbStpClient.dll" Source="$(var.UiServices.DvbStpClient.TargetDir)UiServices.DvbStpClient.dll" />
+        <File Id="UiServices.DvbStpClient.pdb" Source="$(var.UiServices.DvbStpClient.TargetDir)UiServices.DvbStpClient.pdb" />
+        <File Id="UiServices.Forms.dll" Source="$(var.UiServices.Forms.TargetDir)UiServices.Forms.dll" />
+        <File Id="UiServices.Forms.pdb" Source="$(var.UiServices.Forms.TargetDir)UiServices.Forms.pdb" />
+      </Component>
+    </ComponentGroup>
+
+    <ComponentGroup Id="UIServices.Assemblies.Localization">
+      <Component Id="UIServices.Assemblies.Localization.es" Directory="InstallFolder.es" Guid="$(var.Guid.UIServices.Assemblies.Localization.es)">
+        <File Id="UiServices.Common.es.dll" Source="$(var.UiServices.Common.TargetDir)es\UiServices.Common.resources.dll" />
+        <File Id="UiServices.Configuration.es.dll" Source="$(var.UiServices.Config.TargetDir)es\UiServices.Configuration.resources.dll" />
+        <File Id="UiServices.Discovery.es.dll" Source="$(var.UiServices.Discovery.TargetDir)es\UiServices.Discovery.resources.dll" />
+        <File Id="UiServices.DvbStpClient.es.dll" Source="$(var.UiServices.DvbStpClient.TargetDir)es\UiServices.DvbStpClient.resources.dll" />
+        <File Id="UiServices.Forms.es.dll" Source="$(var.UiServices.Forms.TargetDir)es\UiServices.Forms.resources.dll" />
+      </Component>
+    </ComponentGroup>
+  </Fragment>
+</Wix>

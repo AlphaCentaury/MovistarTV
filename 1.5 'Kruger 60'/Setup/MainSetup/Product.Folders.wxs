@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+==============================================================================
+
+  Copyright (C) 2014-2020, GitHub/Codeplex user AlphaCentaury
+  All rights reserved.
+
+    See 'LICENSE.MD' file (or 'license.txt' if missing) in the project root
+    for complete license information.
+
+  http://www.alphacentaury.org/movistartv
+  https://github.com/AlphaCentaury
+
+==============================================================================
+-->
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <?include strings.wxi ?>
+  <Fragment>
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="PersonalFolder">
+        <Directory Id="Folder.IPTViewr" Name="IPTViewr">
+          <Directory Id="BaseFolder" Name="$(var.BaseInstallFolder)">
+            <Directory Id="INSTALLFOLDER" Name="bin">
+              <Directory Id="RedistFolderBase" Name ="Redist">
+                <Directory Id="RedistFolder" Name="!(loc.RedistLanguage)">
+                  <Directory Id="x86RedistFolder" Name="x86" />
+                  <Directory Id="x64RedistFolder" Name="x64" />
+                </Directory>
+              </Directory>
+              <Directory Id="InstallFolder.x86" Name="x86" />
+              <Directory Id="InstallFolder.x64" Name="x64" />
+              <Directory Id="InstallFolder.es" Name="es" />
+              <!--
+              <Directory Id="Modules" Name="modules">
+                <Directory Id ="Modules.Localization.es" Name="es" />
+              </Directory>
+              -->
+            </Directory>
+            <Directory Id="Folder.Cache" Name="cache">
+              <Directory Id="Folder.Cache.Logos" Name="logos" />
+            </Directory>
+            <Directory Id="Folder.Logos" Name="Logos">
+              <Directory Id ="Folder.Logos.Providers" Name ="providers" />
+              <Directory Id ="Folder.Logos.Services" Name ="services" />
+            </Directory>
+            <Directory Id="Folder.RecordTasks" Name="record-tasks" />
+          </Directory>
+        </Directory>
+      </Directory>
+
+      <Directory Id="ProgramMenuFolder">
+        <Directory Id="ProgramStartMenuFolder" Name="!(loc.ProgramStartMenuFolder)" />
+      </Directory>
+    </Directory>
+	</Fragment>
+</Wix>

@@ -112,15 +112,11 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AnalyticsKeepChecked" xml:space="preserve">
-    <value>Por favor, ¡mantenga esta opción seleccionada!
-La recopilación de datos de uso nos ayuda a mejorar el programa y ésto es crucial en las versiones preliminares.</value>
-  </data>
   <data name="ConfigurationCreateException" xml:space="preserve">
     <value>No ha sido posible crear el archivo de configuración. Se ha producido un error.
 
@@ -192,15 +188,27 @@ Please verify the value of the 'ForceUICulture' program argument.</value>
   <data name="FirewallVlcRuleDescription" xml:space="preserve">
     <value>Permitir conexiones {0} entrantes al reproductor VLC</value>
   </data>
-  <data name="GetTvPlayersVlcNewWindow" xml:space="preserve">
-    <value>VLC (en la misma ventana)</value>
+  <data name="GetTvPlayersMpc" xml:space="preserve">
+    <value>K-Lite Media Player Classic</value>
+  </data>
+  <data name="GetTvPlayersMpcX86" xml:space="preserve">
+    <value>K-Lite Media Player Classic (32 bits)</value>
+  </data>
+  <data name="GetTvPlayersVlc" xml:space="preserve">
+    <value>VLC</value>
   </data>
   <data name="GetTvPlayersVlcSameWindow" xml:space="preserve">
     <value>VLC (en la misma ventana)</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="GoogleTelemetry" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\..\channellist\resources\googletelemetry_es.rtf;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  <data name="GetTvPlayersVlcSameWindowX86" xml:space="preserve">
+    <value>VLC (en la misma ventana - 32 bits)</value>
+  </data>
+  <data name="GetTvPlayersVlcX86" xml:space="preserve">
+    <value>VLC (32 bits)</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="AppTelemetryHelp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\..\channellist\resources\apptelemetry_es.rtf;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
   <data name="IsEmbInstalledException" xml:space="preserve">
     <value>No ha sido posible determinar si el componente Microsoft® Exception Message Box se encuentra instalado.
@@ -303,7 +311,7 @@ Si sobreescribe el archivo se perderá cualquier configuración personalizada.
     <value>IPTViewr: decodificador virtual para movistar+</value>
   </data>
   <data name="ProductMainProgramName" xml:space="preserve">
-    <value>Canales movistar+</value>
+    <value>IPTViewr para movistar+</value>
   </data>
   <data name="ProductShortName" xml:space="preserve">
     <value>v1.5 “Kruger 60” beta 1</value>
@@ -374,5 +382,16 @@ Para configurar adecuadamente la aplicación mas tarde, ejecute el asistente de 
 
 La aplicación no está configurada adecuadamente y no se podrá ejecutar.
 Para configurar adecuadamente la aplicación mas tarde, ejecute el asistente de nuevo.</value>
+  </data>
+  <data name="NetFxRequired" xml:space="preserve">
+    <value>{0} es una característica opcional de Windows 10 y no está instalada.
+Windows le preguntará a continuación si desea instalarla.
+
+1. Seleccione la opción 'Descargar e instalar esta característica'.
+2. Siga el asistente hasta su finalización.
+3. Presione 'Comprobar...' para verificar si {0} está instalado correctamente.</value>
+  </data>
+  <data name="NextFxWindows10Setup" xml:space="preserve">
+    <value>Instalar como característica adicional de Windows</value>
   </data>
 </root>

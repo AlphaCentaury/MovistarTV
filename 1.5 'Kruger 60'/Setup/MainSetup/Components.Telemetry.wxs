@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+==============================================================================
+
+  Copyright (C) 2014-2020, GitHub/Codeplex user AlphaCentaury
+  All rights reserved.
+
+    See 'LICENSE.MD' file (or 'license.txt' if missing) in the project root
+    for complete license information.
+
+  http://www.alphacentaury.org/movistartv
+  https://github.com/AlphaCentaury
+
+==============================================================================
+-->
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <?include strings.guid.wxi ?>
+  <Fragment>
+    <ComponentGroup Id="Telemetry">
+      <ComponentGroupRef Id="Telemetry.Assemblies" />
+      <!--
+      <ComponentGroupRef Id="Telemetry.Assemblies.Localization" />
+      -->
+      <ComponentGroupRef Id="Telemetry.MsAppCenter" />
+      <ComponentGroupRef Id="Telemetry.MsAppCenter.Dependencies" />
+    </ComponentGroup>
+
+    <ComponentGroup Id="Telemetry.Assemblies" Directory="INSTALLFOLDER">
+      <Component Id="Telemetry.Assemblies" Guid="$(var.Guid.Telemetry.Assemblies)">
+        <File Id="IpTviewr.Telemetry.dll" Source="$(var.IpTviewr.Telemetry.TargetDir)IpTviewr.Telemetry.dll" />
+        <File Id="IpTviewr.Telemetry.pdb" Source="$(var.IpTviewr.Telemetry.TargetDir)IpTviewr.Telemetry.pdb" />
+      </Component>
+    </ComponentGroup>
+
+    <!--
+    <ComponentGroup Id="Telemetry.Assemblies.Localization">
+      <Component Id="Telemetry.Assemblies.Localization.es" Directory="InstallFolder.es" Guid="$(var.Guid.Telemetry.Assemblies.Localization.es)">
+        <File Id="IpTviewr.Telemetry.es.dll" Source="IpTviewr.Telemetry.resources.dll" />
+      </Component>
+    </ComponentGroup>
+    -->
+
+    <ComponentGroup Id="Telemetry.MsAppCenter" Directory="INSTALLFOLDER">
+      <Component Id="IpTviewr.Telemetry.MsAppCenter" Guid="$(var.Guid.Telemetry.MsAppCenter)">
+        <File Id="Microsoft.AppCenter.Analytics.dll" Source="$(var.IpTviewr.Telemetry.TargetDir)Microsoft.AppCenter.Analytics.dll" />
+        <File Id="Microsoft.AppCenter.Crashes.dll" Source="$(var.IpTviewr.Telemetry.TargetDir)Microsoft.AppCenter.Crashes.dll" />
+        <File Id="Microsoft.AppCenter.dll" Source="$(var.IpTviewr.Telemetry.TargetDir)Microsoft.AppCenter.dll" />
+      </Component>
+    </ComponentGroup>
+
+    <ComponentGroup Id="Telemetry.MsAppCenter.Dependencies" Directory="INSTALLFOLDER">
+      <Component Id="IpTviewr.Telemetry.MsAppCenter.Dependencies" Guid="$(var.Guid.Telemetry.MsAppCenter.Dependencies)">
+        <File Id="Microsoft.Win32.Primitives.dll" Source="$(var.IpTviewr.Telemetry.TargetDir)Microsoft.Win32.Primitives.dll" />
+        <File Id="System.AppContext.dll" Source="$(var.IpTviewr.Telemetry.TargetDir)System.AppContext.dll" />
+        <File Id="System.Console.dll" Source="$(var.IpTviewr.Telemetry.TargetDir)System.Console.dll" />
+        <File Id="System.Diagnostics.DiagnosticSource.dll" Source="$(var.IpTviewr.Telemetry.TargetDir)System.Diagnostics.DiagnosticSource.dll" />
+        <File Id="System.Diagnostics.DiagnosticSource.xml" Source="$(var.IpTviewr.Telemetry.TargetDir)System.Diagnostics.DiagnosticSource.xml" />
+        <File Id="System.Diagnostics.Tracing.dll" Source="$(var.IpTviewr.Telemetry.TargetDir)System.Diagnostics.Tracing.dll" />
+        <File Id="System.Globalization.Calendars.dll" Source="$(var.IpTviewr.Telemetry.TargetDir)System.Globalization.Calendars.dll" />
+        <File Id="System.IO.Compression.dll" Source="$(var.IpTviewr.Telemetry.TargetDir)System.IO.Compression.dll" />
+        <File Id="System.IO.Compression.ZipFile.dll" Source="$(var.IpTviewr.Telemetry.TargetDir)System.IO.Compression.ZipFile.dll" />
+        <File Id="System.IO.dll" Source="$(var.IpTviewr.Telemetry.TargetDir)System.IO.dll" />
+        <File Id="System.IO.FileSystem.dll" Source="$(var.IpTviewr.Telemetry.TargetDir)System.IO.FileSystem.dll" />
+        <File Id="System.IO.FileSystem.Primitives.dll" Source="$(var.IpTviewr.Telemetry.TargetDir)System.IO.FileSystem.Primitives.dll" />
+        <File Id="System.Net.Http.dll" Source="$(var.IpTviewr.Telemetry.TargetDir)System.Net.Http.dll" />
+        <File Id="System.Net.Sockets.dll" Source="$(var.IpTviewr.Telemetry.TargetDir)System.Net.Sockets.dll" />
+        <File Id="System.Reflection.dll" Source="$(var.IpTviewr.Telemetry.TargetDir)System.Reflection.dll" />
+        <File Id="System.Runtime.dll" Source="$(var.IpTviewr.Telemetry.TargetDir)System.Runtime.dll" />
+        <File Id="System.Runtime.Extensions.dll" Source="$(var.IpTviewr.Telemetry.TargetDir)System.Runtime.Extensions.dll" />
+        <File Id="System.Runtime.InteropServices.dll" Source="$(var.IpTviewr.Telemetry.TargetDir)System.Runtime.InteropServices.dll" />
+        <File Id="System.Runtime.InteropServices.RuntimeInformation.dll" Source="$(var.IpTviewr.Telemetry.TargetDir)System.Runtime.InteropServices.RuntimeInformation.dll" />
+        <File Id="System.Security.Cryptography.Algorithms.dll" Source="$(var.IpTviewr.Telemetry.TargetDir)System.Security.Cryptography.Algorithms.dll" />
+        <File Id="System.Security.Cryptography.Encoding.dll" Source="$(var.IpTviewr.Telemetry.TargetDir)System.Security.Cryptography.Encoding.dll" />
+        <File Id="System.Security.Cryptography.Primitives.dll" Source="$(var.IpTviewr.Telemetry.TargetDir)System.Security.Cryptography.Primitives.dll" />
+        <File Id="System.Security.Cryptography.X509Certificates.dll" Source="$(var.IpTviewr.Telemetry.TargetDir)System.Security.Cryptography.X509Certificates.dll" />
+      </Component>
+    </ComponentGroup>
+  </Fragment>
+</Wix>

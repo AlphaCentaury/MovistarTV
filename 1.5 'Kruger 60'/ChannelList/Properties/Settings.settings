@@ -2,13 +2,31 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="IpTviewr.ChannelList.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="ForceUiCulture" Type="System.String" Scope="User">
+    <Setting Name="SetUiCulture" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="LastSelectedServiceProvider" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="LastSelectedService" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="MruChannels" Type="System.Collections.Specialized.StringCollection" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="Telemetry_GoogleAnalyticsClientId" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="Telemetry" Type="IpTviewr.Common.Telemetry.TelemetryConfiguration" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="PushIgnoreList" Type="System.Collections.Specialized.StringCollection" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="SetCulture" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="LastCheckedForUpdates" Type="System.DateTime" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
   </Settings>

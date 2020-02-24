@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>IpTviewr.Tools.FirstTimeConfig</RootNamespace>
     <AssemblyName>FirstTimeConfig</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SccProjectName>SAK</SccProjectName>
     <SccLocalPath>SAK</SccLocalPath>
@@ -18,7 +18,7 @@
     <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>x86</PlatformTarget>
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -27,6 +27,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
+    <LangVersion>8</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -37,6 +38,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
+    <LangVersion>8</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>Resources\first-time-config.ico</ApplicationIcon>
@@ -44,13 +46,16 @@
   <PropertyGroup>
     <StartupObject />
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
+  </PropertyGroup>
   <ItemGroup>
+    <Reference Include="JetBrains.Annotations, Version=2019.1.3.0, Culture=neutral, PublicKeyToken=1010a0d8d6380325, processorArchitecture=MSIL">
+      <HintPath>..\packages\JetBrains.Annotations.2019.1.3\lib\net20\JetBrains.Annotations.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Core" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
@@ -73,7 +78,6 @@
       <DependentUpon>FirewallForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Installation.cs" />
-    <Compile Include="KnownFolders.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Texts.Designer.cs">
@@ -81,6 +85,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Texts.resx</DependentUpon>
     </Compile>
+    <Compile Include="Properties\Settings.cs" />
     <Compile Include="WindowsFirewall.cs" />
     <Compile Include="WizardEndDialog.cs">
       <SubType>Form</SubType>
@@ -138,13 +143,17 @@
     <EmbeddedResource Include="WizardWelcomeDialog.resx">
       <DependentUpon>WizardWelcomeDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="..\ChannelList\Resources\GoogleTelemetry_en.rtf">
-      <Link>Resources\GoogleTelemetry_en.rtf</Link>
+    <None Include="..\ChannelList\Resources\AppTelemetry_en.rtf">
+      <Link>Resources\AppTelemetry_en.rtf</Link>
     </None>
-    <None Include="..\ChannelList\Resources\GoogleTelemetry_es.rtf">
-      <Link>Resources\GoogleTelemetry_es.rtf</Link>
+    <None Include="..\ChannelList\Resources\AppTelemetry_es.rtf">
+      <Link>Resources\AppTelemetry_es.rtf</Link>
     </None>
     <None Include="app.config" />
+    <None Include="LICENSE.ES.MD" />
+    <None Include="LICENSE.MD" />
+    <None Include="packages.config" />
+    <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -176,6 +185,7 @@
       <Link>Resources\Status_Wait_16x16.png</Link>
     </Content>
     <Content Include="License.txt" />
+    <Content Include="licensing.xml" />
     <Content Include="Resources\ActionBack_Medium_16.png" />
     <Content Include="Resources\ActionForward_Medium_16.png" />
     <Content Include="Resources\Error_16x16.png" />
@@ -189,33 +199,41 @@
     <Content Include="Resources\WizardTop.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Core.IpTvProvider\Core.IpTvProvider.csproj">
+    <ProjectReference Include="..\Assemblies\Core.IpTvProvider\IpTviewr.IpTvServices.csproj">
       <Project>{36b8e0a1-f1b1-498d-8fe7-a39bb7fd68ca}</Project>
-      <Name>Core.IpTvProvider</Name>
+      <Name>IpTviewr.IpTvServices</Name>
     </ProjectReference>
-    <ProjectReference Include="..\IpTv.MovistarPlus\IpTv.MovistarPlus.csproj">
+    <ProjectReference Include="..\Assemblies\IpTv.MovistarPlus\IpTv.MovistarPlus.csproj">
       <Project>{e1748f45-dd50-4479-96f6-f7eba6f3e28b}</Project>
       <Name>IpTv.MovistarPlus</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Project.Common\Project.Common.csproj">
+    <ProjectReference Include="..\Assemblies\Project.Common\IpTviewr.Common.csproj">
       <Project>{8da15060-5a78-4f89-a9f1-7aa56b0d622c}</Project>
-      <Name>Project.Common</Name>
+      <Name>IpTviewr.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Services.Record.Serialization\Services.Record.Serialization.csproj">
-      <Project>{074c14ed-c574-46d2-b9dc-c1b5f65d9a69}</Project>
-      <Name>Services.Record.Serialization</Name>
+    <ProjectReference Include="..\Assemblies\Project.Native\IpTviewr.Native.csproj">
+      <Project>{8986CD52-0C65-42D6-9C47-20FF47CF87BB}</Project>
+      <Name>IpTviewr.Native</Name>
     </ProjectReference>
-    <ProjectReference Include="..\UiServices.Common\UiServices.Common.csproj">
+    <ProjectReference Include="..\Assemblies\UiServices.Common\UiServices.Common.csproj">
       <Project>{76346905-ac2f-4f01-ba99-bbffbb2a6fe9}</Project>
       <Name>UiServices.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\UiServices.Config\UiServices.Config.csproj">
+    <ProjectReference Include="..\Assemblies\UiServices.Config\UiServices.Config.csproj">
       <Project>{a722de9d-ae51-479c-825f-a19f4c69bd75}</Project>
       <Name>UiServices.Config</Name>
     </ProjectReference>
-    <ProjectReference Include="..\UiServices.Discovery\UiServices.Discovery.csproj">
+    <ProjectReference Include="..\Assemblies\UiServices.Discovery\UiServices.Discovery.csproj">
       <Project>{7e5e21b9-4bd6-4fb3-9055-9b09cc479c6c}</Project>
       <Name>UiServices.Discovery</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Core\IpTViewr.Core\IpTViewr.Core.csproj">
+      <Project>{968C6EEB-1E79-446A-96AE-69CB225E1C37}</Project>
+      <Name>IpTViewr.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Core\IpTviewr.Telemetry\IpTviewr.Telemetry.csproj">
+      <Project>{8C3814BF-9482-41C2-BA1A-CBA59F5C2ED4}</Project>
+      <Name>IpTviewr.Telemetry</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

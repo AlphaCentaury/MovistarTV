@@ -1,15 +1,22 @@
-﻿// Copyright (C) 2014-2016, Codeplex/GitHub user AlphaCentaury
-// All rights reserved, except those granted by the governing license of this software. See 'license.txt' file in the project root for complete license information.
+// ==============================================================================
+// 
+//   Copyright (C) 2014-2020, GitHub/Codeplex user AlphaCentaury
+//   All rights reserved.
+// 
+//     See 'LICENSE.MD' file (or 'license.txt' if missing) in the project root
+//     for complete license information.
+// 
+//   http://www.alphacentaury.org/movistartv
+//   https://github.com/AlphaCentaury
+// 
+// ==============================================================================
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
 
 namespace IpTviewr.RecorderLauncher
 {
-    internal partial class UnsafeNativeMethods
+    internal class UnsafeNativeMethods
     {
         /// <remarks>Win32: JOBOBJECTINFOCLASS</remarks>
         public enum JobObjectInfoClass
@@ -18,7 +25,7 @@ namespace IpTviewr.RecorderLauncher
             BasicAccountingInformation = 1,
             BasicLimitInformation,
             BasicProcessIdList,
-            BasicUIRestrictions,
+            BasicUiRestrictions,
             SecurityLimitInformation,
             EndOfJobTimeInformation,
             AssociateCompletionPortInformation,
@@ -74,7 +81,7 @@ namespace IpTviewr.RecorderLauncher
         // lpJobAttributes: LPSECURITY_ATTRIBUTES->_SECURITY_ATTRIBUTES*
         // lpName: LPCWSTR->WCHAR*
         [DllImport("kernel32.dll", EntryPoint = "CreateJobObjectW", SetLastError=true)]
-        public static extern System.IntPtr CreateJobObject([In] IntPtr lpJobAttributes, [In] [MarshalAs(UnmanagedType.LPWStr)] string lpName);
+        public static extern IntPtr CreateJobObject([In] IntPtr lpJobAttributes, [In] [MarshalAs(UnmanagedType.LPWStr)] string lpName);
 
         // Return Type: BOOL->int
         // hJob: HANDLE->void*
@@ -90,7 +97,7 @@ namespace IpTviewr.RecorderLauncher
         // cbJobObjectInformationLength: DWORD->unsigned int
         [DllImport("kernel32.dll", EntryPoint = "SetInformationJobObject", SetLastError=true)]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool SetInformationJobObject([In] IntPtr hJob, JobObjectInfoClass JobObjectInformationClass, [In] IntPtr lpJobObjectInformation, uint cbJobObjectInformationLength);
+        public static extern bool SetInformationJobObject([In] IntPtr hJob, JobObjectInfoClass jobObjectInformationClass, [In] IntPtr lpJobObjectInformation, uint cbJobObjectInformationLength);
 
         [DllImport("kernel32.dll", SetLastError = true)]
         public static extern bool SetConsoleIcon(IntPtr hIcon);

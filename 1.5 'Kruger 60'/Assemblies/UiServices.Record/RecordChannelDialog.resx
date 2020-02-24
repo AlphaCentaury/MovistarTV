@@ -1,0 +1,1420 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="&gt;&gt;listViewLocations.Parent" xml:space="preserve">
+    <value>tabPageSave</value>
+  </data>
+  <data name="&gt;&gt;checkBoxExpiryDate.Parent" xml:space="preserve">
+    <value>tabPageSchedule</value>
+  </data>
+  <data name="&gt;&gt;labelStartMarginSufix.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;labelTaskDescription.Parent" xml:space="preserve">
+    <value>tabPageDescription</value>
+  </data>
+  <data name="&gt;&gt;labelProgramSchedule.Name" xml:space="preserve">
+    <value>labelProgramSchedule</value>
+  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="labelProgramSchedule.Location" type="System.Drawing.Point, System.Drawing">
+    <value>82, 58</value>
+  </data>
+  <data name="&gt;&gt;labelSchedulerConcurrent.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;labelFilename.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="tabProperties.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 82</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="comboFileExtension.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="&gt;&gt;labelSaveLocation.Parent" xml:space="preserve">
+    <value>tabPageSave</value>
+  </data>
+  <data name="pictureChannelLogo.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="&gt;&gt;tabPageSave.Parent" xml:space="preserve">
+    <value>tabProperties</value>
+  </data>
+  <data name="labelProgramDescription.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="buttonCancel.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;checkBoxStartMargin.Name" xml:space="preserve">
+    <value>checkBoxStartMargin</value>
+  </data>
+  <data name="labelSaveLocation.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="checkSchedulerASAP.Text" xml:space="preserve">
+    <value>Start recording as soon as possible if the schedule is missed</value>
+  </data>
+  <data name="labelSchedulerMaxRetries.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="comboSchedulerAlreadyRunning.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="textFilename.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 23</value>
+  </data>
+  <data name="&gt;&gt;labelStartMarginSufix.Name" xml:space="preserve">
+    <value>labelStartMarginSufix</value>
+  </data>
+  <data name="&gt;&gt;numericSchedulerMaxRetries.Parent" xml:space="preserve">
+    <value>tabPageAdvanced</value>
+  </data>
+  <data name="&gt;&gt;labelSaveLocation.Name" xml:space="preserve">
+    <value>labelSaveLocation</value>
+  </data>
+  <data name="checkSchedulerASAP.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 99</value>
+  </data>
+  <data name="recordingTime.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 6</value>
+  </data>
+  <data name="&gt;&gt;checkSchedulerDeleteTask.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;textTaskDescription.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="numericStartMargin.Location" type="System.Drawing.Point, System.Drawing">
+    <value>122, 237</value>
+  </data>
+  <data name="checkBoxExpiryDate.Location" type="System.Drawing.Point, System.Drawing">
+    <value>130, 187</value>
+  </data>
+  <data name="&gt;&gt;timeSpanSchedulerRetry.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;selectFolder.Type" xml:space="preserve">
+    <value>IpTviewr.Native.WinForms.SelectFolderDialog, IpTViewr.Native, Version=1.5.1010.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;timeSpanSchedulerDeleteTaskAfter.Type" xml:space="preserve">
+    <value>IpTviewr.UiServices.Common.Controls.TimeSpanUpDown, UiServices.Common, Version=1.5.1010.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="tabProperties.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;labelTaskDescription.Name" xml:space="preserve">
+    <value>labelTaskDescription</value>
+  </data>
+  <data name="&gt;&gt;tabPageSave.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="textFilename.Size" type="System.Drawing.Size, System.Drawing">
+    <value>356, 20</value>
+  </data>
+  <data name="tabPageSave.Text" xml:space="preserve">
+    <value>Save location</value>
+  </data>
+  <data name="listViewLocations.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;checkSchedulerDeleteTask.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="&gt;&gt;ColumnLocation.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;labelStartMarginSufix.Parent" xml:space="preserve">
+    <value>tabPageSchedule</value>
+  </data>
+  <data name="ColumnName.Text" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="&gt;&gt;ColumnName.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="pictureChannelLogo.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 12</value>
+  </data>
+  <data name="timeSpanSchedulerRetry.Size" type="System.Drawing.Size, System.Drawing">
+    <value>192, 20</value>
+  </data>
+  <data name="&gt;&gt;labelFilename.Name" xml:space="preserve">
+    <value>labelFilename</value>
+  </data>
+  <data name="&gt;&gt;checkAppendRecordingDetails.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;tabPageSave.Name" xml:space="preserve">
+    <value>tabPageSave</value>
+  </data>
+  <data name="checkSchedulerDeleteTask.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 171</value>
+  </data>
+  <data name="checkBoxStartMargin.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;textTaskDescription.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="numericSchedulerMaxRetries.Size" type="System.Drawing.Size, System.Drawing">
+    <value>35, 20</value>
+  </data>
+  <data name="labelChannelName.Size" type="System.Drawing.Size, System.Drawing">
+    <value>370, 22</value>
+  </data>
+  <data name="labelProgramDescription.Text" xml:space="preserve">
+    <value>(Program description)</value>
+  </data>
+  <data name="buttonSelectFolder.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;recordingSchedule.Parent" xml:space="preserve">
+    <value>tabPageSchedule</value>
+  </data>
+  <data name="labelProgramSchedule.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 9.75pt, style=Italic</value>
+  </data>
+  <data name="&gt;&gt;tabPageLength.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Record TV Channel</value>
+  </data>
+  <data name="checkSchedulerRetry.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="buttonCancel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 25</value>
+  </data>
+  <data name="&gt;&gt;checkSchedulerRetry.ZOrder" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <data name="&gt;&gt;tabPageSchedule.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="tabPageAdvanced.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="numericStartMargin.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Center</value>
+  </data>
+  <data name="labelChannelName.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="&gt;&gt;ColumnLocation.Name" xml:space="preserve">
+    <value>ColumnLocation</value>
+  </data>
+  <data name="&gt;&gt;labelSaveLocation.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;labelSchedulerMaxRetries.Parent" xml:space="preserve">
+    <value>tabPageAdvanced</value>
+  </data>
+  <data name="checkSchedulerASAP.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="&gt;&gt;labelTaskDescription.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="labelSchedulerMaxRetries.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="&gt;&gt;labelSchedulerFolder.Name" xml:space="preserve">
+    <value>labelSchedulerFolder</value>
+  </data>
+  <data name="checkSchedulerRetry.Size" type="System.Drawing.Size, System.Drawing">
+    <value>211, 17</value>
+  </data>
+  <data name="&gt;&gt;labelChannelName.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="checkAppendRecordingDetails.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="&gt;&gt;comboFileExtension.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;labelSchedulerMaxRetries.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dateTimeExpiryDate.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DateTimePicker, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="buttonOk.Location" type="System.Drawing.Point, System.Drawing">
+    <value>246, 375</value>
+  </data>
+  <data name="timeSpanSchedulerDeleteTaskAfter.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="labelChannelName.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="&gt;&gt;tabPageLength.Parent" xml:space="preserve">
+    <value>tabProperties</value>
+  </data>
+  <data name="&gt;&gt;labelProgramDescription.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tabPageAdvanced.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="buttonOk.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="checkSchedulerASAP.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="buttonOk.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 25</value>
+  </data>
+  <data name="&gt;&gt;textTaskDescription.Parent" xml:space="preserve">
+    <value>tabPageDescription</value>
+  </data>
+  <data name="&gt;&gt;labelTaskName.Name" xml:space="preserve">
+    <value>labelTaskName</value>
+  </data>
+  <data name="buttonOk.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleRight</value>
+  </data>
+  <data name="&gt;&gt;numericSchedulerMaxRetries.Name" xml:space="preserve">
+    <value>numericSchedulerMaxRetries</value>
+  </data>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>6, 13</value>
+  </data>
+  <data name="labelProgramSchedule.Size" type="System.Drawing.Size, System.Drawing">
+    <value>370, 18</value>
+  </data>
+  <data name="&gt;&gt;timeSpanSchedulerRetry.Type" xml:space="preserve">
+    <value>IpTviewr.UiServices.Common.Controls.TimeSpanUpDown, UiServices.Common, Version=1.5.1010.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;labelStartMarginSufix.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="tabPageSchedule.Size" type="System.Drawing.Size, System.Drawing">
+    <value>432, 261</value>
+  </data>
+  <data name="checkBoxStartMargin.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="recordingTime.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="checkSchedulerRetry.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 122</value>
+  </data>
+  <data name="pictureChannelLogo.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms">
+    <value>CenterImage</value>
+  </data>
+  <data name="numericSchedulerMaxRetries.Location" type="System.Drawing.Point, System.Drawing">
+    <value>355, 145</value>
+  </data>
+  <data name="labelSchedulerConcurrent.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="&gt;&gt;recordingSchedule.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="labelFilename.Text" xml:space="preserve">
+    <value>Specify the name of the file (date and time will be added automatically):</value>
+  </data>
+  <data name="buttonSelectFolder.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 233</value>
+  </data>
+  <data name="&gt;&gt;checkSchedulerRetry.Name" xml:space="preserve">
+    <value>checkSchedulerRetry</value>
+  </data>
+  <data name="&gt;&gt;textFilename.Type" xml:space="preserve">
+    <value>IpTviewr.UiServices.Common.Controls.FilenameTextBox, UiServices.Common, Version=1.5.1010.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="buttonCancel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="&gt;&gt;checkBoxExpiryDate.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="labelSchedulerMaxRetries.Location" type="System.Drawing.Point, System.Drawing">
+    <value>223, 147</value>
+  </data>
+  <data name="checkAddTaskPrefix.Location" type="System.Drawing.Point, System.Drawing">
+    <value>270, 7</value>
+  </data>
+  <data name="checkAppendRecordingDetails.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>IpTviewr.UiServices.Common.Forms.CommonBaseForm, UiServices.Common, Version=1.5.1010.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="labelTaskName.Text" xml:space="preserve">
+    <value>Windows Task Scheduler task name:</value>
+  </data>
+  <data name="comboSchedulerAlreadyRunning.Items" xml:space="preserve">
+    <value>Run in paralel (record both)</value>
+  </data>
+  <data name="&gt;&gt;tabPageDescription.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="numericStartMargin.Size" type="System.Drawing.Size, System.Drawing">
+    <value>40, 20</value>
+  </data>
+  <data name="&gt;&gt;timeSpanSchedulerDeleteTaskAfter.Parent" xml:space="preserve">
+    <value>tabPageAdvanced</value>
+  </data>
+  <data name="&gt;&gt;comboFileExtension.Parent" xml:space="preserve">
+    <value>tabPageSave</value>
+  </data>
+  <data name="labelChannelName.Location" type="System.Drawing.Point, System.Drawing">
+    <value>82, 12</value>
+  </data>
+  <data name="&gt;&gt;labelSchedulerConcurrent.Name" xml:space="preserve">
+    <value>labelSchedulerConcurrent</value>
+  </data>
+  <data name="labelProgramDescription.Size" type="System.Drawing.Size, System.Drawing">
+    <value>370, 18</value>
+  </data>
+  <data name="&gt;&gt;comboFileExtension.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="labelSchedulerFolder.Size" type="System.Drawing.Size, System.Drawing">
+    <value>341, 13</value>
+  </data>
+  <data name="&gt;&gt;timeSpanSchedulerDeleteTaskAfter.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;tabPageLength.Name" xml:space="preserve">
+    <value>tabPageLength</value>
+  </data>
+  <data name="tabPageDescription.Size" type="System.Drawing.Size, System.Drawing">
+    <value>432, 261</value>
+  </data>
+  <data name="checkSchedulerRetry.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="tabPageSchedule.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 3, 3, 3</value>
+  </data>
+  <data name="labelSaveLocation.Text" xml:space="preserve">
+    <value>Select where to save the recording:</value>
+  </data>
+  <data name="tabPageAdvanced.Text" xml:space="preserve">
+    <value>Advanced settings</value>
+  </data>
+  <data name="textTaskDescription.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 23</value>
+  </data>
+  <data name="&gt;&gt;comboSchedulerAlreadyRunning.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;checkAddTaskPrefix.Parent" xml:space="preserve">
+    <value>tabPageAdvanced</value>
+  </data>
+  <data name="&gt;&gt;dateTimeExpiryDate.Parent" xml:space="preserve">
+    <value>tabPageSchedule</value>
+  </data>
+  <data name="&gt;&gt;labelSchedulerMaxRetries.Name" xml:space="preserve">
+    <value>labelSchedulerMaxRetries</value>
+  </data>
+  <data name="tabPageDescription.Text" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="labelProgramSchedule.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="&gt;&gt;checkBoxStartMargin.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="timeSpanSchedulerDeleteTaskAfter.Size" type="System.Drawing.Size, System.Drawing">
+    <value>253, 20</value>
+  </data>
+  <data name="checkSchedulerDeleteTask.Text" xml:space="preserve">
+    <value>If the recording is not scheduled again, delete the task after:</value>
+  </data>
+  <data name="&gt;&gt;checkBoxExpiryDate.Name" xml:space="preserve">
+    <value>checkBoxExpiryDate</value>
+  </data>
+  <data name="labelTaskDescription.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;checkAppendRecordingDetails.Parent" xml:space="preserve">
+    <value>tabPageDescription</value>
+  </data>
+  <data name="labelSchedulerConcurrent.Text" xml:space="preserve">
+    <value>If a previous programming of this recording is not over yet:</value>
+  </data>
+  <data name="&gt;&gt;buttonSelectFolder.Name" xml:space="preserve">
+    <value>buttonSelectFolder</value>
+  </data>
+  <data name="&gt;&gt;checkAddTaskPrefix.Name" xml:space="preserve">
+    <value>checkAddTaskPrefix</value>
+  </data>
+  <data name="timeSpanSchedulerRetry.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;tabPageSchedule.Parent" xml:space="preserve">
+    <value>tabProperties</value>
+  </data>
+  <data name="checkAppendRecordingDetails.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;imageListLocations.Name" xml:space="preserve">
+    <value>imageListLocations</value>
+  </data>
+  <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
+    <value>480, 450</value>
+  </data>
+  <data name="labelSchedulerMaxRetries.Size" type="System.Drawing.Size, System.Drawing">
+    <value>126, 13</value>
+  </data>
+  <data name="&gt;&gt;labelTaskDescription.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="checkBoxStartMargin.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="checkAddTaskPrefix.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
+  <data name="dateTimeExpiryDate.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="tabPageSave.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="recordingSchedule.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 6</value>
+  </data>
+  <data name="buttonOk.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="buttonCancel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>352, 375</value>
+  </data>
+  <data name="&gt;&gt;buttonOk.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="labelStartMarginSufix.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="labelSchedulerConcurrent.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="&gt;&gt;checkSchedulerDeleteTask.Name" xml:space="preserve">
+    <value>checkSchedulerDeleteTask</value>
+  </data>
+  <data name="checkAppendRecordingDetails.Text" xml:space="preserve">
+    <value>Append recording details (channel name, schedule, etc)</value>
+  </data>
+  <data name="&gt;&gt;timeSpanSchedulerDeleteTaskAfter.Name" xml:space="preserve">
+    <value>timeSpanSchedulerDeleteTaskAfter</value>
+  </data>
+  <data name="&gt;&gt;listViewLocations.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;labelFilename.Parent" xml:space="preserve">
+    <value>tabPageSave</value>
+  </data>
+  <data name="labelStartMarginSufix.Size" type="System.Drawing.Size, System.Drawing">
+    <value>43, 13</value>
+  </data>
+  <data name="&gt;&gt;labelChannelName.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="tabPageDescription.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="buttonSelectFolder.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="tabPageSchedule.Text" xml:space="preserve">
+    <value>Schedule</value>
+  </data>
+  <data name="&gt;&gt;checkBoxStartMargin.Parent" xml:space="preserve">
+    <value>tabPageSchedule</value>
+  </data>
+  <data name="ColumnLocation.Width" type="System.Int32, mscorlib">
+    <value>250</value>
+  </data>
+  <data name="labelTaskName.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="checkBoxExpiryDate.Text" xml:space="preserve">
+    <value>Stop schedule on the following date:</value>
+  </data>
+  <data name="labelFilename.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="labelProgramDescription.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="pictureChannelLogo.Size" type="System.Drawing.Size, System.Drawing">
+    <value>64, 64</value>
+  </data>
+  <data name="checkAddTaskPrefix.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="&gt;&gt;comboSchedulerFolder.ZOrder" xml:space="preserve">
+    <value>12</value>
+  </data>
+  <data name="buttonSelectFolder.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left</value>
+  </data>
+  <data name="comboFileExtension.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
+    <value>CenterParent</value>
+  </data>
+  <data name="&gt;&gt;labelTaskName.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tabProperties.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left, Right</value>
+  </data>
+  <data name="&gt;&gt;checkSchedulerASAP.Name" xml:space="preserve">
+    <value>checkSchedulerASAP</value>
+  </data>
+  <data name="&gt;&gt;comboSchedulerAlreadyRunning.Parent" xml:space="preserve">
+    <value>tabPageAdvanced</value>
+  </data>
+  <data name="&gt;&gt;tabProperties.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="imageListLocations.ImageStream" mimetype="application/x-microsoft.net.object.binary.base64">
+    <value>
+        AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
+        LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
+        ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAAA0
+        CwAAAk1TRnQBSQFMAgEBAgEAATwBAgFAAQIBEAEAARABAAT/ASEBEAj/AUIBTQE2BwABNgMAASgDAAFA
+        AwABEAMAAQEBAAEgBgABEDIAA1MBqgM4AVz4AAG4ATsBAAH/AbgBOwEAAf8DOAFcFAABuAGjAZQB/wEg
+        AQYBAAH/ASABBgEAAf8BIAEGAQAB/wEgAQYBAAH/ASABBgEAAf8BIAEGAQAB/wEgAQYBAAH/ASABBgEA
+        Af8BIAEGAQAB/wEgAQYBAAH/ASABBgEAAf8BIAEGAQAB/wEgAQYBAAH/ASABBgEAAf8BIAEGAQAB/6AA
+        AbgBOwEAAf8B8QHMAY4B/wG4ATsBAAH/AzgBXBAAAbkBpAGVAf8B9QHoAd8B/wHwAdwBzgH/Ae8B2QHL
+        Af8B7QHSAcMB/wHpAc0BuwH/AegByAGzAf8B5gHEAa8B/wHkAcABqQH/AeMBvQGkAf8B4wG8AaUB/wHi
+        AbwBowH/AeIBuwGjAf8B4gG4AZ4B/wHfAbYBnQH/ASABBgEAAf+gAAG4ATsBAAH/AfABwAEpAf8B7wHK
+        AYwB/wG4ATsBAAH/AzgBXAwAAboBpQGWAf8B+QHxAewB/wH2AeoB4wH/AfUB5wHeAf8B8wHjAdkB/wHy
+        AeAB1QH/AfAB3AHQAf8B7wHZAcsB/wHtAdUBxgH/AewB0gHCAf8B6QHNAbkB/wHnAcgBswH/AeYBwwGt
+        Af8B5AG9AaYB/wHhAbcBngH/ASABBgEAAf+AAANDAXcBuAE7AQAB/wG4ATsBAAH/AbgBOwEAAf8BuAE7
+        AQAB/wG4ATsBAAH/AbgBOwEAAf8BuAE7AQAB/wG4ATsBAAH/AfMBxQErAf8B5QGZAQAB/wHvAcsBjAH/
+        AbgBOwEAAf8DSgGKCAABvAGmAZcB/wH5AfMB7gH/AfcB7QHmAf8B9gHqAeIB/wH1AeYB3QH/AfMB4wHY
+        Af8B8gHfAdQB/wHwAdwBzwH/Ae8B2AHKAf8B7QHVAcUB/wHsAdEBwQH/AeoBzgG9Af8B6QHKAbcB/wHn
+        AcQBsAH/AeMBvQGlAf8BIAEGAQAB/4AAAaUBIwEAAf8B6QG6ASQB/wHuAcEBKQH/AfQBxwEsAf8B9wHM
+        AS4B/wH6Ac8BMAH/AfsBzwEwAf8B+wHPATAB/wH5AcwBLwH/AfIBsQEAAf8B6wGhAQAB/wHlAZkBAAH/
+        Ae8BygGMAf8BsgEzAQAB/wM4AVwEAAG9AagBmQH/AfoB9QHxAf8B+AHvAeoB/wH3AewB5QH/AfYB6QHh
+        Af8B9AHlAdwB/wHzAeIB1wH/AfEB3gHTAf8B8AHbAc4B/wHuAdcByQH/Ae0B1AHEAf8B6wHRAcAB/wHq
+        AcwBuwH/AecBxgGzAf8B5AG+AacB/wEgAQYBAAH/gAABpQEjAQAB/wFeAT8BKwH8Ad0BlAEAAf8B5AGb
+        AQAB/wHtAaUBAAH/AfMBrAEAAf8B+AGxAQAB/wH5AbIBAAH/AfkBsQEAAf8B9QGtAQAB/wHyAacBAAH/
+        AewBoAEAAf8B5AGWAQAB/wHvAckBiwH/AbIBMwEAAf8DOAFcAb8BqQGaAf8B+wH2AfIB/wH5AfIB7QH/
+        AfgB7wHpAf8B9wHrAeQB/wH1AegB4AH/AfQB5QHbAf8B8gHhAdYB/wHxAd4B0gH/Ae8B2gHNAf8B7gHX
+        AcgB/wHtAdMBwwH/AesB0AG/Af8B6gHMAbkB/wHjAb4BpwH/ASABBgEAAf+AAAGlASMBAAH/AV4BRQEr
+        AfwB3AGcAQAB/wHgAZ0BAAH/AecBoQEAAf8B7QGmAQAB/wHzAasBAAH/AfgBsQEAAf8B+QGyAQAB/wH4
+        AbEBAAH/AfUBrQEAAf8B8QGmAQAB/wHqAZ4BAAH/AeIBlQEAAf8B7wHMAZIB/wGzATUBAAH/AcABqwGc
+        Af8B/AH3AfQB/wH6AfQB8AH/AfkB8QHsAf8B+AHuAegB/wH2AesB5AH/AfUB5wHfAf8B9AHkAdoB/wHy
+        AeAB1QH/AfEB3QHRAf8B7wHZAcwB/wHuAdYBxwH/AewB0wHDAf8B6wHPAb4B/wHkAcABqgH/ASABBgEA
+        Af+AAAGlASMBAAH/AdwBqQESAf8B1wGZAQAB/wHeAaABAAH/AeQBpgEAAf8B6gGrAQAB/wHwAa4BAAH/
+        AfQBrwEAAf8B9wGxAQAB/wH5AbEBAAH/AfgBrwEAAf8B9AGrAQAB/wHwAaUBAAH/AfABugEUAf8BswE1
+        AQAB/wM4AVwBwgGsAZ0B/wH8AfkB9wH/AfsB9gHzAf8B+gH0Ae8B/wH5AfEB6wH/AfgB7QHnAf8B9wHr
+        AeUB/wH2AekB4QH/AfQB5QHcAf8B8wHjAdgB/wHxAd8B1AH/AfAB3AHQAf8B7wHZAcsB/wHuAdYByAH/
+        AecBxwGyAf8BIAEGAQAB/4AAAaUBIwEAAf8DXAHfAmQBXAHnAmUBXgHlAmUBXgHlAmUBXgHlAmUBXgHl
+        Al8BWAHjAmQBUwHxAfoBuQEAAf8B+gG4AQAB/wH4AbIBAAH/AfcBxAEbAf8BswE1AQAB/wM4AVwEAAHD
+        Aa4BnwH/Af0B+wH4Af8B/AH4AfYB/wH7AfYB8gH/AfoB8wHvAf8B+QHwAeoB/wH4AfEB7AH/AfgB7wHp
+        Af8B9gHtAeYB/wH2AeoB4gH/AfUB6QHgAf8B9QHlAd4B/wH0AeQB2gH/AfMB4QHXAf8B7wHYAcoB/wEg
+        AQYBAAH/gAADQwF3AaUBIwEAAf8BpQEjAQAB/wGlASMBAAH/AaUBIwEAAf8BpQEjAQAB/wGlASMBAAH/
+        AaUBIwEAAf8BpQEjAQAB/wH4AbwBAAH/AfsBwQEAAf8B/AHSATUB/wGzATUBAAH/AzgBXAgAAcUBrwGg
+        Af8B/gH7AfgB/wH9AfoB+QH/AfwB+AH1Af8B+wH1AfIB/wH6AfIB7gH/AfkB8QHsAf8BvQGpAZsB/wG9
+        AakBmwH/Ab0BqQGbAf8BvQGpAZsB/wG9AakBmwH/Ab0BqQGbAf8BvQGpAZsB/wEgAQYBAAH/ASABBgEA
+        Af+gAAGlASMBAAH/AfMBtgEAAf8B+wHQATQB/wGzATUBAAH/AzgBXAwAAcYBsAGhAf8B/gH7AfoB/wH+
+        AfwB+wH/Af0B+gH4Af8B/AH3AfQB/wH7AfUB8QH/AfoB8wHuAf8BLQEUAQEB/wHWAdEBzgH/AckBxAHA
+        Af8BwQG7AbcB/wG5AbIBrAH/AbUBrQGnAf8BsgGpAaIB/wE5ASABDgH/pAABpQEjAQAB/wHzAcgBLwH/
+        AbMBNQEAAf8DOAFcEAABxwGxAaIC/wH7AfoB/wH+AvwB/wH+AfsB+QH/Af0B+QH3Af8B+wH3AfQB/wH6
+        AfYB8gH/AZ0BiAEzAf8B4AHcAdoB/wHcAdoB1wH/AdIB0QHPAf8B1QHUAdIB/wHLAcgBxgH/AbkBswGt
+        Af8BngGKATcB/6QAAaUBIwEAAf8BswE1AQAB/wM4AVwUAAHIAbIBowH/AcYBsAGhAf8BxAGuAZ8B/wHB
+        AasBnAH/Ab4BqQGaAf8BuwGmAZcB/wG5AaQBlQH/AbcBogGTAf8B2AHHAbwB/wHOAbwBrgH/AcgBtAGn
+        Af8BwwGuAaAB/wG8AacBmAH/AbkBpAGVAf8BrQGZAYwB/6QAA1MBqgM4AVz/ANkAAUIBTQE+BwABPgMA
+        ASgDAAFAAwABEAMAAQEBAAEBBQABgBcAA/8BAAH/AT8C/wQAAf8BHwYAAf8BDwYAAf8BBwcAAQMHAAEB
+        HwABAQcAAQMGAAH/AQcBAAEBBAAB/wEPAQABAQQAAf8BHwEAAQEEAAH/AT8C/wQABP8aAAs=
+</value>
+  </data>
+  <data name="textTaskDescription.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left, Right</value>
+  </data>
+  <data name="labelSchedulerFolder.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="textTaskName.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="labelSchedulerFolder.Text" xml:space="preserve">
+    <value>Select where to create the recording task in Windows Task Scheduler:</value>
+  </data>
+  <data name="&gt;&gt;timeSpanSchedulerRetry.Name" xml:space="preserve">
+    <value>timeSpanSchedulerRetry</value>
+  </data>
+  <data name="&gt;&gt;listViewLocations.Type" xml:space="preserve">
+    <value>IpTviewr.UiServices.Common.Controls.ListViewSortable, UiServices.Common, Version=1.5.1010.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="checkBoxExpiryDate.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;checkSchedulerASAP.ZOrder" xml:space="preserve">
+    <value>11</value>
+  </data>
+  <data name="labelProgramSchedule.Text" xml:space="preserve">
+    <value>(Program schedule)</value>
+  </data>
+  <data name="&gt;&gt;tabProperties.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabControl, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;labelProgramSchedule.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;labelSchedulerFolder.ZOrder" xml:space="preserve">
+    <value>13</value>
+  </data>
+  <data name="&gt;&gt;dateTimeExpiryDate.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="tabProperties.Size" type="System.Drawing.Size, System.Drawing">
+    <value>440, 287</value>
+  </data>
+  <data name="&gt;&gt;recordingSchedule.Type" xml:space="preserve">
+    <value>IpTviewr.UiServices.Record.Controls.RecordingSchedule, UiServices.Record, Version=1.5.1010.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="textTaskDescription.Size" type="System.Drawing.Size, System.Drawing">
+    <value>425, 212</value>
+  </data>
+  <data name="&gt;&gt;buttonSelectFolder.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="comboSchedulerAlreadyRunning.Items1" xml:space="preserve">
+    <value>Do not record (continue previous recording)</value>
+  </data>
+  <data name="tabPageSchedule.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="textTaskName.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="checkBoxExpiryDate.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="textTaskName.Size" type="System.Drawing.Size, System.Drawing">
+    <value>422, 20</value>
+  </data>
+  <data name="labelProgramDescription.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 9.75pt, style=Bold</value>
+  </data>
+  <data name="labelProgramDescription.Location" type="System.Drawing.Point, System.Drawing">
+    <value>82, 37</value>
+  </data>
+  <data name="&gt;&gt;selectFolder.Name" xml:space="preserve">
+    <value>selectFolder</value>
+  </data>
+  <data name="labelSchedulerFolder.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;tabPageDescription.Parent" xml:space="preserve">
+    <value>tabProperties</value>
+  </data>
+  <data name="labelTaskDescription.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 7</value>
+  </data>
+  <data name="labelTaskDescription.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;recordingTime.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;comboSchedulerFolder.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="checkSchedulerDeleteTask.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="buttonSelectFolder.Text" xml:space="preserve">
+    <value>Select folder...</value>
+  </data>
+  <data name="&gt;&gt;pictureChannelLogo.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="comboSchedulerFolder.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 63</value>
+  </data>
+  <data name="&gt;&gt;pictureChannelLogo.Name" xml:space="preserve">
+    <value>pictureChannelLogo</value>
+  </data>
+  <data name="checkSchedulerDeleteTask.Size" type="System.Drawing.Size, System.Drawing">
+    <value>309, 17</value>
+  </data>
+  <data name="&gt;&gt;numericSchedulerMaxRetries.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="&gt;&gt;buttonOk.Name" xml:space="preserve">
+    <value>buttonOk</value>
+  </data>
+  <data name="&gt;&gt;buttonOk.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="comboSchedulerFolder.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;textTaskDescription.Name" xml:space="preserve">
+    <value>textTaskDescription</value>
+  </data>
+  <data name="&gt;&gt;checkAppendRecordingDetails.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;labelChannelName.Name" xml:space="preserve">
+    <value>labelChannelName</value>
+  </data>
+  <data name="&gt;&gt;checkBoxStartMargin.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="recordingSchedule.Size" type="System.Drawing.Size, System.Drawing">
+    <value>425, 175</value>
+  </data>
+  <data name="labelTaskDescription.Text" xml:space="preserve">
+    <value>Task and recording description (optional):</value>
+  </data>
+  <data name="&gt;&gt;labelTaskName.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;labelTaskName.Parent" xml:space="preserve">
+    <value>tabPageAdvanced</value>
+  </data>
+  <data name="&gt;&gt;recordingTime.Parent" xml:space="preserve">
+    <value>tabPageLength</value>
+  </data>
+  <data name="numericSchedulerMaxRetries.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="checkBoxStartMargin.Size" type="System.Drawing.Size, System.Drawing">
+    <value>113, 17</value>
+  </data>
+  <data name="&gt;&gt;textTaskName.Parent" xml:space="preserve">
+    <value>tabPageAdvanced</value>
+  </data>
+  <data name="&gt;&gt;buttonCancel.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;numericStartMargin.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="checkSchedulerDeleteTask.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="textTaskDescription.Multiline" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="labelTaskDescription.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="&gt;&gt;recordingSchedule.Name" xml:space="preserve">
+    <value>recordingSchedule</value>
+  </data>
+  <data name="labelSaveLocation.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;labelFilename.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="recordingSchedule.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="comboSchedulerFolder.Size" type="System.Drawing.Size, System.Drawing">
+    <value>422, 21</value>
+  </data>
+  <data name="&gt;&gt;ColumnName.Name" xml:space="preserve">
+    <value>ColumnName</value>
+  </data>
+  <data name="tabPageLength.Size" type="System.Drawing.Size, System.Drawing">
+    <value>432, 261</value>
+  </data>
+  <data name="&gt;&gt;timeSpanSchedulerRetry.Parent" xml:space="preserve">
+    <value>tabPageAdvanced</value>
+  </data>
+  <data name="tabPageLength.Text" xml:space="preserve">
+    <value>Duration</value>
+  </data>
+  <data name="listViewLocations.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left, Right</value>
+  </data>
+  <data name="numericStartMargin.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;checkAddTaskPrefix.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="checkAddTaskPrefix.Size" type="System.Drawing.Size, System.Drawing">
+    <value>158, 17</value>
+  </data>
+  <data name="&gt;&gt;labelProgramSchedule.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="labelChannelName.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="tabPageDescription.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 22</value>
+  </data>
+  <data name="labelChannelName.Text" xml:space="preserve">
+    <value>(Channel name)</value>
+  </data>
+  <data name="&gt;&gt;listViewLocations.Name" xml:space="preserve">
+    <value>listViewLocations</value>
+  </data>
+  <data name="labelFilename.Size" type="System.Drawing.Size, System.Drawing">
+    <value>340, 13</value>
+  </data>
+  <data name="&gt;&gt;dateTimeExpiryDate.Name" xml:space="preserve">
+    <value>dateTimeExpiryDate</value>
+  </data>
+  <data name="&gt;&gt;comboFileExtension.Name" xml:space="preserve">
+    <value>comboFileExtension</value>
+  </data>
+  <data name="labelTaskName.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 8</value>
+  </data>
+  <data name="labelSchedulerConcurrent.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="tabPageSave.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 22</value>
+  </data>
+  <data name="&gt;&gt;textFilename.Parent" xml:space="preserve">
+    <value>tabPageSave</value>
+  </data>
+  <data name="&gt;&gt;recordingTime.Type" xml:space="preserve">
+    <value>IpTviewr.UiServices.Record.Controls.RecordingDuration, UiServices.Record, Version=1.5.1010.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="labelSaveLocation.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;checkSchedulerRetry.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="comboFileExtension.Size" type="System.Drawing.Size, System.Drawing">
+    <value>60, 21</value>
+  </data>
+  <data name="textTaskDescription.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;labelProgramSchedule.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="dateTimeExpiryDate.Size" type="System.Drawing.Size, System.Drawing">
+    <value>215, 20</value>
+  </data>
+  <data name="textFilename.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="checkAppendRecordingDetails.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left</value>
+  </data>
+  <data name="tabPageSchedule.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 22</value>
+  </data>
+  <data name="checkBoxExpiryDate.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="&gt;&gt;checkSchedulerASAP.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;checkSchedulerDeleteTask.Parent" xml:space="preserve">
+    <value>tabPageAdvanced</value>
+  </data>
+  <data name="labelChannelName.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 12pt, style=Bold</value>
+  </data>
+  <data name="&gt;&gt;imageListLocations.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ImageList, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;textTaskName.Name" xml:space="preserve">
+    <value>textTaskName</value>
+  </data>
+  <data name="&gt;&gt;textTaskName.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;checkSchedulerRetry.Parent" xml:space="preserve">
+    <value>tabPageAdvanced</value>
+  </data>
+  <data name="&gt;&gt;numericSchedulerMaxRetries.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="checkSchedulerDeleteTask.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="labelSaveLocation.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 55</value>
+  </data>
+  <data name="tabPageLength.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 22</value>
+  </data>
+  <data name="checkSchedulerASAP.Size" type="System.Drawing.Size, System.Drawing">
+    <value>307, 17</value>
+  </data>
+  <data name="labelStartMarginSufix.Text" xml:space="preserve">
+    <value>minutes</value>
+  </data>
+  <data name="labelProgramDescription.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="&gt;&gt;tabPageSave.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="labelTaskName.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="labelProgramSchedule.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="checkAddTaskPrefix.Text" xml:space="preserve">
+    <value>Add standard prefix to name</value>
+  </data>
+  <data name="ColumnName.Width" type="System.Int32, mscorlib">
+    <value>150</value>
+  </data>
+  <data name="labelSchedulerConcurrent.Size" type="System.Drawing.Size, System.Drawing">
+    <value>278, 13</value>
+  </data>
+  <data name="checkSchedulerRetry.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="comboSchedulerAlreadyRunning.Items2" xml:space="preserve">
+    <value>Wait for previous recording to end and start recording</value>
+  </data>
+  <data name="labelSchedulerFolder.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 47</value>
+  </data>
+  <data name="&gt;&gt;buttonOk.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>RecordChannelDialog</value>
+  </data>
+  <data name="buttonOk.TextImageRelation" type="System.Windows.Forms.TextImageRelation, System.Windows.Forms">
+    <value>ImageBeforeText</value>
+  </data>
+  <data name="checkAppendRecordingDetails.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 241</value>
+  </data>
+  <data name="tabPageLength.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;labelSchedulerConcurrent.Parent" xml:space="preserve">
+    <value>tabPageAdvanced</value>
+  </data>
+  <data name="&gt;&gt;checkBoxExpiryDate.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="buttonOk.Text" xml:space="preserve">
+    <value>Set schedule</value>
+  </data>
+  <data name="checkBoxStartMargin.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 238</value>
+  </data>
+  <data name="&gt;&gt;textFilename.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;labelSaveLocation.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="comboSchedulerAlreadyRunning.Location" type="System.Drawing.Point, System.Drawing">
+    <value>25, 233</value>
+  </data>
+  <data name="labelSchedulerMaxRetries.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="checkAddTaskPrefix.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="labelProgramDescription.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="&gt;&gt;comboSchedulerFolder.Name" xml:space="preserve">
+    <value>comboSchedulerFolder</value>
+  </data>
+  <data name="&gt;&gt;buttonSelectFolder.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="checkSchedulerRetry.Text" xml:space="preserve">
+    <value>If the recording task fails, try again after</value>
+  </data>
+  <data name="tabPageSave.Size" type="System.Drawing.Size, System.Drawing">
+    <value>432, 261</value>
+  </data>
+  <data name="labelFilename.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="labelStartMarginSufix.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="comboFileExtension.Location" type="System.Drawing.Point, System.Drawing">
+    <value>368, 23</value>
+  </data>
+  <data name="&gt;&gt;textTaskName.Type" xml:space="preserve">
+    <value>IpTviewr.UiServices.Common.Controls.FilenameTextBox, UiServices.Common, Version=1.5.1010.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;tabProperties.Name" xml:space="preserve">
+    <value>tabProperties</value>
+  </data>
+  <data name="tabPageAdvanced.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 22</value>
+  </data>
+  <data name="labelProgramSchedule.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="&gt;&gt;comboSchedulerFolder.Parent" xml:space="preserve">
+    <value>tabPageAdvanced</value>
+  </data>
+  <data name="&gt;&gt;buttonCancel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="timeSpanSchedulerRetry.Location" type="System.Drawing.Point, System.Drawing">
+    <value>25, 145</value>
+  </data>
+  <data name="&gt;&gt;labelSchedulerFolder.Parent" xml:space="preserve">
+    <value>tabPageAdvanced</value>
+  </data>
+  <data name="labelStartMarginSufix.Location" type="System.Drawing.Point, System.Drawing">
+    <value>168, 239</value>
+  </data>
+  <data name="&gt;&gt;numericStartMargin.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="dateTimeExpiryDate.Location" type="System.Drawing.Point, System.Drawing">
+    <value>152, 210</value>
+  </data>
+  <data name="&gt;&gt;tabPageLength.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;labelSchedulerFolder.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tabPageAdvanced.Size" type="System.Drawing.Size, System.Drawing">
+    <value>432, 261</value>
+  </data>
+  <data name="buttonCancel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
+  <data name="&gt;&gt;tabPageAdvanced.Name" xml:space="preserve">
+    <value>tabPageAdvanced</value>
+  </data>
+  <data name="&gt;&gt;buttonSelectFolder.Parent" xml:space="preserve">
+    <value>tabPageSave</value>
+  </data>
+  <data name="checkBoxStartMargin.Text" xml:space="preserve">
+    <value>Add safety margin:</value>
+  </data>
+  <data name="listViewLocations.Size" type="System.Drawing.Size, System.Drawing">
+    <value>422, 155</value>
+  </data>
+  <data name="recordingTime.Size" type="System.Drawing.Size, System.Drawing">
+    <value>425, 145</value>
+  </data>
+  <data name="labelProgramSchedule.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="&gt;&gt;numericStartMargin.Parent" xml:space="preserve">
+    <value>tabPageSchedule</value>
+  </data>
+  <data name="labelTaskName.Size" type="System.Drawing.Size, System.Drawing">
+    <value>184, 13</value>
+  </data>
+  <data name="textFilename.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>464, 412</value>
+  </data>
+  <data name="&gt;&gt;pictureChannelLogo.Type" xml:space="preserve">
+    <value>IpTviewr.UiServices.Common.Controls.PictureBoxEx, UiServices.Common, Version=1.5.1010.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="labelSaveLocation.Size" type="System.Drawing.Size, System.Drawing">
+    <value>175, 13</value>
+  </data>
+  <data name="&gt;&gt;textFilename.Name" xml:space="preserve">
+    <value>textFilename</value>
+  </data>
+  <data name="comboSchedulerAlreadyRunning.Items3" xml:space="preserve">
+    <value>Stop previous recording and proceed</value>
+  </data>
+  <data name="ColumnLocation.Text" xml:space="preserve">
+    <value>Location</value>
+  </data>
+  <data name="labelChannelName.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="&gt;&gt;checkSchedulerASAP.Parent" xml:space="preserve">
+    <value>tabPageAdvanced</value>
+  </data>
+  <data name="labelStartMarginSufix.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;checkAddTaskPrefix.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="pictureChannelLogo.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="&gt;&gt;buttonCancel.Name" xml:space="preserve">
+    <value>buttonCancel</value>
+  </data>
+  <data name="labelSchedulerConcurrent.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 217</value>
+  </data>
+  <data name="timeSpanSchedulerDeleteTaskAfter.Location" type="System.Drawing.Point, System.Drawing">
+    <value>25, 194</value>
+  </data>
+  <data name="&gt;&gt;tabPageAdvanced.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;labelSchedulerConcurrent.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="&gt;&gt;labelProgramDescription.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;pictureChannelLogo.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="labelSchedulerFolder.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="comboSchedulerAlreadyRunning.Size" type="System.Drawing.Size, System.Drawing">
+    <value>307, 21</value>
+  </data>
+  <data name="&gt;&gt;labelChannelName.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="checkSchedulerASAP.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;buttonCancel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="tabPageLength.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 3, 3, 3</value>
+  </data>
+  <data name="&gt;&gt;tabProperties.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="labelTaskDescription.Size" type="System.Drawing.Size, System.Drawing">
+    <value>202, 13</value>
+  </data>
+  <data name="&gt;&gt;numericStartMargin.Name" xml:space="preserve">
+    <value>numericStartMargin</value>
+  </data>
+  <data name="&gt;&gt;recordingTime.Name" xml:space="preserve">
+    <value>recordingTime</value>
+  </data>
+  <data name="checkAppendRecordingDetails.Size" type="System.Drawing.Size, System.Drawing">
+    <value>289, 17</value>
+  </data>
+  <data name="buttonSelectFolder.Size" type="System.Drawing.Size, System.Drawing">
+    <value>125, 25</value>
+  </data>
+  <data name="&gt;&gt;tabPageDescription.Name" xml:space="preserve">
+    <value>tabPageDescription</value>
+  </data>
+  <data name="&gt;&gt;tabPageDescription.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="checkBoxExpiryDate.Size" type="System.Drawing.Size, System.Drawing">
+    <value>198, 17</value>
+  </data>
+  <data name="&gt;&gt;comboSchedulerAlreadyRunning.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;tabPageSchedule.Name" xml:space="preserve">
+    <value>tabPageSchedule</value>
+  </data>
+  <data name="&gt;&gt;labelSchedulerMaxRetries.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="labelFilename.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 7</value>
+  </data>
+  <data name="&gt;&gt;labelProgramDescription.Name" xml:space="preserve">
+    <value>labelProgramDescription</value>
+  </data>
+  <data name="buttonCancel.TextImageRelation" type="System.Windows.Forms.TextImageRelation, System.Windows.Forms">
+    <value>ImageBeforeText</value>
+  </data>
+  <data name="comboSchedulerFolder.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="&gt;&gt;labelProgramDescription.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="listViewLocations.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 71</value>
+  </data>
+  <data name="buttonOk.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
+  <data name="&gt;&gt;comboSchedulerAlreadyRunning.Name" xml:space="preserve">
+    <value>comboSchedulerAlreadyRunning</value>
+  </data>
+  <data name="&gt;&gt;checkAppendRecordingDetails.Name" xml:space="preserve">
+    <value>checkAppendRecordingDetails</value>
+  </data>
+  <data name="buttonCancel.Text" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="&gt;&gt;tabPageSchedule.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="labelTaskName.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="buttonCancel.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleRight</value>
+  </data>
+  <data name="labelSchedulerMaxRetries.Text" xml:space="preserve">
+    <value>Maximum number of tries:</value>
+  </data>
+  <data name="textTaskName.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 24</value>
+  </data>
+  <data name="&gt;&gt;tabPageAdvanced.Parent" xml:space="preserve">
+    <value>tabProperties</value>
+  </data>
+  <data name="labelFilename.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <metadata name="ColumnLocation.GenerateMember" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="ColumnName.GenerateMember" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="imageListLocations.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <metadata name="selectFolder.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>172, 17</value>
+  </metadata>
+</root>

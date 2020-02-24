@@ -1,5 +1,15 @@
-﻿// Copyright (C) 2014-2016, Codeplex/GitHub user AlphaCentaury
-// All rights reserved, except those granted by the governing license of this software. See 'license.txt' file in the project root for complete license information.
+// ==============================================================================
+// 
+//   Copyright (C) 2014-2020, GitHub/Codeplex user AlphaCentaury
+//   All rights reserved.
+// 
+//     See 'LICENSE.MD' file (or 'license.txt' if missing) in the project root
+//     for complete license information.
+// 
+//   http://www.alphacentaury.org/movistartv
+//   https://github.com/AlphaCentaury
+// 
+// ==============================================================================
 
 namespace IpTviewr.Internal.Tools.GuiTools
 {
@@ -32,26 +42,57 @@ namespace IpTviewr.Internal.Tools.GuiTools
         private void InitializeComponent()
         {
             this.groupBoxTools = new System.Windows.Forms.GroupBox();
+            this.radioIconBuilder = new System.Windows.Forms.RadioButton();
+            this.radioBinaryEditor = new System.Windows.Forms.RadioButton();
             this.radioDvbStpExplorer = new System.Windows.Forms.RadioButton();
             this.radioOpchExplorer = new System.Windows.Forms.RadioButton();
             this.radioMulticastExplorer = new System.Windows.Forms.RadioButton();
             this.radioSimpleDownload = new System.Windows.Forms.RadioButton();
+            this.radioRibbon = new System.Windows.Forms.RadioButton();
             this.buttonExecute = new System.Windows.Forms.Button();
+            this.radioRtf = new System.Windows.Forms.RadioButton();
             this.groupBoxTools.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBoxTools
             // 
+            this.groupBoxTools.Controls.Add(this.radioRtf);
+            this.groupBoxTools.Controls.Add(this.radioIconBuilder);
+            this.groupBoxTools.Controls.Add(this.radioBinaryEditor);
             this.groupBoxTools.Controls.Add(this.radioDvbStpExplorer);
             this.groupBoxTools.Controls.Add(this.radioOpchExplorer);
             this.groupBoxTools.Controls.Add(this.radioMulticastExplorer);
             this.groupBoxTools.Controls.Add(this.radioSimpleDownload);
+            this.groupBoxTools.Controls.Add(this.radioRibbon);
             this.groupBoxTools.Location = new System.Drawing.Point(12, 12);
             this.groupBoxTools.Name = "groupBoxTools";
             this.groupBoxTools.Size = new System.Drawing.Size(393, 207);
             this.groupBoxTools.TabIndex = 0;
             this.groupBoxTools.TabStop = false;
             this.groupBoxTools.Text = "Select tool";
+            // 
+            // radioIconBuilder
+            // 
+            this.radioIconBuilder.AutoSize = true;
+            this.radioIconBuilder.Location = new System.Drawing.Point(6, 135);
+            this.radioIconBuilder.Name = "radioIconBuilder";
+            this.radioIconBuilder.Size = new System.Drawing.Size(80, 17);
+            this.radioIconBuilder.TabIndex = 5;
+            this.radioIconBuilder.TabStop = true;
+            this.radioIconBuilder.Text = "Icon builder";
+            this.radioIconBuilder.UseVisualStyleBackColor = true;
+            // 
+            // radioBinaryEditor
+            // 
+            this.radioBinaryEditor.AutoSize = true;
+            this.radioBinaryEditor.Location = new System.Drawing.Point(6, 112);
+            this.radioBinaryEditor.Name = "radioBinaryEditor";
+            this.radioBinaryEditor.Size = new System.Drawing.Size(83, 17);
+            this.radioBinaryEditor.TabIndex = 4;
+            this.radioBinaryEditor.TabStop = true;
+            this.radioBinaryEditor.Text = "Binary editor";
+            this.radioBinaryEditor.UseVisualStyleBackColor = true;
+            this.radioBinaryEditor.CheckedChanged += new System.EventHandler(this.radioOption_CheckedChanged);
             // 
             // radioDvbStpExplorer
             // 
@@ -63,6 +104,7 @@ namespace IpTviewr.Internal.Tools.GuiTools
             this.radioDvbStpExplorer.TabStop = true;
             this.radioDvbStpExplorer.Text = "DVB-STP Stream Explorer";
             this.radioDvbStpExplorer.UseVisualStyleBackColor = true;
+            this.radioDvbStpExplorer.CheckedChanged += new System.EventHandler(this.radioOption_CheckedChanged);
             // 
             // radioOpchExplorer
             // 
@@ -74,6 +116,7 @@ namespace IpTviewr.Internal.Tools.GuiTools
             this.radioOpchExplorer.TabStop = true;
             this.radioOpchExplorer.Text = "OPCH Stream Explorer";
             this.radioOpchExplorer.UseVisualStyleBackColor = true;
+            this.radioOpchExplorer.CheckedChanged += new System.EventHandler(this.radioOption_CheckedChanged);
             // 
             // radioMulticastExplorer
             // 
@@ -85,6 +128,7 @@ namespace IpTviewr.Internal.Tools.GuiTools
             this.radioMulticastExplorer.TabStop = true;
             this.radioMulticastExplorer.Text = "Multicast Stream Explorer";
             this.radioMulticastExplorer.UseVisualStyleBackColor = true;
+            this.radioMulticastExplorer.CheckedChanged += new System.EventHandler(this.radioOption_CheckedChanged);
             // 
             // radioSimpleDownload
             // 
@@ -96,6 +140,18 @@ namespace IpTviewr.Internal.Tools.GuiTools
             this.radioSimpleDownload.TabStop = true;
             this.radioSimpleDownload.Text = "Simple DVB-STP Payload downloader";
             this.radioSimpleDownload.UseVisualStyleBackColor = true;
+            this.radioSimpleDownload.CheckedChanged += new System.EventHandler(this.radioOption_CheckedChanged);
+            // 
+            // radioRibbon
+            // 
+            this.radioRibbon.AutoSize = true;
+            this.radioRibbon.Location = new System.Drawing.Point(6, 184);
+            this.radioRibbon.Name = "radioRibbon";
+            this.radioRibbon.Size = new System.Drawing.Size(106, 17);
+            this.radioRibbon.TabIndex = 7;
+            this.radioRibbon.TabStop = true;
+            this.radioRibbon.Text = "Ribbon prototype";
+            this.radioRibbon.UseVisualStyleBackColor = true;
             // 
             // buttonExecute
             // 
@@ -106,6 +162,17 @@ namespace IpTviewr.Internal.Tools.GuiTools
             this.buttonExecute.Text = "Execute";
             this.buttonExecute.UseVisualStyleBackColor = true;
             this.buttonExecute.Click += new System.EventHandler(this.buttonExecute_Click);
+            // 
+            // radioRtf
+            // 
+            this.radioRtf.AutoSize = true;
+            this.radioRtf.Location = new System.Drawing.Point(6, 158);
+            this.radioRtf.Name = "radioRtf";
+            this.radioRtf.Size = new System.Drawing.Size(80, 17);
+            this.radioRtf.TabIndex = 6;
+            this.radioRtf.TabStop = true;
+            this.radioRtf.Text = "RTF viewer";
+            this.radioRtf.UseVisualStyleBackColor = true;
             // 
             // LaunchForm
             // 
@@ -132,5 +199,9 @@ namespace IpTviewr.Internal.Tools.GuiTools
         private System.Windows.Forms.RadioButton radioMulticastExplorer;
         private System.Windows.Forms.RadioButton radioOpchExplorer;
         private System.Windows.Forms.RadioButton radioDvbStpExplorer;
+        private System.Windows.Forms.RadioButton radioBinaryEditor;
+        private System.Windows.Forms.RadioButton radioIconBuilder;
+        private System.Windows.Forms.RadioButton radioRibbon;
+        private System.Windows.Forms.RadioButton radioRtf;
     }
 }

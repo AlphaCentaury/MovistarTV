@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>IpTviewr.Internal.Tools.GuiTools</RootNamespace>
     <AssemblyName>GuiTools</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SccProjectName>SAK</SccProjectName>
     <SccLocalPath>SAK</SccLocalPath>
@@ -42,6 +42,12 @@
     <ApplicationIcon>Resources\GuiTools.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ComponentFactory.Krypton.Ribbon">
+      <HintPath>..\..\Assemblies\Third-party\ComponentFactory\Krypton\v4.6.0.0\ComponentFactory.Krypton.Ribbon.dll</HintPath>
+    </Reference>
+    <Reference Include="ComponentFactory.Krypton.Toolkit">
+      <HintPath>..\..\Assemblies\Third-party\ComponentFactory\Krypton\v4.6.0.0\ComponentFactory.Krypton.Toolkit.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.ExceptionMessageBox, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\..\..\..\..\..\..\Program Files (x86)\Microsoft SQL Server\90\SDK\Assemblies\Microsoft.ExceptionMessageBox.dll</HintPath>
@@ -60,11 +66,23 @@
     <Compile Include="..\..\AssemblySolutionInfo.cs">
       <Link>Properties\AssemblySolutionInfo.cs</Link>
     </Compile>
+    <Compile Include="BinaryEditorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BinaryEditorForm.Designer.cs">
+      <DependentUpon>BinaryEditorForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="DvbStpStreamExplorerForm .cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="DvbStpStreamExplorerForm .Designer.cs">
       <DependentUpon>DvbStpStreamExplorerForm .cs</DependentUpon>
+    </Compile>
+    <Compile Include="IconBuilder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="IconBuilder.Designer.cs">
+      <DependentUpon>IconBuilder.cs</DependentUpon>
     </Compile>
     <Compile Include="OpchExplorerForm.cs">
       <SubType>Form</SubType>
@@ -87,14 +105,38 @@
     <Compile Include="MyApplication.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RibbonForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RibbonForm.Designer.cs">
+      <DependentUpon>RibbonForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RibbonResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RibbonResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="RtfViewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RtfViewer.Designer.cs">
+      <DependentUpon>RtfViewer.cs</DependentUpon>
+    </Compile>
     <Compile Include="SimpleDvbStpDownloadForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="SimpleDvbStpDownloadForm.Designer.cs">
       <DependentUpon>SimpleDvbStpDownloadForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="TasksQueue.cs" />
+    <EmbeddedResource Include="BinaryEditorForm.resx">
+      <DependentUpon>BinaryEditorForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DvbStpStreamExplorerForm .resx">
       <DependentUpon>DvbStpStreamExplorerForm .cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="IconBuilder.resx">
+      <DependentUpon>IconBuilder.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="OpchExplorerForm.resx">
       <DependentUpon>OpchExplorerForm.cs</DependentUpon>
@@ -115,10 +157,22 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="RibbonResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>RibbonResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RibbonForm.resx">
+      <DependentUpon>RibbonForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RtfViewer.resx">
+      <DependentUpon>RtfViewer.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SimpleDvbStpDownloadForm.resx">
       <DependentUpon>SimpleDvbStpDownloadForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />
+    <None Include="LICENSE.ES.MD" />
+    <None Include="LICENSE.MD" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -133,16 +187,24 @@
     <None Include="Resources\GuiTools.ico" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\DvbStpClient\DvbStpClient.csproj">
-      <Project>{8ad3c34b-a1d3-4385-a8a9-c429bd9a37d3}</Project>
+    <ProjectReference Include="..\..\Assemblies\DvbStpClient\DvbStpClient.csproj">
+      <Project>{8AD3C34B-A1D3-4385-A8A9-C429BD9A37D3}</Project>
       <Name>DvbStpClient</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\UiServices.Common\UiServices.Common.csproj">
+    <ProjectReference Include="..\..\Assemblies\Project.Common\IpTviewr.Common.csproj">
+      <Project>{8da15060-5a78-4f89-a9f1-7aa56b0d622c}</Project>
+      <Name>IpTviewr.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Assemblies\Project.Native\IpTviewr.Native.csproj">
+      <Project>{8986CD52-0C65-42D6-9C47-20FF47CF87BB}</Project>
+      <Name>IpTviewr.Native</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Assemblies\UiServices.Common\UiServices.Common.csproj">
       <Project>{76346905-ac2f-4f01-ba99-bbffbb2a6fe9}</Project>
       <Name>UiServices.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\UiServices.DvbStpClient\UiServices.DvbStpClient.csproj">
-      <Project>{ba481e42-f570-4d2c-94d4-21c4cce27762}</Project>
+    <ProjectReference Include="..\..\Assemblies\UiServices.DvbStpClient\UiServices.DvbStpClient.csproj">
+      <Project>{BA481E42-F570-4D2C-94D4-21C4CCE27762}</Project>
       <Name>UiServices.DvbStpClient</Name>
     </ProjectReference>
   </ItemGroup>
@@ -157,7 +219,35 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="License.txt" />
+    <Content Include="licensing.xml" />
+    <Content Include="Resources\Ribbon\CloseApp%4024.png" />
+    <Content Include="Resources\Ribbon\CloseApp%4032.png" />
+    <Content Include="Resources\Ribbon\CloseApp%4048.png" />
+    <Content Include="Resources\Ribbon\CloseApp%4064.png" />
+    <Content Include="Resources\Ribbon\CloseApp.svg" />
+    <Content Include="Resources\Ribbon\DvbProvider%4032.png" />
+    <Content Include="Resources\Ribbon\DvbProvider%4048.png" />
+    <Content Include="Resources\Ribbon\DvbProvider%4064.png" />
+    <Content Include="Resources\Ribbon\Property%4016.png" />
+    <Content Include="Resources\Ribbon\Property%4024.png" />
+    <Content Include="Resources\Ribbon\Property%4032.png" />
+    <Content Include="Resources\Ribbon\Property%4048.png" />
+    <Content Include="Resources\Ribbon\Property%4064.png" />
+    <Content Include="Resources\Ribbon\Property.svg" />
+    <Content Include="Resources\Ribbon\PropertyGrey.svg" />
+    <Content Include="Resources\Ribbon\Refresh%4016.png" />
+    <Content Include="Resources\Ribbon\Refresh%4024.png" />
+    <Content Include="Resources\Ribbon\Refresh%4032.png" />
+    <Content Include="Resources\Ribbon\Refresh%4048.png" />
+    <Content Include="Resources\Ribbon\Refresh%4064.png" />
+    <Content Include="Resources\Ribbon\Refresh.svg" />
+    <Content Include="Resources\Ribbon\SelectList%4024.png" />
+    <Content Include="Resources\Ribbon\SelectList%4032.png" />
+    <Content Include="Resources\Ribbon\SelectList%4048.png" />
+    <Content Include="Resources\Ribbon\SelectList%4064.png" />
+    <Content Include="Resources\Ribbon\SelectList.svg" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

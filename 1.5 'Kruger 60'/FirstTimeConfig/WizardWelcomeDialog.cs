@@ -1,15 +1,23 @@
-﻿// Copyright (C) 2014-2016, Codeplex/GitHub user AlphaCentaury
-// All rights reserved, except those granted by the governing license of this software. See 'license.txt' file in the project root for complete license information.
+// ==============================================================================
+// 
+//   Copyright (C) 2014-2020, GitHub/Codeplex user AlphaCentaury
+//   All rights reserved.
+// 
+//     See 'LICENSE.MD' file (or 'license.txt' if missing) in the project root
+//     for complete license information.
+// 
+//   http://www.alphacentaury.org/movistartv
+//   https://github.com/AlphaCentaury
+// 
+// ==============================================================================
 
-using IpTviewr.Common.Telemetry;
 using IpTviewr.UiServices.Common.Forms;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
+using IpTviewr.Common.Telemetry;
+using IpTviewr.Telemetry;
+using IpTviewr.Tools.FirstTimeConfig.Properties;
 
 namespace IpTviewr.Tools.FirstTimeConfig
 {
@@ -18,7 +26,7 @@ namespace IpTviewr.Tools.FirstTimeConfig
         public WizardWelcomeDialog()
         {
             InitializeComponent();
-            this.Icon = Properties.Resources.FirstTimeConfigIcon;
+            Icon = Resources.FirstTimeConfigIcon;
 #if DEBUG
             checkAnalytics.Checked = false;
             checkAnalytics.Enabled = false;
@@ -27,8 +35,8 @@ namespace IpTviewr.Tools.FirstTimeConfig
 
         private void WizardWelcomeDialog_Load(object sender, EventArgs e)
         {
-            labelWelcomeTitle.Text = string.Format(labelWelcomeTitle.Text, Properties.Texts.ProductShortName);
-            labelWelcomeText.Text = string.Format(labelWelcomeText.Text, Properties.Texts.ProductFullName);
+            labelWelcomeTitle.Text = string.Format(labelWelcomeTitle.Text, Texts.ProductShortName);
+            labelWelcomeText.Text = string.Format(labelWelcomeText.Text, Texts.ProductFullName);
         } // WizardWelcomeDialog_Load
 
         private void WizardWelcomeDialog_Shown(object sender, EventArgs e)
@@ -40,7 +48,38 @@ namespace IpTviewr.Tools.FirstTimeConfig
 
         private void linkAnalyticsHelp_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            HelpDialog.ShowRtfHelp(this, Properties.Texts.GoogleTelemetry, Properties.Texts.TelemetryHelpCaption);
+            HelpDialog.ShowRtfHelp(this, Texts.AppTelemetryHelp, Texts.TelemetryHelpCaption);
         } // linkAnalyticsHelp_LinkClicked
+
+        private void buttonNext_Click(object sender, EventArgs e)
+        {
+            if (!checkAnalytics.Checked) return;
+
+            // create Google Analytics client ID
+            if (string.IsNullOrEmpty(Settings.Default.Telemetry_GoogleAnalyticsClientId))
+            {
+                Settings.Default.Telemetry_GoogleAnalyticsClientId = Guid.NewGuid().ToString("D");
+                Settings.Default.Save();
+            } // if
+
+            var telemetryConfiguration = new TelemetryConfiguration(checkAnalytics.Checked, true, true);
+            AppTelemetry.Start(new TelemetryFactory(), telemetryConfiguration, new Dictionary<string, IReadOnlyDictionary<string, string>>
+            {
+                {
+                    "IpTviewr.Telemetry.VsAppCenter", new Dictionary<string, string>
+                    {
+                        {"AppSecret", Resources.TelemetryAppCenter_AppSecret}
+                    }
+
+                },
+                {
+                    "IpTviewr.Telemetry.GoogleAnalytics", new Dictionary<string, string>
+                    {
+                        {"TrackingId", Resources.TelemetryGoogleAnalytics_TrackingId},
+                        {"ClientId", Settings.Default.Telemetry_GoogleAnalyticsClientId}
+                    }
+                }
+            });
+        } // buttonNext_Click
     } // class WizardWelcomeDialog
 } // namespace

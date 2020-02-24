@@ -1,35 +1,46 @@
-﻿using Etsi.Ts102034.v010501.XmlSerialization;
-using Etsi.Ts102034.v010501.XmlSerialization.BroadcastDiscovery;
+// ==============================================================================
+// 
+//   Copyright (C) 2014-2020, GitHub/Codeplex user AlphaCentaury
+//   All rights reserved.
+// 
+//     See 'LICENSE.MD' file (or 'license.txt' if missing) in the project root
+//     for complete license information.
+// 
+//   http://www.alphacentaury.org/movistartv
+//   https://github.com/AlphaCentaury
+// 
+// ==============================================================================
+
 using Etsi.Ts102034.v010501.XmlSerialization.PackageDiscovery;
 using IpTviewr.UiServices.Configuration;
 using IpTviewr.UiServices.Configuration.Logos;
 using IpTviewr.UiServices.Discovery;
-using IpTviewr.UiServices.DvbStpClient;
 using IpTviewr.UiServices.Forms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Net;
-using System.Text;
-using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
+using IpTviewr.Common;
+using IpTviewr.Internal.Tools.UiFramework;
 
 namespace IpTviewr.Internal.Tools.ChannelLogos
 {
-    public partial class FormLogos : Form
+    public partial class FormLogos : MdiRibbonChildForm
     {
-        UiServiceProvider SelectedServiceProvider;
-        UiBroadcastDiscovery BroadcastDiscovery;
-        LogoSize LogoSize;
-        Size DefaultTileSize;
-        ImageList ImgListLocalLogos;
-        ImageList ImgListWebLogos;
-        bool LocalLogos;
-        bool WebLogos;
-        int eventHandling;
+        private UiServiceProvider _selectedServiceProvider;
+        private UiBroadcastDiscovery _broadcastDiscovery;
+        private LogoSize _logoSize;
+        private Size _defaultTileSize;
+        private ImageList _imgListLocalLogos;
+        private ImageList _imgListWebLogos;
+        private int _eventHandling;
+        private int _selectedOrder;
+        private WebClientEx _webClient;
 
         public FormLogos()
         {
@@ -39,18 +50,40 @@ namespace IpTviewr.Internal.Tools.ChannelLogos
 
         private void DoDispose(bool disposing)
         {
-            if (ImgListLocalLogos != null) ImgListLocalLogos.Dispose();
-            if (ImgListWebLogos != null) ImgListWebLogos.Dispose();
+            if (!disposing) return;
+
+            _imgListLocalLogos?.Dispose();
+            _imgListWebLogos?.Dispose();
+            _webClient?.Dispose();
         } // DoDispose
 
-        private void FormLogos_Load(object sender, EventArgs e)
+        protected override void OnLoad(EventArgs e)
         {
-            splitContainer1.Enabled = false;
-            comboLogoSize.SelectedIndex = (int)LogoSize.Size96;
-            checkHighDefPriority.Checked = !AppUiConfiguration.Current.User.ChannelNumberStandardDefinitionPriority;
-        } // FormLogo_Load
+            base.OnLoad(e);
 
-        private void buttonLoad_Click(object sender, EventArgs e)
+            if (AppConfig.Current == null)
+            {
+                RibbonMdiForm.SetStatusText("Loading configuration...");
+                var result = AppConfig.Load(null, RibbonMdiForm.SetStatusText);
+                if (result.IsError)
+                {
+                    BaseProgram.HandleException(this, result.Caption, result.Message, result.InnerException);
+                    return;
+                } // if
+                RibbonMdiForm.SetStatusText("Configuration loaded");
+            } // if
+
+            splitContainer1.Enabled = false;
+            checkHighDefPriority.Checked = !AppConfig.Current.User.ChannelNumberStandardDefinitionPriority;
+            comboLogoSize.DisplayMember = "Value";
+            comboLogoSize.ValueMember = "Key";
+            comboLogoSize.DataSource = BaseLogo.GetListLogoSizes(true);
+            comboLogoSize.SelectedIndex = 2;
+            comboTheme.SelectedIndex = 0;
+            comboBoxOrderBy.SelectedIndex = 0;
+        } // OnLoad
+
+        private async void buttonLoad_Click(object sender, EventArgs e)
         {
             LoadDisplayProgress("Getting provider data");
             if (!SelectProvider()) return;
@@ -64,48 +97,78 @@ namespace IpTviewr.Internal.Tools.ChannelLogos
 
             LoadDisplayProgress("Creating list");
             InitList();
-            FillList();
 
             LoadDisplayProgress("Loading logos");
-            LoadLocalLogos();
-            if (checkWebLogos.Checked)
-            {
-                LoadWebLogos();
-            }
-            else
-            {
-                WebLogos = true;
-            } // if
+            var loadLocal = LoadLocalLogos();
+            var loadWeb = checkWebLogos.Checked ? LoadWebLogos() : Task.CompletedTask;
+
+            await Task.WhenAll(loadLocal, loadWeb);
+
+            LoadDisplayProgress("Ready");
 
             splitContainer1.Enabled = true;
         } // buttonLoad_Click
 
         private void comboLogoSize_SelectedIndexChanged(object sender, EventArgs e)
         {
-            LogoSize = (LogoSize)comboLogoSize.SelectedIndex;
+            _logoSize = (LogoSize)comboLogoSize.SelectedValue;
         } // comboLogoSize_SelectedIndexChanged
+
+        private void comboBoxOrderBy_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            _selectedOrder = comboBoxOrderBy.SelectedIndex;
+            if (listViewLocalLogos.Items.Count == 0) return;
+
+            RefillList();
+        } // comboBoxOrderBy_SelectedIndexChanged
 
         private void checkFromCache_CheckedChanged(object sender, EventArgs e)
         {
             checkHighDefPriority.Enabled = !checkFromCache.Checked;
         } // checkFromCache_CheckedChanged
 
+        private void ComboTheme_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Color back, fore;
+
+            switch (comboTheme.SelectedIndex)
+            {
+                case 1:
+                    back = Color.FromArgb(0x16, 0x16, 0x16);
+                    fore = Color.White;
+                    break;
+                case 2:
+                    back = Color.FromArgb(0xF0, 0xF0, 0xF0);
+                    fore = Color.FromArgb(0x16, 0x16, 0x16);
+                    break;
+                default:
+                    back = SystemColors.Window;
+                    fore = SystemColors.WindowText;
+                    break;
+            } // switch
+
+            listViewLocalLogos.BackColor = back;
+            listViewLocalLogos.ForeColor = fore;
+            listViewWebLogos.BackColor = back;
+            listViewWebLogos.ForeColor = fore;
+        } // ComboTheme_SelectedIndexChanged
+
         private void listViewLocalLogos_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (eventHandling > 0) return;
+            if (_eventHandling > 0) return;
 
-            eventHandling++;
+            _eventHandling++;
             SyncTopItem(listViewLocalLogos, listViewWebLogos);
-            eventHandling--;
+            _eventHandling--;
         } // listViewLocalLogos_SelectedIndexChanged
 
         private void listViewWebLogos_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (eventHandling > 0) return;
+            if (_eventHandling > 0) return;
 
-            eventHandling++;
+            _eventHandling++;
             SyncTopItem(listViewWebLogos, listViewLocalLogos);
-            eventHandling--;
+            _eventHandling--;
         } // listViewWebLogos_SelectedIndexChanged
 
         private void buttonSelectServiceProvider_Click(object sender, EventArgs e)
@@ -113,19 +176,14 @@ namespace IpTviewr.Internal.Tools.ChannelLogos
             SelectProvider(false);
         } // buttonSelectServiceProvider_Click
 
-        private void SyncTopItem(ListView listSource, ListView listDest)
+        private static void SyncTopItem(ListView listSource, ListView listDest)
         {
             if (listSource.SelectedIndices.Count == 0) return;
 
-            //var sourceTopItem = listSource.TopItem;
-            //var topIndex = sourceTopItem.Index;
-            //var topItem = listDest.Items[topIndex];
             var index = listSource.SelectedIndices[0];
             var destItem = listDest.Items[index];
 
             destItem.EnsureVisible();
-            //topItem.EnsureVisible();
-            //listDest.TopItem = topItem;
 
             if (listSource.SelectedItems.Count > 0)
             {
@@ -134,6 +192,7 @@ namespace IpTviewr.Internal.Tools.ChannelLogos
                     selectedItem.Selected = false;
                 } // foreach
             } // if
+
             destItem.Selected = true;
         } // SyncTopItem
 
@@ -145,16 +204,16 @@ namespace IpTviewr.Internal.Tools.ChannelLogos
 
         private bool SelectProvider(bool useSelected = true)
         {
-            if ((SelectedServiceProvider != null) && (useSelected)) return true;
+            if ((_selectedServiceProvider != null) && (useSelected)) return true;
 
             using (var dialog = new SelectProviderDialog())
             {
-                dialog.SelectedServiceProvider = SelectedServiceProvider;
+                dialog.SelectedServiceProvider = _selectedServiceProvider;
                 var result = dialog.ShowDialog(this);
                 if (result != DialogResult.OK) return false;
 
-                SelectedServiceProvider = dialog.SelectedServiceProvider;
-                labelServiceProvider.Text = SelectedServiceProvider.DisplayName;
+                _selectedServiceProvider = dialog.SelectedServiceProvider;
+                labelServiceProvider.Text = _selectedServiceProvider.DisplayName;
             } // using dialog
 
             return true;
@@ -163,10 +222,10 @@ namespace IpTviewr.Internal.Tools.ChannelLogos
         private bool LoadBroadcastDiscovery()
         {
             var downloader = new UiBroadcastDiscoveryDownloader();
-            var uiDiscovery = downloader.Download(this, SelectedServiceProvider, BroadcastDiscovery, checkFromCache.Checked, checkHighDefPriority.Checked);
-            if (uiDiscovery == null) return false;
+            var downloaded = downloader.Download(this, _selectedServiceProvider, _broadcastDiscovery, checkFromCache.Checked, checkHighDefPriority.Checked);
+            if (!downloaded) return false;
 
-            BroadcastDiscovery = uiDiscovery;
+            _broadcastDiscovery = downloader.BroadcastDiscovery;
             return true;
         } // LoadBroadcastDiscovery
 
@@ -174,7 +233,7 @@ namespace IpTviewr.Internal.Tools.ChannelLogos
         {
             DumpPackagesInfo(uiDiscovery, packageDiscovery);
 
-            UiServicesLogicalNumbers.AssignLogicalNumbers(uiDiscovery, packageDiscovery, SelectedServiceProvider.DomainName, highDefinitionPriority);
+            UiServicesLogicalNumbers.AssignLogicalNumbers(uiDiscovery, packageDiscovery, _selectedServiceProvider.DomainName, highDefinitionPriority);
         }  // GetLogicalNumbers
 
         private void DumpPackagesInfo(UiBroadcastDiscovery uiDiscovery, PackageDiscoveryRoot packageDiscovery)
@@ -185,15 +244,16 @@ namespace IpTviewr.Internal.Tools.ChannelLogos
                 data.Add(service, new List<KeyValuePair<string, string>>());
             } // foreach
 
-            var packages = from discovery in packageDiscovery.PackageDiscovery
-                           from package in discovery.Packages
-                           select package;
+            var q = from discovery in packageDiscovery.PackageDiscovery
+                    from package in discovery.Packages
+                    select package;
+            var packages = q.ToList();
 
             foreach (var package in packages)
             {
                 foreach (var service in package.Services)
                 {
-                    var fullName = service.TextualIdentifiers[0].ServiceName + "@" + SelectedServiceProvider.DomainName;
+                    var fullName = service.TextualIdentifiers[0].ServiceName + "@" + _selectedServiceProvider.DomainName;
                     var refService = uiDiscovery.TryGetService(fullName);
                     if (refService == null) continue;
 
@@ -201,8 +261,8 @@ namespace IpTviewr.Internal.Tools.ChannelLogos
                 } // foreach service
             } // foreach package
 
-            var filename = string.Format("{0}\\channels-numbers.csv", AppUiConfiguration.Current.Folders.Cache);
-            using (var file = new System.IO.StreamWriter(filename))
+            var filename = $"{AppConfig.Current.Folders.Cache}\\channels-numbers.csv";
+            using (var file = new StreamWriter(filename))
             {
                 foreach (var entry in data)
                 {
@@ -220,11 +280,10 @@ namespace IpTviewr.Internal.Tools.ChannelLogos
             {
                 foreach (var service in package.Services)
                 {
-                    var fullName = service.TextualIdentifiers[0].ServiceName + "@" + SelectedServiceProvider.DomainName;
+                    var fullName = service.TextualIdentifiers[0].ServiceName + "@" + _selectedServiceProvider.DomainName;
                     var refService = uiDiscovery.TryGetService(fullName);
-                    IList<UiBroadcastService> list;
 
-                    if (!numbers.TryGetValue(service.LogicalChannelNumber, out list))
+                    if (!numbers.TryGetValue(service.LogicalChannelNumber, out var list))
                     {
                         list = new List<UiBroadcastService>();
                         numbers.Add(service.LogicalChannelNumber, list);
@@ -234,8 +293,8 @@ namespace IpTviewr.Internal.Tools.ChannelLogos
                 } // foreach service
             } // foreach package
 
-            filename = string.Format("{0}\\numbers-channels.csv", AppUiConfiguration.Current.Folders.Cache);
-            using (var file = new System.IO.StreamWriter(filename))
+            filename = $"{AppConfig.Current.Folders.Cache}\\numbers-channels.csv";
+            using (var file = new StreamWriter(filename))
             {
                 file.WriteLine("\"Logical\";");
                 foreach (var entry in numbers)
@@ -247,194 +306,166 @@ namespace IpTviewr.Internal.Tools.ChannelLogos
                             channel.IsHighDefinitionTv ? "HD" : null,
                             (channel.ReplacementService != null) ? "~HD" : null,
                             channel.ServiceName,
-                            (channel.ReplacementService == null) ? null : channel.ReplacementService.ServiceName,
+                            channel.ReplacementService?.ServiceName,
                             channel.ServiceType);
                     } // foreach channel
                 } // foreach entry
             } // using file
         } // DumpPackagesInfo
 
-        void InitList()
+        private void InitList()
+        {
+            listViewLocalLogos.BeginUpdate();
+            listViewWebLogos.BeginUpdate();
+
+            _imgListLocalLogos?.Dispose();
+            _imgListWebLogos?.Dispose();
+            if (_defaultTileSize.IsEmpty) _defaultTileSize = listViewLocalLogos.TileSize;
+
+            var size = BaseLogo.LogoSizeToSize(_logoSize);
+            _imgListLocalLogos?.Dispose();
+            _imgListWebLogos?.Dispose();
+            _imgListLocalLogos = new ImageList();
+            _imgListWebLogos = new ImageList();
+
+            _imgListLocalLogos.ImageSize = size;
+            _imgListLocalLogos.ColorDepth = ColorDepth.Depth32Bit;
+            _imgListWebLogos.ImageSize = size;
+            _imgListWebLogos.ColorDepth = ColorDepth.Depth32Bit;
+
+            listViewLocalLogos.SmallImageList = _imgListLocalLogos;
+            listViewLocalLogos.LargeImageList = _imgListLocalLogos;
+            listViewWebLogos.SmallImageList = _imgListWebLogos;
+            listViewWebLogos.LargeImageList = _imgListWebLogos;
+
+            var tileSize = new Size(_defaultTileSize.Width - _defaultTileSize.Height + size.Width, size.Height);
+            listViewLocalLogos.TileSize = tileSize;
+            listViewWebLogos.TileSize = tileSize;
+
+            FillList();
+
+            listViewLocalLogos.EndUpdate();
+            listViewWebLogos.EndUpdate();
+        } // InitList
+
+        private void FillList()
         {
             listViewLocalLogos.Items.Clear();
             listViewWebLogos.Items.Clear();
 
-            if (ImgListLocalLogos != null) ImgListLocalLogos.Dispose();
-            if (ImgListWebLogos != null) ImgListWebLogos.Dispose();
-            if (DefaultTileSize.IsEmpty) DefaultTileSize = listViewLocalLogos.TileSize;
-
-            var size = BaseLogo.LogoSizeToSize(LogoSize);
-            ImgListLocalLogos = new ImageList();
-            ImgListWebLogos = new ImageList();
-
-            ImgListLocalLogos.ImageSize = size;
-            ImgListLocalLogos.ColorDepth = ColorDepth.Depth32Bit;
-            ImgListWebLogos.ImageSize = size;
-            ImgListWebLogos.ColorDepth = ColorDepth.Depth32Bit;
-
-            listViewLocalLogos.SmallImageList = ImgListLocalLogos;
-            listViewLocalLogos.LargeImageList = ImgListLocalLogos;
-            listViewWebLogos.SmallImageList = ImgListWebLogos;
-            listViewWebLogos.LargeImageList = ImgListWebLogos;
-
-            var tileSize = new Size(DefaultTileSize.Width - DefaultTileSize.Height + size.Width,
-                size.Height);
-            listViewLocalLogos.TileSize = tileSize;
-            listViewWebLogos.TileSize = tileSize;
-        } // InitList
-
-        void FillList()
-        {
-            var q = from service in BroadcastDiscovery.Services
-                    orderby service.DisplayLogicalNumber
-                    select service;
-
-            foreach (var service in q)
+            foreach (var service in GetSortedServices())
             {
-                var display = string.Format("{0} {1} ({2})", service.DisplayLogicalNumber, service.DisplayName, service.ServiceName);
+                var display = $"{service.DisplayLogicalNumber} {service.DisplayName} ({service.ServiceName})";
                 listViewLocalLogos.Items.Add(display, service.Logo.Key);
-                listViewWebLogos.Items.Add(display, "movistar+::" + service.ServiceName);
+                listViewWebLogos.Items.Add(display, service.Logo.Key);
             } // foreach
         } // FillList
 
-        private void LoadLocalLogos()
+        private void RefillList()
         {
-            BackgroundWorker worker = new BackgroundWorker();
-            worker.WorkerReportsProgress = true;
-            worker.WorkerSupportsCancellation = false;
-            worker.ProgressChanged += LocalWorker_ProgressChanged;
-            worker.DoWork += LocalWorker_DoWork;
-            worker.RunWorkerCompleted += LocalWorker_RunWorkerCompleted;
-            worker.RunWorkerAsync();
+            listViewLocalLogos.BeginUpdate();
+            listViewWebLogos.BeginUpdate();
+
+            FillList();
+
+            listViewLocalLogos.EndUpdate();
+            listViewWebLogos.EndUpdate();
+        } // RefillList
+
+        IEnumerable<UiBroadcastService> GetSortedServices()
+        {
+            var services = _broadcastDiscovery.Services;
+            return _selectedOrder switch
+            {
+                0 => services.OrderBy(s => s.DisplayLogicalNumber),
+                1 => services.OrderBy(s => s.DisplayName),
+                2 => services.OrderBy(s => int.TryParse(s.ServiceName, out var number) ? number : -s.ServiceName.Length),
+                _ => Enumerable.Empty<UiBroadcastService>()
+            };
+        } // GetSortedServices
+
+        private Task LoadLocalLogos()
+        {
+            return Task.Run(() => LoadLogos(LoadLocalLogo, _imgListLocalLogos, progressLocal));
         } // LoadLocalLogos
 
-        private void LocalWorker_DoWork(object sender, DoWorkEventArgs e)
+        private Task LoadWebLogos()
         {
-            var q = from service in BroadcastDiscovery.Services
-                    orderby service.DisplayLogicalNumber
-                    select service;
-
-            var list = new List<KeyValuePair<string, Image>>(10);
-            var count = 0;
-            foreach (var service in q)
+            return Task.Run(() =>
             {
-                var logo = service.Logo;
-                var image = logo.GetImage(LogoSize, true);
+                var cookies = new CookieContainer();
+                _webClient = new WebClientEx(cookies);
 
-                list.Add(new KeyValuePair<string, Image>(logo.Key, image));
-                count++;
+                LoadLogos(LoadWebLogo, _imgListWebLogos, progressWeb);
 
-                if (count % 10 == 0)
-                {
-                    (sender as BackgroundWorker).ReportProgress((count * 100) / BroadcastDiscovery.Services.Count, list);
-                    list = new List<KeyValuePair<string, Image>>(10);
-                } // if
-            } // foreach
-
-            (sender as BackgroundWorker).ReportProgress((count * 100) / BroadcastDiscovery.Services.Count, list);
-        } // LocalWorker_DoWork
-
-        private void LocalWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
-        {
-            var list = e.UserState as List<KeyValuePair<string, Image>>;
-
-            foreach (var data in list)
-            {
-                ImgListLocalLogos.Images.Add(data.Key, data.Value);
-                data.Value.Dispose();
-            } // foreach
-
-            progressLocal.Value = e.ProgressPercentage;
-        } // LocalWorker_ProgressChanged
-
-        private void LocalWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-        {
-            LocalLogos = true;
-            if (LocalLogos && WebLogos)
-            {
-                LoadDisplayProgress("Ready");
-            } // if
-        } // LocalWorker_RunWorkerCompleted
-
-        void LoadWebLogos()
-        {
-            BackgroundWorker worker = new BackgroundWorker();
-            worker.WorkerReportsProgress = true;
-            worker.WorkerSupportsCancellation = false;
-            worker.ProgressChanged += WebWorker_ProgressChanged;
-            worker.DoWork += WebWorker_DoWork;
-            worker.RunWorkerCompleted += WebWorker_RunWorkerCompleted;
-            worker.RunWorkerAsync();
-
-            WebLogos = true;
-            if (LocalLogos && WebLogos)
-            {
-                LoadDisplayProgress("Ready");
-            } // if
+                _webClient.Dispose();
+                _webClient = null;
+            });
         } // LoadWebLogos
 
-        private void WebWorker_DoWork(object sender, DoWorkEventArgs e)
+        private Image LoadLocalLogo(UiBroadcastService service)
         {
-            CookieContainer cookies;
-            WebClientEx client;
+            return service.Logo.GetImage(_logoSize);
+        } // LoadLocalLogo
 
-            cookies = new CookieContainer();
-            client = new WebClientEx(cookies);
+        private Image LoadWebLogo(UiBroadcastService service)
+        {
+            try
+            {
+                var data = _webClient.DownloadData(
+                    $"http://172.26.22.23:2001/appclientv/nux/incoming/epg/channelLogo//80x80/{service.ServiceName}.jpg");
 
+                using var memory = new MemoryStream(data, false);
+                return new Bitmap(memory);
+            }
+            catch
+            {
+                return BaseLogo.GetBrokenFile(_logoSize);
+                // ignore
+            } // try-catch
+        } // LoadWebLogo
 
-            var q = from service in BroadcastDiscovery.Services
-                    orderby service.DisplayLogicalNumber
-                    select service;
-
+        private void LoadLogos(Func<UiBroadcastService, Image> imageLoader, ImageList imageList, ToolStripProgressBar progressBar)
+        {
             var list = new List<KeyValuePair<string, Image>>(10);
             var count = 0;
-            foreach (var service in q)
+            foreach (var service in GetSortedServices())
             {
-                try
-                {
-                    count++;
-                    var data = client.DownloadData(string.Format("http://www-60.svc.imagenio.telefonica.net:2001/incoming/epg/MAY_1/channelLogo/NUX/{0}.jpg", service.ServiceName));
-                    using (var memory = new System.IO.MemoryStream(data, false))
-                    {
-                        var img = new Bitmap(memory);
-                        list.Add(new KeyValuePair<string, Image>("movistar+::" + service.ServiceName, img));
-                    } // using memory
-                }
-                catch
-                {
-                    // ignore
-                }
+                var image = imageLoader(service);
+                list.Add(new KeyValuePair<string, Image>(service.Logo.Key, image));
+                count++;
 
-                if (count % 10 == 0)
-                {
-                    (sender as BackgroundWorker).ReportProgress((count * 100) / BroadcastDiscovery.Services.Count, list);
-                    list = new List<KeyValuePair<string, Image>>(10);
-                } // if
+                if (count % 10 != 0) continue;
+
+                var listImages = list;
+                var progress = (count * 100) / _broadcastDiscovery.Services.Count;
+                Invoke(new Action(() => LoadLogosProgress(imageList, progressBar, listImages, progress)));
+                list = new List<KeyValuePair<string, Image>>(10);
             } // foreach
 
-            (sender as BackgroundWorker).ReportProgress((count * 100) / BroadcastDiscovery.Services.Count, list);
-        } // WebWorker_DoWork
+            Invoke(new Action(() => LoadLogosProgress(imageList, progressBar, list, (count * 100) / _broadcastDiscovery.Services.Count)));
+        } // LoadLogos
 
-        private void WebWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        private void LoadLogosProgress(ImageList imageList, ToolStripProgressBar progressBar, List<KeyValuePair<string, Image>> list, int progressPercentage)
         {
-            var list = e.UserState as List<KeyValuePair<string, Image>>;
-
             foreach (var data in list)
             {
-                ImgListWebLogos.Images.Add(data.Key, data.Value);
+                imageList.Images.Add(data.Key, data.Value);
                 data.Value.Dispose();
             } // foreach
 
-            progressWeb.Value = e.ProgressPercentage;
-        } // WebWorker_ProgressChanged
+            listViewLocalLogos.Refresh();
+            // Application.DoEvents();
 
-        private void WebWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-        {
-            WebLogos = true;
-            if (LocalLogos && WebLogos)
-            {
-                LoadDisplayProgress("Ready");
-            } // if
-        } // WebWorker_RunWorkerCompleted
+            progressBar.Value = progressPercentage;
+            statusStrip1.Refresh();
+        } // LoadLogosProgress
+
+        #region Implementation of IRibbonMdiChild
+
+        public override Guid TypeGuid => Guid.Parse(LogosTool.ToolGuid);
+
+        #endregion
+
     } // class FormLogos
 } // namespace

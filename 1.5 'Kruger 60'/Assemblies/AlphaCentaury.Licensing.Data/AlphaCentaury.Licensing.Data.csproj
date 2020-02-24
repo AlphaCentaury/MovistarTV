@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{42B71DB3-2E34-43BB-BF87-88F422BCF861}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AlphaCentaury.Licensing.Data</RootNamespace>
+    <AssemblyName>AlphaCentaury.Licensing.Data</AssemblyName>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <LangVersion>8.0</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <LangVersion>8.0</LangVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="JetBrains.Annotations, Version=2019.1.3.0, Culture=neutral, PublicKeyToken=1010a0d8d6380325, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JetBrains.Annotations.2019.1.3\lib\net20\JetBrains.Annotations.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\..\AssemblySolutionInfo.cs">
+      <Link>Properties\AssemblySolutionInfo.cs</Link>
+    </Compile>
+    <Compile Include="DependencyLibraryNameComparer.cs" />
+    <Compile Include="ICloneable.cs" />
+    <Compile Include="Serialization\LicensedSolution.cs" />
+    <Compile Include="LicensingDataExtensions.cs" />
+    <Compile Include="LicensingDataTools.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="GetLicensingUsage.cs" />
+    <Compile Include="Serialization\LicensedComponent.cs" />
+    <Compile Include="Serialization\LicensedComponentDependency.cs" />
+    <Compile Include="Serialization\LicensedDependencyType.cs" />
+    <Compile Include="Serialization\LicensedInstaller.cs" />
+    <Compile Include="Serialization\LicensingDependencies.cs" />
+    <Compile Include="Serialization\LibraryDependency.cs" />
+    <Compile Include="Serialization\License.cs" />
+    <Compile Include="Serialization\LicensedItemType.cs" />
+    <Compile Include="Serialization\LicensedLibrary.cs" />
+    <Compile Include="Serialization\LicensedProgram.cs" />
+    <Compile Include="Serialization\LicenseUsage.cs" />
+    <Compile Include="Serialization\LicensesPool.cs" />
+    <Compile Include="Serialization\LicenseAppliesTo.cs" />
+    <Compile Include="Serialization\LicensingDefaults.cs" />
+    <Compile Include="Serialization\LicensingData.cs" />
+    <Compile Include="Serialization\LicensedItem.cs" />
+    <Compile Include="Serialization\FormattedMultilineText.cs" />
+    <Compile Include="Serialization\LicensingThirdPartyPool.cs" />
+    <Compile Include="Serialization\LicensingUsage.cs" />
+    <Compile Include="Serialization\TermsAndConditions.cs" />
+    <Compile Include="Serialization\ThirdPartyDependencyType.cs" />
+    <Compile Include="Serialization\ThirdPartyDependency.cs" />
+    <Compile Include="ThirdPartyDependencyNameComparer.cs" />
+    <Compile Include="ExpandDependencies.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="LICENSE.ES.MD" />
+    <None Include="LICENSE.MD" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="license.txt" />
+    <Content Include="licensing.xml" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

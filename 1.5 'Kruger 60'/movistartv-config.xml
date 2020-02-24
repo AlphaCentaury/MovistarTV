@@ -1,5 +1,19 @@
 <?xml version="1.0"?>
-<IpTvProvider xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://movistartv.codeplex.com/schema/2015:Configuration:ContentProvider">
+<!--
+==============================================================================
+
+  Copyright (C) 2014-2020, GitHub/Codeplex user AlphaCentaury
+  All rights reserved.
+
+    See 'LICENSE.MD' file (or 'license.txt' if missing) in the project root
+    for complete license information.
+
+  http://www.alphacentaury.org/movistartv
+  https://github.com/AlphaCentaury
+
+==============================================================================
+-->
+<IpTvProvider xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://movistartv.alphacentaury.org/schema/2019:Configuration:ContentProvider">
   <Identification id="MovistarTV">
     <Localized culture="es">
       <Name>movistar+</Name>

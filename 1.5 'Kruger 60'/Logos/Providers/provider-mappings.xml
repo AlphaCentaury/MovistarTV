@@ -1,29 +1,40 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (C) 2014-2016, Codeplex/GitHub user AlphaCentaury
-All rights reserved, except those granted by the governing license of this software. See 'license.txt' file in the project root for complete license information.
+==============================================================================
+
+  Copyright (C) 2014-2020, GitHub/Codeplex user AlphaCentaury
+  All rights reserved.
+
+    See 'LICENSE.MD' file (or 'license.txt' if missing) in the project root
+    for complete license information.
+
+  http://www.alphacentaury.org/movistartv
+  https://github.com/AlphaCentaury
+
+==============================================================================
 -->
-<Logos-Providers xmlns="http://movistartv.codeplex.com/schema/2015:Configuration:Mappings">
-  <Package name="&lt;default&gt;">
+<Logos-Providers xmlns="http://movistartv.alphacentaury.org/schema/2019:Configuration:Mappings">
+  <Collection name="&lt;default&gt;" package="(default)">
     <Mapping domainName="DVB-IPTV" logo="DVB-IPTV" />
-  </Package>
-  <Package name="movistarTV">
-    <Mapping domainName="DEM_1.imagenio.es" annotation="Cataluña" logo="movistarTV-Cataluna" />
-    <Mapping domainName="DEM_4.imagenio.es" annotation="Castilla y León" logo="movistarTV-Leon" />
-    <Mapping domainName="DEM_6.imagenio.es" annotation="Valencia" logo="movistarTV-Valencia" />
-    <Mapping domainName="DEM_10.imagenio.es" annotation="Baleares" logo="movistarTV-Baleares" />
-    <Mapping domainName="DEM_12.imagenio.es" annotation="Murcia" logo="movistarTV-Murcia" />
-    <Mapping domainName="DEM_13.imagenio.es" annotation="Asturias" logo="movistarTV-Asturias" />
-    <Mapping domainName="DEM_15.imagenio.es" annotation="Andalucía" logo="movistarTV-Andalucia" />
-    <Mapping domainName="DEM_19.imagenio.es" annotation="Madrid" logo="movistarTV-Madrid" />
-    <Mapping domainName="DEM_24.imagenio.es" annotation="Galicia" logo="movistarTV-Galicia" />
-    <Mapping domainName="DEM_29.imagenio.es" annotation="Cantabria" logo="movistarTV-Cantabria" />
-    <Mapping domainName="DEM_31.imagenio.es" annotation="Rioja" logo="movistarTV-Rioja" />
-    <Mapping domainName="DEM_32.imagenio.es" annotation="Extremadura" logo="movistarTV-Extremadura" />
-    <Mapping domainName="DEM_34.imagenio.es" annotation="Aragón" logo="movistarTV-Aragon" />
-    <Mapping domainName="DEM_35.imagenio.es" annotation="Navarra" logo="movistarTV-Navarra" />
-    <Mapping domainName="DEM_36.imagenio.es" annotation="País Vasco" logo="movistarTV-Vasco" />
-    <Mapping domainName="DEM_37.imagenio.es" annotation="Canarias" logo="movistarTV-Canarias" />
-    <Mapping domainName="DEM_38.imagenio.es" annotation="Castilla-La Mancha" logo="movistarTV-Mancha" />
-  </Package>
+  </Collection>
+  <Collection name="movistarTV" package="movistar+">
+    <Mapping domainName="DEM_1.imagenio.es" annotation="Cataluña" logo="cataluna" />
+    <Mapping domainName="DEM_4.imagenio.es" annotation="Castilla y León" logo="castilla-leon" />
+    <Mapping domainName="DEM_6.imagenio.es" annotation="Valencia" logo="valencia" />
+    <Mapping domainName="DEM_10.imagenio.es" annotation="Baleares" logo="baleares" />
+    <Mapping domainName="DEM_12.imagenio.es" annotation="Murcia" logo="murcia" />
+    <Mapping domainName="DEM_13.imagenio.es" annotation="Asturias" logo="asturias" />
+    <Mapping domainName="DEM_15.imagenio.es" annotation="Andalucía" logo="andalucia" />
+    <Mapping domainName="DEM_19.imagenio.es" annotation="Madrid" logo="madrid" />
+    <Mapping domainName="DEM_24.imagenio.es" annotation="Galicia" logo="galicia" />
+    <Mapping domainName="DEM_29.imagenio.es" annotation="Cantabria" logo="cantabria" />
+    <Mapping domainName="DEM_31.imagenio.es" annotation="Rioja" logo="rioja" />
+    <Mapping domainName="DEM_32.imagenio.es" annotation="Extremadura" logo="extremadura" />
+    <Mapping domainName="DEM_34.imagenio.es" annotation="Aragón" logo="aragon" />
+    <Mapping domainName="DEM_35.imagenio.es" annotation="Navarra" logo="navarra" />
+    <Mapping domainName="DEM_36.imagenio.es" annotation="País Vasco" logo="vasco" />
+    <Mapping domainName="DEM_37.imagenio.es" annotation="Canarias" logo="canarias" />
+    <Mapping domainName="DEM_38.imagenio.es" annotation="Castilla-La Mancha" logo="castilla-mancha" />
+    <Mapping domainName=".imagenio.es" annotation="generic logo for unknown demarcations" logo="movistar+" />
+  </Collection>
 </Logos-Providers>

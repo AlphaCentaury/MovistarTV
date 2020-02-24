@@ -1,119 +1,86 @@
-﻿using IpTviewr.UiServices.Configuration;
-using IpTviewr.UiServices.Configuration.Schema2014.Logos;
+// ==============================================================================
+// 
+//   Copyright (C) 2014-2020, GitHub/Codeplex user AlphaCentaury
+//   All rights reserved.
+// 
+//     See 'LICENSE.MD' file (or 'license.txt' if missing) in the project root
+//     for complete license information.
+// 
+//   http://www.alphacentaury.org/movistartv
+//   https://github.com/AlphaCentaury
+// 
+// ==============================================================================
+
 using System;
+using IpTviewr.UiServices.Configuration;
+using IpTviewr.UiServices.Configuration.Schema2014.Logos;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Text;
 
 namespace IpTviewr.Internal.Tools.ChannelLogos
 {
-    sealed class ConsistencyCheckUnusedLogoFiles: ConsistencyCheck
+    internal sealed class ConsistencyCheckUnusedLogoFiles : ConsistencyCheck
     {
-        private class Domain
-        {
-            public string DomainName { get; private set; }
-            public IEnumerable<string> Referenced { get; private set; }
-
-            public Domain(string domainName, IEnumerable<ServiceMapping> mappings)
-            {
-                DomainName = domainName;
-
-                var q = from mapping in mappings
-                        select mapping.Logo;
-                Referenced = q;
-            } // Domain
-        } // class Domain
-
-        private class Unused
-        {
-            public string DomainName { get; private set; }
-            public string Logo { get; private set; }
-
-            public Unused(string domainName, string logo)
-            {
-                DomainName = domainName;
-                Logo = logo;
-            } // constructor
-        } // Unused
-
         protected override void Run()
         {
-            AddResult(Severity.Info, "Get list of files");
-            var files = ConsistencyCheckMissingLogoFiles.GetLogosFiles();
+            AddResult(Severity.Info, "Loading XML service mappings");
+            var serviceMappings = Data.GetServiceMappings();
+            if (serviceMappings.Collections.Length == 0) return;
 
-            AddResult(Severity.Info, "Get mappings");
-            var mappings = GetMappings();
+            AddResult(Severity.Info, "Loading list of files");
+            var files = Data.GetLogoFiles();
 
-            AddResult(Severity.Info, "Finding unused files");
-            var unused = FindUnusedFiles(files, mappings);
+            AddResult(Severity.Info, "Verifying files");
+            var unused = GetUnusedFiles(serviceMappings, files);
+
             ListUnusedFiles(unused);
-
-            AddResult(Severity.Info, "Check ended");
         } // Run
 
-        private IEnumerable<Domain> GetMappings()
+        private IEnumerable<string[]> GetUnusedFiles(ServiceMappingsXml mappings, IReadOnlyDictionary<string, IReadOnlyList<string>> files)
         {
-            var serviceMappings = LogosCommon.ParseServiceMappingsXml(AppUiConfiguration.Current.Folders.Logos.FileServiceMappings);
+            var used = new HashSet<string>(StringComparer.InvariantCultureIgnoreCase);
+            foreach (var collection in mappings.Collections)
+            {
+                foreach (var domain in collection.Domains)
+                {
+                    foreach (var mapping in domain.Mappings)
+                    {
+                        var list = ConsistencyCheckMissingLogoFiles.GetFilesList(files, collection, domain, mapping, out _, out _, out var key);
+                        if (list == null) continue;
 
-            var result = from package in serviceMappings.Packages
-                         from domain in package.Domains
-                         select new Domain(domain.RedirectDomainName ?? domain.DomainName, domain.Mappings);
+                        used.Add(key);
+                    } // foreach mapping
+                } // foreach domain
+            } // foreach collection
 
-            return result;
-        } // GetMappings
+            var allFiles = new HashSet<string>(StringComparer.InvariantCultureIgnoreCase);
+            foreach (var item in files)
+            {
+                if (!item.Key.StartsWith("/services/")) continue;
+                allFiles.Add(item.Key);
+            } // foreach
 
-        private IList<Unused> FindUnusedFiles(IEnumerable<ConsistencyCheckMissingLogoFiles.Folder> folders, IEnumerable<Domain> mappings)
+            allFiles.ExceptWith(used);
+            foreach (var key in allFiles)
+            {
+                yield return new[] {"Unused folder", key};
+            } // foreach
+        } // GetUnusedFiles
+
+        private void ListUnusedFiles(IEnumerable<string[]> unused)
         {
-            IDictionary<string, bool> files;
-            List<Unused> result;
+            var hasUnused = false;
 
-            files = new Dictionary<string, bool>();
-
-            foreach (var folder in folders)
+            foreach (var data in unused)
             {
-                foreach (var logo in folder.Logos)
-                {
-                    files.Add(string.Format("{0}|{1}", folder.FolderName, logo.Logo), false);
-                } // foreach logo
-            } // foreach folder
-
-            foreach (var mapping in mappings)
-            {
-                foreach (var referenced in mapping.Referenced)
-                {
-                    files[string.Format("{0}|{1}", mapping.DomainName, referenced)] = true;
-                } // foreach referenced
-            } // foreach mapping
-
-            var q = from entry in files
-                    where entry.Value == false
-                    select entry.Key;
-
-            result = new List<Unused>();
-            foreach (var file in q)
-            {
-                var parts = file.Split('|');
-                result.Add(new Unused(parts[0], parts[1]));
+                AddResult(Severity.Warning, data);
+                hasUnused = true;
             } // foreach file
 
-            return result;
-        } // FindUnusedFiles
-
-        private void ListUnusedFiles(IList<Unused> unused)
-        {
-            var errorCount = 0;
-
-            foreach (var file in unused)
-            {
-                AddResult(Severity.Warning, "Unused", file.Logo, file.DomainName);
-                errorCount++;
-            } // foreach file
-
-            if (errorCount == 0)
+            if (!hasUnused)
             {
                 AddResult(Severity.Ok, "No unused files");
-            }
+            } // if
         } // ListUnusedFiles
     } // sealed class ConsistencyCheckUnusedLogoFiles
 } // namespace

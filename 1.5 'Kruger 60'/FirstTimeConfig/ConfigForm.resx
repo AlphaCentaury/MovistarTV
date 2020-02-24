@@ -441,17 +441,146 @@
   <data name="&gt;&gt;wizardPageReadme.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <data name="linkLabelNetFx.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="linkLabelNetFx.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="linkLabelNetFx.Location" type="System.Drawing.Point, System.Drawing">
+    <value>28, 31</value>
+  </data>
+  <data name="linkLabelNetFx.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 3, 3, 3</value>
+  </data>
+  <data name="linkLabelNetFx.Size" type="System.Drawing.Size, System.Drawing">
+    <value>146, 13</value>
+  </data>
+  <data name="linkLabelNetFx.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="linkLabelNetFx.Text" xml:space="preserve">
+    <value>Download from microsoft.com</value>
+  </data>
+  <data name="&gt;&gt;linkLabelNetFx.Name" xml:space="preserve">
+    <value>linkLabelNetFx</value>
+  </data>
+  <data name="&gt;&gt;linkLabelNetFx.Type" xml:space="preserve">
+    <value>System.Windows.Forms.LinkLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;linkLabelNetFx.Parent" xml:space="preserve">
+    <value>wizardPagePrerequisites</value>
+  </data>
+  <data name="&gt;&gt;linkLabelNetFx.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="pictureBoxNetFxOk.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="pictureBoxNetFxOk.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 11</value>
+  </data>
+  <data name="pictureBoxNetFxOk.Size" type="System.Drawing.Size, System.Drawing">
+    <value>16, 16</value>
+  </data>
+  <data name="pictureBoxNetFxOk.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms">
+    <value>CenterImage</value>
+  </data>
+  <data name="pictureBoxNetFxOk.TabIndex" type="System.Int32, mscorlib">
+    <value>14</value>
+  </data>
+  <data name="&gt;&gt;pictureBoxNetFxOk.Name" xml:space="preserve">
+    <value>pictureBoxNetFxOk</value>
+  </data>
+  <data name="&gt;&gt;pictureBoxNetFxOk.Type" xml:space="preserve">
+    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;pictureBoxNetFxOk.Parent" xml:space="preserve">
+    <value>wizardPagePrerequisites</value>
+  </data>
+  <data name="&gt;&gt;pictureBoxNetFxOk.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="labelNetFx.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="labelNetFx.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Tahoma, 8.25pt</value>
+  </data>
+  <data name="labelNetFx.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="labelNetFx.Location" type="System.Drawing.Point, System.Drawing">
+    <value>26, 12</value>
+  </data>
+  <data name="labelNetFx.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 3, 3, 3</value>
+  </data>
+  <data name="labelNetFx.Size" type="System.Drawing.Size, System.Drawing">
+    <value>162, 13</value>
+  </data>
+  <data name="labelNetFx.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="labelNetFx.Text" xml:space="preserve">
+    <value>Microsoft® .NET Framework 3.5</value>
+  </data>
+  <data name="&gt;&gt;labelNetFx.Name" xml:space="preserve">
+    <value>labelNetFx</value>
+  </data>
+  <data name="&gt;&gt;labelNetFx.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;labelNetFx.Parent" xml:space="preserve">
+    <value>wizardPagePrerequisites</value>
+  </data>
+  <data name="&gt;&gt;labelNetFx.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="buttonVerifyNetFx.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="buttonVerifyNetFx.Location" type="System.Drawing.Point, System.Drawing">
+    <value>369, 6</value>
+  </data>
+  <data name="buttonVerifyNetFx.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 25</value>
+  </data>
+  <data name="buttonVerifyNetFx.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="buttonVerifyNetFx.Text" xml:space="preserve">
+    <value>&amp;Verify...</value>
+  </data>
+  <data name="buttonVerifyNetFx.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleRight</value>
+  </data>
+  <data name="buttonVerifyNetFx.TextImageRelation" type="System.Windows.Forms.TextImageRelation, System.Windows.Forms">
+    <value>ImageBeforeText</value>
+  </data>
+  <data name="&gt;&gt;buttonVerifyNetFx.Name" xml:space="preserve">
+    <value>buttonVerifyNetFx</value>
+  </data>
+  <data name="&gt;&gt;buttonVerifyNetFx.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;buttonVerifyNetFx.Parent" xml:space="preserve">
+    <value>wizardPagePrerequisites</value>
+  </data>
+  <data name="&gt;&gt;buttonVerifyNetFx.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
   <data name="buttonTestVlc.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="buttonTestVlc.Location" type="System.Drawing.Point, System.Drawing">
-    <value>237, 76</value>
+    <value>237, 212</value>
   </data>
   <data name="buttonTestVlc.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 25</value>
   </data>
   <data name="buttonTestVlc.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
+    <value>16</value>
   </data>
   <data name="buttonTestVlc.Text" xml:space="preserve">
     <value>&amp;Test...</value>
@@ -469,46 +598,52 @@
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;buttonTestVlc.Parent" xml:space="preserve">
-    <value>groupVlc</value>
+    <value>wizardPagePrerequisites</value>
   </data>
   <data name="&gt;&gt;buttonTestVlc.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>4</value>
   </data>
-  <data name="labelVlcInstallCheckResult.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+  <data name="linkLabelSetupSqlCe.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="linkLabelSetupSqlCe.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="labelVlcInstallCheckResult.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 114</value>
+  <data name="linkLabelSetupSqlCe.Location" type="System.Drawing.Point, System.Drawing">
+    <value>26, 132</value>
   </data>
-  <data name="labelVlcInstallCheckResult.Size" type="System.Drawing.Size, System.Drawing">
-    <value>460, 42</value>
+  <data name="linkLabelSetupSqlCe.Size" type="System.Drawing.Size, System.Drawing">
+    <value>127, 13</value>
   </data>
-  <data name="labelVlcInstallCheckResult.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
+  <data name="linkLabelSetupSqlCe.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
   </data>
-  <data name="&gt;&gt;labelVlcInstallCheckResult.Name" xml:space="preserve">
-    <value>labelVlcInstallCheckResult</value>
+  <data name="linkLabelSetupSqlCe.Text" xml:space="preserve">
+    <value>Install from local setup file</value>
   </data>
-  <data name="&gt;&gt;labelVlcInstallCheckResult.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;linkLabelSetupSqlCe.Name" xml:space="preserve">
+    <value>linkLabelSetupSqlCe</value>
   </data>
-  <data name="&gt;&gt;labelVlcInstallCheckResult.Parent" xml:space="preserve">
-    <value>groupVlc</value>
+  <data name="&gt;&gt;linkLabelSetupSqlCe.Type" xml:space="preserve">
+    <value>System.Windows.Forms.LinkLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;labelVlcInstallCheckResult.ZOrder" xml:space="preserve">
-    <value>1</value>
+  <data name="&gt;&gt;linkLabelSetupSqlCe.Parent" xml:space="preserve">
+    <value>wizardPagePrerequisites</value>
+  </data>
+  <data name="&gt;&gt;linkLabelSetupSqlCe.ZOrder" xml:space="preserve">
+    <value>5</value>
   </data>
   <data name="buttonFindVlc.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="buttonFindVlc.Location" type="System.Drawing.Point, System.Drawing">
-    <value>131, 76</value>
+    <value>131, 212</value>
   </data>
   <data name="buttonFindVlc.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 25</value>
   </data>
   <data name="buttonFindVlc.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
+    <value>15</value>
   </data>
   <data name="buttonFindVlc.Text" xml:space="preserve">
     <value>Set &amp;location...</value>
@@ -526,244 +661,10 @@
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;buttonFindVlc.Parent" xml:space="preserve">
-    <value>groupVlc</value>
-  </data>
-  <data name="&gt;&gt;buttonFindVlc.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="textBoxVlc.Location" type="System.Drawing.Point, System.Drawing">
-    <value>131, 50</value>
-  </data>
-  <data name="textBoxVlc.Size" type="System.Drawing.Size, System.Drawing">
-    <value>338, 20</value>
-  </data>
-  <data name="textBoxVlc.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="&gt;&gt;textBoxVlc.Name" xml:space="preserve">
-    <value>textBoxVlc</value>
-  </data>
-  <data name="&gt;&gt;textBoxVlc.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;textBoxVlc.Parent" xml:space="preserve">
-    <value>groupVlc</value>
-  </data>
-  <data name="&gt;&gt;textBoxVlc.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="labelVlcPath.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="labelVlcPath.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="labelVlcPath.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 53</value>
-  </data>
-  <data name="labelVlcPath.Size" type="System.Drawing.Size, System.Drawing">
-    <value>101, 13</value>
-  </data>
-  <data name="labelVlcPath.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="labelVlcPath.Text" xml:space="preserve">
-    <value>VLC player location:</value>
-  </data>
-  <data name="&gt;&gt;labelVlcPath.Name" xml:space="preserve">
-    <value>labelVlcPath</value>
-  </data>
-  <data name="&gt;&gt;labelVlcPath.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;labelVlcPath.Parent" xml:space="preserve">
-    <value>groupVlc</value>
-  </data>
-  <data name="&gt;&gt;labelVlcPath.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="pictureBoxVlcOk.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="pictureBoxVlcOk.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 24</value>
-  </data>
-  <data name="pictureBoxVlcOk.Size" type="System.Drawing.Size, System.Drawing">
-    <value>16, 16</value>
-  </data>
-  <data name="pictureBoxVlcOk.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms">
-    <value>CenterImage</value>
-  </data>
-  <data name="pictureBoxVlcOk.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
-  </data>
-  <data name="&gt;&gt;pictureBoxVlcOk.Name" xml:space="preserve">
-    <value>pictureBoxVlcOk</value>
-  </data>
-  <data name="&gt;&gt;pictureBoxVlcOk.Type" xml:space="preserve">
-    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;pictureBoxVlcOk.Parent" xml:space="preserve">
-    <value>groupVlc</value>
-  </data>
-  <data name="&gt;&gt;pictureBoxVlcOk.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="buttonVerifyVlc.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="buttonVerifyVlc.Location" type="System.Drawing.Point, System.Drawing">
-    <value>369, 19</value>
-  </data>
-  <data name="buttonVerifyVlc.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 25</value>
-  </data>
-  <data name="buttonVerifyVlc.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="buttonVerifyVlc.Text" xml:space="preserve">
-    <value>&amp;Verify...</value>
-  </data>
-  <data name="buttonVerifyVlc.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleRight</value>
-  </data>
-  <data name="buttonVerifyVlc.TextImageRelation" type="System.Windows.Forms.TextImageRelation, System.Windows.Forms">
-    <value>ImageBeforeText</value>
-  </data>
-  <data name="&gt;&gt;buttonVerifyVlc.Name" xml:space="preserve">
-    <value>buttonVerifyVlc</value>
-  </data>
-  <data name="&gt;&gt;buttonVerifyVlc.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;buttonVerifyVlc.Parent" xml:space="preserve">
-    <value>groupVlc</value>
-  </data>
-  <data name="&gt;&gt;buttonVerifyVlc.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="linkLabelPrerequisiteVlc.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="linkLabelPrerequisiteVlc.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="linkLabelPrerequisiteVlc.Location" type="System.Drawing.Point, System.Drawing">
-    <value>216, 25</value>
-  </data>
-  <data name="linkLabelPrerequisiteVlc.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 3, 3, 3</value>
-  </data>
-  <data name="linkLabelPrerequisiteVlc.Size" type="System.Drawing.Size, System.Drawing">
-    <value>139, 13</value>
-  </data>
-  <data name="linkLabelPrerequisiteVlc.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="linkLabelPrerequisiteVlc.Text" xml:space="preserve">
-    <value>Download from videolan.org</value>
-  </data>
-  <data name="&gt;&gt;linkLabelPrerequisiteVlc.Name" xml:space="preserve">
-    <value>linkLabelPrerequisiteVlc</value>
-  </data>
-  <data name="&gt;&gt;linkLabelPrerequisiteVlc.Type" xml:space="preserve">
-    <value>System.Windows.Forms.LinkLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;linkLabelPrerequisiteVlc.Parent" xml:space="preserve">
-    <value>groupVlc</value>
-  </data>
-  <data name="&gt;&gt;linkLabelPrerequisiteVlc.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="labelVlc.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="labelVlc.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Tahoma, 8.25pt</value>
-  </data>
-  <data name="labelVlc.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="labelVlc.Location" type="System.Drawing.Point, System.Drawing">
-    <value>28, 25</value>
-  </data>
-  <data name="labelVlc.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 3, 3, 3</value>
-  </data>
-  <data name="labelVlc.Size" type="System.Drawing.Size, System.Drawing">
-    <value>101, 13</value>
-  </data>
-  <data name="labelVlc.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="labelVlc.Text" xml:space="preserve">
-    <value>Videolan VLC player</value>
-  </data>
-  <data name="&gt;&gt;labelVlc.Name" xml:space="preserve">
-    <value>labelVlc</value>
-  </data>
-  <data name="&gt;&gt;labelVlc.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;labelVlc.Parent" xml:space="preserve">
-    <value>groupVlc</value>
-  </data>
-  <data name="&gt;&gt;labelVlc.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
-  <data name="groupVlc.Location" type="System.Drawing.Point, System.Drawing">
-    <value>7, 138</value>
-  </data>
-  <data name="groupVlc.Size" type="System.Drawing.Size, System.Drawing">
-    <value>475, 109</value>
-  </data>
-  <data name="groupVlc.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="groupVlc.Text" xml:space="preserve">
-    <value>Additional software</value>
-  </data>
-  <data name="&gt;&gt;groupVlc.Name" xml:space="preserve">
-    <value>groupVlc</value>
-  </data>
-  <data name="&gt;&gt;groupVlc.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;groupVlc.Parent" xml:space="preserve">
     <value>wizardPagePrerequisites</value>
   </data>
-  <data name="&gt;&gt;groupVlc.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="linkLabelSetupSqlCe.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="linkLabelSetupSqlCe.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="linkLabelSetupSqlCe.Location" type="System.Drawing.Point, System.Drawing">
-    <value>26, 100</value>
-  </data>
-  <data name="linkLabelSetupSqlCe.Size" type="System.Drawing.Size, System.Drawing">
-    <value>127, 13</value>
-  </data>
-  <data name="linkLabelSetupSqlCe.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
-  </data>
-  <data name="linkLabelSetupSqlCe.Text" xml:space="preserve">
-    <value>Install from local setup file</value>
-  </data>
-  <data name="&gt;&gt;linkLabelSetupSqlCe.Name" xml:space="preserve">
-    <value>linkLabelSetupSqlCe</value>
-  </data>
-  <data name="&gt;&gt;linkLabelSetupSqlCe.Type" xml:space="preserve">
-    <value>System.Windows.Forms.LinkLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;linkLabelSetupSqlCe.Parent" xml:space="preserve">
-    <value>groupPrerequisites</value>
-  </data>
-  <data name="&gt;&gt;linkLabelSetupSqlCe.ZOrder" xml:space="preserve">
-    <value>0</value>
+  <data name="&gt;&gt;buttonFindVlc.ZOrder" xml:space="preserve">
+    <value>6</value>
   </data>
   <data name="linkLabelSetupEmb.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -772,13 +673,13 @@
     <value>NoControl</value>
   </data>
   <data name="linkLabelSetupEmb.Location" type="System.Drawing.Point, System.Drawing">
-    <value>26, 50</value>
+    <value>26, 82</value>
   </data>
   <data name="linkLabelSetupEmb.Size" type="System.Drawing.Size, System.Drawing">
     <value>127, 13</value>
   </data>
   <data name="linkLabelSetupEmb.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
+    <value>5</value>
   </data>
   <data name="linkLabelSetupEmb.Text" xml:space="preserve">
     <value>Install from local setup file</value>
@@ -790,16 +691,67 @@
     <value>System.Windows.Forms.LinkLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;linkLabelSetupEmb.Parent" xml:space="preserve">
-    <value>groupPrerequisites</value>
+    <value>wizardPagePrerequisites</value>
   </data>
   <data name="&gt;&gt;linkLabelSetupEmb.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>7</value>
+  </data>
+  <data name="textBoxVlc.Location" type="System.Drawing.Point, System.Drawing">
+    <value>131, 186</value>
+  </data>
+  <data name="textBoxVlc.Size" type="System.Drawing.Size, System.Drawing">
+    <value>338, 20</value>
+  </data>
+  <data name="textBoxVlc.TabIndex" type="System.Int32, mscorlib">
+    <value>14</value>
+  </data>
+  <data name="&gt;&gt;textBoxVlc.Name" xml:space="preserve">
+    <value>textBoxVlc</value>
+  </data>
+  <data name="&gt;&gt;textBoxVlc.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;textBoxVlc.Parent" xml:space="preserve">
+    <value>wizardPagePrerequisites</value>
+  </data>
+  <data name="&gt;&gt;textBoxVlc.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="labelVlcPath.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="labelVlcPath.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="labelVlcPath.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 189</value>
+  </data>
+  <data name="labelVlcPath.Size" type="System.Drawing.Size, System.Drawing">
+    <value>101, 13</value>
+  </data>
+  <data name="labelVlcPath.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
+  <data name="labelVlcPath.Text" xml:space="preserve">
+    <value>VLC player location:</value>
+  </data>
+  <data name="&gt;&gt;labelVlcPath.Name" xml:space="preserve">
+    <value>labelVlcPath</value>
+  </data>
+  <data name="&gt;&gt;labelVlcPath.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;labelVlcPath.Parent" xml:space="preserve">
+    <value>wizardPagePrerequisites</value>
+  </data>
+  <data name="&gt;&gt;labelVlcPath.ZOrder" xml:space="preserve">
+    <value>9</value>
   </data>
   <data name="pictureBoxSqlCeOk.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="pictureBoxSqlCeOk.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 74</value>
+    <value>6, 106</value>
   </data>
   <data name="pictureBoxSqlCeOk.Size" type="System.Drawing.Size, System.Drawing">
     <value>16, 16</value>
@@ -817,16 +769,136 @@
     <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;pictureBoxSqlCeOk.Parent" xml:space="preserve">
-    <value>groupPrerequisites</value>
+    <value>wizardPagePrerequisites</value>
   </data>
   <data name="&gt;&gt;pictureBoxSqlCeOk.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>10</value>
+  </data>
+  <data name="pictureBoxVlcOk.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="pictureBoxVlcOk.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 160</value>
+  </data>
+  <data name="pictureBoxVlcOk.Size" type="System.Drawing.Size, System.Drawing">
+    <value>16, 16</value>
+  </data>
+  <data name="pictureBoxVlcOk.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms">
+    <value>CenterImage</value>
+  </data>
+  <data name="pictureBoxVlcOk.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="&gt;&gt;pictureBoxVlcOk.Name" xml:space="preserve">
+    <value>pictureBoxVlcOk</value>
+  </data>
+  <data name="&gt;&gt;pictureBoxVlcOk.Type" xml:space="preserve">
+    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;pictureBoxVlcOk.Parent" xml:space="preserve">
+    <value>wizardPagePrerequisites</value>
+  </data>
+  <data name="&gt;&gt;pictureBoxVlcOk.ZOrder" xml:space="preserve">
+    <value>11</value>
+  </data>
+  <data name="buttonVerifyVlc.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="buttonVerifyVlc.Location" type="System.Drawing.Point, System.Drawing">
+    <value>369, 155</value>
+  </data>
+  <data name="buttonVerifyVlc.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 25</value>
+  </data>
+  <data name="buttonVerifyVlc.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="buttonVerifyVlc.Text" xml:space="preserve">
+    <value>&amp;Verify...</value>
+  </data>
+  <data name="buttonVerifyVlc.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleRight</value>
+  </data>
+  <data name="buttonVerifyVlc.TextImageRelation" type="System.Windows.Forms.TextImageRelation, System.Windows.Forms">
+    <value>ImageBeforeText</value>
+  </data>
+  <data name="&gt;&gt;buttonVerifyVlc.Name" xml:space="preserve">
+    <value>buttonVerifyVlc</value>
+  </data>
+  <data name="&gt;&gt;buttonVerifyVlc.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;buttonVerifyVlc.Parent" xml:space="preserve">
+    <value>wizardPagePrerequisites</value>
+  </data>
+  <data name="&gt;&gt;buttonVerifyVlc.ZOrder" xml:space="preserve">
+    <value>12</value>
+  </data>
+  <data name="pictureBoxEmbOk.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="pictureBoxEmbOk.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 56</value>
+  </data>
+  <data name="pictureBoxEmbOk.Size" type="System.Drawing.Size, System.Drawing">
+    <value>16, 16</value>
+  </data>
+  <data name="pictureBoxEmbOk.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms">
+    <value>CenterImage</value>
+  </data>
+  <data name="pictureBoxEmbOk.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="&gt;&gt;pictureBoxEmbOk.Name" xml:space="preserve">
+    <value>pictureBoxEmbOk</value>
+  </data>
+  <data name="&gt;&gt;pictureBoxEmbOk.Type" xml:space="preserve">
+    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;pictureBoxEmbOk.Parent" xml:space="preserve">
+    <value>wizardPagePrerequisites</value>
+  </data>
+  <data name="&gt;&gt;pictureBoxEmbOk.ZOrder" xml:space="preserve">
+    <value>13</value>
+  </data>
+  <data name="linkLabelPrerequisiteVlc.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="linkLabelPrerequisiteVlc.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="linkLabelPrerequisiteVlc.Location" type="System.Drawing.Point, System.Drawing">
+    <value>216, 161</value>
+  </data>
+  <data name="linkLabelPrerequisiteVlc.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 3, 3, 3</value>
+  </data>
+  <data name="linkLabelPrerequisiteVlc.Size" type="System.Drawing.Size, System.Drawing">
+    <value>139, 13</value>
+  </data>
+  <data name="linkLabelPrerequisiteVlc.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="linkLabelPrerequisiteVlc.Text" xml:space="preserve">
+    <value>Download from videolan.org</value>
+  </data>
+  <data name="&gt;&gt;linkLabelPrerequisiteVlc.Name" xml:space="preserve">
+    <value>linkLabelPrerequisiteVlc</value>
+  </data>
+  <data name="&gt;&gt;linkLabelPrerequisiteVlc.Type" xml:space="preserve">
+    <value>System.Windows.Forms.LinkLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;linkLabelPrerequisiteVlc.Parent" xml:space="preserve">
+    <value>wizardPagePrerequisites</value>
+  </data>
+  <data name="&gt;&gt;linkLabelPrerequisiteVlc.ZOrder" xml:space="preserve">
+    <value>14</value>
   </data>
   <data name="buttonVerifySqlCe.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="buttonVerifySqlCe.Location" type="System.Drawing.Point, System.Drawing">
-    <value>369, 69</value>
+    <value>369, 101</value>
   </data>
   <data name="buttonVerifySqlCe.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 25</value>
@@ -850,10 +922,109 @@
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;buttonVerifySqlCe.Parent" xml:space="preserve">
-    <value>groupPrerequisites</value>
+    <value>wizardPagePrerequisites</value>
   </data>
   <data name="&gt;&gt;buttonVerifySqlCe.ZOrder" xml:space="preserve">
+    <value>15</value>
+  </data>
+  <data name="labelVlc.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="labelVlc.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Tahoma, 8.25pt</value>
+  </data>
+  <data name="labelVlc.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="labelVlc.Location" type="System.Drawing.Point, System.Drawing">
+    <value>28, 161</value>
+  </data>
+  <data name="labelVlc.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 3, 3, 3</value>
+  </data>
+  <data name="labelVlc.Size" type="System.Drawing.Size, System.Drawing">
+    <value>101, 13</value>
+  </data>
+  <data name="labelVlc.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="labelVlc.Text" xml:space="preserve">
+    <value>Videolan VLC player</value>
+  </data>
+  <data name="&gt;&gt;labelVlc.Name" xml:space="preserve">
+    <value>labelVlc</value>
+  </data>
+  <data name="&gt;&gt;labelVlc.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;labelVlc.Parent" xml:space="preserve">
+    <value>wizardPagePrerequisites</value>
+  </data>
+  <data name="&gt;&gt;labelVlc.ZOrder" xml:space="preserve">
+    <value>16</value>
+  </data>
+  <data name="labelVlcInstallCheckResult.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="labelVlcInstallCheckResult.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 212</value>
+  </data>
+  <data name="labelVlcInstallCheckResult.Size" type="System.Drawing.Size, System.Drawing">
+    <value>460, 42</value>
+  </data>
+  <data name="labelVlcInstallCheckResult.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="labelVlcInstallCheckResult.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;labelVlcInstallCheckResult.Name" xml:space="preserve">
+    <value>labelVlcInstallCheckResult</value>
+  </data>
+  <data name="&gt;&gt;labelVlcInstallCheckResult.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;labelVlcInstallCheckResult.Parent" xml:space="preserve">
+    <value>wizardPagePrerequisites</value>
+  </data>
+  <data name="&gt;&gt;labelVlcInstallCheckResult.ZOrder" xml:space="preserve">
+    <value>17</value>
+  </data>
+  <data name="labelEmb.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="labelEmb.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Tahoma, 8.25pt</value>
+  </data>
+  <data name="labelEmb.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="labelEmb.Location" type="System.Drawing.Point, System.Drawing">
+    <value>26, 57</value>
+  </data>
+  <data name="labelEmb.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 3, 3, 3</value>
+  </data>
+  <data name="labelEmb.Size" type="System.Drawing.Size, System.Drawing">
+    <value>177, 13</value>
+  </data>
+  <data name="labelEmb.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
+  </data>
+  <data name="labelEmb.Text" xml:space="preserve">
+    <value>Microsoft® Exception Message Box</value>
+  </data>
+  <data name="&gt;&gt;labelEmb.Name" xml:space="preserve">
+    <value>labelEmb</value>
+  </data>
+  <data name="&gt;&gt;labelEmb.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;labelEmb.Parent" xml:space="preserve">
+    <value>wizardPagePrerequisites</value>
+  </data>
+  <data name="&gt;&gt;labelEmb.ZOrder" xml:space="preserve">
+    <value>18</value>
   </data>
   <data name="linkLabelPrerequisiteSqlCe.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -862,7 +1033,7 @@
     <value>NoControl</value>
   </data>
   <data name="linkLabelPrerequisiteSqlCe.Location" type="System.Drawing.Point, System.Drawing">
-    <value>217, 100</value>
+    <value>216, 132</value>
   </data>
   <data name="linkLabelPrerequisiteSqlCe.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 3, 3, 3</value>
@@ -871,7 +1042,7 @@
     <value>146, 13</value>
   </data>
   <data name="linkLabelPrerequisiteSqlCe.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
+    <value>9</value>
   </data>
   <data name="linkLabelPrerequisiteSqlCe.Text" xml:space="preserve">
     <value>Download from microsoft.com</value>
@@ -883,85 +1054,22 @@
     <value>System.Windows.Forms.LinkLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;linkLabelPrerequisiteSqlCe.Parent" xml:space="preserve">
-    <value>groupPrerequisites</value>
+    <value>wizardPagePrerequisites</value>
   </data>
   <data name="&gt;&gt;linkLabelPrerequisiteSqlCe.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="labelSqlCe.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="labelSqlCe.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Tahoma, 8.25pt</value>
-  </data>
-  <data name="labelSqlCe.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="labelSqlCe.Location" type="System.Drawing.Point, System.Drawing">
-    <value>26, 75</value>
-  </data>
-  <data name="labelSqlCe.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 3, 3, 3</value>
-  </data>
-  <data name="labelSqlCe.Size" type="System.Drawing.Size, System.Drawing">
-    <value>184, 13</value>
-  </data>
-  <data name="labelSqlCe.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="labelSqlCe.Text" xml:space="preserve">
-    <value>Microsoft® SQL Server® CE 4.0 SP1</value>
-  </data>
-  <data name="&gt;&gt;labelSqlCe.Name" xml:space="preserve">
-    <value>labelSqlCe</value>
-  </data>
-  <data name="&gt;&gt;labelSqlCe.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;labelSqlCe.Parent" xml:space="preserve">
-    <value>groupPrerequisites</value>
-  </data>
-  <data name="&gt;&gt;labelSqlCe.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="pictureBoxEmbOk.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="pictureBoxEmbOk.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 24</value>
-  </data>
-  <data name="pictureBoxEmbOk.Size" type="System.Drawing.Size, System.Drawing">
-    <value>16, 16</value>
-  </data>
-  <data name="pictureBoxEmbOk.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms">
-    <value>CenterImage</value>
-  </data>
-  <data name="pictureBoxEmbOk.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
-  </data>
-  <data name="&gt;&gt;pictureBoxEmbOk.Name" xml:space="preserve">
-    <value>pictureBoxEmbOk</value>
-  </data>
-  <data name="&gt;&gt;pictureBoxEmbOk.Type" xml:space="preserve">
-    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;pictureBoxEmbOk.Parent" xml:space="preserve">
-    <value>groupPrerequisites</value>
-  </data>
-  <data name="&gt;&gt;pictureBoxEmbOk.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>19</value>
   </data>
   <data name="buttonVerifyEmb.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="buttonVerifyEmb.Location" type="System.Drawing.Point, System.Drawing">
-    <value>369, 19</value>
+    <value>369, 51</value>
   </data>
   <data name="buttonVerifyEmb.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 25</value>
   </data>
   <data name="buttonVerifyEmb.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="buttonVerifyEmb.Text" xml:space="preserve">
     <value>&amp;Verify...</value>
@@ -979,103 +1087,46 @@
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;buttonVerifyEmb.Parent" xml:space="preserve">
-    <value>groupPrerequisites</value>
-  </data>
-  <data name="&gt;&gt;buttonVerifyEmb.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="linkLabelPrerequisiteEmb.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="linkLabelPrerequisiteEmb.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="linkLabelPrerequisiteEmb.Location" type="System.Drawing.Point, System.Drawing">
-    <value>217, 50</value>
-  </data>
-  <data name="linkLabelPrerequisiteEmb.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 3, 3, 3</value>
-  </data>
-  <data name="linkLabelPrerequisiteEmb.Size" type="System.Drawing.Size, System.Drawing">
-    <value>146, 13</value>
-  </data>
-  <data name="linkLabelPrerequisiteEmb.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="linkLabelPrerequisiteEmb.Text" xml:space="preserve">
-    <value>Download from microsoft.com</value>
-  </data>
-  <data name="&gt;&gt;linkLabelPrerequisiteEmb.Name" xml:space="preserve">
-    <value>linkLabelPrerequisiteEmb</value>
-  </data>
-  <data name="&gt;&gt;linkLabelPrerequisiteEmb.Type" xml:space="preserve">
-    <value>System.Windows.Forms.LinkLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;linkLabelPrerequisiteEmb.Parent" xml:space="preserve">
-    <value>groupPrerequisites</value>
-  </data>
-  <data name="&gt;&gt;linkLabelPrerequisiteEmb.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
-  <data name="labelEmb.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="labelEmb.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Tahoma, 8.25pt</value>
-  </data>
-  <data name="labelEmb.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="labelEmb.Location" type="System.Drawing.Point, System.Drawing">
-    <value>26, 25</value>
-  </data>
-  <data name="labelEmb.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 3, 3, 3</value>
-  </data>
-  <data name="labelEmb.Size" type="System.Drawing.Size, System.Drawing">
-    <value>177, 13</value>
-  </data>
-  <data name="labelEmb.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="labelEmb.Text" xml:space="preserve">
-    <value>Microsoft® Exception Message Box</value>
-  </data>
-  <data name="&gt;&gt;labelEmb.Name" xml:space="preserve">
-    <value>labelEmb</value>
-  </data>
-  <data name="&gt;&gt;labelEmb.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;labelEmb.Parent" xml:space="preserve">
-    <value>groupPrerequisites</value>
-  </data>
-  <data name="&gt;&gt;labelEmb.ZOrder" xml:space="preserve">
-    <value>9</value>
-  </data>
-  <data name="groupPrerequisites.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 6</value>
-  </data>
-  <data name="groupPrerequisites.Size" type="System.Drawing.Size, System.Drawing">
-    <value>475, 126</value>
-  </data>
-  <data name="groupPrerequisites.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="groupPrerequisites.Text" xml:space="preserve">
-    <value>Download and install pre-requisites</value>
-  </data>
-  <data name="&gt;&gt;groupPrerequisites.Name" xml:space="preserve">
-    <value>groupPrerequisites</value>
-  </data>
-  <data name="&gt;&gt;groupPrerequisites.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;groupPrerequisites.Parent" xml:space="preserve">
     <value>wizardPagePrerequisites</value>
   </data>
-  <data name="&gt;&gt;groupPrerequisites.ZOrder" xml:space="preserve">
-    <value>1</value>
+  <data name="&gt;&gt;buttonVerifyEmb.ZOrder" xml:space="preserve">
+    <value>20</value>
+  </data>
+  <data name="labelSqlCe.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="labelSqlCe.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Tahoma, 8.25pt</value>
+  </data>
+  <data name="labelSqlCe.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="labelSqlCe.Location" type="System.Drawing.Point, System.Drawing">
+    <value>26, 107</value>
+  </data>
+  <data name="labelSqlCe.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 3, 3, 3</value>
+  </data>
+  <data name="labelSqlCe.Size" type="System.Drawing.Size, System.Drawing">
+    <value>184, 13</value>
+  </data>
+  <data name="labelSqlCe.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="labelSqlCe.Text" xml:space="preserve">
+    <value>Microsoft® SQL Server® CE 4.0 SP1</value>
+  </data>
+  <data name="&gt;&gt;labelSqlCe.Name" xml:space="preserve">
+    <value>labelSqlCe</value>
+  </data>
+  <data name="&gt;&gt;labelSqlCe.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;labelSqlCe.Parent" xml:space="preserve">
+    <value>wizardPagePrerequisites</value>
+  </data>
+  <data name="&gt;&gt;labelSqlCe.ZOrder" xml:space="preserve">
+    <value>21</value>
   </data>
   <data name="wizardPagePrerequisites.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 25</value>
@@ -2021,14 +2072,11 @@ Which channels should appear first?</value>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
     <value>493, 359</value>
   </data>
-  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
   <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
     <value>CenterScreen</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>First-time configuration assistant</value>
+    <value>[DEBUG] First-time configuration assistant</value>
   </data>
   <data name="&gt;&gt;openFile.Name" xml:space="preserve">
     <value>openFile</value>
@@ -2040,12 +2088,12 @@ Which channels should appear first?</value>
     <value>selectFolder</value>
   </data>
   <data name="&gt;&gt;selectFolder.Type" xml:space="preserve">
-    <value>IpTviewr.UiServices.Common.Controls.SelectFolderDialog, UiServices.Common, Version=1.5.1010.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>IpTviewr.Native.WinForms.SelectFolderDialog, IpTViewr.Native, Version=1.5.1010.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>ConfigForm</value>
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>IpTviewr.UiServices.Common.Forms.CommonBaseForm, UiServices.Common, Version=1.5.1010.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
 </root>
