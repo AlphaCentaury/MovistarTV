@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Push.Updates xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://alphacentaury.org/movistar+/Push.v1">
+  <Timestamp>2020-02-24T15:37:28.1951699Z</Timestamp>
+  <Update timestamp="2020-02-24T00:00:00Z">
+    <Id>c7b65119-4c04-4050-babf-2345bf6144df</Id>
+    <Version>1.5.1015.0</Version>
+    <DisplayVersion>1.5 "Kruger 60" Beta 1 RTW</DisplayVersion>
+    <ReleasedDate>2020-02-24T00:00:00Z</ReleasedDate>
+    <URL>https://www.alphacentaury.org/movistartv/downloads/2020/iptviewr-v1-5-kruger-60-beta-1/</URL>
+    <Link>https://www.alphacentaury.org/movistartv/downloads</Link>
+  </Update>
+  <Update timestamp="2016-09-08T00:00:00Z">
+    <Id>bee0f71f-78ff-4672-bc84-c871fe900a3b</Id>
+    <Version>1.5.1000.0</Version>
+    <DisplayVersion>1.5 "Kruger 60" Beta 0</DisplayVersion>
+    <ReleasedDate>2016-09-08T00:00:00Z</ReleasedDate>
+    <URL>https://www.alphacentaury.org/movistartv/downloads/2016/iptviewr-v1-5-kruger-60-beta-0/</URL>
+    <Link>https://www.alphacentaury.org/movistartv/downloads</Link>
+  </Update>
+  <Update timestamp="2016-08-25T00:00:00Z">
+    <Id>43a76837-c914-4a68-ba15-eb53cf9addef</Id>
+    <Version>1.5.0040.0</Version>
+    <DisplayVersion>1.5 "Kruger 60" Alpha 4</DisplayVersion>
+    <ReleasedDate>2016-08-25T00:00:00Z</ReleasedDate>
+    <URL>https://www.alphacentaury.org/movistartv/downloads/2016/iptviewr-v1-5-kruger-60-alpha-4/</URL>
+    <Link>https://www.alphacentaury.org/movistartv/downloads</Link>
+  </Update>
+</Push.Updates>
