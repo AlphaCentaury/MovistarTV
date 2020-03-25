@@ -55,6 +55,17 @@ namespace IpTviewr.Core
             if (defaultPlayer)
             {
                 player = tvPlayerSettings.GetDefaultPlayer();
+                if (player == null)
+                {
+                    new ExceptionMessageBox
+                    {
+                        Caption = owner.Text,
+                        Text = Texts.NoDefaultTvPlayer,
+                        Symbol = ExceptionMessageBoxSymbol.Warning,
+                        Buttons = ExceptionMessageBoxButtons.OK,
+                    }.Show(owner);
+                    return;
+                } // if
             }
             else
             {

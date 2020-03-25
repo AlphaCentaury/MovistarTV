@@ -15,6 +15,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
+using IpTviewr.UiServices.Configuration.Properties;
 
 namespace IpTviewr.UiServices.Configuration.Settings.TvPlayers.Editors
 {
@@ -86,7 +87,7 @@ namespace IpTviewr.UiServices.Configuration.Settings.TvPlayers.Editors
                 Settings.PlayerIcons.ImageSize.Height + 4);
 
             _manualUpdateLock++;
-            labelDefaultPlayer.Text = Settings.GetDefaultPlayer().Name;
+            labelDefaultPlayer.Text = Settings.GetDefaultPlayer()?.Name ?? SettingsTexts.TvPlayersNoDefaultPlayer;
             checkBoxShortcut.Checked = !Settings.DirectLaunch;
             _manualUpdateLock--;
 
@@ -104,7 +105,7 @@ namespace IpTviewr.UiServices.Configuration.Settings.TvPlayers.Editors
 
             if (player == null) return;
 
-            buttonDelete.Enabled = player.Id != Settings.DefaultPlayerId;
+            buttonDelete.Enabled = (player.Id != Settings.DefaultPlayerId) && (listViewPlayers.Items.Count > 1);
             buttonSetDefault.Enabled = player.Id != Settings.DefaultPlayerId;
         } // listViewPlayers_SelectedIndexChanged
 
@@ -137,8 +138,8 @@ namespace IpTviewr.UiServices.Configuration.Settings.TvPlayers.Editors
             var player = (TvPlayer)item.Tag;
 
             if (MessageBox.Show(this,
-                string.Format(Properties.SettingsTexts.TvPlayerDelete, player.Name),
-                Properties.SettingsTexts.TvPlayerDeleteCaption,
+                string.Format(SettingsTexts.TvPlayerDelete, player.Name),
+                SettingsTexts.TvPlayerDeleteCaption,
                 MessageBoxButtons.YesNo, MessageBoxIcon.Question,
                 MessageBoxDefaultButton.Button2) != DialogResult.Yes) return;
 

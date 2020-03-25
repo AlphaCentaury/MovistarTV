@@ -186,7 +186,7 @@ namespace IpTviewr.Tools.FirstTimeConfig
             var tvPlayers = new TvPlayersSettings()
             {
                 DirectLaunch = false,
-                DefaultPlayerId = new Guid(vlcGuid),
+                DefaultPlayerId = (players.Count > 0)? players[0].Id : Guid.Empty,
                 Players = players.ToArray()
             };
 
