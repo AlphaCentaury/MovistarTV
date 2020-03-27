@@ -15,7 +15,13 @@
 -->
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi" xmlns:netfx="http://schemas.microsoft.com/wix/NetFxExtension">
   <?include Strings.wxi ?>
-  <Product Id="$(var.ProductId)" Name="!(loc.ProductName)" Language="!(loc.LANGUAGE)" Codepage="Windows-1252" Version="$(var.Version)" Manufacturer="$(var.Manufacturer)"  UpgradeCode="$(var.UpgradeCode)">
+  <Product Id="$(var.ProductId)"
+           UpgradeCode="$(var.UpgradeCode)"
+           Name="!(loc.ProductName)"
+           Language="!(loc.LANGUAGE)"
+           Codepage="Windows-1252"
+           Version="$(var.Version)"
+           Manufacturer="$(var.Manufacturer)">
     <Package Id="*" InstallerVersion="405" Compressed="yes" InstallScope="perUser"
              Description="!(loc.PackageDescription)" Languages="!(loc.LANGUAGE)" Manufacturer="$(var.Manufacturer)" />
 
@@ -25,7 +31,14 @@
       <![CDATA[Installed OR WIX_IS_NETFRAMEWORK_462_OR_LATER_INSTALLED]]>
     </Condition>
 
-    <MajorUpgrade DowngradeErrorMessage="!(loc.DowngradeErrorMessage)" />
+    <!--Upgrade v1.5.1010.0 or greater to v1.5.1100 -->
+    <MajorUpgrade DowngradeErrorMessage="!(loc.DowngradeErrorMessage)" Schedule="afterInstallValidate" AllowDowngrades="no" />
+    <Upgrade Id="$(var.UpgradeCode)">
+      <UpgradeVersion OnlyDetect="no" Property="PREVIOUSFOUND"
+                      Minimum="1.5.1010.0" IncludeMinimum="yes"
+                      Maximum="$(var.Version)" IncludeMaximum="no" />
+    </Upgrade>
+
     <MediaTemplate EmbedCab="yes" />
 
     <UIRef Id='WixUI_Minimal'/>

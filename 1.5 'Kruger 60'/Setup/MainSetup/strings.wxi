@@ -14,11 +14,11 @@
 ==============================================================================
 -->
 <Include>
-  <!-- Allow side-by-side installation with other versions -->
-  <?define ProductId = "{D0875277-CC63-4AA4-A8E8-9DB2AA04269F}" ?>
+  <!--Upgrade v1.5.1015 to v1.5.1100 -->
+  <?define ProductId = "{81479B32-7252-4BB2-9C61-1720674634F3}" ?>
   <?define UpgradeCode = "{7BEC3F3A-937A-4400-A825-AD65F547D83E}" ?>
   <?define Manufacturer = "http://www.alphacentaury.org" ?>
-  <?define Version = "1.5.1015.0" ?>
-  <?define BaseRegistryKey = "Software\AlphaCentaury.org\IPTViewr\movistar+\v1.5.1015.0" ?>
-  <?define BaseInstallFolder = "movistar+ (v1.5.1015.0 'Kruger 60')" ?>
+  <?define Version = "1.5.1100.0" ?>
+  <?define BaseRegistryKey = "Software\AlphaCentaury.org\IPTViewr\movistar+\v1.5.1100.0" ?>
+  <?define BaseInstallFolder = "movistar+ (v1.5.1100.0 'Kruger 60')" ?>
 </Include>

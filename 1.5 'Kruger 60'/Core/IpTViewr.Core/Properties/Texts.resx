@@ -123,6 +123,9 @@
   <data name="ExternalPlayerShortcutDescription" xml:space="preserve">
     <value>Launches {0} player to view IPTV channel '{1}'</value>
   </data>
+  <data name="NoDefaultTvPlayer" xml:space="preserve">
+    <value>There is no default TV player. Open the application settings toselect a default TV player or to add one.</value>
+  </data>
   <data name="ShowTvChannelInactiveService" xml:space="preserve">
     <value>The selected TV channel has been marked as inactive and might not be available.
 

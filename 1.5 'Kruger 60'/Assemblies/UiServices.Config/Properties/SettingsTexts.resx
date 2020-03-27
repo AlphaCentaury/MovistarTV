@@ -112,10 +112,10 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ConfigFormAppRestartRequired" xml:space="preserve">
     <value>Some of the changes you have made require you to restart the application before they can take effect. </value>
@@ -167,5 +167,8 @@ Channel.Icon.Path|Path to channel logo .ico file</value>
   </data>
   <data name="TvPlayersDisplayName" xml:space="preserve">
     <value>TV players</value>
+  </data>
+  <data name="TvPlayersNoDefaultPlayer" xml:space="preserve">
+    <value>No default player</value>
   </data>
 </root>

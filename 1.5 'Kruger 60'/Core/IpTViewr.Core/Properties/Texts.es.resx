@@ -123,6 +123,9 @@
   <data name="ExternalPlayerShortcutDescription" xml:space="preserve">
     <value>Abre el reproductor {0} para ver el canal IPTV '{1}'</value>
   </data>
+  <data name="NoDefaultTvPlayer" xml:space="preserve">
+    <value>No existe un reproductor de televisión por defecto. Abra la configuración del programa para elegir un reproductor por defecto o para añadir uno.</value>
+  </data>
   <data name="ShowTvChannelInactiveService" xml:space="preserve">
     <value>El canal de TV seleccionado ha sido marcado como inactivo y puede no estar disponible.
 

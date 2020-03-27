@@ -36,6 +36,12 @@
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>AlphaCentaury_MovistarTV.snk.pfx</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Xml" />
@@ -124,6 +130,7 @@
     <Compile Include="v010501\XmlSerialization\TvAnytime\Mpeg7\TermUse.cs" />
     <Compile Include="v010501\XmlSerialization\TvAnytime\Mpeg7\TextualBase.cs" />
     <Compile Include="v010501\XmlSerialization\TvAnytime\Mpeg7\TextualData.cs" />
+    <None Include="AlphaCentaury_MovistarTV.snk.pfx" />
     <None Include="LICENSE.ES.MD" />
     <None Include="LICENSE.MD" />
     <None Include="v010501\Xsd.Unified\sdns_v1.cs" />

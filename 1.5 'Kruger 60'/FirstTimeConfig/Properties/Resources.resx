@@ -226,7 +226,7 @@
     <value>..\resources\first-time-config.ico;System.Drawing.Icon, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="TelemetryAppCenter_AppSecret" xml:space="preserve">
-    <value>36b7045d-3bfe-4166-bd7c-4b012f5365e0</value>
+    <value>13fb25ea-ccce-4909-9080-5fe029694e7e</value>
     <comment>Get new secret for every new major version or new phase!</comment>
   </data>
   <data name="MpcDefaultLocation" xml:space="preserve">
