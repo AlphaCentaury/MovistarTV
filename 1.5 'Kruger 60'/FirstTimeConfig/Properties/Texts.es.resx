@@ -314,7 +314,7 @@ Si sobreescribe el archivo se perderá cualquier configuración personalizada.
     <value>IPTViewr para movistar+</value>
   </data>
   <data name="ProductShortName" xml:space="preserve">
-    <value>v1.5 “Kruger 60” beta 1.9</value>
+    <value>v1.5 “Kruger 60” beta 1 SP1</value>
   </data>
   <data name="Readme" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\readme_es.rtf;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>

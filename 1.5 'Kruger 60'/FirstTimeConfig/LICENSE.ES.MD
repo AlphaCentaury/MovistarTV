@@ -1,5 +1,5 @@
 # Programa 'FirstTimeConfig'
-IPTViewr: Virtual Decoder for movistar+ version 1.5 “Kruger 60” Beta 1\
+IPTViewr: Virtual Decoder for movistar+ version 1.5 “Kruger 60” beta 1 SP1\
 _por Codeplex/GitHub user AlphaCentaury_
 
 **Copyright (C) 2014-2020, Codeplex/GitHub user AlphaCentaury and its contributors**

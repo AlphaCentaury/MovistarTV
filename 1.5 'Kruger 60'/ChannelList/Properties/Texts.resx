@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AppCaption" xml:space="preserve">
-    <value>IPTViewr for movistar+ (1.5“Kruger 60” Beta 1.9)</value>
+    <value>IPTViewr for movistar+ (1.5“Kruger 60” beta 1 SP1)</value>
   </data>
   <data name="AppName" xml:space="preserve">
     <value>IPTViewr: virtual decoder for movistar+</value>
@@ -127,7 +127,7 @@
     <value>Beta (stable, but may fail/crash)</value>
   </data>
   <data name="AppVersion" xml:space="preserve">
-    <value>1.5 “Kruger 60” Beta 1.9</value>
+    <value>1.5 “Kruger 60” beta 1 SP1</value>
   </data>
   <data name="BroadcastListUnableRefresh" xml:space="preserve">
     <value>Unable to obtain the list of TV channels/services</value>

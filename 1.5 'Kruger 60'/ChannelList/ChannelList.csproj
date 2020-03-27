@@ -68,6 +68,12 @@
   <PropertyGroup>
     <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
   </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>AlphaCentaury_MovistarTV.snk.pfx</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Xml.Linq" />
@@ -162,6 +168,7 @@
     <None Include="..\solution-license_es.rtf">
       <Link>Resources\solution-license_es.rtf</Link>
     </None>
+    <None Include="AlphaCentaury_MovistarTV.snk.pfx" />
     <None Include="app.config" />
     <Compile Include="ChannelListForm.ListManager.cs">
       <SubType>Form</SubType>

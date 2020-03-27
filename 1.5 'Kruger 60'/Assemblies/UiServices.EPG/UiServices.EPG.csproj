@@ -36,6 +36,15 @@
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <DelaySign>false</DelaySign>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>AlphaCentaury_MovistarTV.snk.pfx</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Drawing" />
@@ -235,6 +244,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="AlphaCentaury_MovistarTV.snk.pfx" />
     <None Include="LICENSE.ES.MD" />
     <None Include="LICENSE.MD" />
   </ItemGroup>

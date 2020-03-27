@@ -14,58 +14,58 @@
 ==============================================================================
 -->
 <Include>
-  <?define Guid.Core.Assemblies = "{758E22E3-E788-45BD-A639-9D7AF0035FA4}" ?>
-  <?define Guid.Core.Assemblies.Localization.es = "{71137D42-10AF-4945-AD08-B7E6D63382B7}" ?>
+  <?define Guid.Core.Assemblies = "{B150F132-A2D8-4E0D-AAAF-C2BB9BDBDA78}" ?>
+  <?define Guid.Core.Assemblies.Localization.es = "{99A5CCCA-869A-4FF5-9870-0EAA9AAD0C85}" ?>
 
-  <?define Guid.ContentProvider.Configuration ="{F093519F-4B79-4D5F-ACA4-05DA412CCE0F}" ?>
-  <?define Guid.ContentProvider.Assemblies = "{51523D48-AAF3-4294-8878-9CDFEF1284F2}" ?>
-  <?define Guid.ContentProvider.Assemblies.Localization.es = "{0EB605F8-D5A0-4CFA-A385-0A6184232A6E}" ?>
+  <?define Guid.ContentProvider.Configuration ="{30D2B55A-2EFC-4400-A39D-3A7C1B361044}" ?>
+  <?define Guid.ContentProvider.Assemblies = "{BA81A1B7-A57E-44B2-9680-2926734A9359}" ?>
+  <?define Guid.ContentProvider.Assemblies.Localization.es = "{A9233DB4-B343-4473-A34E-F683D1ED2FEB}" ?>
 
-  <?define Guid.DVB.Assemblies = "{2D4AE820-CAE9-43B5-889A-9D9A124EB4B9}" ?>
-  <?define Guid.DVB.Assemblies.Localization.es = "{AC4217BF-A34D-47AB-BED3-3E97FF9B0F6A}" ?>
+  <?define Guid.DVB.Assemblies = "{8AB098B0-B92A-4F75-942D-CB3804FCCB0F}" ?>
+  <?define Guid.DVB.Assemblies.Localization.es = "{30944237-0D6E-4D2F-9916-D2AB62484AB8}" ?>
 
-  <?define Guid.EPG.Assemblies = "{32989458-EB10-4E96-93B0-C1BCC01FC345}" ?>
-  <?define Guid.EPG.Assemblies.Localization.es = "{F25E34E8-9CB4-420C-94BE-6DA298ED1B9D}" ?>
+  <?define Guid.EPG.Assemblies = "{7DBB1BD5-584C-40C4-9AE5-CB748E1B0468}" ?>
+  <?define Guid.EPG.Assemblies.Localization.es = "{77C874B3-3B7B-4035-B773-2E27E8AA5303}" ?>
 
-  <?define Guid.Product.Assemblies = "{81EEA9A2-DDAD-4A1C-8742-5060DAF10BB7}" ?>
-  <?define Guid.Product.Shortcut = "{423B60E5-523E-4C12-A279-A3581A51C7EA}" ?>
-  <?define Guid.Product.Localization.es = "{5B6F75F2-187C-4C8A-B558-04DB3EAB74BB}" ?>
-  <?define Guid.Product.Licensing = "{3EC4AB77-F3E5-4A1F-9D94-0E57FB261F6B}" ?>
+  <?define Guid.Product.Assemblies = "{7723E103-8C4C-48D1-896C-B0569EFE5FC1}" ?>
+  <?define Guid.Product.Shortcut = "{4F7C0445-D7B0-46BB-B784-B1212E88803F}" ?>
+  <?define Guid.Product.Localization.es = "{8B37D7CA-8C30-4CE3-A000-CF6341FE7016}" ?>
+  <?define Guid.Product.Licensing = "{6B57111D-2DFC-43FE-A89B-796A2F370597}" ?>
 
-  <?define Guid.Record.Registry = "{2ACDDE71-150B-426A-90F6-C8D6963BBFAF}" ?>
-  <?define Guid.Record.Assemblies = "{E3F392CA-DF1E-4384-953D-B29452C2787F}" ?>
-  <?define Guid.Record.Assemblies.Localization.es = "{0F926D7F-9232-469C-AD97-A3790A0C1BFF}" ?>
-  <?define Guid.Record.Dependencies = "{DDB374CA-B1C9-48E7-9E52-2CCD16DBDAB7}" ?>
-  <?define Guid.Record.Dependencies.Localization.es = "{C9CB0BAB-901B-4E3B-A539-7AC344C2ADF0}" ?>
-  <?define Guid.Record.DB = "{42A07287-84FE-4283-9DEC-E6ADA2FBA7BE}" ?>
-  <?define Guid.Record.Launcher = "{C2BDBA86-2725-4FBB-9A95-274BD8D3E44B}" ?>
-  <?define Guid.Record.Launcher.Localization.es = "{61D56C06-B2F1-4631-BA4A-A7AF3705BB21}" ?>
+  <?define Guid.Record.Registry = "{3BC7845F-D6F0-4352-9477-68ABB0C1749C}" ?>
+  <?define Guid.Record.Assemblies = "{D3165EC9-5946-4E00-AB09-95744AF3CC0B}" ?>
+  <?define Guid.Record.Assemblies.Localization.es = "{913378ED-1FA7-4F91-A488-8EC59DC0DAD1}" ?>
+  <?define Guid.Record.Dependencies = "{BBBA24AB-7744-409E-A44A-D1612E7ECE4E}" ?>
+  <?define Guid.Record.Dependencies.Localization.es = "{18BBC23A-C74F-4355-B9C4-A921E3AA9A20}" ?>
+  <?define Guid.Record.DB = "{78C680B8-5B4F-4B02-9071-AE1A6422034D}" ?>
+  <?define Guid.Record.Launcher = "{EB84F3EA-F37B-4599-A493-FEFB5D45B58C}" ?>
+  <?define Guid.Record.Launcher.Localization.es = "{5E878362-266F-494C-B099-A6722F9D48CD}" ?>
 
-  <?define Guid.Redist.EMB.x86 = "{9DDFBDAD-E91A-4D42-B4DC-90023A00F132}" ?>
-  <?define Guid.Redist.EMB.x64 = "{0925E2E3-6C49-4454-A3ED-FF86781017AF}" ?>
-  <?define Guid.Redist.SqlCe.x86 = "{5B27AE95-5228-4C24-BB3B-7E1ADDA5DA3F}" ?>
-  <?define Guid.Redist.SqlCe.x64 = "{B0A999F8-859C-4D8C-9EE4-5D9CB1B657AA}" ?>
-  <?define Guid.Redist.LoadNetFx35 = "{0BE831C2-65B3-4D19-AA11-D3B3B415BFA6}" ?>
+  <?define Guid.Redist.EMB.x86 = "{BF7E06EF-6399-41A8-84E7-D825710B387B}" ?>
+  <?define Guid.Redist.EMB.x64 = "{85DA1075-376E-476E-8A0C-C2A24D7890EA}" ?>
+  <?define Guid.Redist.SqlCe.x86 = "{D696F805-E828-4999-BB98-1C2CCE4E5569}" ?>
+  <?define Guid.Redist.SqlCe.x64 = "{2797DD8F-DD19-45F1-B049-E305F0A4576F}" ?>
+  <?define Guid.Redist.LoadNetFx35 = "{58522A11-58F0-4719-89E8-CFE89C6737C4}" ?>
 
-  <?define Guid.Services.Assemblies = "{0180EBF7-06BF-4E8E-AAF4-5230F79B29DA}" ?>
-  <?define Guid.Services.Assemblies.Localization.es ="{99E5A674-B6FB-4655-9B9A-38286350C43B}" ?>
+  <?define Guid.Services.Assemblies = "{BD701E5A-FACD-46D8-8012-F7B7052347A9}" ?>
+  <?define Guid.Services.Assemblies.Localization.es ="{405493DA-679E-47D6-A190-5192066F6C8D}" ?>
 
-  <?define Guid.Telemetry.Assemblies = "{E23F6B5A-391F-4236-8828-A2274376E0C8}" ?>
-  <?define Guid.Telemetry.Assemblies.Localization.es = "{28E1E3CB-638E-4446-BC58-65C283A38B1C}" ?>
-  <?define Guid.Telemetry.MsAppCenter = "{EB055538-C780-42F2-AF45-48B932EDEA4A}" ?>
-  <?define Guid.Telemetry.MsAppCenter.Dependencies = "{5C0A2E3B-C6F5-4F38-853C-4A0B979C6C98}" ?>
+  <?define Guid.Telemetry.Assemblies = "{2A246603-E57C-4C8C-8456-F591A1B3F1BB}" ?>
+  <?define Guid.Telemetry.Assemblies.Localization.es = "{0B036F07-26A9-41BD-BA05-7C94AE169F11}" ?>
+  <?define Guid.Telemetry.MsAppCenter = "{83F4DC4F-619A-433D-99CC-CA83FF6DC5C6}" ?>
+  <?define Guid.Telemetry.MsAppCenter.Dependencies = "{4EFD0D59-8D30-4208-9167-16273ECEF9D5}" ?>
 
-  <?define Guid.ThirdParty.JsonNet = "{69DA6040-C4A4-4EFA-9F29-531E794A5840}" ?>
-  <?define Guid.ThirdParty.SQLite = "{77F054BF-7917-406F-B053-A14AF9CDAEC9}" ?>
-  <?define Guid.ThirdParty.SQLite.x86 = "{ABF06329-F9AF-467C-9FC8-2E0757BF044D}" ?>
-  <?define Guid.ThirdParty.SQLite.x64 = "{01C9F0A8-D6DA-4D10-9090-15BBCF7E1A60}" ?>
+  <?define Guid.ThirdParty.JsonNet = "{FA3CDFB5-E3C5-42F5-9138-256BF7CABFC4}" ?>
+  <?define Guid.ThirdParty.SQLite = "{B27AE8AC-53D6-4576-84F4-CCD6ABE2D61A}" ?>
+  <?define Guid.ThirdParty.SQLite.x86 = "{3609635F-E374-413E-B23E-3FA5CE461DFD}" ?>
+  <?define Guid.ThirdParty.SQLite.x64 = "{E0FDA2DE-15D3-48F1-BC32-8464770F202B}" ?>
 
-  <?define Guid.Tools.FirstTimeConfig.Assemblies = "{CFBEECEE-C30E-4EF7-BB4B-00D6EB8FD004}" ?>
-  <?define Guid.Tools.FirstTimeConfig.Shortcut = "{BFB9BD6B-6270-462D-A892-6C41F0717E5F}" ?>
-  <?define Guid.Tools.FirstTimeConfig.Localization.es = "{31712C70-9962-4D12-A8F7-6084519D77C2}" ?>
+  <?define Guid.Tools.FirstTimeConfig.Assemblies = "{E3AEDE81-AA8D-4B8F-A353-F5A16B760AE2}" ?>
+  <?define Guid.Tools.FirstTimeConfig.Shortcut = "{AF960158-A604-4526-9B5C-A1241BFF552A}" ?>
+  <?define Guid.Tools.FirstTimeConfig.Localization.es = "{F5D33972-C997-424D-A5D9-B91FBF51A1C0}" ?>
 
-  <?define Guid.UIServices.Assemblies = "{B9598C51-DA9C-4EBC-9028-1D1C1E45160B}" ?>
-  <?define Guid.UIServices.Assemblies.Localization.es ="{AF3BE940-2A48-486D-8E1F-0A0442D474D6}" ?>
+  <?define Guid.UIServices.Assemblies = "{0E580844-F58A-4E9F-BEFE-A53015ECE6A4}" ?>
+  <?define Guid.UIServices.Assemblies.Localization.es ="{21A50842-BEBA-4619-B4D3-A7BDB5818FCB}" ?>
 
-  <?define Guid.Uninstall.Folders = "{9FFE537B-71DC-4D5C-8442-067096DEA702}" ?>
+  <?define Guid.Uninstall.Folders = "{7B6ADDAA-17CA-4970-8A39-DE686604CB0B}" ?>
 </Include>
