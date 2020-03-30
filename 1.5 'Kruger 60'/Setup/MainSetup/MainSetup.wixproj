@@ -6,7 +6,7 @@
     <ProductVersion>3.9</ProductVersion>
     <ProjectGuid>f3fc11c7-8850-4874-9cf3-8ba4de43959a</ProjectGuid>
     <SchemaVersion>2.0</SchemaVersion>
-    <OutputName>IPTViewr_Movistar+_1-5_beta-1-sp1</OutputName>
+    <OutputName>IPTViewr_Movistar+_1-5_beta-1-sp1a</OutputName>
     <OutputType>Package</OutputType>
     <WixTargetsPath Condition=" '$(WixTargetsPath)' == '' AND '$(MSBuildExtensionsPath32)' != '' ">$(MSBuildExtensionsPath32)\Microsoft\WiX\v3.x\Wix.targets</WixTargetsPath>
     <WixTargetsPath Condition=" '$(WixTargetsPath)' == '' ">$(MSBuildExtensionsPath)\Microsoft\WiX\v3.x\Wix.targets</WixTargetsPath>
@@ -308,7 +308,15 @@
   </ItemGroup>
   <Import Project="$(WixTargetsPath)" />
   <PropertyGroup>
-    <PreBuildEvent>"$(SolutionDir)Logos\bin\$(ConfigurationName)\PackLogos" "-from:$(SolutionDir)Logos" "-to:$(SolutionDir)Logos\bin\$(ConfigurationName)\logos" -nologo -verbose</PreBuildEvent>
+    <PreBuildEvent>"$(SolutionDir)Logos\bin\$(ConfigurationName)\PackLogos" "-from:$(SolutionDir)Logos" "-to:$(SolutionDir)Logos\bin\$(ConfigurationName)\logos" -nologo -verbose
+del "$(TargetDir)\$(TargetName)_es-es$(TargetExt)"
+del "$(TargetDir)\$(TargetName)_en-us$(TargetExt)"</PreBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PostBuildEvent>call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Common7\Tools\VsDevCmd.bat"
+signtool sign /sha1 "de3d61baad9b12a4e7c70e068e28d354cdc25f50" /tr "http://time.certum.pl" /fd sha256 "$(TargetDir)es-es\$(TargetFileName)" "$(TargetDir)en-us\$(TargetFileName)"
+copy "$(TargetDir)es-es\$(TargetFileName)" "$(TargetDir)\$(TargetName)_es-es$(TargetExt)"
+copy "$(TargetDir)en-us\$(TargetFileName)" "$(TargetDir)\$(TargetName)_en-us$(TargetExt)"</PostBuildEvent>
   </PropertyGroup>
   <!--
 	To modify your build process, add your task inside one of the targets below and uncomment it.

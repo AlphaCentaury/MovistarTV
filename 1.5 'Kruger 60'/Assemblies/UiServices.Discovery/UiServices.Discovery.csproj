@@ -42,7 +42,7 @@
     <SignAssembly>true</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>AlphaCentaury_MovistarTV.snk.pfx</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>C:\Users\Developer\source\repos\AlphaCentaury\secrets\AlphaCentaury_MovistarTV.snk.pfx</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -302,7 +302,6 @@
       <Link>Resources\Status_Success_24x24.png</Link>
     </Content>
     <Content Include="License.txt" />
-    <None Include="AlphaCentaury_MovistarTV.snk.pfx" />
     <None Include="LICENSE.ES.MD" />
     <None Include="LICENSE.MD" />
     <None Include="Resources\MissingLogo256.png" />

@@ -212,10 +212,6 @@
   <data name="WizardTop" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\wizardtop.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="TelemetryGoogleAnalytics_TrackingId" xml:space="preserve">
-    <value>UA-66146192-4</value>
-    <comment>Get new property for every new major version or new phase!</comment>
-  </data>
   <data name="Status_Pending_16x16" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\..\common.ui\resources\status_pending_16x16.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -224,10 +220,6 @@
   </data>
   <data name="FirstTimeConfigIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\first-time-config.ico;System.Drawing.Icon, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="TelemetryAppCenter_AppSecret" xml:space="preserve">
-    <value>13fb25ea-ccce-4909-9080-5fe029694e7e</value>
-    <comment>Get new secret for every new major version or new phase!</comment>
   </data>
   <data name="MpcDefaultLocation" xml:space="preserve">
     <value>K-Lite Codec Pack\\Media Player Classic\\mpc-hc.exe</value>
