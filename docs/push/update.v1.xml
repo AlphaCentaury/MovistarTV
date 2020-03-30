@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Push.Updates xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://alphacentaury.org/movistar+/Push.v1">
-  <Timestamp>2020-02-24T15:37:28.1951699Z</Timestamp>
+  <Timestamp>2020-03-30T21:25:25.8137345Z</Timestamp>
+  <Update timestamp="2020-03-30T12:00:00Z">
+    <Id>525cde99-1eb0-4e7d-8c36-a4f148e82463</Id>
+    <Version>1.5.1105.0</Version>
+    <DisplayVersion>1.5 "Kruger 60" beta 1 SP1</DisplayVersion>
+    <ReleasedDate>2020-03-30T12:00:00Z</ReleasedDate>
+    <URL>https://www.alphacentaury.org/movistartv/downloads/2020/iptviewr-v1-5-kruger-60-beta-1-sp1/</URL>
+    <Link>https://www.alphacentaury.org/movistartv/downloads</Link>
+  </Update>
   <Update timestamp="2020-02-24T00:00:00Z">
     <Id>c7b65119-4c04-4050-babf-2345bf6144df</Id>
     <Version>1.5.1015.0</Version>
