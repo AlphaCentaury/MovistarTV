@@ -323,24 +323,6 @@ namespace IpTviewr.Tools.FirstTimeConfig.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 13fb25ea-ccce-4909-9080-5fe029694e7e.
-        /// </summary>
-        internal static string TelemetryAppCenter_AppSecret {
-            get {
-                return ResourceManager.GetString("TelemetryAppCenter_AppSecret", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to UA-66146192-4.
-        /// </summary>
-        internal static string TelemetryGoogleAnalytics_TrackingId {
-            get {
-                return ResourceManager.GetString("TelemetryGoogleAnalytics_TrackingId", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to VideoLAN\VLC\vlc.exe.
         /// </summary>
         internal static string VlcDefaultLocation {

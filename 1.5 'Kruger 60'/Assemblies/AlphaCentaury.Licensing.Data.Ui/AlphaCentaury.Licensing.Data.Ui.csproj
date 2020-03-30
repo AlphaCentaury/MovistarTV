@@ -36,7 +36,7 @@
     <SignAssembly>true</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>AlphaCentaury_MovistarTV.snk.pfx</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>C:\Users\Developer\source\repos\AlphaCentaury\secrets\AlphaCentaury_MovistarTV.snk.pfx</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="JetBrains.Annotations, Version=2019.1.3.0, Culture=neutral, PublicKeyToken=1010a0d8d6380325, processorArchitecture=MSIL">
@@ -158,7 +158,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="AlphaCentaury_MovistarTV.snk.pfx" />
     <None Include="LICENSE.ES.MD" />
     <None Include="LICENSE.MD" />
     <None Include="packages.config" />

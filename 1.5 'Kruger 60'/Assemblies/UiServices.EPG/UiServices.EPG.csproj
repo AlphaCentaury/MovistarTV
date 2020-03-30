@@ -43,7 +43,7 @@
     <DelaySign>false</DelaySign>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>AlphaCentaury_MovistarTV.snk.pfx</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>C:\Users\Developer\source\repos\AlphaCentaury\secrets\AlphaCentaury_MovistarTV.snk.pfx</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -244,7 +244,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="AlphaCentaury_MovistarTV.snk.pfx" />
     <None Include="LICENSE.ES.MD" />
     <None Include="LICENSE.MD" />
   </ItemGroup>

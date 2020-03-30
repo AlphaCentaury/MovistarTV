@@ -82,7 +82,7 @@ namespace IpTviewr.Tools.FirstTimeConfig
             _wizardEndException = ex;
         } // SetWizardResult
 
-        static int LaunchWizard()
+        private static int LaunchWizard()
         {
             bool launchMainProgram;
             int result;
@@ -90,12 +90,6 @@ namespace IpTviewr.Tools.FirstTimeConfig
             _wizardEndResult = DialogResult.Abort;
 
             AppConfigFolders = Installation.LoadFolders(out var initResult);
-            if (string.IsNullOrEmpty(Settings.Default.Telemetry_GoogleAnalyticsClientId))
-            {
-                Settings.Default.Telemetry_GoogleAnalyticsClientId = Guid.NewGuid().ToString("D");
-                Settings.Default.Save();
-            } // if
-
             if (AppConfigFolders == null)
             {
                 SetWizardResult(DialogResult.Abort, $"{initResult.Caption}\r\n{initResult.Message}", initResult.InnerException);

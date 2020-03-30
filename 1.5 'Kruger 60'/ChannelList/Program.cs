@@ -86,16 +86,8 @@ namespace IpTviewr.ChannelList
             AppTelemetry.Start(new TelemetryFactory(), telemetryConfiguration, new Dictionary<string, IReadOnlyDictionary<string, string>>
             {
                 {
-                    "IpTviewr.Telemetry.VsAppCenter", new Dictionary<string, string>
-                    {
-                        {"AppSecret", InvariantTexts.TelemetryAppCenter_AppSecret}
-                    }
-
-                },
-                {
                     "IpTviewr.Telemetry.GoogleAnalytics", new Dictionary<string, string>
                     {
-                        {"TrackingId", InvariantTexts.TelemetryGoogleAnalytics_TrackingId},
                         {"ClientId", Settings.Default.Telemetry_GoogleAnalyticsClientId}
                     }
                 }

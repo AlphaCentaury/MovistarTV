@@ -29,6 +29,7 @@ using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 using IpTviewr.Native;
+using IpTviewr.Telemetry.Properties;
 
 namespace IpTviewr.Telemetry
 {
@@ -49,7 +50,7 @@ namespace IpTviewr.Telemetry
         {
             if (properties == null) throw new InvalidOperationException();
 
-            TrackingId = properties["TrackingId"];
+            TrackingId = Resources.GoogleAnalytics;
             _userAgent = BuildUserAgent();
             _applicationName = Path.GetFileNameWithoutExtension(Application.ExecutablePath);
             _applicationId = Assembly.GetEntryAssembly()?.EntryPoint?.DeclaringType?.FullName;

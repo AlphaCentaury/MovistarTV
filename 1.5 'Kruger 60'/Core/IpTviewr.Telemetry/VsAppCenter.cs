@@ -18,6 +18,7 @@ using System.IO;
 using System.Windows.Forms;
 using IpTviewr.Common.Telemetry;
 using IpTviewr.Native;
+using IpTviewr.Telemetry.Properties;
 using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
@@ -36,8 +37,6 @@ namespace IpTviewr.Telemetry
 
         public void Start(IReadOnlyDictionary<string, string> properties)
         {
-            if (properties == null) throw new InvalidOperationException();
-
             var countryCode = RegionInfo.CurrentRegion.TwoLetterISORegionName;
             var exe = Path.GetFileNameWithoutExtension(Application.ExecutablePath);
             WindowsDesktop.GetDpi(out var dpiX, out var dpiY);
@@ -50,7 +49,7 @@ namespace IpTviewr.Telemetry
             Crashes.SetEnabledAsync(AppTelemetry.Enabled).Wait();
 
             AppCenter.SetCountryCode(countryCode);
-            AppCenter.Start(properties["AppSecret"], typeof(Analytics), typeof(Crashes));
+            AppCenter.Start(Resources.MicrosoftAppCenter, typeof(Analytics), typeof(Crashes));
             Analytics.TrackEvent($"{exe}:Start", new Dictionary<string, string>
             {
                 {"CurrentCulture", CultureInfo.CurrentCulture.Name},
