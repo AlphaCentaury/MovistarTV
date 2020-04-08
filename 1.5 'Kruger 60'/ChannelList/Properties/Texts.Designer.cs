@@ -61,7 +61,7 @@ namespace IpTviewr.ChannelList.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to IPTViewr for movistar+ (1.5“Kruger 60” beta 1 SP1).
+        ///   Looks up a localized string similar to IPTViewr for movistar+ (1.5“Kruger 60” beta 2 WIP).
         /// </summary>
         internal static string AppCaption {
             get {
@@ -103,7 +103,7 @@ namespace IpTviewr.ChannelList.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 1.5 “Kruger 60” beta 1 SP1.
+        ///   Looks up a localized string similar to 1.5 “Kruger 60” beta 2 WIP.
         /// </summary>
         internal static string AppVersion {
             get {
@@ -433,7 +433,7 @@ namespace IpTviewr.ChannelList.Properties {
         ///##
         ///##############################################################################
         ///##
-        ///## IPTV Virtual Decoder for movistar+ v1.5 â€œKruger 60â€ beta 1 SP1
+        ///## IPTV Virtual Decoder for movistar+ v1.5 â€œKruger 60â€ beta 2 WIP
         ///## by Codeplex/GitHub user AlphaCentaury
         ///##
         ///## Copyright (C) 2014-2020, Codeplex/GitHub user AlphaCentaury and its contributors

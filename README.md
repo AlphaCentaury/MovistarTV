@@ -4,7 +4,7 @@
 
 IPTViewr emula, parcialmente, el funcionamiento del decodificador físico de movistar+. El propósito de este proyecto es llegar a cubrir el 95% de la funcionalidad del decodificador.
 
-La version actual, [v1.5 ‘Kruger 60’ beta 1 SP1][Kruger-60], dispone de las siguientes funcionalidades:
+La version actual, [v1.5 ‘Kruger 60’ beta 2 WIP][Kruger-60], dispone de las siguientes funcionalidades:
 - Lista completa de canales
   - Se muestran todos los canales disponibles, con independencia de si forman parte o no del programa contratado.
   - Sólo pueden visualizarse los canales contratados.

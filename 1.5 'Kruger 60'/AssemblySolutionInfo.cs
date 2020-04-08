@@ -20,11 +20,11 @@ using System.Reflection;
 
 internal static class SolutionVersion
 {
-    public const string DefaultAssemblyVersion = "1.5.1105.0";
-    public const string AssemblyFileVersion = "1.5.1105.0";
-    public const string AssemblyInformationalVersion = "1.5.1105.0";
+    public const string DefaultAssemblyVersion = "1.5.1900.0";
+    public const string AssemblyFileVersion = "1.5.1900.0";
+    public const string AssemblyInformationalVersion = "1.5.1900.0";
     public const string AssemblyProduct = "IPTViewr: virtual decoder for movistar+" + " (v" + ProductVersion + ")";
-    public const string ProductVersion = "1.5 \"Kruger 60\" beta 1 SP1";
+    public const string ProductVersion = "1.5 \"Kruger 60\" beta 2 WIP";
     public const string DefaultCopyright = "Copyright (C) 2014-2020, GitHub/Codeplex user AlphaCentaury and contributors";
     public const string AssemblyCompany = "www.alphacentaury.org";
 

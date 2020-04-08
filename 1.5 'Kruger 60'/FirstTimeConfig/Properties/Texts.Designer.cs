@@ -610,7 +610,7 @@ namespace IpTviewr.Tools.FirstTimeConfig.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to v1.5 “Kruger 60” beta 1 SP1.
+        ///   Looks up a localized string similar to v1.5 “Kruger 60” beta 2 WIP.
         /// </summary>
         internal static string ProductShortName {
             get {

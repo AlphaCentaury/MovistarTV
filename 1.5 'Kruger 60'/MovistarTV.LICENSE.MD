@@ -1,5 +1,5 @@
 # IPTViewr v1.5
-IPTV Virtual Decoder for movistar+ v1.5 “Kruger 60” beta 1 SP1\
+IPTV Virtual Decoder for movistar+ v1.5 “Kruger 60” beta 2 WIP\
 _by Codeplex/GitHub user AlphaCentaury_
 
 **Copyright (C) 2014-2020, Codeplex/GitHub user AlphaCentaury and its contributors**
