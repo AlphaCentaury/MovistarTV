@@ -53,11 +53,11 @@ namespace IpTviewr.Internal.Tools.ConsoleExperiments
                     */
                     new PushUpdate
                     {
-                        Timestamp = DateTime.SpecifyKind(new DateTime(2020, 03, 27), DateTimeKind.Utc),
-                        Id = Guid.Parse("{81479B32-7252-4BB2-9C61-1720674634F3}"),
-                        Version = "1.5.1100.0",
+                        Timestamp = DateTime.SpecifyKind(new DateTime(2020, 03, 30, 12, 0, 0), DateTimeKind.Utc),
+                        Id = Guid.Parse("{525CDE99-1EB0-4E7D-8C36-A4F148E82463}"),
+                        Version = "1.5.1105.0",
                         DisplayVersion = "1.5 \"Kruger 60\" beta 1 SP1",
-                        ReleasedDate = DateTime.SpecifyKind(new DateTime(2020, 03, 27), DateTimeKind.Utc),
+                        ReleasedDate = DateTime.SpecifyKind(new DateTime(2020, 03, 30, 12, 0,0), DateTimeKind.Utc),
                         DownloadUrl = "https://www.alphacentaury.org/movistartv/downloads/2020/iptviewr-v1-5-kruger-60-beta-1-sp1/",
                         Link = "https://www.alphacentaury.org/movistartv/downloads"
                     },

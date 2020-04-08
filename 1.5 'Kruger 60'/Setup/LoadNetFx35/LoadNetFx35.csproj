@@ -75,4 +75,10 @@
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>if "$(ConfigurationName)" == "Release" (
+call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Common7\Tools\VsDevCmd.bat"
+signtool sign /sha1 "de3d61baad9b12a4e7c70e068e28d354cdc25f50" /tr "http://time.certum.pl" /fd sha256 "$(TargetPath)"
+)</PostBuildEvent>
+  </PropertyGroup>
 </Project>

@@ -491,7 +491,7 @@ namespace IpTviewr.UiServices.Configuration
 
         private InitializationResult LoadIpTvProviderData()
         {
-            var xmlPath = Path.Combine(Folders.Base, "movistartv-config.xml");
+            var xmlPath = Path.Combine(Folders.Base, "movistarplus-config.xml");
 
             try
             {

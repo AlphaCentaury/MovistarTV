@@ -24,7 +24,7 @@
 
     <ComponentGroup Id="ContentProvider.Configuration" Directory="BaseFolder">
       <Component Id="ContentProvider.Configuration" Guid="$(var.Guid.ContentProvider.Configuration)">
-        <File Id="movistartv_config.xml" Source="$(var.SolutionDir)movistartv-config.xml" KeyPath="yes" />
+        <File Id="movistarplus_config.xml" Source="$(var.SolutionDir)movistar+\movistarplus-config.xml" KeyPath="yes" />
       </Component>
     </ComponentGroup>
 

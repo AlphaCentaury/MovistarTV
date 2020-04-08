@@ -22,28 +22,28 @@
 
     <ComponentGroup Id="Logos.Providers" Directory="Folder.Logos.Providers">
       <Component>
-        <File Id="logos.providers.mappings.xml" Source="$(var.Logos.ProjectDir)Providers\provider-mappings.xml" KeyPath="yes" />
+        <File Id="logos.providers.mappings.xml" Source="$(var.SolutionDir)Logos\Providers\provider-mappings.xml" KeyPath="yes" />
       </Component>
       <Component>
-        <File Id="logos.providers.default" Source="$(var.Logos.TargetDir)logos\Providers\(default).zip" KeyPath="yes" />
+        <File Id="logos.providers.default" Source="$(var.LogosPackager.TargetDir)packed\Providers\(default).zip" KeyPath="yes" />
       </Component>
       <Component>
-        <File Id="logos.providers.movistar" Source="$(var.Logos.TargetDir)logos\Providers\movistar+.zip" KeyPath="yes" />
+        <File Id="logos.providers.movistar" Source="$(var.LogosPackager.TargetDir)packed\Providers\movistar+.zip" KeyPath="yes" />
       </Component>
     </ComponentGroup>
 
     <ComponentGroup Id="Logos.Services" Directory="Folder.Logos.Services">
       <Component>
-        <File Id="logos.services.mappings.domain.xml" Source="$(var.Logos.ProjectDir)Services\domain-mappings.xml" KeyPath="yes" />
+        <File Id="logos.services.mappings.domain.xml" Source="$(var.SolutionDir)Logos\Services\domain-mappings.xml" KeyPath="yes" />
       </Component>
       <Component>
-        <File Id="logos.services.mappings.service.xml" Source="$(var.Logos.ProjectDir)Services\service-mappings.xml" KeyPath="yes" />
+        <File Id="logos.services.mappings.service.xml" Source="$(var.SolutionDir)Logos\Services\service-mappings.xml" KeyPath="yes" />
       </Component>
       <Component>
-        <File Id="logos.services.generic.zip" Source="$(var.Logos.TargetDir)logos\Services\generic.zip" KeyPath="yes" />
+        <File Id="logos.services.generic.zip" Source="$(var.LogosPackager.TargetDir)packed\Services\generic.zip" KeyPath="yes" />
       </Component>
       <Component>
-        <File Id="logos.services.movistar.zip" Source="$(var.Logos.TargetDir)logos\Services\movistar+.zip" KeyPath="yes" />
+        <File Id="logos.services.movistar.zip" Source="$(var.LogosPackager.TargetDir)packed\Services\movistar+.zip" KeyPath="yes" />
       </Component>
     </ComponentGroup>
   </Fragment>

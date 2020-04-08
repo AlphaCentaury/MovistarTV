@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{E1748F45-DD50-4479-96F6-F7EBA6F3E28B}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{65DD367D-A89D-4F89-9231-2009EF0B31AF}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>IpTviewr.IpTvServices.MovistarPlus</RootNamespace>
-    <AssemblyName>IpTViewr.MovistarPlus</AssemblyName>
+    <RootNamespace>IpTViewr.Setup.LogosPackager</RootNamespace>
+    <AssemblyName>LogosPackager</AssemblyName>
     <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SccProjectName>SAK</SccProjectName>
@@ -18,6 +18,7 @@
     <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -28,6 +29,7 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -37,77 +39,77 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Resources\LogosPackager.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
     <SignAssembly>true</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
     <AssemblyOriginatorKeyFile>C:\Users\Developer\source\repos\AlphaCentaury\secrets\AlphaCentaury_MovistarTV.snk.pfx</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.ComponentModel.Composition" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="..\..\AssemblySolutionInfo.cs">
-      <Link>Properties\AssemblySolutionInfo.cs</Link>
-    </Compile>
-    <Compile Include="EpgInfoProvider.cs" />
-    <Compile Include="Implementation\MovistarProviderTexts.cs" />
-    <Compile Include="Implementation\MovistarTexts.cs" />
-    <Compile Include="IpTvServiceMovistarPlus.cs" />
-    <Compile Include="MovistarCrId.cs" />
-    <Compile Include="MovistarEpgInfo.cs" />
-    <Compile Include="MovistarJsonEpgInfoResponse.cs" />
-    <Compile Include="MovistarJsonResponse.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Properties\Texts.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Texts.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Serialization\MovistarPlusConfig.cs" />
-    <Compile Include="Serialization\Opch.cs" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="License.txt" />
     <Content Include="licensing.xml" />
+    <Content Include="LICENSE.ES.MD" />
+    <Content Include="LICENSE.MD" />
+    <None Include="app.config" />
+    <None Include="Resources\LogosPackager.ico" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="LICENSE.ES.MD" />
-    <None Include="LICENSE.MD" />
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Core.IpTvProvider\IpTviewr.IpTvServices.csproj">
-      <Project>{36b8e0a1-f1b1-498d-8fe7-a39bb7fd68ca}</Project>
-      <Name>IpTviewr.IpTvServices</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Project.Common\IpTviewr.Common.csproj">
-      <Project>{8da15060-5a78-4f89-a9f1-7aa56b0d622c}</Project>
-      <Name>IpTviewr.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\UiServices.Config\UiServices.Config.csproj">
-      <Project>{A722DE9D-AE51-479C-825F-A19F4C69BD75}</Project>
-      <Name>UiServices.Config</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Properties\Texts.es.resx" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Texts.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Texts.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\..\AssemblySolutionInfo.cs">
+      <Link>Properties\AssemblySolutionInfo.cs</Link>
+    </Compile>
+    <Compile Include="Packager.cs" />
+    <Compile Include="PackLogos.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Texts.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Texts.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.XML" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Assemblies\Project.Common\IpTviewr.Common.csproj">
+      <Project>{8da15060-5a78-4f89-a9f1-7aa56b0d622c}</Project>
+      <Name>IpTviewr.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Assemblies\Project.Native\IpTviewr.Native.csproj">
+      <Project>{8986CD52-0C65-42D6-9C47-20FF47CF87BB}</Project>
+      <Name>IpTviewr.Native</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Assemblies\UiServices.Discovery\UiServices.Discovery.csproj">
+      <Project>{7e5e21b9-4bd6-4fb3-9055-9b09cc479c6c}</Project>
+      <Name>UiServices.Discovery</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <PropertyGroup>
-    <PostBuildEvent>
-    </PostBuildEvent>
-  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

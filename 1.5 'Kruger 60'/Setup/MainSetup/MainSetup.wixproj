@@ -137,14 +137,6 @@
       <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>
       <RefTargetDir>INSTALLFOLDER</RefTargetDir>
     </ProjectReference>
-    <ProjectReference Include="..\..\Assemblies\IpTv.MovistarPlus\IpTv.MovistarPlus.csproj">
-      <Name>IpTv.MovistarPlus</Name>
-      <Project>{e1748f45-dd50-4479-96f6-f7eba6f3e28b}</Project>
-      <Private>True</Private>
-      <DoNotHarvest>True</DoNotHarvest>
-      <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>
-      <RefTargetDir>INSTALLFOLDER</RefTargetDir>
-    </ProjectReference>
     <ProjectReference Include="..\..\Assemblies\Project.Common\IpTviewr.Common.csproj">
       <Name>IpTviewr.Common</Name>
       <Project>{8da15060-5a78-4f89-a9f1-7aa56b0d622c}</Project>
@@ -289,9 +281,9 @@
       <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>
       <RefTargetDir>INSTALLFOLDER</RefTargetDir>
     </ProjectReference>
-    <ProjectReference Include="..\..\Logos\Logos.csproj">
-      <Name>Logos</Name>
-      <Project>{65dd367d-a89d-4f89-9231-2009ef0b31af}</Project>
+    <ProjectReference Include="..\..\movistar+\IpTv.MovistarPlus\IpTv.MovistarPlus.csproj">
+      <Name>IpTv.MovistarPlus</Name>
+      <Project>{e1748f45-dd50-4479-96f6-f7eba6f3e28b}</Project>
       <Private>True</Private>
       <DoNotHarvest>True</DoNotHarvest>
       <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>
@@ -305,18 +297,26 @@
       <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>
       <RefTargetDir>INSTALLFOLDER</RefTargetDir>
     </ProjectReference>
+    <ProjectReference Include="..\LogosPackager\LogosPackager.csproj">
+      <Name>LogosPackager</Name>
+      <Project>{65dd367d-a89d-4f89-9231-2009ef0b31af}</Project>
+      <Private>True</Private>
+      <DoNotHarvest>True</DoNotHarvest>
+      <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>
+      <RefTargetDir>INSTALLFOLDER</RefTargetDir>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(WixTargetsPath)" />
-  <PropertyGroup>
-    <PreBuildEvent>"$(SolutionDir)Logos\bin\$(ConfigurationName)\PackLogos" "-from:$(SolutionDir)Logos" "-to:$(SolutionDir)Logos\bin\$(ConfigurationName)\logos" -nologo -verbose
-del "$(TargetDir)\$(TargetName)_es-es$(TargetExt)"
-del "$(TargetDir)\$(TargetName)_en-us$(TargetExt)"</PreBuildEvent>
-  </PropertyGroup>
   <PropertyGroup>
     <PostBuildEvent>call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Common7\Tools\VsDevCmd.bat"
 signtool sign /sha1 "de3d61baad9b12a4e7c70e068e28d354cdc25f50" /tr "http://time.certum.pl" /fd sha256 "$(TargetDir)es-es\$(TargetFileName)" "$(TargetDir)en-us\$(TargetFileName)"
 copy "$(TargetDir)es-es\$(TargetFileName)" "$(TargetDir)\$(TargetName)_es-es$(TargetExt)"
 copy "$(TargetDir)en-us\$(TargetFileName)" "$(TargetDir)\$(TargetName)_en-us$(TargetExt)"</PostBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PreBuildEvent>"$(ProjectDir)..\LogosPackager\bin\$(ConfigurationName)\LogosPackager" "-from:$(SolutionDir)Logos" "-to:$(ProjectDir)..\LogosPackager\bin\$(ConfigurationName)\packed" -verbose
+del "$(TargetDir)\$(TargetName)_es-es$(TargetExt)"
+del "$(TargetDir)\$(TargetName)_en-us$(TargetExt)"</PreBuildEvent>
   </PropertyGroup>
   <!--
 	To modify your build process, add your task inside one of the targets below and uncomment it.

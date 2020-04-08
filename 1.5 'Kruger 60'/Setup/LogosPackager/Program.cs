@@ -15,9 +15,9 @@ using System;
 using System.Collections.Generic;
 using System.Reflection;
 using IpTviewr.Common;
-using IpTViewr.Setup.Logos.Properties;
+using IpTViewr.Setup.LogosPackager.Properties;
 
-namespace IpTViewr.Setup.Logos
+namespace IpTViewr.Setup.LogosPackager
 {
     internal static class Program
     {

@@ -17,7 +17,7 @@ using System.IO;
 using System.IO.Compression;
 using SaveAs = IpTviewr.Native.WindowsIcon.SaveAs;
 
-namespace IpTViewr.Setup.Logos
+namespace IpTViewr.Setup.LogosPackager
 {
     internal sealed class PackLogos
     {

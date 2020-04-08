@@ -14,10 +14,10 @@
 using System;
 using System.Drawing;
 using System.IO;
-using IpTviewr.Native;
 using System.IO.Compression;
+using IpTviewr.Native;
 
-namespace IpTViewr.Setup.Logos
+namespace IpTViewr.Setup.LogosPackager
 {
     internal sealed class Packager
     {

@@ -251,10 +251,6 @@
       <Project>{b91c438d-0333-4d06-86cd-74ce82df6f40}</Project>
       <Name>Etsi.Ts102034</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Assemblies\IpTv.MovistarPlus\IpTv.MovistarPlus.csproj">
-      <Project>{e1748f45-dd50-4479-96f6-f7eba6f3e28b}</Project>
-      <Name>IpTv.MovistarPlus</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Assemblies\Project.Common\IpTviewr.Common.csproj">
       <Project>{8da15060-5a78-4f89-a9f1-7aa56b0d622c}</Project>
       <Name>IpTviewr.Common</Name>
