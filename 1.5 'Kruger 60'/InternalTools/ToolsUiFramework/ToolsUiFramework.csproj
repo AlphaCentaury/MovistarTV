@@ -164,6 +164,11 @@
     <Content Include="Resources\GuiTool_24x.png" />
     <Content Include="Resources\GuiTool_32x.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\..\Assemblies\UiServices.Common\UiServices.Common.csproj">
+      <Project>{76346905-AC2F-4F01-BA99-BBFFBB2A6FE9}</Project>
+      <Name>UiServices.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

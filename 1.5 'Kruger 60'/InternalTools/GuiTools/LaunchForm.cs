@@ -53,7 +53,7 @@ namespace IpTviewr.Internal.Tools.GuiTools
             if (radioDvbStpExplorer.Checked) return typeof(DvbStpStreamExplorerForm);
             if (radioMulticastExplorer.Checked) return typeof(MulticastStreamExplorerForm);
             if (radioOpchExplorer.Checked) return typeof(OpchExplorerForm);
-            if (radioBinaryEditor.Checked) return typeof(BinaryEditorForm);
+            if (radioBinaryEditor.Checked) return typeof(BinaryViewerForm);
             if (radioIconBuilder.Checked) return typeof(IconBuilder);
             if (radioRtf.Checked) return typeof(RtfViewer);
             if (radioRibbon.Checked) return typeof(RibbonForm);

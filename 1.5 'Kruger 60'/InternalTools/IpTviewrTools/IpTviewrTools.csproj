@@ -58,11 +58,11 @@
     <Compile Include="..\..\AssemblySolutionInfo.cs">
       <Link>Properties\AssemblySolutionInfo.cs</Link>
     </Compile>
-    <Compile Include="Form1.cs">
+    <Compile Include="TestToolForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="TestToolForm.Designer.cs">
+      <DependentUpon>TestToolForm.cs</DependentUpon>
     </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
@@ -73,8 +73,8 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestTool.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="TestToolForm.resx">
+      <DependentUpon>TestToolForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
@@ -119,6 +119,10 @@
       <Project>{8da15060-5a78-4f89-a9f1-7aa56b0d622c}</Project>
       <Name>IpTviewr.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Assemblies\UiServices.Common\UiServices.Common.csproj">
+      <Project>{76346905-ac2f-4f01-ba99-bbffbb2a6fe9}</Project>
+      <Name>UiServices.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Assemblies\UiServices.Config\UiServices.Config.csproj">
       <Project>{a722de9d-ae51-479c-825f-a19f4c69bd75}</Project>
       <Name>UiServices.Config</Name>
@@ -130,6 +134,10 @@
     <ProjectReference Include="..\ChannelLogos\ChannelLogos.csproj">
       <Project>{a51cc220-48c4-46f6-bf5d-3178cc317426}</Project>
       <Name>ChannelLogos</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GuiTools\GuiTools.csproj">
+      <Project>{9d077b2f-1e74-4031-b28d-3f6f97829bec}</Project>
+      <Name>GuiTools</Name>
     </ProjectReference>
     <ProjectReference Include="..\ToolsUiFramework\ToolsUiFramework.csproj">
       <Project>{63482f69-c5de-430d-86e7-e2a4eac59a51}</Project>

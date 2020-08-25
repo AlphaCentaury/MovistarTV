@@ -15,15 +15,13 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading;
 using System.Windows.Forms;
 using IpTviewr.Internal.Tools.UiFramework.Properties;
+using IpTviewr.UiServices.Common.Forms;
 
 namespace IpTviewr.Internal.Tools.UiFramework
 {
-    public partial class SelectToolDialog : Form
+    public partial class SelectToolDialog : SafeForm
     {
         private string _guiDescription;
         private string _cliDescription;

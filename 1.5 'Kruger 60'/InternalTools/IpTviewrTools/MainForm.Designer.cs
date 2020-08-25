@@ -43,10 +43,6 @@ namespace IpTviewr.Internal.Tools
         {
             this.SuspendLayout();
             // 
-            // kryptonManager1
-            // 
-            this.kryptonManager1.GlobalPaletteMode = ComponentFactory.Krypton.Toolkit.PaletteModeManager.Office2010Silver;
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -56,6 +52,7 @@ namespace IpTviewr.Internal.Tools
             this.Location = new System.Drawing.Point(0, 0);
             this.Name = "MainForm";
             this.Text = "IpTViewr internal tools";
+            this.Shown += new System.EventHandler(this.MainForm_Shown);
             this.ResumeLayout(false);
             this.PerformLayout();
 

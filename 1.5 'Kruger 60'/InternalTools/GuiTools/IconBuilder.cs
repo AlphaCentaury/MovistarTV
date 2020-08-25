@@ -18,10 +18,11 @@ using System.Drawing.Imaging;
 using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using IpTviewr.UiServices.Common.Forms;
 
 namespace IpTviewr.Internal.Tools.GuiTools
 {
-    public partial class IconBuilder : Form
+    public partial class IconBuilder : SafeForm
     {
         private class FileInfo
         {

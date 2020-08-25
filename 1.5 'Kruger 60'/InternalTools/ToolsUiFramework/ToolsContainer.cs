@@ -127,8 +127,9 @@ namespace IpTviewr.Internal.Tools.UiFramework
             var toolsDictionary = new Dictionary<Guid, TProvider>();
             var list = new List<TToolData>(tools.Count);
 
-            foreach (var data in toolsData.Select(lazy => lazy.Value))
+            foreach (var data in toolsData.Select(SafeGetLazyValue))
             {
+                if (data == null) continue;
                 if (!Guid.TryParse(data.Guid, out var guid)) continue;
 
                 toolsDictionary.Add(guid, data);
@@ -181,5 +182,17 @@ namespace IpTviewr.Internal.Tools.UiFramework
             cultureList.Add((culture, result));
             return result;
         } // GetSortedTools
+
+        private static TProvider SafeGetLazyValue<TProvider>(Lazy<TProvider> lazy)
+        {
+            try
+            {
+                return lazy.Value;
+            }
+            catch
+            {
+                return default;
+            } // try-catch
+        } // SafeGetLazyValue
     } // class ToolsContainer
 }

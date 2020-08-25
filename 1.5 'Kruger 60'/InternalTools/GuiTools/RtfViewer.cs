@@ -29,7 +29,8 @@ namespace IpTviewr.Internal.Tools.GuiTools
         public RtfViewer()
         {
             InitializeComponent();
-        }
+            Icon = Properties.Resources.GuiTools;
+        } // constructor
 
         private void RtfViewer_DragEnter(object sender, DragEventArgs e)
         {

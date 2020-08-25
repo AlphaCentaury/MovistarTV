@@ -89,6 +89,9 @@
     <Compile Include="Forms\InputBox.Designer.cs">
       <DependentUpon>InputBox.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\SafeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Properties\BackgroundWorkerDialog.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

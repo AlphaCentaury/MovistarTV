@@ -20,7 +20,7 @@ using System.Windows.Forms;
 
 namespace IpTviewr.Internal.Tools.GuiTools
 {
-    public partial class BinaryEditorForm : CommonBaseForm
+    public partial class BinaryViewerForm : SafeForm
     {
         private int ChunkSize;
         private byte[] Data;
@@ -31,7 +31,7 @@ namespace IpTviewr.Internal.Tools.GuiTools
         private string HexData;
         private string TextData;
 
-        public BinaryEditorForm()
+        public BinaryViewerForm()
         {
             InitializeComponent();
             this.Icon = Properties.Resources.GuiTools;

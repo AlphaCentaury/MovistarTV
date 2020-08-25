@@ -19,11 +19,11 @@ using System.Windows.Forms;
 
 namespace IpTviewr.Internal.Tools
 {
-    public partial class Form1 : KryptonForm, IRibbonMdiChild
+    public partial class TestToolForm : KryptonForm, IRibbonMdiChild
     {
         private readonly bool _random;
 
-        public Form1()
+        public TestToolForm()
         {
             InitializeComponent();
             TypeGuid = Guid.Parse("{E01C14D8-CF0B-411D-AF4C-8E84B39D72FD}");
@@ -45,7 +45,7 @@ namespace IpTviewr.Internal.Tools
 
         public Form Form => this;
 
-        public Guid TypeGuid { get; private set; }
+        public Guid TypeGuid { get; }
 
         public MdiRibbonContext[] GetChildContexts()
         {
@@ -70,5 +70,5 @@ namespace IpTviewr.Internal.Tools
         } // CreateContexts
 
         #endregion
-    }
-}
+    } // class TestToolForm
+} // namespace

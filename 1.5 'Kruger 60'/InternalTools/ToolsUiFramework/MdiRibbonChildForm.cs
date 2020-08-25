@@ -11,18 +11,19 @@
 // 
 // ==============================================================================
 
+using IpTviewr.UiServices.Common.Forms;
 using System;
 using System.Windows.Forms;
 
 namespace IpTviewr.Internal.Tools.UiFramework
 {
-    public class MdiRibbonChildForm: Form, IRibbonMdiChild
+    public class MdiRibbonChildForm: SafeForm, IRibbonMdiChild
     {
         #region Implementation of IRibbonMdiChild
 
         public IRibbonMdiForm RibbonMdiForm { get; set; }
 
-        public virtual Guid TypeGuid => throw new NotSupportedException();
+        public virtual Guid TypeGuid => throw new NotImplementedException();
         
         public virtual MdiRibbonContext[] GetChildContexts() => null;
 

@@ -13,7 +13,7 @@
 
 namespace IpTviewr.Internal.Tools
 {
-    partial class Form1
+    partial class TestToolForm
     {
         /// <summary>
         /// Required designer variable.
@@ -41,7 +41,7 @@ namespace IpTviewr.Internal.Tools
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TestToolForm));
             this.panel1 = new System.Windows.Forms.Panel();
             this.kryptonRibbon1 = new ComponentFactory.Krypton.Ribbon.KryptonRibbon();
             this.kryptonRibbonTab1 = new ComponentFactory.Krypton.Ribbon.KryptonRibbonTab();

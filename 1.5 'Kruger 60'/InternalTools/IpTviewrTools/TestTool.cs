@@ -28,14 +28,14 @@ namespace IpTviewr.Internal.Tools
     {
         #region Implementation of IGuiTool
 
-        public Form CreateForm() => new Form1();
+        public Form CreateForm() => new TestToolForm();
 
         #endregion
 
         #region Implementation of IToolDataProvider
 
         public string Guid => "{CB5FCBE7-3FB9-4280-B29E-9E995B2E0283}";
-        public string Category => "Dummy";
+        public string Category => "Xtra";
         public string Name => "Dummy tool";
 
         public Image GetLogo(int size)

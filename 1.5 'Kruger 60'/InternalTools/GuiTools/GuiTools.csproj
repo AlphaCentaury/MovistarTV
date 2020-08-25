@@ -18,7 +18,7 @@
     <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>x86</PlatformTarget>
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -41,6 +41,9 @@
   <PropertyGroup>
     <ApplicationIcon>Resources\GuiTools.ico</ApplicationIcon>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="ComponentFactory.Krypton.Ribbon">
       <HintPath>..\..\Assemblies\Third-party\ComponentFactory\Krypton\v4.6.0.0\ComponentFactory.Krypton.Ribbon.dll</HintPath>
@@ -53,6 +56,7 @@
       <HintPath>..\..\..\..\..\..\..\..\..\..\..\Program Files (x86)\Microsoft SQL Server\90\SDK\Assemblies\Microsoft.ExceptionMessageBox.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -66,24 +70,41 @@
     <Compile Include="..\..\AssemblySolutionInfo.cs">
       <Link>Properties\AssemblySolutionInfo.cs</Link>
     </Compile>
-    <Compile Include="BinaryEditorForm.cs">
+    <Compile Include="BaseExplorerForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="BinaryEditorForm.Designer.cs">
-      <DependentUpon>BinaryEditorForm.cs</DependentUpon>
+    <Compile Include="BaseExplorerForm.Designer.cs">
+      <DependentUpon>BaseExplorerForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="DvbStpStreamExplorerForm .cs">
+    <Compile Include="BaseWorkerForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="DvbStpStreamExplorerForm .Designer.cs">
-      <DependentUpon>DvbStpStreamExplorerForm .cs</DependentUpon>
+    <Compile Include="BaseWorkerForm.Designer.cs">
+      <DependentUpon>BaseWorkerForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="BinaryViewerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BinaryViewerForm.Designer.cs">
+      <DependentUpon>BinaryViewerForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BinaryViewerTool.cs" />
+    <Compile Include="DvbStpStreamExplorerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DvbStpStreamExplorerForm.Designer.cs">
+      <DependentUpon>DvbStpStreamExplorerForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DvbStpStreamExplorerTool.cs" />
     <Compile Include="IconBuilder.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="IconBuilder.Designer.cs">
       <DependentUpon>IconBuilder.cs</DependentUpon>
     </Compile>
+    <Compile Include="IconBuilderTool.cs" />
+    <Compile Include="OpchStreamExplorerTool.cs" />
+    <Compile Include="MulticastStreamExplorerTool.cs" />
     <Compile Include="OpchExplorerForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -105,6 +126,13 @@
     <Compile Include="MyApplication.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RawEpgDownloaderForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RawEpgDownloaderForm.Designer.cs">
+      <DependentUpon>RawEpgDownloaderForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RawEpgDownloaderTool.cs" />
     <Compile Include="RibbonForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -122,18 +150,26 @@
     <Compile Include="RtfViewer.Designer.cs">
       <DependentUpon>RtfViewer.cs</DependentUpon>
     </Compile>
+    <Compile Include="RtfViewerTool.cs" />
     <Compile Include="SimpleDvbStpDownloadForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="SimpleDvbStpDownloadForm.Designer.cs">
       <DependentUpon>SimpleDvbStpDownloadForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="SimpleDvbStpDownloadTool.cs" />
     <Compile Include="TasksQueue.cs" />
-    <EmbeddedResource Include="BinaryEditorForm.resx">
-      <DependentUpon>BinaryEditorForm.cs</DependentUpon>
+    <EmbeddedResource Include="BaseExplorerForm.resx">
+      <DependentUpon>BaseExplorerForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="DvbStpStreamExplorerForm .resx">
-      <DependentUpon>DvbStpStreamExplorerForm .cs</DependentUpon>
+    <EmbeddedResource Include="BaseWorkerForm.resx">
+      <DependentUpon>BaseWorkerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BinaryViewerForm.resx">
+      <DependentUpon>BinaryViewerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DvbStpStreamExplorerForm.resx">
+      <DependentUpon>DvbStpStreamExplorerForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="IconBuilder.resx">
       <DependentUpon>IconBuilder.cs</DependentUpon>
@@ -157,6 +193,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="RawEpgDownloaderForm.resx">
+      <DependentUpon>RawEpgDownloaderForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="RibbonResources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>RibbonResources.Designer.cs</LastGenOutput>
@@ -206,6 +245,10 @@
     <ProjectReference Include="..\..\Assemblies\UiServices.DvbStpClient\UiServices.DvbStpClient.csproj">
       <Project>{BA481E42-F570-4D2C-94D4-21C4CCE27762}</Project>
       <Name>UiServices.DvbStpClient</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ToolsUiFramework\ToolsUiFramework.csproj">
+      <Project>{63482f69-c5de-430d-86e7-e2a4eac59a51}</Project>
+      <Name>ToolsUiFramework</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

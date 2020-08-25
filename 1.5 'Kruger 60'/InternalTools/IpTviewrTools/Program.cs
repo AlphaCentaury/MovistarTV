@@ -27,7 +27,6 @@ namespace IpTviewr.Internal.Tools
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            _ = ToolsContainer.Current;
             Application.Run(new MainForm());
         } // Main
     } // class Program

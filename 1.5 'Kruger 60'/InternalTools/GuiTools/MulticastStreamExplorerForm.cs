@@ -17,166 +17,103 @@ using System.IO;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace IpTviewr.Internal.Tools.GuiTools
 {
-    public partial class MulticastStreamExplorerForm : Form
+    public partial class MulticastStreamExplorerForm : BaseExplorerForm
     {
-        private BackgroundWorker Worker;
-        private IPAddress MulticastIpAddress;
-        private int MulticastPort;
-        private int DatagramCount;
-        private long DatagramByteCount;
-        private string DumpFolder;
-        private DateTime StartTime;
+        private IPAddress _multicastIpAddress;
+        private int _multicastPort;
+        private string _dumpFolder;
 
         public MulticastStreamExplorerForm()
         {
             InitializeComponent();
-            this.Icon = Properties.Resources.GuiTools;
+            Icon = Properties.Resources.GuiTools;
         } // constructor
 
-        private void MulticastStreamExplorerForm_Load(object sender, EventArgs e)
+        protected override string ToolName => "Multicast Stream";
+
+        protected override void OnLoad(EventArgs e)
         {
-            var appExe = Path.GetFileNameWithoutExtension(Application.ExecutablePath);
-            var folder = string.Format(Properties.Resources.DefaultDumpFolder, appExe, Application.ProductVersion);
-            var baseFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), folder);
-            textBaseDumpFolder.Text = baseFolder;
-
-            statusLabelDataReception.Text = null;
-            statusLabelReceiving.Text = null;
-            statusLabelDatagramCount.Text = null;
-            statusLabelByteCount.Text = null;
-
-            buttonStop.Enabled = false;
-        } // MulticastStreamExplorerForm_Load
+            EnableDumpFolder();
+        } // OnLoad
 
         private void checkDumpPayloads_CheckedChanged(object sender, EventArgs e)
         {
-            labelBaseDumpFolder.Enabled = checkDumpDatagrams.Checked;
-            textBaseDumpFolder.Enabled = checkDumpDatagrams.Checked;
+            EnableDumpFolder();
         } // checkDumpPayloads_CheckedChanged
 
-        private void buttonStart_Click(object sender, EventArgs e)
+        private void EnableDumpFolder()
         {
-            string context = null;
+            labelBaseSaveFolder.Enabled = checkSaveDatagrams.Checked;
+            textBaseSaveFolder.Enabled = checkSaveDatagrams.Checked;
+        } // EnableDumpFolder
 
+        #region BaseWorkerForm overrides
+
+        protected override bool OnGatherFormData()
+        {
+            if (!base.OnGatherFormData()) return false;
+
+            string context = null;
             try
             {
                 context = "IP Address";
                 var input = textIpAddress.Text.Trim();
-                MulticastIpAddress = IPAddress.Parse(input);
+                _multicastIpAddress = IPAddress.Parse(input);
 
                 context = "Port";
-                MulticastPort = Program.ParseNumber(textPort.Text);
+                _multicastPort = Program.ParseNumber(textPort.Text);
 
                 context = "Dump folder";
-                if (checkDumpDatagrams.Checked)
+                if (checkSaveDatagrams.Checked)
                 {
-                    DumpFolder = Path.Combine(textBaseDumpFolder.Text, string.Format("MulticastStream\\{0}~{1}\\{2:yyyy-MM-dd HH-mm-ss}", MulticastIpAddress, MulticastPort, DateTime.Now));
-                    Directory.CreateDirectory(DumpFolder);
+                    _dumpFolder = Path.Combine(textBaseSaveFolder.Text, string.Format("MulticastStream\\{0}~{1}\\{2:yyyy-MM-dd HH-mm-ss}", _multicastIpAddress, _multicastPort, DateTime.Now));
+                    Directory.CreateDirectory(_dumpFolder);
                 }
                 else
                 {
-                    DumpFolder = null;
+                    _dumpFolder = null;
                 } // if-else
             }
             catch (Exception ex)
             {
                 MyApplication.HandleException(this, context, ex);
-                return;
+                return false;
             } // try-catch
 
-            buttonStart.Enabled = false;
-            buttonStop.Enabled = true;
+            return true;
+        } // OnGatherFormData
 
-            DatagramCount = 0;
-            DatagramByteCount = 0;
-            checkDumpDatagrams.Enabled = false;
+        protected override void EnableFormControls(bool enable)
+        {
+            base.EnableFormControls(enable);
 
-            statusLabelDatagramCount.Text = string.Format("{0:N0} datagrams received", DatagramCount);
-            statusLabelByteCount.Text = string.Format("{0:N0} bytes received", DatagramByteCount);
+            checkSaveDatagrams.Enabled = enable;
+        } // EnableFormControls
+
+        protected override void OnBeforeWorkerStarted()
+        {
+            base.OnBeforeWorkerStarted();
+
             listViewDatagrams.Items.Clear();
+            statusLabelReceiving.Text = "Trying to connect...";
+        } // OnBeforeWorkerStarted
 
-            Worker = new BackgroundWorker()
-            {
-                WorkerReportsProgress = true,
-                WorkerSupportsCancellation = true
-            };
-            Worker.DoWork += Worker_DoWork;
-            Worker.ProgressChanged += Worker_ProgressChanged;
-            Worker.RunWorkerCompleted += Worker_RunWorkerCompleted;
-            Worker.RunWorkerAsync();
-        } // buttonStart_Click
-
-        private void buttonStop_Click(object sender, EventArgs e)
+        protected override void OnWorkerStarted(DoWorkEventArgs e)
         {
-            buttonStop.Enabled = false;
-            buttonStop.Text = "Cancelling";
-            buttonStop.Image = Properties.Resources.Status_Wait_16x16;
-            Worker.CancelAsync();
-        } // buttonStop_Click
+            base.OnWorkerStarted(e);
 
-        private void Worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-        {
-            buttonStart.Enabled = true;
-            buttonStop.Text = "Stop";
-            buttonStop.Image = Properties.Resources.Action_Cancel_Red_16x16;
-            statusLabelDataReception.Text = null;
-            statusLabelReceiving.Text = null;
-
-            Worker.Dispose();
-            Worker = null;
-        } // Worker_RunWorkerCompleted
-
-        private void Worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
-        {
-            var data = e.UserState as byte[];
-
-            if (statusLabelDataReception.Text == null)
-            {
-                statusLabelDataReception.Text = "l";
-                statusLabelReceiving.Text = "Receiving data";
-            } // if
-
-            var item = new ListViewItem(string.Format("{0,7:N0}", data.Length));
-            item.SubItems.Add((DateTime.Now - StartTime).ToString());
-            item.SubItems.Add(GetFirstBytes(data, 64));
-            listViewDatagrams.Items.Add(item);
-            item.EnsureVisible();
-
-            if (DumpFolder != null)
-            {
-                var path = Path.Combine(DumpFolder, string.Format("{0:00000000} ~ 0x{0:X}.udp.bin", DatagramCount));
-                File.WriteAllBytes(path, data);
-            } // if
-
-            DatagramCount++;
-            DatagramByteCount += data.Length;
-
-            var length = (DatagramCount % 10) + 1;
-            statusLabelDataReception.Text = new string('l', length);
-
-            statusLabelDatagramCount.Text = string.Format("{0:N0} datagrams received", DatagramCount);
-            statusLabelByteCount.Text = string.Format("{0:N0} bytes received", DatagramByteCount);
-        } // Worker_ProgressChanged
-
-        private void Worker_DoWork(object sender, DoWorkEventArgs e)
-        {
-            UdpClient client;
-            IPEndPoint endPoint;
-
-            StartTime = DateTime.Now;
-            client = null;
+            UdpClient client = null;
             try
             {
-                client = new UdpClient(MulticastPort);
-                client.JoinMulticastGroup(MulticastIpAddress);
+                client = new UdpClient(_multicastPort);
+                client.JoinMulticastGroup(_multicastIpAddress);
 
-                statusLabelReceiving.Text = "Trying to connect...";
-
-                endPoint = null;
+                IPEndPoint endPoint = null;
                 while (!Worker.CancellationPending)
                 {
                     var data = client.Receive(ref endPoint);
@@ -187,13 +124,50 @@ namespace IpTviewr.Internal.Tools.GuiTools
             {
                 if (client != null)
                 {
-                    client.DropMulticastGroup(MulticastIpAddress);
+                    client.DropMulticastGroup(_multicastIpAddress);
                     client.Close();
                 } // if
             } // finally
-        } // Worker_DoWork
+        } // OnWorkerStarted
 
-        private string GetFirstBytes(byte[] data, int count)
+        protected override void OnWorkerProgressChanged(ProgressChangedEventArgs e)
+        {
+            var data = e.UserState as byte[];
+
+            if (statusLabelDataReception.Text == null)
+            {
+                statusLabelReceiving.Text = "Receiving data";
+            } // if
+
+            var item = new ListViewItem($"{data.Length,7:N0}");
+            item.SubItems.Add((DateTime.Now - StartTime).ToString());
+            item.SubItems.Add(GetFirstBytes(data, 64));
+            listViewDatagrams.Items.Add(item);
+            item.EnsureVisible();
+
+            if (_dumpFolder != null)
+            {
+                var path = Path.Combine(_dumpFolder,
+                    string.Format("{0:00000000} ~ 0x{0:X}.udp.bin", DatagramCount));
+                File.WriteAllBytes(path, data);
+            } // if
+
+            DatagramCount++;
+            DatagramByteCount += data.Length;
+            UpdateStats();
+        } // OnWorkerProgressChanged
+
+        protected override void OnWorkerCompleted(RunWorkerCompletedEventArgs e)
+        {
+            base.OnWorkerCompleted(e);
+
+            statusLabelDataReception.Text = null;
+            statusLabelReceiving.Text = null;
+        } // OnWorkerCompleted
+
+        #endregion
+
+        private static string GetFirstBytes(byte[] data, int count)
         {
             if (count > data.Length) count = data.Length;
 
@@ -201,7 +175,7 @@ namespace IpTviewr.Internal.Tools.GuiTools
             for (var index = 0; index < count; index++)
             {
                 var b = data[index];
-                buffer.Append((b <32 )? '·' : (char) b);
+                buffer.Append((b < 32) ? '·' : (char)b);
             } // for index
 
             return buffer.ToString();

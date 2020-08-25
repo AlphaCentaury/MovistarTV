@@ -49,7 +49,7 @@ namespace IpTviewr.Internal.Tools.UiFramework
 
         protected virtual Form CreateNewMdiChild()
         {
-            return null;
+            throw new NotImplementedException();
         } // CreateNewMdiChild
 
         #region Overrides of KryptonForm/Form
@@ -89,7 +89,7 @@ namespace IpTviewr.Internal.Tools.UiFramework
             {
                 Console.WriteLine(exception);
                 throw;
-            }
+            } // try-catch
         } // ribbonButtonNewTool_Click
 
         private void commandCloseWindow_Execute(object sender, EventArgs e)
@@ -141,7 +141,29 @@ namespace IpTviewr.Internal.Tools.UiFramework
 
         protected bool CreateNewToolWindow()
         {
-            return OnMdiChildCreated(CreateNewMdiChild());
+            Form form;
+
+            try
+            {
+                form = CreateNewMdiChild();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, $"{ex.Message}\n\n{ex.GetType().Name}", "Unexpected error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                return false;
+            } // try-catch
+
+            try
+            {
+                return OnMdiChildCreated(form);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, $"Unable to create a new tool window.\n{ex.Message}\n\n{ex.GetType().Name}", "Unexpected error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                return false;
+            } // try-catch
         } // CreateNewToolWindow
 
         protected Image RibbonAppButtonImage
@@ -149,6 +171,11 @@ namespace IpTviewr.Internal.Tools.UiFramework
             get => ribbon.RibbonAppButton.AppButtonImage;
             set => ribbon.RibbonAppButton.AppButtonImage = value;
         } // RibbonAppButtonImage
+
+        protected void EnableRibbon(bool enable)
+        {
+            ribbon.Enabled = enable;
+        } // EnableRibbon
 
         [SuppressMessage("ReSharper", "SuspiciousTypeConversion.Global")]
         private bool OnMdiChildCreated(Form form)
@@ -239,6 +266,5 @@ namespace IpTviewr.Internal.Tools.UiFramework
         } // IRibbonMdiForm.SetStatusText
 
         #endregion
-
     } // class MdiRibbonForm
 } // namespace

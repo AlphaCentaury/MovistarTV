@@ -65,7 +65,7 @@ namespace IpTviewr.Internal.Tools.GuiTools
             this.ClientSize = new System.Drawing.Size(734, 411);
             this.Controls.Add(this.richTextBox1);
             this.Name = "RtfViewer";
-            this.Text = "RTF viewer";
+            this.Text = "RTF file viewer";
             this.DragDrop += new System.Windows.Forms.DragEventHandler(this.RtfViewer_DragDrop);
             this.DragEnter += new System.Windows.Forms.DragEventHandler(this.RtfViewer_DragEnter);
             this.ResumeLayout(false);

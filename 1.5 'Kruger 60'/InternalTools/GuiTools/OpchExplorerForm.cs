@@ -12,6 +12,7 @@
 // ==============================================================================
 
 using System;
+using System.ComponentModel;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -24,16 +25,12 @@ using System.Windows.Forms;
 
 namespace IpTviewr.Internal.Tools.GuiTools
 {
-    public partial class OpchExplorerForm : Form
+    public partial class OpchExplorerForm : BaseExplorerForm
     {
         private IPAddress _multicastIpAddress;
         private int _multicastPort;
-        private int _datagramCount;
-        private long _datagramByteCount;
         private string _dumpFolder;
         private TasksQueue _queue;
-        private CancellationTokenSource _cancellationSource;
-        private CancellationToken _cancellationToken;
         private static bool EnableOnTheFly = false;
         private byte[] _buffer;
 
@@ -85,7 +82,7 @@ namespace IpTviewr.Internal.Tools.GuiTools
             public override void Execute()
             {
                 var datagram = new OpchDatagram(_payload);
-                _form.BeginInvoke(new Action<OpchDatagram>(_form.Worker_ProgressChanged), datagram);
+                _form.Worker.ReportProgress(0, datagram);
 
                 if (_form._dumpFolder == null) return;
 
@@ -102,24 +99,16 @@ namespace IpTviewr.Internal.Tools.GuiTools
         public OpchExplorerForm()
         {
             InitializeComponent();
-            this.Icon = Properties.Resources.GuiTools;
+            Icon = Properties.Resources.GuiTools;
         } // constructor
 
-        private void OpchExplorerForm_Load(object sender, EventArgs e)
+        protected override void OnLoad(EventArgs e)
         {
-            var appExe = Path.GetFileNameWithoutExtension(Application.ExecutablePath);
-            var folder = string.Format(Properties.Resources.DefaultDumpFolder, appExe, Application.ProductVersion);
-            var baseFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), folder);
-            textBaseDumpFolder.Text = baseFolder;
-
-            statusLabelDataReception.Text = null;
-            statusLabelReceiving.Text = null;
-            statusLabelDatagramCount.Text = null;
-            statusLabelByteCount.Text = null;
-
-            buttonStop.Enabled = false;
+            base.OnLoad(e);
             OnCheckDumpPayloads_CheckedChanged();
-        } // OpchExplorerForm_Load
+        } // OnLoad
+
+        protected override string ToolName => "OPCH Stream";
 
         private void checkDumpPayloads_CheckedChanged(object sender, EventArgs e)
         {
@@ -131,8 +120,8 @@ namespace IpTviewr.Internal.Tools.GuiTools
             var enabled = checkDumpDatagrams.Checked;
             checkReassemble.Enabled = enabled;
             OnCheckReassemble_CheckedChanged();
-            labelBaseDumpFolder.Enabled = enabled;
-            textBaseDumpFolder.Enabled = enabled;
+            labelBaseSaveFolder.Enabled = enabled;
+            textBaseSaveFolder.Enabled = enabled;
         } // OnCheckDumpPayloads_CheckedChanged
 
         private void checkReassemble_CheckedChanged(object sender, EventArgs e)
@@ -148,10 +137,13 @@ namespace IpTviewr.Internal.Tools.GuiTools
             checkDeleteFragments.Enabled = enabled;
         } // OnCheckReassemble_CheckedChanged
 
-        private void buttonStart_Click(object sender, EventArgs e)
-        {
-            string context = null;
+        #region BaseWorkerForm overrides
 
+        protected override bool OnGatherFormData()
+        {
+            if (!base.OnGatherFormData()) return false;
+
+            string context = null;
             try
             {
                 context = "IP Address";
@@ -164,8 +156,8 @@ namespace IpTviewr.Internal.Tools.GuiTools
                 context = "Dump folder";
                 if (checkDumpDatagrams.Checked)
                 {
-                    _dumpFolder = Path.Combine(textBaseDumpFolder.Text,
-                        $"OpchStream\\{_multicastIpAddress}~{_multicastPort}\\{DateTime.Now:yyyy-MM-dd HH-mm-ss}");
+                    _dumpFolder = Path.Combine(textBaseSaveFolder.Text,
+                        $"{_multicastIpAddress}~{_multicastPort}\\{DateTime.Now:yyyy-MM-dd HH-mm-ss}");
                     Directory.CreateDirectory(_dumpFolder);
                 }
                 else
@@ -176,64 +168,34 @@ namespace IpTviewr.Internal.Tools.GuiTools
             catch (Exception ex)
             {
                 MyApplication.HandleException(this, context, ex);
-                return;
+                return false;
             } // try-catch
 
-            buttonStart.Enabled = false;
-            buttonStop.Enabled = true;
-            checkDumpDatagrams.Enabled = false;
+            return true;
+        } // OnGatherFormData
+
+        protected override void EnableFormControls(bool enable)
+        {
+            base.EnableFormControls(enable);
+
+            checkDumpDatagrams.Enabled = enable;
+        } // EnableFormControls
+
+        protected override void OnBeforeWorkerStarted()
+        {
+            base.OnBeforeWorkerStarted();
+
             listViewFiles.Items.Clear();
-            statusLabelDatagramCount.Text = null;
-            statusLabelByteCount.Text = null;
+            statusLabelReceiving.Text = "Trying to connect...";
+            _queue = new TasksQueue(CancellationSource.Token);
+        } // OnBeforeWorkerStarted
 
-            _datagramCount = 0;
-            _datagramByteCount = 0;
-
-            _cancellationSource = new CancellationTokenSource();
-            _cancellationToken = _cancellationSource.Token;
-            _queue = new TasksQueue(_cancellationToken);
-            _queue.Completed += Worker_RunWorkerCompleted;
-
-            Task.Run(Worker_DoWork, _cancellationToken);
-        } // buttonStart_Click
-
-        private void buttonStop_Click(object sender, EventArgs e)
+        protected override void OnWorkerProgressChanged(ProgressChangedEventArgs e)
         {
-            buttonStop.Enabled = false;
-            buttonStop.Text = "Cancelling...";
-            buttonStop.Image = Properties.Resources.Status_Wait_16x16;
-            _cancellationSource.Cancel();
-        } // buttonStop_Click
+            base.OnWorkerProgressChanged(e);
 
-        private async void Worker_RunWorkerCompleted(object sender, EventArgs e)
-        {
-            if (InvokeRequired)
-            {
-                BeginInvoke(new Action<object, EventArgs>(Worker_RunWorkerCompleted), sender, e);
-                return;
-            } // if
+            if (!(e.UserState is OpchDatagram datagram)) return;
 
-            _queue.Dispose();
-            _cancellationSource.Dispose();
-
-            if ((_dumpFolder != null) && checkReassemble.Checked && radioAfterStop.Checked)
-            {
-                buttonStop.Text = "Working";
-                statusLabelReceiving.Text = "Assembling files...";
-                await Task.Run(ReassembleFiles);
-            } // if
-            _dumpFolder = null;
-
-            buttonStart.Enabled = true;
-            buttonStop.Text = "Stop";
-            buttonStop.Image = Properties.Resources.Action_Cancel_Red_16x16;
-            checkDumpDatagrams.Enabled = true;
-            statusLabelDataReception.Text = null;
-            statusLabelReceiving.Text = null;
-        } // Worker_RunWorkerCompleted
-
-        private void Worker_ProgressChanged(OpchDatagram datagram)
-        {
             if (statusLabelDataReception.Text == null)
             {
                 statusLabelReceiving.Text = "Receiving data";
@@ -254,33 +216,37 @@ namespace IpTviewr.Internal.Tools.GuiTools
             item.EnsureVisible();
             listViewFiles.EndUpdate();
 
-            _datagramCount++;
-            _datagramByteCount += datagram.RawData.Length;
+            DatagramCount++;
+            DatagramByteCount += datagram.RawData.Length;
+            UpdateStats();
+        } // OnWorkerProgressChanged
 
-            var length = (_datagramCount % 10) + 1;
-            statusLabelDataReception.Text = new string('l', length);
-
-            statusLabelDatagramCount.Text = string.Format("{0:N0} datagrams received", _datagramCount);
-            statusLabelByteCount.Text = string.Format("{0:N0} bytes received", _datagramByteCount);
-        } // Worker_ProgressChanged
-
-        private void Worker_DoWork()
+        protected override void OnWorkerStarted(DoWorkEventArgs e)
         {
+            base.OnWorkerStarted(e);
+
             UdpClient client = null;
             try
             {
                 client = new UdpClient(_multicastPort);
                 client.JoinMulticastGroup(_multicastIpAddress);
 
-                statusLabelReceiving.Text = "Trying to connect...";
 
                 IPEndPoint endPoint = null;
-                while (!_cancellationToken.IsCancellationRequested)
+                while (!CancellationSource.IsCancellationRequested)
                 {
                     var data = client.Receive(ref endPoint);
                     var task = new OpchTask(data, this);
                     _queue.AddTask(task);
                 } // while
+
+                _queue.WaitCompletion();
+                _queue.Dispose();
+
+                if (_dumpFolder == null) return;
+
+                Invoke((Action) (() => statusLabelReceiving.Text = "Assembling files..."));
+                ReassembleFiles();
             }
             finally
             {
@@ -292,6 +258,8 @@ namespace IpTviewr.Internal.Tools.GuiTools
             } // finally
         } // Worker_DoWork
 
+        #endregion
+
         private void ReassembleFiles()
         {
             _buffer = new byte[4096];
@@ -299,6 +267,7 @@ namespace IpTviewr.Internal.Tools.GuiTools
             foreach (var folder in Directory.EnumerateDirectories(_dumpFolder))
             {
                 var name = Path.GetFileName(folder);
+                Invoke((Action)(() => statusLabelReceiving.Text = name));
                 ReassembleFile(folder, name);
                 var fileCount = Directory.EnumerateFiles(folder).Count();
                 if (fileCount == 0)

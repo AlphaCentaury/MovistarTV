@@ -13,7 +13,7 @@
 
 namespace IpTviewr.Internal.Tools.GuiTools
 {
-    partial class BinaryEditorForm
+    partial class BinaryViewerForm
     {
         /// <summary>
         /// Required designer variable.
@@ -55,7 +55,7 @@ namespace IpTviewr.Internal.Tools.GuiTools
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textFile.Location = new System.Drawing.Point(44, 15);
             this.textFile.Name = "textFile";
-            this.textFile.Size = new System.Drawing.Size(234, 20);
+            this.textFile.Size = new System.Drawing.Size(559, 20);
             this.textFile.TabIndex = 1;
             // 
             // labelFile
@@ -71,7 +71,7 @@ namespace IpTviewr.Internal.Tools.GuiTools
             // 
             this.buttonStart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonStart.Image = global::IpTviewr.Internal.Tools.GuiTools.Properties.Resources.Action_Play_LG_16x16;
-            this.buttonStart.Location = new System.Drawing.Point(372, 12);
+            this.buttonStart.Location = new System.Drawing.Point(697, 12);
             this.buttonStart.Name = "buttonStart";
             this.buttonStart.Size = new System.Drawing.Size(100, 25);
             this.buttonStart.TabIndex = 4;
@@ -85,7 +85,7 @@ namespace IpTviewr.Internal.Tools.GuiTools
             // 
             this.labelChunkSize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.labelChunkSize.AutoSize = true;
-            this.labelChunkSize.Location = new System.Drawing.Point(284, 18);
+            this.labelChunkSize.Location = new System.Drawing.Point(609, 18);
             this.labelChunkSize.Name = "labelChunkSize";
             this.labelChunkSize.Size = new System.Drawing.Size(41, 13);
             this.labelChunkSize.TabIndex = 2;
@@ -100,7 +100,7 @@ namespace IpTviewr.Internal.Tools.GuiTools
             "16",
             "24",
             "32"});
-            this.comboChunkSize.Location = new System.Drawing.Point(331, 15);
+            this.comboChunkSize.Location = new System.Drawing.Point(656, 15);
             this.comboChunkSize.Name = "comboChunkSize";
             this.comboChunkSize.Size = new System.Drawing.Size(35, 21);
             this.comboChunkSize.TabIndex = 3;
@@ -118,25 +118,26 @@ namespace IpTviewr.Internal.Tools.GuiTools
             this.textBinary.Name = "textBinary";
             this.textBinary.ReadOnly = true;
             this.textBinary.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.textBinary.Size = new System.Drawing.Size(460, 306);
+            this.textBinary.Size = new System.Drawing.Size(785, 306);
             this.textBinary.TabIndex = 5;
+            this.textBinary.Text = "(Drop a file from explorer to view it)";
             this.textBinary.WordWrap = false;
             this.textBinary.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBinary_KeyPress);
             // 
-            // BinaryEditorForm
+            // BinaryViewerForm
             // 
             this.AllowDrop = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(484, 361);
+            this.ClientSize = new System.Drawing.Size(809, 361);
             this.Controls.Add(this.textBinary);
             this.Controls.Add(this.comboChunkSize);
             this.Controls.Add(this.labelChunkSize);
             this.Controls.Add(this.textFile);
             this.Controls.Add(this.labelFile);
             this.Controls.Add(this.buttonStart);
-            this.Name = "BinaryEditorForm";
-            this.Text = "Binary editor";
+            this.Name = "BinaryViewerForm";
+            this.Text = "Binary file viewer";
             this.DragDrop += new System.Windows.Forms.DragEventHandler(this.BinaryEditorForm_DragDrop);
             this.DragEnter += new System.Windows.Forms.DragEventHandler(this.BinaryEditorForm_DragEnter);
             this.ResumeLayout(false);
