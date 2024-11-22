@@ -18,8 +18,8 @@
     }
   },
   "opch": {
-    "multicastAddress": "239.0.2.30",
-    "multicastPort": 22222,
+    "multicastAddress": "239.130.1.0",
+    "multicastPort": 22220,
     "default": {
       "cfg.resources.url": "http://www-60.svc.imagenio.telefonica.net:2001"
     }
