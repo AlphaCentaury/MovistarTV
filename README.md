@@ -1,5 +1,16 @@
 # IPTViewr: Decodificador virtual movistar+ (Movistar TV) #
 
+## This project is no longer active ##
+This project is no longer active. It's been marked as read only.
+It's been an interesting journey, but my priorities have shifted.
+
+You're still more than welcome to fork the repository or browse the source code.
+
+Cheers,
+Alpha
+
+## Original README
+
 **IPTViewr** (contracción de visor de televisión IP, en inglés) es un decodificador virtual IPTV para ver los canales de movistar+ España (imagenio) en Windows (Vista, 7, 8.1 o 10).
 
 IPTViewr emula, parcialmente, el funcionamiento del decodificador físico de movistar+. El propósito de este proyecto es llegar a cubrir el 95% de la funcionalidad del decodificador.
